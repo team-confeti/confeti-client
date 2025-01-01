@@ -1,0 +1,30 @@
+{
+  "name": "@confeti/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/components/index.ts",
+    "./styles": "./src/styles/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint --max-warnings 0",
+    "generate:component": "turbo gen react-component"
+  },
+  "devDependencies": {
+    "@confeti/eslint": "workspace:*",
+    "@confeti/typescript": "workspace:*",
+    "@turbo/gen": "^1.12.4",
+    "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@vanilla-extract/css": "^1.17.0",
+    "@vanilla-extract/recipes": "^0.5.5",
+    "@vanilla-extract/sprinkles": "^1.6.3",
+    "react": "^18.2.0"
+  }
+}

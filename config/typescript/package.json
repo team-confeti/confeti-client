@@ -1,0 +1,9 @@
+{
+  "name": "@confeti/typescript",
+  "private": true,
+  "files": [
+    "base.json",
+    "react-library.json",
+    "react.json"
+  ]
+}
