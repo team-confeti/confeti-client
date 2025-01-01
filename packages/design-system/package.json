@@ -16,8 +16,8 @@
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.1",
     "eslint": "^8.57.0",
     "typescript": "^5.3.3"
   },
@@ -26,6 +26,7 @@
     "@vanilla-extract/recipes": "^0.5.5",
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
-    "react": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
