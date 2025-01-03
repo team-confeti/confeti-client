@@ -138,9 +138,6 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
     devDependencies:
-      '@confeti/eslint':
-        specifier: workspace:*
-        version: link:../../config/eslint
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
@@ -1162,12 +1159,6 @@ packages:
     resolution:
       {
         integrity: sha512-03ruubjWyOHlmljCVoxSuNDdmfZDzsrrz0P2LeJsOXr+ZwFQ+0yQIwNCwt/GYhV7Z31fgtXJTAEs+FYlEL851g==,
-      }
-
-  '@types/estree@1.0.5':
-    resolution:
-      {
-        integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==,
       }
 
   '@types/estree@1.0.6':
@@ -6668,11 +6659,8 @@ snapshots:
 
   '@types/eslint@8.56.12':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
-    optional: true
-
-  '@types/estree@1.0.5':
     optional: true
 
   '@types/estree@1.0.6': {}
