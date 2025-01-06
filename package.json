@@ -7,7 +7,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "prepare": "husky",
-    "build-storybook": "pnpm --filter packages/design-system build-storybook"
+    "build-storybook": "pnpm --filter @confeti/design-system run build-storybook"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

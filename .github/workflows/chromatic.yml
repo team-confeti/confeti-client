@@ -40,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Storybook for Design System
-        run: pnpm --filter packages/design-system run build-storybook
+        run: pnpm --filter @confeti/design-system run build-storybook
 
       - name: Publish to Chromatic
         id: chromatic
