@@ -38,6 +38,13 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: pnpm install # default: npm ci
+          build_command: pnpm run build-storybook # default: npm run build-storybook
+          path: storybook-static # default: dist/storybook
+          checkout: false # default: true
+
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
