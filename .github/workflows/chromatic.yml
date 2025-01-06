@@ -44,6 +44,8 @@ jobs:
         with:
           projectToken: ${{ secrets.AUTO_SYNC_CHROMATIC }}
           token: ${{ secrets.SECRET_KEY }}
+          build-script-name: 'build-storybook' # build-storybook 스크립트 명 지정
+          build-command: pnpm --prefix ./packages/design-system run build-storybook # 지정한 경로에서 빌드 명령 실행
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
