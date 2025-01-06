@@ -48,6 +48,8 @@ jobs:
         with:
           projectToken: ${{ secrets.AUTO_SYNC_CHROMATIC }}
           token: ${{ secrets.SECRET_KEY }}
+          onlyChanged: true
+          autoAcceptChanges: true
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
