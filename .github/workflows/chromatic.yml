@@ -42,7 +42,7 @@ jobs:
         with:
           install_command: pnpm install # default: npm ci
           build_command: pnpm --prefix ./packages/design-system run build-storybook # 지정한 디렉토리에서 실행
-          path: storybook-static # default: dist/storybook
+          path: ./packages/design-system/storybook-static # default: dist/storybook
           checkout: false # default: true
 
       - name: Publish to Chromatic
