@@ -41,7 +41,7 @@ jobs:
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
           install_command: pnpm install # default: npm ci
-          build_command: pnpm run build-storybook # default: npm run build-storybook
+          build_command: pnpm --prefix ./packages/design-system run build-storybook # 지정한 디렉토리에서 실행
           path: storybook-static # default: dist/storybook
           checkout: false # default: true
 
