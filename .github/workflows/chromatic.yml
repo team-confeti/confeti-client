@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,7 +34,11 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install Dependencies
-        run: pnpm install
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook for Design System
+        run: pnpm --filter packages/design-system run build-storybook
 
       - name: Publish to Chromatic
         id: chromatic
@@ -44,9 +46,6 @@ jobs:
         with:
           projectToken: ${{ secrets.AUTO_SYNC_CHROMATIC }}
           token: ${{ secrets.SECRET_KEY }}
-          storybookBaseDir: packages/design-system # Storybook이 위치한 디렉토리
-          buildCommand: pnpm run build-storybook # Storybook 빌드 커맨드
-          outputDir: packages/design-system/storybook-static # 빌드된 파일이 위치한 디렉토리
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
