@@ -1,0 +1,37 @@
+name: Notify Discord on PR Events
+
+on:
+  pull_request:
+    types:
+      - opened # PR 생성
+      - closed # PR 닫힘 (머지 포함)
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          PR_ACTION="${{ github.event.action }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          PR_MERGED="${{ github.event.pull_request.merged }}"
+
+          # PR 생성 알림
+          if [[ "$PR_ACTION" == "opened" ]]; then
+            curl -X POST -H "Content-Type: application/json" \
+              -d '{
+                "content": "**해적단의 PR에 `LGTM`이란 말은 없어**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+              }' $DISCORD_WEBHOOK_URL
+
+          # PR 머지 알림
+          elif [[ "$PR_ACTION" == "closed" && "$PR_MERGED" == "true" ]]; then
+            curl -X POST -H "Content-Type: application/json" \
+              -d '{
+                "content": "**아무 일 없었다**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+              }' $DISCORD_WEBHOOK_URL
+          fi
