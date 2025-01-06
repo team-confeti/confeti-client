@@ -55,4 +55,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_KEY}}
         with:
-          message: '🏴‍☠️ Storybook 배포링크: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
+          comment_tag: ${{github.event.number}}-storybook
+          message: '🏴‍☠️ Storybook 확인: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
