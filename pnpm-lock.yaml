@@ -53,6 +53,12 @@ importers:
       '@confeti/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
+      '@tanstack/react-query':
+        specifier: ^5.62.16
+        version: 5.62.16(react@19.0.0)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.62.16
+        version: 5.62.16(@tanstack/react-query@5.62.16(react@19.0.0))(react@19.0.0)
       '@vanilla-extract/css':
         specifier: ^1.17.0
         version: 1.17.0
@@ -1086,6 +1092,35 @@ packages:
       {
         integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==,
       }
+
+  '@tanstack/query-core@5.62.16':
+    resolution:
+      {
+        integrity: sha512-9Sgft7Qavcd+sN0V25xVyo0nfmcZXBuODy3FVG7BMWTg1HMLm8wwG5tNlLlmSic1u7l1v786oavn+STiFaPH2g==,
+      }
+
+  '@tanstack/query-devtools@5.62.16':
+    resolution:
+      {
+        integrity: sha512-3ff6UBJr0H3nIhfLSl9911rvKqXf0u4B58jl0uYdDWLqPk9pCvYIbxC35cGxK2+8INl4IaFVUHb/IdgWrNkg3Q==,
+      }
+
+  '@tanstack/react-query-devtools@5.62.16':
+    resolution:
+      {
+        integrity: sha512-EjF0tgHnWYcqhk8KxGKnmGlYcnldhWjW3bbH2WZqxo7t41ytzkIQtZ/UyLph//YMmZZE/RVTmSo3rGq/EG9iCA==,
+      }
+    peerDependencies:
+      '@tanstack/react-query': ^5.62.16
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.62.16':
+    resolution:
+      {
+        integrity: sha512-XJIZNj65d2IdvU8VBESmrPakfIm6FSdHDzrS1dPrAwmq3ZX+9riMh/ZfbNQHAWnhrgmq7KoXpgZSRyXnqMYT9A==,
+      }
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution:
@@ -6590,6 +6625,21 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.10.4': {}
+
+  '@tanstack/query-core@5.62.16': {}
+
+  '@tanstack/query-devtools@5.62.16': {}
+
+  '@tanstack/react-query-devtools@5.62.16(@tanstack/react-query@5.62.16(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@tanstack/query-devtools': 5.62.16
+      '@tanstack/react-query': 5.62.16(react@19.0.0)
+      react: 19.0.0
+
+  '@tanstack/react-query@5.62.16(react@19.0.0)':
+    dependencies:
+      '@tanstack/query-core': 5.62.16
+      react: 19.0.0
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
