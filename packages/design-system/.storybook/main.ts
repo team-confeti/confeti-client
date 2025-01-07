@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { join, dirname } from 'path';
 
 function getAbsolutePath(value: string): any {
@@ -20,6 +20,15 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag',
+  },
+  async viteFinal(config) {
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      vanillaExtractPlugin({
+        identifiers: ({ hash }) => `_${hash}`,
+      }),
+    );
+    return config;
   },
 };
 export default config;
