@@ -59,3 +59,4 @@ jobs:
         with:
           comment_tag: ${{github.event.number}}-storybook
           message: '🏴‍☠️ Storybook 확인: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
+          edit_mode: update
