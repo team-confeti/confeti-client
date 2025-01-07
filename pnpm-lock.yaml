@@ -144,6 +144,9 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@storybook/addon-a11y':
+        specifier: ^8.4.7
+        version: 8.4.7(storybook@8.5.0-beta.7(prettier@3.3.3))
       '@storybook/addon-essentials':
         specifier: 8.5.0-beta.7
         version: 8.5.0-beta.7(@types/react@19.0.0)(storybook@8.5.0-beta.7(prettier@3.3.3))
@@ -1165,6 +1168,14 @@ packages:
         integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==,
       }
 
+  '@storybook/addon-a11y@8.4.7':
+    resolution:
+      {
+        integrity: sha512-GpUvXp6n25U1ZSv+hmDC+05BEqxWdlWjQTb/GaboRXZQeMBlze6zckpVb66spjmmtQAIISo0eZxX1+mGcVR7lA==,
+      }
+    peerDependencies:
+      storybook: ^8.4.7
+
   '@storybook/addon-actions@8.5.0-beta.7':
     resolution:
       {
@@ -1204,6 +1215,14 @@ packages:
       }
     peerDependencies:
       storybook: ^8.5.0-beta.7
+
+  '@storybook/addon-highlight@8.4.7':
+    resolution:
+      {
+        integrity: sha512-whQIDBd3PfVwcUCrRXvCUHWClXe9mQ7XkTPCdPo4B/tZ6Z9c6zD8JUHT76ddyHivixFLowMnA8PxMU6kCMAiNw==,
+      }
+    peerDependencies:
+      storybook: ^8.4.7
 
   '@storybook/addon-highlight@8.5.0-beta.7':
     resolution:
@@ -7457,6 +7476,12 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.4': {}
 
+  '@storybook/addon-a11y@8.4.7(storybook@8.5.0-beta.7(prettier@3.3.3))':
+    dependencies:
+      '@storybook/addon-highlight': 8.4.7(storybook@8.5.0-beta.7(prettier@3.3.3))
+      axe-core: 4.10.0
+      storybook: 8.5.0-beta.7(prettier@3.3.3)
+
   '@storybook/addon-actions@8.5.0-beta.7(storybook@8.5.0-beta.7(prettier@3.3.3))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -7508,6 +7533,11 @@ snapshots:
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - '@types/react'
+
+  '@storybook/addon-highlight@8.4.7(storybook@8.5.0-beta.7(prettier@3.3.3))':
+    dependencies:
+      '@storybook/global': 5.0.0
+      storybook: 8.5.0-beta.7(prettier@3.3.3)
 
   '@storybook/addon-highlight@8.5.0-beta.7(storybook@8.5.0-beta.7(prettier@3.3.3))':
     dependencies:

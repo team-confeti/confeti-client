@@ -8,6 +8,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    a11y: {
+      element: '#root',
+      manual: false,
+    },
   },
 };
 
