@@ -1,5 +1,3 @@
-// import React from 'react';
-// type Props = {};
 import { Button } from '@confeti/design-system';
 
 const Home = () => {
