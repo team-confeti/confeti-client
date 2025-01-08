@@ -9,16 +9,16 @@
   "scripts": {
     "lint": "eslint --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "svgr": "svgr --out-dir src/icons/src src/icons/assets --typescript --icon",
+    "svgr": "svgr --out-dir src/icons/src/svg src/icons/assets --typescript --icon && mv src/icons/src/svg/index.ts src/icons/src/index.ts",
     "optimize-svg": "pnpm exec svgo -f src/icons/assets -o src/icons/assets",
     "build": "npm run optimize-svg",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_fbf106c29236912"
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
     "@confeti/typescript": "workspace:*",
+    "@svgr/cli": "^8.1.0",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "8.5.0-beta.7",
     "@storybook/addon-interactions": "8.5.0-beta.7",
@@ -27,15 +27,14 @@
     "@storybook/react": "8.5.0-beta.7",
     "@storybook/react-vite": "8.5.0-beta.7",
     "@storybook/test": "8.5.0-beta.7",
-    "@svgr/cli": "^8.1.0",
-    "@turbo/gen": "^1.12.4",
+    "@turbo/gen": "^1.13.4",
     "@types/node": "^20.11.24",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.1",
+    "svgo": "^3.3.2",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "chromatic": "^11.22.0",
     "storybook": "8.5.0-beta.7",
-    "svgo": "^3.3.2",
     "typescript": "^5.3.3",
     "vite": "^5.4.8"
   },
