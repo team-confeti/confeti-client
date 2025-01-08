@@ -1198,7 +1198,6 @@ packages:
         integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==,
       }
 
-
   '@storybook/addon-a11y@8.4.7':
     resolution:
       {
@@ -1468,29 +1467,6 @@ packages:
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
-  '@testing-library/dom@10.4.0':
-    resolution:
-      {
-        integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==,
-      }
-    engines: { node: '>=18' }
-
-  '@testing-library/jest-dom@6.5.0':
-    resolution:
-      {
-        integrity: sha512-xGGHpBXYSHUUr6XsKBfs85TWlYKpTc37cSBBVrXcib2MkHLboWlkClhWF37JKlDb9KEq3dHs+f2xR7XJEWGBxA==,
-      }
-    engines: { node: '>=14', npm: '>=6', yarn: '>=1' }
-
-  '@testing-library/user-event@14.5.2':
-    resolution:
-      {
-        integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==,
-      }
-    engines: { node: '>=12', npm: '>=6' }
-    peerDependencies:
-      '@testing-library/dom': '>=7.21.4'
-
   '@tanstack/query-core@5.62.16':
     resolution:
       {
@@ -1520,6 +1496,28 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
+  '@testing-library/dom@10.4.0':
+    resolution:
+      {
+        integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==,
+      }
+    engines: { node: '>=18' }
+
+  '@testing-library/jest-dom@6.5.0':
+    resolution:
+      {
+        integrity: sha512-xGGHpBXYSHUUr6XsKBfs85TWlYKpTc37cSBBVrXcib2MkHLboWlkClhWF37JKlDb9KEq3dHs+f2xR7XJEWGBxA==,
+      }
+    engines: { node: '>=14', npm: '>=6', yarn: '>=1' }
+
+  '@testing-library/user-event@14.5.2':
+    resolution:
+      {
+        integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==,
+      }
+    engines: { node: '>=12', npm: '>=6' }
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution:
@@ -1602,17 +1600,16 @@ packages:
         integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==,
       }
 
+  '@types/cookie@0.6.0':
+    resolution:
+      {
+        integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==,
+      }
 
   '@types/doctrine@0.0.9':
     resolution:
       {
         integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==,
-
-  '@types/cookie@0.6.0':
-    resolution:
-      {
-        integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==,
-
       }
 
   '@types/eslint@8.56.12':
@@ -5704,14 +5701,6 @@ packages:
       }
     engines: { node: '>=0.10.0' }
 
-
-  react@18.3.1:
-    resolution:
-      {
-        integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==,
-      }
-    engines: { node: '>=0.10.0' }
-
   react-router-dom@7.1.1:
     resolution:
       {
@@ -5735,6 +5724,12 @@ packages:
       react-dom:
         optional: true
 
+  react@18.3.1:
+    resolution:
+      {
+        integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==,
+      }
+    engines: { node: '>=0.10.0' }
 
   react@19.0.0:
     resolution:
@@ -7970,6 +7965,21 @@ snapshots:
     dependencies:
       storybook: 8.5.0-beta.7(prettier@3.3.3)
 
+  '@tanstack/query-core@5.62.16': {}
+
+  '@tanstack/query-devtools@5.62.16': {}
+
+  '@tanstack/react-query-devtools@5.62.16(@tanstack/react-query@5.62.16(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@tanstack/query-devtools': 5.62.16
+      '@tanstack/react-query': 5.62.16(react@19.0.0)
+      react: 19.0.0
+
+  '@tanstack/react-query@5.62.16(react@19.0.0)':
+    dependencies:
+      '@tanstack/query-core': 5.62.16
+      react: 19.0.0
+
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.26.2
@@ -7994,21 +8004,6 @@ snapshots:
   '@testing-library/user-event@14.5.2(@testing-library/dom@10.4.0)':
     dependencies:
       '@testing-library/dom': 10.4.0
-
-  '@tanstack/query-core@5.62.16': {}
-
-  '@tanstack/query-devtools@5.62.16': {}
-
-  '@tanstack/react-query-devtools@5.62.16(@tanstack/react-query@5.62.16(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@tanstack/query-devtools': 5.62.16
-      '@tanstack/react-query': 5.62.16(react@19.0.0)
-      react: 19.0.0
-
-  '@tanstack/react-query@5.62.16(react@19.0.0)':
-    dependencies:
-      '@tanstack/query-core': 5.62.16
-      react: 19.0.0
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -8084,11 +8079,9 @@ snapshots:
     dependencies:
       '@babel/types': 7.25.6
 
-
-  '@types/doctrine@0.0.9': {}
-
   '@types/cookie@0.6.0': {}
 
+  '@types/doctrine@0.0.9': {}
 
   '@types/eslint@8.56.12':
     dependencies:
@@ -11061,11 +11054,6 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
-
   react-router-dom@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -11082,6 +11070,9 @@ snapshots:
     optionalDependencies:
       react-dom: 19.0.0(react@19.0.0)
 
+  react@18.3.1:
+    dependencies:
+      loose-envify: 1.4.0
 
   react@19.0.0: {}
 
