@@ -3,8 +3,8 @@ name: Notify Discord on PR Events
 on:
   pull_request:
     types:
-      - opened # PR 생성
-      - closed # PR 닫힘 (머지 포함)
+      - opened
+      - closed
 
 jobs:
   notify-discord:

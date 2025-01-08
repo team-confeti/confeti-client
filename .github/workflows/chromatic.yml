@@ -1,0 +1,62 @@
+name: 'Chromatic Publish'
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions: write-all
+
+jobs:
+  storybook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install PNPM
+        run: npm i -g pnpm
+
+      - name: Cache node modules
+        id: cache-node
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook for Design System
+        run: pnpm --filter @confeti/design-system run build-storybook
+
+      - name: Publish to Chromatic
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.AUTO_SYNC_CHROMATIC }}
+          token: ${{ secrets.SECRET_KEY }}
+          onlyChanged: true
+          autoAcceptChanges: true
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_KEY}}
+        with:
+          comment_tag: ${{github.event.number}}-storybook
+          message: '🏴‍☠️ Storybook 확인: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
+          edit_mode: update
