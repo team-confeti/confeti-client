@@ -1,0 +1,33 @@
+name: Synchronize to forked repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
+          ref: main
+
+      - name: Add remote-url
+        run: |
+          git remote add forked-repo https://daahyunk:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI
+          git config user.name daahyunk
+          git config user.email ekgusdl0408@naver.com
+
+      - name: Push changes to forked-repo
+        run: |
+          git push -f forked-repo main
+
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
