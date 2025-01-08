@@ -15,5 +15,6 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-console': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };

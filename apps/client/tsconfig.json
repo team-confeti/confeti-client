@@ -1,9 +1,11 @@
 {
   "extends": "@confeti/typescript/react.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "plugins": [{ "name": "react" }],
     "paths": {
-      "~/*": ["./src/*"]
+      "@shared/*": ["src/shared/*"],
+      "@pages/*": ["src/pages/*"]
     }
   },
   "include": ["src", "vite.config.ts"],
