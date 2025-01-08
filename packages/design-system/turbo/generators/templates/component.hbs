@@ -1,0 +1,15 @@
+import { cn } from '../../utils';
+import { {{camelCase name}}Variants } from './{{kebabCase name}}.css';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export default function {{pascalCase name}}({ className, children, ...props}: Props) {
+  return (
+    <div className={cn({{camelCase name}}Variants(), className)} {...props}>
+      {children}
+    </div>
+  );
+};

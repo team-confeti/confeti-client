@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ButtonHTMLAttributes } from 'react';
-import { Button } from '../components';
+import type { ButtonHTMLAttributes } from 'react';
+import Button from './button';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
