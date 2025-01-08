@@ -1,8 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import { join, dirname } from 'path';
+import { join, dirname } from 'node:path';
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }
 const config: StorybookConfig = {
@@ -21,6 +21,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  staticDirs: ['public'],
   async viteFinal(config) {
     config.plugins = config.plugins || [];
     config.plugins.push(
