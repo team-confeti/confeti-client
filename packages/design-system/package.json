@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "svgr": "svgr --out-dir src/icons/src src/icons/assets/svg --typescript --icon"
+    "svgr": "svgr --out-dir src/icons/src/svg src/icons/assets --typescript --icon && mv src/icons/src/svg/index.ts src/icons/src/index.ts"
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
