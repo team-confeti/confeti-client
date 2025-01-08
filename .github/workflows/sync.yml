@@ -25,5 +25,5 @@ jobs:
           git config user.email "ekgusdl0408@naver.com"
           git remote add upstream https://github.com/SOPT-all/35-APPJAM-WEB-CONFETI.git
           git fetch upstream
-          git merge upstream/develop
-          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI.git develop
+          git merge upstream/main
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI.git main
