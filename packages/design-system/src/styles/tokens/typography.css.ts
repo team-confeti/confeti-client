@@ -1,7 +1,4 @@
 export const typography = {
-  fontFamily: {
-    default: '"Pretendard", sans-serif',
-  },
   fontSize: {
     title1: '2.4rem',
     title2: '2rem',
@@ -32,8 +29,5 @@ export const typography = {
     body1: '140%',
     body3: '140%',
     body6: '140%',
-  },
-  letterSpacing: {
-    default: '0px',
   },
 } as const;

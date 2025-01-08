@@ -5,13 +5,13 @@ globalStyle(':root', {
   vars: {
     '--min-width': '375px',
     '--max-width': '375px',
-    '--height': '667px',
   },
 });
 
 /* HTML & Body Styles */
 globalStyle('html, body', {
   fontSize: '62.5%',
+  fontFamily: '"Pretendard", sans-serif',
   scrollbarWidth: 'none',
   display: 'flex',
   justifyContent: 'center',
