@@ -1,5 +1,4 @@
 module.exports = {
-  'prettier/prettier': ['error', { endOfLine: 'auto' }],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -13,6 +12,7 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-console': 'error',
   },

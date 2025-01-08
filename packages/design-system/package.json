@@ -8,7 +8,8 @@
   },
   "scripts": {
     "lint": "eslint --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "generate:component": "turbo gen react-component",
+    "svgr": "svgr --out-dir src/icons/src src/icons/assets/svg --typescript --icon"
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
