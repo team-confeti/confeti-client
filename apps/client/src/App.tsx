@@ -3,7 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from './shared/utils/query-client';
 
-// ci-cd test
+// ci-cd test 2
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
