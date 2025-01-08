@@ -1,0 +1,52 @@
+name: Build Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 레포지토리 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Node.js 환경 설정
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3. pnpm 설치 및 PATH 문제 해결
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm # pnpm 글로벌 설치
+          echo "PNPM PATH: $(which pnpm)" # pnpm 설치 경로 출력
+          pnpm --version # 설치 확인
+
+      # 4. pnpm 캐싱 설정
+      - name: Cache pnpm store
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store # pnpm 캐시 저장 경로
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      # 5. 의존성 설치
+      - name: Install dependencies
+        run: pnpm install
+
+      # 6. 빌드 실행
+      - name: Run build
+        run: |
+          cd apps/client # 배포 대상 디렉토리
+          pnpm build
