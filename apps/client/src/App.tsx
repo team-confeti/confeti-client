@@ -1,13 +1,14 @@
-import { Button, ThemeProvider } from '@confeti/design-system';
+import { ThemeProvider } from '@confeti/design-system';
+import Router from '@shared/router/router';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <ThemeProvider>
-      <main>
-        <h1>Confeti</h1>
-        <Button>Click me</Button>
-      </main>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <Router />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
