@@ -137,9 +137,6 @@ importers:
 
   packages/design-system:
     dependencies:
-      '@svgr/plugin-jsx':
-        specifier: ^8.1.0
-        version: 8.1.0(@svgr/core@8.1.0(typescript@5.6.2))
       '@vanilla-extract/css':
         specifier: ^1.17.0
         version: 1.17.0
