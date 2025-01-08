@@ -1,29 +1,33 @@
-name: Sync Fork with Upstream
+name: Synchronize to forked repo
 
 on:
   push:
     branches:
       - main
 
-  workflow_dispatch:
-
 jobs:
   sync:
+    name: Sync forked repo
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout target repository
-        uses: actions/checkout@v3
+      - name: Checkout main
+        uses: actions/checkout@v4
         with:
-          repository: SOPT-all/35-APPJAM-WEB-CONFETI
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
           ref: main
 
-      - name: Push changes to fork
+      - name: Add remote-url
         run: |
-          git config user.name "daahyunk"
-          git config user.email "ekgusdl0408@naver.com"
-          git remote add upstream https://github.com/SOPT-all/35-APPJAM-WEB-CONFETI.git
-          git fetch upstream
-          git merge upstream/main
-          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI.git main
+          git remote add forked-repo https://daahyunk:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI
+          git config user.name daahyunk
+          git config user.email ekgusdl0408@naver.com
+
+      - name: Push changes to forked-repo
+        run: |
+          git push -f forked-repo main
+
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
