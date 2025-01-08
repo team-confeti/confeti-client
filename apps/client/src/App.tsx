@@ -1,12 +1,14 @@
 import { Button, ThemeProvider } from '@confeti/design-system';
+import { rootStyle } from '@confeti/design-system/styles';
 
 function App() {
   return (
     <ThemeProvider>
-      <main>
-        <h1>Confeti</h1>
-        <Button>Click me</Button>
-      </main>
+      <div className={rootStyle}>
+        <main>
+          <Button>Click me</Button>
+        </main>
+      </div>
     </ThemeProvider>
   );
 }

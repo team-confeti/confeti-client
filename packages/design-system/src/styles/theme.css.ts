@@ -1,13 +1,16 @@
 import { createTheme } from '@vanilla-extract/css';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
+import { color } from './tokens/color.css';
+import { typography } from './tokens/typography.css';
 
-// TODO: design-system 토큰 추가
-const tokens = {};
+const tokens = {
+  color: color,
+  ...typography,
+};
 
 const properties = defineProperties({
   properties: tokens,
 });
-
 const sprinkles = createSprinkles(properties);
 
 const [themeClass, themeVars] = createTheme(tokens);
