@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@confeti/design-system';
+import { rootStyle } from '@confeti/design-system/styles';
 import Router from '@shared/router/router';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -10,7 +11,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ThemeProvider>
-          <Router />
+          <div className={rootStyle}>
+            <Router />
+          </div>
         </ThemeProvider>
       </BrowserRouter>
       <div style={{ fontSize: '16px' }}>
