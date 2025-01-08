@@ -1,15 +1,29 @@
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+import { ButtonHTMLAttributes } from 'react';
+import { buttonStyle } from './button.css';
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
+  size?: 'xLarge' | 'large' | 'medium';
+  isDisabled?: boolean;
 }
 
-export default function Button({
+const Button = ({
+  variant = 'primary',
   children,
-  ...other
-}: ButtonProps): JSX.Element {
+  size = 'medium',
+  isDisabled = false,
+  ...props
+}: ButtonProps) => {
   return (
-    <button type="button" {...other}>
+    <button
+      type="button"
+      className={buttonStyle({ color: variant, size: size })}
+      disabled={isDisabled}
+      {...props}
+    >
       {children}
     </button>
   );
-}
+};
+
+export default Button;
