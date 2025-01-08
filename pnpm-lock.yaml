@@ -174,6 +174,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.1
         version: 19.0.1
+      svgo:
+        specifier: ^3.3.2
+        version: 3.3.2
       typescript:
         specifier: ^5.3.3
         version: 5.6.2
@@ -1108,7 +1111,6 @@ packages:
         integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==,
       }
 
-
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0':
     resolution:
       {
@@ -1267,7 +1269,6 @@ packages:
       }
     peerDependencies:
       react: ^18 || ^19
-
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution:
@@ -5114,12 +5115,6 @@ packages:
         integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==,
       }
 
-  picocolors@1.1.0:
-    resolution:
-      {
-        integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==,
-      }
-
   picocolors@1.1.1:
     resolution:
       {
@@ -6565,13 +6560,13 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/code-frame@7.26.2':
     dependencies:
       '@babel/helper-validator-identifier': 7.25.9
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/compat-data@7.25.4': {}
 
@@ -6725,7 +6720,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/parser@7.25.6':
     dependencies:
@@ -7108,7 +7103,6 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.4': {}
 
-
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.26.0)':
     dependencies:
       '@babel/core': 7.26.0
@@ -7224,7 +7218,6 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.62.16
       react: 19.0.0
-
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -10107,8 +10100,6 @@ snapshots:
 
   pathe@1.1.2: {}
 
-  picocolors@1.1.0: {}
-
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -10906,13 +10897,13 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   update-browserslist-db@1.1.1(browserslist@4.24.3):
     dependencies:
       browserslist: 4.24.3
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   update-check@1.5.4:
     dependencies:
