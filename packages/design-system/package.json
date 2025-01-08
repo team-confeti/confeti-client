@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
+    "@svgr/cli": "^8.1.0",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/react": "^19.0.0",
