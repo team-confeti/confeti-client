@@ -9,39 +9,49 @@
 
 ---
 
-<h2>🏴‍☠️ confeti FE Developers </h2>
+<h2>🏴‍☠️ confeti FE Developers</h2>
 <div align="center">
-<table >
-    <th > 강민하</a></th>
-    <th > 곽지욱 <a href="https://github.com/Ivoryeee"></a></th>
-    <th> 김다현 <a href="https://github.com/KIMGEONHWI"></a></th>
-    <th align="baseline"> 김채은 <a href="https://github.com/seueooo"></a></th>
-    <th align="baseline"> 김한서 <a href="https://github.com/seueooo"></a></th>
-    <tr>
-    	<td width="20%"><img src="https://avatars.githubusercontent.com/u/118591632?v=4" width="100%"></td>
-    	<td width="20%"><img src="https://avatars.githubusercontent.com/u/99489686?v=4"  width="100%"></td>
-      <td width="20%"><img src="https://avatars.githubusercontent.com/u/124647898?v=4" width="100%"></td>
-    	<td width="20%"><img src="https://avatars.githubusercontent.com/u/154000318?v=4" width="100%"></td>
-<td width="20%"><img src="https://avatars.githubusercontent.com/u/108131226?v=4" width="100%"></td>
-    </tr>
-<tr align="center">
- <td>
-    <a href="https://github.com/m2na7" target="_blank">@m2na7</a>
-  </td>
-  <td>
-    <a href="https://github.com/gwagjiug" target="_blank">@gwagjiug</a>
-  </td>
-  <td>
-    <a href="https://github.com/daahyunk" target="_blank">@daahyunk</a>
-  </td>
-  <td>
-    <a href="https://github.com/bongtta" target="_blank">@bongtta</a>
-  </td>
-  <td>
-    <a href="https://github.com/seueooo" target="_blank">@seueooo</a>
-  </td>
-    </tr>
-    </table>
+</div>
+<div align="center">
+  <table>
+    <thead>
+      <tr>
+        <th>강민하</th>
+        <th>곽지욱</th>
+        <th>김다현</th>
+        <th>김채은</th>
+        <th>김한서</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <td colspan="5">
+          <img 
+            src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" 
+            alt="Component 1" 
+            style="width: 100%; height: auto;"
+          />
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          <a href="https://github.com/m2na7" target="_blank">@m2na7</a>
+        </td>
+        <td>
+          <a href="https://github.com/gwagjiug" target="_blank">@gwagjiug</a>
+        </td>
+        <td>
+          <a href="https://github.com/daahyunk" target="_blank">@daahyunk</a>
+        </td>
+        <td>
+          <a href="https://github.com/bongtta" target="_blank">@bongtta</a>
+        </td>
+        <td>
+          <a href="https://github.com/seueooo" target="_blank">@seueooo</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <br />
