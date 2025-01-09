@@ -23,7 +23,7 @@ export const buttonStyle = recipe({
       cursor: 'default',
     },
 
-    transition: 'all .2s ease-in',
+    transition: 'all 0.2s ease-in',
   },
 
   variants: {
