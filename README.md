@@ -25,21 +25,21 @@
 <td width="20%"><img src="https://avatars.githubusercontent.com/u/108131226?v=4" width="100%"></td>
     </tr>
 <tr align="center">
-	<td>
-		<p>@m2na7</p>
-	</td>
-	<td>
-		<p>@gwagjiug</p>
-	</td>
-	<td>
-		<p>@daahyunk</p>
-	</td>
-       <td>
-		<p>@bongtta</p>
-	</td>
-         <td>
-		<p>@seueooo</p>
-	</td>
+ <td>
+    <a href="https://github.com/m2na7" target="_blank">@m2na7</a>
+  </td>
+  <td>
+    <a href="https://github.com/gwagjiug" target="_blank">@gwagjiug</a>
+  </td>
+  <td>
+    <a href="https://github.com/daahyunk" target="_blank">@daahyunk</a>
+  </td>
+  <td>
+    <a href="https://github.com/bongtta" target="_blank">@bongtta</a>
+  </td>
+  <td>
+    <a href="https://github.com/seueooo" target="_blank">@seueooo</a>
+  </td>
     </tr>
     </table>
 </div>
