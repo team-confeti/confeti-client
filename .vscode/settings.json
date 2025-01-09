@@ -4,5 +4,6 @@
       "mode": "auto"
     }
   ],
-  "cSpell.words": ["confeti"]
+  "cSpell.words": ["confeti"],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
