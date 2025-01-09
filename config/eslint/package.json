@@ -2,8 +2,6 @@
   "name": "@confeti/eslint",
   "private": true,
   "files": [
-    "library.js",
-    "react-internal.js",
     "react.js"
   ],
   "devDependencies": {
