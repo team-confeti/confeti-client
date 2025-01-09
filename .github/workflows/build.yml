@@ -22,20 +22,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Node.js 환경 설정
+      # 2. Pnpm 설정
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.2
+          run_install: false
+
+      # 3. Node.js 환경 설정
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
-
-      # 3. Pnpm 설정
-      - name: Setup Pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.1.2
-          run_install: false
 
       # 4. 의존성 설치
       - name: Install dependencies
