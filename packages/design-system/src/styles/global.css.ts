@@ -4,7 +4,8 @@ import { globalStyle, style } from '@vanilla-extract/css';
 globalStyle(':root', {
   vars: {
     '--min-width': '375px',
-    '--max-width': '375px',
+    '--max-width': '430px',
+    '--height': '100vh',
   },
 });
 
@@ -18,7 +19,6 @@ globalStyle('html, body', {
   alignItems: 'center',
   scrollBehavior: 'smooth',
   background: '#f8f9fa',
-  height: '100vh',
   margin: '0',
   padding: '0',
 });
@@ -39,7 +39,10 @@ export const rootStyle = style({
 
   '@media': {
     '(min-width: 430px)': {
-      boxShadow: '0 0 1px rgba(0, 0, 0, 0.4)',
+      width: '430px',
+    },
+    '(max-width: 375px)': {
+      width: '100%',
     },
   },
 });
