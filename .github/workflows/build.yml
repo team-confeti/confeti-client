@@ -26,7 +26,7 @@ jobs:
       - name: Setup Pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9.1.2
+          version: 9.12.0
           run_install: false
 
       # 3. Node.js 환경 설정
