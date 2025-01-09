@@ -50,6 +50,7 @@ jobs:
           token: ${{ secrets.SECRET_KEY }}
           onlyChanged: true
           autoAcceptChanges: true
+          storybookBaseDir: packages/design-system
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
