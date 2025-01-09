@@ -5,13 +5,15 @@
     "preinstall": "npx only-allow pnpm",
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache --fix",
+    "lint:staged": "lint-staged",
     "prepare": "husky",
     "build-storybook": "pnpm --filter @confeti/design-system run build-storybook"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix --cache"
+      "eslint --fix --cache",
+      "prettier --write"
     ],
     "**/*": "prettier --write --ignore-unknown"
   },
