@@ -202,3 +202,4 @@ ex) `feat: 타임테이블 기능 추가`
     └── 📜 vite.config.ts
 
 ```
+## 🎸 [콘페티 자세한 컨벤션 알아보기](https://wonderful-celestite-e3c.notion.site/16d210e281b08084846ad4a71d6866a3)
