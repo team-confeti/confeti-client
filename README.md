@@ -75,6 +75,23 @@
 
 <br />
 
+
+## 🤔Why
+
+| 기술 스택         | 선정 이유 |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white&style=for-the-badge) | 컴포넌트 기반 개발이 가능하여 재사용성과 유지보수성이 향상됨 |
+| ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge) | React + TypeScript 환경에 친화적으로 설계되어 초기 설정이 간소화되며, ES 모듈 기반으로 빌드 속도를 향상시킴 |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge) | 정적 타입 체크를 지원하여 컴파일 단계에서 오류를 방지하고, 명확한 타입 정의를 통해 협업을 용이하게 함 |
+| ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?logo=reactquery&logoColor=white&style=for-the-badge) | 데이터 패칭, 캐싱, 동기화, 리패칭을 자동으로 처리하며, 백그라운드에서 데이터 업데이트 및 중복 요청을 방지함<br>추후 `Next.js`와 결합하여 SSR 및 스트리밍 기능 확장을 고려함 |
+| ![Vanilla Extract](https://img.shields.io/badge/Vanilla%20Extract-DD8A42?style=for-the-badge) | 정적 CSS 생성으로 빌드 타임에 CSS를 생성하여 런타임 성능을 최적화하며, Zero-runtime 스타일링을 통해 번들 크기를 최소화하고 성능을 향상시킴 |
+| ![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white&style=for-the-badge) |[🔗 Storybook 설정 & 크로마틱 자동화](https://velog.io/@hehem/StoryBook-%EC%B4%88%EA%B8%B0-%EC%84%B8%ED%8C%85%EA%B3%BC-%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%9E%91%EC%84%B1-%ED%81%AC%EB%A1%9C%EB%A7%88%ED%8B%B1-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%EA%B9%8C%EC%A7%80) |
+| ![Monorepo](https://img.shields.io/badge/Monorepo-000000?style=for-the-badge) | [🔗 Monorepo 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0) |
+| ![Turborepo](https://img.shields.io/badge/Turborepo-EC4A3F?style=for-the-badge) | [🔗 Turborepo 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0) |
+| ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?logo=pnpm&logoColor=white&style=for-the-badge) | [🔗 Pnpm 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0) |
+
+
+
 ## 📭 Git Convention
 
 ### Git Flow
