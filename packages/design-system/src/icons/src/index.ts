@@ -5,7 +5,6 @@ export { default as BtnClose } from './BtnClose';
 export { default as BtnFloating } from './BtnFloating';
 export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
 export { default as BtnHeartFilled24 } from './BtnHeartFilled24';
-export { default as BtnLink } from './BtnLink';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as IcArrowGray16 } from './IcArrowGray16';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
