@@ -37,7 +37,6 @@ globalStyle('html, :host', {
   fontFeatureSettings: 'normal' /*5 */,
   fontVariationSettings: 'normal' /*6 */,
   WebkitTapHighlightColor: 'transparent' /*7 */,
-  fontSize: '62.5%', // 1rem = 10px
 });
 
 /*
