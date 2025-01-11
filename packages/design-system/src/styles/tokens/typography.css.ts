@@ -26,8 +26,11 @@ export const typography = {
   },
   lineHeight: {
     normal: 'normal',
+    title2: '140%',
+    subtitle4: '140%',
     body1: '140%',
     body3: '140%',
+    body4: '100%',
     body6: '140%',
   },
 } as const;

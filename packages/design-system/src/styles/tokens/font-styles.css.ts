@@ -11,7 +11,7 @@ export const fontStyles = {
   title2_b_20: style({
     fontSize: typography.fontSize.title2,
     fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.lineHeight.normal,
+    lineHeight: typography.lineHeight.title2,
   }),
   title3_b_18: style({
     fontSize: typography.fontSize.title3,
@@ -48,7 +48,7 @@ export const fontStyles = {
   subtitle4_b_14: style({
     fontSize: typography.fontSize.subtitle4,
     fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.lineHeight.normal,
+    lineHeight: typography.lineHeight.subtitle4,
   }),
   subtitle5_sb_12: style({
     fontSize: typography.fontSize.subtitle5,
@@ -80,7 +80,7 @@ export const fontStyles = {
   body3_m_14: style({
     fontSize: typography.fontSize.body3,
     fontWeight: typography.fontWeight.medium,
-    lineHeight: typography.lineHeight.body3,
+    lineHeight: typography.lineHeight.normal,
   }),
   body3_r_14: style({
     fontSize: typography.fontSize.body3,
@@ -90,7 +90,7 @@ export const fontStyles = {
   body4_m_13: style({
     fontSize: typography.fontSize.body4,
     fontWeight: typography.fontWeight.medium,
-    lineHeight: typography.lineHeight.normal,
+    lineHeight: typography.lineHeight.body4,
   }),
   body5_m_12: style({
     fontSize: typography.fontSize.body5,
