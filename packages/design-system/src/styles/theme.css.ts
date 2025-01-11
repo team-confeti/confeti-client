@@ -1,8 +1,8 @@
 import { createTheme } from '@vanilla-extract/css';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
-import { color } from './tokens/color.css';
-import { typography } from './tokens/typography.css';
-import { fontStyles } from './tokens/font-styles.css';
+import { color } from './tokens/color';
+import { typography } from './tokens/typography';
+import { fontStyles } from './tokens/font-styles';
 
 const tokens = {
   color: color,
