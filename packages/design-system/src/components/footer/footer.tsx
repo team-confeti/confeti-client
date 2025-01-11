@@ -2,11 +2,11 @@ import { LogoFooter } from '../../icons/src';
 import * as styles from './footer.css';
 
 const list = {
-  leftItems: [
+  companyInfo: [
     { label: '대표', value: '김가연' },
     { label: '이메일', value: 'weareconfeti@gamil.com' },
   ],
-  rightItems: [{ label: '개인정보처리방침' }, { label: '이용약관' }],
+  legalInfo: [{ label: '개인정보처리방침' }, { label: '이용약관' }],
 };
 
 export default function Footer() {
@@ -18,7 +18,7 @@ export default function Footer() {
 
       <div className={styles.textSection}>
         <ul className={styles.left}>
-          {list.leftItems.map((item, index) => (
+          {list.companyInfo.map((item, index) => (
             <li key={index}>
               {item.label} | {item.value}
             </li>
@@ -26,7 +26,7 @@ export default function Footer() {
         </ul>
 
         <ul className={styles.right}>
-          {list.rightItems.map((item, index) => (
+          {list.legalInfo.map((item, index) => (
             <li key={index}>{item.label}</li>
           ))}
         </ul>
