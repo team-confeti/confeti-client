@@ -21,6 +21,7 @@ export const container = styleVariants({
     {
       justifyContent: 'flex-start',
       padding: '1.2rem 0 1.2rem 2rem',
+      borderBottom: `1px solid ${themeVars.color.gray300}`,
     },
   ],
 });
