@@ -1,5 +1,6 @@
 import * as styles from './navigation.css';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import UnderBar from './under-bar/under-bar';
 
 interface NavContextProps {
   activeTab: number;
@@ -27,9 +28,13 @@ const NavRoot = ({ children, defaultActiveTab = 0 }: NavProps) => {
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
   return (
     <NavContext.Provider value={{ activeTab, setActiveTab }}>
-      <div className={styles.container}>{children}</div>
+      <div className={styles.box}>{children}</div>
     </NavContext.Provider>
   );
+};
+
+const NavList = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.container}>{children}</div>;
 };
 
 interface ItemProps {
@@ -40,19 +45,20 @@ interface ItemProps {
 const NavItem = ({ index, children }: ItemProps) => {
   const { activeTab, setActiveTab } = useTabContext();
   return (
-    <div
+    <button
       className={styles.list({ active: activeTab === index })}
       onClick={() => setActiveTab(index)}
     >
       {children}
-    </div>
+      {activeTab === index && <UnderBar />}
+    </button>
   );
 };
 
 const NavPanels = ({ children }: { children: ReactNode }) => {
   const { activeTab } = useTabContext();
   const childrenArray = React.Children.toArray(children);
-  return <div>{childrenArray[activeTab]}</div>;
+  return <div className={styles.panel}>{childrenArray[activeTab]}</div>;
 };
 
 const NavPanel = ({ children }: { children: ReactNode }) => {
@@ -61,6 +67,7 @@ const NavPanel = ({ children }: { children: ReactNode }) => {
 
 const Navigation = {
   Root: NavRoot,
+  List: NavList,
   Item: NavItem,
   Panels: NavPanels,
   Panel: NavPanel,
