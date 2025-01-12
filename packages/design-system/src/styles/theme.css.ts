@@ -3,10 +3,12 @@ import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { color } from './tokens/color';
 import { typography } from './tokens/typography';
 import { fontStyles } from './tokens/font-styles';
+import { zIndex } from './tokens/z-index';
 
 const tokens = {
   color: color,
   ...typography,
+  zIndex: zIndex,
   fontStyles,
 };
 

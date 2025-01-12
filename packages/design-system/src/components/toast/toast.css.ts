@@ -40,7 +40,7 @@ export const toast = recipe({
     backgroundColor: themeVars.color.gray800,
     color: themeVars.color.confeti_lime2,
     textAlign: 'center',
-    zIndex: 100,
+    zIndex: themeVars.zIndex.toast.content,
     ...themeVars.fontStyles.body2_m_15,
   },
   variants: {
