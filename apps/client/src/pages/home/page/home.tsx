@@ -6,7 +6,12 @@ const Home = () => {
       <h1>Home</h1>
       <Button>Click Me</Button>
       <Footer />
-      <Header />
+      <Header variant="default" />
+      <Header
+        variant="detail"
+        title="마이페이지"
+        onBackClick={() => alert('방구티티')}
+      />
     </>
   );
 };

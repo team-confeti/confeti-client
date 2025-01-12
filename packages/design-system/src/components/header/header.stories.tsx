@@ -22,4 +22,16 @@ const meta: Meta<typeof Header> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    variant: 'default',
+  },
+};
+
+export const DetailHeader: Story = {
+  args: {
+    variant: 'detail',
+    title: '마이페이지',
+    onBackClick: () => alert('뒤로가기 버튼 클릭'),
+  },
+};
