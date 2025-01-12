@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '../../utils';
 import { buttonVariants } from './button.css';
 import SvgIcLink from '../../icons/src/IcLink';
