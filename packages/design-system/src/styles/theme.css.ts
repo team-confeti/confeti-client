@@ -4,12 +4,14 @@ import { color } from './tokens/color';
 import { typography } from './tokens/typography';
 import { fontStyles } from './tokens/font-styles';
 import { zIndex } from './tokens/z-index';
+import { display } from './tokens/display';
 
 const tokens = {
   color: color,
-  ...typography,
+  fontStyles: fontStyles,
   zIndex: zIndex,
-  fontStyles,
+  display: display,
+  ...typography,
 };
 
 const properties = defineProperties({

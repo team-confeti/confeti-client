@@ -18,24 +18,17 @@ export const icon = style({
 });
 
 export const content = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   gap: '0.4rem',
+  ...themeVars.display.flexCenter,
 });
 
 export const toast = recipe({
   base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     position: 'fixed',
-
     width: '32.5rem',
     height: '5rem',
 
     transform: 'translateX(-50%)',
-
     borderRadius: '5rem',
     backgroundColor: themeVars.color.gray800,
     color: themeVars.color.confeti_lime2,
