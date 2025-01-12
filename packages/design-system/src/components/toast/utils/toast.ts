@@ -17,21 +17,9 @@ const emitAddToast = (type: ToastType, toastProps: ToastAddFunctionProps) => {
   return id;
 };
 
-const emitUpdateToast = (toastId: string, text: string) => {
-  eventManager.emit(ToastEvent.Update, toastId, text);
-  return toastId;
-};
-
-const emitDeleteToast = (toastId: string) => {
-  eventManager.emit(ToastEvent.Delete, toastId);
-};
-
 export const toast = {
   default: (text: string, toastOptions?: ToastOptions) =>
     emitAddToast('default', { text: text, ...toastOptions }),
   success: (text: string, toastOptions?: ToastOptions) =>
     emitAddToast('success', { text: text, ...toastOptions }),
-
-  update: (toastId: string, text: string) => emitUpdateToast(toastId, text),
-  delete: (toastId: string) => emitDeleteToast(toastId),
 };

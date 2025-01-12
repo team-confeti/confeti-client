@@ -8,7 +8,7 @@ import * as styles from './toast.css';
 const Toast = ({
   toastId,
   text,
-  autoClose = 300000,
+  autoClose = 3000,
   closeOnClick = true,
 }: ToastProps) => {
   const toastRef = useRef<HTMLDivElement>(null);
