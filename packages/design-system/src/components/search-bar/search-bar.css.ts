@@ -1,0 +1,49 @@
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+import { themeVars } from '../../styles';
+
+export const container = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.8rem 2rem',
+  width: '37.5rem',
+  gap: '0.8rem',
+});
+
+export const searchBar = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    height: '3.8rem',
+    padding: '1rem 1.2rem',
+    borderRadius: '2.1rem',
+    border: '1px solid',
+  },
+  variants: {
+    type: {
+      default: [themeVars.fontStyles.body1_m_16],
+    },
+  },
+});
+
+export const searchIcon = style({
+  flexShrink: 0,
+});
+
+export const textSection = style({
+  width: '100%',
+  marginLeft: '0.6rem',
+  backgroundColor: 'transparent',
+  caretColor: themeVars.color.confeti_lime,
+
+  selectors: {
+    '&::placeholder': {
+      color: themeVars.color.gray400,
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+});

@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from './shared/utils/query-client';
+import { SearchBar } from '../../../packages/design-system/src/components/search-bar/search-bar';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <ThemeProvider>
           <div className={rootStyle}>
             <Router />
+            <SearchBar />
           </div>
         </ThemeProvider>
       </BrowserRouter>
