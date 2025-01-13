@@ -4,8 +4,7 @@ import { themeVars } from '../../styles';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const box = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
 });
 
 export const container = style([
