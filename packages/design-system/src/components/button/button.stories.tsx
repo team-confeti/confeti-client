@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Button from './button';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Common/Button',
   component: Button,
   parameters: {
     layout: 'centered',
@@ -19,28 +19,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: 'default',
+    variant: 'default',
     disabled: false,
   },
 };
 
 export const Add: Story = {
   args: {
-    type: 'add',
+    variant: 'add',
     disabled: false,
   },
 };
 
 export const AddDisabled: Story = {
   args: {
-    type: 'add',
+    variant: 'add',
     disabled: true,
   },
 };
 
 export const Link: Story = {
   args: {
-    type: 'link',
+    variant: 'link',
     disabled: false,
   },
 };

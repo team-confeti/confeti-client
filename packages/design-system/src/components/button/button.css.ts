@@ -3,6 +3,7 @@ import { themeVars } from '../../styles';
 
 export const buttonVariants = recipe({
   base: {
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -12,22 +13,19 @@ export const buttonVariants = recipe({
     color: themeVars.color.gray800,
   },
   variants: {
-    type: {
+    variant: {
       default: {
         ...themeVars.fontStyles.subtitle4_b_14,
-        width: '17.6rem',
         height: '3.9rem',
         padding: '1rem 3rem',
       },
       link: {
         ...themeVars.fontStyles.subtitle3_b_15,
-        width: '33.5rem',
         height: '5rem',
         padding: '0.8rem 1.6rem',
       },
       add: {
         ...themeVars.fontStyles.title4_b_16,
-        width: '33.5rem',
         height: '5rem',
         padding: '0.8rem 1.6rem',
       },
@@ -39,7 +37,7 @@ export const buttonVariants = recipe({
   },
   compoundVariants: [
     {
-      variants: { type: 'add', disabled: true },
+      variants: { variant: 'add', disabled: true },
       style: {
         backgroundColor: themeVars.color.gray400,
         cursor: 'not-allowed',

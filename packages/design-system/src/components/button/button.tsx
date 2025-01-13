@@ -2,24 +2,24 @@ import { cn } from '../../utils';
 import { buttonVariants } from './button.css';
 import SvgIcLink from '../../icons/src/IcLink';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  type?: 'add' | 'link' | 'default';
+  variant?: 'add' | 'link' | 'default';
   disabled?: boolean;
   className?: string;
 }
 
 const Button = ({
   text,
-  type = 'default',
+  variant = 'default',
   disabled = false,
   className,
 }: ButtonProps) => {
-  const linkIcon = type === 'link' ? <SvgIcLink /> : null;
+  const linkIcon = variant === 'link' ? <SvgIcLink /> : null;
 
   return (
     <button
-      className={cn(buttonVariants({ type, disabled }), className)}
+      className={cn(buttonVariants({ variant: variant, disabled }), className)}
       disabled={disabled}
     >
       {text}
