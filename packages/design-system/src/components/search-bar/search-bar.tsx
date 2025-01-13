@@ -30,24 +30,30 @@ export const SearchBar = () => {
 
   return (
     <div className={styles.container}>
-      <SvgBtnArrowLeft20 width={20} height={20} />
-      <div className={styles.searchBar({ type: 'default' })}>
-        <SvgIcSicGray18 className={styles.searchIcon} width={18} height={18} />
-        <input
-          className={styles.textSection}
-          type="text"
-          placeholder="아티스트를 검색해주세요"
-          ref={textInput}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        ></input>
-        <SvgBtnClose
-          ref={closeButton}
-          onClick={handleClear}
-          width={18}
-          height={18}
-          style={{ display: 'none' }}
-        />
+      <div className={styles.frame}>
+        <SvgBtnArrowLeft20 width={20} height={20} />
+        <div className={styles.searchBar({ type: 'default' })}>
+          <SvgIcSicGray18
+            className={styles.searchIcon}
+            width={18}
+            height={18}
+          />
+          <input
+            className={styles.textSection}
+            type="text"
+            placeholder="아티스트를 검색해주세요"
+            ref={textInput}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          ></input>
+          <SvgBtnClose
+            ref={closeButton}
+            onClick={handleClear}
+            width={18}
+            height={18}
+            style={{ display: 'none' }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,13 @@ export const container = style({
   gap: '0.8rem',
 });
 
+export const frame = style({
+  display: 'flex',
+  alignItems: 'center',
+  // alignSelf: 'stretch',
+  width: '100%',
+});
+
 export const searchBar = recipe({
   base: {
     display: 'flex',
@@ -23,7 +30,7 @@ export const searchBar = recipe({
   },
   variants: {
     type: {
-      default: [themeVars.fontStyles.body1_m_16],
+      default: [themeVars.fontStyles.body2_m_15],
     },
   },
 });
