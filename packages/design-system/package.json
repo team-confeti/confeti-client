@@ -31,6 +31,7 @@
     "@types/node": "^20.11.24",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.1",
+    "@types/react-router-dom": "^5.3.3",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "chromatic": "^11.22.0",
     "storybook": "8.5.0-beta.7",
@@ -44,6 +45,7 @@
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.1"
   }
 }

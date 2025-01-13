@@ -155,6 +155,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-router-dom:
+        specifier: ^7.1.1
+        version: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^3.2.3
@@ -201,6 +204,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.1
         version: 19.0.1
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
       '@vanilla-extract/vite-plugin':
         specifier: ^4.0.19
         version: 4.0.19(@types/node@20.16.5)(vite@5.4.11(@types/node@20.16.5))
@@ -1767,6 +1773,12 @@ packages:
         integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==,
       }
 
+  '@types/history@4.7.11':
+    resolution:
+      {
+        integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==,
+      }
+
   '@types/inquirer@6.5.0':
     resolution:
       {
@@ -1819,6 +1831,18 @@ packages:
     resolution:
       {
         integrity: sha512-hljHij7MpWPKF6u5vojuyfV0YA4YURsQG7KT6SzV0Zs2BXAtgdTxG6A229Ub/xiWV4w/7JL8fi6aAyjshH4meA==,
+      }
+
+  '@types/react-router-dom@5.3.3':
+    resolution:
+      {
+        integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==,
+      }
+
+  '@types/react-router@5.1.20':
+    resolution:
+      {
+        integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==,
       }
 
   '@types/react@18.3.6':
@@ -8490,6 +8514,8 @@ snapshots:
       '@types/minimatch': 5.1.2
       '@types/node': 20.16.5
 
+  '@types/history@4.7.11': {}
+
   '@types/inquirer@6.5.0':
     dependencies:
       '@types/through': 0.0.33
@@ -8514,6 +8540,17 @@ snapshots:
   '@types/react-dom@19.0.1':
     dependencies:
       '@types/react': 18.3.6
+
+  '@types/react-router-dom@5.3.3':
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 19.0.0
+      '@types/react-router': 5.1.20
+
+  '@types/react-router@5.1.20':
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 19.0.0
 
   '@types/react@18.3.6':
     dependencies:
