@@ -9,12 +9,12 @@ interface ButtonProps {
   className?: string;
 }
 
-export default function Button({
+const Button = ({
   text,
   type = 'default',
   disabled = false,
   className,
-}: ButtonProps) {
+}: ButtonProps) => {
   const linkIcon = type === 'link' ? <SvgIcLink /> : null;
 
   return (
@@ -26,4 +26,6 @@ export default function Button({
       {linkIcon}
     </button>
   );
-}
+};
+
+export default Button;
