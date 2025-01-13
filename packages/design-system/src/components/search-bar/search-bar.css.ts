@@ -14,7 +14,6 @@ export const container = style({
 export const frame = style({
   display: 'flex',
   alignItems: 'center',
-  // alignSelf: 'stretch',
   width: '100%',
 });
 

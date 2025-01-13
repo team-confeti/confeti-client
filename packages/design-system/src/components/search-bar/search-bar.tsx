@@ -2,22 +2,15 @@ import * as styles from './search-bar.css';
 import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export const SearchBar = () => {
   const textInput = useRef<HTMLInputElement>(null);
-  const closeButton = useRef<SVGSVGElement>(null);
+  const [showClearBtn, setShowClearBtn] = useState(false);
 
   const handleFocus = () => {
-    if (textInput.current && closeButton.current) {
+    if (textInput.current) {
       textInput.current.placeholder = '';
-      closeButton.current.style.display = 'flex';
-    }
-  };
-
-  const handleBlur = () => {
-    if (closeButton.current) {
-      closeButton.current.style.display = 'none';
     }
   };
 
@@ -25,6 +18,13 @@ export const SearchBar = () => {
     if (textInput.current) {
       textInput.current.value = '';
       textInput.current.focus();
+      setShowClearBtn(false);
+    }
+  };
+
+  const handleInputChange = () => {
+    if (textInput.current) {
+      setShowClearBtn(textInput.current.value.length > 0);
     }
   };
 
@@ -44,15 +44,16 @@ export const SearchBar = () => {
             placeholder="아티스트를 검색해주세요"
             ref={textInput}
             onFocus={handleFocus}
-            onBlur={handleBlur}
-          ></input>
-          <SvgBtnClose
-            ref={closeButton}
-            onClick={handleClear}
-            width={18}
-            height={18}
-            style={{ display: 'none' }}
+            onChange={handleInputChange}
           />
+          {showClearBtn && (
+            <SvgBtnClose
+              onClick={handleClear}
+              width={18}
+              height={18}
+              style={{ display: 'flex' }}
+            />
+          )}
         </div>
       </div>
     </div>
