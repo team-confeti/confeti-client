@@ -5,20 +5,26 @@ import {
   BtnArrowLeft20,
 } from '../../icons/src';
 import * as styles from './header.css';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
-  onBackClick?: () => void;
 }
 
-const Header = ({ variant = 'default', title, onBackClick }: HeaderProps) => {
+const Header = ({ variant = 'default', title = '' }: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   if (variant === 'detail') {
     return (
       <header className={styles.container({ variant: 'detail' })}>
         <button
           className={styles.button({ variant: 'back' })}
-          onClick={onBackClick}
+          onClick={handleBackClick}
           aria-label="뒤로가기"
         >
           <BtnArrowLeft20 className={styles.icon} />

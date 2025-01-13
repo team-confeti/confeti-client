@@ -32,6 +32,5 @@ export const DetailHeader: Story = {
   args: {
     variant: 'detail',
     title: '마이페이지',
-    onBackClick: () => alert('뒤로가기 버튼 클릭'),
   },
 };
