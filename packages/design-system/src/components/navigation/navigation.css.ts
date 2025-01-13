@@ -45,8 +45,16 @@ export const list = recipe({
 export const underBar = style({
   width: '100%',
   height: '2px',
-  backgroundColor: themeVars.color.confeti_lime,
   position: 'absolute',
   left: 0,
-  bottom: 0,
+  top: '4.2rem',
+});
+
+export const bar = style({
+  position: 'absolute',
+  left: 0,
+  width: 'calc(20% - 1.8rem)', // width값 계산 애매.....
+  height: '0.2rem',
+  backgroundColor: themeVars.color.confeti_lime,
+  transition: 'all 0.2s ease-in-out',
 });

@@ -32,8 +32,23 @@ const NavRoot = ({ children, defaultActiveTab = 0 }: NavProps) => {
   );
 };
 
-const NavList = ({ children }: { children: ReactNode }) => {
-  return <div className={styles.container}>{children}</div>;
+interface ListProps {
+  children: ReactNode;
+  activeTab?: number;
+}
+
+const NavList = ({ children, activeTab }: ListProps) => {
+  return (
+    <div className={styles.container}>
+      {children}
+      <div className={styles.underBar}>
+        <div
+          className={styles.bar}
+          style={{ left: activeTab === 0 ? '1.4rem' : '2rem' }}
+        />
+      </div>
+    </div>
+  );
 };
 
 interface ItemProps {
@@ -49,7 +64,6 @@ const NavItem = ({ index, children }: ItemProps) => {
       onClick={() => setActiveTab(index)}
     >
       {children}
-      {activeTab === index && <div className={styles.underBar} />}
     </button>
   );
 };
