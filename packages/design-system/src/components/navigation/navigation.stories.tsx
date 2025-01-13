@@ -1,13 +1,12 @@
 import type { Meta } from '@storybook/react';
 import Navigation from './navigation';
 
-const meta: Meta<typeof Navigation> = {
+const meta: Meta<typeof Navigation.Root> = {
   title: 'Common/Navigation',
-  component: Navigation,
+  component: Navigation.Root,
   parameters: {
     layout: 'centered',
   },
-
   tags: ['autodocs'],
   args: {},
 };

@@ -7,15 +7,6 @@ const meta: Meta<typeof Footer> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => {
-      return (
-        <div style={{ width: '375px' }}>
-          <Story />
-        </div>
-      );
-    },
-  ],
   tags: ['autodocs'],
   args: {},
 };
