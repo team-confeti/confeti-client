@@ -24,7 +24,6 @@ const useToastContainer = () => {
 
             if (prev.has(id)) {
                 const updatedProps = { ...prev.get(id)!, text: text };
-                newMap.delete(id);
                 newMap.set(id, updatedProps);
             }
             return newMap;
@@ -39,7 +38,7 @@ const useToastContainer = () => {
         // 컴포넌트 언마운트 시 리스너 해제
         return () => {
             eventManager.off(ToastEvent.Add, addToast);
-            eventManager.off(ToastEvent.Add, addToast);
+            eventManager.off(ToastEvent.Delete, deleteToast);
             eventManager.off(ToastEvent.Update, updateToast);
         };
     }, []);
