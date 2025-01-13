@@ -10,15 +10,6 @@ const meta: Meta<typeof Navigation> = {
 
   tags: ['autodocs'],
   args: {},
-  decorators: [
-    (Story) => {
-      return (
-        <div style={{ width: '375px' }}>
-          <Story />
-        </div>
-      );
-    },
-  ],
 };
 
 export default meta;

@@ -1,6 +1,7 @@
+// navigation.css.ts
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const box = style({
   display: 'flex',
@@ -26,6 +27,7 @@ export const list = recipe({
     cursor: 'pointer',
     height: '100%',
     position: 'relative',
+    transition: 'color 0.4s ease',
   },
   variants: {
     active: {
@@ -43,10 +45,19 @@ export const list = recipe({
 });
 
 export const underBar = style({
-  width: '100%',
-  height: '2px',
-  backgroundColor: themeVars.color.confeti_lime,
   position: 'absolute',
   left: 0,
   bottom: 0,
+  width: '100%',
+  height: '2px',
+  backgroundColor: themeVars.color.confeti_lime,
+  transition: 'left 0.4s ease',
+});
+
+export const activeUnderBar = style({
+  left: '100%',
+});
+
+export const secondTabUnderBar = style({
+  left: '-50%',
 });

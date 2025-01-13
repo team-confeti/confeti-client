@@ -43,13 +43,22 @@ interface ItemProps {
 
 const NavItem = ({ index, children }: ItemProps) => {
   const { activeTab, setActiveTab } = useTabContext();
+
   return (
     <button
       className={styles.list({ active: activeTab === index })}
       onClick={() => setActiveTab(index)}
     >
       {children}
-      {activeTab === index && <div className={styles.underBar} />}
+      <div
+        className={
+          activeTab === index
+            ? styles.underBar
+            : index === 0
+              ? styles.activeUnderBar
+              : styles.secondTabUnderBar
+        }
+      />
     </button>
   );
 };
