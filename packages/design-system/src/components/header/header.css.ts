@@ -1,5 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
+import { style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const container = recipe({
   base: {
@@ -21,24 +22,17 @@ export const container = recipe({
       },
     },
   },
-  defaultVariants: {
-    variant: 'default',
-  },
 });
 
-export const logo = recipe({
-  base: {
-    width: '9.7059rem',
-    height: '100%',
-  },
+export const logo = style({
+  width: '9.7059rem',
+  height: '100%',
 });
 
-export const iconSection = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1.2rem',
-  },
+export const iconSection = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1.2rem',
 });
 
 export const button = recipe({
@@ -61,25 +55,18 @@ export const button = recipe({
       },
     },
   },
-  defaultVariants: {
-    variant: 'default',
-  },
 });
 
-export const icon = recipe({
-  base: {
-    width: '100%',
-    height: '100%',
-  },
+export const icon = style({
+  width: '100%',
+  height: '100%',
 });
 
-export const title = recipe({
-  base: {
-    ...themeVars.fontStyles.title4_b_16,
-    color: themeVars.color.black,
-    textAlign: 'center',
-    position: 'absolute',
-    left: '50%',
-    transform: 'translateX(-50%)',
-  },
+export const title = style({
+  ...themeVars.fontStyles.title4_b_16,
+  color: themeVars.color.black,
+  textAlign: 'center',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
