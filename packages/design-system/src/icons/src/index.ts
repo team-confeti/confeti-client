@@ -1,12 +1,14 @@
+export { default as BtnAccountBlack24 } from './BtnAccountBlack24';
 export { default as BtnAccountGray24 } from './BtnAccountGray24';
 export { default as BtnArrowLeft20 } from './BtnArrowLeft20';
 export { default as BtnArrowLeft24 } from './BtnArrowLeft24';
 export { default as BtnClose } from './BtnClose';
-export { default as BtnFloating } from './BtnFloating';
 export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
 export { default as BtnHeartFilled24 } from './BtnHeartFilled24';
+export { default as BtnSearchBlack24 } from './BtnSearchBlack24';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as IcArrowGray16 } from './IcArrowGray16';
+export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
 export { default as IcFestivalGray } from './IcFestivalGray';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
