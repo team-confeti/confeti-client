@@ -7,13 +7,7 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '375px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  decorators: [(Story) => <Story />],
   tags: ['autodocs'],
   args: {
     text: '',
