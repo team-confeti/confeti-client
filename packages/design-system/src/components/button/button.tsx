@@ -1,27 +1,29 @@
-import type { ButtonHTMLAttributes } from 'react';
-import { buttonStyle } from './button.css';
+import { cn } from '../../utils';
+import { buttonVariants } from './button.css';
+import SvgIcLink from '../../icons/src/IcLink';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
-  size?: 'xLarge' | 'large' | 'medium';
-  isDisabled?: boolean;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  text: string;
+  variant?: 'add' | 'link' | 'default';
+  disabled?: boolean;
+  className?: string;
 }
 
 const Button = ({
-  variant = 'primary',
-  children,
-  size = 'medium',
-  isDisabled = false,
-  ...props
+  text,
+  variant = 'default',
+  disabled = false,
+  className,
 }: ButtonProps) => {
+  const linkIcon = variant === 'link' ? <SvgIcLink /> : null;
+
   return (
     <button
-      type="button"
-      className={buttonStyle({ color: variant, size: size })}
-      disabled={isDisabled}
-      {...props}
+      className={cn(buttonVariants({ variant: variant, disabled }), className)}
+      disabled={disabled}
     >
-      {children}
+      {text}
+      {linkIcon}
     </button>
   );
 };

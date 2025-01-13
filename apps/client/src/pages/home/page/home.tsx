@@ -1,4 +1,6 @@
+
 import { Footer, Navigation } from '@confeti/design-system';
+
 
 const Home = () => {
   return (
@@ -14,7 +16,6 @@ const Home = () => {
           <Navigation.Panel>타임테이블</Navigation.Panel>
         </Navigation.Panels>
       </Navigation.Root>
-
       <Footer />
     </>
   );
