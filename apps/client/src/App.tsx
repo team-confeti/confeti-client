@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@confeti/design-system';
+import { ThemeProvider, ToastContainer } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
 import Router from '@shared/router/router';
 import { BrowserRouter } from 'react-router-dom';
@@ -13,6 +13,7 @@ function App() {
         <ThemeProvider>
           <div className={rootStyle}>
             <Router />
+            <ToastContainer />
           </div>
         </ThemeProvider>
       </BrowserRouter>
