@@ -10,6 +10,7 @@ const Toast = ({
   text,
   autoClose = 3000,
   closeOnClick = true,
+  position = 'bottomCenter',
 }: ToastProps) => {
   const toastRef = useRef<HTMLDivElement>(null);
   const [isExiting, setIsExiting] = useState(false);
@@ -33,7 +34,7 @@ const Toast = ({
     <div
       ref={toastRef}
       className={styles.toast({
-        position: 'bottomCenter',
+        position,
         animation: isExiting ? 'exit' : 'enter',
       })}
       onClick={() => closeOnClick && setIsExiting(true)}

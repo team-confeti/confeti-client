@@ -1,12 +1,13 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { themeVars } from '../../styles';
 
 export const container = style({
   position: 'fixed',
   pointerEvents: 'none',
   touchAction: 'none',
 
-  zIndex: 10,
+  zIndex: themeVars.zIndex.toast.content,
   minWidth: 'auto',
   maxWidth: '100%',
   width: '32.5rem',
@@ -24,6 +25,9 @@ export const toastPositionStyle = recipe({
       },
       bottomCenter: {
         bottom: '5rem',
+      },
+      middleCenter: {
+        bottom: '9.8rem',
       },
     },
   },

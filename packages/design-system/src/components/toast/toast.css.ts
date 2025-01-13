@@ -40,6 +40,7 @@ export const toast = recipe({
     position: {
       topCenter: { top: '0rem' },
       bottomCenter: { bottom: '0rem' },
+      middleCenter: { bottom: '5rem' },
     },
     animation: {
       enter: {

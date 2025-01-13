@@ -1,4 +1,4 @@
-export type ToastPosition = 'topCenter' | 'bottomCenter';
+export type ToastPosition = 'topCenter' | 'bottomCenter' | 'middleCenter';
 export type ToastType = 'success' | 'default';
 export type ToastProps = {
   toastId: string;
