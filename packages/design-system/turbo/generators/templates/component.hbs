@@ -6,10 +6,10 @@ interface Props {
   className?: string;
 }
 
-export default function {{pascalCase name}}({ className, children, ...props}: Props) {
-  return (
-    <div className={cn({{camelCase name}}Variants(), className)} {...props}>
-      {children}
-    </div>
-  );
-};
+const {{pascalCase name}} = ({ className, children, ...props }: Props) => (
+  <div className={cn({{camelCase name}}Variants(), className)} {...props}>
+    {children}
+  </div>
+);
+
+export default {{pascalCase name}};
