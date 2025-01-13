@@ -58,7 +58,6 @@ export const button = recipe({
         width: '2rem',
         height: '2rem',
         position: 'absolute',
-        left: '2rem',
       },
     },
   },
