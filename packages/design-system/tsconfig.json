@@ -1,7 +1,9 @@
 {
   "extends": "@confeti/typescript/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "typeRoots": ["node_modules/@types"],
+    "outDir": "dist",
+    "rootDir": "packages/design-system"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
