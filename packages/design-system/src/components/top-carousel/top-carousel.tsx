@@ -43,7 +43,7 @@ const TopCarousel = ({ performData }: DataProps) => {
     sliceToScroll: 1,
     speed: 800,
     cssEase: 'ease-in-out',
-    initialSlide: currentId,
+    initialSlide: 3,
     beforeChange: (newIndex: number) => {
       setCurrentId(newIndex);
     },
