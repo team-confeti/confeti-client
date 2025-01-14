@@ -3,9 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
 
 export const container = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  ...themeVars.display.flexCenter,
   padding: '0.8rem 2rem',
   width: '37.5rem',
   gap: '0.8rem',
@@ -25,7 +23,7 @@ export const searchBar = recipe({
     height: '3.8rem',
     padding: '1rem 1.2rem',
     borderRadius: '2.1rem',
-    border: '1px solid',
+    border: themeVars.border.black,
   },
   variants: {
     type: {
