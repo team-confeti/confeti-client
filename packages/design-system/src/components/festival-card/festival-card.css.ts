@@ -56,5 +56,6 @@ export const title = style([
     whiteSpace: 'normal',
     wordBreak: 'keep-all',
     overflowWrap: 'break-word',
+    lineHeight: '130%',
   },
 ]);
