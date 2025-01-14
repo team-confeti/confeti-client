@@ -1,9 +1,9 @@
-import { Footer } from '@confeti/design-system';
+import { Footer, TopCarousel } from '@confeti/design-system';
 
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
+      <TopCarousel></TopCarousel>
       <Footer />
     </>
   );
