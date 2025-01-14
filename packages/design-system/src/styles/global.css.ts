@@ -11,6 +11,7 @@ globalStyle(':root', {
 
 /* HTML & Body Styles */
 globalStyle('html, body', {
+  position: 'relative', //floating button 추가로 인한 position 지정
   fontSize: '62.5%',
   fontFamily: '"Pretendard", sans-serif',
   scrollbarWidth: 'none',

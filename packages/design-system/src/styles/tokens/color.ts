@@ -17,6 +17,7 @@ export const color = {
 
   // secondary
   confeti_lime2: '#E9FFAC',
+  confeti_lime3: '#92C015',
   confeti_red: '#FA4250',
 
   // gradients
