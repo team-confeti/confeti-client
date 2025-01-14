@@ -89,6 +89,10 @@ globalStyle('b, strong', {
   fontWeight: 'bolder',
 });
 
+globalStyle('p', {
+  margin: '0',
+});
+
 /*
 1. Use the user's configured `mono` font-family by default.
 2. Use the user's configured `mono` font-feature-settings by default.

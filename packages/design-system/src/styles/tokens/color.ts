@@ -17,7 +17,11 @@ export const color = {
 
   // secondary
   confeti_lime2: '#E9FFAC',
+  confeti_lime3: '#92C015',
   confeti_red: '#FA4250',
+
+  // opacity
+  black_op: 'rgba(18, 18, 18, 0.5)',
 
   // gradients
   confeti_grad:

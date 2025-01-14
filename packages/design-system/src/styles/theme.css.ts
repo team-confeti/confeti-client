@@ -6,6 +6,8 @@ import { fontStyles } from './tokens/font-styles';
 import { border } from './tokens/border';
 import { zIndex } from './tokens/z-index';
 import { display } from './tokens/display';
+import { overlay } from './tokens/overlay';
+import { shadowStyles } from './tokens/box-shadow';
 
 const tokens = {
   color: color,
@@ -13,7 +15,9 @@ const tokens = {
   zIndex: zIndex,
   display: display,
   border: border,
-    ...typography,
+  overlay: overlay,
+  ...typography,
+  shadowStyles,
 };
 
 const properties = defineProperties({
