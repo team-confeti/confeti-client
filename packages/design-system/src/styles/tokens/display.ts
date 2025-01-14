@@ -8,4 +8,10 @@ export const display = {
     display: 'flex',
     flexDirection: 'column',
   },
+  flexBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alihnItems: 'center',
+    alignself: 'stretch',
+  },
 } as const;
