@@ -18,7 +18,7 @@ export const container = recipe({
       },
       detail: {
         padding: '1.2rem 0 1.2rem 2rem',
-        borderBottom: themeVars.border.md,
+        borderBottom: themeVars.border.gray300,
       },
     },
   },
