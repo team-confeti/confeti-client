@@ -1,5 +1,3 @@
-import { content } from '../../components/toast/toast.css';
-
 export const zIndex = {
   toast: {
     content: '99',
