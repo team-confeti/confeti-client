@@ -20,6 +20,9 @@ export const color = {
   confeti_lime3: '#92C015',
   confeti_red: '#FA4250',
 
+  // opacity
+  black_op: 'rgba(18, 18, 18, 0.5)',
+
   // gradients
   confeti_grad:
     'var(--confeti_grad, linear-gradient(176deg, #B5F602 4.17%, #F5FFD8 95.15%))',
