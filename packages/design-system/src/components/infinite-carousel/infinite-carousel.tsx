@@ -1,29 +1,51 @@
 import * as styles from './infinite-carousel.css';
+import { ReactNode } from 'react';
 interface CarouselImageProps {
   children: React.ReactNode;
-  className?: string;
 }
 interface CarouselInfoProps {
-  day?: string;
+  children: ReactNode;
   artist?: string;
   subtitle?: string;
 }
 
+interface CarouselDdayProps {
+  day: string;
+}
+
+interface CarouselArtistProps {
+  artist: string;
+  subtitle: string;
+}
+
 const CarouselImage = ({ children }: CarouselImageProps) => (
-  <section className={styles.container}>{children}</section>
+  <section className={styles.wrap}>
+    <div className={styles.container}>{children}</div>
+  </section>
 );
 
-const CarouselInfo = ({ day, artist, subtitle }: CarouselInfoProps) => (
-  <div>
-    <h2>{day}</h2>
-    <h3>{artist}</h3>
-    <p>{subtitle}</p>
+const CarouselInfo = ({ children }: CarouselInfoProps) => (
+  <section className={styles.info}>
+    <div className={styles.textSection}>{children}</div>
+    <div className={styles.infoBottom}>{children}</div>
+  </section>
+);
+
+const CarouselDday = ({ day }: CarouselDdayProps) => (
+  <div className={styles.infoDday}>D-{day}</div>
+);
+
+const CarouselArtist = ({ artist, subtitle }: CarouselArtistProps) => (
+  <div className={styles.artist}>
+    {artist} <span className={styles.subtitle}>{subtitle}</span>
   </div>
 );
 
 const InfiniteCarousel = {
   Image: CarouselImage,
   Info: CarouselInfo,
+  Dday: CarouselDday,
+  Artist: CarouselArtist,
 };
 
 export default InfiniteCarousel;

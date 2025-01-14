@@ -1,15 +1,13 @@
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { progressBarVariants } from './progress-bar.css';
 
 interface Props {
-  children: React.ReactNode;
-  className?: string;
+  current: number;
+  total: number;
 }
 
-const ProgressBar = ({ className, children, ...props }: Props) => (
-  <div className={cn(progressBarVariants(), className)} {...props}>
-    {children}
-  </div>
+const ProgressBar = ({ current, total }: Props) => (
+  <div className={cn(progressBarVariants())}></div>
 );
 
 export default ProgressBar;

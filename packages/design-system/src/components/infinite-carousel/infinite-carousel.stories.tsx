@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import InfiniteCarousel from './infinite-carousel';
 
 const meta: Meta<typeof InfiniteCarousel.Image> = {
@@ -12,6 +12,12 @@ const meta: Meta<typeof InfiniteCarousel.Image> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default = () => (
+  <InfiniteCarousel.Image>
+    <InfiniteCarousel.Info>
+      <InfiniteCarousel.Dday day="2024.01.14" />
+      <InfiniteCarousel.Artist artist="고고학" subtitle="공연 예매" />
+    </InfiniteCarousel.Info>
+  </InfiniteCarousel.Image>
+);
