@@ -36,18 +36,7 @@ export const image = style({
   borderRadius: '10px',
 });
 
-export const overlay = style({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(18, 18, 18, 0.5)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '10px',
-});
+export const overlay = style(themeVars.overlay.default);
 
 export const icon = style({
   width: '2.8rem',
