@@ -6,6 +6,7 @@ import { fontStyles } from './tokens/font-styles';
 import { border } from './tokens/border';
 import { zIndex } from './tokens/z-index';
 import { display } from './tokens/display';
+import { shadowStyles } from './tokens/box-shadow';
 
 const tokens = {
   color: color,
@@ -14,6 +15,7 @@ const tokens = {
   display: display,
   border: border,
   ...typography,
+  shadowStyles,
 };
 
 const properties = defineProperties({

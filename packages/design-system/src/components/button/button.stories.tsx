@@ -22,6 +22,13 @@ export const Default: Story = {
     variant: 'default',
     disabled: false,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '17.6rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Add: Story = {
@@ -29,6 +36,13 @@ export const Add: Story = {
     variant: 'add',
     disabled: false,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '33.5rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const AddDisabled: Story = {
@@ -36,6 +50,13 @@ export const AddDisabled: Story = {
     variant: 'add',
     disabled: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '33.5rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Link: Story = {
@@ -43,4 +64,11 @@ export const Link: Story = {
     variant: 'link',
     disabled: false,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '33.5rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
