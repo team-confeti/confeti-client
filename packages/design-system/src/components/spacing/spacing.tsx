@@ -12,12 +12,6 @@ export default function Spacing({
   size = 'md',
   color = 'gray',
   className,
-  ...props
 }: Props) {
-  return (
-    <div
-      className={cn(spacingVariants({ size, color }), className)}
-      {...props}
-    />
-  );
+  return <div className={cn(spacingVariants({ size, color }), className)} />;
 }
