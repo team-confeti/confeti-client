@@ -4,19 +4,16 @@ import { style } from '@vanilla-extract/css';
 
 export const artistCardVariants = recipe({
   base: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
+    ...themeVars.display.flexColumnCenter,
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
   },
   variants: {
     size: {
-      myArtist: { width: '9rem' },
-      myArtistAll: { width: '8rem' },
-      detailArtist: { width: '7rem' },
+      sm: { width: '7rem' },
+      md: { width: '8rem' },
+      lg: { width: '9rem' },
     },
   },
 });
@@ -27,17 +24,17 @@ export const artistImg = recipe({
   },
   variants: {
     size: {
-      myArtist: {
-        width: '9rem',
-        height: '9rem',
+      sm: {
+        width: '7rem',
+        height: '7rem',
       },
-      myArtistAll: {
+      md: {
         width: '8rem',
         height: '8rem',
       },
-      detailArtist: {
-        width: '7rem',
-        height: '7rem',
+      lg: {
+        width: '9rem',
+        height: '9rem',
       },
     },
   },
@@ -54,17 +51,18 @@ export const artistName = recipe({
     width: '100%',
     display: '-webkit-box',
     overflow: 'hidden',
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-    whiteSpace: 'normal',
-    wordBreak: 'keep-all',
+    WebkitLineClamp: 2, // 줄 수 제한
+    WebkitBoxOrient: 'vertical', // 세로 방향으로 제한
+    whiteSpace: 'normal', // 일반적인 공백 처리
+    wordBreak: 'keep-all', // 단어 분리 없이 줄바꿈 (띄어쓰기 있을 경우)
+    overflowWrap: 'break-word', // 단어 강제 분리 후 줄바꿈 (띄어쓰기 없을 경우)
     color: themeVars.color.black,
   },
   variants: {
     size: {
-      myArtist: [themeVars.fontStyles.body3_m_14],
-      myArtistAll: [themeVars.fontStyles.body2_m_15],
-      detailArtist: [themeVars.fontStyles.body4_m_13],
+      sm: [themeVars.fontStyles.body4_m_13],
+      md: [themeVars.fontStyles.body2_m_15],
+      lg: [themeVars.fontStyles.body3_m_14],
     },
   },
 });

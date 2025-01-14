@@ -9,7 +9,7 @@ interface Artist {
 
 interface ArtistCardProps {
   data?: Artist[];
-  size: 'myArtist' | 'myArtistAll' | 'detailArtist';
+  size: 'sm' | 'md' | 'lg';
 }
 
 const ArtistCard = ({ data = [], size }: ArtistCardProps) => {
@@ -22,7 +22,7 @@ const ArtistCard = ({ data = [], size }: ArtistCardProps) => {
             src={artist.image}
             alt={artist.name}
           />
-          {size === 'myArtistAll' && (
+          {size === 'md' && (
             <SvgBtnHeartFilled24
               className={styles.heartImg}
               width={24}

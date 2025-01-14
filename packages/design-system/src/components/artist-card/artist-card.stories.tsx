@@ -18,6 +18,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     data: [{ id: 1, name: '데이식스', image: 'https://dummyimage.com/80X80' }],
-    size: 'myArtist',
+    size: 'sm',
   },
 };
