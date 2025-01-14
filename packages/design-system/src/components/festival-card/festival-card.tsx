@@ -32,12 +32,12 @@ const FestivalCard = ({
 
   return (
     <div
-      className={styles.card({ selectable })}
+      className={styles.card}
       onClick={handleClick}
       role="button"
       aria-pressed={internalSelected}
     >
-      <div className={styles.poster}>
+      <div className={styles.poster({ selectable })}>
         <img src={imageSrc} alt={title} className={styles.image} />
         {internalSelected && (
           <div className={styles.overlay}>

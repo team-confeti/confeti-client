@@ -2,13 +2,20 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 import { recipe } from '@vanilla-extract/recipes';
 
-export const card = recipe({
+export const card = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '0.8rem',
+  width: '10rem',
+  position: 'relative',
+  cursor: 'default',
+});
+
+export const poster = recipe({
   base: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.8rem',
-    width: '10rem',
+    width: '100%',
+    height: '14.2rem',
     position: 'relative',
   },
   variants: {
@@ -21,12 +28,6 @@ export const card = recipe({
       },
     },
   },
-});
-
-export const poster = style({
-  width: '100%',
-  height: '14.2rem',
-  position: 'relative',
 });
 
 export const image = style({
