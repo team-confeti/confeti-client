@@ -7,6 +7,7 @@ const meta: Meta<typeof FestivalCard> = {
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
   argTypes: {
     title: { control: 'text' },
     imageSrc: { control: 'text' },
