@@ -9,7 +9,6 @@ export const card = style({
   gap: '0.8rem',
   width: '10rem',
   position: 'relative',
-  cursor: 'default',
 });
 
 export const poster = recipe({
@@ -47,6 +46,7 @@ export const icon = style({
 export const title = style([
   themeVars.fontStyles.body4_m_13,
   {
+    width: '100%',
     textAlign: 'center',
     color: themeVars.color.black,
     overflow: 'hidden',

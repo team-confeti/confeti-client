@@ -31,13 +31,12 @@ const FestivalCard = ({
   };
 
   return (
-    <div
-      className={styles.card}
-      onClick={handleClick}
-      role="button"
-      aria-pressed={internalSelected}
-    >
-      <div className={styles.poster({ selectable })}>
+    <div className={styles.card}>
+      <div
+        className={styles.poster({ selectable })}
+        onClick={handleClick}
+        aria-pressed={internalSelected}
+      >
         <img src={imageSrc} alt={title} className={styles.image} />
         {internalSelected && (
           <div className={styles.overlay}>
