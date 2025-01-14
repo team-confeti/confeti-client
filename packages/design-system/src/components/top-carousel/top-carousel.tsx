@@ -1,55 +1,62 @@
-import { useRef, useState } from 'react';
-import * as styles from './top-carousel.css';
+import Slider from 'react-slick';
+import './slick-theme.css';
+import './slick.css';
+import './dots.css';
+import './top-carousel.css';
 import Card from './card';
+import { performData } from './mock';
+import { useEffect, useRef } from 'react';
 
 const TopCarousel = () => {
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [transX, setTransX] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<Slider | null>(null);
 
-  const mediateScroll = (scrollValue: number) => {
-    if (scrollValue > 0) return 0;
-    if (ref.current) {
-      const maxScroll = ref.current.scrollWidth - ref.current.clientWidth;
-      if (maxScroll > -scrollValue) return scrollValue;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        sliderRef.current.slickNext();
+      }
+    }, 4000);
 
-      return -maxScroll;
-    }
-    return 0;
-  };
+    return () => clearInterval(interval);
+  }, []);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchStartX(e.touches[0]?.clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    const moveWidth = e.touches[0]?.clientX - touchStartX;
-    setTransX((prev) => mediateScroll(prev + moveWidth));
-    setTouchStartX(e.touches[0]?.clientX);
+  const settings = {
+    ref: sliderRef,
+    className: 'center',
+    dots: true,
+    centerMode: true,
+    infinite: true,
+    centerPadding: '115px',
+    slidesToShow: 1,
+    sliceToScroll: 1,
+    initialSlide: 3,
+    speed: 500,
+    appendDots: (dots: string) => (
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyItems: 'center',
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1.6rem 0',
+        }}
+      >
+        <ul> {dots} </ul>
+      </div>
+    ),
+    dotsClass: 'dots_custom',
   };
 
   return (
     <>
-      <div className={styles.topContainer}>
-        <div
-          ref={ref}
-          className={styles.wrapper}
-          style={{
-            transform: `translateX(${transX}px)`,
-            transitionDuration: '300ms',
-            transitionTimingFunction: 'ease-out',
-          }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-        >
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-        </div>
+      <div className="topContainer">
+        <Slider {...settings}>
+          {performData.map((item) => (
+            <Card key={item.performanceId} posterUrl={item.posterUrl}></Card>
+          ))}
+        </Slider>
       </div>
     </>
   );

@@ -1,9 +1,10 @@
 import * as styles from './card.css';
+interface CardProps {
+  posterUrl: string;
+}
 
-const Card = () => {
-  return (
-    <img className={styles.card} src="https://dummyimage.com/192x262"></img>
-  );
+const Card = ({ posterUrl }: CardProps) => {
+  return <img className={styles.card} src={posterUrl}></img>;
 };
 
 export default Card;

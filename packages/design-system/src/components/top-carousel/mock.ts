@@ -1,0 +1,51 @@
+export const performData = [
+  {
+    performanceId: 1,
+    type: 'concert',
+    title: '오아시스 내한공연',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 2,
+    type: 'festival',
+    title: '오아시스 내한공연',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 3,
+    type: 'festival',
+    title: '오아시스 내한공연3',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 4,
+    type: 'festival',
+    title: '오아시스 내한공연4',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 5,
+    type: 'festival',
+    title: '오아시스 내한공연5',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 6,
+    type: 'festival',
+    title: '오아시스 내한공연6',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+  {
+    performanceId: 7,
+    type: 'festival',
+    title: '오아시스 내한공연7',
+    performanceAt: '2025.10.21',
+    posterUrl: 'https://dummyimage.com/197x262',
+  },
+];
