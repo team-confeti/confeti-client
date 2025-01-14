@@ -11,7 +11,7 @@ export const floatingButtonVariants = recipe({
     borderRadius: '2rem',
     backgroundColor: themeVars.color.gray800,
     flexShrink: '0',
-    zIndex: 10,
+    zIndex: themeVars.zIndex.floatingButton.content,
   },
   variants: {
     md: {

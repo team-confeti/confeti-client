@@ -1,3 +1,5 @@
+import { content } from '../../components/toast/toast.css';
+
 export const zIndex = {
   toast: {
     content: '99',
@@ -10,5 +12,8 @@ export const zIndex = {
   },
   bottomButton: {
     content: '100',
+  },
+  floatingButton: {
+    content: '15',
   },
 } as const;
