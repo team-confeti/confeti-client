@@ -4,3 +4,4 @@ export { default as Footer } from './footer/footer';
 export { default as ToastContainer } from './toast/toast-container';
 export { toast } from './toast/utils/toast';
 export { default as Header } from './header/header';
+export { default as InfiniteCarousel } from './infinite-carousel/infinite-carousel';
