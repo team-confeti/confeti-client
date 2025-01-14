@@ -10,6 +10,6 @@ export const overlay = {
     height: '100%',
     backgroundColor: color.black_op,
     ...display.flexCenter,
-    borderRadius: '10px',
+    borderRadius: '1rem',
   },
 } as const;

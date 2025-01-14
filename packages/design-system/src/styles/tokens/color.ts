@@ -11,7 +11,6 @@ export const color = {
   gray800: '#323339',
   gray900: '#212224',
   black: '#121212',
-  black_op: 'rgba(18, 18, 18, 0.5)',
 
   // primary
   confeti_lime: '#B5F602',
@@ -19,6 +18,9 @@ export const color = {
   // secondary
   confeti_lime2: '#E9FFAC',
   confeti_red: '#FA4250',
+
+  // opacity
+  black_op: 'rgba(18, 18, 18, 0.5)',
 
   // gradients
   confeti_grad:

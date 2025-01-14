@@ -32,7 +32,7 @@ export const image = style({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  borderRadius: '10px',
+  borderRadius: '1rem',
 });
 
 export const overlay = style(themeVars.overlay.default);
