@@ -55,6 +55,7 @@
 }
 
 .card {
+  z-index: 1;
   width: 19.7rem;
   height: 26.2rem;
   border-radius: 10px;

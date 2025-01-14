@@ -21,7 +21,6 @@
   overflow: hidden;
 
   margin: 0;
-  padding: 0;
 }
 .slick-list:focus {
   outline: none;
@@ -42,6 +41,7 @@
 
 .slick-track {
   margin: auto;
+  padding-bottom: 2rem;
 }
 .slick-track:before,
 .slick-track:after {

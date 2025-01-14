@@ -25,7 +25,7 @@ const TopCarousel = ({ performData }: DataProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (sliderRef.current) {
-        sliderRef.current.slickNext();
+        sliderRef.current?.slickNext();
       }
     }, 4000);
 
@@ -41,11 +41,13 @@ const TopCarousel = ({ performData }: DataProps) => {
     centerPadding: '115px',
     slidesToShow: 1,
     sliceToScroll: 1,
+    speed: 800, // 속도 증가
+    cssEase: 'ease-in-out', // 부드러운 전환 효과
     initialSlide: currentId,
     beforeChange: (oldIndex: number, newIndex: number) => {
       setCurrentId(newIndex);
     },
-    speed: 500,
+
     appendDots: (dots: string) => (
       <div
         style={{
