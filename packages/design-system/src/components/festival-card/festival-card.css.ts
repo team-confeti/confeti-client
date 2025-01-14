@@ -55,5 +55,6 @@ export const title = style([
     WebkitBoxOrient: 'vertical',
     whiteSpace: 'normal',
     wordBreak: 'keep-all',
+    overflowWrap: 'break-word',
   },
 ]);
