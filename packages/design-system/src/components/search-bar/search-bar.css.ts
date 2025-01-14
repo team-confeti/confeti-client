@@ -53,3 +53,7 @@ export const textSection = style({
     },
   },
 });
+
+export const closeBtn = style({
+  cursor: 'pointer',
+});

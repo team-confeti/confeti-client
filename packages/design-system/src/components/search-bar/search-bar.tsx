@@ -48,6 +48,7 @@ export const SearchBar = () => {
           />
           {showClearBtn && (
             <SvgBtnClose
+              className={styles.closeBtn}
               onClick={handleClear}
               width={18}
               height={18}

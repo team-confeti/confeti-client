@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { SearchBar } from './search-bar';
 
 const meta: Meta<typeof SearchBar> = {
-  title: 'Components/SearchBar',
+  title: 'Common/SearchBar',
   component: SearchBar,
   parameters: {
     layout: 'centered',
