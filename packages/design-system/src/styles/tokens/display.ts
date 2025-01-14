@@ -4,4 +4,8 @@ export const display = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
 } as const;
