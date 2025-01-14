@@ -22,4 +22,6 @@ export const color = {
   // gradients
   confeti_grad:
     'var(--confeti_grad, linear-gradient(176deg, #B5F602 4.17%, #F5FFD8 95.15%))',
+
+  confeti_purple_grad: 'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
 } as const;

@@ -1,14 +1,26 @@
+import { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import './slick-theme.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
 import './top-carousel.css';
-import Card from './card';
-import { performData } from './mock';
-import { useEffect, useRef } from 'react';
 
-const TopCarousel = () => {
+interface PerformData {
+  performanceId: number;
+  type: string;
+  title: string;
+  subTitle: string;
+  performanceAt: string;
+  posterUrl: string;
+}
+
+interface DataProps {
+  performData: PerformData[];
+}
+
+const TopCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
+  const [currentId, setCurrentId] = useState(3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +41,10 @@ const TopCarousel = () => {
     centerPadding: '115px',
     slidesToShow: 1,
     sliceToScroll: 1,
-    initialSlide: 3,
+    initialSlide: currentId,
+    beforeChange: (oldIndex: number, newIndex: number) => {
+      setCurrentId(newIndex);
+    },
     speed: 500,
     appendDots: (dots: string) => (
       <div
@@ -51,14 +66,24 @@ const TopCarousel = () => {
 
   return (
     <>
-      <div className="topContainer">
+      <div className="banner-title">
+        <p className="title-date">{performData[currentId]?.performanceAt} </p>
+        <h1 className="title-name">{performData[currentId]?.title}</h1>
+        <p className="title-sub">{performData[currentId]?.subTitle}</p>
+      </div>
+      <div>
         <Slider {...settings}>
           {performData.map((item) => (
-            <Card key={item.performanceId} posterUrl={item.posterUrl}></Card>
+            <img
+              className="card"
+              key={item.performanceId}
+              src={item.posterUrl}
+            ></img>
           ))}
         </Slider>
       </div>
     </>
   );
 };
+
 export default TopCarousel;
