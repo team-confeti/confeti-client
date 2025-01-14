@@ -8,6 +8,12 @@ export const display = {
     display: 'flex',
     flexDirection: 'column',
   },
+  flexColumnCenter: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
   flexBetween: {
     display: 'flex',
     justifyContent: 'space-between',
