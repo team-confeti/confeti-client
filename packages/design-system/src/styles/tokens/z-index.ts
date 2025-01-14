@@ -11,4 +11,7 @@ export const zIndex = {
   bottomButton: {
     content: '100',
   },
+  floatingButton: {
+    content: '15',
+  },
 } as const;
