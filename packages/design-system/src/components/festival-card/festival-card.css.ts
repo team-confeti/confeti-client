@@ -3,8 +3,7 @@ import { themeVars } from '../../styles';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const card = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   alignItems: 'center',
   gap: '0.8rem',
   width: '10rem',
