@@ -2,8 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   padding: '1rem 2rem',
 });
 
@@ -23,8 +22,7 @@ export const poster = style({
 
 export const textSection = style({
   flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '0.5rem',
   textAlign: 'left',
 });
@@ -43,8 +41,7 @@ export const title = style({
 });
 
 export const infoRow = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   gap: '1rem',
 });
 

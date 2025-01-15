@@ -3,16 +3,13 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   display: 'flex',
-  alignItems: 'center',
   padding: '1rem 2rem',
   width: '100%',
 });
 
 export const wrapper = style({
   width: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+  ...themeVars.display.flexAlignCenter,
 });
 
 export const image = style({
@@ -24,12 +21,9 @@ export const image = style({
 });
 
 export const textSection = style({
+  ...themeVars.display.flexColumnLeft,
   flex: 1,
-  display: 'flex',
   gap: '1.05rem',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  textAlign: 'left',
 });
 
 export const name = style({
@@ -38,9 +32,8 @@ export const name = style({
 });
 
 export const releaseWrapper = style({
-  display: 'flex',
+  ...themeVars.display.flexAlignCenter,
   gap: '0.8rem',
-  alignItems: 'center',
 });
 
 export const releaseLabel = style({

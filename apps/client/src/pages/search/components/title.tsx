@@ -1,4 +1,3 @@
-// components/title.tsx
 import * as styles from './title.css';
 
 interface TitleProps {

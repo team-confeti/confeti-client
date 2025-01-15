@@ -3,11 +3,8 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   height: '42rem',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  ...themeVars.display.flexColumnCenter,
   justifyContent: 'center',
-  textAlign: 'center',
   color: themeVars.color.gray600,
 });
 

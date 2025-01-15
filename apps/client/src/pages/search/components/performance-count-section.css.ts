@@ -1,6 +1,12 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
+export const section = style({
+  padding: '1rem 2rem',
+  backgroundColor: themeVars.color.white,
+  borderBottom: themeVars.border.gray200,
+});
+
 export const container = style({
   textAlign: 'left',
 });
