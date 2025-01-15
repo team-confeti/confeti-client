@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import * as styles from './infinite-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import { useCarouselData } from './hooks/use-carousel-data';
