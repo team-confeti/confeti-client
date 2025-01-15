@@ -17,8 +17,12 @@ const Search = () => {
   const [performanceResults, setPerformanceResults] = useState<
     typeof searchedPerformances
   >([]); // 공연 검색 결과
+  const [hasSearched, setHasSearched] = useState(false); // 검색 실행 여부
+  const [isSearchBarFocused, setIsSearchBarFocused] = useState(false); // 서치바 포커스 여부
 
   const handleSearch = (query: string) => {
+    setHasSearched(true); // 검색 실행 상태로 설정
+    setIsSearchBarFocused(false); // 검색 실행 후 포커스 상태 해제
     setSearchQuery(query);
 
     // 아티스트 필터링
@@ -40,15 +44,21 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <SearchBar
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)} // 입력 값 업데이트
-        onKeyDown={(e) => e.key === 'Enter' && handleSearch(searchQuery)} // Enter 키로 검색 실행
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+          setHasSearched(false); // 검색 실행 전 상태로 설정
+        }}
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch(searchQuery)}
+        onFocus={() => setIsSearchBarFocused(true)} // 서치바에 포커스 올리면 상태 변경
       />
 
       <main className={styles.resultSection}>
-        {artistResults.length > 0 ? (
+        {isSearchBarFocused ||
+        searchQuery === '' ||
+        !hasSearched ? null : artistResults.length > 0 ? (
           <>
             {/* 아티스트 섹션 */}
             <div className={styles.section}>
@@ -71,10 +81,10 @@ const Search = () => {
             </div>
 
             {/* 공연 섹션 */}
-            <div className={styles.section}>
-              <Title text="예정된 공연" />
-              {performanceResults.length > 0 ? (
-                performanceResults.map((performance) => (
+            {performanceResults.length > 0 ? (
+              <div className={styles.section}>
+                <Title text="예정된 공연" />
+                {performanceResults.map((performance) => (
                   <PerformanceInfo
                     key={performance.performanceId}
                     title={performance.title}
@@ -83,21 +93,20 @@ const Search = () => {
                     area={performance.area}
                     isFavorite={performance.isFavorite}
                   />
-                ))
-              ) : (
-                <div className={styles.emptyPerformanceSection}>
-                  아직 예정된 공연이 없어요!
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className={styles.emptyPerformanceSection}>
+                아직 예정된 공연이 없어요!
+              </div>
+            )}
           </>
         ) : (
           <ArtistNotFound />
         )}
       </main>
-
       <Footer />
-    </div>
+    </>
   );
 };
 
