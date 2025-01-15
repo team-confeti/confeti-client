@@ -1,4 +1,5 @@
 import { globalStyle, keyframes } from '@vanilla-extract/css';
+import { themeVars } from '../../styles';
 
 export const fadeInOut = keyframes({
   '0%': { opacity: 0 },
@@ -12,7 +13,8 @@ globalStyle('.banner-title', {
 });
 
 globalStyle('.title-date', {
-  color: 'var(--grayscale-white, #fff)',
+  ...themeVars.fontStyles.subtitle5_sb_12,
+  color: themeVars.color.white,
   textAlign: 'center',
   marginBottom: '1.2rem',
   fontSize: '1.2rem',
@@ -23,7 +25,8 @@ globalStyle('.title-date', {
 });
 
 globalStyle('.title-name', {
-  color: 'var(--grayscale-white, #fff)',
+  ...themeVars.fontStyles.title1_b_24,
+  color: themeVars.color.white,
   textAlign: 'center',
   marginBottom: '4px',
   fontSize: '2.4rem',
@@ -34,7 +37,8 @@ globalStyle('.title-name', {
 });
 
 globalStyle('.title-sub', {
-  color: 'var(--grayscale-gray500, #93959d)',
+  ...themeVars.fontStyles.body3_m_14,
+  color: themeVars.color.gray500,
   textAlign: 'center',
   fontSize: '1.4rem',
   fontStyle: 'normal',
