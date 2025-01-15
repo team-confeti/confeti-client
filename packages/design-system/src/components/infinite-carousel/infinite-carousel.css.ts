@@ -70,6 +70,6 @@ export const fixedWord = style({
 });
 
 export const infoBottom = style({
-  marginTop: '9.8rem',
+  marginTop: '9.4rem',
   ...themeVars.display.flexBetween,
 });
