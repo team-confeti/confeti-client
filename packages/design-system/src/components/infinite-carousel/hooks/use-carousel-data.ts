@@ -7,6 +7,8 @@ export const useCarouselData = (
   reservationBgUrl: string[],
   subtitle: string[],
   reserveAt: string[],
+  performanceId: number[],
+  type: string[],
 ) => {
   return useMemo(
     () => ({
@@ -21,7 +23,13 @@ export const useCarouselData = (
         ...reserveAt,
         reserveAt[0],
       ],
+      performanceId: [
+        performanceId[performanceId.length - 1],
+        ...performanceId,
+        performanceId[0],
+      ],
+      type: [type[type.length - 1], ...type, type[0]],
     }),
-    [reservationBgUrl, subtitle, reserveAt],
+    [reservationBgUrl, subtitle, reserveAt, performanceId, type],
   );
 };
