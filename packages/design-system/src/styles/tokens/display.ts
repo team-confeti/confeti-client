@@ -14,4 +14,11 @@ export const display = {
     alignItems: 'center',
     textAlign: 'center',
   },
+  flexColumnStart: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
 } as const;
