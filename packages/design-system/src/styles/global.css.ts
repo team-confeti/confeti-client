@@ -31,12 +31,14 @@ globalStyle('::-webkit-scrollbar', {
 
 /* Root Container */
 export const rootStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
-  minHeight: 'var(--height)',
   width: '100%',
   backgroundColor: '#fff',
-  margin: 'var(--margin) auto',
+  margin: '0 auto',
 
   '@media': {
     '(min-width: 430px)': {
