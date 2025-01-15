@@ -5,6 +5,7 @@ import ProgressBar from './progress-bar/progress-bar';
 import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
+import { useDateFormat } from './hooks/use-data-format';
 interface CarouselWrapProps {
   performances: {
     reservationBgUrl: string;
@@ -36,7 +37,7 @@ interface CarouselInfoBottomProps {
 
 const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   // 슬라이드 데이터
-  const copyImage = useCarouselData(
+  const performanceData = useCarouselData(
     performances.map((item) => item.reservationBgUrl),
     performances.map((item) => item.subtitle),
     performances.map((item) => item.reserveAt),
@@ -44,7 +45,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
 
   // 슬라이드 상태 관리
   const { currentIndex, carouselTransition, nextSlide } = useCarouselSlide(
-    copyImage.images.length,
+    performanceData.images.length,
   );
 
   // 슬라이드 간격 관리
@@ -55,6 +56,9 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
     const interval = setInterval(nextSlide, controlTime);
     return () => clearInterval(interval);
   }, [nextSlide, controlTime]);
+  const { dDay } = useDateFormat(
+    performanceData.reserveDates[currentIndex] || '',
+  );
 
   return (
     <section className={styles.wrap}>
@@ -65,7 +69,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           transition: carouselTransition,
         }}
       >
-        {copyImage.images.map((imgUrl, id) => (
+        {performanceData.images.map((imgUrl, id) => (
           <img
             key={id}
             src={imgUrl}
@@ -76,17 +80,17 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
       </div>
       <InfiniteCarousel.Container>
         <InfiniteCarousel.Info>
-          <InfiniteCarousel.Dday
-            reserveAt={copyImage.reserveDates[currentIndex] || ''}
-          />
+          <InfiniteCarousel.Dday reserveAt={dDay} />
           <InfiniteCarousel.Artist
-            subtitle={copyImage.subtitles[currentIndex]}
+            subtitle={performanceData.subtitles[currentIndex]}
           />
           <InfiniteCarousel.InfoBottom>
             <ProgressBar
               size="md"
               current={
-                currentIndex === copyImage.images.length - 1 ? 1 : currentIndex
+                currentIndex === performanceData.images.length - 1
+                  ? 1
+                  : currentIndex
               }
               total={indexData}
             />
