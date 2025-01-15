@@ -6,6 +6,7 @@ export const wrap = style({
   height: '19.3rem',
   overflow: 'hidden',
   position: 'relative',
+  borderRadius: '2rem',
 });
 
 export const imageContainer = style({
