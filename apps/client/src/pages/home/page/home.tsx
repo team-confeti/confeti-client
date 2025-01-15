@@ -1,5 +1,6 @@
 import { Footer, Navigation } from '@confeti/design-system';
 import { TAB_MENU } from '../constants/menu';
+import EditFloatingButton from '@pages/time-table/components/edit-floating-button';
 
 const Home = () => {
   return (
@@ -16,6 +17,8 @@ const Home = () => {
         </Navigation.Panels>
       </Navigation.Root>
       <Footer />
+
+      <EditFloatingButton />
     </>
   );
 };
