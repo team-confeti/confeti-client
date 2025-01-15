@@ -8,6 +8,7 @@ interface ArtistSectionProps {
     name: string;
     profileUrl: string;
     latestReleaseAt: string;
+    isFavorite: boolean;
   }[];
 }
 
@@ -21,6 +22,7 @@ const ArtistSection = ({ artists }: ArtistSectionProps) => {
           image={artist.profileUrl}
           name={artist.name}
           releaseDate={artist.latestReleaseAt}
+          isFavorite={artist.isFavorite}
         />
       ))}
     </div>
