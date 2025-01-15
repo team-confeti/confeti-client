@@ -10,3 +10,4 @@ export { default as InfiniteCarousel } from './infinite-carousel/infinite-carous
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as Spacing } from './spacing/spacing';
 export { default as ProgressBar } from './infinite-carousel/progress-bar/progress-bar';
+export { default as InfoBUtton } from './infinite-carousel/info-button/info-button';
