@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GlobalLayout from './global-layout';
-import { HomePage, MyPage } from './lazy';
+import { HomePage, MyPage, SearchPage } from './lazy';
 import { routePath } from '@shared/constants/path';
 
 export default function Router() {
@@ -11,6 +11,7 @@ export default function Router() {
         <Route element={<GlobalLayout />}>
           <Route path={routePath.ROOT} element={<HomePage />} />
           <Route path={routePath.MY} element={<MyPage />} />
+          <Route path={routePath.SEARCH} element={<SearchPage />} />
         </Route>
       </Routes>
     </Suspense>
