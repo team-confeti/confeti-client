@@ -8,14 +8,14 @@ interface SearchBarProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onFocus?: () => void; // onFocus 추가
+  onFocus?: () => void;
 }
 
 export const SearchBar = ({
   value,
   onChange,
   onKeyDown,
-  onFocus, // onFocus를 props로 받음
+  onFocus,
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
@@ -25,7 +25,7 @@ export const SearchBar = ({
       textInput.current.placeholder = '';
     }
     if (onFocus) {
-      onFocus(); // 부모로부터 받은 onFocus 콜백 실행
+      onFocus();
     }
   };
 
@@ -63,7 +63,7 @@ export const SearchBar = ({
             value={value}
             onChange={handleInputChange}
             onKeyDown={onKeyDown}
-            onFocus={handleFocus} // handleFocus 연결
+            onFocus={handleFocus}
           />
           {showClearBtn && (
             <SvgBtnClose
