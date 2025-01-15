@@ -18,22 +18,21 @@ const fadeOutText = keyframes({
 });
 
 export const box = style({
+  ...themeVars.display.flexCenter,
+  flexDirection: 'column',
+  alignItems: 'flex-start',
   padding: '1rem 5.3rem 0.9rem 1.6rem',
+
+  position: 'absolute',
   bottom: '17rem',
   right: '2rem',
 
-  ...themeVars.display.flexCenter,
-
-  position: 'absolute',
-  zIndex: themeVars.zIndex.floatingButton.content,
-  transition: 'width 0.3s ease-in-out',
   ...themeVars.fontStyles.subtitle4_b_14,
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-
   borderRadius: '0.5rem',
   backgroundColor: themeVars.color.white,
+  zIndex: themeVars.zIndex.floatingButton.content,
 
+  transition: 'width 0.3s ease-in-out',
   animation: `${fadeInBox} 0.3s ease-out`,
 });
 
@@ -45,12 +44,11 @@ export const boxButton = style({
 
 export const buttonVariants = recipe({
   base: {
+    ...themeVars.display.flexCenter,
     height: '5rem',
     position: 'absolute',
     right: '2rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+
     borderRadius: '3rem',
     backgroundColor: themeVars.color.gray800,
     zIndex: themeVars.zIndex.floatingButton.content,
@@ -102,11 +100,11 @@ export const background = style({
   position: 'fixed',
   top: 0,
   left: '50%',
-  transform: 'translateX(-50%)',
   width: '100%',
   height: 'var(--height)',
   maxWidth: 'var(--max-width)',
   minWidth: 'var(--min-width)',
+  transform: 'translateX(-50%)',
   transition: 'background-color 0.3s ease-in-out',
 });
 
