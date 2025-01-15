@@ -6,14 +6,14 @@ export const card = style({
   ...themeVars.display.flexColumn,
   alignItems: 'center',
   gap: '0.8rem',
-  width: '10rem',
+  width: '100%',
   position: 'relative',
 });
 
 export const poster = recipe({
   base: {
     width: '100%',
-    height: '14.2rem',
+    height: '80%',
     position: 'relative',
   },
   variants: {
