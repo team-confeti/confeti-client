@@ -1,9 +1,10 @@
-import type { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import InfiniteCarousel from './infinite-carousel';
+import { BANNER_DATA } from './mocks/bottom-banner-data';
 
-const meta: Meta<typeof InfiniteCarousel.Image> = {
+const meta: Meta<typeof InfiniteCarousel.Wrap> = {
   title: 'Common/InfiniteCarousel',
-  component: InfiniteCarousel.Image,
+  component: InfiniteCarousel.Wrap,
   parameters: {
     layout: 'centered',
   },
@@ -11,13 +12,16 @@ const meta: Meta<typeof InfiniteCarousel.Image> = {
   args: {},
 };
 
+const bannerData = BANNER_DATA?.data?.performances || [];
+const TotalIndexData = BANNER_DATA?.data?.performanceCount;
+
 export default meta;
 
-export const Default = () => (
-  <InfiniteCarousel.Image>
-    <InfiniteCarousel.Info>
-      <InfiniteCarousel.Dday day="2024.01.14" />
-      <InfiniteCarousel.Artist artist="고고학" subtitle="공연 예매" />
-    </InfiniteCarousel.Info>
-  </InfiniteCarousel.Image>
-);
+export const Default = () => {
+  return (
+    <InfiniteCarousel.Wrap
+      performances={bannerData}
+      indexData={TotalIndexData}
+    />
+  );
+};
