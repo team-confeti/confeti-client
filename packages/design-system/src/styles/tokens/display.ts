@@ -17,7 +17,7 @@ export const display = {
   flexBetween: {
     display: 'flex',
     justifyContent: 'space-between',
-    alihnItems: 'center',
-    alignself: 'stretch',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
 } as const;
