@@ -137,6 +137,9 @@ importers:
 
   packages/design-system:
     dependencies:
+      '@types/react-slick':
+        specifier: ^0.23.13
+        version: 0.23.13
       '@vanilla-extract/css':
         specifier: ^1.17.0
         version: 1.17.0
@@ -1828,6 +1831,12 @@ packages:
     resolution:
       {
         integrity: sha512-hljHij7MpWPKF6u5vojuyfV0YA4YURsQG7KT6SzV0Zs2BXAtgdTxG6A229Ub/xiWV4w/7JL8fi6aAyjshH4meA==,
+      }
+
+  '@types/react-slick@0.23.13':
+    resolution:
+      {
+        integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==,
       }
 
   '@types/react@18.3.6':
@@ -8582,6 +8591,10 @@ snapshots:
   '@types/react-dom@19.0.1':
     dependencies:
       '@types/react': 18.3.6
+
+  '@types/react-slick@0.23.13':
+    dependencies:
+      '@types/react': 19.0.0
 
   '@types/react@18.3.6':
     dependencies:
