@@ -1,10 +1,16 @@
+import { useRef, useState } from 'react';
 import * as styles from './search-bar.css';
 import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
-import { useRef, useState } from 'react';
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+export const SearchBar = ({ value, onChange, onKeyDown }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
 
@@ -19,13 +25,15 @@ export const SearchBar = () => {
       textInput.current.value = '';
       textInput.current.focus();
       setShowClearBtn(false);
+      onChange({
+        target: { value: '' },
+      } as React.ChangeEvent<HTMLInputElement>);
     }
   };
 
-  const handleInputChange = () => {
-    if (textInput.current) {
-      setShowClearBtn(textInput.current.value.length > 0);
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setShowClearBtn(e.target.value.length > 0);
+    onChange(e);
   };
 
   return (
@@ -43,8 +51,10 @@ export const SearchBar = () => {
             type="text"
             placeholder="아티스트를 검색해주세요"
             ref={textInput}
-            onFocus={handleFocus}
+            value={value}
             onChange={handleInputChange}
+            onKeyDown={onKeyDown}
+            onFocus={handleFocus}
           />
           {showClearBtn && (
             <SvgBtnClose
@@ -60,3 +70,5 @@ export const SearchBar = () => {
     </div>
   );
 };
+
+export default SearchBar;
