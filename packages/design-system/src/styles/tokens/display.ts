@@ -4,6 +4,10 @@ export const display = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  flexAlignCenter: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   flexColumn: {
     display: 'flex',
     flexDirection: 'column',
@@ -13,5 +17,11 @@ export const display = {
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+  },
+  flexColumnLeft: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'left',
   },
 } as const;
