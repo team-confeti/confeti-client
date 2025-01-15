@@ -7,6 +7,7 @@ export { default as ToastContainer } from './toast/toast-container';
 export { toast } from './toast/utils/toast';
 export { default as Header } from './header/header';
 export { default as InfiniteCarousel } from './infinite-carousel/infinite-carousel';
+export { default as ArtistCard } from './artist-card/artist-card';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as Spacing } from './spacing/spacing';
 export { default as ProgressBar } from './infinite-carousel/progress-bar/progress-bar';
