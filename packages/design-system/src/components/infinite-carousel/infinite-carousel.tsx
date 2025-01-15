@@ -1,6 +1,7 @@
 import { useEffect, ReactNode } from 'react';
 import * as styles from './infinite-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
+import InfoButton from './info-button/info-button';
 import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
@@ -10,6 +11,8 @@ interface CarouselWrapProps {
     reservationBgUrl: string;
     subtitle: string;
     reserveAt: string;
+    performanceId: number;
+    type: string;
   }[];
   indexData: number;
 }
@@ -40,6 +43,8 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
     performances.map((item) => item.reservationBgUrl),
     performances.map((item) => item.subtitle),
     performances.map((item) => item.reserveAt),
+    performances.map((item) => item.performanceId),
+    performances.map((item) => item.type),
   );
 
   // 슬라이드 상태 관리
@@ -84,6 +89,11 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
             subtitle={performanceData.subtitles[currentIndex]}
           />
           <InfiniteCarousel.InfoBottom>
+            <InfoButton
+              title={'공연 정보 확인하기'}
+              performanceId={performanceData.performanceId[currentIndex]}
+              performanceType={performanceData.type[currentIndex]}
+            />
             <ProgressBar
               size="md"
               current={
