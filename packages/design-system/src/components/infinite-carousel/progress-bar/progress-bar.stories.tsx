@@ -13,6 +13,6 @@ const meta: Meta<typeof ProgressBar> = {
 
 export default meta;
 
-export const Default: StoryObj<typeof ProgressBar> = {
+export const Medium: StoryObj<typeof ProgressBar> = {
   render: () => <ProgressBar current={1} total={5} size="md" />,
 };
