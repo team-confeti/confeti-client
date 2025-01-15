@@ -7,7 +7,7 @@ export const BANNER_DATA = {
         performanceId: 1,
         type: 'concert',
         subtitle: '실리카겔 공연',
-        reserveAt: '2025.10.21',
+        reserveAt: '2025.01.15',
         reservationBgUrl:
           'https://koreanmusicawards.com/wp-content/uploads/2023/02/2023_SilicaGel.jpeg',
       },
