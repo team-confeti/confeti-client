@@ -110,17 +110,6 @@ export const background = style({
   transition: 'background-color 0.3s ease-in-out',
 });
 
-// 전체 뷰포트
-// export const background = style({
-//   position: 'fixed',
-//   top: 0,
-//   left: 0,
-//   width: '100vw',
-//   height: '100vh',
-//   zIndex: themeVars.zIndex.floatingButton.content,
-//   transition: 'background-color 0.3s ease-in-out',
-// });
-
 export const backgroundVisible = style({
   backgroundColor: themeVars.color.black_op,
   zIndex: themeVars.zIndex.floatingButton.content,
