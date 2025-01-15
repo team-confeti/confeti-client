@@ -10,6 +10,7 @@ export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as IcArrowGray16 } from './IcArrowGray16';
 export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
+export { default as IcExclamationCircleOutlined32 } from './IcExclamationCircleOutlined32';
 export { default as IcFestivalGray } from './IcFestivalGray';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
 export { default as IcIndicatorDefault } from './IcIndicatorDefault';
