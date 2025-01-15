@@ -1,4 +1,4 @@
-export const performData = [
+export const PERFORMANCE_DATA = [
   {
     performanceId: 1,
     type: 'concert',

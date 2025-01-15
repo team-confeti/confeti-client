@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import TopCarousel from './top-carousel';
 
-export const mockPerformData = [
+export const MOCK_PERFORM_DATA = [
   {
     performanceId: 1,
     type: 'concert',
@@ -64,7 +64,7 @@ const meta: Meta<typeof TopCarousel> = {
   title: 'Common/TopCarousel',
   component: TopCarousel,
   args: {
-    performData: mockPerformData, // mock 데이터를 args로 전달
+    performData: MOCK_PERFORM_DATA, // mock 데이터를 args로 전달
   },
   parameters: {
     layout: 'centered',
