@@ -5,3 +5,4 @@ export const MyPage = lazy(() => import('@pages/my/page/my'));
 export const MyConfetiPage = lazy(
   () => import('@pages/my/page/confeti-detail'),
 );
+export const MyArtistPage = lazy(() => import('@pages/my/page/artist-detail'));
