@@ -12,6 +12,7 @@ const meta: Meta<typeof ProgressBar> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Example: Story = {};
+export const Default: StoryObj<typeof ProgressBar> = {
+  render: () => <ProgressBar current={1} total={5} size="md" />,
+};
