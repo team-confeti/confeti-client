@@ -4,6 +4,7 @@ import { themeVars } from '../../styles';
 export const container = style({
   display: 'grid',
   gridTemplateRows: '1fr 1fr',
+  marginTop: 'auto',
   height: '13.5rem',
   padding: '2rem',
 

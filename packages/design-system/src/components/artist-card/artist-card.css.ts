@@ -8,35 +8,15 @@ export const artistCardVariants = recipe({
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
-  },
-  variants: {
-    size: {
-      sm: { width: '7rem' },
-      md: { width: '8rem' },
-      lg: { width: '9rem' },
-    },
+    width: '100%',
   },
 });
 
 export const artistImg = recipe({
   base: {
     borderRadius: '50%',
-  },
-  variants: {
-    size: {
-      sm: {
-        width: '7rem',
-        height: '7rem',
-      },
-      md: {
-        width: '8rem',
-        height: '8rem',
-      },
-      lg: {
-        width: '9rem',
-        height: '9rem',
-      },
-    },
+    width: '100%',
+    height: '100%',
   },
 });
 
