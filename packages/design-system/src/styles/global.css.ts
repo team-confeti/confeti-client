@@ -36,16 +36,15 @@ export const rootStyle = style({
   minHeight: '100vh',
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
-  width: '100%',
   backgroundColor: '#fff',
   margin: '0 auto',
 
   '@media': {
-    '(min-width: 430px)': {
-      width: '430px',
-    },
     '(max-width: 375px)': {
-      width: '100%',
+      width: '375px', // 375px 이하에서는 폭을 고정
+    },
+    '(min-width: 375px) and (max-width: 430px)': {
+      width: '100%', // 375px ~ 430px 사이에서는 폭을 유연하게
     },
   },
 });

@@ -41,6 +41,7 @@ const TopCarousel = ({ performData }: DataProps) => {
     centerPadding: '115px',
     slidesToShow: 1,
     sliceToScroll: 1,
+    arrows: true,
     speed: 1000,
     cssEase: 'ease-in-out',
     initialSlide: 3,
