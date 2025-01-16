@@ -1,18 +1,25 @@
 import { themeVars } from '@confeti/design-system/styles';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   padding: '3rem 2rem',
   gap: '3rem',
   backgroundColor: themeVars.color.white,
 });
 
-export const performanceInfo = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1.6rem',
+export const section = recipe({
+  base: {
+    ...themeVars.display.flexColumn,
+    gap: '1.6rem',
+  },
+  variants: {
+    type: {
+      performance: {},
+      ticket: {},
+    },
+  },
 });
 
 export const title = style({
@@ -20,8 +27,7 @@ export const title = style({
 });
 
 export const content = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '0.8rem',
 });
 
@@ -108,12 +114,6 @@ export const reservationOfficeContent = style({
   ...themeVars.fontStyles.body3_r_14,
 });
 
-export const ticketInfo = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1.6rem',
-});
-
 export const price = style({
   display: 'flex',
   gap: '0.8rem',
@@ -125,13 +125,11 @@ export const priceTitle = style({
 });
 
 export const priceContent = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '0.4rem',
   ...themeVars.fontStyles.body3_r_14,
 });
 
 export const priceDetail = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
 });

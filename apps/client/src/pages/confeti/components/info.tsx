@@ -27,7 +27,7 @@ const Info = ({
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.performanceInfo}>
+        <div className={styles.section({ type: 'performance' })}>
           <div className={styles.title}>공연 정보</div>
           <div className={styles.content}>
             <div className={styles.subtitle}>
@@ -61,7 +61,7 @@ const Info = ({
           </div>
         </div>
 
-        <div className={styles.ticketInfo}>
+        <div className={styles.section({ type: 'ticket' })}>
           <div className={styles.title}>티켓 정보</div>
           <div className={styles.price}>
             <div className={styles.priceTitle}>가격</div>
