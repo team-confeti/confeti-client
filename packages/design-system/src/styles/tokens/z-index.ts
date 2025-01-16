@@ -17,4 +17,7 @@ export const zIndex = {
   poster: {
     content: '20',
   },
+  navigation: {
+    content: '10',
+  },
 } as const;

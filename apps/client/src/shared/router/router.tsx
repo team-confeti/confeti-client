@@ -7,6 +7,8 @@ import {
   HomePage,
   MyConfetiPage,
   MyPage,
+  SearchPage,
+  MyArtistPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 
@@ -17,9 +19,11 @@ export default function Router() {
         <Route element={<GlobalLayout />}>
           <Route path={routePath.ROOT} element={<HomePage />} />
           <Route path={routePath.MY} element={<MyPage />} />
+          <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.MYCONFETI} element={<MyConfetiPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+          <Route path={routePath.MYARTIST} element={<MyArtistPage />} />
         </Route>
       </Routes>
     </Suspense>

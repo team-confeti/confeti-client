@@ -21,8 +21,9 @@ export const title = recipe({
   },
   variants: {
     size: {
-      large: themeVars.fontStyles.title3_b_18,
-      medium: themeVars.fontStyles.subtitle4_b_14,
+      sm: themeVars.fontStyles.body3_m_14,
+      md: themeVars.fontStyles.subtitle4_b_14,
+      lg: themeVars.fontStyles.title3_b_18,
     },
     color: {
       primary: { color: themeVars.color.gray500 },
@@ -30,7 +31,7 @@ export const title = recipe({
     },
   },
   defaultVariants: {
-    size: 'large',
+    size: 'md',
     color: 'secondary',
   },
 });

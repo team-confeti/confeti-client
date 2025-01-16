@@ -22,8 +22,10 @@ export const color = {
 
   // opacity
   black_op: 'rgba(18, 18, 18, 0.5)',
+  white_op_20: 'rgba(255, 255, 255, 0.20)',
 
   // gradients
-  confeti_grad:
-    'var(--confeti_grad, linear-gradient(176deg, #B5F602 4.17%, #F5FFD8 95.15%))',
+  confeti_grad: 'linear-gradient(180deg, #E9FFAC 0%, #B5F602 100%)',
+  confeti_grad2: 'linear-gradient(180deg, #EFF0F4 0%, #E9FFAC 100%)',
+  confeti_purple_grad: 'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
 } as const;
