@@ -1,10 +1,14 @@
 export const routePath = {
+  // home-page
   ROOT: '/',
+  // my-page
   MY: '/my',
   MY_ARTIST: 'artist',
   MY_CONFETI: 'confeti',
-  REQUIRE_LOGIN: 'require-login',
+  MY_REQUIRE_LOGIN: 'require-login',
+  // search-page
   SEARCH: '/search',
+  // detail-page
   CONCERT: '/concert-detail/:concertId',
   FESTIVAL: '/festival-detail/:festivalId',
 } as const;

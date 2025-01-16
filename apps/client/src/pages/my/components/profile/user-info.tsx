@@ -15,7 +15,7 @@ const UserInfo = ({ userName, profileUrl }: Props) => {
 
   const handleLogout = () => {
     localStorage.removeItem('user-id');
-    navigate(routePath.REQUIRE_LOGIN);
+    navigate(routePath.MY_REQUIRE_LOGIN);
   };
 
   return (

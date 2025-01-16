@@ -23,7 +23,7 @@ export default function Router() {
           <Route path={routePath.MY} element={<MyPage />}>
             <Route path="" element={<MyProfilePage />} />
             <Route
-              path={routePath.REQUIRE_LOGIN}
+              path={routePath.MY_REQUIRE_LOGIN}
               element={<RequireLoginPage />}
             />
             <Route path={routePath.MY_ARTIST} element={<MyArtistPage />} />
