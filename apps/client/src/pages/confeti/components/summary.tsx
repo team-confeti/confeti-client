@@ -16,15 +16,12 @@ interface SummaryProps {
 const formatReserveDate = (reserveAt: string): string => {
   const date = new Date(reserveAt);
 
-  // 요일 배열
   const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
 
-  // 12시간제 계산
   const hours = date.getHours();
   const period = hours >= 12 ? '오후' : '오전';
   const hour12 = hours % 12 === 0 ? 12 : hours % 12;
 
-  // 최종 포맷
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${weekdays[date.getDay()]}) ${period}${hour12}시`;
 
   return formattedDate;
@@ -52,19 +49,19 @@ const Summary = ({
               <div className={styles.subtitle}>{subtitle}</div>
             </div>
             <div className={styles.detail}>
-              <div className={styles.date}>
-                <div className={styles.dateTitle}>기간</div>
-                <div className={styles.dateContent}>
+              <div className={styles.detailItem}>
+                <div className={styles.detailTitle}>기간</div>
+                <div className={styles.detailContent}>
                   {startAt} - {endAt}
                 </div>
               </div>
-              <div className={styles.area}>
-                <div className={styles.areaTitle}>장소</div>
-                <div className={styles.areaContent}>{area}</div>
+              <div className={styles.detailItem}>
+                <div className={styles.detailTitle}>장소</div>
+                <div className={styles.detailContent}>{area}</div>
               </div>
-              <div className={styles.reserveAt}>
-                <div className={styles.reserveAtTitle}>예매일</div>
-                <div className={styles.reserveAtContent}>
+              <div className={styles.detailItem}>
+                <div className={styles.detailTitle}>예매일</div>
+                <div className={styles.detailContent}>
                   {formatReserveDate(reserveAt)}
                 </div>
               </div>
