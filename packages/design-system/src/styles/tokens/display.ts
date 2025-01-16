@@ -24,4 +24,10 @@ export const display = {
     justifyContent: 'center',
     textAlign: 'left',
   },
+  flexBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
 } as const;
