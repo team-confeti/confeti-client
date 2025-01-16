@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import Poster from '../components/poster';
+import Summary from '../components/summary';
 
 export default function ConcertDetailPage() {
   const { concertId } = useParams<{ concertId: string }>();
@@ -13,6 +14,9 @@ export default function ConcertDetailPage() {
     startAt: '2025.01.25',
     endAt: '2025.01.26',
     area: '올림픽공원 올림픽홀',
+    reserveAt: '2025-01-20T14:00:00',
+    reservationUrl:
+      'https://tickets.interpark.com/goods/24016171?app_tapbar_state=hide',
   };
 
   return (
@@ -22,24 +26,15 @@ export default function ConcertDetailPage() {
         posterUrl={concertData.posterUrl}
       />
 
-      <div>
-        <div>
-          <div>
-            <div>
-              <div></div>
-              <div></div>
-            </div>
-            <div></div>
-          </div>
-          <div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-        <div></div>
-      </div>
-      <h1>Concert Detail</h1>
+      <Summary
+        title={concertData.title}
+        subtitle={concertData.subtitle}
+        startAt={concertData.startAt}
+        endAt={concertData.endAt}
+        area={concertData.area}
+        reserveAt={concertData.reserveAt}
+        reservationUrl={concertData.reservationUrl}
+      />
       <p>Concert ID: {concertId}</p>
     </>
   );
