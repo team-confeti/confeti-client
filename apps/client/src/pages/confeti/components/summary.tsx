@@ -70,7 +70,12 @@ const Summary = ({
               </div>
             </div>
           </div>
-          <Button variant="link" text={'예매처 바로가기'} />
+          <Button
+            className={styles.linkBtn}
+            variant="link"
+            text={'예매처 바로가기'}
+            onClick={() => window.open(reservationUrl, '_blank')}
+          />
         </div>
       </div>
     </div>

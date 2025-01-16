@@ -98,3 +98,7 @@ export const reserveAtContent = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.black,
 });
+
+export const linkBtn = style({
+  cursor: 'pointer',
+});
