@@ -14,6 +14,9 @@ export const zIndex = {
   floatingButton: {
     content: '15',
   },
+  poster: {
+    content: '20',
+  },
   navigation: {
     content: '10',
   },
