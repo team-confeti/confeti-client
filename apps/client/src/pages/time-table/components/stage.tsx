@@ -8,7 +8,7 @@ interface Artist {
 }
 
 interface Stage {
-  stageId: number;
+  stageOrder: number;
   name: string;
   artists: Artist[];
 }
@@ -26,8 +26,8 @@ interface StageProps {
 const Stage = ({ timeTableInfo }: StageProps) => {
   return (
     <div className={styles.stageWrapper}>
-      {timeTableInfo.stages.map(({ stageId, name }) => (
-        <div key={stageId} className={styles.wrapper}>
+      {timeTableInfo.stages.map(({ stageOrder, name }) => (
+        <div key={stageOrder} className={styles.wrapper}>
           {name.replace(/ STAGE$/, '')}
           <br />
           STAGE

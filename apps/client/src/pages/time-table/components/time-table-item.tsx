@@ -37,8 +37,10 @@ const TimeTableItem = ({
       className={styles.itemsWrapper}
       onClick={handleIsSelected}
     >
-      {name}
-      {startTime}-{endTime}
+      <p>{name}</p>
+      <p>
+        {startTime}-{endTime}
+      </p>
     </div>
   );
 };

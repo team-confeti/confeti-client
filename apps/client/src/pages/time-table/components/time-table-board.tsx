@@ -52,7 +52,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <BoothOpenBox openHour={openHour} openMin={openMin} />
+      <BoothOpenBox ticketOpenHour={timeTableInfo.ticketOpenAt} />
 
       {cellNumber.map((hour) => (
         <div key={hour}>

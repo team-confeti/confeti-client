@@ -32,8 +32,9 @@ export const timeP = recipe({
 export const timeBar = recipe({
   base: {
     height: '0.1rem',
-    width: 'calc(100% - 3.5rem)',
+    width: 'calc(100% - 3rem)',
     color: themeVars.color.gray300,
+    zIndex: 1,
   },
   variants: {
     bold: {
