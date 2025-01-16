@@ -5,8 +5,9 @@ import { themeVars } from '../../styles';
 export const container = style({
   ...themeVars.display.flexCenter,
   padding: '0.8rem 2rem',
-  width: '37.5rem',
+  width: '100%',
   gap: '0.8rem',
+  backgroundColor: themeVars.color.white,
 });
 
 export const frame = style({
