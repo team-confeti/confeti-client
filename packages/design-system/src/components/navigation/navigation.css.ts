@@ -15,6 +15,7 @@ export const container = style([
     height: '4.4rem',
     padding: '0rem 2rem',
     gap: '1.8rem',
+    zIndex: themeVars.zIndex.navigation.content,
   },
 ]);
 

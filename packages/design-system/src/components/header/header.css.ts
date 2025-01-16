@@ -27,6 +27,7 @@ export const container = recipe({
 export const logo = style({
   width: '9.7059rem',
   height: '100%',
+  cursor: 'pointer',
 });
 
 export const iconSection = style({
