@@ -11,14 +11,16 @@ interface ArtistCardProps {
 const ArtistCard = ({ title, imageSrc, size = 'lg' }: ArtistCardProps) => {
   return (
     <div className={styles.artistCardVariants()}>
-      <img className={styles.artistImg()} src={imageSrc} alt={title} />
-      {size === 'md' && (
-        <SvgBtnHeartFilled24
-          className={styles.heartImg}
-          width={24}
-          height={24}
-        />
-      )}
+      <div className={styles.imageAndHeartWrapper}>
+        <img className={styles.artistImg()} src={imageSrc} alt={title} />
+        {size === 'md' && (
+          <SvgBtnHeartFilled24
+            className={styles.heartImg}
+            width={24}
+            height={24}
+          />
+        )}
+      </div>
       <p className={styles.artistName({ size })}>{title}</p>
     </div>
   );

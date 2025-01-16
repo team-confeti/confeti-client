@@ -6,3 +6,4 @@ export const SearchPage = lazy(() => import('@pages/search/page/search'));
 export const MyConfetiPage = lazy(
   () => import('@pages/my/page/confeti-detail'),
 );
+export const MyArtistPage = lazy(() => import('@pages/my/page/artist-detail'));

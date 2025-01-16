@@ -12,18 +12,24 @@ export const artistCardVariants = recipe({
   },
 });
 
+export const imageAndHeartWrapper = style({
+  position: 'relative',
+  width: '100%',
+});
+
 export const artistImg = recipe({
   base: {
     borderRadius: '50%',
     width: '100%',
     height: '100%',
+    objectFit: 'cover',
   },
 });
 
 export const heartImg = style({
   position: 'absolute',
-  top: '5.6rem',
   right: '0.05rem',
+  bottom: 0,
 });
 
 export const artistName = recipe({
