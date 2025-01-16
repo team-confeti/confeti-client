@@ -19,7 +19,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '375px' }} className={themeClass}>
+      <div className={themeClass}>
         <Story />
       </div>
     ),

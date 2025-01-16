@@ -1,4 +1,7 @@
-import { Footer, Navigation } from '@confeti/design-system';
+import { Footer, TopCarousel, Navigation } from '@confeti/design-system';
+import { PERFORMANCE_DATA } from '@shared/mocks/top-carousel-mock';
+import * as styles from './home.css';
+
 import { TAB_MENU } from '../constants/menu';
 
 const Home = () => {
@@ -11,10 +14,15 @@ const Home = () => {
         </Navigation.List>
         <Navigation.Panels>
           {/* TODO: 추후 페이지 연결 */}
-          <Navigation.Panel>홈페이지</Navigation.Panel>
+          <Navigation.Panel>
+            <div className={styles.mainStyle}>
+              <TopCarousel performData={PERFORMANCE_DATA}></TopCarousel>
+            </div>
+          </Navigation.Panel>
           <Navigation.Panel>타임테이블</Navigation.Panel>
         </Navigation.Panels>
       </Navigation.Root>
+
       <Footer />
     </>
   );
