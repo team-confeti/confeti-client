@@ -4,7 +4,8 @@
   "private": true,
   "exports": {
     ".": "./src/components/index.ts",
-    "./styles": "./src/styles/index.ts"
+    "./styles": "./src/styles/index.ts",
+    "./icons": "./src/icons/src/index.ts"
   },
   "scripts": {
     "lint": "eslint --max-warnings 0",
