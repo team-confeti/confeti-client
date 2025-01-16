@@ -1,9 +1,9 @@
 import { globalStyle } from '@vanilla-extract/css';
+import { themeVars } from '../../styles';
 
 /* Slider */
 globalStyle('.slick-slider', {
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   boxSizing: 'border-box',
 
   WebkitUserSelect: 'none',

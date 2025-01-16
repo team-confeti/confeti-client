@@ -2,7 +2,7 @@ export const PERFORMANCE_DATA = [
   {
     performanceId: 1,
     type: 'concert',
-    title: '오아시스 내한공연',
+    title: '오아시스 내한공연1',
     subTitle: 'LIVE NATION PRESENTS COLDPLAY',
     performanceAt: '2025.10.21',
     posterUrl:
@@ -11,7 +11,7 @@ export const PERFORMANCE_DATA = [
   {
     performanceId: 2,
     type: 'festival',
-    title: '오아시스 내한공연',
+    title: '오아시스 내한공연2',
     subTitle: '',
     performanceAt: '2025.10.21',
     posterUrl:

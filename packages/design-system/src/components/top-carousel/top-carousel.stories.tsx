@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import TopCarousel from './top-carousel';
 
-export const MOCK_PERFORM_DATA = [
+const MOCK_PERFORM_DATA = [
   {
     performanceId: 1,
     type: 'concert',
