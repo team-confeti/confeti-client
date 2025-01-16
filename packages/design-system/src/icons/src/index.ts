@@ -1,5 +1,6 @@
 export { default as BtnAccountBlack24 } from './BtnAccountBlack24';
 export { default as BtnAccountGray24 } from './BtnAccountGray24';
+export { default as BtnAddGray24 } from './BtnAddGray24';
 export { default as BtnArrowLeft20 } from './BtnArrowLeft20';
 export { default as BtnArrowLeft24 } from './BtnArrowLeft24';
 export { default as BtnClose } from './BtnClose';
@@ -20,9 +21,9 @@ export { default as IcLink } from './IcLink';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';
 export { default as IcSelect } from './IcSelect';
 export { default as IcSicGray18 } from './IcSicGray18';
-export { default as IcTimeGray14 } from './IcTimeGray14';
 export { default as IcTimetableFloatClose } from './IcTimetableFloatClose';
 export { default as IcTimetableFloatFinish } from './IcTimetableFloatFinish';
+export { default as IcTimeGray14 } from './IcTimeGray14';
 export { default as IcToastInfo24 } from './IcToastInfo24';
 export { default as LogoFooter } from './LogoFooter';
 export { default as LogoMain } from './LogoMain';
