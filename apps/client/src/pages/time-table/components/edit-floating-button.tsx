@@ -8,6 +8,7 @@ import {
   IcTimetableFloatFinish,
 } from '@confeti/design-system/icons';
 import * as styles from './edit-floating-button.css';
+import { EDIT_BOX, EDIT_BUTTON } from '../constants/edit-floating-text';
 
 type ModeSetter = React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -52,7 +53,7 @@ const EditFloatingButton = () => {
       return renderActionButton({
         variant: 'complete',
         icon: <IcTimetableFloatFinish width="2.4rem" height="2.4rem" />,
-        text: '완료하기',
+        text: EDIT_BUTTON.COMPLETE,
         onClick: handleToggleButton,
       });
     }
@@ -69,7 +70,7 @@ const EditFloatingButton = () => {
     return renderActionButton({
       variant: 'edit',
       icon: <IcFloatEditLime24 width="2.4rem" height="2.4rem" />,
-      text: '편집하기',
+      text: EDIT_BUTTON.EDIT,
       onClick: handleToggleButton,
     });
   };
@@ -101,14 +102,14 @@ const EditFloatingButton = () => {
             className={styles.boxButton}
           >
             <IcFloatEdit24 width="2.4rem" height="2.4rem" />
-            <span>타임테이블 편집</span>
+            <span>{EDIT_BOX.EDIT_TIMETABLE}</span>
           </button>
           <button
             onClick={() => handleModeToggle(setIsFestivalDeleteMode)}
             className={styles.boxButton}
           >
             <IcFloatDelete24 width="2.4rem" height="2.4rem" />
-            <span>페스티벌 삭제</span>
+            <span>{EDIT_BOX.DELETE_FESTIVAL}</span>
           </button>
         </div>
       );
