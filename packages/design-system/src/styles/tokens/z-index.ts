@@ -14,4 +14,7 @@ export const zIndex = {
   floatingButton: {
     content: '15',
   },
+  navigation: {
+    content: '10',
+  },
 } as const;

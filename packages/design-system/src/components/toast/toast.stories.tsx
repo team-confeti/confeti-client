@@ -54,14 +54,15 @@ export const Example: Story = {
   },
   render: (args) => {
     const handleButtonClick = () => {
-      toast.success('두 글자 이상 입력해주세요');
+      toast.success('페스티벌은 3개 까지만 추가할 수 있어요.');
     };
 
     return (
       <div>
-        <Button onClick={handleButtonClick}>
-          이 버튼을 누르면 토스트가 뜹니다
-        </Button>
+        <Button
+          onClick={handleButtonClick}
+          text="이 버튼을 누르면 토스트가 뜹니다"
+        />
         {args.showToast && <Toast toastId="toast" text="Toast 컴포넌트 예시" />}
       </div>
     );

@@ -14,7 +14,7 @@ const Button = ({
   variant = 'default',
   disabled = false,
   className,
-  onClick,
+  ...props
 }: ButtonProps) => {
   const linkIcon = variant === 'link' ? <SvgIcLink /> : null;
 
@@ -22,7 +22,7 @@ const Button = ({
     <button
       className={cn(buttonVariants({ variant: variant, disabled }), className)}
       disabled={disabled}
-      onClick={onClick}
+      {...props}
     >
       {text}
       {linkIcon}
