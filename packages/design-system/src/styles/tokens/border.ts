@@ -1,6 +1,7 @@
 import { color } from './color';
 
 export const border = {
+  gray200: `1px solid ${color.gray200}`,
   lime1: `2px solid ${color.confeti_lime}`,
   lime3: `1px solid ${color.confeti_lime3}`,
   black: `1px solid ${color.black}`,

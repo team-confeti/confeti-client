@@ -1,7 +1,18 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GlobalLayout from './global-layout';
-import { HomePage, MyConfetiPage, MyPage, TimeTable } from './lazy';
+import {
+  ConcertDetailPage,
+  FestivalDetailPage,
+  HomePage,
+  MyConfetiPage,
+  MyArtistPage,
+  MyPage,
+  SearchPage,
+  RequireLoginPage,
+  MyProfilePage,
+  TimeTable,
+} from './lazy';
 import { routePath } from '@shared/constants/path';
 
 export default function Router() {
@@ -10,8 +21,18 @@ export default function Router() {
       <Routes>
         <Route element={<GlobalLayout />}>
           <Route path={routePath.ROOT} element={<HomePage />} />
-          <Route path={routePath.MY} element={<MyPage />} />
-          <Route path={routePath.MYCONFETI} element={<MyConfetiPage />} />
+          <Route path={routePath.MY} element={<MyPage />}>
+            <Route path="" element={<MyProfilePage />} />
+            <Route
+              path={routePath.MY_REQUIRE_LOGIN}
+              element={<RequireLoginPage />}
+            />
+            <Route path={routePath.MY_ARTIST} element={<MyArtistPage />} />
+            <Route path={routePath.MY_CONFETI} element={<MyConfetiPage />} />
+          </Route>
+          <Route path={routePath.SEARCH} element={<SearchPage />} />
+          <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
+          <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
           <Route path={routePath.TIME_TABLE} element={<TimeTable />} />
         </Route>
       </Routes>
