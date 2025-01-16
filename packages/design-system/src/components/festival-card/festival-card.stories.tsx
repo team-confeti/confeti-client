@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import FestivalCard from './festival-card';
 
 const meta: Meta<typeof FestivalCard> = {
-  title: 'Common/FestivalCard',
+  title: 'Common/Card/FestivalCard',
   component: FestivalCard,
   parameters: {
     layout: 'centered',
