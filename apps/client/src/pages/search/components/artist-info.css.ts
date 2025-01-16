@@ -15,7 +15,7 @@ export const wrapper = style({
 export const image = style({
   width: '8rem',
   height: '8rem',
-  borderRadius: '50%',
+  borderRadius: '4rem',
   objectFit: 'cover',
   marginRight: '2rem',
 });
