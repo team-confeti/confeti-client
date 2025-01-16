@@ -5,3 +5,6 @@ export const MyPage = lazy(() => import('@pages/my/page/my'));
 export const MyConfetiPage = lazy(
   () => import('@pages/my/page/confeti-detail'),
 );
+export const TimeTable = lazy(
+  () => import('@pages/time-table/page/time-table'),
+);
