@@ -14,4 +14,10 @@ export const display = {
     alignItems: 'center',
     textAlign: 'center',
   },
+  flexBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
 } as const;

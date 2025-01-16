@@ -15,7 +15,7 @@ export const floatingButtonVariants = recipe({
   },
   variants: {
     md: {
-      boxShadow: themeVars.shadowStyles.shadow_md,
+      boxShadow: themeVars.shadowStyles.shadow_md_1,
     },
   },
 });

@@ -1,5 +1,8 @@
 export const shadowStyles = {
-  shadow_md: {
+  shadow_md_1: {
     boxShadow: '0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);',
+  },
+  shadow_md_2: {
+    boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
   },
 };
