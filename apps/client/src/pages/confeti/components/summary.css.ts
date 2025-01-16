@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   padding: '2.4rem 2rem',
+  backgroundColor: themeVars.color.white,
 });
 
 export const wrapper = style({
