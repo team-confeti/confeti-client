@@ -6,9 +6,9 @@ import {
   FestivalDetailPage,
   HomePage,
   MyConfetiPage,
+  MyArtistPage,
   MyPage,
   SearchPage,
-  MyArtistPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 
