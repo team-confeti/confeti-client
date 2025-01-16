@@ -25,6 +25,7 @@ export const textSection = style({
   ...themeVars.display.flexColumn,
   gap: '0.5rem',
   textAlign: 'left',
+  width: '10%',
 });
 
 export const title = style({
@@ -55,6 +56,9 @@ export const infoText = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.gray600,
   bottom: '1rem',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
 });
 
 export const heartIcon = style({
