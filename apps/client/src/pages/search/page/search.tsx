@@ -4,7 +4,8 @@ import PerformanceSection from '../components/performance-section';
 import PerformanceCount from '../components/performance-count-section';
 import NoticeSection from '../components/notice-section';
 import ArtistNotFound from '../components/artist-not-found';
-import { useSearch } from '../hooks/useSearch';
+import { useSearch } from '../hooks/use-search';
+import { useSortedPerformances } from '../hooks/use-sorted-performances';
 import * as styles from './search.css';
 
 const Search = () => {
@@ -22,30 +23,32 @@ const Search = () => {
 
   const isMultipleArtists = artistResults[0]?.isMultipleArtists ?? false;
 
-  const sortedPerformances = [...performanceResults].sort((a, b) => {
-    const parseDate = (dateString: string) => {
-      const [startDate] = dateString.split(' - ');
-      return new Date(startDate.replace(/\./g, '-').trim());
-    };
-
-    const dateA = parseDate(a.performanceAt);
-    const dateB = parseDate(b.performanceAt);
-
-    return dateA.getTime() - dateB.getTime();
-  });
+  const sortedPerformances = useSortedPerformances(performanceResults);
 
   const showContent = !isSearchBarFocused && searchQuery !== '' && hasSearched;
+
+  const handleSearchBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setHasSearched(false);
+  };
+
+  const handleSearchBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(searchQuery);
+    }
+  };
+
+  const handleSearchBarFocus = () => {
+    setIsSearchBarFocused(true);
+  };
 
   return (
     <>
       <SearchBar
         value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setHasSearched(false);
-        }}
-        onKeyDown={(e) => e.key === 'Enter' && handleSearch(searchQuery)}
-        onFocus={() => setIsSearchBarFocused(true)}
+        onChange={handleSearchBarChange}
+        onKeyDown={handleSearchBarKeyDown}
+        onFocus={handleSearchBarFocus}
       />
       <main className={styles.resultSection}>
         {showContent ? (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { searchedArtists } from '@shared/mocks/searched-artist-data';
-import { searchedPerformances } from '@shared/mocks/searched-performance-data';
+import { searchedArtists } from '@pages/search/mocks/searched-artist-data';
+import { searchedPerformances } from '@pages/search/mocks/searched-performance-data';
 
 /**
  * 검색 기능을 위한 커스텀 훅

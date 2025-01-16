@@ -1,4 +1,5 @@
 import * as styles from './notice-section.css';
+import { SEARCH_NOT_FOUND_MESSAGE } from '../constants/notice-message';
 
 interface NoticeSectionProps {
   isMultipleArtists: boolean;
@@ -9,7 +10,7 @@ const NoticeSection = ({ isMultipleArtists }: NoticeSectionProps) => {
 
   return (
     <div className={styles.container}>
-      찾으시는 아티스트가 아닌가요? 그룹명과 함께 검색해보세요!
+      {SEARCH_NOT_FOUND_MESSAGE.MULTIPLE_ARTISTS_NOTICE}
     </div>
   );
 };
