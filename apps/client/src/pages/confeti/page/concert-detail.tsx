@@ -1,4 +1,5 @@
 import Info from '../components/info';
+import PerformanceDetail from '../components/performance-detail';
 import Poster from '../components/poster';
 import Summary from '../components/summary';
 import * as styles from '@pages/confeti/page/concert-detail.css';
@@ -37,7 +38,6 @@ export default function ConcertDetailPage() {
           reserveAt={concertData.reserveAt}
           reservationUrl={concertData.reservationUrl}
         />
-
         <Info
           subtitle={concertData.subtitle}
           area={concertData.area}
@@ -48,6 +48,7 @@ export default function ConcertDetailPage() {
           reservationOffice={concertData.reservationOffice}
           price={concertData.price}
         />
+        <PerformanceDetail />
       </div>
     </>
   );

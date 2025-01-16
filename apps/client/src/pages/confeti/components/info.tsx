@@ -1,4 +1,5 @@
 import * as styles from '@pages/confeti/components/info.css';
+import { CONFETI_LABEL } from '../constant/confeti';
 
 interface InfoProps {
   subtitle: string;
@@ -26,25 +27,25 @@ const Info = ({
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.section}>
-          <div className={styles.title()}>공연 정보</div>
+      <section className={styles.container}>
+        <section className={styles.section}>
+          <div className={styles.title()}>{CONFETI_LABEL.PERFORMANCE_INFO}</div>
           <div className={styles.content}>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                공연 이름
+                {CONFETI_LABEL.PERFORMANCE_NAME}
               </div>
               <div className={styles.text()}>{subtitle}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                장소
+                {CONFETI_LABEL.PLACE}
               </div>
               <div className={styles.text()}>{area}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                공연 기간
+                {CONFETI_LABEL.PERIOD}
               </div>
               <div className={styles.text()}>
                 {startAt} - {endAt}
@@ -52,30 +53,30 @@ const Info = ({
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                공연 시간
+                {CONFETI_LABEL.TIME}
               </div>
               <div className={styles.text()}>{time}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                관람 등급
+                {CONFETI_LABEL.AGERATING}
               </div>
               <div className={styles.text()}>{ageRating}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                예매처
+                {CONFETI_LABEL.RESERVATIONOFFICE}
               </div>
               <div className={styles.text()}>{reservationOffice}</div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className={styles.section}>
-          <div className={styles.title()}>티켓 정보</div>
+        <section className={styles.section}>
+          <div className={styles.title()}>{CONFETI_LABEL.TICKET_INFO}</div>
           <div className={styles.detail}>
             <div className={styles.text({ type: 'label', color: 'gray' })}>
-              가격
+              {CONFETI_LABEL.PRICE}
             </div>
             <div className={styles.priceContent}>
               {priceLines.map((line, index) => (
@@ -85,8 +86,8 @@ const Info = ({
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
     </>
   );
 };
