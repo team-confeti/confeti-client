@@ -60,7 +60,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
         </div>
       ))}
 
-      {timeTableInfo.stages.map((stage) => {
+      {/* {timeTableInfo.stages.map((stage) => {
         return (
           <div key={stage.stageId}>
             {stage.artists.map((artist) => (
@@ -77,7 +77,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
             ))}
           </div>
         );
-      })}
+      })} */}
 
       {isHalfHourOpen && (
         <div className={styles.timeList}>

@@ -1,6 +1,6 @@
 export const TIME_TABLE_INFO = {
   ticketOpenAt: '11:00:00',
-  stageCount: 2,
+  stageCount: 3,
   stages: [
     {
       stageId: 1,
