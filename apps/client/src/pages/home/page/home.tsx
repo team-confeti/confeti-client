@@ -3,7 +3,7 @@ import { PERFORMANCE_DATA } from '@shared/mocks/top-carousel-mock';
 import * as styles from './home.css';
 
 import { TAB_MENU } from '../constants/menu';
-import EditFloatingButton from '@pages/time-table/components/edit-floating-button';
+import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 import { Spacing } from '@confeti/design-system';
-import InfoButton from '../components/info-button';
+import InfoButton from '../components/info/info-button';
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
 
 const TimeTable = () => {
