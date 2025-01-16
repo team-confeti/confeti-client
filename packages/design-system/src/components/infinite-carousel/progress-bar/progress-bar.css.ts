@@ -3,11 +3,10 @@ import { themeVars } from '../../../styles';
 
 export const progressBarVariants = recipe({
   base: {
-    ...themeVars.display.flexColumn,
+    ...themeVars.display.flexCenter,
     ...themeVars.fontStyles.caption_r_10,
     color: themeVars.color.white,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
     gap: '0.8rem',
     padding: '0.4rem 0.8rem',
     borderRadius: '3.2rem',
