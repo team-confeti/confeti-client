@@ -4,6 +4,11 @@ export const display = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  flexCenterStretch: {
+    display: 'flex',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
   flexColumn: {
     display: 'flex',
     flexDirection: 'column',
@@ -24,7 +29,7 @@ export const display = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     alignSelf: 'stretch',
   },
 } as const;

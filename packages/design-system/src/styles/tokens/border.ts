@@ -6,4 +6,5 @@ export const border = {
   black: `1px solid ${color.black}`,
   gray300: `1px solid ${color.gray300}`,
   gray400: `1px solid ${color.gray400}`,
+  gray500_dashed: `1px dashed ${color.gray500}`,
 } as const;
