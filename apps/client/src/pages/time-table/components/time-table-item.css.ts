@@ -8,7 +8,7 @@ export const itemsWrapper = style({
   alignItems: 'center',
   position: 'absolute',
   top: '0.7rem',
-  left: 'calc(3rem + ((100% - 3rem) / var(--stage-count) * var(--stage-id)))',
+  left: 'calc( 3.1rem + ((100% - 3.1rem) / var(--stage-count) * var(--stage-order)))',
   backgroundColor: themeVars.color.confeti_lime,
   color: themeVars.color.black,
   height: 'var(--diff)',

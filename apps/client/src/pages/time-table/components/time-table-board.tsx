@@ -13,7 +13,7 @@ interface Artist {
 }
 
 interface Stage {
-  stageId: number;
+  stageOrder: number;
   name: string;
   artists: Artist[];
 }
@@ -60,9 +60,9 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
         </div>
       ))}
 
-      {/* {timeTableInfo.stages.map((stage) => {
+      {timeTableInfo.stages.map((stage) => {
         return (
-          <div key={stage.stageId}>
+          <div key={stage.stageOrder}>
             {stage.artists.map((artist) => (
               <TimeTableItem
                 stageCount={timeTableInfo.stageCount}
@@ -72,12 +72,12 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
                 handleIsSelected={handleIsSelected}
                 startTime={artist.startAt}
                 endTime={artist.endAt}
-                stageId={stage.stageId}
+                stageOrder={stage.stageOrder}
               />
             ))}
           </div>
         );
-      })} */}
+      })}
 
       {isHalfHourOpen && (
         <div className={styles.timeList}>

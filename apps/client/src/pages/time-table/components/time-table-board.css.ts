@@ -3,6 +3,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
   width: '100%',
+  position: 'relative',
 });
 export const timeList = style({
   display: 'flex',

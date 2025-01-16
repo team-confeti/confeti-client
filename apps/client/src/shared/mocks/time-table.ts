@@ -1,9 +1,9 @@
 export const TIME_TABLE_INFO = {
   ticketOpenAt: '11:00:00',
-  stageCount: 3,
+  stageCount: 2,
   stages: [
     {
-      stageId: 1,
+      stageOrder: 1,
       name: 'KB KOOKMIN CARD STARSHOP STAGE',
       artists: [
         {
@@ -37,7 +37,7 @@ export const TIME_TABLE_INFO = {
       ],
     },
     {
-      stageId: 2,
+      stageOrder: 2,
       name: 'HILLSTATE STAGE',
       artists: [
         {

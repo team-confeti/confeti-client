@@ -6,7 +6,7 @@ interface ItemProps {
   endTime: string;
   stageCount: number;
   isSelected: boolean;
-  stageId: number;
+  stageOrder: number;
 
   handleIsSelected: () => void;
 }
@@ -16,7 +16,7 @@ const TimeTableItem = ({
   startTime,
   endTime,
   isSelected,
-  stageId,
+  stageOrder,
   stageCount,
   handleIsSelected,
 }: ItemProps) => {
@@ -30,7 +30,7 @@ const TimeTableItem = ({
       style={
         {
           '--stage-count': stageCount,
-          '--stage-id': stageId - 1,
+          '--stage-order': stageOrder - 1,
           '--diff': `${diff}rem`,
         } as React.CSSProperties
       }
