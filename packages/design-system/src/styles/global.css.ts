@@ -1,27 +1,25 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle } from '@vanilla-extract/css';
+import { themeVars } from './theme.css';
 
 /* CSS Variables */
 globalStyle(':root', {
   vars: {
     '--min-width': '375px',
     '--max-width': '430px',
-    '--height': '100vh',
   },
 });
 
 /* HTML & Body Styles */
 globalStyle('html, body', {
+  ...themeVars.display.flexCenter,
   position: 'relative', //floating button 추가로 인한 position 지정
-  fontSize: '62.5%',
-  fontFamily: '"Pretendard", sans-serif',
-  scrollbarWidth: 'none',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  scrollBehavior: 'smooth',
-  background: '#f8f9fa',
+  width: '100%',
   margin: '0',
   padding: '0',
+  fontFamily: '"Pretendard", sans-serif',
+  fontSize: '62.5%',
+  scrollbarWidth: 'none',
+  scrollBehavior: 'smooth',
 });
 
 /* Scrollbar Hide */
@@ -30,21 +28,11 @@ globalStyle('::-webkit-scrollbar', {
 });
 
 /* Root Container */
-export const rootStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
+globalStyle('#root', {
+  width: '100%',
+  margin: '0 auto',
+  minHeight: '100dvh',
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
-  backgroundColor: '#fff',
-  margin: '0 auto',
-
-  '@media': {
-    '(max-width: 375px)': {
-      width: '375px', // 375px 이하에서는 폭을 고정
-    },
-    '(min-width: 375px) and (max-width: 430px)': {
-      width: '100%', // 375px ~ 430px 사이에서는 폭을 유연하게
-    },
-  },
+  backgroundColor: themeVars.color.white,
 });
