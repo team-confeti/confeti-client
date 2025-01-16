@@ -12,6 +12,5 @@ export { default as ArtistCard } from './artist-card/artist-card';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as Spacing } from './spacing/spacing';
 export { default as SearchBar } from './search-bar/search-bar';
-export { default as ArtistCard } from './artist-card/artist-card';
 export { default as ProgressBar } from './infinite-carousel/progress-bar/progress-bar';
 export { default as InfoBUtton } from './infinite-carousel/info-button/info-button';
