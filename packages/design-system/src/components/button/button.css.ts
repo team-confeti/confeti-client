@@ -4,9 +4,7 @@ import { themeVars } from '../../styles';
 export const buttonVariants = recipe({
   base: {
     width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...themeVars.display.flexCenter,
     gap: '0.8rem',
     borderRadius: '1rem',
     backgroundColor: themeVars.color.confeti_lime,
