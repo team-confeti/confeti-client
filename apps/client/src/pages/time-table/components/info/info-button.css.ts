@@ -73,12 +73,14 @@ export const ImageVariants = recipe({
     },
     isClicked: {
       true: {
-        border: '2px solid transparent',
-        backgroundImage:
-          'linear-gradient(#ffffff, #ffffff), linear-gradient(to top, #E9FFAC 0%, #B5F602 100%)',
+        border: '2.5px solid transparent',
+        backgroundImage: `
+        radial-gradient(circle at bottom, #ffffff 100%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(to top,rgb(234, 255, 175) 30%,rgb(174, 225, 32) 100%)
+      `,
         backgroundOrigin: 'border-box',
         backgroundClip: 'content-box, border-box',
-        transition: 'background-image 0.3s ease, border-color 0.3s ease',
+        transition: 'background-image 0.4s ease, border-color 0.4s ease',
       },
     },
   },
