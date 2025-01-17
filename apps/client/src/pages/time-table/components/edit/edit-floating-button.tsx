@@ -8,7 +8,7 @@ import {
   IcTimetableFloatFinish,
 } from '@confeti/design-system/icons';
 import * as styles from './edit-floating-button.css';
-import { EDIT_BOX, EDIT_BUTTON } from '../constants/edit-floating-text';
+import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
 
 type ModeSetter = React.Dispatch<React.SetStateAction<boolean>>;
 
