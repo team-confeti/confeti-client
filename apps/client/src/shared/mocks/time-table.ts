@@ -1,5 +1,5 @@
 export const TIME_TABLE_INFO = {
-  ticketOpenAt: '11:00:00',
+  ticketOpenAt: '10:30:00',
   stageCount: 3,
   stages: [
     {
