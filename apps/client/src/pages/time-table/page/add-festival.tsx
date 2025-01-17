@@ -1,23 +1,8 @@
 import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import * as styles from './add-festival.css';
-import { useState } from 'react';
 
 const AddFestival = () => {
-  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-
-  const handleSelectChange = (id: number, isSelected: boolean) => {
-    setSelectedIds((prev) => {
-      const newSelection = new Set(prev);
-      if (isSelected) {
-        newSelection.add(id);
-      } else {
-        newSelection.delete(id);
-      }
-      return newSelection;
-    });
-  };
-
   return (
     <div className={styles.wrapper}>
       <Header variant="detail" title="페스티벌 추가하기" />
@@ -28,9 +13,7 @@ const AddFestival = () => {
             festivalId={performance.performanceId}
             title={performance.title}
             imageSrc={performance.posterUrl}
-            isSelected={selectedIds.has(performance.performanceId)}
             selectable={true}
-            onSelectChange={handleSelectChange}
           />
         ))}
       </div>
@@ -39,7 +22,8 @@ const AddFestival = () => {
           className={styles.addBtn}
           variant="add"
           text={'추가하기'}
-          disabled={selectedIds.size === 0}
+          disabled={false}
+          // 클릭 시 타임테이블에 추가되는 로직 작성 예정
         />
       </div>
     </div>
