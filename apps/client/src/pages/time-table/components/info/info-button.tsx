@@ -9,6 +9,8 @@ import {
 } from './info-button.css';
 import AddButton from '../add/add-button';
 
+type SizeType = 'sm' | 'md' | 'lg';
+
 interface InfoTotalWrapProps {
   festivals: readonly {
     festivalId: number;
@@ -16,16 +18,16 @@ interface InfoTotalWrapProps {
     logoUrl: string;
   }[];
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
 }
 
 interface InfoItemContainerProps {
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
 }
 
 interface FixedButtonProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
 }
 
 interface InfoItemsProps {
@@ -33,17 +35,17 @@ interface InfoItemsProps {
   src: string;
   alt: string;
   text: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
 }
 
 interface ItemImagesProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
   src: string;
   alt: string;
 }
 
 interface ItemTextProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: SizeType;
   color: 'gray' | 'black';
   text: string;
 }
