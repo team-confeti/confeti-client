@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import * as styles from './time-table-item.css';
+import {
+  parseTimeString,
+  calcPosition,
+  calcTotalMinutes,
+  calcMinutesFromOpen,
+} from '@pages/time-table';
 
 interface ItemProps {
   artists: Artist[];
@@ -29,15 +35,17 @@ const TimeTableItem = ({
   festivalTimeId,
 }: ItemProps) => {
   const [selectBlock, setSelectBlock] = useState(isSelected);
-  const [startHour, startMin] = startTime.slice(0, 5).split(':').map(Number);
-  const [endHour, endMin] = endTime.slice(0, 5).split(':').map(Number);
-  const [openHour, openMin] = ticketOpenAt.slice(0, 5).split(':').map(Number);
-  const totalMin = endHour * 60 + endMin - (startHour * 60 + startMin);
-  const startTotalMin = startHour * 60 + startMin;
-  const openTotalMin = openHour * 60 + openMin;
-  const minutesFromOpen = startTotalMin - openTotalMin;
-  const top = (minutesFromOpen / 5) * 0.74;
-  const diff = (totalMin / 5) * 0.75;
+  const [startHour, startMin] = parseTimeString(startTime);
+  const [endHour, endMin] = parseTimeString(endTime);
+  const [openHour, openMin] = parseTimeString(ticketOpenAt);
+  const totalMin = calcTotalMinutes(startHour, startMin, endHour, endMin);
+  const minutesFromOpen = calcMinutesFromOpen(
+    startHour,
+    startMin,
+    openHour,
+    openMin,
+  );
+  const { top, diff } = calcPosition(totalMin, minutesFromOpen);
 
   const handleSetSelectedBlock = () => {
     setSelectBlock((prev) => !prev);

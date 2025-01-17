@@ -3,22 +3,19 @@ import * as styles from './time-table-board.css';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
+import {
+  generateTableRow,
+  parseTimeString,
+  calcMinutesFromOpen,
+} from '@pages/time-table';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
-  const [openHour, openMin] = timeTableInfo.ticketOpenAt
-    .slice(0, 5)
-    .split(':')
-    .map(Number);
+  const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
 
   const isHalfHourOpen = openMin === 30;
-  const ticketOpenHour = isHalfHourOpen
-    ? Number(openHour) + 1
-    : Number(openHour);
+  const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
 
-  const cellNumber = Array.from(
-    { length: 24 - ticketOpenHour },
-    (_, idx) => ticketOpenHour + idx,
-  );
+  const cellNumber = generateTableRow(ticketOpenHour);
 
   return (
     <div className={styles.wrapper}>
