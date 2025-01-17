@@ -1,4 +1,4 @@
-export const concertMock = {
+export const CONCERT_DETAIL = {
   concert: {
     concertId: 1,
     posterUrl: 'https://picsum.photos/180/240',
@@ -18,7 +18,7 @@ export const concertMock = {
     infoImgUrl: 'https://placehold.co/600x400',
     isFavorite: false,
   },
-  isOpen: false,
+  isOpen: true,
   concertArtists: [
     {
       artistId: '1',
@@ -32,10 +32,28 @@ export const concertMock = {
       profileUrl:
         'https://i.namu.wiki/i/qEXLXPtXHaIupf9gAR0whqLMOvmiuDr65AUeB3hJ4oeXqoKuQFA5p7ToQcLv9sJTRw6-iR97Al08ESXvr-LXGQ.webp',
     },
+    {
+      artistId: '2',
+      name: '데이식스',
+      profileUrl:
+        'https://i.namu.wiki/i/qEXLXPtXHaIupf9gAR0whqLMOvmiuDr65AUeB3hJ4oeXqoKuQFA5p7ToQcLv9sJTRw6-iR97Al08ESXvr-LXGQ.webp',
+    },
+    {
+      artistId: '2',
+      name: '데이식스',
+      profileUrl:
+        'https://i.namu.wiki/i/qEXLXPtXHaIupf9gAR0whqLMOvmiuDr65AUeB3hJ4oeXqoKuQFA5p7ToQcLv9sJTRw6-iR97Al08ESXvr-LXGQ.webp',
+    },
+    {
+      artistId: '2',
+      name: '데이식스',
+      profileUrl:
+        'https://i.namu.wiki/i/qEXLXPtXHaIupf9gAR0whqLMOvmiuDr65AUeB3hJ4oeXqoKuQFA5p7ToQcLv9sJTRw6-iR97Al08ESXvr-LXGQ.webp',
+    },
   ],
 };
 
-export const festivalMock = {
+export const FESTIVAL_DETAIL = {
   festival: {
     festivalId: 1,
     posterUrl: 'https://picsum.photos/180/240',

@@ -5,13 +5,13 @@ import Summary from '../components/summary';
 import MoreButton from '../components/more-button';
 import PerformanceDetail from '../components/performance-detail';
 import ArtistTitle from '../components/artist-title';
-import ArtistList from '../components/artist-list';
+import ArtistList from '../components/artist-section';
 import { Footer, Spacing } from '@confeti/design-system';
 import * as styles from '@pages/confeti/page/detail.css';
-import { concertMock } from '../mocks/data';
+import { CONCERT_DETAIL } from '../mocks/confeti-detail';
 
 export default function ConcertDetailPage() {
-  const { concert } = concertMock;
+  const { concert } = CONCERT_DETAIL;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -49,7 +49,7 @@ export default function ConcertDetailPage() {
         />
         <Spacing />
         <ArtistTitle />
-        <ArtistList type="concert" artistData={concertMock} />
+        <ArtistList type="concert" artistData={CONCERT_DETAIL} />
         <Footer />
       </div>
     </>

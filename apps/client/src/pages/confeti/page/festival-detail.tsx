@@ -1,4 +1,3 @@
-// FestivalDetailPage.tsx
 import { useState } from 'react';
 import Poster from '../components/poster';
 import Summary from '../components/summary';
@@ -6,13 +5,13 @@ import Info from '../components/info';
 import MoreButton from '../components/more-button';
 import PerformanceDetail from '../components/performance-detail';
 import ArtistTitle from '../components/artist-title';
-import ArtistList from '../components/artist-list';
+import ArtistSection from '../components/artist-section';
 import * as styles from '@pages/confeti/page/detail.css';
-import { Footer, Spacing } from '@confeti/design-system';
-import { festivalMock } from '../mocks/data';
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import { FESTIVAL_DETAIL } from '../mocks/confeti-detail';
 
 export default function FestivalDetailPage() {
-  const { festival } = festivalMock;
+  const { festival } = FESTIVAL_DETAIL;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -56,7 +55,8 @@ export default function FestivalDetailPage() {
         />
         <Spacing />
         <ArtistTitle />
-        <ArtistList type="festival" artistData={festivalMock} />
+        <FloatingButton />
+        <ArtistSection type="festival" artistData={FESTIVAL_DETAIL} />
         <Footer />
       </div>
     </>

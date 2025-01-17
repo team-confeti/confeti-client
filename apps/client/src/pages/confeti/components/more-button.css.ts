@@ -13,7 +13,7 @@ export const button = recipe({
   variants: {
     hasShadow: {
       true: {
-        boxShadow: '0 -4px 5px -1px rgba(0, 0, 0, 0.2)',
+        boxShadow: `${themeVars.shadowStyles.shadow_md_3}`,
       },
       false: {
         boxShadow: 'none',

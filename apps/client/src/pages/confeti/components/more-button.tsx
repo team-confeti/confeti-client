@@ -4,10 +4,21 @@ import {
   IcArrowUpGray16,
 } from '@confeti/design-system/icons';
 
+const MORE_BUTTON = {
+  EXPANDED: {
+    TEXT: '접기',
+    ARIA_LABEL: '접기',
+  },
+  COLLAPSED: {
+    TEXT: '더보기',
+    ARIA_LABEL: '더보기',
+  },
+} as const;
+
 interface MoreButtonProps {
   hasShadow?: boolean;
-  isExpanded: boolean; // 부모에서 전달받은 상태
-  onToggle: () => void; // 상태 변경을 알리는 함수
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 const MoreButton = ({
@@ -15,13 +26,20 @@ const MoreButton = ({
   isExpanded,
   onToggle,
 }: MoreButtonProps) => {
+  const buttonText = isExpanded
+    ? MORE_BUTTON.EXPANDED.TEXT
+    : MORE_BUTTON.COLLAPSED.TEXT;
+  const ariaLabel = isExpanded
+    ? MORE_BUTTON.EXPANDED.ARIA_LABEL
+    : MORE_BUTTON.COLLAPSED.ARIA_LABEL;
+
   return (
     <button
       className={styles.button({ hasShadow })}
       onClick={onToggle}
-      aria-label={isExpanded ? '접기' : '더보기'}
+      aria-label={ariaLabel}
     >
-      <span className={styles.text}>{isExpanded ? '접기' : '더보기'}</span>
+      <span className={styles.text}>{buttonText}</span>
       {isExpanded ? (
         <IcArrowUpGray16 className={styles.icon} />
       ) : (
