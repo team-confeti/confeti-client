@@ -2,8 +2,8 @@ import { themeVars } from '../../styles';
 import { style } from '@vanilla-extract/css';
 
 export const wrap = style({
-  width: '33.5rem',
-  height: '19.3rem',
+  width: '100%',
+  height: '29dvh',
   overflow: 'hidden',
   position: 'relative',
   borderRadius: '2rem',
@@ -42,16 +42,20 @@ export const container = style({
 
 export const info = style({
   ...themeVars.display.flexColumn,
-  width: '31.1rem',
-  height: '16.1rem',
-  alignItems: 'flex-start',
+  width: '100%',
   flexShrink: '0',
 });
 
 export const textSection = style({
-  ...themeVars.display.flexColumn,
+  ...themeVars.display.flexBetween,
+  flexDirection: 'column',
   alignItems: 'flex-start',
   alignSelf: 'stretch',
+});
+
+export const description = style({
+  position: 'absolute',
+  top: '1.6rem',
 });
 
 export const infoDday = style({
@@ -70,6 +74,9 @@ export const fixedWord = style({
 });
 
 export const infoBottom = style({
-  marginTop: '9.4rem',
-  ...themeVars.display.flexBetween,
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '93%',
+  position: 'absolute',
+  bottom: '1.6rem',
 });

@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/react';
-import InfiniteCarousel from './infinite-carousel';
+import TicketingCarousel from './ticketingCarousel-carousel';
 import { BANNER_DATA } from './mocks/bottom-banner-data';
 
-const meta: Meta<typeof InfiniteCarousel.Wrap> = {
-  title: 'Common/InfiniteCarousel',
-  component: InfiniteCarousel.Wrap,
+const meta: Meta<typeof TicketingCarousel.Wrap> = {
+  title: 'Common/Carousel/TicketingCarousel',
+  component: TicketingCarousel.Wrap,
   parameters: {
     layout: 'centered',
   },
@@ -19,9 +19,11 @@ export default meta;
 
 export const Default = () => {
   return (
-    <InfiniteCarousel.Wrap
-      performances={bannerData}
-      indexData={TotalIndexData}
-    />
+    <div style={{ width: '375px' }}>
+      <TicketingCarousel.Wrap
+        performances={bannerData}
+        indexData={TotalIndexData}
+      />
+    </div>
   );
 };

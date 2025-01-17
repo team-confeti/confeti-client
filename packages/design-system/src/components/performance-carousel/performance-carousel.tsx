@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
-import './top-carousel.css';
+import './performance-carousel.css';
 
 interface PerformData {
   performanceId: number;
@@ -18,7 +18,7 @@ interface DataProps {
   performData: PerformData[];
 }
 
-const TopCarousel = ({ performData }: DataProps) => {
+const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentId, setCurrentId] = useState(3);
 
@@ -31,14 +31,14 @@ const TopCarousel = ({ performData }: DataProps) => {
 
     return () => clearInterval(interval);
   }, []);
-
+  // 197 262
   const settings = {
     ref: sliderRef,
     className: 'center',
     dots: true,
     centerMode: true,
     infinite: true,
-    centerPadding: '115px',
+    centerPadding: '89px',
     slidesToShow: 1,
     sliceToScroll: 1,
     arrows: false,
@@ -71,22 +71,20 @@ const TopCarousel = ({ performData }: DataProps) => {
     <>
       <div className="banner-title">
         <p className="title-date">{performData[currentId]?.performanceAt} </p>
-        <h1 className="title-name">{performData[currentId]?.title}</h1>
+        <p className="title-name">{performData[currentId]?.title}</p>
         <p className="title-sub">{performData[currentId]?.subTitle}</p>
       </div>
-      <div>
-        <Slider {...settings}>
-          {performData.map((item) => (
-            <img
-              className="card"
-              key={item.performanceId}
-              src={item.posterUrl}
-            ></img>
-          ))}
-        </Slider>
-      </div>
+      <Slider {...settings}>
+        {performData.map((item) => (
+          <img
+            className="card"
+            key={item.performanceId}
+            src={item.posterUrl}
+          ></img>
+        ))}
+      </Slider>
     </>
   );
 };
 
-export default TopCarousel;
+export default PerformanceCarousel;
