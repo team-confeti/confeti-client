@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as styles from './time-table-item.css';
 
 interface ItemProps {
@@ -27,6 +28,7 @@ const TimeTableItem = ({
   stageCount,
   festivalTimeId,
 }: ItemProps) => {
+  const [selectBlock, setSelectBlock] = useState(isSelected);
   const [startHour, startMin] = startTime.slice(0, 5).split(':').map(Number);
   const [endHour, endMin] = endTime.slice(0, 5).split(':').map(Number);
   const [openHour, openMin] = ticketOpenAt.slice(0, 5).split(':').map(Number);
@@ -36,6 +38,10 @@ const TimeTableItem = ({
   const minutesFromOpen = startTotalMin - openTotalMin;
   const top = (minutesFromOpen / 5) * 0.75;
   const diff = (totalMin / 5) * 0.75;
+
+  const handleSetSelectedBlock = () => {
+    setSelectBlock((prev) => !prev);
+  };
   return (
     <div
       style={
@@ -46,14 +52,18 @@ const TimeTableItem = ({
           '--top': `${top}rem`,
         } as React.CSSProperties
       }
-      className={styles.itemsWrapper}
+      className={styles.itemsWrapper({ isSelected: selectBlock })}
+      onClick={() => handleSetSelectedBlock()}
     >
-      {artists.map((artist) => (
-        <p key={artist.artistId}>{artist.artistName}</p>
-      ))}
+      <div className={styles.alignContainer}>
+        <p className={styles.artistName({ isSelected: selectBlock })}>
+          {artists.map((artist) => artist.artistName).join(', ')}
+        </p>
+      </div>
 
-      <p>
-        {startTime}-{endTime}
+      <p className={styles.durationP({ isSelected: selectBlock })}>
+        {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
+        {`(${totalMin}min)`}
       </p>
     </div>
   );
