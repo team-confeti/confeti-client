@@ -1,5 +1,5 @@
 import { useEffect, ReactNode } from 'react';
-import * as styles from './infinite-carousel.css';
+import * as styles from './performance-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import InfoButton from './info-button/info-button';
 import { useCarouselData } from './hooks/use-carousel-data';
@@ -82,16 +82,16 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           />
         ))}
       </div>
-      <InfiniteCarousel.Container>
-        <InfiniteCarousel.Info>
+      <PerformanceCarousel.Container>
+        <PerformanceCarousel.Info>
           <div className={styles.description}>
-            <InfiniteCarousel.Dday reserveAt={dDay} />
-            <InfiniteCarousel.Artist
+            <PerformanceCarousel.Dday reserveAt={dDay} />
+            <PerformanceCarousel.Artist
               subtitle={performanceData.subtitles[currentIndex]}
             />
           </div>
 
-          <InfiniteCarousel.InfoBottom>
+          <PerformanceCarousel.InfoBottom>
             <InfoButton
               title={'공연 정보 확인하기'}
               performanceId={performanceData.performanceId[currentIndex]}
@@ -106,9 +106,9 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
               }
               total={indexData}
             />
-          </InfiniteCarousel.InfoBottom>
-        </InfiniteCarousel.Info>
-      </InfiniteCarousel.Container>
+          </PerformanceCarousel.InfoBottom>
+        </PerformanceCarousel.Info>
+      </PerformanceCarousel.Container>
     </div>
   );
 };
@@ -139,7 +139,7 @@ const CarouselArtist = ({ subtitle }: CarouselArtistProps) => (
   </>
 );
 
-const InfiniteCarousel = {
+const PerformanceCarousel = {
   Wrap: CarouselWrap,
   Container: CarouselContainer,
   Info: CarouselInfo,
@@ -148,4 +148,4 @@ const InfiniteCarousel = {
   Artist: CarouselArtist,
 };
 
-export default InfiniteCarousel;
+export default PerformanceCarousel;
