@@ -5,13 +5,13 @@ export const background = style({
   background: themeVars.color.confeti_purple,
 });
 
-export const topBanner = style({
+export const performanceBannerContainer = style({
   width: '100%',
-  paddingTop: '3rem',
+  paddingTop: '0.1rem',
   background: themeVars.color.confeti_purple_grad,
 });
 
-export const bottomBannerContainer = style({
+export const ticketingBannerContainer = style({
   ...themeVars.display.flexColumn,
   width: '100%',
   padding: '2.4rem 2rem',
@@ -21,7 +21,7 @@ export const bottomBannerContainer = style({
   background: themeVars.color.white,
 });
 
-export const bottomBannerText = style({
+export const ticketingBannerText = style({
   ...themeVars.fontStyles.subtitle1_m_18,
   color: themeVars.color.gray800,
   lineHeight: '1.3',

@@ -2,7 +2,7 @@ import {
   Footer,
   TopCarousel,
   Navigation,
-  InfiniteCarousel,
+  PerformanceCarousel,
 } from '@confeti/design-system';
 import {
   PERFORMANCE_DATA,
@@ -31,12 +31,11 @@ const Home = () => {
           {/* TODO: 추후 페이지 연결 */}
           <Navigation.Panel>
             <div className={styles.background}>
-              <section className={styles.topBanner}>
+              <section className={styles.performanceBannerContainer}>
                 <TopCarousel performData={PERFORMANCE_DATA}></TopCarousel>
               </section>
-
-              <section className={styles.bottomBannerContainer}>
-                <p className={styles.bottomBannerText}>
+              <section className={styles.ticketingBannerContainer}>
+                <p className={styles.ticketingBannerText}>
                   {isHighlighted ? (
                     <>
                       <span className={styles.highlightedText}>{userName}</span>
@@ -49,7 +48,7 @@ const Home = () => {
                     </>
                   )}
                 </p>
-                <InfiniteCarousel.Wrap
+                <PerformanceCarousel.Wrap
                   performances={bannerData}
                   indexData={TotalIndexData}
                 />
