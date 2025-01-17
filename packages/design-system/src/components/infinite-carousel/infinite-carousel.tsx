@@ -65,7 +65,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   );
 
   return (
-    <section className={styles.wrap}>
+    <div className={styles.wrap}>
       <div
         className={styles.imageContainer}
         style={{
@@ -84,10 +84,13 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
       </div>
       <InfiniteCarousel.Container>
         <InfiniteCarousel.Info>
-          <InfiniteCarousel.Dday reserveAt={dDay} />
-          <InfiniteCarousel.Artist
-            subtitle={performanceData.subtitles[currentIndex]}
-          />
+          <div className={styles.description}>
+            <InfiniteCarousel.Dday reserveAt={dDay} />
+            <InfiniteCarousel.Artist
+              subtitle={performanceData.subtitles[currentIndex]}
+            />
+          </div>
+
           <InfiniteCarousel.InfoBottom>
             <InfoButton
               title={'공연 정보 확인하기'}
@@ -106,7 +109,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           </InfiniteCarousel.InfoBottom>
         </InfiniteCarousel.Info>
       </InfiniteCarousel.Container>
-    </section>
+    </div>
   );
 };
 
