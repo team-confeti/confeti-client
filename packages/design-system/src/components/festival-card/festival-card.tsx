@@ -26,30 +26,34 @@ const FestivalCard = ({
     setInternalSelected(isSelected);
   }, [isSelected]);
 
+  const handleSelect = () => {
+    setInternalSelected(true);
+    onSelectChange?.(festivalId, true);
+  };
+
+  const handleDeselect = () => {
+    setInternalSelected(false);
+    onSelectChange?.(festivalId, false);
+  };
+
+  const handleExceedSelection = () => {
+    toast.default('페스티벌은 3개까지만 추가할 수 있어요.', {
+      position: 'middleCenter',
+    });
+  };
+
   const handleClick = () => {
     if (!selectable) return;
 
-    // 선택된 카드 개수 체크
     const selectedCount = document.querySelectorAll(
       '[aria-pressed="true"]',
     ).length;
 
-    if (internalSelected) {
-      // 이미 선택된 카드라면 선택 취소
-      setInternalSelected(false);
-      onSelectChange && onSelectChange(festivalId, false);
-    } else {
-      if (selectedCount < 3) {
-        // 3개 미만이면 선택
-        setInternalSelected(true);
-        onSelectChange && onSelectChange(festivalId, true);
-      } else {
-        // 4개 이상이면 선택 불가
-        toast.default('페스티벌은 3개까지만 추가할 수 있어요.', {
-          position: 'middleCenter',
-        });
-      }
-    }
+    internalSelected
+      ? handleDeselect()
+      : selectedCount < 3
+        ? handleSelect()
+        : handleExceedSelection();
   };
 
   return (
