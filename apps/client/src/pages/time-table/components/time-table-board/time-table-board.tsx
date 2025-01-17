@@ -2,37 +2,9 @@ import TimeCell from '@pages/time-table/components/time-cell/time-cell';
 import * as styles from './time-table-board.css';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
+import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
 
-interface Artist {
-  artistId: string;
-  artistName: string;
-}
-
-interface FestivalTimes {
-  festivalTimeId: number;
-  startAt: string;
-  endAt: string;
-  isSelected: boolean;
-  artists: Artist[];
-}
-
-interface Stage {
-  stageOrder: number;
-  stageName: string;
-  festivalTimes: FestivalTimes[];
-}
-
-interface TimeTableInfo {
-  ticketOpenAt: string;
-  stageCount: number;
-  stages: Stage[];
-}
-
-interface TimeTableBoardProps {
-  timeTableInfo: TimeTableInfo;
-}
-
-const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
+const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const [openHour, openMin] = timeTableInfo.ticketOpenAt
     .slice(0, 5)
     .split(':')

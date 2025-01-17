@@ -10,7 +10,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 1,
           startAt: '12:00:00',
           endAt: '12:30:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -38,7 +38,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 3,
           startAt: '15:10:00',
           endAt: '15:50:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -62,7 +62,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 5,
           startAt: '18:00:00',
           endAt: '18:30:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -92,7 +92,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 2,
           startAt: '13:10:00',
           endAt: '13:40:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -116,7 +116,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 4,
           startAt: '15:50:00',
           endAt: '16:30:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -128,7 +128,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 5,
           startAt: '17:15:00',
           endAt: '18:00:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -140,7 +140,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 6,
           startAt: '18:50:00',
           endAt: '19:40:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -152,7 +152,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 7,
           startAt: '20:40:00',
           endAt: '21:40:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -170,7 +170,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 1,
           startAt: '11:40:00',
           endAt: '12:10:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -194,7 +194,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 3,
           startAt: '14:40:00',
           endAt: '15:10:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
@@ -206,7 +206,7 @@ export const TIME_TABLE_INFO = {
           festivalTimeId: 4,
           startAt: '15:50:00',
           endAt: '16:20:00',
-          isSelected: true,
+          isSelected: false,
           artists: [
             {
               artistId: '1',
