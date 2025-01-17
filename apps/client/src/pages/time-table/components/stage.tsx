@@ -1,16 +1,21 @@
 import * as styles from './stage.css';
 interface Artist {
   artistId: string;
-  name: string;
+  artistName: string;
+}
+
+interface FestivalTimes {
+  festivalTimeId: number;
   startAt: string;
   endAt: string;
   isSelected: boolean;
+  artists: Artist[];
 }
 
 interface Stage {
   stageOrder: number;
-  name: string;
-  artists: Artist[];
+  stageName: string;
+  festivalTimes: FestivalTimes[];
 }
 
 interface TimeTableInfo {
@@ -26,9 +31,9 @@ interface StageProps {
 const Stage = ({ timeTableInfo }: StageProps) => {
   return (
     <div className={styles.stageWrapper}>
-      {timeTableInfo.stages.map(({ stageOrder, name }) => (
+      {timeTableInfo.stages.map(({ stageOrder, stageName }) => (
         <div key={stageOrder} className={styles.wrapper}>
-          {name.replace(/ STAGE$/, '')}
+          {stageName.replace(/ STAGE$/, '')}
           <br />
           STAGE
         </div>

@@ -8,7 +8,7 @@ export const itemsWrapper = style({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '5.2rem',
+  top: 'var(--top)',
   left: 'calc( 3.1rem + ((100% - 3.1rem) / var(--stage-count) * var(--stage-order)))',
   backgroundColor: themeVars.color.confeti_lime,
   color: themeVars.color.black,
@@ -17,4 +17,5 @@ export const itemsWrapper = style({
   padding: '0.8rem 0rem',
   borderRadius: '2px',
   zIndex: '3',
+  cursor: 'pointer',
 });

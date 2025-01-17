@@ -2,20 +2,24 @@ import TimeCell from '@pages/time-table/components/time-cell';
 import * as styles from './time-table-board.css';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item';
-import { useState } from 'react';
 
 interface Artist {
   artistId: string;
-  name: string;
+  artistName: string;
+}
+
+interface FestivalTimes {
+  festivalTimeId: number;
   startAt: string;
   endAt: string;
   isSelected: boolean;
+  artists: Artist[];
 }
 
 interface Stage {
   stageOrder: number;
-  name: string;
-  artists: Artist[];
+  stageName: string;
+  festivalTimes: FestivalTimes[];
 }
 
 interface TimeTableInfo {
@@ -29,8 +33,6 @@ interface TimeTableBoardProps {
 }
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
-  const [isSelected, setIsSelected] = useState(false);
-
   const [openHour, openMin] = timeTableInfo.ticketOpenAt
     .slice(0, 5)
     .split(':')
@@ -46,10 +48,6 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
     (_, idx) => ticketOpenHour + idx,
   );
 
-  const handleIsSelected = () => {
-    setIsSelected((prev) => !prev);
-  };
-
   return (
     <div className={styles.wrapper}>
       <BoothOpenBox ticketOpenHour={timeTableInfo.ticketOpenAt} />
@@ -63,16 +61,17 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableBoardProps) => {
       {timeTableInfo.stages.map((stage) => {
         return (
           <div key={stage.stageOrder}>
-            {stage.artists.map((artist) => (
+            {stage.festivalTimes.map((block) => (
               <TimeTableItem
+                ticketOpenAt={timeTableInfo.ticketOpenAt}
                 stageCount={timeTableInfo.stageCount}
-                key={artist.artistId}
-                name={artist.name}
-                isSelected={isSelected}
-                handleIsSelected={handleIsSelected}
-                startTime={artist.startAt}
-                endTime={artist.endAt}
+                key={block.festivalTimeId}
+                artists={block.artists}
+                isSelected={block.isSelected}
+                startTime={block.startAt}
+                endTime={block.endAt}
                 stageOrder={stage.stageOrder}
+                festivalTimeId={block.festivalTimeId}
               />
             ))}
           </div>
