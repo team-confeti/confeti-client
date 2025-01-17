@@ -6,4 +6,5 @@ export const routePath = {
   CONCERT: '/concert-detail/:concertId',
   FESTIVAL: '/festival-detail/:festivalId',
   MYARTIST: '/my-artist',
+  ADDFESTIVAL: '/add-festival',
 } as const;
