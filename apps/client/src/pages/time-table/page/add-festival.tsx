@@ -4,10 +4,18 @@ import * as styles from './add-festival.css';
 import { useState } from 'react';
 
 const AddFestival = () => {
-  const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
-  const handleSelectChange = (title: string, isSelected: boolean) => {
-    setSelectedTitle(isSelected ? title : null);
+  const handleSelectChange = (id: number, isSelected: boolean) => {
+    setSelectedIds((prev) => {
+      const newSelection = new Set(prev);
+      if (isSelected) {
+        newSelection.add(id);
+      } else {
+        newSelection.delete(id);
+      }
+      return newSelection;
+    });
   };
 
   return (
@@ -17,9 +25,10 @@ const AddFestival = () => {
         {PERFORMANCE_DATA.data.performances.map((performance) => (
           <FestivalCard
             key={performance.performanceId}
+            festivalId={performance.performanceId}
             title={performance.title}
             imageSrc={performance.posterUrl}
-            isSelected={selectedTitle === performance.title}
+            isSelected={selectedIds.has(performance.performanceId)}
             selectable={true}
             onSelectChange={handleSelectChange}
           />
@@ -30,7 +39,7 @@ const AddFestival = () => {
           className={styles.addBtn}
           variant="add"
           text={'추가하기'}
-          disabled={!selectedTitle}
+          disabled={selectedIds.size === 0}
         />
       </div>
     </div>

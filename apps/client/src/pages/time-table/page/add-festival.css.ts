@@ -22,6 +22,8 @@ export const buttonSection = style({
   bottom: 0,
   padding: '2rem',
   width: '100%',
+  //   left: 0, // 뷰포트의 왼쪽 끝에 고정
+  //   right: 0, // 뷰포트의 오른쪽 끝에 고정
   height: '9rem',
   backgroundColor: themeVars.color.white,
 });

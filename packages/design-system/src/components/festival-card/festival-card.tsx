@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 
 interface FestivalCardProps {
+  festivalId: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
   selectable?: boolean;
-  onSelectChange?: (title: string, isSelected: boolean) => void;
+  onSelectChange?: (id: number, isSelected: boolean) => void;
 }
 
 const FestivalCard = ({
+  festivalId,
   title,
   imageSrc = 'https://dummyimage.com/100x142',
   isSelected = false,
@@ -19,6 +21,10 @@ const FestivalCard = ({
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
 
+  useEffect(() => {
+    setInternalSelected(isSelected);
+  }, [isSelected]);
+
   const handleClick = () => {
     if (!selectable) return;
 
@@ -26,7 +32,7 @@ const FestivalCard = ({
     setInternalSelected(toggledSelected);
 
     if (onSelectChange) {
-      onSelectChange(title, toggledSelected);
+      onSelectChange(festivalId, toggledSelected);
     }
   };
 
