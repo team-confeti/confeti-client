@@ -1,7 +1,7 @@
-import TimeCell from '@pages/time-table/components/time-cell';
+import TimeCell from '@pages/time-table/components/time-cell/time-cell';
 import * as styles from './time-table-board.css';
-import BoothOpenBox from '@pages/time-table/components/booth-open-box';
-import TimeTableItem from '@pages/time-table/components/time-table-item';
+import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
+import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 
 interface Artist {
   artistId: string;

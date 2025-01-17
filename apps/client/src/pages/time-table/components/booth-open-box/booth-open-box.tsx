@@ -1,5 +1,4 @@
 import * as styles from './booth-open-box.css';
-
 interface BoxProps {
   ticketOpenHour: string;
 }
