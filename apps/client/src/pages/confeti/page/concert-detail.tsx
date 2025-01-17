@@ -1,54 +1,56 @@
+import { useState } from 'react';
 import Info from '../components/info';
-import PerformanceDetail from '../components/performance-detail';
 import Poster from '../components/poster';
 import Summary from '../components/summary';
-import * as styles from '@pages/confeti/page/concert-detail.css';
+import MoreButton from '../components/more-button';
+import PerformanceDetail from '../components/performance-detail';
+import ArtistTitle from '../components/artist-title';
+import ArtistList from '../components/artist-list';
+import { Footer, Spacing } from '@confeti/design-system';
+import * as styles from '@pages/confeti/page/detail.css';
+import { concertMock } from '../mocks/data';
 
 export default function ConcertDetailPage() {
-  const concertData = {
-    posterBgUrl: 'https://placehold.co/375x280',
-    posterUrl: 'https://picsum.photos/180/240',
-    title: '터치드(TOUCHED) 단독 콘서트',
-    subtitle: 'HIGHLIGHT Ⅲ',
-    startAt: '2025.01.25',
-    endAt: '2025.01.26',
-    area: '올림픽공원 올림픽홀',
-    reserveAt: '2025-01-20T14:00:00',
-    reservationUrl:
-      'https://tickets.interpark.com/goods/24016171?app_tapbar_state=hide',
-    time: '120분',
-    ageRating: '14세 이상 관람가',
-    reservationOffice: '인터파크',
-    price: '스탠딩석 132,000원\n지정석 R석 132,000원\n지정석 S석 132,000원',
+  const { concert } = concertMock;
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setIsExpanded((prev) => !prev);
   };
 
   return (
     <>
-      <Poster
-        posterBgUrl={concertData.posterBgUrl}
-        posterUrl={concertData.posterUrl}
-      />
+      <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <div className={styles.container}>
         <Summary
-          title={concertData.title}
-          subtitle={concertData.subtitle}
-          startAt={concertData.startAt}
-          endAt={concertData.endAt}
-          area={concertData.area}
-          reserveAt={concertData.reserveAt}
-          reservationUrl={concertData.reservationUrl}
+          title={concert.title}
+          subtitle={concert.subtitle}
+          startAt={concert.startAt}
+          endAt={concert.endAt}
+          area={concert.area}
+          reserveAt={concert.reserveAt}
+          reservationUrl={concert.reservationUrl}
         />
         <Info
-          subtitle={concertData.subtitle}
-          area={concertData.area}
-          startAt={concertData.startAt}
-          endAt={concertData.endAt}
-          time={concertData.time}
-          ageRating={concertData.ageRating}
-          reservationOffice={concertData.reservationOffice}
-          price={concertData.price}
+          subtitle={concert.subtitle}
+          area={concert.area}
+          startAt={concert.startAt}
+          endAt={concert.endAt}
+          time={concert.time}
+          ageRating={concert.ageRating}
+          reservationOffice={concert.reservationOffice}
+          price={concert.price}
         />
-        <PerformanceDetail />
+        <PerformanceDetail isExpanded={isExpanded} />
+        <MoreButton
+          hasShadow={true}
+          isExpanded={isExpanded}
+          onToggle={toggleExpanded}
+        />
+        <Spacing />
+        <ArtistTitle />
+        <ArtistList type="concert" artistData={concertMock} />
+        <Footer />
       </div>
     </>
   );
