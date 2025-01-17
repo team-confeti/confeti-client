@@ -16,7 +16,7 @@ export const ticketingBannerContainer = style({
   width: '100%',
   padding: '2.4rem 2rem',
   gap: '1.6rem',
-  borderRadius: '20px 20px 0px 0px',
+  borderRadius: '2rem 2rem 0 0',
   boxShadow: themeVars.shadowStyles.shadow_md_3.boxShadow,
   background: themeVars.color.white,
 });
