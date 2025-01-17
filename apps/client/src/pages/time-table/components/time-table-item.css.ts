@@ -9,7 +9,7 @@ export const itemsWrapper = recipe({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 'calc(0.7rem + var(--top))',
+    top: 'calc( 0.7rem + var(--top) )',
     left: 'calc( 3.1rem + ((100% - 3.1rem) / var(--stage-count) * var(--stage-order)))',
     height: 'var(--diff)',
     width: 'calc((100% - 3.1rem) / var(--stage-count))',

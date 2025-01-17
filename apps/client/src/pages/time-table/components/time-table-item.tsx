@@ -36,7 +36,7 @@ const TimeTableItem = ({
   const startTotalMin = startHour * 60 + startMin;
   const openTotalMin = openHour * 60 + openMin;
   const minutesFromOpen = startTotalMin - openTotalMin;
-  const top = (minutesFromOpen / 5) * 0.75;
+  const top = (minutesFromOpen / 5) * 0.74;
   const diff = (totalMin / 5) * 0.75;
 
   const handleSetSelectedBlock = () => {
