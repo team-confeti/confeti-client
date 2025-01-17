@@ -20,8 +20,9 @@ export const containerVariants = recipe({
 export const ItemContainer = recipe({
   base: {
     width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    display: 'flex',
+    overflowX: 'auto',
+    whiteSpace: 'nowrap',
   },
   variants: {
     size: {
@@ -43,7 +44,7 @@ export const ItemsVariants = recipe({
     size: {
       sm: {},
       md: {
-        width: '7.4rem',
+        width: '25%',
         height: '10.6rem',
         gap: '1.2rem',
       },
