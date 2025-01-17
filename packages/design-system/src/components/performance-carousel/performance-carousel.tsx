@@ -1,151 +1,90 @@
-import { useEffect, ReactNode } from 'react';
-import * as styles from './performance-carousel.css';
-import ProgressBar from './progress-bar/progress-bar';
-import InfoButton from './info-button/info-button';
-import { useCarouselData } from './hooks/use-carousel-data';
-import { useCarouselSlide } from './hooks/use-carousel-slide';
-import { useControlTime } from './hooks/use-control-time';
-import { useDateFormat } from './hooks/use-data-format';
-interface CarouselWrapProps {
-  performances: {
-    reservationBgUrl: string;
-    subtitle: string;
-    reserveAt: string;
-    performanceId: number;
-    type: string;
-  }[];
-  indexData: number;
+import { useRef, useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import './slick.css';
+import './dots.css';
+import './performance-carousel.css';
+
+interface PerformData {
+  performanceId: number;
+  type: string;
+  title: string;
+  subTitle: string;
+  performanceAt: string;
+  posterUrl: string;
 }
 
-interface CarouselContainerProps {
-  children: React.ReactNode;
+interface DataProps {
+  performData: PerformData[];
 }
 
-interface CarouselInfoProps {
-  children: ReactNode;
-}
+const PerformanceCarousel = ({ performData }: DataProps) => {
+  const sliderRef = useRef<Slider | null>(null);
+  const [currentId, setCurrentId] = useState(3);
 
-interface CarouselDdayProps {
-  reserveAt: string;
-}
-
-interface CarouselArtistProps {
-  subtitle: string | undefined;
-}
-
-interface CarouselInfoBottomProps {
-  children: ReactNode;
-}
-
-const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
-  // 슬라이드 데이터
-  const performanceData = useCarouselData(
-    performances.map((item) => item.reservationBgUrl),
-    performances.map((item) => item.subtitle),
-    performances.map((item) => item.reserveAt),
-    performances.map((item) => item.performanceId),
-    performances.map((item) => item.type),
-  );
-
-  // 슬라이드 상태 관리
-  const { currentIndex, carouselTransition, nextSlide } = useCarouselSlide(
-    performanceData.images.length,
-  );
-
-  // 슬라이드 간격 관리
-  const controlTime = useControlTime(carouselTransition);
-
-  // 자동 슬라이드 전환
   useEffect(() => {
-    const interval = setInterval(nextSlide, controlTime);
-    return () => clearInterval(interval);
-  }, [nextSlide, controlTime]);
-  const { dDay } = useDateFormat(
-    performanceData.reserveDates[currentIndex] || '',
-  );
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        sliderRef.current?.slickNext();
+      }
+    }, 4000);
 
-  return (
-    <div className={styles.wrap}>
+    return () => clearInterval(interval);
+  }, []);
+  // 197 262
+  const settings = {
+    ref: sliderRef,
+    className: 'center',
+    dots: true,
+    centerMode: true,
+    infinite: true,
+    centerPadding: '89px',
+    slidesToShow: 1,
+    sliceToScroll: 1,
+    arrows: false,
+    speed: 1000,
+    cssEase: 'ease-in-out',
+    initialSlide: 3,
+    beforeChange: (newIndex: number) => {
+      setCurrentId(newIndex);
+    },
+
+    appendDots: (dots: string) => (
       <div
-        className={styles.imageContainer}
         style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-          transition: carouselTransition,
+          width: '100%',
+          display: 'flex',
+          justifyItems: 'center',
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1.6rem 0',
         }}
       >
-        {performanceData.images.map((imgUrl, id) => (
-          <img
-            key={id}
-            src={imgUrl}
-            alt={`캐러셀 이미지 ${id + 1}`}
-            className={styles.image}
-          />
-        ))}
+        <ul> {dots} </ul>
       </div>
-      <PerformanceCarousel.Container>
-        <PerformanceCarousel.Info>
-          <div className={styles.description}>
-            <PerformanceCarousel.Dday reserveAt={dDay} />
-            <PerformanceCarousel.Artist
-              subtitle={performanceData.subtitles[currentIndex]}
-            />
-          </div>
+    ),
+    dotsClass: 'dots_custom',
+  };
 
-          <PerformanceCarousel.InfoBottom>
-            <InfoButton
-              title={'공연 정보 확인하기'}
-              performanceId={performanceData.performanceId[currentIndex]}
-              performanceType={performanceData.type[currentIndex]}
-            />
-            <ProgressBar
-              size="md"
-              current={
-                currentIndex === performanceData.images.length - 1
-                  ? 1
-                  : currentIndex
-              }
-              total={indexData}
-            />
-          </PerformanceCarousel.InfoBottom>
-        </PerformanceCarousel.Info>
-      </PerformanceCarousel.Container>
-    </div>
+  return (
+    <>
+      <div className="banner-title">
+        <p className="title-date">{performData[currentId]?.performanceAt} </p>
+        <p className="title-name">{performData[currentId]?.title}</p>
+        <p className="title-sub">{performData[currentId]?.subTitle}</p>
+      </div>
+      <Slider {...settings}>
+        {performData.map((item) => (
+          <img
+            className="card"
+            key={item.performanceId}
+            src={item.posterUrl}
+          ></img>
+        ))}
+      </Slider>
+    </>
   );
-};
-
-const CarouselContainer = ({ children }: CarouselContainerProps) => (
-  <div className={styles.container}>{children}</div>
-);
-
-const CarouselInfo = ({ children }: CarouselInfoProps) => (
-  <section className={styles.info}>
-    <div className={styles.textSection}>{children}</div>
-  </section>
-);
-
-const CarouselInfoBottom = ({ children }: CarouselInfoBottomProps) => (
-  <div className={styles.infoBottom}>{children}</div>
-);
-
-const CarouselDday = ({ reserveAt }: CarouselDdayProps) => (
-  <div className={styles.infoDday}>D-{reserveAt}</div>
-);
-
-const CarouselArtist = ({ subtitle }: CarouselArtistProps) => (
-  <>
-    <span className={styles.subtitle}>
-      {subtitle} <span className={styles.fixedWord}>예매</span>
-    </span>
-  </>
-);
-
-const PerformanceCarousel = {
-  Wrap: CarouselWrap,
-  Container: CarouselContainer,
-  Info: CarouselInfo,
-  InfoBottom: CarouselInfoBottom,
-  Dday: CarouselDday,
-  Artist: CarouselArtist,
 };
 
 export default PerformanceCarousel;

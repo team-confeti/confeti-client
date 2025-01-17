@@ -1,8 +1,8 @@
 import {
   Footer,
-  TopCarousel,
-  Navigation,
   PerformanceCarousel,
+  Navigation,
+  TicketingCarousel,
 } from '@confeti/design-system';
 import {
   PERFORMANCE_DATA,
@@ -32,7 +32,9 @@ const Home = () => {
           <Navigation.Panel>
             <div className={styles.background}>
               <section className={styles.performanceBannerContainer}>
-                <TopCarousel performData={PERFORMANCE_DATA}></TopCarousel>
+                <PerformanceCarousel
+                  performData={PERFORMANCE_DATA}
+                ></PerformanceCarousel>
               </section>
               <section className={styles.ticketingBannerContainer}>
                 <p className={styles.ticketingBannerText}>
@@ -48,7 +50,7 @@ const Home = () => {
                     </>
                   )}
                 </p>
-                <PerformanceCarousel.Wrap
+                <TicketingCarousel.Wrap
                   performances={bannerData}
                   indexData={TotalIndexData}
                 />

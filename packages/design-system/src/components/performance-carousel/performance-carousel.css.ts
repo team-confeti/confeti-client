@@ -1,82 +1,43 @@
+import { globalStyle, keyframes } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
-import { style } from '@vanilla-extract/css';
 
-export const wrap = style({
-  width: '100%',
-  height: '29dvh',
-  overflow: 'hidden',
-  position: 'relative',
-  borderRadius: '2rem',
+export const fadeInOut = keyframes({
+  '0%': { opacity: 0 },
+  '50%': { opacity: 0.5 },
+  '100%': { opacity: 1 },
 });
 
-export const imageContainer = style({
-  display: 'flex',
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-  transition: 'transform 1s ease-in-out',
+globalStyle('.banner-title', {
+  marginTop: '3rem',
+  height: '10.3rem',
 });
 
-export const image = style({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  flexShrink: 0,
-});
-
-export const active = style({
-  opacity: 1,
-});
-
-export const container = style({
-  ...themeVars.display.flexCenter,
-  background: themeVars.color.black_op,
-  width: '100%',
-  height: '100%',
-  flexShrink: '0',
-  padding: '1.6rem 1.2rem',
-  position: 'absolute',
-  top: 0,
-  left: 0,
-});
-
-export const info = style({
-  ...themeVars.display.flexColumn,
-  width: '100%',
-  flexShrink: '0',
-});
-
-export const textSection = style({
-  ...themeVars.display.flexBetween,
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  alignSelf: 'stretch',
-});
-
-export const description = style({
-  position: 'absolute',
-  top: '1.6rem',
-});
-
-export const infoDday = style({
+globalStyle('.title-date', {
+  ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.white,
+  textAlign: 'center',
+  marginBottom: '1.2rem',
+  animation: `${fadeInOut} 1s ease-out forwards`,
+});
+
+globalStyle('.title-name', {
   ...themeVars.fontStyles.title1_b_24,
-});
-
-export const subtitle = style({
-  ...themeVars.fontStyles.title3_b_18,
-  color: themeVars.color.confeti_lime,
-});
-
-export const fixedWord = style({
-  ...themeVars.fontStyles.title3_b_18,
   color: themeVars.color.white,
+  textAlign: 'center',
+  marginBottom: '4px',
+  animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-export const infoBottom = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  width: '93%',
-  position: 'absolute',
-  bottom: '1.6rem',
+globalStyle('.title-sub', {
+  ...themeVars.fontStyles.body3_m_14,
+  color: themeVars.color.gray500,
+  textAlign: 'center',
+  animation: `${fadeInOut} 1s ease-out forwards`,
+});
+
+globalStyle('.card', {
+  width: '100%',
+  height: '100%',
+  borderRadius: '1rem',
+  boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
 });
