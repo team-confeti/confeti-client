@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ProgressBar from './progress-bar';
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Common/PerformanceCarousel/ProgressBar',
+  title: 'Common/Carousel/TicketingCarousel/ProgressBar',
   component: ProgressBar,
   parameters: {
     layout: 'centered',

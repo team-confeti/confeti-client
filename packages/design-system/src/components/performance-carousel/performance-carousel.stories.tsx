@@ -61,7 +61,7 @@ const MOCK_PERFORM_DATA = [
 ];
 
 const meta: Meta<typeof PerformanceCarousel> = {
-  title: 'Common/PerformanceCarousel',
+  title: 'Common/Carousel/PerformanceCarousel',
   component: PerformanceCarousel,
   parameters: {
     layout: 'centered',
@@ -74,19 +74,17 @@ const meta: Meta<typeof PerformanceCarousel> = {
 
 export default meta;
 
-// decorators: [
-//   (Story) => {
-//     return (
-//       <div
-//         style={{
-//           width: '375px',
-//           height: '500px',
-//           background:
-//             'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
-//         }}
-//       >
-//         <Story />
-//       </div>
-//     );
-//   },
-// ],
+export const Default = () => {
+  return (
+    <div
+      style={{
+        width: '375px',
+        height: '500px',
+        paddingTop: '10px',
+        background: 'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
+      }}
+    >
+      <PerformanceCarousel performData={MOCK_PERFORM_DATA} />
+    </div>
+  );
+};
