@@ -19,7 +19,6 @@ const AddFestival = () => {
       </div>
       <div className={styles.buttonSection}>
         <Button
-          className={styles.addBtn}
           variant="add"
           text={'추가하기'}
           disabled={false}
