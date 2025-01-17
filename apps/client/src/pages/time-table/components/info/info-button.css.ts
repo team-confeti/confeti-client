@@ -71,6 +71,16 @@ export const ImageVariants = recipe({
       },
       lg: {},
     },
+    isClicked: {
+      true: {
+        border: '2px solid transparent',
+        backgroundImage:
+          'linear-gradient(#ffffff, #ffffff), linear-gradient(to top, #E9FFAC 0%, #B5F602 100%)',
+        backgroundOrigin: 'border-box',
+        backgroundClip: 'content-box, border-box',
+        transition: 'background-image 0.3s ease, border-color 0.3s ease',
+      },
+    },
   },
 });
 
