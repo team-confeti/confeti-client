@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import * as styles from './require_login_section.css';
+import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
 
 const RequireLoginSection = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    const userId = localStorage.getItem('user-id');
+    const userId = localStorage.getItem(USER_ID_KEY);
     if (!userId) {
-      localStorage.setItem('user-id', '1');
+      localStorage.setItem(USER_ID_KEY, USER_ID);
     }
     navigate(routePath.MY);
   };

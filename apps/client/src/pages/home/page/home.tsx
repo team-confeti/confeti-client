@@ -11,12 +11,13 @@ import {
 import { USER_DATA } from '@shared/mocks/user-data';
 import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
+import { USER_ID_KEY } from '@shared/constants/user-constants';
 
 const Home = () => {
   const bannerData = PERFORMANCE_TICKETING_DATA?.data?.performances || [];
   const TotalIndexData = PERFORMANCE_TICKETING_DATA?.data?.performanceCount;
 
-  const userId = localStorage.getItem('user-id');
+  const userId = localStorage.getItem(USER_ID_KEY);
   const userName = USER_DATA.data.userName;
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
 
