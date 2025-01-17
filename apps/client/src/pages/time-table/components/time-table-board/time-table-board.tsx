@@ -3,11 +3,7 @@ import * as styles from './time-table-board.css';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
-import {
-  generateTableRow,
-  parseTimeString,
-  calcMinutesFromOpen,
-} from '@pages/time-table';
+import { generateTableRow, parseTimeString } from '@pages/time-table';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
