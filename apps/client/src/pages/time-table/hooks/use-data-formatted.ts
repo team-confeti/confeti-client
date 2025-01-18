@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
+import { WEEKDAYS } from '@shared/constants/day';
 
 const YEAR_MESSAGE = {
   ERR_MESSAGE: '',
 };
 
-const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
+const weekData = WEEKDAYS;
 
 export const useFormattedYear = (date: string | null) => {
   if (!date) {
@@ -37,7 +38,7 @@ export const useFormattedWeek = (date: string | null) => {
       currentDate.setDate(baseDate.getDate() + i);
       return {
         date: currentDate.getDate(),
-        dayKo: WEEKDAYS[currentDate.getDay()],
+        dayKo: weekData[currentDate.getDay()],
       };
     });
 

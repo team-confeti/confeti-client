@@ -4,6 +4,7 @@ import {
   BtnHeartDefault24,
   BtnHeartFilled24,
 } from 'node_modules/@confeti/design-system/src/icons/src';
+import { WEEKDAYS } from '@shared/constants/day';
 
 interface SummaryProps {
   title: string;
@@ -20,13 +21,13 @@ interface SummaryProps {
 const formatReserveDate = (reserveAt: string): string => {
   const date = new Date(reserveAt);
 
-  const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+  const weekData = WEEKDAYS;
 
   const hours = date.getHours();
   const period = hours >= 12 ? '오후' : '오전';
   const hour12 = hours % 12 === 0 ? 12 : hours % 12;
 
-  const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${weekdays[date.getDay()]}) ${period}${hour12}시`;
+  const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${weekData[date.getDay()]}) ${period}${hour12}시`;
 
   return formattedDate;
 };
