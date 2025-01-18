@@ -7,7 +7,6 @@ export const container = style({
   top: '50%',
   left: '50%',
   width: '100%',
-  padding: '8rem 2rem',
   gap: '2.4rem',
   transform: 'translate(-50%, -50%)',
 });
