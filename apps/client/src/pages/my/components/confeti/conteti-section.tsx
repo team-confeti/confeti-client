@@ -18,10 +18,10 @@ const ConfetiSection = ({ confeti }: ConfetiProps) => {
       {confeti.map((confeti) => (
         <FestivalCard
           key={confeti.performanceId}
-          title={confeti.title}
-          imageSrc={confeti.posterUrl}
           id={confeti.performanceId}
           type={confeti.type}
+          title={confeti.title}
+          imageSrc={confeti.posterUrl}
         />
       ))}
     </div>

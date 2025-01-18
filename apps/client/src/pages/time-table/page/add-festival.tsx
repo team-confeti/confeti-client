@@ -22,8 +22,8 @@ const AddFestival = () => {
           return (
             <FestivalCard
               key={performance.performanceId}
-              type={performance.type}
               id={performance.performanceId}
+              type={performance.type}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}
