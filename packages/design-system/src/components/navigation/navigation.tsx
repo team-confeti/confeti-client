@@ -46,6 +46,7 @@ const NavItem = ({ index, children }: ItemProps) => {
 
   return (
     <button
+      key={activeTab}
       className={styles.list({ active: activeTab === index })}
       onClick={() => setActiveTab(index)}
     >
