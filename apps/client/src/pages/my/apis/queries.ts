@@ -11,4 +11,19 @@ export const USER_QUERY_KEY = {
 export const USER_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({ queryKey: USER_QUERY_KEY.ALL, queryFn: getUserProfile }),
+  PROFILE: () =>
+    queryOptions({
+      queryKey: USER_QUERY_KEY.PROFILE(),
+      queryFn: getUserProfile,
+    }),
+  FAVORITE_ARTISTS: () =>
+    queryOptions({
+      queryKey: USER_QUERY_KEY.FAVORITE_ARTISTS(),
+      queryFn: getUserProfile,
+    }),
+  FAVORITE_PERFORMANCES: () =>
+    queryOptions({
+      queryKey: USER_QUERY_KEY.FAVORITE_PERFORMANCES(),
+      queryFn: getUserProfile,
+    }),
 };

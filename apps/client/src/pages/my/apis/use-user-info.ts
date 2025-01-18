@@ -13,10 +13,6 @@ export const getUserProfile = async (): Promise<UserProfile> => {
 };
 
 export const useUserProfile = () => {
-  const { data } = useSuspenseQuery({
-    queryKey: USER_QUERY_OPTIONS.ALL().queryKey,
-    queryFn: USER_QUERY_OPTIONS.ALL().queryFn,
-  });
-
+  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.PROFILE());
   return data;
 };
