@@ -8,42 +8,28 @@ export const artistCardVariants = recipe({
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
+    width: '100%',
   },
-  variants: {
-    size: {
-      sm: { width: '7rem' },
-      md: { width: '8rem' },
-      lg: { width: '9rem' },
-    },
-  },
+});
+
+export const imageAndHeartWrapper = style({
+  position: 'relative',
+  width: '100%',
 });
 
 export const artistImg = recipe({
   base: {
     borderRadius: '50%',
-  },
-  variants: {
-    size: {
-      sm: {
-        width: '7rem',
-        height: '7rem',
-      },
-      md: {
-        width: '8rem',
-        height: '8rem',
-      },
-      lg: {
-        width: '9rem',
-        height: '9rem',
-      },
-    },
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
 });
 
 export const heartImg = style({
   position: 'absolute',
-  top: '5.6rem',
   right: '0.05rem',
+  bottom: 0,
 });
 
 export const artistName = recipe({

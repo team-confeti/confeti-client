@@ -1,6 +1,7 @@
 {
   "extends": "@confeti/typescript/react-library.json",
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
     "outDir": "dist"
   },
   "include": ["src"],

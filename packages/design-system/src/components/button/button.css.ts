@@ -21,7 +21,7 @@ export const buttonVariants = recipe({
       },
       link: {
         ...themeVars.fontStyles.subtitle3_b_15,
-        height: '5rem',
+        height: '4.4rem',
         padding: '0.8rem 1.6rem',
       },
       add: {

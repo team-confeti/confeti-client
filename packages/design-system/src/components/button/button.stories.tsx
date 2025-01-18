@@ -21,6 +21,7 @@ export const Default: Story = {
   args: {
     variant: 'default',
     disabled: false,
+    text: '추가하기',
   },
   decorators: [
     (Story) => (
@@ -35,6 +36,7 @@ export const Add: Story = {
   args: {
     variant: 'add',
     disabled: false,
+    text: '추가하기',
   },
   decorators: [
     (Story) => (
@@ -49,6 +51,7 @@ export const AddDisabled: Story = {
   args: {
     variant: 'add',
     disabled: true,
+    text: '추가하기',
   },
   decorators: [
     (Story) => (
@@ -63,6 +66,7 @@ export const Link: Story = {
   args: {
     variant: 'link',
     disabled: false,
+    text: '예매처 바로가기',
   },
   decorators: [
     (Story) => (
