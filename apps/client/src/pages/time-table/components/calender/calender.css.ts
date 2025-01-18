@@ -36,7 +36,10 @@ export const dayNum = recipe({
   },
   variants: {
     isSelected: {
-      true: { background: themeVars.color.confeti_lime },
+      true: {
+        background: themeVars.color.confeti_lime,
+        transition: 'background 0.3s ease',
+      },
       false: {},
     },
     hasFestivalDate: {
