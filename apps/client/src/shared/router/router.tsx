@@ -12,6 +12,7 @@ import {
   RequireLoginPage,
   MyProfilePage,
   TimeTable,
+  EmptyFestivalPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -49,6 +50,10 @@ export default function Router() {
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
           <Route path={routePath.TIME_TABLE} element={<TimeTable />} />
+          <Route
+            path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
+            element={<EmptyFestivalPage />}
+          />
         </Route>
       </Routes>
     </Suspense>
