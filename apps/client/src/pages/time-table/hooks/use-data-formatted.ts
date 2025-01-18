@@ -78,6 +78,9 @@ export const checkFestivalDateStatus = (
   selectedDateId: number | null,
 ) => {
   const festivalDateId = festivalDateMap.get(id + 1);
-  const isSelected = festivalDateId && selectedDateId === festivalDateId;
-  return { festivalDateId, isSelected };
+  const isSelected: boolean | undefined =
+    festivalDateId && selectedDateId === festivalDateId ? true : undefined;
+  const hasFestivalDate = festivalDateId !== undefined;
+
+  return { festivalDateId, isSelected, hasFestivalDate };
 };

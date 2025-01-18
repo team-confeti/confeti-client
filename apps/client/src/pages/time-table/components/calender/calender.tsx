@@ -1,4 +1,5 @@
 import * as styles from './calender.css';
+import { cn } from '@confeti/design-system/utils';
 import {
   useFormattedYear,
   useFormattedWeek,
@@ -17,7 +18,6 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   const { selectedDayNumeId, handleDayNumClick } = useDayNumSelection();
   const festivalDateMap = createFestivalDateMap(festivalDates);
 
-  // dateItems를 미리 매핑하여 데이터를 준비
   const dateItems = weekDays.map((day, id) => ({
     ...day,
     ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumeId),
@@ -29,21 +29,28 @@ const Calender = ({ festivalDates }: CalenderProps) => {
         <span>{useFormattedYear(firstDate)}</span>
       </div>
       <div className={styles.dateSection}>
-        {dateItems.map(({ date, dayKo, festivalDateId, isSelected }) => (
-          <div className={styles.dateItems} key={festivalDateId}>
-            <span
-              className={`${styles.dayNum} ${
-                isSelected ? styles.selectedDayNum : ''
-              }`}
-              onClick={() =>
-                festivalDateId && handleDayNumClick(festivalDateId)
-              }
-            >
-              {date}
-            </span>
-            <span className={styles.dayKo}>{dayKo}</span>
-          </div>
-        ))}
+        {dateItems.map(
+          ({ date, dayKo, festivalDateId, isSelected, hasFestivalDate }) => (
+            <div className={styles.dateItems} key={festivalDateId}>
+              <p
+                className={cn(styles.dayNum({ isSelected, hasFestivalDate }))}
+                onClick={() =>
+                  festivalDateId && handleDayNumClick(festivalDateId)
+                }
+              >
+                {date}
+              </p>
+              <p
+                className={cn(styles.dayKo({ hasFestivalDate }))}
+                onClick={() =>
+                  festivalDateId && handleDayNumClick(festivalDateId)
+                }
+              >
+                {dayKo}
+              </p>
+            </div>
+          ),
+        )}
       </div>
     </section>
   );
