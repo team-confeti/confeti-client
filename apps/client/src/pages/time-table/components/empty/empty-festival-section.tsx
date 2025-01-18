@@ -16,11 +16,11 @@ const EmptyFestivalSection = () => {
     <section className={styles.container}>
       <div className={styles.iconDescriptionWrapper}>
         <IcFestivalGray className={styles.icon} />
-        <h2 className={styles.description}>
+        <h1 className={styles.description}>
           페스티벌을 추가해
           <br />
           나만의 타임테이블을 등록해보세요
-        </h2>
+        </h1>
       </div>
       <Button
         className={styles.button}
