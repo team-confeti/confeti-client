@@ -39,7 +39,7 @@ const Summary = ({
   return (
     <section className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.summary}>
+        <h1 className={styles.summary}>
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
@@ -65,7 +65,7 @@ const Summary = ({
               </div>
             </div>
           </div>
-        </div>
+        </h1>
         <Button
           className={styles.linkBtn}
           variant="link"

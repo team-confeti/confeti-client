@@ -19,6 +19,7 @@ export const color = {
   confeti_lime2: '#E9FFAC',
   confeti_lime3: '#92C015',
   confeti_red: '#FA4250',
+  confeti_purple: '#9747FF',
 
   // opacity
   black_op: 'rgba(18, 18, 18, 0.5)',
