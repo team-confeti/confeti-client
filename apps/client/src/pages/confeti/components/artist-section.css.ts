@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
+export const artistSection = style({
+  width: '100%',
+});
+
 export const daySection = style({
   padding: '2rem',
   backgroundColor: themeVars.color.white,
@@ -13,6 +17,7 @@ export const dayGroups = style({
 export const dayGroup = style({
   ...themeVars.display.flexColumn,
   backgroundColor: themeVars.color.white,
+  border: '1px solid blue',
 });
 
 export const dayTitle = style({
@@ -21,24 +26,9 @@ export const dayTitle = style({
   backgroundColor: themeVars.color.gray100,
   padding: '0.4rem 1.2rem',
   borderRadius: '1.3rem',
-  // 토큰화 해야할지 고민
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'flex-start',
   marginBottom: '1.2rem',
-});
-
-export const artistSection = style({
-  ...themeVars.display.flexColumn,
-  gap: '1.6rem',
-});
-
-export const expandedSection = style({
-  ...themeVars.display.flexColumn,
-});
-
-export const expandedArtists = style({
-  backgroundColor: themeVars.color.gray100,
-  padding: '2rem',
 });

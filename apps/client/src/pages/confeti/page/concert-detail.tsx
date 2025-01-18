@@ -5,8 +5,8 @@ import Summary from '../components/summary';
 import MoreButton from '../components/more-button';
 import PerformanceDetail from '../components/performance-detail';
 import ArtistTitle from '../components/artist-title';
-import ArtistList from '../components/artist-section';
-import { Footer, Spacing } from '@confeti/design-system';
+import ArtistSection from '../components/artist-section';
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { CONCERT_DETAIL } from '../mocks/confeti-detail';
 
 export default function ConcertDetailPage() {
@@ -19,6 +19,7 @@ export default function ConcertDetailPage() {
 
   return (
     <>
+      <FloatingButton />
       <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <Summary
         title={concert.title}
@@ -47,7 +48,7 @@ export default function ConcertDetailPage() {
       />
       <Spacing />
       <ArtistTitle />
-      <ArtistList type="concert" artistData={CONCERT_DETAIL} />
+      <ArtistSection type="concert" artistData={CONCERT_DETAIL} />
       <Footer />
     </>
   );

@@ -20,6 +20,7 @@ export default function FestivalDetailPage() {
 
   return (
     <>
+      <FloatingButton />
       <Poster
         posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
@@ -53,7 +54,6 @@ export default function FestivalDetailPage() {
       />
       <Spacing />
       <ArtistTitle />
-      <FloatingButton />
       <ArtistSection type="festival" artistData={FESTIVAL_DETAIL} />
       <Footer />
     </>
