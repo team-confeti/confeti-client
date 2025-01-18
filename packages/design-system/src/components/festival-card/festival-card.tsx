@@ -43,8 +43,8 @@ const FestivalCard = ({
     <div className={styles.card}>
       <div
         className={styles.poster({ selectable })}
-        onClick={() => handleClick()}
         aria-pressed={internalSelected}
+        onClick={() => handleClick()}
       >
         <img src={imageSrc} alt={title} className={styles.image} />
         {internalSelected && (

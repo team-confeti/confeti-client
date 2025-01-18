@@ -18,28 +18,28 @@ export const PERFORMANCE_DATA = {
       {
         performanceId: 3,
         title: 'TONE STUDIO LIVE 〈고고학(GOGOHAWK)〉',
-        type: 'festival',
+        type: 'concert',
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
       {
         performanceId: 4,
         title: 'TONE STUDIO LIVE 〈고고학(GOGOHAWK)〉',
-        type: 'festival',
+        type: 'concert',
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
       {
         performanceId: 5,
         title: 'TONE STUDIO LIVE 〈고고학(GOGOHAWK)〉',
-        type: 'festival',
+        type: 'concert',
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
       {
         performanceId: 6,
         title: 'TONE STUDIO LIVE 〈고고학(GOGOHAWK)〉',
-        type: 'festival',
+        type: 'concert',
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
