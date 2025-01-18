@@ -1,5 +1,3 @@
-import { MemoryRouter } from 'react-router-dom';
-
 import SvgBtnHeartFilled24 from '../../icons/src/BtnHeartFilled24';
 import * as styles from './artist-card.css';
 
