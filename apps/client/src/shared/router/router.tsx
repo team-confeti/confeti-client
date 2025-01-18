@@ -13,6 +13,7 @@ import {
   MyProfilePage,
   TimeTable,
   EmptyFestivalPage,
+  TimeTableLayout,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -49,11 +50,18 @@ export default function Router() {
           <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
-          <Route path={routePath.TIME_TABLE} element={<TimeTable />} />
+
+          {/* time-table 중첩 라우팅 */}
           <Route
-            path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
-            element={<EmptyFestivalPage />}
-          />
+            path={routePath.TIME_TABLE_OUTLET}
+            element={<TimeTableLayout />}
+          >
+            <Route path="" element={<TimeTable />} />
+            <Route
+              path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
+              element={<EmptyFestivalPage />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Suspense>

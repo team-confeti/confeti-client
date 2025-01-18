@@ -24,6 +24,9 @@ export const FestivalDetailPage = lazy(
 export const TimeTable = lazy(
   () => import('@pages/time-table/page/time-table'),
 );
+export const TimeTableLayout = lazy(
+  () => import('@pages/time-table/page/time-table-layout'),
+);
 export const EmptyFestivalPage = lazy(
   () => import('@pages/time-table/page/empty/empty-festival'),
 );
