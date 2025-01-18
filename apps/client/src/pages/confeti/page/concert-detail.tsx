@@ -29,6 +29,7 @@ export default function ConcertDetailPage() {
         area={concert.area}
         reserveAt={concert.reserveAt}
         reservationUrl={concert.reservationUrl}
+        isFavorite={concert.isFavorite}
       />
       <Info
         subtitle={concert.subtitle}

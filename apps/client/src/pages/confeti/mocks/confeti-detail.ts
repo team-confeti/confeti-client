@@ -16,7 +16,7 @@ export const CONCERT_DETAIL = {
     reservationOffice: '인터파크',
     price: '스탠딩석 132,000원\n지정석 R석 132,000원\n지정석 S석 132,000원',
     infoImgUrl: 'https://placehold.co/600x400',
-    isFavorite: false,
+    isFavorite: true,
   },
   isOpen: false,
   concertArtists: [
@@ -98,13 +98,13 @@ export const FESTIVAL_DETAIL = {
             'https://i.namu.wiki/i/C_FQYTT11752GT86r-oGBolu1Isud9GLOaguU0ngfhRI69ySBkfbpeEv-8VisiWxf2A0Leeu8kyXQWPVxc9Rlw.webp',
         },
         {
-          artistId: '3',
+          artistId: '4',
           name: '김채은',
           profileUrl:
             'https://i.namu.wiki/i/C_FQYTT11752GT86r-oGBolu1Isud9GLOaguU0ngfhRI69ySBkfbpeEv-8VisiWxf2A0Leeu8kyXQWPVxc9Rlw.webp',
         },
         {
-          artistId: '3',
+          artistId: '5',
           name: '김채은',
           profileUrl:
             'https://i.namu.wiki/i/C_FQYTT11752GT86r-oGBolu1Isud9GLOaguU0ngfhRI69ySBkfbpeEv-8VisiWxf2A0Leeu8kyXQWPVxc9Rlw.webp',
