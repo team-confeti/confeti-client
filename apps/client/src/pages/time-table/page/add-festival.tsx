@@ -18,7 +18,7 @@ const AddFestival = () => {
   };
 
   const showToast = () => {
-    toast.default('페스티벌은 3개까지만 추가할 수 있어요.', {
+    toast.default(`페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`, {
       position: 'middleCenter',
     });
   };
