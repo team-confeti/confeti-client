@@ -25,11 +25,11 @@ export const REGISTERDED_FESTIVAL = {
         festivalDates: [
           {
             festivalDateId: 3,
-            festivalAt: '2025.02.20',
+            festivalAt: '2025.02.27',
           },
           {
             festivalDateId: 4,
-            festivalAt: '2025.02.21',
+            festivalAt: '2025.02.28',
           },
         ],
       },
@@ -41,11 +41,11 @@ export const REGISTERDED_FESTIVAL = {
         festivalDates: [
           {
             festivalDateId: 5,
-            festivalAt: '2025.03.20',
+            festivalAt: '2025.03.30',
           },
           {
             festivalDateId: 6,
-            festivalAt: '2025.03.21',
+            festivalAt: '2025.03.31',
           },
         ],
       },
