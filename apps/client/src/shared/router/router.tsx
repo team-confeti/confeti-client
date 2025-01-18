@@ -9,6 +9,7 @@ import {
   MyArtistPage,
   MyPage,
   SearchPage,
+  AddFestivalPage,
   RequireLoginPage,
   MyProfilePage,
   TimeTable,
@@ -48,6 +49,10 @@ export default function Router() {
           <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+          <Route path={routePath.MYARTIST} element={<MyArtistPage />} />
+          <Route path={routePath.ADDFESTIVAL} element={<AddFestivalPage />} />
+
+          {/* 타임 테이블 페이지 */}
           <Route path={routePath.TIME_TABLE} element={<TimeTable />} />
         </Route>
       </Routes>

@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 
 interface FestivalCardProps {
+  festivalId?: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
   selectable?: boolean;
-  onSelectChange?: (title: string, isSelected: boolean) => void;
+  onClick?: () => void;
 }
 
 const FestivalCard = ({
@@ -15,30 +15,17 @@ const FestivalCard = ({
   imageSrc = 'https://dummyimage.com/100x142',
   isSelected = false,
   selectable = false,
-  onSelectChange,
+  onClick,
 }: FestivalCardProps) => {
-  const [internalSelected, setInternalSelected] = useState(isSelected);
-
-  const handleClick = () => {
-    if (!selectable) return;
-
-    const toggledSelected = !internalSelected;
-    setInternalSelected(toggledSelected);
-
-    if (onSelectChange) {
-      onSelectChange(title, toggledSelected);
-    }
-  };
-
   return (
     <div className={styles.card}>
       <div
         className={styles.poster({ selectable })}
-        onClick={handleClick}
-        aria-pressed={internalSelected}
+        onClick={selectable ? onClick : undefined}
+        aria-pressed={isSelected}
       >
         <img src={imageSrc} alt={title} className={styles.image} />
-        {internalSelected && (
+        {isSelected && (
           <div className={styles.overlay}>
             <IcSelect className={styles.icon} />
           </div>
