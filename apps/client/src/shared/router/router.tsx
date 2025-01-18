@@ -9,7 +9,6 @@ import {
   MyArtistPage,
   MyPage,
   SearchPage,
-  AddFestivalPage,
   RequireLoginPage,
   MyProfilePage,
   TimeTable,
