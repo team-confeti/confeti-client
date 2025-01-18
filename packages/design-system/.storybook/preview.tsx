@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
-
+import { MemoryRouter } from 'react-router-dom';
 import '../src/styles/reset.css';
 import { themeClass } from '../src/styles/theme.css';
 
@@ -19,9 +19,11 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={themeClass}>
-        <Story />
-      </div>
+      <MemoryRouter>
+        <div className={themeClass}>
+          <Story />
+        </div>
+      </MemoryRouter>
     ),
   ],
 };
