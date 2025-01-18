@@ -2,7 +2,7 @@ import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 
 interface FestivalCardProps {
-  festivalId: number;
+  festivalId?: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
