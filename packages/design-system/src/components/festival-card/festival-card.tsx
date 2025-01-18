@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
+import { useNavigate } from 'react-router-dom';
 
 interface FestivalCardProps {
   title: string;
@@ -8,6 +9,8 @@ interface FestivalCardProps {
   isSelected?: boolean;
   selectable?: boolean;
   onSelectChange?: (title: string, isSelected: boolean) => void;
+  id: number;
+  type: 'concert' | 'festival';
 }
 
 const FestivalCard = ({
@@ -16,11 +19,17 @@ const FestivalCard = ({
   isSelected = false,
   selectable = false,
   onSelectChange,
+  id,
+  type,
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
+  const navigate = useNavigate();
+  const detailRoutePath = `/${type}-detail/${id}`;
 
   const handleClick = () => {
-    if (!selectable) return;
+    if (!selectable) {
+      return navigate(detailRoutePath);
+    }
 
     const toggledSelected = !internalSelected;
     setInternalSelected(toggledSelected);
@@ -34,7 +43,7 @@ const FestivalCard = ({
     <div className={styles.card}>
       <div
         className={styles.poster({ selectable })}
-        onClick={handleClick}
+        onClick={() => handleClick()}
         aria-pressed={internalSelected}
       >
         <img src={imageSrc} alt={title} className={styles.image} />

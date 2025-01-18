@@ -4,6 +4,7 @@ import * as styles from './confeti-section.css';
 type Confeti = {
   performanceId: number;
   title: string;
+  type: 'concert' | 'festival';
   posterUrl: string;
 };
 
@@ -19,6 +20,8 @@ const ConfetiSection = ({ confeti }: ConfetiProps) => {
           key={confeti.performanceId}
           title={confeti.title}
           imageSrc={confeti.posterUrl}
+          id={confeti.performanceId}
+          type={confeti.type}
         />
       ))}
     </div>
