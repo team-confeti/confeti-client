@@ -6,7 +6,7 @@ export const MyProfilePage = lazy(
   () => import('@pages/my/page/profile/my-profile'),
 );
 export const RequireLoginPage = lazy(
-  () => import('@pages/my/page/auth/require_login'),
+  () => import('@pages/my/page/auth/require-login'),
 );
 export const SearchPage = lazy(() => import('@pages/search/page/search'));
 export const MyConfetiPage = lazy(
