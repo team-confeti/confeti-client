@@ -12,6 +12,7 @@ interface FestivalCardProps {
   onSelectChange?: (title: string, isSelected: boolean) => void;
   id: number;
   type: 'concert' | 'festival';
+  onClick?: () => void;
 }
 
 const FestivalCard = ({
