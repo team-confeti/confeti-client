@@ -1,4 +1,3 @@
-import { MemoryRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 import ArtistCard from './artist-card';
 
@@ -10,11 +9,9 @@ const meta: Meta<typeof ArtistCard> = {
   },
   decorators: [
     (Story) => (
-      <MemoryRouter>
-        <div style={{ width: '375px' }}>
-          <Story />
-        </div>
-      </MemoryRouter>
+      <div style={{ width: '375px' }}>
+        <Story />
+      </div>
     ),
   ],
   tags: ['autodocs'],
