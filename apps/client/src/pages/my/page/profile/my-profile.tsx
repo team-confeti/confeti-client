@@ -1,5 +1,4 @@
 import { Header, Footer, Spacing } from '@confeti/design-system';
-import { USER_DATA } from '@shared/mocks/user-data';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 
@@ -10,16 +9,22 @@ import NoConfetiSection from '../../components/confeti/no-confeti-section';
 import ArtistSection from '../../components/artist/artist-section';
 import ConfetiSection from '../../components/confeti/conteti-section';
 import { routePath } from '@shared/constants/path';
+import { useUserProfile } from '@pages/my/apis/use-user-info';
 
 const MyProfile = () => {
-  const { userName, profileUrl } = USER_DATA.data;
+  const profileData = useUserProfile();
+
+  // TODO API 연동 후 수정
   const artists = [...ARTISTS_DATA.data.artists];
   const confetis = [...PERFORMANCE_DATA.data.performances.slice(0, 3)]; // 임의로 앞에 3개만 가져옴
 
   return (
     <>
       <Header variant="detail" title="마이페이지" />
-      <UserInfo userName={userName} profileUrl={profileUrl} />
+      <UserInfo
+        userName={profileData.username}
+        profileUrl={profileData.profileUrl}
+      />
       <Spacing />
       <Box
         title="My Artist"
