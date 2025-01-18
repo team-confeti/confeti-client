@@ -17,7 +17,6 @@ export const dayGroups = style({
 export const dayGroup = style({
   ...themeVars.display.flexColumn,
   backgroundColor: themeVars.color.white,
-  border: '1px solid blue',
 });
 
 export const dayTitle = style({

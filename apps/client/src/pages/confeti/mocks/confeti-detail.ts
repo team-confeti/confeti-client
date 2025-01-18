@@ -18,7 +18,7 @@ export const CONCERT_DETAIL = {
     infoImgUrl: 'https://placehold.co/600x400',
     isFavorite: false,
   },
-  isOpen: true,
+  isOpen: false,
   concertArtists: [
     {
       artistId: '1',
