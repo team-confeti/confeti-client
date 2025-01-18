@@ -21,6 +21,9 @@ export const ConcertDetailPage = lazy(
 export const FestivalDetailPage = lazy(
   () => import('@pages/confeti/page/festival-detail'),
 );
+export const AddFestivalPage = lazy(
+  () => import('@pages/time-table/page/add-festival'),
+);
 export const TimeTable = lazy(
   () => import('@pages/time-table/page/time-table'),
 );

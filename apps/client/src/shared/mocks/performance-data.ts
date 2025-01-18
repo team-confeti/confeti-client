@@ -3,7 +3,7 @@ export const PERFORMANCE_DATA = {
     performances: [
       {
         performanceId: 1,
-        title: 'TONE STUDIO LIVE 〈고고학(GOGOHAWK)〉',
+        title: '인천 펜타포트 락 페스티벌 2025',
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
@@ -11,7 +11,7 @@ export const PERFORMANCE_DATA = {
         performanceId: 2,
         title: '2024 위버스 콘 페스티벌',
         posterUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUYECrN1uLKcS2DYqamPLikzzmusDz15fFBg&s',
+          'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
       {
         performanceId: 3,
@@ -39,6 +39,24 @@ export const PERFORMANCE_DATA = {
       },
       {
         performanceId: 7,
+        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
+        posterUrl:
+          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
+      },
+      {
+        performanceId: 8,
+        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
+        posterUrl:
+          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
+      },
+      {
+        performanceId: 9,
+        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
+        posterUrl:
+          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
+      },
+      {
+        performanceId: 10,
         title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
         posterUrl:
           'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',

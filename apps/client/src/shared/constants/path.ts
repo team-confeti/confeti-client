@@ -11,6 +11,10 @@ export const routePath = {
   // detail-page
   CONCERT: '/concert-detail/:concertId',
   FESTIVAL: '/festival-detail/:festivalId',
+
+  MYARTIST: '/my-artist',
+  ADDFESTIVAL: '/add-festival',
+
   // time-table
   TIME_TABLE_OUTLET: '/timetable',
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',

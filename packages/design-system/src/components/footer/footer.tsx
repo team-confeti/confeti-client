@@ -4,7 +4,7 @@ import * as styles from './footer.css';
 const list = {
   companyInfo: [
     { label: '대표', value: '김가연' },
-    { label: '이메일', value: 'weareconfeti@gamil.com' },
+    { label: '이메일', value: 'weareconfeti@gmail.com' },
   ],
   legalInfo: [{ label: '개인정보처리방침' }, { label: '이용약관' }],
 } as const;
