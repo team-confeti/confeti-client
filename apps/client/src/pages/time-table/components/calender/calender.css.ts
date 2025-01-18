@@ -13,7 +13,7 @@ export const yearSection = style({
 export const dateSection = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(7,1fr)',
-  padding: '1rem 0rem',
+  padding: '2.1rem 0rem',
   gap: '2rem',
 });
 
