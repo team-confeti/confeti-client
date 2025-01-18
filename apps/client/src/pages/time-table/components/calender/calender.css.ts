@@ -40,7 +40,6 @@ export const dayNum = recipe({
         background: themeVars.color.confeti_lime,
         transition: 'background 0.3s ease',
       },
-      false: {},
     },
     hasFestivalDate: {
       true: {
