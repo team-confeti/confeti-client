@@ -34,7 +34,7 @@ export const timeBar = recipe({
     height: '0.1rem',
     width: 'calc(100% - 3rem)',
     color: themeVars.color.gray300,
-    zIndex: 1,
+    zIndex: themeVars.zIndex.timeTable.row,
   },
   variants: {
     bold: {

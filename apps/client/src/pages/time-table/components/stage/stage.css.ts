@@ -3,14 +3,12 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
   ...themeVars.fontStyles.caption_r_10,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  ...themeVars.display.flexCenter,
   textAlign: 'center',
   width: '100%',
   height: '4rem',
   padding: '0 0.8rem',
-  border: `1px solid ${themeVars.color.gray200}`,
+  border: themeVars.border.gray200,
   borderRadius: '2px',
 });
 

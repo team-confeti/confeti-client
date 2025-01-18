@@ -5,10 +5,10 @@ import * as styles from './time-table-section.css';
 
 const TimeTableSection = () => {
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <Stage timeTableInfo={TIME_TABLE_INFO}></Stage>
       <TimeTableBoard timeTableInfo={TIME_TABLE_INFO}></TimeTableBoard>
-    </div>
+    </section>
   );
 };
 

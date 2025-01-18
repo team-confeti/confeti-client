@@ -5,6 +5,10 @@ export const zIndex = {
   header: {
     content: '10',
   },
+  timeTable: {
+    content: '3',
+    row: '1',
+  },
   footer: {
     content: '10',
   },

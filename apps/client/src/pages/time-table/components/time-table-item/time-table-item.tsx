@@ -15,7 +15,6 @@ interface ItemProps {
   isSelected: boolean;
   stageOrder: number;
   ticketOpenAt: string;
-
   festivalTimeId: number;
 }
 

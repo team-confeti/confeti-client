@@ -4,10 +4,8 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const itemsWrapper = recipe({
   base: {
-    display: 'flex',
-    flexDirection: 'column',
+    ...themeVars.display.flexColumnCenter,
     justifyContent: 'center',
-    alignItems: 'center',
     position: 'absolute',
     top: 'calc( 0.7rem + var(--top) )',
     left: 'calc( 3.1rem + ((100% - 3.1rem) / var(--stage-count) * var(--stage-order)))',
@@ -15,7 +13,7 @@ export const itemsWrapper = recipe({
     width: 'calc((100% - 3.1rem) / var(--stage-count))',
     padding: '0.8rem 0rem',
     borderRadius: '2px',
-    zIndex: '3',
+    zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
   },
   variants: {
@@ -36,10 +34,8 @@ export const itemsWrapper = recipe({
 });
 
 export const alignContainer = style({
+  ...themeVars.display.flexCenter,
   width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   textAlign: 'center',
 });
 
