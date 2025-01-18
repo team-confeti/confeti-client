@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import InfoButton from './info-button';
 
 const meta: Meta<typeof InfoButton> = {
-  title: 'Common/InfiniteCarousel/InfoButton',
+  title: 'Common/Carousel/TicketingCarousel/InfoButton',
   component: InfoButton,
   parameters: {
     layout: 'centered',

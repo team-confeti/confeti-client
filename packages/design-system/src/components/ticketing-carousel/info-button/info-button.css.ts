@@ -6,7 +6,6 @@ export const infoButtonVariants = recipe({
     color: themeVars.color.white,
     display: 'flex',
     alignItems: 'center',
-    padding: '0.8rem',
   },
   variants: {
     size: {

@@ -8,6 +8,11 @@ export const display = {
     display: 'flex',
     alignItems: 'center',
   },
+  flexCenterStretch: {
+    display: 'flex',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
   flexColumn: {
     display: 'flex',
     flexDirection: 'column',
@@ -28,6 +33,13 @@ export const display = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  flexColumnStart: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
     alignSelf: 'stretch',
   },
 } as const;

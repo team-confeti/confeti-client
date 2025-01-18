@@ -1,5 +1,5 @@
 import { useEffect, ReactNode } from 'react';
-import * as styles from './infinite-carousel.css';
+import * as styles from './ticketingCarousel-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import InfoButton from './info-button/info-button';
 import { useCarouselData } from './hooks/use-carousel-data';
@@ -65,7 +65,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   );
 
   return (
-    <section className={styles.wrap}>
+    <div className={styles.wrap}>
       <div
         className={styles.imageContainer}
         style={{
@@ -82,13 +82,16 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           />
         ))}
       </div>
-      <InfiniteCarousel.Container>
-        <InfiniteCarousel.Info>
-          <InfiniteCarousel.Dday reserveAt={dDay} />
-          <InfiniteCarousel.Artist
-            subtitle={performanceData.subtitles[currentIndex]}
-          />
-          <InfiniteCarousel.InfoBottom>
+      <TicketingCarousel.Container>
+        <TicketingCarousel.Info>
+          <div className={styles.description}>
+            <TicketingCarousel.Dday reserveAt={dDay} />
+            <TicketingCarousel.Artist
+              subtitle={performanceData.subtitles[currentIndex]}
+            />
+          </div>
+
+          <TicketingCarousel.InfoBottom>
             <InfoButton
               title={'공연 정보 확인하기'}
               performanceId={performanceData.performanceId[currentIndex]}
@@ -103,10 +106,10 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
               }
               total={indexData}
             />
-          </InfiniteCarousel.InfoBottom>
-        </InfiniteCarousel.Info>
-      </InfiniteCarousel.Container>
-    </section>
+          </TicketingCarousel.InfoBottom>
+        </TicketingCarousel.Info>
+      </TicketingCarousel.Container>
+    </div>
   );
 };
 
@@ -136,7 +139,7 @@ const CarouselArtist = ({ subtitle }: CarouselArtistProps) => (
   </>
 );
 
-const InfiniteCarousel = {
+const TicketingCarousel = {
   Wrap: CarouselWrap,
   Container: CarouselContainer,
   Info: CarouselInfo,
@@ -145,4 +148,4 @@ const InfiniteCarousel = {
   Artist: CarouselArtist,
 };
 
-export default InfiniteCarousel;
+export default TicketingCarousel;

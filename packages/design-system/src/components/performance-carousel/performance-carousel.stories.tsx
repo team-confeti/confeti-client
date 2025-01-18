@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import TopCarousel from './top-carousel';
+import PerformanceCarousel from './performance-carousel';
 
 const MOCK_PERFORM_DATA = [
   {
@@ -60,32 +60,31 @@ const MOCK_PERFORM_DATA = [
   },
 ];
 
-const meta: Meta<typeof TopCarousel> = {
-  title: 'Common/TopCarousel',
-  component: TopCarousel,
-  args: {
-    performData: MOCK_PERFORM_DATA, // mock 데이터를 args로 전달
-  },
+const meta: Meta<typeof PerformanceCarousel> = {
+  title: 'Common/Carousel/PerformanceCarousel',
+  component: PerformanceCarousel,
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => {
-      return (
-        <div
-          style={{
-            width: '375px',
-            height: '100%',
-            background:
-              'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
-          }}
-        >
-          <Story />
-        </div>
-      );
-    },
-  ],
+  args: {
+    performData: MOCK_PERFORM_DATA,
+  },
   tags: ['autodocs'],
 };
 
 export default meta;
+
+export const Default = () => {
+  return (
+    <div
+      style={{
+        width: '375px',
+        height: '500px',
+        paddingTop: '10px',
+        background: 'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',
+      }}
+    >
+      <PerformanceCarousel performData={MOCK_PERFORM_DATA} />
+    </div>
+  );
+};

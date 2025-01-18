@@ -8,4 +8,7 @@ export const shadowStyles = {
   shadow_md_3: {
     boxShadow: '0 -4px 5px -1px rgba(0, 0, 0, 0.2)',
   },
+  shadow_md_4: {
+    boxShadow: '0px -2px 4px 0px rgba(0, 0, 0, 0.25))',
+  },
 };

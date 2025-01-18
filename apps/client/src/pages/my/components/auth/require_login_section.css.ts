@@ -4,26 +4,29 @@ import { themeVars } from '@confeti/design-system/styles';
 export const container = style({
   ...themeVars.display.flexColumnCenter,
   position: 'absolute',
-  top: '48%',
+  top: '55%',
   left: '50%',
+
   width: '100%',
+  padding: '8rem 2rem',
+  gap: '3rem',
   transform: 'translate(-50%, -50%)',
-  color: themeVars.color.gray600,
 });
 
-export const icon = style({
-  width: '8rem',
-  height: '8rem',
-  marginBottom: '3rem',
+export const content = style({
+  display: 'grid',
+  gap: '0.8rem',
 });
 
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
-  color: themeVars.color.gray800,
-  marginBottom: '0.8rem',
 });
 
-export const subtitle = style({
+export const description = style({
   ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.gray500,
+});
+
+export const button = style({
+  width: '17.6rem',
 });
