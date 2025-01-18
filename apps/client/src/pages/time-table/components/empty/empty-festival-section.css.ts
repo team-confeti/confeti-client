@@ -24,6 +24,7 @@ export const icon = style({
 export const description = style({
   ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.gray500,
+  lineHeight: '150%',
 });
 
 export const button = style({
