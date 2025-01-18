@@ -8,6 +8,7 @@ export const card = style({
   gap: '0.8rem',
   width: '100%',
   position: 'relative',
+  cursor: 'pointer',
 });
 
 export const poster = recipe({
