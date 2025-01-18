@@ -10,7 +10,6 @@ const Home = () => {
           <Navigation.Item index={1}>{TAB_MENU.TIMETABLE}</Navigation.Item>
         </Navigation.List>
         <Navigation.Panels>
-          {/* TODO: 추후 페이지 연결 */}
           <Navigation.Panel>홈페이지</Navigation.Panel>
           <Navigation.Panel>타임테이블</Navigation.Panel>
         </Navigation.Panels>
