@@ -1,12 +1,6 @@
-import { ConcertArtist } from '../types/concert';
+import { ArtistGridProps } from '../types/artist';
 import ArtistCard from './artist-card';
 import * as styles from './artist-grid.css';
-
-interface ArtistGridProps {
-  artists: ConcertArtist[];
-  dayId?: number;
-  type: 'visible' | 'expanded';
-}
 
 const ArtistGrid = ({ artists, dayId, type }: ArtistGridProps) => (
   <div className={styles.grid}>

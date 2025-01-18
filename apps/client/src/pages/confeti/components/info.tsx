@@ -29,7 +29,7 @@ const Info = ({
     <>
       <section className={styles.container}>
         <section className={styles.section}>
-          <div className={styles.title()}>{CONFETI_LABEL.PERFORMANCE_INFO}</div>
+          <h2 className={styles.title()}>{CONFETI_LABEL.PERFORMANCE_INFO}</h2>
           <div className={styles.content}>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>

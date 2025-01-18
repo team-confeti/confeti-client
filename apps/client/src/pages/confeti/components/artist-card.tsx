@@ -1,10 +1,10 @@
 import { ConcertArtist } from '../types/concert';
+import { ArtistGridProps } from '../types/artist';
 import * as styles from './artist-card.css';
-
 interface ArtistCardProps {
   artist: ConcertArtist;
   dayId?: number;
-  type: 'visible' | 'expanded';
+  type: ArtistGridProps['type'];
 }
 
 const ArtistCard = ({ artist, dayId, type }: ArtistCardProps) => {

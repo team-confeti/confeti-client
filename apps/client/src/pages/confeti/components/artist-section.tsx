@@ -36,11 +36,16 @@ const ArtistSection = ({ type, artistData }: ArtistListProps) => {
     const { isOpen, concertArtists } = artistData as ConcertArtistData;
     const isExpanded = expandedDays[CONCERT_DEFAULT_ID] || false;
 
+    const VISIBLE_CONCERT_ARTISTS = concertArtists.slice(
+      0,
+      MAX_VISIBLE_ARTISTS,
+    );
+
     return (
       <section className={styles.artistSection}>
         <div className={styles.daySection}>
           <ArtistGrid
-            artists={concertArtists.slice(0, MAX_VISIBLE_ARTISTS)}
+            artists={VISIBLE_CONCERT_ARTISTS}
             dayId={CONCERT_DEFAULT_ID}
             type="visible"
           />
@@ -63,12 +68,17 @@ const ArtistSection = ({ type, artistData }: ArtistListProps) => {
       {festivalDates.map((day) => {
         const isExpanded = expandedDays[day.festivalDateId] || false;
 
+        const VISIBLE_FESTIVAL_ARTISTS = day.artists.slice(
+          0,
+          MAX_VISIBLE_ARTISTS,
+        );
+
         return (
           <div key={day.festivalDateId} className={styles.dayGroup}>
             <div className={styles.daySection}>
               <h3 className={styles.dayTitle}>{day.festivalAt}</h3>
               <ArtistGrid
-                artists={day.artists.slice(0, MAX_VISIBLE_ARTISTS)}
+                artists={VISIBLE_FESTIVAL_ARTISTS}
                 dayId={day.festivalDateId}
                 type="visible"
               />
