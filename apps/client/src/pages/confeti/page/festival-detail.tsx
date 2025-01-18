@@ -33,6 +33,7 @@ export default function FestivalDetailPage() {
         area={festival.area}
         reserveAt={festival.reserveAt}
         reservationUrl={festival.reservationUrl}
+        isFavorite={festival.isFavorite}
       />
       <Spacing />
       <Info
