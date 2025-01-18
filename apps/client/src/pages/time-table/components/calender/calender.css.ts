@@ -25,9 +25,24 @@ export const dateItems = style({
 });
 
 export const dayNum = style({
+  ...themeVars.display.flexCenter,
   ...themeVars.fontStyles.title4_b_16,
+  width: '3rem',
+  height: '3rem',
+  borderRadius: '1.5rem',
+  cursor: 'pointer',
   color: themeVars.color.black,
-  textAlign: 'center',
+  background: 'transparent',
+});
+
+export const selectedDayNum = style({
+  background: themeVars.color.confeti_lime,
+});
+
+export const nonFestivalDayNum = style({
+  ...themeVars.fontStyles.body1_r_16,
+  color: themeVars.color.gray500,
+  cursor: 'default',
 });
 
 export const dayKo = style({
