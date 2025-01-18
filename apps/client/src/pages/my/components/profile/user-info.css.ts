@@ -16,7 +16,9 @@ export const img = style({
 });
 
 export const userInfo = style({
-  marginBottom: '1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
 });
 
 export const title = style({

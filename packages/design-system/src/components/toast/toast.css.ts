@@ -28,6 +28,7 @@ export const toast = recipe({
     width: '32.5rem',
     height: '5rem',
 
+    ...themeVars.display.flexCenter,
     transform: 'translateX(-50%)',
     borderRadius: '5rem',
     backgroundColor: themeVars.color.gray800,

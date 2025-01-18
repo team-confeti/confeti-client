@@ -19,6 +19,18 @@ const Header = ({ variant = 'default', title = '' }: HeaderProps) => {
     navigate(-1);
   };
 
+  const handleSearchClick = () => {
+    navigate('/search');
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const handleProfileClick = () => {
+    navigate('/my');
+  };
+
   if (variant === 'detail') {
     return (
       <header className={styles.container({ variant: 'detail' })}>
@@ -36,16 +48,18 @@ const Header = ({ variant = 'default', title = '' }: HeaderProps) => {
 
   return (
     <header className={styles.container({ variant: 'default' })}>
-      <LogoMain className={styles.logo} />
+      <LogoMain className={styles.logo} onClick={handleLogoClick} />
       <div className={styles.iconSection}>
         <button
           className={styles.button({ variant: 'default' })}
           aria-label="검색"
+          onClick={handleSearchClick}
         >
           <BtnSearchG90024 className={styles.icon} />
         </button>
         <button
           className={styles.button({ variant: 'default' })}
+          onClick={handleProfileClick}
           aria-label="프로필"
         >
           <BtnAccountGray24 className={styles.icon} />
