@@ -46,7 +46,7 @@ export const icon = style({
 export const title = style([
   themeVars.fontStyles.body4_m_13,
   {
-    width: '100%',
+    width: '10rem',
     textAlign: 'center',
     color: themeVars.color.black,
     overflow: 'hidden',

@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 import { useNavigate } from 'react-router-dom';
 
 interface FestivalCardProps {
+  festivalId?: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
@@ -11,6 +11,8 @@ interface FestivalCardProps {
   onSelectChange?: (title: string, isSelected: boolean) => void;
   id: number;
   type: 'concert' | 'festival';
+  onClick?: () => void;
+
 }
 
 const FestivalCard = ({
@@ -18,6 +20,7 @@ const FestivalCard = ({
   imageSrc = 'https://dummyimage.com/100x142',
   isSelected = false,
   selectable = false,
+
   onSelectChange,
   id,
   type,
@@ -38,6 +41,8 @@ const FestivalCard = ({
       onSelectChange(title, toggledSelected);
     }
   };
+  onClick,
+}: FestivalCardProps) => {
 
   return (
     <div className={styles.card}>
@@ -45,9 +50,12 @@ const FestivalCard = ({
         className={styles.poster({ selectable })}
         aria-pressed={internalSelected}
         onClick={() => handleClick()}
+        // onClick={selectable ? onClick : undefined}
+        // aria-pressed={isSelected}
+
       >
         <img src={imageSrc} alt={title} className={styles.image} />
-        {internalSelected && (
+        {isSelected && (
           <div className={styles.overlay}>
             <IcSelect className={styles.icon} />
           </div>
