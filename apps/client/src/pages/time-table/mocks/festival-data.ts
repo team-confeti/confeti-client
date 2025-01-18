@@ -15,6 +15,10 @@ export const REGISTERDED_FESTIVAL = {
             festivalDateId: 2,
             festivalAt: '2025.01.02',
           },
+          {
+            festivalDateId: 3,
+            festivalAt: '2025.01.03',
+          },
         ],
       },
       {
