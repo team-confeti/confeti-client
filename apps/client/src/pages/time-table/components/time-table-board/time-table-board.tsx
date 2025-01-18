@@ -3,12 +3,13 @@ import * as styles from './time-table-board.css';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
-import { generateTableRow, parseTimeString } from '@pages/time-table';
+import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
+import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
 
-  const isHalfHourOpen = openMin === 30;
+  const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
 
   const cellNumber = generateTableRow(ticketOpenHour);
@@ -45,7 +46,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
 
       {isHalfHourOpen && (
         <div className={styles.timeList}>
-          <p className={styles.minutesP}>{30}</p>
+          <p className={styles.minutesP}>{HALF_HOUR_TO_MINUTES}</p>
         </div>
       )}
 

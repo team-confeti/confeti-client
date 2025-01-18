@@ -1,4 +1,5 @@
 import * as styles from './time-cell.css';
+import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
 
 interface TimeCellProps {
   isHalfHourOpen: boolean;
@@ -8,11 +9,11 @@ interface TimeCellProps {
 const TimeCell = ({ isHalfHourOpen, hour }: TimeCellProps) => {
   const timeItems = [
     {
-      time: isHalfHourOpen ? 30 : hour,
+      time: isHalfHourOpen ? HALF_HOUR_TO_MINUTES : hour,
       bold: !isHalfHourOpen,
     },
     {
-      time: isHalfHourOpen ? hour : 30,
+      time: isHalfHourOpen ? hour : HALF_HOUR_TO_MINUTES,
       bold: isHalfHourOpen,
     },
   ];

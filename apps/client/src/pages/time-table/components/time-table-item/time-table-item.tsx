@@ -5,7 +5,7 @@ import {
   calcPosition,
   calcTotalMinutes,
   calcMinutesFromOpen,
-} from '@pages/time-table';
+} from '@pages/time-table/utils';
 
 interface ItemProps {
   artists: Artist[];

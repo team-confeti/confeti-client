@@ -1,6 +1,6 @@
 import { Footer, Navigation } from '@confeti/design-system';
 import { TAB_MENU } from '../constants/menu';
-import TimeTableSection from '@pages/time-table/components/time-table-section';
+import TimeTableSection from '@pages/time-table/components/time-table-section/time-table-section';
 
 const Home = () => {
   return (
