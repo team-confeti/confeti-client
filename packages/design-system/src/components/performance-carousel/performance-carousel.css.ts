@@ -36,9 +36,8 @@ globalStyle('.title-sub', {
 });
 
 globalStyle('.card', {
-  zIndex: 1,
-  width: '19.7rem',
-  height: '26.2rem',
+  width: '100%',
+  height: '100%',
   borderRadius: '1rem',
   boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
 });

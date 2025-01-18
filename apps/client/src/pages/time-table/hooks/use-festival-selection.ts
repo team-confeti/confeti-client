@@ -1,49 +1,39 @@
-// hooks/use-festival-selection.ts
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
+import { toast } from '@confeti/design-system';
 
-interface Festival {
-  festivalId: number;
-  title: string;
-  logoUrl: string;
-  festivalDates: Array<{
-    festivalDateId: number;
-    festivalAt: string;
-  }>;
-}
+const MAX_SELECTIONS = 3;
 
-export const useFestivalSelection = (festivals: Festival[]) => {
-  // 초기 선택된 축제 ID 설정
-  const [clickedFestivalId, setClickedFestivalId] = useState<number | null>(
-    festivals.length > 0 ? festivals[0].festivalId : null,
-  );
+const useFestivalSelection = () => {
+  const [selectedFestivals, setSelectedFestivals] = useState<number[]>([]);
 
-  // festival ID와 dates를 매핑하는 Map 생성
-  const festivalDatesMap = useMemo(
-    () =>
-      new Map(
-        festivals.map((festival) => [
-          festival.festivalId,
-          festival.festivalDates,
-        ]),
-      ),
-    [festivals],
-  );
-
-  // 축제 선택/해제 핸들러
-  const handleFestivalClick = (festivalId: number) => {
-    setClickedFestivalId((prevId) =>
-      prevId === festivalId ? null : festivalId,
-    );
+  const removeSelect = (festivalId: number) => {
+    setSelectedFestivals((prev) => prev.filter((id) => id !== festivalId));
   };
 
-  // 선택된 축제의 날짜들 가져오기
-  const selectedFestivalDates = clickedFestivalId
-    ? (festivalDatesMap.get(clickedFestivalId) ?? [])
-    : [];
+  const addSelect = (festivalId: number) => {
+    setSelectedFestivals((prev) => [...prev, festivalId]);
+  };
+
+  const showToast = () => {
+    toast.default(`페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`, {
+      position: 'middleCenter',
+    });
+  };
+
+  const canAddFestival = selectedFestivals.length < MAX_SELECTIONS;
+
+  const handleFestivalClick = (festivalId: number, isSelected: boolean) =>
+    isSelected
+      ? removeSelect(festivalId)
+      : canAddFestival
+        ? addSelect(festivalId)
+        : showToast();
 
   return {
-    clickedFestivalId,
-    selectedFestivalDates,
+    selectedFestivals,
+    canAddFestival,
     handleFestivalClick,
   };
 };
+
+export default useFestivalSelection;

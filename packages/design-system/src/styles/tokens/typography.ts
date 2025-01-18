@@ -17,6 +17,7 @@ export const typography = {
     body5: '1.2rem',
     body6: '1.1rem',
     caption: '1rem',
+    name: '1.8rem',
   },
   fontWeight: {
     bold: '700',

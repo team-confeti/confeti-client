@@ -1,4 +1,4 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { themeVars } from './theme.css';
 
 /* CSS Variables */
@@ -6,6 +6,7 @@ globalStyle(':root', {
   vars: {
     '--min-width': '375px',
     '--max-width': '430px',
+    '--height': '100dvh',
   },
 });
 
@@ -27,8 +28,9 @@ globalStyle('::-webkit-scrollbar', {
   display: 'none',
 });
 
-/* Root Container */
-globalStyle('#root', {
+export const rootStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
   margin: '0 auto',
   minHeight: '100dvh',

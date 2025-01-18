@@ -1,6 +1,9 @@
 import * as styles from '@pages/confeti/components/summary.css';
 import Button from '../../../../../../packages/design-system/src/components/button/button';
-import { BtnHeartDefault24 } from 'node_modules/@confeti/design-system/src/icons/src';
+import {
+  BtnHeartDefault24,
+  BtnHeartFilled24,
+} from 'node_modules/@confeti/design-system/src/icons/src';
 
 interface SummaryProps {
   title: string;
@@ -10,6 +13,7 @@ interface SummaryProps {
   area: string;
   reserveAt: string;
   reservationUrl: string;
+  isFavorite: boolean; // isFavorite 추가
 }
 
 // 날짜 및 시간 포맷팅 함수
@@ -35,15 +39,20 @@ const Summary = ({
   area,
   reserveAt,
   reservationUrl,
+  isFavorite,
 }: SummaryProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.summary}>
+        <h1 className={styles.summary}>
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
-              <BtnHeartDefault24 width={24} height={24} />
+              {isFavorite ? (
+                <BtnHeartFilled24 width={24} />
+              ) : (
+                <BtnHeartDefault24 width={24} />
+              )}
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
           </div>
@@ -65,7 +74,7 @@ const Summary = ({
               </div>
             </div>
           </div>
-        </div>
+        </h1>
         <Button
           className={styles.linkBtn}
           variant="link"

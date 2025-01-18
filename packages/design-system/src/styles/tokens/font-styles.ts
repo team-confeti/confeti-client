@@ -118,4 +118,11 @@ export const fontStyles = {
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.normal,
   },
+
+  // name
+  name_b_18: {
+    fontSize: typography.fontSize.name,
+    fontWeight: typography.fontWeight.bold,
+    lineHeight: typography.lineHeight.normal,
+  },
 } as const;

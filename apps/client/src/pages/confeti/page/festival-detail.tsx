@@ -1,55 +1,62 @@
+import { useState } from 'react';
 import Poster from '../components/poster';
 import Summary from '../components/summary';
 import Info from '../components/info';
+import MoreButton from '../components/more-button';
 import PerformanceDetail from '../components/performance-detail';
-import * as styles from '@pages/confeti/page/concert-detail.css';
+import ArtistTitle from '../components/artist-title';
+import ArtistSection from '../components/artist-section';
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import { FESTIVAL_DETAIL } from '../mocks/confeti-detail';
 
 export default function FestivalDetailPage() {
-  const festivalData = {
-    posterBgUrl: 'https://placehold.co/375x280',
-    posterUrl: 'https://picsum.photos/180/240',
-    title: '터치드(TOUCHED) 단독 콘서트',
-    subtitle: 'HIGHLIGHT Ⅲ',
-    startAt: '2025.01.25',
-    endAt: '2025.01.26',
-    area: '올림픽공원 올림픽홀',
-    reserveAt: '2025-01-20T14:00:00',
-    reservationUrl:
-      'https://tickets.interpark.com/goods/24016171?app_tapbar_state=hide',
-    time: '120분',
-    ageRating: '14세 이상 관람가',
-    reservationOffice: '인터파크',
-    price: '스탠딩석 132,000원\n지정석 R석 132,000원\n지정석 S석 132,000원',
+  const { festival } = FESTIVAL_DETAIL;
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setIsExpanded((prev) => !prev);
   };
 
   return (
     <>
+      <FloatingButton />
       <Poster
-        posterBgUrl={festivalData.posterBgUrl}
-        posterUrl={festivalData.posterUrl}
+        posterBgUrl={festival.posterBgUrl}
+        posterUrl={festival.posterUrl}
       />
-      <div className={styles.container}>
-        <Summary
-          title={festivalData.title}
-          subtitle={festivalData.subtitle}
-          startAt={festivalData.startAt}
-          endAt={festivalData.endAt}
-          area={festivalData.area}
-          reserveAt={festivalData.reserveAt}
-          reservationUrl={festivalData.reservationUrl}
-        />
-        <Info
-          subtitle={festivalData.subtitle}
-          area={festivalData.area}
-          startAt={festivalData.startAt}
-          endAt={festivalData.endAt}
-          time={festivalData.time}
-          ageRating={festivalData.ageRating}
-          reservationOffice={festivalData.reservationOffice}
-          price={festivalData.price}
-        />
-        <PerformanceDetail />
-      </div>
+      <Summary
+        title={festival.title}
+        subtitle={festival.subtitle}
+        startAt={festival.startAt}
+        endAt={festival.endAt}
+        area={festival.area}
+        reserveAt={festival.reserveAt}
+        reservationUrl={festival.reservationUrl}
+        isFavorite={festival.isFavorite}
+      />
+      <Spacing />
+      <Info
+        subtitle={festival.subtitle}
+        area={festival.area}
+        startAt={festival.startAt}
+        endAt={festival.endAt}
+        time={festival.time}
+        ageRating={festival.ageRating}
+        reservationOffice={festival.reservationOffice}
+        price={festival.price}
+      />
+      <Spacing />
+      <PerformanceDetail isExpanded={isExpanded} />
+      <MoreButton
+        hasShadow={true}
+        isExpanded={isExpanded}
+        onToggle={toggleExpanded}
+      />
+      <Spacing />
+      <ArtistTitle />
+      <ArtistSection type="festival" artistData={FESTIVAL_DETAIL} />
+      <Footer />
     </>
   );
 }
