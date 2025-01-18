@@ -134,6 +134,12 @@ export const FESTIVAL_DETAIL = {
           profileUrl:
             'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
         },
+        {
+          artistId: '6',
+          name: '데이 트윅스 브레이큰',
+          profileUrl:
+            'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
+        },
       ],
     },
   ],

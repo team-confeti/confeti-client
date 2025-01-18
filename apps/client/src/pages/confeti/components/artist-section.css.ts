@@ -20,14 +20,14 @@ export const dayGroup = style({
 });
 
 export const dayTitle = style({
-  ...themeVars.fontStyles.subtitle5_sb_12,
-  color: themeVars.color.black,
-  backgroundColor: themeVars.color.gray100,
-  padding: '0.4rem 1.2rem',
-  borderRadius: '1.3rem',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'flex-start',
   marginBottom: '1.2rem',
+  ...themeVars.fontStyles.subtitle5_sb_12,
+  color: themeVars.color.black,
+  backgroundColor: themeVars.color.gray100,
+  padding: '0.4rem 1.2rem',
+  borderRadius: '1.3rem',
 });
