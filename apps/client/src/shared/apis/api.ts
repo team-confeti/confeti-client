@@ -1,9 +1,25 @@
+import { USER_ID_KEY } from '@shared/constants/user-constants';
 import axios from 'axios';
 
 // Axios 인스턴스 생성
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // BASE_URL 설정
 });
+
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem(USER_ID_KEY);
+
+    if (token) {
+      config.headers.Authorization = Number(token);
+    }
+    return config;
+  },
+  (error) => {
+    // TODO: 요청 에러 처리 추가
+    return Promise.reject(error);
+  },
+);
 
 // Axios 응답 인터셉터 추가
 
