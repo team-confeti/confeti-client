@@ -2,12 +2,11 @@ import { Spacing } from '@confeti/design-system';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
-import { useFestivalSelection } from '../hooks/use-festival-selection';
-
+import useButtonSelection from '../hooks/use-button-selection';
 const TimeTable = () => {
   const festivals = REGISTERDED_FESTIVAL.data.festivals;
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
-    useFestivalSelection(festivals);
+    useButtonSelection(festivals);
 
   return (
     <>
