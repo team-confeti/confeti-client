@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
-import * as styles from './require_login_section.css';
+import * as styles from './require-login-section.css';
 import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
 
 const RequireLoginSection = () => {
