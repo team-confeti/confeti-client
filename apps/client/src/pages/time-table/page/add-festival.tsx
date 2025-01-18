@@ -1,36 +1,10 @@
-import { useState } from 'react';
 import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
-import { toast } from '@confeti/design-system';
 import * as styles from './add-festival.css';
-
-const MAX_SELECTIONS = 3;
+import useFestivalSelection from '../hooks/use-festival-selection';
 
 const AddFestival = () => {
-  const [selectedFestivals, setSelectedFestivals] = useState<number[]>([]);
-
-  const removeSelect = (festivalId: number) => {
-    setSelectedFestivals((prev) => prev.filter((id) => id !== festivalId));
-  };
-
-  const addSelect = (festivalId: number) => {
-    setSelectedFestivals((prev) => [...prev, festivalId]);
-  };
-
-  const showToast = () => {
-    toast.default(`페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`, {
-      position: 'middleCenter',
-    });
-  };
-
-  const canAddFestival = selectedFestivals.length < MAX_SELECTIONS;
-
-  const handleFestivalClick = (festivalId: number, isSelected: boolean) =>
-    isSelected
-      ? removeSelect(festivalId)
-      : canAddFestival
-        ? addSelect(festivalId)
-        : showToast();
+  const { selectedFestivals, handleFestivalClick } = useFestivalSelection();
 
   const handleAddClick = () => {
     // 타임테이블에 추가되는 로직 작성 예정
