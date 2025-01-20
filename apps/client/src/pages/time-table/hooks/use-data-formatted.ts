@@ -51,7 +51,6 @@ export const useDayNumSelection = (
 ) => {
   const [selectedDayNumId, setSelectedDateId] = useState<number | null>(null);
 
-  // 페스티벌이 변경되거나 festivalDates가 변경될 때 첫 번째 날짜를 자동 선택
   useEffect(() => {
     if (festivalDates && festivalDates.length > 0) {
       setSelectedDateId(festivalDates[0].festivalDateId);

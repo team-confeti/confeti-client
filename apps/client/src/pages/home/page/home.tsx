@@ -13,7 +13,7 @@ import { USER_DATA } from '@shared/mocks/user-data';
 import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
-
+import { routePath } from '@shared/constants/path';
 const Home = () => {
   const bannerData = PERFORMANCE_TICKETING_DATA?.data?.performances || [];
   const TotalIndexData = PERFORMANCE_TICKETING_DATA?.data?.performanceCount;
@@ -23,8 +23,8 @@ const Home = () => {
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
 
-  const handleGoHome = () => navigate('/');
-  const handleGoToTimeTable = () => navigate('/timetable');
+  const handleGoHome = () => navigate(routePath.ROOT);
+  const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 
   return (
     <>
