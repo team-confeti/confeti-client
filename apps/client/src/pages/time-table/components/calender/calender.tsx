@@ -18,7 +18,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   const { selectedDayNumeId, handleDayNumClick } = useDayNumSelection();
   const festivalDateMap = createFestivalDateMap(festivalDates);
 
-  const dateItems = weekDays.map((day, id) => ({
+  const dateDetails = weekDays.map((day, id) => ({
     ...day,
     ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumeId),
   }));
@@ -29,7 +29,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
         <span>{useFormattedYear(firstDate)}</span>
       </div>
       <div className={styles.dateSection}>
-        {dateItems.map(
+        {dateDetails.map(
           ({ date, dayKo, festivalDateId, isSelected, hasFestivalDate }) => (
             <div className={styles.dateItems} key={festivalDateId}>
               <p
