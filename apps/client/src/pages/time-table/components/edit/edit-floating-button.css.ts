@@ -106,6 +106,7 @@ export const background = style({
   minWidth: 'var(--min-width)',
   transform: 'translateX(-50%)',
   transition: 'background-color 0.3s ease-in-out',
+  zIndex: themeVars.zIndex.floatingButton.content,
 });
 
 export const backgroundVisible = style({

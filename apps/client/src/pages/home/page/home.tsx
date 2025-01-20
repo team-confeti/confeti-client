@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from 'react-router-dom';
 import {
   Footer,
   PerformanceCarousel,
@@ -21,48 +22,49 @@ const Home = () => {
   const userId = localStorage.getItem(USER_ID_KEY);
   const userName = USER_DATA.data.userName;
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
+  const navigate = useNavigate();
+
+  const handleGoHome = () => navigate('/');
+  const handleGoToTimeTable = () => navigate('/timetable');
 
   return (
     <>
       <Navigation.Root defaultActiveTab={0}>
         <Navigation.List>
-          <Navigation.Item index={0}>{TAB_MENU.HOME}</Navigation.Item>
-          <Navigation.Item index={1}>{TAB_MENU.TIMETABLE}</Navigation.Item>
+          <Navigation.Item index={0} handleTabClick={handleGoHome}>
+            {TAB_MENU.HOME}
+          </Navigation.Item>
+          <Navigation.Item index={1} handleTabClick={handleGoToTimeTable}>
+            {TAB_MENU.TIMETABLE}
+          </Navigation.Item>
         </Navigation.List>
-        <Navigation.Panels>
-          {/* TODO: 추후 페이지 연결 */}
-          <Navigation.Panel>
-            <div className={styles.background}>
-              <section className={styles.performanceBannerContainer}>
-                <PerformanceCarousel
-                  performData={PERFORMANCE_DATA}
-                ></PerformanceCarousel>
-              </section>
-              <section className={styles.ticketingBannerContainer}>
-                <p className={styles.ticketingBannerText}>
-                  {isHighlighted ? (
-                    <>
-                      <span className={styles.highlightedText}>{userName}</span>
-                      님 <br />
-                      예매가 다가오고 있어요!
-                    </>
-                  ) : (
-                    <>
-                      공연의 시작과 끝을 <br /> 콘페티와 함께해보세요!
-                    </>
-                  )}
-                </p>
-                <TicketingCarousel.Wrap
-                  performances={bannerData}
-                  indexData={TotalIndexData}
-                />
-              </section>
-            </div>
-          </Navigation.Panel>
-          <Navigation.Panel>
-            <TimeTablePage></TimeTablePage>
-          </Navigation.Panel>
-        </Navigation.Panels>
+
+        <div className={styles.background}>
+          <section className={styles.performanceBannerContainer}>
+            <PerformanceCarousel
+              performData={PERFORMANCE_DATA}
+            ></PerformanceCarousel>
+          </section>
+          <section className={styles.ticketingBannerContainer}>
+            <p className={styles.ticketingBannerText}>
+              {isHighlighted ? (
+                <>
+                  <span className={styles.highlightedText}>{userName}</span>
+                  님 <br />
+                  예매가 다가오고 있어요!
+                </>
+              ) : (
+                <>
+                  공연의 시작과 끝을 <br /> 콘페티와 함께해보세요!
+                </>
+              )}
+            </p>
+            <TicketingCarousel.Wrap
+              performances={bannerData}
+              indexData={TotalIndexData}
+            />
+          </section>
+        </div>
       </Navigation.Root>
 
       <Footer />
