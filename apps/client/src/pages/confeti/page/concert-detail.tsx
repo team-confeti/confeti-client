@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Info from '../components/info';
-import Poster from '../components/poster';
-import Summary from '../components/summary';
-import MoreButton from '../components/more-button';
-import PerformanceDetail from '../components/performance-detail';
-import ArtistTitle from '../components/artist-title';
-import ArtistSection from '../components/artist-section';
+import Info from '@pages/confeti/components/info/info.tsx';
+import Poster from '@pages/confeti/components/poster/poster.tsx';
+import Summary from '@pages/confeti/components/summary/summary.tsx';
+import MoreButton from '@pages/confeti/components/button/more-button.tsx';
+import PerformanceDetail from '@pages/confeti/components/performance/performance-detail.tsx';
+import ArtistTitle from '../components/artist/artist-title.tsx';
+import ArtistSection from '../components/artist/artist-section.tsx';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { CONCERT_DETAIL } from '../mocks/confeti-detail';
 

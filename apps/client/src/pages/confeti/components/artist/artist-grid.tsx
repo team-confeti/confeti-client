@@ -1,6 +1,6 @@
-import { ArtistGridProps } from '../types/artist';
+import { ArtistGridProps } from '../../types/artist.ts';
 import ArtistCard from './artist-card';
-import * as styles from './artist-grid.css';
+import * as styles from './artist-grid.css.ts';
 
 const ArtistGrid = ({ artists, dayId, type }: ArtistGridProps) => (
   <div className={styles.grid}>

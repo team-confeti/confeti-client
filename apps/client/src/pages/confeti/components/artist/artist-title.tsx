@@ -1,4 +1,4 @@
-import * as styles from './artist-title.css';
+import * as styles from './artist-title.css.ts';
 
 const ARTIST_TITLE_TEXT = '아티스트';
 

@@ -1,6 +1,6 @@
-import { ConcertArtist } from '../types/concert';
-import { ArtistGridProps } from '../types/artist';
-import * as styles from './artist-card.css';
+import { ConcertArtist } from '../../types/concert.ts';
+import { ArtistGridProps } from '../../types/artist.ts';
+import * as styles from './artist-card.css.ts';
 interface ArtistCardProps {
   artist: ConcertArtist;
   dayId?: number;

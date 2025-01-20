@@ -1,10 +1,10 @@
-import * as styles from '@pages/confeti/components/summary.css';
-import Button from '../../../../../../packages/design-system/src/components/button/button';
+import * as styles from '@pages/confeti/components/summary/summary.css.ts';
+import { Button } from '@confeti/design-system';
 import {
   BtnHeartDefault24,
   BtnHeartFilled24,
-} from 'node_modules/@confeti/design-system/src/icons/src';
-import { WEEKDAYS } from '@shared/constants/day';
+} from '@confeti/design-system/icons';
+import { WEEKDAYS } from '@shared/constants/day.ts';
 
 interface SummaryProps {
   title: string;

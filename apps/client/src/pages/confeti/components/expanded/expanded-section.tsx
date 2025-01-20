@@ -1,7 +1,7 @@
-import { ConcertArtist } from '../types/concert';
-import MoreButton from './more-button';
-import ArtistGrid from './artist-grid';
-import * as styles from './expanded-section.css';
+import { ConcertArtist } from '../../types/concert.ts';
+import MoreButton from '@pages/confeti/components/button/more-button.tsx';
+import ArtistGrid from '@pages/confeti/components/artist/artist-grid.tsx';
+import * as styles from './expanded-section.css.ts';
 
 export const MAX_VISIBLE_ARTISTS = 4;
 
