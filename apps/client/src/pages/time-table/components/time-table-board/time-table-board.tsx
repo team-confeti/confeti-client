@@ -13,6 +13,14 @@ import * as styles from './time-table-board.css';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const boardRef = useRef<HTMLDivElement>(null);
+
+  const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
+
+  const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
+  const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
+
+  const cellNumber = generateTableRow(ticketOpenHour);
+
   const onDownloadBtn = () => {
     const board = boardRef.current;
     const filter = (node: Node) => {
@@ -24,13 +32,6 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
       });
     }
   };
-
-  const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
-
-  const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
-  const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
-
-  const cellNumber = generateTableRow(ticketOpenHour);
 
   return (
     <section className={styles.container} ref={boardRef}>
