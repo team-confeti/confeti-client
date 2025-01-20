@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { WEEKDAYS } from '@shared/constants/day';
 
 const YEAR_MESSAGE = {
@@ -46,8 +46,16 @@ export const useFormattedWeek = (date: string | null) => {
   }, [date]);
 };
 
-export const useDayNumSelection = () => {
-  const [selectedDayNumeId, setSelectedDateId] = useState<number | null>(null);
+export const useDayNumSelection = (
+  festivalDates: { festivalDateId: number; festivalAt: string }[],
+) => {
+  const [selectedDayNumId, setSelectedDateId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (festivalDates && festivalDates.length > 0) {
+      setSelectedDateId(festivalDates[0].festivalDateId);
+    }
+  }, [festivalDates]);
 
   const handleDayNumClick = (festivalDateId: number) => {
     setSelectedDateId((prev) =>
@@ -56,8 +64,9 @@ export const useDayNumSelection = () => {
   };
 
   return {
-    selectedDayNumeId,
+    selectedDayNumId,
     handleDayNumClick,
+    setSelectedDateId,
   };
 };
 
