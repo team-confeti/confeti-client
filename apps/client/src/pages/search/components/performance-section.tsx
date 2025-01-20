@@ -28,6 +28,7 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
       {performances.map((performance) => (
         <PerformanceInfo
           key={performance.performanceId}
+          performanceId={performance.performanceId}
           title={performance.title}
           performanceAt={performance.performanceAt}
           posterUrl={performance.posterUrl}
