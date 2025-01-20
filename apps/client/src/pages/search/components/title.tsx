@@ -5,7 +5,7 @@ interface TitleProps {
 }
 
 const Title = ({ text }: TitleProps) => {
-  return <h2 className={styles.title}>{text}</h2>;
+  return <p className={styles.title}>{text}</p>;
 };
 
 export default Title;
