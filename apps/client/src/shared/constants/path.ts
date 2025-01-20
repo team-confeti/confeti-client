@@ -18,6 +18,4 @@ export const routePath = {
   // time-table
   TIME_TABLE_OUTLET: '/timetable',
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',
-
-  LOADING: '/loading',
 } as const;
