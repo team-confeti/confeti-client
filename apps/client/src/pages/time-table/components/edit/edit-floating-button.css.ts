@@ -23,8 +23,9 @@ export const box = style({
   alignItems: 'flex-start',
   padding: '1rem 5.3rem 0.9rem 1.6rem',
 
-  position: 'absolute',
-  bottom: '17rem',
+  position: 'fixed',
+  top: '48.5rem',
+
   right: '2rem',
 
   ...themeVars.fontStyles.subtitle4_b_14,
@@ -46,9 +47,9 @@ export const buttonVariants = recipe({
   base: {
     ...themeVars.display.flexCenter,
     height: '5rem',
-    position: 'absolute',
+    position: 'fixed',
     right: '2rem',
-
+    top: '59.7rem',
     borderRadius: '3rem',
     backgroundColor: themeVars.color.gray800,
     zIndex: themeVars.zIndex.floatingButton.content,
