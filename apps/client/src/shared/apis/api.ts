@@ -23,18 +23,34 @@ instance.interceptors.request.use(
 
 // Axios 응답 인터셉터 추가
 
-/**
- * instance.interceptors.response.use(
-  // 성공적인 응답은 그대로 반환
-  (response) => response,
-  async (error) => {
-    const status = error?.response?.status; // HTTP 상태 코드 추출
-    const errorMessage = error?.response?.data?.message; // 서버가 반환한 에러 메시지 추출
+// instance.interceptors.response.use(
+//   // 성공적인 응답은 그대로 반환
+//   (response) => response,
+//   async (error) => {
+//     const status = error?.response?.status; // HTTP 상태 코드 추출
+//     const errorMessage = error?.response?.data?.message; // 서버가 반환한 에러 메시지 추출
+//
+//
+//     return Promise.reject(error);
+//   },
+// );
 
-    에러 처리 함수: handleError....(status, errorMessage);
+export function get<T>(...args: Parameters<typeof instance.get>) {
+  return instance.get<T>(...args).then((res) => res.data);
+}
 
-    에러를 그대로 다시 던짐 (필요 시)
-    return Promise.reject(error);
-  },
-);
-*/
+export function post<T>(...args: Parameters<typeof instance.post>) {
+  return instance.post<T>(...args).then((res) => res.data);
+}
+
+export function put<T>(...args: Parameters<typeof instance.put>) {
+  return instance.put<T>(...args).then((res) => res.data);
+}
+
+export function patch<T>(...args: Parameters<typeof instance.patch>) {
+  return instance.patch<T>(...args).then((res) => res.data);
+}
+
+export function del<T>(...args: Parameters<typeof instance.delete>) {
+  return instance.delete<T>(...args).then((res) => res.data);
+}
