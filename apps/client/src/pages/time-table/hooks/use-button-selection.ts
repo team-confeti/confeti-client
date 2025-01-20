@@ -30,9 +30,7 @@ const useButtonSelection = (festivals: Festival[]) => {
 
   // 축제 선택/해제 핸들러
   const handleFestivalClick = (festivalId: number) => {
-    setClickedFestivalId((prevId) =>
-      prevId === festivalId ? null : festivalId,
-    );
+    setClickedFestivalId(festivalId);
   };
 
   // 선택된 축제의 날짜들 가져오기

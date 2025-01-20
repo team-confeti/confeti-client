@@ -1,12 +1,15 @@
 import { Spacing } from '@confeti/design-system';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
+import TimeTableSection from '@pages/time-table/components/time-table-section/time-table-section';
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
 import useButtonSelection from '../hooks/use-button-selection';
-const TimeTable = () => {
+
+const TimeTablePage = () => {
   const festivals = REGISTERDED_FESTIVAL.data.festivals;
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
     useButtonSelection(festivals);
+  ``;
 
   return (
     <>
@@ -27,8 +30,10 @@ const TimeTable = () => {
       </InfoButton.TotalWrap>
       <Spacing />
       <Calender festivalDates={selectedFestivalDates} />
+      <Spacing />
+      <TimeTableSection></TimeTableSection>
     </>
   );
 };
 
-export default TimeTable;
+export default TimeTablePage;

@@ -46,8 +46,10 @@ export const useFormattedWeek = (date: string | null) => {
   }, [date]);
 };
 
-export const useDayNumSelection = () => {
-  const [selectedDayNumeId, setSelectedDateId] = useState<number | null>(null);
+export const useDayNumSelection = (initial: number) => {
+  const [selectedDayNumId, setSelectedDateId] = useState<number | null>(
+    initial,
+  );
 
   const handleDayNumClick = (festivalDateId: number) => {
     setSelectedDateId((prev) =>
@@ -56,8 +58,9 @@ export const useDayNumSelection = () => {
   };
 
   return {
-    selectedDayNumeId,
+    selectedDayNumId,
     handleDayNumClick,
+    setSelectedDateId,
   };
 };
 

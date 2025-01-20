@@ -12,6 +12,7 @@ import { USER_DATA } from '@shared/mocks/user-data';
 import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
+import TimeTablePage from '@pages/time-table/page/time-table-page';
 
 const Home = () => {
   const bannerData = PERFORMANCE_TICKETING_DATA?.data?.performances || [];
@@ -58,7 +59,9 @@ const Home = () => {
               </section>
             </div>
           </Navigation.Panel>
-          <Navigation.Panel>타임테이블</Navigation.Panel>
+          <Navigation.Panel>
+            <TimeTablePage></TimeTablePage>
+          </Navigation.Panel>
         </Navigation.Panels>
       </Navigation.Root>
 

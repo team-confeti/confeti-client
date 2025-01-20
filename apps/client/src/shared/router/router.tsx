@@ -11,7 +11,7 @@ import {
   SearchPage,
   RequireLoginPage,
   MyProfilePage,
-  TimeTable,
+  TimeTablePage,
   EmptyFestivalPage,
   TimeTableLayout,
 } from './lazy';
@@ -56,7 +56,7 @@ export default function Router() {
             path={routePath.TIME_TABLE_OUTLET}
             element={<TimeTableLayout />}
           >
-            <Route path="" element={<TimeTable />} />
+            <Route path="" element={<TimeTablePage />} />
             <Route
               path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
               element={<EmptyFestivalPage />}

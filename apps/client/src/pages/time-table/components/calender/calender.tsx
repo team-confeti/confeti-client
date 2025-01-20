@@ -13,15 +13,20 @@ interface CalenderProps {
 }
 
 const Calender = ({ festivalDates }: CalenderProps) => {
-  const firstDate = festivalDates[0]?.festivalAt;
+  const firstDate = festivalDates[0].festivalAt;
   const { weekDays } = useFormattedWeek(firstDate);
-  const { selectedDayNumeId, handleDayNumClick } = useDayNumSelection();
   const festivalDateMap = createFestivalDateMap(festivalDates);
-
+  const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
+    weekDays[0].date,
+  );
   const dateDetails = weekDays.map((day, id) => ({
     ...day,
-    ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumeId),
+    ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumId),
   }));
+  console.log('firstDate', festivalDates[0].festivalAt);
+  console.log('weekDays', weekDays);
+  console.log('festivalDateMap', festivalDateMap);
+  console.log('festivalDateMap', festivalDateMap.get(1));
 
   return (
     <section className={styles.container}>
@@ -31,7 +36,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
       <div className={styles.dateSection}>
         {dateDetails.map(
           ({ date, dayKo, festivalDateId, isSelected, hasFestivalDate }) => (
-            <div className={styles.dateItems} key={festivalDateId}>
+            <div className={styles.dateItems} key={date}>
               <p
                 className={cn(styles.dayNum({ isSelected, hasFestivalDate }))}
                 onClick={() =>
