@@ -41,7 +41,11 @@ const ConcertDetailPage = () => {
         reservationOffice={concert.reservationOffice}
         price={concert.price}
       />
-      <PerformanceDetail isExpanded={isExpanded} />
+      <PerformanceDetail
+        isExpanded={isExpanded}
+        infoImgUrl={concert.infoImgUrl}
+        title={concert.title}
+      />
       <MoreButton
         hasShadow={true}
         isExpanded={isExpanded}

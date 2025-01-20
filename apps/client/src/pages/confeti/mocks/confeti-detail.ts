@@ -1,8 +1,10 @@
 export const CONCERT_DETAIL = {
   concert: {
     concertId: 1,
-    posterUrl: 'https://picsum.photos/180/240',
-    posterBgUrl: 'https://placehold.co/375x280',
+    posterUrl:
+      'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/concert/poster/poster-touched.svg',
+    posterBgUrl:
+      'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/concert/poster-bg/poster-bg-touched.svg',
     title: '터치드(TOUCHED) 단독 콘서트',
     subtitle: 'HIGHLIGHT Ⅲ',
     startAt: '2025.01.25',
@@ -15,7 +17,8 @@ export const CONCERT_DETAIL = {
     ageRating: '14세 이상 관람가',
     reservationOffice: '인터파크',
     price: '스탠딩석 132,000원\n지정석 R석 132,000원\n지정석 S석 132,000원',
-    infoImgUrl: 'https://placehold.co/600x400',
+    infoImgUrl:
+      'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/concert/detail/detail-touched.svg',
     isFavorite: true,
   },
   isOpen: false,

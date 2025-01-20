@@ -1,10 +1,16 @@
 import * as styles from '@pages/confeti/components/performance-detail.css';
 
 interface PerformanceDetailProps {
+  title: string;
+  infoImgUrl: string;
   isExpanded: boolean;
 }
 
-const PerformanceDetail = ({ isExpanded }: PerformanceDetailProps) => {
+const PerformanceDetail = ({
+  isExpanded,
+  infoImgUrl,
+  title,
+}: PerformanceDetailProps) => {
   return (
     <div
       className={`${styles.container} ${
@@ -13,10 +19,7 @@ const PerformanceDetail = ({ isExpanded }: PerformanceDetailProps) => {
     >
       <div className={styles.wrapper}>
         <h2 className={styles.title}>공연 상세</h2>
-        <img
-          src="https://ticketimage.interpark.com/Play/image/etc/24/24016171-02.jpg"
-          alt="공연 상세 이미지"
-        />
+        <img src={infoImgUrl} alt={title} />
       </div>
     </div>
   );
