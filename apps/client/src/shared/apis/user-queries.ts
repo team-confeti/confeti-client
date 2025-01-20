@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
-import { getUserProfile } from './use-user-info';
+import { getUserProfile } from './user';
 
 export const USER_QUERY_KEY = {
   ALL: ['users'],
