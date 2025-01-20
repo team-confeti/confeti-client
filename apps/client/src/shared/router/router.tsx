@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GlobalLayout from './global-layout';
+import Loading from '@shared/pages/loading/loading'; // 로딩 컴포넌트
 import {
   ConcertDetailPage,
   FestivalDetailPage,
@@ -20,13 +21,11 @@ import { createProtectedRoute } from './protected-route';
 
 export default function Router() {
   return (
-    <Suspense>
+    <Suspense fallback={<Loading />}>
       <Routes>
         <Route element={<GlobalLayout />}>
-          {/* 루트 경로 */}
           <Route path={routePath.ROOT} element={<HomePage />} />
 
-          {/* MyPage 중첩 라우터 */}
           <Route path={routePath.MY} element={<MyPage />}>
             <Route
               path=""
@@ -46,12 +45,11 @@ export default function Router() {
             />
           </Route>
 
-          {/* 검색 및 상세 페이지 */}
           <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+          <Route path={routePath.LOADING} element={<Loading />} />
 
-          {/* 타임 테이블 페이지 */}
           <Route
             path={routePath.TIME_TABLE_OUTLET}
             element={<TimeTableLayout />}
