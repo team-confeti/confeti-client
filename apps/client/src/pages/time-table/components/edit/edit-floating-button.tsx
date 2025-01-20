@@ -119,7 +119,7 @@ const EditFloatingButton = () => {
 
   return (
     <>
-      <div className={getBackgroundClassName()} />
+      {isEditMode && <div className={getBackgroundClassName()} />}
       {renderActionButtons()}
       {renderButton()}
     </>
