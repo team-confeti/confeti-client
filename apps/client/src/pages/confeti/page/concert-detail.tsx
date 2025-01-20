@@ -9,7 +9,7 @@ import ArtistSection from '../components/artist-section';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { CONCERT_DETAIL } from '../mocks/confeti-detail';
 
-export default function ConcertDetailPage() {
+const ConcertDetailPage = () => {
   const { concert } = CONCERT_DETAIL;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -53,4 +53,6 @@ export default function ConcertDetailPage() {
       <Footer />
     </>
   );
-}
+};
+
+export default ConcertDetailPage;
