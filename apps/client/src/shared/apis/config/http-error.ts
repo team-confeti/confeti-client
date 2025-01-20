@@ -7,7 +7,6 @@ export class HTTPError extends Error {
 
   constructor(statusCode: number, message?: string, code?: number) {
     super(message);
-
     let name = 'HTTPError';
 
     switch (statusCode) {

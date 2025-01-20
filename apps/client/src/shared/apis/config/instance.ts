@@ -27,5 +27,4 @@ export function del<T>(...args: Parameters<typeof axiosInstance.delete>) {
 }
 
 axiosInstance.interceptors.request.use(handleCheckAndSetToken);
-
 axiosInstance.interceptors.response.use((res) => res, handleAPIError);
