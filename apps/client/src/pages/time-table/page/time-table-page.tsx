@@ -1,12 +1,9 @@
-import { Link } from 'react-router-dom';
-import { Spacing, Navigation } from '@confeti/design-system';
-import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
+import { Spacing } from '@confeti/design-system';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
 import TimeTableSection from '@pages/time-table/components/time-table-section/time-table-section';
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
-import { TAB_MENU } from '@pages/home/constants/menu';
 import useButtonSelection from '../hooks/use-button-selection';
 
 const TimeTablePage = () => {
@@ -32,15 +29,9 @@ const TimeTablePage = () => {
         </InfoButton.ItemContainer>
       </InfoButton.TotalWrap>
       <Spacing />
-      {clickedFestivalId ? (
-        <>
-          <Calender festivalDates={selectedFestivalDates} />
-          <Spacing />
-          <TimeTableSection />
-        </>
-      ) : (
-        <EmptyFestivalSection></EmptyFestivalSection>
-      )}
+      <Calender festivalDates={selectedFestivalDates} />
+      <Spacing />
+      <TimeTableSection />
       <EditFloatingButton></EditFloatingButton>
     </>
   );
