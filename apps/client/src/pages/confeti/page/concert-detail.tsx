@@ -4,10 +4,10 @@ import Poster from '@pages/confeti/components/poster/poster.tsx';
 import Summary from '@pages/confeti/components/summary/summary.tsx';
 import MoreButton from '@pages/confeti/components/button/more-button.tsx';
 import PerformanceDetail from '@pages/confeti/components/performance/performance-detail.tsx';
-import ArtistTitle from '../components/artist/artist-title.tsx';
-import ArtistSection from '../components/artist/artist-section.tsx';
+import ArtistTitle from '@pages/confeti/components/artist/artist-title.tsx';
+import ArtistSection from '@pages/confeti/components/artist/artist-section.tsx';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { CONCERT_DETAIL } from '../mocks/confeti-detail';
+import { CONCERT_DETAIL } from '@pages/confeti/mocks/confeti-detail.ts';
 
 const ConcertDetailPage = () => {
   const { concert } = CONCERT_DETAIL;

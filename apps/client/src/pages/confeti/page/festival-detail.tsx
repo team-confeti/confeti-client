@@ -7,7 +7,7 @@ import PerformanceDetail from '@pages/confeti/components/performance/performance
 import ArtistTitle from '@pages/confeti/components/artist/artist-title.tsx';
 import ArtistSection from '@pages/confeti/components/artist/artist-section.tsx';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { FESTIVAL_DETAIL } from '../mocks/confeti-detail';
+import { FESTIVAL_DETAIL } from '@pages/confeti/mocks/confeti-detail.ts';
 
 const FestivalDetailPage = () => {
   const { festival } = FESTIVAL_DETAIL;
