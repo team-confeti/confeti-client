@@ -1,15 +1,15 @@
 import { Header, Footer, Spacing } from '@confeti/design-system';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
+import { routePath } from '@shared/constants/path';
 
+import { useUserProfile } from '@pages/my/apis/use-user-info';
 import UserInfo from '../../components/profile/user-info';
 import Box from '../../components/profile/box';
 import NoArtistSection from '../../components/artist/no-artist-section';
 import NoConfetiSection from '../../components/confeti/no-confeti-section';
 import ArtistSection from '../../components/artist/artist-section';
 import ConfetiSection from '../../components/confeti/conteti-section';
-import { routePath } from '@shared/constants/path';
-import { useUserProfile } from '@pages/my/apis/use-user-info';
 
 const MyProfile = () => {
   const profileData = useUserProfile();

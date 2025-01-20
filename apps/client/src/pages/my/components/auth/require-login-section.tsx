@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
-import * as styles from './require-login-section.css';
 import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
+import * as styles from './require-login-section.css';
 
 const RequireLoginSection = () => {
   const navigate = useNavigate();

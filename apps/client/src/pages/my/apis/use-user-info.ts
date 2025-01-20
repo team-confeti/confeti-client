@@ -1,7 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { instance } from '@shared/apis/api';
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
-import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { USER_QUERY_OPTIONS } from './queries';
 import { UserProfile } from '../types/user-response';
 
