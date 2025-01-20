@@ -59,9 +59,7 @@ const Home = () => {
               </section>
             </div>
           </Navigation.Panel>
-          <Navigation.Panel>
-            <TimeTableSection></TimeTableSection>
-          </Navigation.Panel>
+          <Navigation.Panel>타임테이블</Navigation.Panel>
         </Navigation.Panels>
       </Navigation.Root>
 
