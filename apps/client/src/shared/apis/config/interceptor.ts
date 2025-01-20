@@ -4,7 +4,6 @@ import { HTTPError } from './http-error';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 
 interface ErrorResponse {
-  success?: boolean;
   message?: string;
   code?: number;
 }
