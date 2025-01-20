@@ -1,7 +1,7 @@
 import { BaseResponse } from '@shared/types/api';
 import { UserProfile } from '@shared/types/user-response';
 import { END_POINT } from '@shared/constants/api';
-import { instance } from './api';
+import { instance } from '../api';
 
 export const getUserProfile = async (): Promise<UserProfile> => {
   const response = await instance.get<BaseResponse<UserProfile>>(

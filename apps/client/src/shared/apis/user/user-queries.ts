@@ -9,8 +9,7 @@ export const USER_QUERY_KEY = {
 } as const;
 
 export const USER_QUERY_OPTIONS = {
-  ALL: () =>
-    queryOptions({ queryKey: USER_QUERY_KEY.ALL, queryFn: getUserProfile }),
+  ALL: () => queryOptions({ queryKey: USER_QUERY_KEY.ALL }),
   PROFILE: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.PROFILE(),
@@ -19,11 +18,9 @@ export const USER_QUERY_OPTIONS = {
   FAVORITE_ARTISTS: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.FAVORITE_ARTISTS(),
-      queryFn: getUserProfile,
     }),
   FAVORITE_PERFORMANCES: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.FAVORITE_PERFORMANCES(),
-      queryFn: getUserProfile,
     }),
 };
