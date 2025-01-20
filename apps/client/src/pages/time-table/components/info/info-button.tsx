@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@confeti/design-system/utils';
 import {
   containerVariants,
@@ -7,6 +8,7 @@ import {
   ImageVariants,
   TextVariants,
 } from './info-button.css';
+import { routePath } from '@shared/constants/path';
 import AddButton from '../add/add-button';
 
 type SizeType = 'sm' | 'md' | 'lg';
@@ -64,15 +66,20 @@ const InfoItemContainer = ({
   <div className={cn(ItemContainer({ size }))}>{children}</div>
 );
 
-const FixedButton = ({ size = 'md' }: FixedButtonProps) => (
-  <>
-    <div className={cn(ItemsVariants({ size }))}>
-      <AddButton size="md" />
-      <InfoButton.TextField text={`페스티벌\n추가`} color="gray" />
-    </div>
-  </>
-);
-
+const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <div
+        className={cn(ItemsVariants({ size }))}
+        onClick={() => navigate(routePath.ADDFESTIVAL)}
+      >
+        <AddButton size="md" />
+        <InfoButton.TextField text={`페스티벌\n추가`} color="gray" />
+      </div>
+    </>
+  );
+};
 const InfoItems = ({
   size = 'md',
   src,

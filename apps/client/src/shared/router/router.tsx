@@ -10,7 +10,7 @@ import {
   SearchPage,
   RequireLoginPage,
   MyProfilePage,
-  TimeTable,
+  TimeTablePage,
   EmptyFestivalPage,
   TimeTableLayout,
   AddFestivalPage,
@@ -48,7 +48,7 @@ export default function Router() {
         <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
 
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>
-          <Route path="" element={<TimeTable />} />
+          <Route path="" element={<TimeTablePage />} />
           <Route
             path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
             element={<EmptyFestivalPage />}
