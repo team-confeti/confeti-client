@@ -16,17 +16,12 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   const firstDate = festivalDates[0].festivalAt;
   const { weekDays } = useFormattedWeek(firstDate);
   const festivalDateMap = createFestivalDateMap(festivalDates);
-  const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
-    weekDays[0].date,
-  );
+  const { selectedDayNumId, handleDayNumClick } =
+    useDayNumSelection(festivalDates);
   const dateDetails = weekDays.map((day, id) => ({
     ...day,
     ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumId),
   }));
-  console.log('firstDate', festivalDates[0].festivalAt);
-  console.log('weekDays', weekDays);
-  console.log('festivalDateMap', festivalDateMap);
-  console.log('festivalDateMap', festivalDateMap.get(1));
 
   return (
     <section className={styles.container}>
