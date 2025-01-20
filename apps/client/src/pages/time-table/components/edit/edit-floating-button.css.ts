@@ -22,12 +22,9 @@ export const box = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   padding: '1rem 5.3rem 0.9rem 1.6rem',
-
   position: 'fixed',
   top: '48.5rem',
-
   right: '2rem',
-
   ...themeVars.fontStyles.subtitle4_b_14,
   borderRadius: '0.5rem',
   backgroundColor: themeVars.color.white,

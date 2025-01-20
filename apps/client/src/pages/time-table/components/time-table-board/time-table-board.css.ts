@@ -33,10 +33,10 @@ export const timeBar = style({
   color: themeVars.color.gray300,
 });
 
-export const bottomWrapper = style({
-  padding: '2rem 2rem 0rem',
-});
-
 export const saveButton = style({
   borderRadius: '5px',
+});
+
+export const saveButtonWrapper = style({
+  paddingTop: '3.2rem',
 });

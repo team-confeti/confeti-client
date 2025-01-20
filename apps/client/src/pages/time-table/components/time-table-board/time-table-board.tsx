@@ -2,14 +2,14 @@ import { useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import TimeCell from '@pages/time-table/components/time-cell/time-cell';
-import * as styles from './time-table-board.css';
-import { Button } from '@confeti/design-system';
-import Stage from '@pages/time-table/components/stage/stage';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
+import Stage from '@pages/time-table/components/stage/stage';
+import { Button } from '@confeti/design-system';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
+import * as styles from './time-table-board.css';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const boardRef = useRef<HTMLDivElement>(null);
@@ -74,12 +74,14 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
           <p className={styles.timeP}>{24}</p>
           <hr className={styles.timeBar} />
         </div>
-        <Button
-          text="이미지 저장"
-          variant="add"
-          className={styles.saveButton}
-          onClick={() => onDownloadBtn()}
-        ></Button>
+        <div className={styles.saveButtonWrapper}>
+          <Button
+            text="이미지 저장"
+            variant="add"
+            className={styles.saveButton}
+            onClick={() => onDownloadBtn()}
+          ></Button>
+        </div>
       </div>
     </section>
   );
