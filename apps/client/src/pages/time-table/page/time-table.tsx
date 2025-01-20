@@ -6,7 +6,7 @@ import TimeTableSection from '@pages/time-table/components/time-table-section/ti
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
 import useButtonSelection from '../hooks/use-button-selection';
 
-const TimeTablePage = () => {
+const TimeTable = () => {
   const festivals = REGISTERDED_FESTIVAL.data.festivals;
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
     useButtonSelection(festivals);
@@ -37,4 +37,4 @@ const TimeTablePage = () => {
   );
 };
 
-export default TimeTablePage;
+export default TimeTable;

@@ -25,7 +25,7 @@ export const AddFestivalPage = lazy(
   () => import('@pages/time-table/page/add-festival'),
 );
 export const TimeTablePage = lazy(
-  () => import('@pages/time-table/page/time-table-page'),
+  () => import('@pages/time-table/page/time-table'),
 );
 export const TimeTableLayout = lazy(
   () => import('@pages/time-table/page/time-table-layout'),
