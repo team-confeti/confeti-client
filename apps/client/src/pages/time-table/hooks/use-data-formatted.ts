@@ -66,12 +66,13 @@ export const createFestivalDateMap = (
   festivalDates: { festivalDateId: number }[],
 ) => {
   return new Map(
-    festivalDates.map((festival, index) => [
-      index + 1,
+    festivalDates.map((festival, festivalDateId) => [
+      festivalDateId + 1,
       festival.festivalDateId,
     ]),
   );
 };
+
 // isSelected 처리 함수
 export const checkFestivalDateStatus = (
   festivalDateMap: Map<number, number>,
