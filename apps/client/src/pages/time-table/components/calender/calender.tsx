@@ -26,7 +26,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.yearSection}>
-        <span>{useFormattedYear(firstDate)}</span>
+        <p>{useFormattedYear(firstDate)}</p>
       </div>
       <div className={styles.dateSection}>
         {dateDetails.map(
