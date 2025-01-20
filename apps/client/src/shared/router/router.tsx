@@ -15,6 +15,7 @@ import {
   TimeTable,
   EmptyFestivalPage,
   TimeTableLayout,
+  AddFestivalPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -48,6 +49,7 @@ export default function Router() {
           <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+          <Route path={routePath.LOADING} element={<Loading />} />
 
           <Route
             path={routePath.TIME_TABLE_OUTLET}
@@ -58,6 +60,7 @@ export default function Router() {
               path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
               element={<EmptyFestivalPage />}
             />
+            <Route path={routePath.ADDFESTIVAL} element={<AddFestivalPage />} />
           </Route>
         </Route>
       </Routes>
