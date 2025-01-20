@@ -14,7 +14,6 @@ export const routePath = {
 
   MYARTIST: '/my-artist',
 
-
   // time-table
   TIME_TABLE_OUTLET: '/timetable',
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',
