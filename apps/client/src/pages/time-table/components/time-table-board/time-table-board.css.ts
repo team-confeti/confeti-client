@@ -4,6 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const wrapper = style({
   width: '100%',
   position: 'relative',
+  backgroundColor: themeVars.color.white,
 });
 export const timeList = style({
   display: 'flex',

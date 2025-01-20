@@ -71,14 +71,12 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
         <p className={styles.timeP}>{24}</p>
         <hr className={styles.timeBar} />
       </div>
-      <div className={styles.bottomWrapper}>
-        <Button
-          text="이미지 저장"
-          variant="add"
-          className={styles.saveButton}
-          onClick={() => onDownloadBtn()}
-        ></Button>
-      </div>
+      <Button
+        text="이미지 저장"
+        variant="add"
+        className={styles.saveButton}
+        onClick={() => onDownloadBtn()}
+      ></Button>
     </div>
   );
 };
