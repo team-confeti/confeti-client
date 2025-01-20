@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GlobalLayout from './global-layout';
-import Loading from '@shared/pages/loading/loading'; // 로딩 컴포넌트
+import Loading from '@shared/pages/loading/loading';
 import {
   ConcertDetailPage,
   FestivalDetailPage,
@@ -48,7 +48,6 @@ export default function Router() {
           <Route path={routePath.SEARCH} element={<SearchPage />} />
           <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
           <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
-          <Route path={routePath.LOADING} element={<Loading />} />
 
           <Route
             path={routePath.TIME_TABLE_OUTLET}

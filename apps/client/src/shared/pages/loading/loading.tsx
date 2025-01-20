@@ -1,5 +1,6 @@
 import Lottie from 'react-lottie-player';
 import loadingAnimation from '@shared/assets/lotties/confeti-logo-animation.json';
+import * as styles from './loading.css';
 
 const Loading = () => {
   const modifiedAnimationData = {
@@ -11,14 +12,7 @@ const Loading = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 'calc(100vh - 5rem)',
-      }}
-    >
+    <div className={styles.loadingSection}>
       <Lottie
         loop
         animationData={modifiedAnimationData}
