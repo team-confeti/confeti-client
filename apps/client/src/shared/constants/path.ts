@@ -13,7 +13,7 @@ export const routePath = {
   FESTIVAL: '/festival-detail/:festivalId',
 
   MYARTIST: '/my-artist',
-  ADDFESTIVAL: '/add-festival',
+  ADDFESTIVAL: 'add-festival',
 
   // time-table
   TIME_TABLE_OUTLET: '/timetable',
