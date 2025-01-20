@@ -1,4 +1,4 @@
-import * as styles from '@pages/confeti/components/poster.css';
+import * as styles from '@pages/confeti/components/poster/poster.css';
 
 interface Props {
   posterBgUrl: string;

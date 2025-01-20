@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import Poster from '../components/poster';
-import Summary from '../components/summary';
-import Info from '../components/info';
-import MoreButton from '../components/more-button';
-import PerformanceDetail from '../components/performance-detail';
-import ArtistTitle from '../components/artist-title';
-import ArtistSection from '../components/artist-section';
+import Poster from '@pages/confeti/components/poster/poster';
+import Summary from '@pages/confeti/components/summary/summary';
+import Info from '@pages/confeti/components/info/info';
+import MoreButton from '@pages/confeti/components/button/more-button';
+import PerformanceDetail from '@pages/confeti/components/performance/performance-detail';
+import ArtistTitle from '@pages/confeti/components/artist/artist-title';
+import ArtistSection from '@pages/confeti/components/artist/artist-section';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { FESTIVAL_DETAIL } from '../mocks/confeti-detail';
+import { FESTIVAL_DETAIL } from '@pages/confeti/mocks/confeti-detail';
 
-export default function FestivalDetailPage() {
+const FestivalDetailPage = () => {
   const { festival } = FESTIVAL_DETAIL;
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -47,7 +47,11 @@ export default function FestivalDetailPage() {
         price={festival.price}
       />
       <Spacing />
-      <PerformanceDetail isExpanded={isExpanded} />
+      <PerformanceDetail
+        isExpanded={isExpanded}
+        infoImgUrl={festival.infoImgUrl}
+        title={festival.title}
+      />
       <MoreButton
         hasShadow={true}
         isExpanded={isExpanded}
@@ -59,4 +63,6 @@ export default function FestivalDetailPage() {
       <Footer />
     </>
   );
-}
+};
+
+export default FestivalDetailPage;
