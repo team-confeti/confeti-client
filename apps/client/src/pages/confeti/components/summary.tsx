@@ -50,9 +50,9 @@ const Summary = ({
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
               {isFavorite ? (
-                <BtnHeartFilled24 width={24} />
+                <BtnHeartFilled24 width={24} height={24} />
               ) : (
-                <BtnHeartDefault24 width={24} />
+                <BtnHeartDefault24 width={24} height={24} />
               )}
             </div>
             <div className={styles.subtitle}>{subtitle}</div>

@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 
@@ -7,6 +10,9 @@ interface FestivalCardProps {
   imageSrc?: string;
   isSelected?: boolean;
   selectable?: boolean;
+  onSelectChange?: (title: string, isSelected: boolean) => void;
+  id: number;
+  type: 'concert' | 'festival';
   onClick?: () => void;
 }
 
@@ -15,17 +21,36 @@ const FestivalCard = ({
   imageSrc = 'https://dummyimage.com/100x142',
   isSelected = false,
   selectable = false,
-  onClick,
+  onSelectChange,
+  id,
+  type,
 }: FestivalCardProps) => {
+  const [internalSelected, setInternalSelected] = useState(isSelected);
+  const navigate = useNavigate();
+  const detailRoutePath = `/${type}-detail/${id}`;
+
+  const handleClick = () => {
+    if (!selectable) {
+      return navigate(detailRoutePath);
+    }
+
+    const toggledSelected = !internalSelected;
+    setInternalSelected(toggledSelected);
+
+    if (onSelectChange) {
+      onSelectChange(title, toggledSelected);
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div
         className={styles.poster({ selectable })}
-        onClick={selectable ? onClick : undefined}
-        aria-pressed={isSelected}
+        aria-pressed={internalSelected}
+        onClick={() => handleClick()}
       >
         <img src={imageSrc} alt={title} className={styles.image} />
-        {isSelected && (
+        {internalSelected && (
           <div className={styles.overlay}>
             <IcSelect className={styles.icon} />
           </div>
