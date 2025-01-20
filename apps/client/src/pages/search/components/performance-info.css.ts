@@ -39,6 +39,7 @@ export const title = style({
   whiteSpace: 'normal',
   wordBreak: 'keep-all',
   overflowWrap: 'break-word',
+  cursor: 'pointer',
 });
 
 export const infoRow = style({
@@ -59,6 +60,7 @@ export const infoText = style({
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
+  cursor: 'pointer',
 });
 
 export const heartIcon = style({

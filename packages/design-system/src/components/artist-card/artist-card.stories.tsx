@@ -7,7 +7,13 @@ const meta: Meta<typeof ArtistCard> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ width: '375px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
   args: {},
 };

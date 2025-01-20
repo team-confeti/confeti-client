@@ -2,7 +2,6 @@ import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
-
 const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick } = useFestivalSelection();
 
@@ -22,7 +21,8 @@ const AddFestival = () => {
           return (
             <FestivalCard
               key={performance.performanceId}
-              festivalId={performance.performanceId}
+              id={performance.performanceId}
+              type={performance.type}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}

@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Header from './header';
-import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Header> = {
   title: 'Layout/Header',
@@ -10,11 +9,9 @@ const meta: Meta<typeof Header> = {
   },
   decorators: [
     (Story) => (
-      <MemoryRouter>
-        <div style={{ width: '375px' }}>
-          <Story />
-        </div>
-      </MemoryRouter>
+      <div style={{ width: '375px' }}>
+        <Story />
+      </div>
     ),
   ],
   tags: ['autodocs'],

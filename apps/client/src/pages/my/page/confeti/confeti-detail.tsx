@@ -10,6 +10,8 @@ const ConfetiDetail = () => {
         {PERFORMANCE_DATA.data.performances.map((performance) => (
           <FestivalCard
             key={performance.performanceId}
+            id={performance.performanceId}
+            type={performance.type}
             title={performance.title}
             imageSrc={performance.posterUrl}
           />
