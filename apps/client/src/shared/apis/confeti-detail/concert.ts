@@ -1,7 +1,7 @@
 import { BaseResponse } from '@shared/types/api';
 import { ConcertDetailResponse } from '@shared/types/concert-response';
 import { END_POINT } from '@shared/constants/api';
-import { axiosInstance } from './config/instance';
+import { axiosInstance } from '../config/instance';
 
 export const getConcertDetail = async (
   concertId: number,
