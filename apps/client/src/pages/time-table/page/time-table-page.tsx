@@ -1,4 +1,5 @@
 import { Spacing } from '@confeti/design-system';
+import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
 import TimeTableSection from '@pages/time-table/components/time-table-section/time-table-section';
@@ -9,7 +10,6 @@ const TimeTablePage = () => {
   const festivals = REGISTERDED_FESTIVAL.data.festivals;
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
     useButtonSelection(festivals);
-  ``;
 
   return (
     <>
@@ -32,6 +32,7 @@ const TimeTablePage = () => {
       <Calender festivalDates={selectedFestivalDates} />
       <Spacing />
       <TimeTableSection></TimeTableSection>
+      <EditFloatingButton></EditFloatingButton>
     </>
   );
 };
