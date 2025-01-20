@@ -1,4 +1,4 @@
-import * as styles from './more-button.css.ts';
+import * as styles from './more-button.css';
 import {
   IcArrowDownGray16,
   IcArrowUpGray16,

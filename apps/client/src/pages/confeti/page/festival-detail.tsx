@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import Poster from '@pages/confeti/components/poster/poster.tsx';
-import Summary from '@pages/confeti/components/summary/summary.tsx';
-import Info from '@pages/confeti/components/info/info.tsx';
-import MoreButton from '@pages/confeti/components/button/more-button.tsx';
-import PerformanceDetail from '@pages/confeti/components/performance/performance-detail.tsx';
-import ArtistTitle from '@pages/confeti/components/artist/artist-title.tsx';
-import ArtistSection from '@pages/confeti/components/artist/artist-section.tsx';
+import Poster from '@pages/confeti/components/poster/poster';
+import Summary from '@pages/confeti/components/summary/summary';
+import Info from '@pages/confeti/components/info/info';
+import MoreButton from '@pages/confeti/components/button/more-button';
+import PerformanceDetail from '@pages/confeti/components/performance/performance-detail';
+import ArtistTitle from '@pages/confeti/components/artist/artist-title';
+import ArtistSection from '@pages/confeti/components/artist/artist-section';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { FESTIVAL_DETAIL } from '@pages/confeti/mocks/confeti-detail.ts';
+import { FESTIVAL_DETAIL } from '@pages/confeti/mocks/confeti-detail';
 
 const FestivalDetailPage = () => {
   const { festival } = FESTIVAL_DETAIL;

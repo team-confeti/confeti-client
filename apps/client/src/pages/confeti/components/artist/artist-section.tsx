@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ConcertArtist } from '../../types/concert.ts';
-import { FestivalDate } from '../../types/festival.ts';
-import ArtistGrid from '@pages/confeti/components/artist/artist-grid.tsx';
-import ExpandedSection from '@pages/confeti/components/expanded/expanded-section.tsx';
-import * as styles from './artist-section.css.ts';
+import { ConcertArtist } from '../../types/concert';
+import { FestivalDate } from '../../types/festival';
+import ArtistGrid from '@pages/confeti/components/artist/artist-grid';
+import ExpandedSection from '@pages/confeti/components/expanded/expanded-section';
+import * as styles from './artist-section.css';
 
 const CONCERT_DEFAULT_ID = -1;
 const MAX_VISIBLE_ARTISTS = 4;

@@ -1,4 +1,4 @@
-import * as styles from '@pages/confeti/components/performance/performance-detail.css.ts';
+import * as styles from '@pages/confeti/components/performance/performance-detail.css';
 
 interface PerformanceDetailProps {
   title: string;

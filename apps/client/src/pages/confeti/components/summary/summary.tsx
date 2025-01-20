@@ -1,4 +1,4 @@
-import * as styles from '@pages/confeti/components/summary/summary.css.ts';
+import * as styles from '@pages/confeti/components/summary/summary.css';
 import { Button } from '@confeti/design-system';
 import {
   BtnHeartDefault24,
