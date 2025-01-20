@@ -1,10 +1,14 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
+export const container = style({
+  padding: '4.2rem 2rem 2rem 2rem',
+  backgroundColor: themeVars.color.white,
+});
+
 export const wrapper = style({
   width: '100%',
   position: 'relative',
-  backgroundColor: themeVars.color.white,
 });
 export const timeList = style({
   display: 'flex',
