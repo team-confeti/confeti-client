@@ -6,6 +6,8 @@ export const END_POINT = {
   GET_FAVORITE_PERFORMANCES: '/user/favorites/performances',
   POST_LIKE_ARTIST: (artistId: number) => `/user/favorites/artists/${artistId}`,
   GET_ARTISTS_SEARCH: `artists?search=`,
+  GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
+    `performances/association/${artistId}?cursor=${cursor}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
