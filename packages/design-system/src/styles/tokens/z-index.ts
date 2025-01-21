@@ -3,7 +3,7 @@ export const zIndex = {
     content: '99',
   },
   header: {
-    content: '10',
+    content: '99',
   },
   timeTable: {
     content: '3',
@@ -16,7 +16,7 @@ export const zIndex = {
     content: '100',
   },
   floatingButton: {
-    content: '15',
+    content: '100',
   },
   poster: {
     content: '20',

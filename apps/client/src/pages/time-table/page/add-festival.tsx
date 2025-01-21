@@ -2,11 +2,19 @@ import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
+
+const MAX_SELECTIONS = 3;
+
 const AddFestival = () => {
-  const { selectedFestivals, handleFestivalClick } = useFestivalSelection();
+  const { selectedFestivals, handleFestivalClick, showToast } =
+    useFestivalSelection();
 
   const handleAddClick = () => {
-    // 타임테이블에 추가되는 로직 작성 예정
+    if (selectedFestivals.length > MAX_SELECTIONS) {
+      showToast();
+    } else {
+      // 타임테이블에 추가되는 로직 작성 예정
+    }
   };
 
   return (

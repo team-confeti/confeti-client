@@ -3,3 +3,5 @@ export type BaseResponse<T> = {
   message: string;
   data: T;
 };
+
+export type BaseResponseWithoutData = Omit<BaseResponse<unknown>, 'data'>;

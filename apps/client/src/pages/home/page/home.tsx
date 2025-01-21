@@ -13,6 +13,7 @@ import { USER_DATA } from '@shared/mocks/user-data';
 import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
+
 import { routePath } from '@shared/constants/path';
 const Home = () => {
   const bannerData = PERFORMANCE_TICKETING_DATA?.data?.performances || [];
