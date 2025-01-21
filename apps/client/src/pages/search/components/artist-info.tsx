@@ -1,10 +1,9 @@
-import {
-  BtnHeartDefault24,
-  BtnHeartFilled24,
-} from '@confeti/design-system/icons';
+import { BtnHeart } from '@confeti/design-system/icons';
 import * as styles from './artist-info.css';
+import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 
 interface ArtistInfoProps {
+  id: string;
   image: string;
   name: string;
   releaseDate: string;
@@ -12,11 +11,18 @@ interface ArtistInfoProps {
 }
 
 const ArtistInfo = ({
+  id,
   image,
   name,
   releaseDate,
   isFavorite,
 }: ArtistInfoProps) => {
+  const { mutate } = useLikeMutation();
+
+  const handleLikeArtist = (id: string, action: 'LIKE' | 'UNLIKE') => {
+    mutate({ id, action, type: 'ARTIST' });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -30,11 +36,11 @@ const ArtistInfo = ({
           </div>
         </div>
 
-        {isFavorite ? (
-          <BtnHeartFilled24 className={styles.heartIcon} />
-        ) : (
-          <BtnHeartDefault24 className={styles.heartIcon} />
-        )}
+        <BtnHeart
+          isFavorite={isFavorite}
+          className={styles.heartIcon}
+          onClick={() => handleLikeArtist(id, isFavorite ? 'UNLIKE' : 'LIKE')}
+        />
       </div>
     </div>
   );

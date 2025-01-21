@@ -19,6 +19,7 @@ const ArtistSection = ({ artists }: ArtistSectionProps) => {
       {artists.map((artist) => (
         <ArtistInfo
           key={artist.artistId}
+          id={artist.artistId}
           image={artist.profileUrl}
           name={artist.name}
           releaseDate={artist.latestReleaseAt}
