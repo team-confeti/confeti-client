@@ -1,7 +1,7 @@
 import { BaseResponse } from '@shared/types/api';
 import { UserProfile } from '@shared/types/user-response';
 import { END_POINT } from '@shared/constants/api';
-import { axiosInstance } from './config/instance';
+import { axiosInstance } from '../config/instance';
 
 export const getUserProfile = async (): Promise<UserProfile> => {
   const response = await axiosInstance.get<BaseResponse<UserProfile>>(
