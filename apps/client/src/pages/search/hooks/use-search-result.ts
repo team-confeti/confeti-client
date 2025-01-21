@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
+import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
 
 interface UseArtistProps {
   keyword: string;
@@ -8,7 +8,7 @@ interface UseArtistProps {
 
 export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
   const { data } = useQuery({
-    ...SEARCH_QUERY_OPTIONS.SEARCH_ARTIST(keyword, enabled),
+    ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
   });
 
   return data;
