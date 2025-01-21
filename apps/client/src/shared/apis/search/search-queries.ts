@@ -32,7 +32,7 @@ export const SEARCH_PERFOMANCE_QUERY_KEY = {
 
 export const SEARCH_PERFOMANCE_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_PERFOMANCE_QUERY_KEY.ALL }),
-  SEARCH_ARTIST: (artistId: string, cursor: number) => ({
+  SEARCH_PERFORMANCE: (artistId: string, cursor: number) => ({
     queryKey: SEARCH_PERFOMANCE_QUERY_KEY.SEARCH_PERFORMANCE(artistId, cursor),
     queryFn: () => getPerformanceSearch(artistId, cursor),
   }),
