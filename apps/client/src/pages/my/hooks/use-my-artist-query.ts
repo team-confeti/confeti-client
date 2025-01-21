@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { MY_ARTIST_QUERY_OPTIONS } from '@shared/apis/my/my-queries';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 
 export const useMyArtistQuery = () => {
-  const { data } = useSuspenseQuery(MY_ARTIST_QUERY_OPTIONS.GET());
+  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_ARTISTS());
   return { data };
 };
