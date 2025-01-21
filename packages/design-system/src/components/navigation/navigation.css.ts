@@ -13,7 +13,6 @@ export const container = style([
     alignItems: 'center',
     width: '100%',
     height: '4.4rem',
-    marginTop: '5rem',
     padding: '0rem 2rem',
     gap: '1.8rem',
     zIndex: themeVars.zIndex.navigation.content,

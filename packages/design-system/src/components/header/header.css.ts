@@ -13,16 +13,14 @@ export const container = recipe({
   variants: {
     variant: {
       default: {
-        position: 'fixed',
+        position: 'sticky',
         left: 0,
         top: 0,
-        zIndex: themeVars.zIndex.header.content,
-        width: '100%',
-        justifyContent: 'space-between',
         padding: '0.8rem 2rem',
+        justifyContent: 'space-between',
+        zIndex: themeVars.zIndex.header.content,
       },
       detail: {
-        marginTop: '5rem',
         padding: '1.2rem 0 1.2rem 2rem',
         borderBottom: themeVars.border.gray300,
       },
