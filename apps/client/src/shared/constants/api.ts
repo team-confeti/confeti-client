@@ -7,6 +7,8 @@ export const END_POINT = {
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,
+  GET_FESTIVAL_DETAIL: '/performances/festivals',
+  GET_CONCERT_DETAIL: '/performances/concerts',
 } as const;
 
 export const HTTP_STATUS_CODE = {

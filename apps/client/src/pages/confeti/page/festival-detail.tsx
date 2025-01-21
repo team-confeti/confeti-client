@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Poster from '@pages/confeti/components/poster/poster';
 import Summary from '@pages/confeti/components/summary/summary';
 import Info from '@pages/confeti/components/info/info';
@@ -7,12 +8,15 @@ import PerformanceDetail from '@pages/confeti/components/performance/performance
 import ArtistTitle from '@pages/confeti/components/artist/artist-title';
 import ArtistSection from '@pages/confeti/components/artist/artist-section';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { FESTIVAL_DETAIL } from '@pages/confeti/mocks/confeti-detail';
+import { useFestivalDetail } from '@pages/confeti/hooks/use-festival-detail';
 
 const FestivalDetailPage = () => {
-  const { festival } = FESTIVAL_DETAIL;
-
+  const { festivalId } = useParams<{ festivalId: string }>();
+  const parsedFestivalId = festivalId ? Number(festivalId) : 0;
+  const festivalDetail = useFestivalDetail(parsedFestivalId);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const { festival } = festivalDetail;
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -60,7 +64,7 @@ const FestivalDetailPage = () => {
       />
       <Spacing />
       <ArtistTitle />
-      <ArtistSection type="festival" artistData={FESTIVAL_DETAIL} />
+      <ArtistSection type="festival" artistData={festivalDetail} />
       <Footer />
     </>
   );
