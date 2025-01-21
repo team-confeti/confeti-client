@@ -3,7 +3,7 @@ export const zIndex = {
     content: '99',
   },
   header: {
-    content: '10',
+    content: '100',
   },
   timeTable: {
     content: '3',
