@@ -1,17 +1,8 @@
 import { ArtistCard } from '@confeti/design-system';
 import * as styles from './artist-section.css';
 import { useMyArtistQuery } from '@pages/my/hooks/use-my-artist-query';
-type Artist = {
-  artistId: string;
-  name: string;
-  profileUrl: string;
-};
 
-interface ArtistSectionProps {
-  artists: Artist[];
-}
-
-const ArtistSection = ({ artists }: ArtistSectionProps) => {
+const ArtistSection = () => {
   const { data: artistData } = useMyArtistQuery();
   return (
     <div className={styles.container}>
