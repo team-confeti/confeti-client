@@ -19,7 +19,11 @@ const AddFestival = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header variant="detail" title="페스티벌 추가하기" />
+      <Header
+        variant="detail"
+        title="페스티벌 추가하기"
+        className={styles.headerLayout}
+      />
       <div className={styles.container}>
         {PERFORMANCE_DATA.data.performances.map((performance) => {
           const isSelected = selectedFestivals.includes(
