@@ -26,6 +26,7 @@ const FestivalDetailPage = () => {
         posterUrl={festival.posterUrl}
       />
       <Summary
+        id={festival.festivalId}
         title={festival.title}
         subtitle={festival.subtitle}
         startAt={festival.startAt}

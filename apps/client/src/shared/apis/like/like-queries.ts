@@ -5,7 +5,7 @@ export const LIKE_QUERY_KEY = {
     'artist',
     artistId,
   ],
-  LIKE_FESTIVAL: (festivalId: string) => [
+  LIKE_FESTIVAL: (festivalId: number) => [
     ...LIKE_QUERY_KEY.ALL,
     'festival',
     festivalId,
