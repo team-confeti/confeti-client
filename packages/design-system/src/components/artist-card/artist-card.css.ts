@@ -20,8 +20,8 @@ export const imageAndHeartWrapper = style({
 export const artistImg = recipe({
   base: {
     borderRadius: '50%',
-    width: '100%',
-    height: '100%',
+    width: '8rem',
+    height: '8rem',
     objectFit: 'cover',
   },
 });
