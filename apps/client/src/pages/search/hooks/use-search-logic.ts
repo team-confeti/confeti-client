@@ -1,45 +1,41 @@
+import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSearchArtist } from '../hooks/use-search-data';
-import { useSearchState } from '@pages/search/hooks/use-search-state';
 import { routePath } from '@shared/constants/path';
 
 export const useSearchLogic = () => {
-  const { searchKeyword, setSearchKeyword } = useSearchState();
-  const { barFocus, setBarFocus } = useSearchState();
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [barFocus, setBarFocus] = useState(false);
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const keyword = searchKeyword;
-
   const paramsKeyword = searchParams.get('q') || '';
+
   const searchData = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
-
   const artistData = searchData?.artist ? [searchData.artist] : [];
 
+  // 이벤트 핸들러
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && keyword.trim()) {
-      navigate(`${routePath.SEARCH}?q=${keyword}`);
+    if (e.key === 'Enter' && searchKeyword.trim()) {
+      navigate(`${routePath.SEARCH}?q=${searchKeyword}`);
       setBarFocus(false);
     }
   };
 
-  const handleOnFocus = () => {
-    setBarFocus(true);
-  };
+  const handleOnFocus = () => setBarFocus(true);
+  const handleOnBlur = () => setBarFocus(false);
 
-  const handleOnBlur = () => {
-    setBarFocus(false);
-  };
   return {
+    searchKeyword,
     artistData,
     barFocus,
-    setBarFocus,
     paramsKeyword,
     handleOnChange,
     handleKeydown,
