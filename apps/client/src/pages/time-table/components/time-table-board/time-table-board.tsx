@@ -1,6 +1,3 @@
-import { useRef } from 'react';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
 import TimeCell from '@pages/time-table/components/time-cell/time-cell';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
@@ -10,48 +7,20 @@ import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type'
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
 import * as styles from './time-table-board.css';
+import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
-  const boardRef = useRef<HTMLDivElement>(null);
-
+  const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
+    fileName: 'timetable',
+  });
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
 
   const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
-
   const cellNumber = generateTableRow(ticketOpenHour);
 
-  const onDownloadBtn = () => {
-    const board = boardRef.current;
-    const filter = (node: Node) => {
-      return (node as Element).tagName !== 'BUTTON';
-    };
-    if (board) {
-      const scale = window.devicePixelRatio * 2;
-      domtoimage
-        .toBlob(board, {
-          filter: filter,
-          quality: 1,
-          height: board.offsetHeight * scale,
-          width: board.offsetWidth * scale,
-          style: {
-            transform: `scale(${scale})`,
-            transformOrigin: 'top left',
-            width: `${board.offsetWidth}px`,
-            height: `${board.offsetHeight}px`,
-          },
-        })
-        .then((blob) => {
-          saveAs(blob, 'timetable');
-        })
-        .catch((error) => {
-          console.error('Failed to generate image:', error);
-        });
-    }
-  };
-
   return (
-    <section className={styles.container} ref={boardRef}>
+    <section className={styles.container} ref={elementRef}>
       <Stage timeTableInfo={timeTableInfo}></Stage>
       <div className={styles.wrapper}>
         <BoothOpenBox ticketOpenHour={timeTableInfo.ticketOpenAt} />
@@ -98,7 +67,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
             text="이미지 저장"
             variant="add"
             className={styles.saveButton}
-            onClick={() => onDownloadBtn()}
+            onClick={downloadImage}
           ></Button>
         </div>
       </div>
