@@ -20,7 +20,6 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
 };
 
 // 공연정보 검색
-
 export const SEARCH_PERFOMANCE_QUERY_KEY = {
   ALL: ['performance'],
   SEARCH_PERFORMANCE: (artistId: string, cursor: number) => [
