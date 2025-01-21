@@ -4,7 +4,7 @@ export const END_POINT = {
   GET_USER_PROFILE: '/user/info',
   GET_FAVORITE_ARTISTS: '/user/favorite/artists',
   GET_FAVORITE_PERFORMANCES: '/user/favorite/performances',
-  GET_PERFORMANCE_DETAIL: '/user/favorites/performances/preview',
+  GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
 } as const;
 
 export const HTTP_STATUS_CODE = {

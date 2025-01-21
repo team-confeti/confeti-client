@@ -5,7 +5,7 @@ import { get } from './config/instance';
 
 export const getPerformances = async (): Promise<Performances> => {
   const response = await get<BaseResponse<Performances>>(
-    END_POINT.GET_PERFORMANCE_DETAIL,
+    END_POINT.GET_PERFORMANCE_FAVORITE,
   );
   return response.data;
 };
