@@ -1,4 +1,4 @@
-interface UpcomingPerformance {
+interface Ticketing {
   index: number;
   performanceId: number;
   type: 'concert' | 'festival';
@@ -7,7 +7,7 @@ interface UpcomingPerformance {
   reservationBgUrl: string;
 }
 
-export interface UpcomingPerformancesResponse {
+export interface TicketingResponse {
   performanceCount: number;
-  performances: UpcomingPerformance[];
+  performances: Ticketing[];
 }

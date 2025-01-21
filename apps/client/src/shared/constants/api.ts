@@ -6,7 +6,7 @@ export const END_POINT = {
   GET_FAVORITE_PERFORMANCES: '/user/favorite/performances',
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
-  GET_UPCOMING_PERFORMANCES: '/performances/reservation',
+  GET_TICKETING: '/performances/reservation',
   POST_LIKE_ARTIST: (artistId: number) => `/user/favorites/artists/${artistId}`,
 } as const;
 
