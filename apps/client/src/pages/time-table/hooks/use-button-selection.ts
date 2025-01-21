@@ -10,7 +10,7 @@ interface Festival {
   }>;
 }
 
-const useButtonSelection = (festivals: Festival[]) => {
+export const useButtonSelection = (festivals: Festival[]) => {
   // 초기 선택된 축제 ID 설정
   const [clickedFestivalId, setClickedFestivalId] = useState<number | null>(
     festivals.length > 0 ? festivals[0].festivalId : null,
@@ -44,5 +44,3 @@ const useButtonSelection = (festivals: Festival[]) => {
     handleFestivalClick,
   };
 };
-
-export default useButtonSelection;

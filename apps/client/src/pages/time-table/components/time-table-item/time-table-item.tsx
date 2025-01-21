@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import * as styles from './time-table-item.css';
 import {
   parseTimeString,
   calcPosition,
   calcTotalMinutes,
   calcMinutesFromOpen,
 } from '@pages/time-table/utils';
+import * as styles from './time-table-item.css';
 
 interface ItemProps {
   artists: Artist[];
