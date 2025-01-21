@@ -4,6 +4,7 @@ import { Button } from '@confeti/design-system';
 import { BtnHeart } from '@confeti/design-system/icons';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
+
 interface SummaryProps {
   id: number;
   title: string;
