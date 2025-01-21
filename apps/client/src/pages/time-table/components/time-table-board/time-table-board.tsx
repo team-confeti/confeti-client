@@ -27,9 +27,26 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
       return (node as Element).tagName !== 'BUTTON';
     };
     if (board) {
-      domtoimage.toBlob(board, { filter: filter }).then((blob) => {
-        saveAs(blob, 'timetable.jpg');
-      });
+      const scale = window.devicePixelRatio * 2;
+      domtoimage
+        .toBlob(board, {
+          filter: filter,
+          quality: 1,
+          height: board.offsetHeight * scale,
+          width: board.offsetWidth * scale,
+          style: {
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+            width: `${board.offsetWidth}px`,
+            height: `${board.offsetHeight}px`,
+          },
+        })
+        .then((blob) => {
+          saveAs(blob, 'timetable');
+        })
+        .catch((error) => {
+          console.error('Failed to generate image:', error);
+        });
     }
   };
 
@@ -75,6 +92,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
           <p className={styles.timeP}>{24}</p>
           <hr className={styles.timeBar} />
         </div>
+
         <div className={styles.saveButtonWrapper}>
           <Button
             text="이미지 저장"
