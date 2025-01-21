@@ -1,15 +1,16 @@
 import { END_POINT } from '@shared/constants/api';
-import { instance } from '../api';
 import { BaseResponseWithoutData } from '@shared/types/api';
+import { del, post } from '../config/instance';
 
 export const postLikeArtist = async (artistId: string): Promise<void> => {
-  await instance.post<BaseResponseWithoutData>(
+  await post<BaseResponseWithoutData>(
     `${END_POINT.GET_FAVORITE_ARTISTS}/${artistId}`,
   );
+  console.log('postLikeArtist', artistId);
 };
 
 export const deleteLikeArtist = async (artistId: string): Promise<void> => {
-  await instance.delete<BaseResponseWithoutData>(
+  await del<BaseResponseWithoutData>(
     `${END_POINT.GET_FAVORITE_ARTISTS}/${artistId}`,
   );
 };
