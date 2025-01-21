@@ -1,6 +1,5 @@
 import { Header, Footer, Spacing } from '@confeti/design-system';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
-import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import { routePath } from '@shared/constants/path';
 
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
@@ -9,14 +8,20 @@ import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/confeti/no-confeti-section';
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import UserInfo from '@pages/my/components/profile/user-info';
-import ConfetiSection from '@pages/my/components/confeti/conteti-section';
+import ConfetiSection from '@pages/my/components/confeti/confeti-section';
+import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/my-confeti';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const MyProfile = () => {
   const profileData = useUserProfile();
 
   // TODO API 연동 후 수정
   const artists = [...ARTISTS_DATA.data.artists];
-  const confetis = [...PERFORMANCE_DATA.data.performances.slice(0, 3)]; // 임의로 앞에 3개만 가져옴
+
+  const { data: performanceData } = useSuspenseQuery(
+    PERFORMANCE_QUERY_OPTIONS.ALL(),
+  );
+  const confetis = performanceData?.performances.slice(0, 3); // 3개만 보여주기
 
   return (
     <>
@@ -43,7 +48,11 @@ const MyProfile = () => {
         path={routePath.MY_CONFETI}
         showMore={confetis.length > 0}
       >
-        {confetis.length > 0 ? <ConfetiSection /> : <NoConfetiSection />}
+        {confetis.length > 0 ? (
+          <ConfetiSection performances={confetis} />
+        ) : (
+          <NoConfetiSection />
+        )}
       </Box>
       <Footer />
     </>
