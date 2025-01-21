@@ -43,11 +43,7 @@ const MyProfile = () => {
         path={routePath.MY_CONFETI}
         showMore={confetis.length > 0}
       >
-        {confetis.length > 0 ? (
-          <ConfetiSection confeti={confetis} />
-        ) : (
-          <NoConfetiSection />
-        )}
+        {confetis.length > 0 ? <ConfetiSection /> : <NoConfetiSection />}
       </Box>
       <Footer />
     </>
