@@ -8,7 +8,8 @@ export const artistCardVariants = recipe({
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
-    width: '100%',
+    width: '8rem',
+    height: '12rem',
   },
 });
 
