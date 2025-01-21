@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useEditModes = () => {
+export const useEditModes = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isEditTimeTableMode, setIsEditTimeTableMode] = useState(false);
   const [isFestivalDeleteMode, setIsFestivalDeleteMode] = useState(false);
@@ -43,5 +43,3 @@ const useEditModes = () => {
     resetModes,
   };
 };
-
-export default useEditModes;
