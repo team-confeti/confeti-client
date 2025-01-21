@@ -66,6 +66,7 @@ export const artistName = recipe({
 export const durationP = recipe({
   base: {
     ...themeVars.fontStyles.caption_r_10,
+    whiteSpace: 'nowrap',
   },
   variants: {
     isSelected: {
