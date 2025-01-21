@@ -22,7 +22,14 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   const formattedYear = useFormattedYear(firstDate);
 
   if (!festivalDates || festivalDates.length === 0) {
-    return <section className={styles.container}></section>;
+    return (
+      <section className={styles.container}>
+        <div className={styles.yearSection}>
+          <p>{formattedYear}</p>
+        </div>
+        <div className={styles.dateSection}></div>
+      </section>
+    );
   }
 
   const dateDetails = weekDays.map((day, id) => ({
