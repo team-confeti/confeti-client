@@ -14,14 +14,9 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 const MyProfile = () => {
   const profileData = useUserProfile();
-
-  // TODO API 연동 후 수정
   const artists = [...ARTISTS_DATA.data.artists];
 
-  const { data: performanceData } = useSuspenseQuery(
-    PERFORMANCE_QUERY_OPTIONS.ALL(),
-  );
-  const confetis = performanceData?.performances.slice(0, 3); // 3개만 보여주기
+  const { data } = useSuspenseQuery(PERFORMANCE_QUERY_OPTIONS.ALL());
 
   return (
     <>
@@ -46,10 +41,10 @@ const MyProfile = () => {
       <Box
         title="My Confeti"
         path={routePath.MY_CONFETI}
-        showMore={confetis.length > 0}
+        showMore={data?.performances?.length > 0}
       >
-        {confetis.length > 0 ? (
-          <ConfetiSection performances={confetis} />
+        {data?.performances.length > 0 ? (
+          <ConfetiSection performances={data.performances} />
         ) : (
           <NoConfetiSection />
         )}

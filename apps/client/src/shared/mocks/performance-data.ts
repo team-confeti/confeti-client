@@ -43,27 +43,6 @@ export const PERFORMANCE_DATA = {
         posterUrl:
           'https://cdnticket.melon.co.kr/resource/image/upload/product/2024/12/2024122617060697685b42-e726-4421-b1e0-eb803e95bd7c.jpg/melon/resize/180x254/strip/true/quality/90/optimize',
       },
-      {
-        performanceId: 7,
-        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
-        type: 'concert',
-        posterUrl:
-          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
-      },
-      {
-        performanceId: 8,
-        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
-        type: 'concert',
-        posterUrl:
-          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
-      },
-      {
-        performanceId: 9,
-        title: '2025 검정치마 단독공연＂SONGS TO BRING YOU HOME＂',
-        type: 'concert',
-        posterUrl:
-          'https://ticketimage.interpark.com/Play/image/large/25/25000084_p.gif',
-      },
     ],
   },
 } as const;

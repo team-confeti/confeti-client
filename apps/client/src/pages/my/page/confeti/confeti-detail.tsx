@@ -9,7 +9,7 @@ const ConfetiMore = () => {
 
   const allPerformances = [
     ...data.performances,
-    ...PERFORMANCE_DATA.data.performances.slice(3),
+    ...PERFORMANCE_DATA.data.performances,
   ];
 
   return (
