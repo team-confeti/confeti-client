@@ -3,7 +3,7 @@ import Title from '../components/title';
 import * as styles from './performance-section.css';
 
 interface PerformanceSectionProps {
-  performances: {
+  performances?: {
     performanceId: number;
     title: string;
     performanceAt: string;
@@ -14,7 +14,7 @@ interface PerformanceSectionProps {
 }
 
 const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
-  if (performances.length === 0) {
+  if (performances?.length === 0) {
     return (
       <div className={styles.emptyPerformanceSection}>
         아직 예정된 공연이 없어요!
@@ -25,7 +25,7 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
   return (
     <div className={styles.section}>
       <Title text="예정된 공연" />
-      {performances.map((performance) => (
+      {performances?.map((performance) => (
         <PerformanceInfo
           key={performance.performanceId}
           performanceId={performance.performanceId}
