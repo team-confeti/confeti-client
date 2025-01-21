@@ -19,10 +19,12 @@ const useEditModes = () => {
 
   const toggleEditTimeTableMode = () => {
     setIsEditTimeTableMode((prev) => !prev);
+    window.scrollTo({ top: 380 });
   };
 
   const toggleFestivalDeleteMode = () => {
     setIsFestivalDeleteMode((prev) => !prev);
+    window.scrollTo({ top: 0 });
   };
 
   const toggleTextVisibility = (visible: boolean) => {

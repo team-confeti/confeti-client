@@ -5,9 +5,10 @@ import {
   IcFloatDelete24,
   IcTimetableFloatFinish,
 } from '@confeti/design-system/icons';
-import * as styles from './edit-floating-button.css';
-import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
+import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
 import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
+import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
+import * as styles from './edit-floating-button.css';
 
 interface EditFloatingButtonProps {
   isEditMode: boolean;
@@ -33,10 +34,9 @@ const EditFloatingButton = ({
   onResetModes,
 }: EditFloatingButtonProps) => {
   const isAtBottom = useScrollPosition();
-
-  // isAtBottom을 isEditTimeTableMode와 isFestivalDeleteMode 모드에서는 false로 설정
   const adjustedAtBottom =
     isEditTimeTableMode || isFestivalDeleteMode ? false : isAtBottom;
+  useDisableScroll(isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode);
 
   const handleToggleButton = () => {
     onToggleEditMode();
@@ -95,7 +95,7 @@ const EditFloatingButton = ({
     <button
       className={styles.buttonVariants({
         variant,
-        isAtBottom: adjustedAtBottom, // 여기서 adjustedAtBottom을 사용
+        isAtBottom: adjustedAtBottom,
       })}
       onClick={onClick}
     >
@@ -116,7 +116,7 @@ const EditFloatingButton = ({
     if (isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode) {
       return (
         <div
-          className={`${styles.box} ${adjustedAtBottom ? styles.boxAtBottom : ''}`} // 여기서 adjustedAtBottom을 사용
+          className={`${styles.box} ${adjustedAtBottom ? styles.boxAtBottom : ''}`}
         >
           <button
             onClick={onToggleEditTimeTableMode}

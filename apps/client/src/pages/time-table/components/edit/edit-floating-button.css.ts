@@ -118,4 +118,11 @@ export const background = style({
 export const backgroundVisible = style({
   backgroundColor: themeVars.color.black_op,
   zIndex: themeVars.zIndex.floatingButton.content,
+  // 버튼을 누르면 body의 스크롤을 막기 위한 설정
+  height: '100vh',
+  '@layer': {
+    body: {
+      overflow: 'hidden',
+    },
+  },
 });
