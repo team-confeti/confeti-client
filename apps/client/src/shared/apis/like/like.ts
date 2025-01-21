@@ -15,17 +15,12 @@ export const deleteLikeArtist = async (artistId: string): Promise<void> => {
   );
 };
 
-// TODO: postLikeFestival, deleteLikeFestival API 추가
 export const postLikeFestival = async (festivalId: number): Promise<void> => {
-  await post<BaseResponseWithoutData>(
-    `${END_POINT.POST_LIKE_FESTIVAL}/${festivalId}`,
-  );
+  await post<BaseResponseWithoutData>(END_POINT.POST_LIKE_FESTIVAL(festivalId));
 };
 
 export const deleteLikeFestival = async (festivalId: number): Promise<void> => {
-  await del<BaseResponseWithoutData>(
-    `${END_POINT.POST_LIKE_FESTIVAL}/${festivalId}`,
-  );
+  await del<BaseResponseWithoutData>(END_POINT.POST_LIKE_FESTIVAL(festivalId));
 };
 
 // TODO: postLikeConcert, deleteLikeConcert API 추가
