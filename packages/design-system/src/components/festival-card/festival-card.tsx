@@ -24,6 +24,7 @@ const FestivalCard = ({
   onSelectChange,
   id,
   type,
+  onClick,
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
   const navigate = useNavigate();
@@ -39,6 +40,10 @@ const FestivalCard = ({
 
     if (onSelectChange) {
       onSelectChange(title, toggledSelected);
+    }
+
+    if (onClick) {
+      onClick();
     }
   };
 

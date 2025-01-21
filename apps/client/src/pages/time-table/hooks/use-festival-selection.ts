@@ -20,18 +20,17 @@ const useFestivalSelection = () => {
     });
   };
 
-  const canAddFestival = selectedFestivals.length < MAX_SELECTIONS;
-
-  const handleFestivalClick = (festivalId: number, isSelected: boolean) =>
-    isSelected
-      ? removeSelect(festivalId)
-      : canAddFestival
-        ? addSelect(festivalId)
-        : showToast();
+  const handleFestivalClick = (festivalId: number, isSelected: boolean) => {
+    if (isSelected) {
+      removeSelect(festivalId);
+    } else {
+      addSelect(festivalId);
+    }
+  };
 
   return {
     selectedFestivals,
-    canAddFestival,
+    showToast,
     handleFestivalClick,
   };
 };
