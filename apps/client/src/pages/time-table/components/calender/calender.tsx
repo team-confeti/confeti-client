@@ -1,4 +1,3 @@
-import * as styles from './calender.css';
 import { cn } from '@confeti/design-system/utils';
 import {
   useFormattedYear,
@@ -7,6 +6,7 @@ import {
   createFestivalDateMap,
   checkFestivalDateStatus,
 } from '@pages/time-table/hooks/use-data-formatted';
+import * as styles from './calender.css';
 
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];
@@ -23,7 +23,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
 
   if (!festivalDates || festivalDates.length === 0) {
     return (
-      <section className={styles.container}>
+      <section className={styles.noDataContainer}>
         <div className={styles.yearSection}>
           <p>{formattedYear}</p>
         </div>
