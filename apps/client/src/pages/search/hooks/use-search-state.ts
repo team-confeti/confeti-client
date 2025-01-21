@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useSearch = () => {
+export const useSearchState = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
 
   return {
