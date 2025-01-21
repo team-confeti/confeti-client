@@ -1,11 +1,12 @@
 import { Spacing } from '@confeti/design-system';
+import { TIME_TABLE_INFO } from '@shared/mocks/time-table';
+import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
-import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
 import useButtonSelection from '../hooks/use-button-selection';
-import { TIME_TABLE_INFO } from '@shared/mocks/time-table';
+
 const TimeTable = () => {
   const festivals = REGISTERDED_FESTIVAL.data.festivals;
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =

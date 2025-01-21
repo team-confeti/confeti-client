@@ -1,13 +1,13 @@
+import { Button } from '@confeti/design-system';
 import TimeCell from '@pages/time-table/components/time-cell/time-cell';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import Stage from '@pages/time-table/components/stage/stage';
-import { Button } from '@confeti/design-system';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
-import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
-import * as styles from './time-table-board.css';
+import { HALF_HOUR_TO_MINUTES, END_HOUR } from '@pages/time-table/constants';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
+import * as styles from './time-table-board.css';
 
 const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
@@ -36,15 +36,15 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
             <div key={stage.stageOrder}>
               {stage.festivalTimes.map((block) => (
                 <TimeTableItem
-                  ticketOpenAt={timeTableInfo.ticketOpenAt}
-                  stageCount={timeTableInfo.stageCount}
                   key={block.festivalTimeId}
+                  festivalTimeId={block.festivalTimeId}
                   artists={block.artists}
                   isSelected={block.isSelected}
                   startTime={block.startAt}
                   endTime={block.endAt}
+                  ticketOpenAt={timeTableInfo.ticketOpenAt}
+                  stageCount={timeTableInfo.stageCount}
                   stageOrder={stage.stageOrder}
-                  festivalTimeId={block.festivalTimeId}
                 />
               ))}
             </div>
@@ -58,7 +58,7 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
         )}
 
         <div className={styles.timeList}>
-          <p className={styles.timeP}>{24}</p>
+          <p className={styles.timeP}>{END_HOUR}</p>
           <hr className={styles.timeBar} />
         </div>
 
