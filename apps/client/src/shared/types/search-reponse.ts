@@ -8,16 +8,3 @@ export interface ArtistSearch {
     isMultipleArtists: boolean;
   };
 }
-
-export interface PerformanceSearch {
-  nextCursor: string;
-  performances: {
-    performanceId: number;
-    type: string;
-    title: string;
-    performanceAt: Date;
-    posterUrl: string;
-    area: string;
-    isFavorite: boolean;
-  };
-}
