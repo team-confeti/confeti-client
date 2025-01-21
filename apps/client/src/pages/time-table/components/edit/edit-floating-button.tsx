@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import {
   IcTimetableFloatClose,
   IcFloatEditLime24,
@@ -9,35 +7,41 @@ import {
 } from '@confeti/design-system/icons';
 import * as styles from './edit-floating-button.css';
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
+import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
 
-type ModeSetter = React.Dispatch<React.SetStateAction<boolean>>;
-
-interface RenderActionButtonProps {
-  variant: 'close' | 'edit' | 'complete';
-  icon: JSX.Element;
-  text: string | null;
-  onClick: () => void;
+interface EditFloatingButtonProps {
+  isEditMode: boolean;
+  isEditTimeTableMode: boolean;
+  isFestivalDeleteMode: boolean;
+  isTextVisible: boolean;
+  onToggleEditMode: () => void;
+  onToggleEditTimeTableMode: () => void;
+  onToggleFestivalDeleteMode: () => void;
+  onToggleTextVisibility: (visible: boolean) => void;
+  onResetModes: () => void;
 }
 
-const EditFloatingButton = () => {
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [isEditTimeTableMode, setIsEditTimeTableMode] = useState(false);
-  const [isFestivalDeleteMode, setIsFestivalDeleteMode] = useState(false);
-  const [isTextVisible, setIsTextVisible] = useState(true);
+const EditFloatingButton = ({
+  isEditMode,
+  isEditTimeTableMode,
+  isFestivalDeleteMode,
+  isTextVisible,
+  onToggleEditMode,
+  onToggleEditTimeTableMode,
+  onToggleFestivalDeleteMode,
+  onToggleTextVisibility,
+  onResetModes,
+}: EditFloatingButtonProps) => {
+  const isAtBottom = useScrollPosition();
 
-  const resetModes = () => {
-    setIsEditTimeTableMode(false);
-    setIsFestivalDeleteMode(false);
-  };
+  // isAtBottom을 isEditTimeTableMode와 isFestivalDeleteMode 모드에서는 false로 설정
+  const adjustedAtBottom =
+    isEditTimeTableMode || isFestivalDeleteMode ? false : isAtBottom;
 
   const handleToggleButton = () => {
-    setIsEditMode((prev) => !prev);
-    setIsTextVisible(true);
-    if (isEditTimeTableMode || isFestivalDeleteMode) resetModes();
-  };
-
-  const handleModeToggle = (modeSetter: ModeSetter): void => {
-    modeSetter((prev: boolean) => !prev);
+    onToggleEditMode();
+    onToggleTextVisibility(true);
+    if (isEditTimeTableMode || isFestivalDeleteMode) onResetModes();
   };
 
   const getBackgroundClassName = () => {
@@ -75,17 +79,32 @@ const EditFloatingButton = () => {
     });
   };
 
+  interface RenderActionButtonProps {
+    variant: 'close' | 'edit' | 'complete';
+    icon: JSX.Element;
+    text: string | null;
+    onClick: () => void;
+  }
+
   const renderActionButton = ({
     variant,
     icon,
     text,
     onClick,
   }: RenderActionButtonProps) => (
-    <button className={styles.buttonVariants({ variant })} onClick={onClick}>
+    <button
+      className={styles.buttonVariants({
+        variant,
+        isAtBottom: adjustedAtBottom, // 여기서 adjustedAtBottom을 사용
+      })}
+      onClick={onClick}
+    >
       {icon}
       {text && (
         <span
-          className={`${styles.text} ${isTextVisible ? styles.textVisible : styles.textHidden}`}
+          className={`${styles.text} ${
+            isTextVisible ? styles.textVisible : styles.textHidden
+          }`}
         >
           {text}
         </span>
@@ -96,16 +115,18 @@ const EditFloatingButton = () => {
   const renderActionButtons = () => {
     if (isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode) {
       return (
-        <div className={styles.box}>
+        <div
+          className={`${styles.box} ${adjustedAtBottom ? styles.boxAtBottom : ''}`} // 여기서 adjustedAtBottom을 사용
+        >
           <button
-            onClick={() => handleModeToggle(setIsEditTimeTableMode)}
+            onClick={onToggleEditTimeTableMode}
             className={styles.boxButton}
           >
             <IcFloatEdit24 width="2.4rem" height="2.4rem" />
             <span>{EDIT_BOX.EDIT_TIMETABLE}</span>
           </button>
           <button
-            onClick={() => handleModeToggle(setIsFestivalDeleteMode)}
+            onClick={onToggleFestivalDeleteMode}
             className={styles.boxButton}
           >
             <IcFloatDelete24 width="2.4rem" height="2.4rem" />

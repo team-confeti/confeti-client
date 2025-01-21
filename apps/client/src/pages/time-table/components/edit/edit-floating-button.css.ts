@@ -23,15 +23,18 @@ export const box = style({
   alignItems: 'flex-start',
   padding: '1rem 5.3rem 0.9rem 1.6rem',
   position: 'fixed',
-  top: '48.5rem',
+  bottom: '9.2rem',
   right: '2rem',
   ...themeVars.fontStyles.subtitle4_b_14,
   borderRadius: '0.5rem',
   backgroundColor: themeVars.color.white,
   zIndex: themeVars.zIndex.floatingButton.content,
-
-  transition: 'width 0.3s ease-in-out',
+  transition: 'bottom 0.3s ease-in-out',
   animation: `${fadeInBox} 0.3s ease-out`,
+});
+
+export const boxAtBottom = style({
+  bottom: '16.2rem', // box가 하단에 있을 때는 더 위로 올림
 });
 
 export const boxButton = style({
@@ -46,35 +49,40 @@ export const buttonVariants = recipe({
     height: '5rem',
     position: 'fixed',
     right: '2rem',
-    top: '59.7rem',
     borderRadius: '3rem',
     backgroundColor: themeVars.color.gray800,
     zIndex: themeVars.zIndex.floatingButton.content,
-    transition: 'width 0.3s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
     cursor: 'pointer',
   },
   variants: {
     variant: {
       close: {
-        bottom: '11rem',
         padding: '1.3rem',
         width: '5rem',
       },
       edit: {
-        bottom: '11rem',
         padding: '0.5rem',
         width: '11rem',
       },
       complete: {
-        bottom: '2rem',
         padding: '0.5rem',
         width: '11rem',
         gap: '0.2rem',
       },
     },
+    isAtBottom: {
+      true: {
+        bottom: '10rem',
+      },
+      false: {
+        bottom: '3rem',
+      },
+    },
   },
   defaultVariants: {
     variant: 'edit',
+    isAtBottom: false,
   },
 });
 

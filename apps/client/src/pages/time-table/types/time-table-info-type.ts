@@ -17,7 +17,7 @@ interface Stage {
   festivalTimes: FestivalTimes[];
 }
 
-interface TimeTableInfo {
+export interface TimeTableInfo {
   ticketOpenAt: string;
   stageCount: number;
   stages: Stage[];
