@@ -5,6 +5,7 @@ import { routePath } from '@shared/constants/path';
 
 export const useSearchLogic = () => {
   const { searchKeyword, setSearchKeyword } = useSearchState();
+  const { barFocus, setBarFocus } = useSearchState();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const keyword = searchKeyword;
@@ -24,14 +25,25 @@ export const useSearchLogic = () => {
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && keyword.trim()) {
       navigate(`${routePath.SEARCH}?q=${keyword}`);
+      setBarFocus(false);
     }
   };
 
+  const handleOnFocus = () => {
+    setBarFocus(true);
+  };
+
+  const handleOnBlur = () => {
+    setBarFocus(false);
+  };
   return {
-    searchKeyword,
     artistData,
+    barFocus,
+    setBarFocus,
     paramsKeyword,
     handleOnChange,
     handleKeydown,
+    handleOnFocus,
+    handleOnBlur,
   };
 };
