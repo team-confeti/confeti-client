@@ -1,13 +1,16 @@
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
+import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
+import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 const MAX_SELECTIONS = 3;
 
 const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
+  const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
+  const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   const handleAddClick = () => {
     if (selectedFestivals.length > MAX_SELECTIONS) {
@@ -25,24 +28,24 @@ const AddFestival = () => {
         className={styles.headerLayout}
       />
       <div className={styles.container}>
-        {PERFORMANCE_DATA.data.performances.map((performance) => {
-          const isSelected = selectedFestivals.includes(performance.typeId);
-
+        {festivals.map((festival) => {
+          const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
             <FestivalCard
               key={performance.typeId}
               typeId={performance.typeId}
-              type={performance.type}
-              title={performance.title}
-              imageSrc={performance.posterUrl}
+              type="festival"
+              title={festival.title}
+              imageSrc={festival.posterUrl}
               selectable={true}
               isSelected={isSelected}
               onClick={() =>
-                handleFestivalClick(performance.typeId, isSelected)
+                handleFestivalClick(festival.festivalId, isSelected)
               }
             />
           );
         })}
+        {hasNextPage && <div ref={observerRef} style={{ height: '20px' }} />}
       </div>
       <div className={styles.buttonSection}>
         <Button
