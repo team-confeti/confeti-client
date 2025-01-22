@@ -1,5 +1,6 @@
 export interface Performance {
-  performanceId: number;
+  index: number;
+  typeId: number;
   type: 'concert' | 'festival';
   title: string;
   posterUrl: string;

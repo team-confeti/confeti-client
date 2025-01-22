@@ -1,4 +1,5 @@
 import { useEffect, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as styles from './ticketing-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import InfoButton from './info-button/info-button';
@@ -8,10 +9,12 @@ import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
 interface CarouselWrapProps {
   performances: {
+    detailRoutePath: string;
+    index: number;
     reservationBgUrl: string;
     subtitle: string;
     reserveAt: string;
-    performanceId: number;
+    typeId: number;
     type: string;
   }[];
   indexData: number;
@@ -38,13 +41,16 @@ interface CarouselInfoBottomProps {
 }
 
 const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
+  const navigate = useNavigate();
+
   // 슬라이드 데이터
   const performanceData = useCarouselData(
     performances.map((item) => item.reservationBgUrl),
     performances.map((item) => item.subtitle),
     performances.map((item) => item.reserveAt),
-    performances.map((item) => item.performanceId),
+    performances.map((item) => item.typeId),
     performances.map((item) => item.type),
+    performances.map((item) => `/${item.type}-detail/${item.typeId}`),
   );
 
   // 슬라이드 상태 관리
@@ -94,7 +100,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           <TicketingCarousel.InfoBottom>
             <InfoButton
               title={'공연 정보 확인하기'}
-              performanceId={performanceData.performanceId[currentIndex]}
+              typeId={performanceData.typeId[currentIndex]}
               performanceType={performanceData.type[currentIndex]}
             />
             <ProgressBar
