@@ -37,4 +37,5 @@ export const rootStyle = style({
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
   backgroundColor: themeVars.color.white,
+  ...themeVars.shadowStyles.shadow_gloabal,
 });

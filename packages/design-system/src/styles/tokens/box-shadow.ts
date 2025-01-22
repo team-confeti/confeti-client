@@ -11,4 +11,7 @@ export const shadowStyles = {
   shadow_md_4: {
     boxShadow: '0px -2px 4px 0px rgba(0, 0, 0, 0.25))',
   },
+  shadow_gloabal: {
+    boxShadow: '0px 0px 30px 0px rgba(0,0,0,0.25)',
+  },
 };
