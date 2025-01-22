@@ -112,7 +112,7 @@ export const useLikeMutation = () => {
       return { queryKey, prevData };
     },
 
-    onError: (err, variables, context) => {
+    onError: (_err, _variables, context) => {
       if (context?.prevData) {
         queryClient.setQueryData(context.queryKey, context.prevData);
       }
