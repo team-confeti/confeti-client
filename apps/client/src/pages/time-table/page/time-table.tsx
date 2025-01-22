@@ -10,7 +10,7 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-import { useTimeTableFestivalMutation } from '@pages/time-table/hooks/use-timetable-festival-mutation';
+import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import * as styles from './time-table.css';
 
 const TimeTable = () => {
@@ -42,7 +42,7 @@ const TimeTable = () => {
     selectedFestivalDateId as number,
   );
 
-  const deleteFestival = useTimeTableFestivalMutation();
+  const deleteFestival = useAddTimeTableFestival();
 
   const handleDeleteFestival = (festivalId: number) => {
     deleteFestival.mutate(festivalId);
