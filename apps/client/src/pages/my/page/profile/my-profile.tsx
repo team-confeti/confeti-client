@@ -41,9 +41,9 @@ const MyProfile = () => {
       <Box
         title="My Confeti"
         path={routePath.MY_CONFETI}
-        showMore={data?.performances?.length > 0}
+        showMore={data.performances.length > 0}
       >
-        {data?.performances.length > 0 ? (
+        {data.performances.length > 0 ? (
           <ConfetiSection performances={data.performances} />
         ) : (
           <NoConfetiSection />
