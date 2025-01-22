@@ -21,7 +21,7 @@ export interface Artist {
 }
 
 export interface FestivalTime {
-  festivalTimeId: number;
+  userTimetableId: number;
   startAt: string;
   endAt: string;
   isSelected: boolean;
