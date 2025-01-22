@@ -10,7 +10,11 @@ export const END_POINT = {
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
   GET_TICKETING: '/performances/reservation',
+  //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
+    `user/timetables/festivals/${festivalDateId}`,
+  //검색
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
