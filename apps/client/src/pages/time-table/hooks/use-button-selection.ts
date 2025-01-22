@@ -42,7 +42,6 @@ export const useButtonSelection = (festivals: Festival[]) => {
 
   const handleFestivalClick = (festivalId: number) => {
     setClickedFestivalId(festivalId);
-    console.log(1);
     const newDates = festivalDatesMap.get(festivalId) || [];
     setSelectedFestivalDateId(
       newDates.length > 0 ? newDates[0].festivalDateId : null,
