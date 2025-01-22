@@ -24,8 +24,13 @@ export const useSearchLogic = () => {
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchKeyword.trim()) {
-      navigate(`${routePath.SEARCH}?q=${searchKeyword}`);
-      setBarFocus(false);
+      e.preventDefault();
+      setTimeout(() => {
+        navigate(`${routePath.SEARCH}?q=${searchKeyword}`);
+        setBarFocus(false);
+        setSearchKeyword('');
+        (e.target as HTMLInputElement).blur();
+      }, 0);
     }
   };
 
