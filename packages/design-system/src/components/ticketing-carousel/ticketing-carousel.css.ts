@@ -54,6 +54,8 @@ export const textSection = style({
 });
 
 export const description = style({
+  ...themeVars.display.flexColumn,
+  gap: '0.8rem',
   position: 'absolute',
   top: '1.6rem',
 });
