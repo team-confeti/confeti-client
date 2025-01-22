@@ -3,18 +3,27 @@ import TimeCell from '@pages/time-table/components/time-cell/time-cell';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import Stage from '@pages/time-table/components/stage/stage';
-import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
+import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 import { HALF_HOUR_TO_MINUTES, END_HOUR } from '@pages/time-table/constants';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import * as styles from './time-table-board.css';
 
-const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
+interface Props {
+  timeTableInfo: TimeTableInfo;
+  isEditTimeTableMode: boolean;
+  isFestivalDeleteMode: boolean;
+}
+
+const TimeTableBoard = ({
+  timeTableInfo,
+  isEditTimeTableMode,
+  isFestivalDeleteMode,
+}: Props) => {
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: 'timetable',
   });
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
-
   const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
   const cellNumber = generateTableRow(ticketOpenHour);
@@ -62,14 +71,16 @@ const TimeTableBoard = ({ timeTableInfo }: TimeTableInfoType) => {
           <hr className={styles.timeBar} />
         </div>
 
-        <div className={styles.saveButtonWrapper}>
-          <Button
-            text="이미지 저장"
-            variant="add"
-            className={styles.saveButton}
-            onClick={downloadImage}
-          ></Button>
-        </div>
+        {!isEditTimeTableMode && !isFestivalDeleteMode && (
+          <div className={styles.saveButtonWrapper}>
+            <Button
+              text="이미지 저장"
+              variant="add"
+              className={styles.saveButton}
+              onClick={downloadImage}
+            ></Button>
+          </div>
+        )}
       </div>
     </section>
   );

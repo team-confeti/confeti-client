@@ -4,11 +4,25 @@ import TimeTableBoard from '@pages/time-table/components/time-table-board/time-t
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
-import { REGISTERDED_FESTIVAL } from '../mocks/festival-data';
-import useButtonSelection from '../hooks/use-button-selection';
+
+import { useButtonSelection } from '../hooks/use-button-selection';
+import { useEditModes } from '../hooks/use-edit-mode';
+import { useFestivalTimetables } from '../hooks/use-festival-timetables';
 
 const TimeTable = () => {
-  const festivals = REGISTERDED_FESTIVAL.data.festivals;
+  const {
+    isEditMode,
+    isEditTimeTableMode,
+    isFestivalDeleteMode,
+    isTextVisible,
+    toggleEditMode,
+    toggleEditTimeTableMode,
+    toggleFestivalDeleteMode,
+    toggleTextVisibility,
+    resetModes,
+  } = useEditModes();
+
+  const { festivals } = useFestivalTimetables();
   const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
     useButtonSelection(festivals);
 
@@ -32,8 +46,24 @@ const TimeTable = () => {
       <Spacing />
       <Calender festivalDates={selectedFestivalDates} />
       <Spacing />
-      <TimeTableBoard timeTableInfo={TIME_TABLE_INFO}></TimeTableBoard>
-      <EditFloatingButton></EditFloatingButton>
+      <TimeTableBoard
+        timeTableInfo={TIME_TABLE_INFO}
+        isEditTimeTableMode={isEditTimeTableMode}
+        isFestivalDeleteMode={isFestivalDeleteMode}
+      />
+      <div>
+        <EditFloatingButton
+          isEditMode={isEditMode}
+          isEditTimeTableMode={isEditTimeTableMode}
+          isFestivalDeleteMode={isFestivalDeleteMode}
+          isTextVisible={isTextVisible}
+          onToggleEditMode={toggleEditMode}
+          onToggleEditTimeTableMode={toggleEditTimeTableMode}
+          onToggleFestivalDeleteMode={toggleFestivalDeleteMode}
+          onToggleTextVisibility={toggleTextVisibility}
+          onResetModes={resetModes}
+        />
+      </div>
     </>
   );
 };

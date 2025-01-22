@@ -9,6 +9,8 @@ export const END_POINT = {
     `/user/favorites/festivals/${festivalId}`,
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
+  GET_FESTIVAL_TIMETABLES: '/user/timetables/festivals',
+  POST_LIKE_ARTIST: (artistId: number) => `/user/favorites/artists/${artistId}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
