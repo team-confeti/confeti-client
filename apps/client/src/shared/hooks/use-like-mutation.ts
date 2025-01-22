@@ -4,6 +4,8 @@ import {
   deleteLikeArtist,
   postLikeFestival,
   deleteLikeFestival,
+  postLikeConcert,
+  deleteLikeConcert,
 } from '@shared/apis/like/like';
 import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
 import { PERFORMANCE_QUERY_KEY } from '@shared/apis/confeti-detail/performance-queries';
@@ -74,14 +76,13 @@ export const useLikeMutation = () => {
           }
           break;
 
-        // TODO: CONCERT API 연결
-        // case 'CONCERT':
-        //   if (action === 'LIKE') {
-        //     await postLikeConcert(Number(id));
-        //   } else if (action === 'UNLIKE') {
-        //     await deleteLikeConcert(Number(id));
-        //   }
-        //   break;
+        case 'CONCERT':
+          if (action === 'LIKE') {
+            await postLikeConcert(Number(id));
+          } else if (action === 'UNLIKE') {
+            await deleteLikeConcert(Number(id));
+          }
+          break;
 
         default:
           throw new Error(`Unknown type: ${type}`);

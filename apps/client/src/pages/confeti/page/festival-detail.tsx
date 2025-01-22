@@ -39,6 +39,7 @@ const FestivalDetailPage = () => {
         reserveAt={festival.reserveAt}
         reservationUrl={festival.reservationUrl}
         isFavorite={festival.isFavorite}
+        type="FESTIVAL"
       />
       <Spacing />
       <Info
