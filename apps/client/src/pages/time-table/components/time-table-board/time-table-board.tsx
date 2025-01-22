@@ -45,8 +45,8 @@ const TimeTableBoard = ({
             <div key={stage.stageOrder}>
               {stage.festivalTimes.map((block) => (
                 <TimeTableItem
-                  key={block.festivalTimeId}
-                  festivalTimeId={block.festivalTimeId}
+                  key={block.userTimetableId}
+                  userTimetableId={block.userTimetableId}
                   artists={block.artists}
                   isSelected={block.isSelected}
                   startTime={block.startAt}
