@@ -1,7 +1,7 @@
 import { BaseResponse } from '@shared/types/api';
 import { FestivalTimetableResponseExtended } from '@shared/types/festival-timetable-response';
 import { END_POINT } from '@shared/constants/api';
-import { get } from '../config/instance';
+import { get, del } from '../config/instance';
 
 export const getFestivalTimetable = async (
   festivalDateId: number,
@@ -10,4 +10,12 @@ export const getFestivalTimetable = async (
     END_POINT.GET_FESTIVAL_TIMETABLE(festivalDateId),
   );
   return response.data;
+};
+
+export const deleteFestivalTimetables = async (
+  festivalId: number,
+): Promise<void> => {
+  await del<FestivalTimetableResponse>(
+    END_POINT.DEL_FESTIVAL_TIMETABLES(festivalId),
+  );
 };

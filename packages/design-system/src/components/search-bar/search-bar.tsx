@@ -62,6 +62,7 @@ export const SearchBar = ({
             onKeyDown={onKeyDown}
             onFocus={onFocus}
             onBlur={onBlur}
+            enterKeyHint="search"
           />
           {showClearBtn && (
             <SvgBtnClose

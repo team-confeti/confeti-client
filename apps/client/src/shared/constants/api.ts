@@ -18,6 +18,10 @@ export const END_POINT = {
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
+  GET_FESTIVAL_TO_ADD: (cursor?: number) =>
+    `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
+  DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
+    `user/timetables/festivals/${festivalId}`,
   GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
 } as const;
 

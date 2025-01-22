@@ -3,6 +3,10 @@ import { getFestivalTimetable } from './festival-timetable';
 
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   ALL: ['festivalTimetable'],
+  DELETE_TIME_TABLE_FESTIVAL: (festivalId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    festivalId,
+  ],
 } as const;
 
 export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
