@@ -33,3 +33,6 @@ export const TimeTableLayout = lazy(
 export const EmptyFestivalPage = lazy(
   () => import('@pages/time-table/page/empty/empty-festival-page'),
 );
+export const TimeTableRequireLoginPage = lazy(
+  () => import('@pages/home/page/auth/require-login'),
+);
