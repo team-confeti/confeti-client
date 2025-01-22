@@ -14,6 +14,11 @@ export interface FestivalTimetableResponse {
   festivals: FestivalTimetable[];
 }
 
+export interface FestivalIds {
+  festivals: festivalId[];
+}
+
+type festivalId = number;
 //타임 테이블 등록된 시간표
 export interface Artist {
   artistId: string;

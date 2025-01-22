@@ -2,6 +2,7 @@ import { Button, FestivalCard, Header } from '@confeti/design-system';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
+import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 const MAX_SELECTIONS = 3;
@@ -11,12 +12,13 @@ const AddFestival = () => {
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
+  const { mutate: addFestival } = useAddTimeTableFestival();
 
   const handleAddClick = () => {
     if (selectedFestivals.length > MAX_SELECTIONS) {
       showToast();
     } else {
-      // 타임테이블에 추가되는 로직 작성 예정
+      addFestival(selectedFestivals);
     }
   };
 
