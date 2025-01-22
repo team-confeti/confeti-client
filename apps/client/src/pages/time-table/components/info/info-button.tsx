@@ -80,14 +80,7 @@ const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
     </>
   );
 };
-const InfoItems = ({
-  size = 'md',
-  src,
-  alt,
-  text,
-  onClick,
-  isClicked,
-}: InfoItemsProps) => (
+const InfoItems = ({ src, alt, text, isClicked }: InfoItemsProps) => (
   <>
     <InfoButton.ImageField src={src} alt={alt} isClicked={isClicked} />
     <InfoButton.TextField text={text} color="black" />
