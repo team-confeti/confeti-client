@@ -5,7 +5,7 @@ import { recipe } from '@vanilla-extract/recipes';
 export const timeList = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '3rem',
+  paddingBottom: '3rem',
 });
 
 export const timeP = recipe({

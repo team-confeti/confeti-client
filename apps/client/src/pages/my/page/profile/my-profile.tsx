@@ -31,11 +31,7 @@ const MyProfile = () => {
         path={routePath.MY_ARTIST}
         showMore={artists.length > 0}
       >
-        {artists.length > 0 ? (
-          <ArtistSection artists={artists} />
-        ) : (
-          <NoArtistSection />
-        )}
+        {artists.length > 0 ? <ArtistSection /> : <NoArtistSection />}
       </Box>
       <Spacing />
       <Box

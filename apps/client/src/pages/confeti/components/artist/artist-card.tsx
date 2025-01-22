@@ -1,6 +1,8 @@
 import { ConcertArtist } from '../../types/concert';
 import { ArtistGridProps } from '../../types/artist';
+import { IcArtistNon } from '@confeti/design-system/icons';
 import * as styles from './artist-card.css';
+
 interface ArtistCardProps {
   artist: ConcertArtist;
   dayId?: number;
@@ -14,8 +16,16 @@ const ArtistCard = ({ artist, dayId, type }: ArtistCardProps) => {
 
   return (
     <div key={key} className={styles.artist}>
-      <div className={styles.artistImage}>
-        <img src={artist.profileUrl} alt={artist.name} />
+      <div className={styles.artistImageContainer}>
+        {artist.profileUrl ? (
+          <img
+            src={artist.profileUrl}
+            alt={artist.name}
+            className={styles.artistImage}
+          />
+        ) : (
+          <IcArtistNon width="100%" height="100%" />
+        )}
       </div>
       <p className={styles.artistName}>{artist.name}</p>
     </div>

@@ -3,3 +3,13 @@ export interface UserProfile {
   profileUrl: string;
   username: string;
 }
+
+interface Artists {
+  artistId: string;
+  name: string;
+  profileUrl: string;
+}
+
+export interface FavoriteArtistsResponses {
+  artists: Artists[];
+}

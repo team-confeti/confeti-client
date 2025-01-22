@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Info from '@pages/confeti/components/info/info';
 import Poster from '@pages/confeti/components/poster/poster';
 import Summary from '@pages/confeti/components/summary/summary';
@@ -7,11 +8,15 @@ import PerformanceDetail from '@pages/confeti/components/performance/performance
 import ArtistTitle from '@pages/confeti/components/artist/artist-title';
 import ArtistSection from '@pages/confeti/components/artist/artist-section';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { CONCERT_DETAIL } from '@pages/confeti/mocks/confeti-detail';
+import { useConcertDetail } from '@pages/confeti/hooks/use-concert-detail';
 
 const ConcertDetailPage = () => {
-  const { concert } = CONCERT_DETAIL;
+  const { concertId } = useParams<{ concertId: string }>();
+  const parsedConcertId = concertId ? Number(concertId) : 0;
+  const concertDetail = useConcertDetail(parsedConcertId);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const { concert } = concertDetail;
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -22,6 +27,7 @@ const ConcertDetailPage = () => {
       <FloatingButton />
       <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <Summary
+        id={concert.concertId}
         title={concert.title}
         subtitle={concert.subtitle}
         startAt={concert.startAt}
@@ -53,7 +59,7 @@ const ConcertDetailPage = () => {
       />
       <Spacing />
       <ArtistTitle />
-      <ArtistSection type="concert" artistData={CONCERT_DETAIL} />
+      <ArtistSection type="concert" artistData={concertDetail} />
       <Footer />
     </>
   );

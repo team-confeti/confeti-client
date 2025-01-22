@@ -9,6 +9,7 @@ export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
 export { default as BtnHeartFilled24 } from './BtnHeartFilled24';
 export { default as BtnSearchBlack24 } from './BtnSearchBlack24';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
+export { default as IcArtistNon } from './IcArtistNon';
 export { default as IcArrowDownGray16 } from './IcArrowDownGray16';
 export { default as IcArrowGray16 } from './IcArrowGray16';
 export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';

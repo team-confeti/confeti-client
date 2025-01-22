@@ -1,12 +1,12 @@
 import * as styles from '@pages/confeti/components/summary/summary.css';
 import { Button } from '@confeti/design-system';
-import {
-  BtnHeartDefault24,
-  BtnHeartFilled24,
-} from '@confeti/design-system/icons';
+
+import { BtnHeart } from '@confeti/design-system/icons';
+import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
 
 interface SummaryProps {
+  id: number;
   title: string;
   subtitle: string;
   startAt: string;
@@ -33,6 +33,7 @@ const formatReserveDate = (reserveAt: string): string => {
 };
 
 const Summary = ({
+  id,
   title,
   subtitle,
   startAt,
@@ -42,6 +43,12 @@ const Summary = ({
   reservationUrl,
   isFavorite,
 }: SummaryProps) => {
+  const { mutate } = useLikeMutation();
+
+  const handleLikeFestival = (id: number, action: 'LIKE' | 'UNLIKE') => {
+    mutate({ id, action, type: 'FESTIVAL' });
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.wrapper}>
@@ -49,11 +56,13 @@ const Summary = ({
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
-              {isFavorite ? (
-                <BtnHeartFilled24 width={24} height={24} />
-              ) : (
-                <BtnHeartDefault24 width={24} height={24} />
-              )}
+              <BtnHeart
+                isFavorite={isFavorite}
+                className={styles.heartIcon}
+                onClick={() =>
+                  handleLikeFestival(id, isFavorite ? 'UNLIKE' : 'LIKE')
+                }
+              />
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
           </div>

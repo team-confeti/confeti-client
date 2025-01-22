@@ -4,7 +4,12 @@ export const END_POINT = {
   GET_USER_PROFILE: '/user/info',
   GET_FAVORITE_ARTISTS: '/user/favorites/artists',
   GET_FAVORITE_PERFORMANCES: '/user/favorites/performances',
-  POST_LIKE_ARTIST: (artistId: number) => `/user/favorites/artists/${artistId}`,
+  POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
+  POST_LIKE_FESTIVAL: (festivalId: number) =>
+    `/user/favorites/festivals/${festivalId}`,
+  GET_FESTIVAL_DETAIL: '/performances/festivals',
+  GET_CONCERT_DETAIL: '/performances/concerts',
+  GET_FESTIVAL_TIMETABLES: '/user/timetables/festivals',
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,

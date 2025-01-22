@@ -6,7 +6,7 @@ export const artist = style({
   gap: '1.2rem',
 });
 
-export const artistImage = style({
+export const artistImageContainer = style({
   width: '7rem',
   height: '7rem',
   borderRadius: '3.5rem',
@@ -14,10 +14,17 @@ export const artistImage = style({
   backgroundColor: themeVars.color.gray100,
 });
 
+export const artistImage = style({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
+
 export const artistName = style({
   ...themeVars.fontStyles.body4_m_13,
   color: themeVars.color.gray800,
   width: '7rem',
+  height: '1.4rem',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
