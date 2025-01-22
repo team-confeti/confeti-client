@@ -5,10 +5,11 @@ import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
 
 interface SearchBarProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 export const SearchBar = ({
@@ -16,33 +17,29 @@ export const SearchBar = ({
   onChange,
   onKeyDown,
   onFocus,
+  onBlur,
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
-
-  const handleFocus = () => {
-    if (textInput.current) {
-      textInput.current.placeholder = '';
-    }
-    if (onFocus) {
-      onFocus();
-    }
-  };
 
   const handleClear = () => {
     if (textInput.current) {
       textInput.current.value = '';
       textInput.current.focus();
       setShowClearBtn(false);
-      onChange({
-        target: { value: '' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      if (onChange) {
+        onChange({
+          target: { value: '' },
+        } as React.ChangeEvent<HTMLInputElement>);
+      }
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShowClearBtn(e.target.value.length > 0);
-    onChange(e);
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
@@ -63,7 +60,8 @@ export const SearchBar = ({
             value={value}
             onChange={handleInputChange}
             onKeyDown={onKeyDown}
-            onFocus={handleFocus}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
           {showClearBtn && (
             <SvgBtnClose
