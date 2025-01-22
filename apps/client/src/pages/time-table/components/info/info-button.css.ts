@@ -68,6 +68,7 @@ export const ImageVariants = recipe({
       md: {
         width: '6rem',
         height: '6rem',
+        objectFit: 'cover',
       },
       lg: {},
     },
