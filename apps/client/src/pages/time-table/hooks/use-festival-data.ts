@@ -10,10 +10,9 @@ export const useFestivalButtonData = () => {
 };
 
 export const useFestivalTimetableData = (festivalDateId: number) => {
-  const queryOptions =
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(festivalDateId);
-
-  const { data } = useQuery(queryOptions);
+  const { data } = useQuery(
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(festivalDateId),
+  );
 
   return { data };
 };
