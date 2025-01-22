@@ -14,8 +14,9 @@ export interface FavoriteArtistsResponses {
   artists: Artists[];
 }
 
-interface Performance {
-  performanceId: number;
+export interface Performance {
+  index: number;
+  typeId: number;
   type: 'concert' | 'festival';
   title: string;
   posterUrl: string;

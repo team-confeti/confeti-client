@@ -8,10 +8,11 @@ import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
 interface CarouselWrapProps {
   performances: {
+    index: number;
     reservationBgUrl: string;
     subtitle: string;
     reserveAt: string;
-    performanceId: number;
+    typeId: number;
     type: string;
   }[];
   indexData: number;
@@ -43,8 +44,9 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
     performances.map((item) => item.reservationBgUrl),
     performances.map((item) => item.subtitle),
     performances.map((item) => item.reserveAt),
-    performances.map((item) => item.performanceId),
+    performances.map((item) => item.typeId),
     performances.map((item) => item.type),
+    performances.map((item) => `/${item.type}-detail/${item.typeId}`),
   );
 
   // 슬라이드 상태 관리
@@ -94,7 +96,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           <TicketingCarousel.InfoBottom>
             <InfoButton
               title={'공연 정보 확인하기'}
-              performanceId={performanceData.performanceId[currentIndex]}
+              typeId={performanceData.typeId[currentIndex]}
               performanceType={performanceData.type[currentIndex]}
             />
             <ProgressBar

@@ -5,13 +5,12 @@ import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
 
 interface FestivalCardProps {
-  festivalId?: number;
+  typeId: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
   selectable?: boolean;
   onSelectChange?: (title: string, isSelected: boolean) => void;
-  id: number;
   type: 'concert' | 'festival';
   onClick?: () => void;
 }
@@ -22,13 +21,13 @@ const FestivalCard = ({
   isSelected = false,
   selectable = false,
   onSelectChange,
-  id,
+  typeId,
   type,
   onClick,
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
   const navigate = useNavigate();
-  const detailRoutePath = `/${type}-detail/${id}`;
+  const detailRoutePath = `/${type}-detail/${typeId}`;
 
   const handleClick = () => {
     if (!selectable) {

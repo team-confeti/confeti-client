@@ -1,6 +1,6 @@
 interface Ticketing {
   index: number;
-  performanceId: number;
+  typeId: number;
   type: 'concert' | 'festival';
   subtitle: string;
   reserveAt: string;
