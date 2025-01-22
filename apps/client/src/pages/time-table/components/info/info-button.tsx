@@ -39,7 +39,7 @@ interface InfoItemsProps {
   text: string;
   size?: SizeType;
   isClicked?: boolean;
-  onClick(): void;
+  onClick: () => void;
 }
 
 interface ItemImagesProps {
@@ -47,6 +47,7 @@ interface ItemImagesProps {
   src: string;
   alt: string;
   isClicked?: boolean;
+  onClick: () => void;
 }
 
 interface ItemTextProps {
@@ -80,15 +81,31 @@ const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
     </>
   );
 };
-const InfoItems = ({ src, alt, text, isClicked }: InfoItemsProps) => (
+const InfoItems = ({ src, alt, text, isClicked, onClick }: InfoItemsProps) => (
   <>
-    <InfoButton.ImageField src={src} alt={alt} isClicked={isClicked} />
+    <InfoButton.ImageField
+      src={src}
+      alt={alt}
+      isClicked={isClicked}
+      onClick={onClick}
+    />
     <InfoButton.TextField text={text} color="black" />
   </>
 );
 
-const ItemImage = ({ size = 'md', src, alt, isClicked }: ItemImagesProps) => (
-  <img className={cn(ImageVariants({ size, isClicked }))} src={src} alt={alt} />
+const ItemImage = ({
+  size = 'md',
+  src,
+  alt,
+  isClicked,
+  onClick,
+}: ItemImagesProps) => (
+  <img
+    className={cn(ImageVariants({ size, isClicked }))}
+    src={src}
+    alt={alt}
+    onClick={onClick}
+  />
 );
 
 const ItemText = ({ size = 'md', text, color }: ItemTextProps) => (
