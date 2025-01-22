@@ -11,12 +11,10 @@ interface Festival {
 }
 
 export const useButtonSelection = (festivals: Festival[]) => {
-  // 초기 선택된 축제 ID 설정
   const [clickedFestivalId, setClickedFestivalId] = useState<number | null>(
     festivals.length > 0 ? festivals[0].festivalId : null,
   );
 
-  // festival ID와 dates를 매핑하는 Map 생성
   const festivalDatesMap = useMemo(
     () =>
       new Map(
@@ -28,19 +26,33 @@ export const useButtonSelection = (festivals: Festival[]) => {
     [festivals],
   );
 
-  // 축제 선택/해제 핸들러
+  const selectedFestivalDates = useMemo(() => {
+    return clickedFestivalId
+      ? festivalDatesMap.get(clickedFestivalId) || []
+      : [];
+  }, [clickedFestivalId, festivalDatesMap]);
+
+  const [selectedFestivalDateId, setSelectedFestivalDateId] = useState<
+    number | null
+  >(
+    selectedFestivalDates.length > 0
+      ? selectedFestivalDates[0].festivalDateId
+      : null,
+  );
+
   const handleFestivalClick = (festivalId: number) => {
     setClickedFestivalId(festivalId);
+    const newDates = festivalDatesMap.get(festivalId) || [];
+    setSelectedFestivalDateId(
+      newDates.length > 0 ? newDates[0].festivalDateId : null,
+    );
   };
-
-  // 선택된 축제의 날짜들 가져오기
-  const selectedFestivalDates = clickedFestivalId
-    ? (festivalDatesMap.get(clickedFestivalId) ?? [])
-    : [];
 
   return {
     clickedFestivalId,
     selectedFestivalDates,
     handleFestivalClick,
+    selectedFestivalDateId,
+    setSelectedFestivalDateId,
   };
 };
