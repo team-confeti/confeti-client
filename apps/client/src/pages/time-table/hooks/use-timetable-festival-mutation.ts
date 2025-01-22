@@ -17,8 +17,15 @@ export const useDeleteTimeTableFestival = () => {
 };
 
 export const useAddTimeTableFestival = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (selectedFestivals: number[]) =>
       addFestivalTimeTable(selectedFestivals),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: FESTIVAL_BUTTON_QUERY_KEY.ALL,
+      });
+    },
   });
 };
