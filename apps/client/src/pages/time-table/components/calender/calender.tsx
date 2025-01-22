@@ -10,9 +10,10 @@ import * as styles from './calender.css';
 
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];
+  onDateSelect: (dateId: number) => void;
 }
 
-const Calender = ({ festivalDates }: CalenderProps) => {
+const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
   const firstDate = festivalDates?.[0]?.festivalAt || '';
   const { weekDays } = useFormattedWeek(firstDate);
   const festivalDateMap = createFestivalDateMap(festivalDates || []);
@@ -20,6 +21,11 @@ const Calender = ({ festivalDates }: CalenderProps) => {
     festivalDates || [],
   );
   const formattedYear = useFormattedYear(firstDate);
+
+  const handleDateClick = (festivalDateId: number) => {
+    handleDayNumClick(festivalDateId);
+    onDateSelect(festivalDateId);
+  };
 
   if (!festivalDates || festivalDates.length === 0) {
     return (
@@ -49,7 +55,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
               <p
                 className={cn(styles.dayNum({ isSelected, hasFestivalDate }))}
                 onClick={() =>
-                  festivalDateId && handleDayNumClick(festivalDateId)
+                  festivalDateId && handleDateClick(festivalDateId)
                 }
               >
                 {date}
@@ -57,7 +63,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
               <p
                 className={cn(styles.dayKo({ hasFestivalDate }))}
                 onClick={() =>
-                  festivalDateId && handleDayNumClick(festivalDateId)
+                  festivalDateId && handleDateClick(festivalDateId)
                 }
               >
                 {dayKo}

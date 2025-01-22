@@ -45,7 +45,7 @@ const EditFloatingButton = ({
   };
 
   const getBackgroundClassName = () => {
-    return `${styles.background} ${
+    return ` ${
       isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode
         ? styles.backgroundVisible
         : ''

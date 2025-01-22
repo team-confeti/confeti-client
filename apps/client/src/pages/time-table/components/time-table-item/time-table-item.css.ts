@@ -15,6 +15,7 @@ export const itemsWrapper = recipe({
     borderRadius: '2px',
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
+    transition: 'background-color 0.18s ease-out',
   },
   variants: {
     isSelected: {

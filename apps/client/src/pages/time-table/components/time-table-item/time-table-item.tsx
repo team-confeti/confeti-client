@@ -15,7 +15,8 @@ interface ItemProps {
   isSelected: boolean;
   stageOrder: number;
   ticketOpenAt: string;
-  festivalTimeId: number;
+  userTimetableId: number;
+  isEditTimeTableMode: boolean;
 }
 
 interface Artist {
@@ -31,7 +32,8 @@ const TimeTableItem = ({
   isSelected,
   stageOrder,
   stageCount,
-  festivalTimeId,
+  userTimetableId,
+  isEditTimeTableMode,
 }: ItemProps) => {
   const [selectBlock, setSelectBlock] = useState(isSelected);
   const [startHour, startMin] = parseTimeString(startTime);
@@ -47,10 +49,12 @@ const TimeTableItem = ({
   const { top, diff } = calcPosition(totalMin, minutesFromOpen);
 
   //TODO: 추후 API 연결할때 필요한 prop, build 에러 방지를 위한 코드
-  festivalTimeId;
+  userTimetableId;
 
   const handleSetSelectedBlock = () => {
-    setSelectBlock((prev) => !prev);
+    if (isEditTimeTableMode) {
+      setSelectBlock((prev) => !prev);
+    }
   };
   return (
     <div
