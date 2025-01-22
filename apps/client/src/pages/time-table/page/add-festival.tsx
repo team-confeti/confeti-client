@@ -2,7 +2,7 @@ import { Button, FestivalCard, Header } from '@confeti/design-system';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
-import { useCallback } from 'react';
+import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 const MAX_SELECTIONS = 3;
 
@@ -10,30 +10,7 @@ const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
-
-  const observerRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (!node || !hasNextPage) return;
-
-      // 이전 observer가 있다면 disconnect
-      const observer = new IntersectionObserver(
-        (entries) => {
-          // 교차되고 다음 페이지가 있을 때만 fetchNextPage 호출
-          if (entries[0].isIntersecting && hasNextPage) {
-            fetchNextPage();
-          }
-        },
-        { threshold: 0.1 },
-      );
-
-      observer.observe(node);
-
-      return () => {
-        observer.disconnect();
-      };
-    },
-    [hasNextPage, fetchNextPage],
-  );
+  const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   const handleAddClick = () => {
     if (selectedFestivals.length > MAX_SELECTIONS) {

@@ -14,7 +14,8 @@ export const END_POINT = {
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
-  GET_FESTIVAL_TO_ADD: '/user/timetables/festivals/add',
+  GET_FESTIVAL_TO_ADD: (cursor?: number) =>
+    `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
