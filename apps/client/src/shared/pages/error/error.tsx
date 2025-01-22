@@ -18,7 +18,7 @@ const Error = () => {
   return (
     <>
       <div className={styles.container}>
-        <IcError404 width={113} height={40} />
+        <IcError404 width={'11.3rem'} height={'4rem'} />
         <h1 className={styles.title}>{ERROR_MESSAGES.title}</h1>
         <div className={styles.description}>
           {ERROR_MESSAGES.description.map((line, index) => (
