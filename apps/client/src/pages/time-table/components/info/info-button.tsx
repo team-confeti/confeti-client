@@ -89,10 +89,8 @@ const InfoItems = ({
   isClicked,
 }: InfoItemsProps) => (
   <>
-    <div className={cn(ItemsVariants({ size }))} onClick={onClick}>
-      <InfoButton.ImageField src={src} alt={alt} isClicked={isClicked} />
-      <InfoButton.TextField text={text} color="black" />
-    </div>
+    <InfoButton.ImageField src={src} alt={alt} isClicked={isClicked} />
+    <InfoButton.TextField text={text} color="black" />
   </>
 );
 
