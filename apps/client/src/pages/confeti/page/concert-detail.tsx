@@ -11,8 +11,8 @@ import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { useConcertDetail } from '@pages/confeti/hooks/use-concert-detail';
 
 const ConcertDetailPage = () => {
-  const { concertId } = useParams<{ concertId: string }>();
-  const parsedConcertId = concertId ? Number(concertId) : 0;
+  const { typeId } = useParams<{ typeId: string }>();
+  const parsedConcertId = typeId ? Number(typeId) : 0;
   const concertDetail = useConcertDetail(parsedConcertId);
   const [isExpanded, setIsExpanded] = useState(false);
 

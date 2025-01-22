@@ -32,8 +32,8 @@ const AddFestival = () => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
             <FestivalCard
-              key={festival.festivalId}
-              id={festival.festivalId}
+              key={performance.typeId}
+              typeId={performance.typeId}
               type="festival"
               title={festival.title}
               imageSrc={festival.posterUrl}

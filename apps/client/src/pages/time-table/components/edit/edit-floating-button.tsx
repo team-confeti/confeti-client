@@ -138,9 +138,12 @@ const EditFloatingButton = ({
     return null;
   };
 
+  const isBackgroundExist =
+    isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode;
+
   return (
     <>
-      {isEditMode && <div className={getBackgroundClassName()} />}
+      {isBackgroundExist && <div className={getBackgroundClassName()} />}
       {renderActionButtons()}
       {renderButton()}
     </>

@@ -9,8 +9,8 @@ export const routePath = {
   // search-page
   SEARCH: '/search',
   // detail-page
-  CONCERT: '/concert-detail/:concertId',
-  FESTIVAL: '/festival-detail/:festivalId',
+  CONCERT: '/concert-detail/:typeId',
+  FESTIVAL: '/festival-detail/:typeId',
 
   MYARTIST: '/my-artist',
 

@@ -31,6 +31,12 @@ export const box = style({
   zIndex: themeVars.zIndex.floatingButton.content,
   transition: 'bottom 0.3s ease-in-out',
   animation: `${fadeInBox} 0.3s ease-out`,
+  '@media': {
+    screen: {
+      position: 'fixed',
+      right: 'max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))',
+    },
+  },
 });
 
 export const boxAtBottom = style({
@@ -54,6 +60,12 @@ export const buttonVariants = recipe({
     zIndex: themeVars.zIndex.floatingButton.content,
     transition: 'all 0.3s ease-in-out',
     cursor: 'pointer',
+    '@media': {
+      screen: {
+        position: 'fixed',
+        right: 'max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))',
+      },
+    },
   },
   variants: {
     variant: {

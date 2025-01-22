@@ -1,5 +1,5 @@
 import { FestivalCard } from '@confeti/design-system';
-import { Performance } from '@shared/types/performance-response';
+import { Performance } from '@shared/types/user-response';
 import * as styles from './confeti-section.css';
 
 interface ConfetiSectionProps {
@@ -11,8 +11,8 @@ const ConfetiSection = ({ performances }: ConfetiSectionProps) => {
     <div className={styles.container}>
       {performances.map((performance) => (
         <FestivalCard
-          key={performance.performanceId}
-          id={performance.performanceId}
+          key={performance.index}
+          typeId={performance.typeId}
           type={performance.type}
           title={performance.title}
           imageSrc={performance.posterUrl}
