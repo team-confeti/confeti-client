@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { IcError404 } from '@confeti/design-system/icons';
+import { Button } from '@confeti/design-system';
 import * as styles from './error.css';
-import { Button, Header } from '@confeti/design-system';
 
 const ERROR_MESSAGES = {
   title: '앗! 에러가 발생했어요.',
@@ -12,9 +13,10 @@ const ERROR_MESSAGES = {
 };
 
 const Error = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <IcError404 width={113} height={40} />
         <h1 className={styles.title}>{ERROR_MESSAGES.title}</h1>
@@ -25,7 +27,11 @@ const Error = () => {
         </div>
       </div>
       <div className={styles.button}>
-        <Button text={ERROR_MESSAGES.buttonText} variant="add" />
+        <Button
+          text={ERROR_MESSAGES.buttonText}
+          variant="add"
+          onClick={() => navigate('/')}
+        />
       </div>
     </>
   );
