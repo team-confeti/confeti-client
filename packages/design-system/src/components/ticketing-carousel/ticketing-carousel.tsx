@@ -1,5 +1,5 @@
 import { useEffect, ReactNode } from 'react';
-import * as styles from './ticketingCarousel-carousel.css';
+import * as styles from './ticketing-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import InfoButton from './info-button/info-button';
 import { useCarouselData } from './hooks/use-carousel-data';

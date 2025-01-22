@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import TicketingCarousel from './ticketingCarousel-carousel';
+import TicketingCarousel from './ticketing-carousel';
 import { BANNER_DATA } from './mocks/bottom-banner-data';
 
 const meta: Meta<typeof TicketingCarousel.Wrap> = {
