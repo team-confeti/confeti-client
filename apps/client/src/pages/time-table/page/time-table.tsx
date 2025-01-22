@@ -1,13 +1,14 @@
 import { Spacing } from '@confeti/design-system';
-import { TIME_TABLE_INFO } from '@shared/mocks/time-table';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
-
 import { useButtonSelection } from '../hooks/use-button-selection';
 import { useEditModes } from '../hooks/use-edit-mode';
-import { useFestivalTimetables } from '../hooks/use-festival-timetables';
+import {
+  useFestivalButtonData,
+  useFestivalTimetableData,
+} from '../hooks/use-festival-data';
 
 const TimeTable = () => {
   const {
@@ -21,10 +22,22 @@ const TimeTable = () => {
     toggleTextVisibility,
     resetModes,
   } = useEditModes();
+  const { festivals } = useFestivalButtonData();
+  const {
+    clickedFestivalId,
+    selectedFestivalDates,
+    handleFestivalClick,
+    selectedFestivalDateId,
+    setSelectedFestivalDateId,
+  } = useButtonSelection(festivals);
 
-  const { festivals } = useFestivalTimetables();
-  const { clickedFestivalId, selectedFestivalDates, handleFestivalClick } =
-    useButtonSelection(festivals);
+  const handleDateSelect = (festivalDateId: number) => {
+    setSelectedFestivalDateId(festivalDateId);
+  };
+
+  const { data: boardData } = useFestivalTimetableData(
+    selectedFestivalDateId as number,
+  );
 
   return (
     <>
@@ -44,13 +57,18 @@ const TimeTable = () => {
         </InfoButton.ItemContainer>
       </InfoButton.TotalWrap>
       <Spacing />
-      <Calender festivalDates={selectedFestivalDates} />
-      <Spacing />
-      <TimeTableBoard
-        timeTableInfo={TIME_TABLE_INFO}
-        isEditTimeTableMode={isEditTimeTableMode}
-        isFestivalDeleteMode={isFestivalDeleteMode}
+      <Calender
+        festivalDates={selectedFestivalDates}
+        onDateSelect={handleDateSelect}
       />
+      <Spacing />
+      {boardData && (
+        <TimeTableBoard
+          timeTableInfo={boardData}
+          isEditTimeTableMode={isEditTimeTableMode}
+          isFestivalDeleteMode={isFestivalDeleteMode}
+        />
+      )}
       <div>
         <EditFloatingButton
           isEditMode={isEditMode}
