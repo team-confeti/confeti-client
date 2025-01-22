@@ -16,6 +16,7 @@ export const END_POINT = {
     `performances/association/${artistId}?cursor=${cursor}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
+  GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
 } as const;
 
 export const HTTP_STATUS_CODE = {

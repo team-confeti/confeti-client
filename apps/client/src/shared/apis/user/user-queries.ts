@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
-import { getUserProfile, getMyArtists } from './user';
+import { getUserProfile, getMyArtists, getPerformances } from './user';
 
 export const USER_QUERY_KEY = {
   ALL: ['users'],
@@ -23,5 +23,6 @@ export const USER_QUERY_OPTIONS = {
   FAVORITE_PERFORMANCES: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.FAVORITE_PERFORMANCES(),
+      queryFn: getPerformances,
     }),
 };
