@@ -24,7 +24,7 @@ export const useAddTimeTableFestival = () => {
       addFestivalTimeTable(selectedFestivals),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: FESTIVAL_BUTTON_QUERY_KEY.ALL,
+        queryKey: [...FESTIVAL_BUTTON_QUERY_KEY.ALL],
       });
     },
   });
