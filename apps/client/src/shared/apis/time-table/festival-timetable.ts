@@ -11,7 +11,7 @@ export const getFestivalTimetables =
     return response.data;
   };
 
-export const delFestivalTimetables = async (
+export const deleteFestivalTimetables = async (
   festivalId: number,
 ): Promise<void> => {
   await del<FestivalTimetableResponse>(

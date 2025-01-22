@@ -15,7 +15,7 @@ export const END_POINT = {
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
-    `user/timebables/festivals/${festivalId}`,
+    `user/timetables/festivals/${festivalId}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {

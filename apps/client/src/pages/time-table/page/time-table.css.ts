@@ -10,20 +10,3 @@ export const festivalBtnWrapper = style({
   height: '10.6rem',
   gap: '1.2rem',
 });
-
-export const closeBtn = recipe({
-  base: {
-    position: 'absolute',
-    top: '0rem',
-    right: '1rem',
-    cursor: 'pointer',
-  },
-  variants: {
-    isFestivalDeleteMode: {
-      true: {},
-      false: {
-        display: 'none',
-      },
-    },
-  },
-});
