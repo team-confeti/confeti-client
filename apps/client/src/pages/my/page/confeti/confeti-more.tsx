@@ -1,13 +1,22 @@
 import { FestivalCard, Header } from '@confeti/design-system';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
-import * as styles from './confeti-detail.css';
+import * as styles from './confeti-more.css';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 
-const ConfetiDetail = () => {
+const ConfetiMore = () => {
+  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES());
+
+  const allPerformances = [
+    ...data.performances,
+    ...PERFORMANCE_DATA.data.performances,
+  ];
+
   return (
     <>
       <Header variant="detail" title="My Confeti" />
       <div className={styles.container}>
-        {PERFORMANCE_DATA.data.performances.map((performance) => (
+        {allPerformances.map((performance) => (
           <FestivalCard
             key={performance.performanceId}
             id={performance.performanceId}
@@ -21,4 +30,4 @@ const ConfetiDetail = () => {
   );
 };
 
-export default ConfetiDetail;
+export default ConfetiMore;
