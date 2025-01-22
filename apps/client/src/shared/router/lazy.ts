@@ -10,7 +10,7 @@ export const RequireLoginPage = lazy(
 );
 export const SearchPage = lazy(() => import('@pages/search/page/search'));
 export const MyConfetiPage = lazy(
-  () => import('@pages/my/page/confeti/confeti-detail'),
+  () => import('@pages/my/page/confeti/confeti-more'),
 );
 export const MyArtistPage = lazy(
   () => import('@pages/my/page/artist/artist-detail'),
