@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const wrapper = style({
   ...themeVars.display.flexColumn,
   width: '100%',
-  height: '100vh',
+  height: 'calc(100dvh - 5rem)',
 });
 
 export const container = style({
