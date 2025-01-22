@@ -54,6 +54,7 @@ const TimeTableBoard = ({
                   ticketOpenAt={timeTableInfo.ticketOpenAt}
                   stageCount={timeTableInfo.stageCount}
                   stageOrder={stage.stageOrder}
+                  isEditTimeTableMode={isEditTimeTableMode}
                 />
               ))}
             </div>

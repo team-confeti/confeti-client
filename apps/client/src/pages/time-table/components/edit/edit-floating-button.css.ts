@@ -102,7 +102,7 @@ export const textHidden = style({
   opacity: 0,
 });
 
-export const background = style({
+export const backgroundVisible = style({
   position: 'fixed',
   top: 0,
   left: '50%',
@@ -112,14 +112,10 @@ export const background = style({
   minWidth: 'var(--min-width)',
   transform: 'translateX(-50%)',
   transition: 'background-color 0.3s ease-in-out',
-  zIndex: themeVars.zIndex.floatingButton.content,
-});
-
-export const backgroundVisible = style({
   backgroundColor: themeVars.color.black_op,
   zIndex: themeVars.zIndex.floatingButton.content,
   // 버튼을 누르면 body의 스크롤을 막기 위한 설정
-  height: '100vh',
+
   '@layer': {
     body: {
       overflow: 'hidden',
