@@ -18,8 +18,8 @@ const ConfetiMore = () => {
       <div className={styles.container}>
         {allPerformances.map((performance) => (
           <FestivalCard
-            key={performance.performanceId}
-            id={performance.performanceId}
+            key={performance.index}
+            id={performance.typeId}
             type={performance.type}
             title={performance.title}
             imageSrc={performance.posterUrl}
