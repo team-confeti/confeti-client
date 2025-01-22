@@ -8,7 +8,8 @@ export const artistCardVariants = recipe({
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
-    width: '100%',
+    width: '8rem',
+    height: '12rem',
   },
 });
 
@@ -20,8 +21,8 @@ export const imageAndHeartWrapper = style({
 export const artistImg = recipe({
   base: {
     borderRadius: '50%',
-    width: '100%',
-    height: '100%',
+    width: '8rem',
+    height: '8rem',
     objectFit: 'cover',
   },
 });
