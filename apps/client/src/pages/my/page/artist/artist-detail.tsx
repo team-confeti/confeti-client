@@ -1,9 +1,9 @@
 import { ArtistCard, Header } from '@confeti/design-system';
-import { useMyArtistQuery } from '@pages/my/hooks/use-my-artist-query';
+import { useMyArtist } from '@pages/my/hooks/use-my-artist';
 import * as styles from './artist-detail.css';
 
 const ArtistDetail = () => {
-  const { data: artistData } = useMyArtistQuery();
+  const { data: artistData } = useMyArtist();
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { ArtistCard } from '@confeti/design-system';
-import { useMyArtistQuery } from '@pages/my/hooks/use-my-artist-query';
+import { useMyArtistQuery } from '@pages/my/hooks/use-my-artist';
 import * as styles from './artist-section.css';
 
 const ArtistSection = () => {
