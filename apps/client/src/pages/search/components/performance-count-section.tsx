@@ -1,7 +1,7 @@
 import * as styles from './performance-count-section.css';
 
 interface PerformanceCountProps {
-  count: number;
+  count?: number;
 }
 
 const PerformanceCount = ({ count }: PerformanceCountProps) => {

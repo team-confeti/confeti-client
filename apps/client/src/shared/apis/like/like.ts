@@ -6,7 +6,6 @@ export const postLikeArtist = async (artistId: string): Promise<void> => {
   await post<BaseResponseWithoutData>(
     `${END_POINT.GET_FAVORITE_ARTISTS}/${artistId}`,
   );
-  console.log('postLikeArtist', artistId);
 };
 
 export const deleteLikeArtist = async (artistId: string): Promise<void> => {
