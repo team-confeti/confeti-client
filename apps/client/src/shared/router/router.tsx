@@ -14,6 +14,7 @@ import {
   EmptyFestivalPage,
   TimeTableLayout,
   AddFestivalPage,
+  ErrorPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -21,7 +22,7 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
-      <Route element={<GlobalLayout />}>
+      <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 
         <Route path={routePath.MY} element={<MyPage />}>
@@ -55,6 +56,7 @@ export default function Router() {
           />
           <Route path={routePath.ADDFESTIVAL} element={<AddFestivalPage />} />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );
