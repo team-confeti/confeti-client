@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { TICKETING_QUERY_OPTIONS } from '@shared/apis/carousel/ticketing-queries';
+import { CAROUSEL_QUERY_OPTIONS } from '@shared/apis/carousel/carousel-queries';
 
 export const useTicketing = () => {
-  const { data } = useSuspenseQuery(TICKETING_QUERY_OPTIONS.GET());
+  const { data } = useSuspenseQuery(CAROUSEL_QUERY_OPTIONS.TICKETING());
   return data;
 };
