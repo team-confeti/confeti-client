@@ -1,5 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postLikeArtist, deleteLikeArtist } from '@shared/apis/like/like';
+import {
+  postLikeArtist,
+  deleteLikeArtist,
+  postLikeFestival,
+  deleteLikeFestival,
+} from '@shared/apis/like/like';
 import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
 
 interface Props {
@@ -22,13 +27,13 @@ export const useLikeMutation = () => {
           }
           break;
 
-        // case 'FESTIVAL':
-        //   if (action === 'LIKE') {
-        //     await postLikeFestival(number(id));
-        //   } else if (action === 'UNLIKE') {
-        //     await deleteLikeFestival(number(id));
-        //   }
-        //   break;
+        case 'FESTIVAL':
+          if (action === 'LIKE') {
+            await postLikeFestival(Number(id));
+          } else if (action === 'UNLIKE') {
+            await deleteLikeFestival(Number(id));
+          }
+          break;
 
         // case 'CONCERT':
         //   if (action === 'LIKE') {
@@ -51,9 +56,9 @@ export const useLikeMutation = () => {
           queryKey = LIKE_QUERY_KEY.LIKE_ARTIST(String(id));
           break;
 
-        // case 'FESTIVAL':
-        //   queryKey = LIKE_QUERY_KEY.LIKE_FESTIVAL(id);
-        //   break;
+        case 'FESTIVAL':
+          queryKey = LIKE_QUERY_KEY.LIKE_FESTIVAL(Number(id));
+          break;
 
         // case 'CONCERT':
         //   queryKey = LIKE_QUERY_KEY.LIKE_CONCERT(id);

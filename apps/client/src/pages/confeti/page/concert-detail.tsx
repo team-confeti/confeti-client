@@ -27,6 +27,7 @@ const ConcertDetailPage = () => {
       <FloatingButton />
       <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <Summary
+        id={concert.concertId}
         title={concert.title}
         subtitle={concert.subtitle}
         startAt={concert.startAt}

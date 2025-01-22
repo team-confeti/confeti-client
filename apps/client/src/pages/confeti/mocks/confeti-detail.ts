@@ -1,6 +1,6 @@
 export const CONCERT_DETAIL = {
   concert: {
-    concertId: 1,
+    concertId: 5,
     posterUrl:
       'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/concert/poster/poster-touched.svg',
     posterBgUrl:
@@ -58,7 +58,7 @@ export const CONCERT_DETAIL = {
 
 export const FESTIVAL_DETAIL = {
   festival: {
-    festivalId: 1,
+    festivalId: 2,
     posterUrl: 'https://picsum.photos/180/240',
     posterBgUrl: 'https://placehold.co/375x280',
     title: '인천 펜타포트 록 페스티벌',
@@ -74,11 +74,11 @@ export const FESTIVAL_DETAIL = {
     reservationOffice: '인터파크',
     price: '스탠딩석 132,000원\n지정석 R석 132,000원\n지정석 S석 132,000원',
     infoImgUrl: 'https://placehold.co/600x400',
-    isFavorite: true,
+    isFavorite: false,
   },
   festivalDates: [
     {
-      festivalDateId: 1,
+      festivalDateId: 3,
       festivalAt: 'Day 1',
       isOpen: true,
       artists: [
@@ -121,7 +121,7 @@ export const FESTIVAL_DETAIL = {
       ],
     },
     {
-      festivalDateId: 2,
+      festivalDateId: 4,
       festivalAt: 'Day 2',
       isOpen: false,
       artists: [
