@@ -1,29 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-import * as styles from './festival-card.css';
 import { IcSelect } from '../../icons/src';
+import * as styles from './festival-card.css';
 
 interface FestivalCardProps {
-  festivalId?: number;
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
   selectable?: boolean;
-  onSelectChange?: (title: string, isSelected: boolean) => void;
   id: number;
   type: 'concert' | 'festival';
+  onSelectChange?: (title: string, isSelected: boolean) => void;
   onClick?: () => void;
 }
 
 const FestivalCard = ({
+  id,
+  type,
   title,
   imageSrc = 'https://dummyimage.com/100x142',
   isSelected = false,
   selectable = false,
   onSelectChange,
-  id,
-  type,
   onClick,
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
