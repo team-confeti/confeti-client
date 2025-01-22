@@ -19,7 +19,6 @@ export const END_POINT = {
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
   GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
-
 } as const;
 
 export const HTTP_STATUS_CODE = {
