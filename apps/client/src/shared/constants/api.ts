@@ -10,7 +10,7 @@ export const END_POINT = {
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
   GET_TICKETING: '/performances/reservation',
-  GET_FESTIVAL_TIMETABLES: '/user/timetables/festivals',
+  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
