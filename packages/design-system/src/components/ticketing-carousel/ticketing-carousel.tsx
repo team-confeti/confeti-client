@@ -1,5 +1,4 @@
 import { useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as styles from './ticketing-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
 import InfoButton from './info-button/info-button';
@@ -9,7 +8,6 @@ import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
 interface CarouselWrapProps {
   performances: {
-    detailRoutePath: string;
     index: number;
     reservationBgUrl: string;
     subtitle: string;
@@ -41,8 +39,6 @@ interface CarouselInfoBottomProps {
 }
 
 const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
-  const navigate = useNavigate();
-
   // 슬라이드 데이터
   const performanceData = useCarouselData(
     performances.map((item) => item.reservationBgUrl),

@@ -1,5 +1,5 @@
 import { FestivalCard } from '@confeti/design-system';
-import { Performance } from '@shared/types/performance-response';
+import { Performance } from '@shared/types/user-response';
 import * as styles from './confeti-section.css';
 
 interface ConfetiSectionProps {

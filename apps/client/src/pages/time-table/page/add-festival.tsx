@@ -26,21 +26,19 @@ const AddFestival = () => {
       />
       <div className={styles.container}>
         {PERFORMANCE_DATA.data.performances.map((performance) => {
-          const isSelected = selectedFestivals.includes(
-            performance.performanceId,
-          );
+          const isSelected = selectedFestivals.includes(performance.typeId);
 
           return (
             <FestivalCard
-              key={performance.performanceId}
-              id={performance.performanceId}
+              key={performance.typeId}
+              typeId={performance.typeId}
               type={performance.type}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}
               isSelected={isSelected}
               onClick={() =>
-                handleFestivalClick(performance.performanceId, isSelected)
+                handleFestivalClick(performance.typeId, isSelected)
               }
             />
           );
