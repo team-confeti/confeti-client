@@ -1,9 +1,9 @@
 import { ArtistCard } from '@confeti/design-system';
-import { useMyArtistQuery } from '@pages/my/hooks/use-my-artist';
+import { useMyArtist } from '@pages/my/hooks/use-my-artist';
 import * as styles from './artist-section.css';
 
 const ArtistSection = () => {
-  const { data: artistData } = useMyArtistQuery();
+  const { data: artistData } = useMyArtist();
   return (
     <div className={styles.container}>
       {artistData?.artists.map((artist) => (
