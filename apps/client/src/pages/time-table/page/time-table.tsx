@@ -4,6 +4,7 @@ import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
 import DeleteButton from '@pages/time-table/components/info/delete-button';
+import DeleteButton from '@pages/time-table/components/info/delete-button';
 import { useButtonSelection } from '../hooks/use-button-selection';
 import { useEditModes } from '../hooks/use-edit-mode';
 import {
