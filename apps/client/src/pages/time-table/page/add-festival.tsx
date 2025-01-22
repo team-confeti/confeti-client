@@ -1,13 +1,39 @@
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
+import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
+import { useCallback } from 'react';
 
 const MAX_SELECTIONS = 3;
 
 const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
+  const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
+
+  const observerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node || !hasNextPage) return;
+
+      // 이전 observer가 있다면 disconnect
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // 교차되고 다음 페이지가 있을 때만 fetchNextPage 호출
+          if (entries[0].isIntersecting && hasNextPage) {
+            fetchNextPage();
+          }
+        },
+        { threshold: 0.1 },
+      );
+
+      observer.observe(node);
+
+      return () => {
+        observer.disconnect();
+      };
+    },
+    [hasNextPage, fetchNextPage],
+  );
 
   const handleAddClick = () => {
     if (selectedFestivals.length > MAX_SELECTIONS) {
@@ -25,26 +51,24 @@ const AddFestival = () => {
         className={styles.headerLayout}
       />
       <div className={styles.container}>
-        {PERFORMANCE_DATA.data.performances.map((performance) => {
-          const isSelected = selectedFestivals.includes(
-            performance.performanceId,
-          );
-
+        {festivals.map((festival) => {
+          const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
             <FestivalCard
-              key={performance.performanceId}
-              id={performance.performanceId}
-              type={performance.type}
-              title={performance.title}
-              imageSrc={performance.posterUrl}
+              key={festival.festivalId}
+              id={festival.festivalId}
+              type="festival"
+              title={festival.title}
+              imageSrc={festival.posterUrl}
               selectable={true}
               isSelected={isSelected}
               onClick={() =>
-                handleFestivalClick(performance.performanceId, isSelected)
+                handleFestivalClick(festival.festivalId, isSelected)
               }
             />
           );
         })}
+        {hasNextPage && <div ref={observerRef} style={{ height: '20px' }} />}
       </div>
       <div className={styles.buttonSection}>
         <Button
