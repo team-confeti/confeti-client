@@ -6,12 +6,51 @@ import {
   deleteLikeFestival,
 } from '@shared/apis/like/like';
 import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
+import { PERFORMANCE_QUERY_KEY } from '@shared/apis/confeti-detail/performance-queries';
+import { SEARCH_ARTIST_QUERY_KEY } from '@shared/apis/search/search-queries';
 
 interface Props {
   id: string | number;
   action: 'LIKE' | 'UNLIKE';
   type: 'ARTIST' | 'FESTIVAL' | 'CONCERT';
 }
+
+interface LikeData {
+  likeCount: number;
+  isLiked: boolean;
+}
+
+const getQueryKey = (
+  type: 'ARTIST' | 'FESTIVAL' | 'CONCERT',
+  id: string | number,
+) => {
+  switch (type) {
+    case 'ARTIST':
+      return LIKE_QUERY_KEY.LIKE_ARTIST(String(id));
+    case 'FESTIVAL':
+      return LIKE_QUERY_KEY.LIKE_FESTIVAL(Number(id));
+    case 'CONCERT':
+      return LIKE_QUERY_KEY.LIKE_CONCERT(Number(id));
+    default:
+      throw new Error(`Unknown type: ${type}`);
+  }
+};
+
+const getInvalidateKey = (
+  type: 'ARTIST' | 'FESTIVAL' | 'CONCERT',
+  id: string | number,
+) => {
+  switch (type) {
+    case 'ARTIST':
+      return SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST();
+    case 'FESTIVAL':
+      return PERFORMANCE_QUERY_KEY.FESTIVAL(Number(id));
+    case 'CONCERT':
+      return PERFORMANCE_QUERY_KEY.CONCERT(Number(id));
+    default:
+      throw new Error(`Unknown type: ${type}`);
+  }
+};
 
 export const useLikeMutation = () => {
   const queryClient = useQueryClient();
@@ -35,11 +74,12 @@ export const useLikeMutation = () => {
           }
           break;
 
+        // TODO: CONCERT API 연결
         // case 'CONCERT':
         //   if (action === 'LIKE') {
-        //     await postLikeConcert(number(id));
+        //     await postLikeConcert(Number(id));
         //   } else if (action === 'UNLIKE') {
-        //     await deleteLikeConcert(number(id));
+        //     await deleteLikeConcert(Number(id));
         //   }
         //   break;
 
@@ -49,26 +89,38 @@ export const useLikeMutation = () => {
       return { id, type };
     },
 
-    onSuccess: ({ id, type }) => {
-      let queryKey;
-      switch (type) {
-        case 'ARTIST':
-          queryKey = LIKE_QUERY_KEY.LIKE_ARTIST(String(id));
-          break;
+    onMutate: async ({ id, action, type }) => {
+      const queryKey = getQueryKey(type, id);
+      await queryClient.cancelQueries({ queryKey });
+      const prevData = queryClient.getQueryData(queryKey);
 
-        case 'FESTIVAL':
-          queryKey = LIKE_QUERY_KEY.LIKE_FESTIVAL(Number(id));
-          break;
+      queryClient.setQueryData(queryKey, (prev: LikeData) => {
+        if (!prev) {
+          return {
+            likeCount: action === 'LIKE' ? 1 : 0,
+            isLiked: action === 'LIKE',
+          };
+        }
+        return {
+          ...prev,
+          likeCount:
+            action === 'LIKE' ? prev.likeCount + 1 : prev.likeCount - 1,
+          isLiked: action === 'LIKE',
+        };
+      });
 
-        // case 'CONCERT':
-        //   queryKey = LIKE_QUERY_KEY.LIKE_CONCERT(id);
-        //   break;
+      return { queryKey, prevData };
+    },
 
-        default:
-          throw new Error(`Unknown type: ${type}`);
+    onError: (_err, _variables, context) => {
+      if (context?.prevData) {
+        queryClient.setQueryData(context.queryKey, context.prevData);
       }
+    },
 
-      queryClient.invalidateQueries({ queryKey });
+    onSettled: (_, __, { id, type }) => {
+      const invalidateKey = getInvalidateKey(type, id);
+      queryClient.invalidateQueries({ queryKey: invalidateKey });
     },
   });
 };
