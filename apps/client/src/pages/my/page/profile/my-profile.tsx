@@ -9,14 +9,14 @@ import NoConfetiSection from '@pages/my/components/confeti/no-confeti-section';
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import ConfetiSection from '@pages/my/components/confeti/confeti-section';
-import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/user-queries';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user-queries';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 const MyProfile = () => {
   const profileData = useUserProfile();
   const artists = [...ARTISTS_DATA.data.artists];
 
-  const { data } = useSuspenseQuery(PERFORMANCE_QUERY_OPTIONS.ALL());
+  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES());
 
   return (
     <>

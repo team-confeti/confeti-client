@@ -9,10 +9,6 @@ export const USER_QUERY_KEY = {
   FAVORITE_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
 } as const;
 
-export const PERFORMANCE_QUERY_KEY = {
-  ALL: ['performances'],
-} as const;
-
 export const USER_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({ queryKey: USER_QUERY_KEY.ALL, queryFn: getUserProfile }),
@@ -29,14 +25,6 @@ export const USER_QUERY_OPTIONS = {
   FAVORITE_PERFORMANCES: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.FAVORITE_PERFORMANCES(),
-      queryFn: getUserProfile,
-    }),
-};
-
-export const PERFORMANCE_QUERY_OPTIONS = {
-  ALL: () =>
-    queryOptions({
-      queryKey: PERFORMANCE_QUERY_KEY.ALL,
       queryFn: getPerformances,
     }),
 };
