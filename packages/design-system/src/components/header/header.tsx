@@ -1,3 +1,4 @@
+import { cn } from '../../utils';
 import {
   LogoMain,
   BtnSearchG90024,
@@ -10,9 +11,14 @@ import { useNavigate } from 'react-router-dom';
 interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
+  className?: string;
 }
 
-const Header = ({ variant = 'default', title = '' }: HeaderProps) => {
+const Header = ({
+  variant = 'default',
+  title = '',
+  className,
+}: HeaderProps) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -33,7 +39,9 @@ const Header = ({ variant = 'default', title = '' }: HeaderProps) => {
 
   if (variant === 'detail') {
     return (
-      <header className={styles.container({ variant: 'detail' })}>
+      <header
+        className={cn(styles.container({ variant: 'detail' }), className)}
+      >
         <button
           className={styles.button({ variant: 'back' })}
           onClick={handleBackClick}

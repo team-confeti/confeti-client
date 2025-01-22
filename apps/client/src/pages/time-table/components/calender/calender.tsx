@@ -1,4 +1,3 @@
-import * as styles from './calender.css';
 import { cn } from '@confeti/design-system/utils';
 import {
   useFormattedYear,
@@ -7,17 +6,32 @@ import {
   createFestivalDateMap,
   checkFestivalDateStatus,
 } from '@pages/time-table/hooks/use-data-formatted';
+import * as styles from './calender.css';
 
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];
 }
 
 const Calender = ({ festivalDates }: CalenderProps) => {
-  const firstDate = festivalDates[0].festivalAt;
+  const firstDate = festivalDates?.[0]?.festivalAt || '';
   const { weekDays } = useFormattedWeek(firstDate);
-  const festivalDateMap = createFestivalDateMap(festivalDates);
-  const { selectedDayNumId, handleDayNumClick } =
-    useDayNumSelection(festivalDates);
+  const festivalDateMap = createFestivalDateMap(festivalDates || []);
+  const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
+    festivalDates || [],
+  );
+  const formattedYear = useFormattedYear(firstDate);
+
+  if (!festivalDates || festivalDates.length === 0) {
+    return (
+      <section className={styles.noDataContainer}>
+        <div className={styles.yearSection}>
+          <p>{formattedYear}</p>
+        </div>
+        <div className={styles.dateSection}></div>
+      </section>
+    );
+  }
+
   const dateDetails = weekDays.map((day, id) => ({
     ...day,
     ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumId),
@@ -26,7 +40,7 @@ const Calender = ({ festivalDates }: CalenderProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.yearSection}>
-        <p>{useFormattedYear(firstDate)}</p>
+        <p>{formattedYear}</p>
       </div>
       <div className={styles.dateSection}>
         {dateDetails.map(
