@@ -6,6 +6,11 @@ export const container = style({
   padding: '2rem',
 });
 
+export const noDataContainer = style({
+  padding: '2rem',
+  height: '14.4rem',
+});
+
 export const yearSection = style({
   ...themeVars.fontStyles.title5_b_15,
   color: themeVars.color.black,

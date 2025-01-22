@@ -13,8 +13,12 @@ export const container = recipe({
   variants: {
     variant: {
       default: {
-        justifyContent: 'space-between',
+        position: 'sticky',
+        left: 0,
+        top: 0,
         padding: '0.8rem 2rem',
+        justifyContent: 'space-between',
+        zIndex: themeVars.zIndex.header.content,
       },
       detail: {
         padding: '1.2rem 0 1.2rem 2rem',

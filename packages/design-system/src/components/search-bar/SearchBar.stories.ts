@@ -9,7 +9,7 @@ const meta: Meta<typeof SearchBar> = {
   },
   tags: ['autodocs'],
   args: {
-    onFocus: { action: 'focused' },
+    // onFocus: { action: 'focused' },
   },
 };
 

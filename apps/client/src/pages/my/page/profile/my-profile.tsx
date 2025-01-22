@@ -1,7 +1,6 @@
 import { Header, Footer, Spacing } from '@confeti/design-system';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 import { routePath } from '@shared/constants/path';
-
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import Box from '@pages/my/components/profile/box';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
@@ -9,7 +8,7 @@ import NoConfetiSection from '@pages/my/components/confeti/no-confeti-section';
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import ConfetiSection from '@pages/my/components/confeti/confeti-section';
-import { USER_QUERY_OPTIONS } from '@shared/apis/user-queries';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 const MyProfile = () => {
@@ -31,11 +30,7 @@ const MyProfile = () => {
         path={routePath.MY_ARTIST}
         showMore={artists.length > 0}
       >
-        {artists.length > 0 ? (
-          <ArtistSection artists={artists} />
-        ) : (
-          <NoArtistSection />
-        )}
+        {artists.length > 0 ? <ArtistSection /> : <NoArtistSection />}
       </Box>
       <Spacing />
       <Box

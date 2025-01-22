@@ -2,7 +2,7 @@ import * as styles from './notice-section.css';
 import { SEARCH_NOT_FOUND_MESSAGE } from '../constants/notice-message';
 
 interface NoticeSectionProps {
-  isMultipleArtists: boolean;
+  isMultipleArtists?: boolean;
 }
 
 const NoticeSection = ({ isMultipleArtists }: NoticeSectionProps) => {

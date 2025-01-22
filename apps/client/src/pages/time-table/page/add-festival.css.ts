@@ -3,7 +3,8 @@ import { style } from '@vanilla-extract/css';
 
 export const wrapper = style({
   ...themeVars.display.flexColumn,
-  height: '100dvh',
+  position: 'relative',
+  width: '100%',
 });
 
 export const container = style({
@@ -17,7 +18,22 @@ export const container = style({
 });
 
 export const buttonSection = style({
+  position: 'fixed',
+  bottom: '0',
+  left: '0',
   padding: '2rem',
   height: '9rem',
+  width: '100%',
   backgroundColor: themeVars.color.white,
+});
+
+export const headerLayout = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  position: 'sticky',
+  top: '5rem',
+  left: 0,
+  padding: '0.8rem 2rem',
+  zIndex: themeVars.zIndex.bottomButton.content,
 });
