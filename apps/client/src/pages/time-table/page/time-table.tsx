@@ -51,19 +51,17 @@ const TimeTable = () => {
         isEditTimeTableMode={isEditTimeTableMode}
         isFestivalDeleteMode={isFestivalDeleteMode}
       />
-      <div>
-        <EditFloatingButton
-          isEditMode={isEditMode}
-          isEditTimeTableMode={isEditTimeTableMode}
-          isFestivalDeleteMode={isFestivalDeleteMode}
-          isTextVisible={isTextVisible}
-          onToggleEditMode={toggleEditMode}
-          onToggleEditTimeTableMode={toggleEditTimeTableMode}
-          onToggleFestivalDeleteMode={toggleFestivalDeleteMode}
-          onToggleTextVisibility={toggleTextVisibility}
-          onResetModes={resetModes}
-        />
-      </div>
+      <EditFloatingButton
+        isEditMode={isEditMode}
+        isEditTimeTableMode={isEditTimeTableMode}
+        isFestivalDeleteMode={isFestivalDeleteMode}
+        isTextVisible={isTextVisible}
+        onToggleEditMode={toggleEditMode}
+        onToggleEditTimeTableMode={toggleEditTimeTableMode}
+        onToggleFestivalDeleteMode={toggleFestivalDeleteMode}
+        onToggleTextVisibility={toggleTextVisibility}
+        onResetModes={resetModes}
+      />
     </>
   );
 };
