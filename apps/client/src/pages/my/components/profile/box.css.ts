@@ -2,14 +2,14 @@ import { themeVars } from '@confeti/design-system/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  padding: '2.4rem 2rem',
+  padding: '2rem 2rem',
 });
 
 export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginBottom: '2rem',
+  marginBottom: '1.6rem',
 });
 
 export const title = style({
