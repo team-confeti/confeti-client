@@ -2,7 +2,7 @@ import { themeVars } from '@confeti/design-system/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  padding: '2rem 2rem',
+  padding: '2rem',
 });
 
 export const header = style({
