@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 
+export const ErrorPage = lazy(() => import('@shared/pages/error/error'));
+export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
 export const HomePage = lazy(() => import('@pages/home/page/home'));
 export const MyPage = lazy(() => import('@pages/my/page/my-page'));
 export const MyProfilePage = lazy(
