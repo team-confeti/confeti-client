@@ -15,7 +15,7 @@ export const itemsWrapper = recipe({
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
-    tableLayout: 'fixed', // This ensures consistent column widths
+    tableLayout: 'fixed',
   },
   variants: {
     isSelected: {

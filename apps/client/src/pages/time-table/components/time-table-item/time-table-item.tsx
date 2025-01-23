@@ -56,7 +56,7 @@ const TimeTableItem = ({
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
       setSelectBlock((prev) => !prev);
-      onClick(userTimetableId, !selectBlock); // 여기서 isSelected 값을 반대로 전달
+      onClick(userTimetableId, !selectBlock);
     }
   };
 

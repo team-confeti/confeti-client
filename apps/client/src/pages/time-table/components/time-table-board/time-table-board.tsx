@@ -56,14 +56,10 @@ const TimeTableBoard = ({
   useEffect(() => {
     if (isComplete) {
       onToggleComplete();
-
       const userTimetables = selectedItems.map((item) => ({
         userTimetableId: item.userTimetableId,
         isSelected: item.isSelected,
       }));
-      console.log(123);
-      console.log(userTimetables);
-
       mutate.mutate(userTimetables);
     }
   }, [isComplete, onToggleComplete]);
