@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
-import * as styles from './search-bar.css';
+import { useNavigate } from 'react-router-dom';
 import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
+import * as styles from './search-bar.css';
 
 interface SearchBarProps {
   value?: string;
@@ -21,6 +22,7 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
+  const navigate = useNavigate();
 
   const handleClear = () => {
     if (textInput.current) {
@@ -42,10 +44,19 @@ export const SearchBar = ({
     }
   };
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.frame}>
-        <SvgBtnArrowLeft20 width={20} height={20} />
+        <SvgBtnArrowLeft20
+          width={20}
+          height={20}
+          onClick={handleBackClick}
+          className={styles.arrowButton}
+        />
         <div className={styles.searchBar({ type: 'default' })}>
           <SvgIcSicGray18
             className={styles.searchIcon}

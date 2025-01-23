@@ -1,15 +1,17 @@
 import { ArtistCard, Header } from '@confeti/design-system';
-import { useMyArtist } from '@pages/my/hooks/use-my-artist';
-import * as styles from './artist-detail.css';
+import { useMyArtist } from '@pages/my/hooks/use-my-favorites';
+import * as styles from './artist-more.css';
+import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
-const ArtistDetail = () => {
-  const { data: artistData } = useMyArtist();
+const ArtistMore = () => {
+  const { data } = useMyArtist();
+  const allArtists = [...data.artists, ...ARTISTS_DATA.artists];
 
   return (
     <>
       <Header variant="detail" title="My Artist" />
       <div className={styles.container}>
-        {artistData?.artists.map((artist) => (
+        {allArtists.map((artist) => (
           <ArtistCard
             key={artist.artistId}
             artistId={artist.artistId}
@@ -23,4 +25,4 @@ const ArtistDetail = () => {
   );
 };
 
-export default ArtistDetail;
+export default ArtistMore;

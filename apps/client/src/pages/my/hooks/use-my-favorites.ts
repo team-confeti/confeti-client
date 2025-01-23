@@ -5,3 +5,8 @@ export const useMyArtist = () => {
   const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_ARTISTS());
   return { data };
 };
+
+export const useMyConfeti = () => {
+  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES());
+  return { data };
+};

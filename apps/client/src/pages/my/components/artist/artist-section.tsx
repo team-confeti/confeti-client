@@ -1,12 +1,15 @@
 import { ArtistCard } from '@confeti/design-system';
-import { useMyArtist } from '@pages/my/hooks/use-my-artist';
 import * as styles from './artist-section.css';
+import { Artists } from '@shared/types/user-response';
 
-const ArtistSection = () => {
-  const { data: artistData } = useMyArtist();
+interface ArtistProps {
+  artists: Artists[];
+}
+
+const ArtistSection = ({ artists }: ArtistProps) => {
   return (
     <div className={styles.container}>
-      {artistData?.artists.map((artist) => (
+      {artists.map((artist) => (
         <ArtistCard
           key={artist.artistId}
           artistId={artist.artistId}

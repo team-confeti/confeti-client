@@ -4,7 +4,7 @@ export interface UserProfile {
   username: string;
 }
 
-interface Artists {
+export interface Artists {
   artistId: string;
   name: string;
   profileUrl: string;

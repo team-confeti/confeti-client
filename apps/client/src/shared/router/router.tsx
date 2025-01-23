@@ -15,6 +15,7 @@ import {
   TimeTableLayout,
   AddFestivalPage,
   TimeTableRequireLoginPage,
+  ErrorPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -22,7 +23,7 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
-      <Route element={<GlobalLayout />}>
+      <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 
         <Route path={routePath.MY} element={<MyPage />}>
@@ -48,7 +49,6 @@ export default function Router() {
         <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
         <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
 
-        {/* TimeTable 중첩 라우트 */}
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>
           <Route
             path=""
@@ -67,6 +67,7 @@ export default function Router() {
             element={createProtectedRoute(true, <AddFestivalPage />)}
           />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );

@@ -7,10 +7,16 @@ export const END_POINT = {
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,
+  POST_LIKE_CONCERT: (concertId: number) =>
+    `user/favorites/concerts/${concertId}`,
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
   GET_TICKETING: '/performances/reservation',
-  GET_FESTIVAL_TIMETABLES: '/user/timetables/festivals',
+  //타임 테이블
+  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
+    `user/timetables/festivals/${festivalDateId}`,
+  //검색
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
@@ -19,7 +25,6 @@ export const END_POINT = {
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
   GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
-
 } as const;
 
 export const HTTP_STATUS_CODE = {

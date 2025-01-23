@@ -14,7 +14,10 @@ const ERROR_MESSAGES = {
 
 const Error = () => {
   const navigate = useNavigate();
-
+  const handleNavigate = () => {
+    navigate('/');
+    window.location.reload();
+  };
   return (
     <>
       <div className={styles.container}>
@@ -30,7 +33,7 @@ const Error = () => {
         <Button
           text={ERROR_MESSAGES.buttonText}
           variant="add"
-          onClick={() => navigate('/')}
+          onClick={handleNavigate}
         />
       </div>
     </>
