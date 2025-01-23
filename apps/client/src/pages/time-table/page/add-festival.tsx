@@ -3,6 +3,7 @@ import * as styles from './add-festival.css';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
+import { useFestivalButtonData } from '../hooks/use-festival-data';
 
 const MAX_SELECTIONS = 3;
 
@@ -10,10 +11,11 @@ const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
+  const { festivals: existingFestivals } = useFestivalButtonData();
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   const handleAddClick = () => {
-    if (selectedFestivals.length > MAX_SELECTIONS) {
+    if (selectedFestivals.length + existingFestivals.length > MAX_SELECTIONS) {
       showToast();
     } else {
       // 타임테이블에 추가되는 로직 작성 예정
