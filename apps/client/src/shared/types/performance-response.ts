@@ -9,5 +9,5 @@ export interface Performances {
 }
 
 export interface PerformanceResponse {
-  latestPerformances: Performances[];
+  performances: Performances[];
 }

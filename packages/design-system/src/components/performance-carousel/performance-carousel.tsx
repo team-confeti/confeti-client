@@ -22,6 +22,7 @@ interface DataProps {
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentId, setCurrentId] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +33,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
 
     return () => clearInterval(interval);
   }, []);
-  // 197 262
+
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -46,8 +47,10 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     speed: 1000,
     cssEase: 'ease-in-out',
     initialSlide: 3,
-    beforeChange: (newIndex: number) => {
-      setCurrentId(newIndex);
+    beforeChange: (current: number, next: number) => {
+      current; //빌드에러 제거용
+      setCurrentId(next);
+      setActiveIndex(next);
     },
 
     appendDots: (dots: string) => (

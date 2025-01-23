@@ -5,5 +5,8 @@ export const useLatestPerformances = () => {
   const { data } = useSuspenseQuery(
     CAROUSEL_QUERY_OPTIONS.LATEST_PERFORMANCES(),
   );
-  return data.latestPerformances;
+
+  return {
+    latestPerformances: data.performances || [],
+  };
 };
