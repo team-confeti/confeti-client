@@ -63,14 +63,11 @@ export const detailContent = style({
   color: themeVars.color.black,
 });
 
-export const linkBtn = style({
+export const linkButton = style({
   cursor: 'pointer',
 });
 
-export const heartIcon = style({
-  width: '2.4rem',
-  height: '2.4rem',
-  cursor: 'pointer',
-  flexShrink: 0,
-  marginLeft: '1rem',
+export const likeButton = style({
+  width: '7.4%',
+  height: '7.4%',
 });
