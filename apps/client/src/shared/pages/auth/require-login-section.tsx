@@ -1,11 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-
 import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
 import * as styles from './require-login-section.css';
 
-const RequireLoginSection = () => {
+type RoutePathType = (typeof routePath)[keyof typeof routePath];
+
+interface RequireLoginSectionProps {
+  redirectPath?: RoutePathType;
+}
+
+const RequireLoginSection = ({
+  redirectPath = routePath.MY,
+}: RequireLoginSectionProps) => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -13,7 +20,7 @@ const RequireLoginSection = () => {
     if (!userId) {
       localStorage.setItem(USER_ID_KEY, USER_ID);
     }
-    navigate(routePath.MY);
+    navigate(redirectPath);
   };
 
   return (
