@@ -74,7 +74,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     <svg
       className="slide-overlay"
       width="100%"
-      height="100%"
+      height="98.6%"
       viewBox="0 0 156 208"
       preserveAspectRatio="none"
     >
@@ -91,14 +91,14 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       </div>
       <Slider {...settings}>
         {performData.map((item, index) => (
-          <>
+          <div key={index}>
             <img
               className="card"
               key={item.performanceId}
               src={item.posterUrl}
             ></img>
             {index !== activeIndex && <SlideOverlay />}
-          </>
+          </div>
         ))}
       </Slider>
     </>
