@@ -1,5 +1,6 @@
 import { LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './artist-info.css';
 
 interface ArtistInfoProps {
@@ -27,7 +28,6 @@ const ArtistInfo = ({
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <img src={image} alt={name} className={styles.image} />
-
         <div className={styles.textSection}>
           <p className={styles.name}>{name}</p>
           <div className={styles.releaseWrapper}>
@@ -35,11 +35,11 @@ const ArtistInfo = ({
             <span className={styles.releaseDate}>{releaseDate}</span>
           </div>
         </div>
-
         <LikeButton
           className={styles.likeButton}
           isFavorite={isFavorite}
           onLikeToggle={handleLike}
+          isLoggedIn={!checkIsNotLoggedIn()}
         />
       </div>
     </div>
