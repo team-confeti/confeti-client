@@ -4,14 +4,15 @@ import { style } from '@vanilla-extract/css';
 export const wrapper = style({
   ...themeVars.display.flexCenter,
   flexDirection: 'column',
+  padding: '1.6rem 0',
+  gap: '2rem',
 });
 
 export const title = style({
   ...themeVars.fontStyles.body3_m_14,
-  margin: '2rem',
   color: themeVars.color.gray500,
   whiteSpace: 'pre-line',
-  lineHeight: '100%',
+  lineHeight: '80%',
   fontWeight: '500',
 });
 
