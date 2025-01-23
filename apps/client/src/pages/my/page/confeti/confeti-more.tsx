@@ -1,15 +1,13 @@
 import { FestivalCard, Header } from '@confeti/design-system';
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
+import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import * as styles from './confeti-more.css';
-import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 
 const ConfetiMore = () => {
-  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES());
-
+  const { data } = useMyConfeti();
   const allPerformances = [
     ...data.performances,
-    ...PERFORMANCE_DATA.data.performances,
+    ...PERFORMANCE_DATA.performances,
   ];
 
   return (
