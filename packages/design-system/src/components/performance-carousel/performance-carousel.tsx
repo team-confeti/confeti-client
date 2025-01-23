@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react';
-import { ImgPosterWhiteOp } from '../../icons/src';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
@@ -48,6 +47,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     cssEase: 'ease-in-out',
     initialSlide: 3,
     beforeChange: (current: number, next: number) => {
+      current; //빌드에러 제거용
       setCurrentId(next);
       setActiveIndex(next);
     },
