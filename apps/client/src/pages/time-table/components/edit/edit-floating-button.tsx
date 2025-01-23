@@ -66,15 +66,12 @@ const EditFloatingButton = ({
     if (isEditMode && (isEditTimeTableMode || isFestivalDeleteMode)) {
       return renderActionButton({
         variant: 'complete',
-        icon: (
-          <IcTimetableFloatFinish
-            onClick={onToggleComplete}
-            width="2.4rem"
-            height="2.4rem"
-          />
-        ),
+        icon: <IcTimetableFloatFinish width="2.4rem" height="2.4rem" />,
         text: EDIT_BUTTON.COMPLETE,
-        onClick: handleToggleButton,
+        onClick: () => {
+          handleToggleButton();
+          onToggleComplete();
+        },
       });
     }
 
