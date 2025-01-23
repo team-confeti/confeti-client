@@ -29,11 +29,10 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
     <div className={styles.section}>
       <Title text="예정된 공연" />
       {performances?.map((performance) => {
-        console.log('Performance ID:', performance.performanceId); // 디버깅용
         return (
           <PerformanceInfo
             key={performance.performanceId}
-            performanceId={performance.performanceId}
+            performanceId={performance.typeId}
             type={performance.type}
             title={performance.title}
             performanceAt={`${performance.performanceStartAt} - ${performance.performanceEndAt}`}
