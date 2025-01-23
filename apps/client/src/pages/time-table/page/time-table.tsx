@@ -10,7 +10,7 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-import { useFestivalDelete } from '@pages/time-table/hooks/useFestivalDelete';
+import { useFestivalDelete } from '@pages/time-table/hooks/use-festival-delete';
 import * as styles from './time-table.css';
 
 const TimeTable = () => {
