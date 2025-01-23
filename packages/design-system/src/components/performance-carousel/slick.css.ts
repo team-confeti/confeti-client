@@ -41,7 +41,7 @@ globalStyle('.slick-slider .slick-track, .slick-slider .slick-list', {
 
 globalStyle('.slick-track', {
   margin: 'auto',
-  paddingBottom: '2rem',
+  paddingBottom: '1.6rem',
 });
 
 globalStyle('.slick-track:before, .slick-track:after', {
