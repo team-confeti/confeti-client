@@ -36,8 +36,15 @@ globalStyle('.title-sub', {
 });
 
 globalStyle('.card', {
+  position: 'relative',
   width: '100%',
   height: '100%',
   borderRadius: '1rem',
   boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
+});
+
+globalStyle('.slide-overlay', {
+  position: 'absolute',
+  top: '0',
+  borderRadius: '1rem',
 });

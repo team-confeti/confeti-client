@@ -15,4 +15,5 @@ export const posterBg = style({
 export const poster = style({
   ...themeVars.zIndex.poster,
   position: 'absolute',
+  borderRadius: '10px',
 });

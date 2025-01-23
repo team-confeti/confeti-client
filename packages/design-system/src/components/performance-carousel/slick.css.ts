@@ -41,7 +41,7 @@ globalStyle('.slick-slider .slick-track, .slick-slider .slick-list', {
 
 globalStyle('.slick-track', {
   margin: 'auto',
-  paddingBottom: '2rem',
+  paddingBottom: '1.6rem',
 });
 
 globalStyle('.slick-track:before, .slick-track:after', {
@@ -100,8 +100,7 @@ globalStyle('.slick-arrow.slick-hidden', {
 
 /* 기본 슬라이드 스타일 */
 globalStyle('.slick-slide', {
-  transition: 'transform 0.5s ease, opacity 0.5s ease',
-  opacity: 0.7,
+  transition: 'transform 1.2s ease, opacity 1s ease',
   transform: 'scale(0.8)',
 });
 

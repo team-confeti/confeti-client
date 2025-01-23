@@ -1,4 +1,3 @@
-import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -7,21 +6,23 @@ export const itemsWrapper = recipe({
     ...themeVars.display.flexColumnCenter,
     justifyContent: 'center',
     position: 'absolute',
-    top: 'calc( 0.7rem + var(--top) )',
-    left: 'calc( 3.1rem + ((100% - 3.1rem) / var(--stage-count) * var(--stage-order)))',
+    top: 'calc( 0.75rem + var(--top) )',
+    left: 'calc( 3.1rem + ((100% - 3.5rem) / var(--stage-count) * var(--stage-order)))',
     height: 'var(--diff)',
-    width: 'calc((100% - 3.1rem) / var(--stage-count))',
-    padding: '0.8rem 0rem',
+    width: 'calc((100% - 3.2rem) / var(--stage-count))',
+    // padding: '0.8rem 0rem',
     borderRadius: '2px',
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
+    tableLayout: 'fixed', // This ensures consistent column widths
   },
   variants: {
     isSelected: {
       true: {
         backgroundColor: themeVars.color.confeti_lime,
         color: themeVars.color.black,
+        border: `1px solid ${themeVars.color.gray400}`,
       },
       false: {
         backgroundColor: themeVars.color.gray100,
@@ -34,15 +35,11 @@ export const itemsWrapper = recipe({
   },
 });
 
-export const alignContainer = style({
-  ...themeVars.display.flexCenter,
-  width: '100%',
-  textAlign: 'center',
-});
-
 export const artistName = recipe({
   base: {
     width: '100%',
+    maxWidth: '100%',
+    display: 'block',
     ...themeVars.fontStyles.subtitle4_b_14,
 
     overflow: 'hidden',
