@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { ImgPosterWhiteOp } from '../../icons/src';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
@@ -21,6 +22,7 @@ interface DataProps {
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentId, setCurrentId] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,7 +33,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
 
     return () => clearInterval(interval);
   }, []);
-  // 197 262
+
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -45,8 +47,9 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     speed: 1000,
     cssEase: 'ease-in-out',
     initialSlide: 3,
-    beforeChange: (newIndex: number) => {
-      setCurrentId(newIndex);
+    beforeChange: (current: number, next: number) => {
+      setCurrentId(next);
+      setActiveIndex(next);
     },
 
     appendDots: (dots: string) => (
@@ -67,6 +70,18 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     dotsClass: 'dots_custom',
   };
 
+  const SlideOverlay = () => (
+    <svg
+      className="slide-overlay"
+      width="100%"
+      height="100%"
+      viewBox="0 0 156 208"
+      preserveAspectRatio="none"
+    >
+      <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
+    </svg>
+  );
+
   return (
     <>
       <div className="banner-title">
@@ -75,12 +90,15 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
         <p className="title-sub">{performData[currentId]?.subTitle}</p>
       </div>
       <Slider {...settings}>
-        {performData.map((item) => (
-          <img
-            className="card"
-            key={item.performanceId}
-            src={item.posterUrl}
-          ></img>
+        {performData.map((item, index) => (
+          <>
+            <img
+              className="card"
+              key={item.performanceId}
+              src={item.posterUrl}
+            ></img>
+            {index !== activeIndex && <SlideOverlay />}
+          </>
         ))}
       </Slider>
     </>
