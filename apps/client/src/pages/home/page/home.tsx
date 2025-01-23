@@ -12,14 +12,15 @@ import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { useTicketing } from '../hooks/use-ticketing';
 import { routePath } from '@shared/constants/path';
+import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 const Home = () => {
-  const { performanceCount, performances } = useTicketing();
   const userId = localStorage.getItem(USER_ID_KEY);
-  const userName = USER_DATA.data.userName;
+  const profileData = useUserProfile();
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
-  const navigate = useNavigate();
+  const { performanceCount, performances } = useTicketing();
 
+  const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 
@@ -45,7 +46,9 @@ const Home = () => {
             <p className={styles.ticketingBannerText}>
               {isHighlighted ? (
                 <>
-                  <span className={styles.highlightedText}>{userName}</span>
+                  <span className={styles.highlightedText}>
+                    {profileData.username}
+                  </span>
                   님 <br />
                   예매가 다가오고 있어요!
                 </>
