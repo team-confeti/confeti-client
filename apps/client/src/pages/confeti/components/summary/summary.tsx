@@ -56,7 +56,11 @@ const Summary = ({
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
-              <LikeButton isFavorite={isFavorite} onLikeToggle={handleLike} />
+              <LikeButton
+                className={styles.likeButton}
+                isFavorite={isFavorite}
+                onLikeToggle={handleLike}
+              />
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
           </div>
@@ -80,7 +84,7 @@ const Summary = ({
           </div>
         </h1>
         <Button
-          className={styles.linkBtn}
+          className={styles.linkButton}
           variant="link"
           text={'예매처 바로가기'}
           onClick={() => window.open(reservationUrl, '_blank')}
