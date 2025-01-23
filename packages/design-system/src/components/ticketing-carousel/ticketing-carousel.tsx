@@ -22,7 +22,7 @@ interface CarouselWrapProps {
 interface CarouselContainerProps {
   children: React.ReactNode;
   currentImageId: number;
-  type: string;
+  performanceType: string;
 }
 
 interface CarouselInfoProps {
@@ -89,7 +89,7 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
       </div>
       <TicketingCarousel.Container
         currentImageId={performanceData.typeId[currentIndex] ?? -1}
-        type={performanceData.type[currentIndex] || ''}
+        performanceType={performanceData.type[currentIndex] || ''}
       >
         <TicketingCarousel.Info>
           <div className={styles.description}>
@@ -124,12 +124,12 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
 const CarouselContainer = ({
   children,
   currentImageId,
-  type,
+  performanceType,
 }: CarouselContainerProps) => {
   const navigate = useNavigate();
 
   const handleContainerClick = () => {
-    navigate(`/${type}-detail/${currentImageId}`);
+    navigate(`/${performanceType}-detail/${currentImageId}`);
   };
 
   return (
