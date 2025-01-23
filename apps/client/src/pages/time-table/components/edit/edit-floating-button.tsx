@@ -20,6 +20,7 @@ interface EditFloatingButtonProps {
   onToggleFestivalDeleteMode: () => void;
   onToggleTextVisibility: (visible: boolean) => void;
   onResetModes: () => void;
+  onComplete: () => void;
 }
 
 const EditFloatingButton = ({
@@ -32,6 +33,7 @@ const EditFloatingButton = ({
   onToggleFestivalDeleteMode,
   onToggleTextVisibility,
   onResetModes,
+  onComplete,
 }: EditFloatingButtonProps) => {
   const isAtBottom = useScrollPosition();
   const adjustedAtBottom =
@@ -39,9 +41,12 @@ const EditFloatingButton = ({
   useDisableScroll(isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode);
 
   const handleToggleButton = () => {
+    if (isEditTimeTableMode || isFestivalDeleteMode) {
+      onComplete();
+      onResetModes();
+    }
     onToggleEditMode();
     onToggleTextVisibility(true);
-    if (isEditTimeTableMode || isFestivalDeleteMode) onResetModes();
   };
 
   const getBackgroundClassName = () => {

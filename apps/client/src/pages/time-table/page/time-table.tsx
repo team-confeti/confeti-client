@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Spacing } from '@confeti/design-system';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
@@ -25,6 +26,7 @@ const TimeTable = () => {
     toggleTextVisibility,
     resetModes,
   } = useEditModes();
+  const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
   const { festivals } = useFestivalButtonData();
   const {
     clickedFestivalId,
@@ -45,7 +47,15 @@ const TimeTable = () => {
   const deleteFestival = useDeleteTimeTableFestival();
 
   const handleDeleteFestival = (festivalId: number) => {
-    deleteFestival.mutate(festivalId);
+    setFestivalsToDelete((prev) => [...prev, festivalId]);
+  };
+
+  const handleCompleteDelete = () => {
+    festivalsToDelete.forEach((festivalId) => {
+      deleteFestival.mutate(festivalId);
+    });
+    setFestivalsToDelete([]);
+    resetModes();
   };
 
   return (
@@ -53,24 +63,26 @@ const TimeTable = () => {
       <InfoButton.TotalWrap festivals={festivals}>
         <InfoButton.ItemContainer>
           <InfoButton.FixButton />
-          {festivals.map(({ festivalId, title, logoUrl }) => (
-            <div className={styles.festivalBtnWrapper} key={festivalId}>
-              <InfoButton.Items
-                src={logoUrl}
-                alt={title}
-                text={title}
-                onClick={() => handleFestivalClick(festivalId)}
-                isClicked={clickedFestivalId === festivalId}
-              />
-              {festivalId && (
-                <DeleteButton
-                  onDelete={() => handleDeleteFestival(festivalId)}
-                  isFestivalDeleteMode={isFestivalDeleteMode}
-                  festivalId={festivalId}
+          {festivals
+            .filter(({ festivalId }) => !festivalsToDelete.includes(festivalId))
+            .map(({ festivalId, title, logoUrl }) => (
+              <div className={styles.festivalBtnWrapper} key={festivalId}>
+                <InfoButton.Items
+                  src={logoUrl}
+                  alt={title}
+                  text={title}
+                  onClick={() => handleFestivalClick(festivalId)}
+                  isClicked={clickedFestivalId === festivalId}
                 />
-              )}
-            </div>
-          ))}
+                {festivalId && (
+                  <DeleteButton
+                    onDelete={() => handleDeleteFestival(festivalId)}
+                    isFestivalDeleteMode={isFestivalDeleteMode}
+                    festivalId={festivalId}
+                  />
+                )}
+              </div>
+            ))}
         </InfoButton.ItemContainer>
       </InfoButton.TotalWrap>
       <Spacing />
@@ -87,6 +99,7 @@ const TimeTable = () => {
         />
       )}
       <EditFloatingButton
+        onComplete={handleCompleteDelete}
         isEditMode={isEditMode}
         isEditTimeTableMode={isEditTimeTableMode}
         isFestivalDeleteMode={isFestivalDeleteMode}
