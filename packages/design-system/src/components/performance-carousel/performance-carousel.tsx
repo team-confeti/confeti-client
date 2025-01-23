@@ -22,7 +22,6 @@ interface DataProps {
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentId, setCurrentId] = useState(3);
-  const [activeIndex, setActiveIndex] = useState(3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,7 +49,6 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     beforeChange: (current: number, next: number) => {
       current; //빌드에러 제거용
       setCurrentId(next);
-      setActiveIndex(next);
     },
 
     appendDots: (dots: string) => (
