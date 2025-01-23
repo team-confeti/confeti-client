@@ -15,7 +15,7 @@ export const MyConfetiPage = lazy(
   () => import('@pages/my/page/confeti/confeti-more'),
 );
 export const MyArtistPage = lazy(
-  () => import('@pages/my/page/artist/artist-detail'),
+  () => import('@pages/my/page/artist/artist-more'),
 );
 export const ConcertDetailPage = lazy(
   () => import('@pages/confeti/page/concert-detail'),
