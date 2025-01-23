@@ -14,7 +14,8 @@ interface SummaryProps {
   area: string;
   reserveAt: string;
   reservationUrl: string;
-  isFavorite: boolean; // isFavorite 추가
+  isFavorite: boolean;
+  type: 'FESTIVAL' | 'CONCERT';
 }
 
 // 날짜 및 시간 포맷팅 함수
@@ -42,11 +43,16 @@ const Summary = ({
   reserveAt,
   reservationUrl,
   isFavorite,
+  type,
 }: SummaryProps) => {
   const { mutate } = useLikeMutation();
 
-  const handleLikeFestival = (id: number, action: 'LIKE' | 'UNLIKE') => {
-    mutate({ id, action, type: 'FESTIVAL' });
+  const handleLike = (
+    id: number,
+    action: 'LIKE' | 'UNLIKE',
+    type: 'FESTIVAL' | 'CONCERT',
+  ) => {
+    mutate({ id, action, type });
   };
 
   return (
@@ -60,7 +66,7 @@ const Summary = ({
                 isFavorite={isFavorite}
                 className={styles.heartIcon}
                 onClick={() =>
-                  handleLikeFestival(id, isFavorite ? 'UNLIKE' : 'LIKE')
+                  handleLike(id, isFavorite ? 'UNLIKE' : 'LIKE', type)
                 }
               />
             </div>

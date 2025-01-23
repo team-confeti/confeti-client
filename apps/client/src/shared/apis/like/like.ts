@@ -22,4 +22,10 @@ export const deleteLikeFestival = async (festivalId: number): Promise<void> => {
   await del<BaseResponseWithoutData>(END_POINT.POST_LIKE_FESTIVAL(festivalId));
 };
 
-// TODO: postLikeConcert, deleteLikeConcert API 추가
+export const postLikeConcert = async (concertId: number): Promise<void> => {
+  await post<BaseResponseWithoutData>(END_POINT.POST_LIKE_CONCERT(concertId));
+};
+
+export const deleteLikeConcert = async (concertId: number): Promise<void> => {
+  await del<BaseResponseWithoutData>(END_POINT.POST_LIKE_CONCERT(concertId));
+};

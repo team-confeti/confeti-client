@@ -36,6 +36,7 @@ const ConcertDetailPage = () => {
         reserveAt={concert.reserveAt}
         reservationUrl={concert.reservationUrl}
         isFavorite={concert.isFavorite}
+        type="CONCERT"
       />
       <Info
         subtitle={concert.subtitle}
