@@ -17,6 +17,7 @@ interface ItemProps {
   ticketOpenAt: string;
   userTimetableId: number;
   isEditTimeTableMode: boolean;
+  onClick: (userTimetableId: number, isSelected: boolean) => void;
 }
 
 interface Artist {
@@ -34,6 +35,7 @@ const TimeTableItem = ({
   stageCount,
   userTimetableId,
   isEditTimeTableMode,
+  onClick,
 }: ItemProps) => {
   const [selectBlock, setSelectBlock] = useState(isSelected);
   const [startHour, startMin] = parseTimeString(startTime);
@@ -54,8 +56,10 @@ const TimeTableItem = ({
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
       setSelectBlock((prev) => !prev);
+      onClick(userTimetableId, !selectBlock);
     }
   };
+
   return (
     <div
       style={

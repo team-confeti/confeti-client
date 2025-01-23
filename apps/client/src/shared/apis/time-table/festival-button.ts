@@ -13,6 +13,7 @@ export const getFestivalButton =
     );
     return response.data;
   };
+
 export const addFestivalTimeTable = async (
   selectedFestivals: number[],
 ): Promise<void> => {
