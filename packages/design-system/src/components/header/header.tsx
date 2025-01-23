@@ -31,6 +31,7 @@ const Header = ({
 
   const handleLogoClick = () => {
     navigate('/');
+    window.location.reload();
   };
 
   const handleProfileClick = () => {
