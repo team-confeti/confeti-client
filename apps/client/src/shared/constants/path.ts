@@ -1,4 +1,5 @@
 export const routePath = {
+  LAYOUT: '/',
   // home-page
   ROOT: '/',
   // my-page
