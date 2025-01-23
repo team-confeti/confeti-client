@@ -1,9 +1,7 @@
-import * as styles from '@pages/confeti/components/summary/summary.css';
-import { Button } from '@confeti/design-system';
-
-import { BtnHeart } from '@confeti/design-system/icons';
+import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
+import * as styles from '@pages/confeti/components/summary/summary.css';
 
 interface SummaryProps {
   id: number;
@@ -47,11 +45,7 @@ const Summary = ({
 }: SummaryProps) => {
   const { mutate } = useLikeMutation();
 
-  const handleLike = (
-    id: number,
-    action: 'LIKE' | 'UNLIKE',
-    type: 'FESTIVAL' | 'CONCERT',
-  ) => {
+  const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });
   };
 
@@ -62,12 +56,10 @@ const Summary = ({
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
-              <BtnHeart
+              <LikeButton
+                className={styles.likeButton}
                 isFavorite={isFavorite}
-                className={styles.heartIcon}
-                onClick={() =>
-                  handleLike(id, isFavorite ? 'UNLIKE' : 'LIKE', type)
-                }
+                onLikeToggle={handleLike}
               />
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
@@ -92,7 +84,7 @@ const Summary = ({
           </div>
         </h1>
         <Button
-          className={styles.linkBtn}
+          className={styles.linkButton}
           variant="link"
           text={'예매처 바로가기'}
           onClick={() => window.open(reservationUrl, '_blank')}

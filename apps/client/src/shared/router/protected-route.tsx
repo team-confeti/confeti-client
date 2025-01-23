@@ -1,4 +1,4 @@
-import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { ReactNode } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
@@ -11,10 +11,9 @@ export const ProtectedRoute = ({
   protect = false,
   children,
 }: ProtectedRouteProps) => {
-  const isLoggedIn = localStorage.getItem(USER_ID_KEY) === USER_ID;
   const location = useLocation();
 
-  if (protect && !isLoggedIn) {
+  if (protect && checkIsNotLoggedIn()) {
     if (location.pathname.startsWith('/timetable')) {
       return <Navigate to="/timetable/require-login" replace />;
     }

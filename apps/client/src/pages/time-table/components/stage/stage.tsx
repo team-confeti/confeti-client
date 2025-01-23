@@ -6,8 +6,6 @@ const Stage = ({ timeTableInfo }: TimeTableInfoType) => {
       {timeTableInfo.stages.map(({ stageOrder, stageName }) => (
         <div key={stageOrder} className={styles.wrapper}>
           {stageName.replace(/ STAGE$/, '')}
-          <br />
-          STAGE
         </div>
       ))}
     </div>

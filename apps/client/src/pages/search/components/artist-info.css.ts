@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
-  display: 'flex',
   padding: '1rem 2rem',
   width: '100%',
 });
@@ -31,6 +30,12 @@ export const name = style({
   color: themeVars.color.black,
 });
 
+export const likeButton = style({
+  width: '7.2%',
+  height: '7.2%',
+  cursor: 'pointer',
+});
+
 export const releaseWrapper = style({
   ...themeVars.display.flexAlignCenter,
   gap: '0.8rem',
@@ -44,12 +49,4 @@ export const releaseLabel = style({
 export const releaseDate = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.gray600,
-});
-
-export const heartIcon = style({
-  width: '2.4rem',
-  height: '2.4rem',
-  cursor: 'pointer',
-  flexShrink: 0,
-  marginLeft: '1rem',
 });

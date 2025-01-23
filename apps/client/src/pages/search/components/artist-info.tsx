@@ -1,6 +1,7 @@
-import { BtnHeart } from '@confeti/design-system/icons';
-import * as styles from './artist-info.css';
+import { LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+import * as styles from './artist-info.css';
 
 interface ArtistInfoProps {
   id: string;
@@ -19,7 +20,7 @@ const ArtistInfo = ({
 }: ArtistInfoProps) => {
   const { mutate } = useLikeMutation();
 
-  const handleLikeArtist = (id: string, action: 'LIKE' | 'UNLIKE') => {
+  const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type: 'ARTIST' });
   };
 
@@ -27,7 +28,6 @@ const ArtistInfo = ({
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <img src={image} alt={name} className={styles.image} />
-
         <div className={styles.textSection}>
           <p className={styles.name}>{name}</p>
           <div className={styles.releaseWrapper}>
@@ -35,11 +35,11 @@ const ArtistInfo = ({
             <span className={styles.releaseDate}>{releaseDate}</span>
           </div>
         </div>
-
-        <BtnHeart
+        <LikeButton
+          className={styles.likeButton}
           isFavorite={isFavorite}
-          className={styles.heartIcon}
-          onClick={() => handleLikeArtist(id, isFavorite ? 'UNLIKE' : 'LIKE')}
+          onLikeToggle={handleLike}
+          isLoggedIn={!checkIsNotLoggedIn()}
         />
       </div>
     </div>

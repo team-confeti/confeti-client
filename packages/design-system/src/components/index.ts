@@ -14,3 +14,5 @@ export { default as Spacing } from './spacing/spacing';
 export { default as SearchBar } from './search-bar/search-bar';
 export { default as ProgressBar } from './ticketing-carousel/progress-bar/progress-bar';
 export { default as InfoBUtton } from './ticketing-carousel/info-button/info-button';
+
+export { default as LikeButton } from './like-button/like-button';

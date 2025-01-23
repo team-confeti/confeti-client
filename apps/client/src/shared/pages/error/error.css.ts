@@ -15,7 +15,7 @@ export const title = style({
 
 export const description = style({
   marginTop: '0.4rem',
-  ...themeVars.fontStyles.body5_m_12,
+  ...themeVars.fontStyles.body4_m_13_2,
   color: themeVars.color.gray400,
   textAlign: 'center',
 });

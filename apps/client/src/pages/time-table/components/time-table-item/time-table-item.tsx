@@ -67,18 +67,15 @@ const TimeTableItem = ({
         } as React.CSSProperties
       }
       className={styles.itemsWrapper({ isSelected: selectBlock })}
-      onClick={() => handleSetSelectedBlock()}
+      onClick={handleSetSelectedBlock}
     >
-      <div className={styles.alignContainer}>
-        <p className={styles.artistName({ isSelected: selectBlock })}>
-          {artists.map((artist) => artist.artistName).join(', ')}
-        </p>
+      <div className={styles.artistName({ isSelected: selectBlock })}>
+        {artists.map((artist) => artist.artistName).join(', ')}
       </div>
-
-      <p className={styles.durationP({ isSelected: selectBlock })}>
+      <div className={styles.durationP({ isSelected: selectBlock })}>
         {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
         {`(${totalMin}min)`}
-      </p>
+      </div>
     </div>
   );
 };
