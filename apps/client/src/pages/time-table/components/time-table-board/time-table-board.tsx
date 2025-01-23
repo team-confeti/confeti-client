@@ -84,9 +84,7 @@ const TimeTableBoard = ({
                   key={block.userTimetableId}
                   userTimetableId={block.userTimetableId}
                   artists={block.artists}
-                  isSelected={selectedItems.some(
-                    (item) => item.userTimetableId === block.userTimetableId,
-                  )}
+                  isSelected={block.isSelected}
                   startTime={block.startAt}
                   endTime={block.endAt}
                   ticketOpenAt={timeTableInfo.ticketOpenAt}
