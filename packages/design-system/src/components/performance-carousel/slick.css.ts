@@ -100,7 +100,7 @@ globalStyle('.slick-arrow.slick-hidden', {
 
 /* 기본 슬라이드 스타일 */
 globalStyle('.slick-slide', {
-  transition: 'transform 1.5s ease, opacity 1s ease',
+  transition: 'transform 1.2s ease, opacity 1s ease',
   transform: 'scale(0.8)',
 });
 
