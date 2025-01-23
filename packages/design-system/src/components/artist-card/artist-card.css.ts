@@ -22,6 +22,7 @@ export const artistImg = recipe({
     borderRadius: '50%',
     width: '100%',
     height: 'auto',
+    aspectRatio: '1',
     objectFit: 'cover',
   },
 });
