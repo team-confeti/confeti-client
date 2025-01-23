@@ -9,7 +9,7 @@ const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
   const handleAddFestivalClick = () => {
-    navigate(routePath.SEARCH);
+    navigate(`${routePath.TIME_TABLE_OUTLET}/${routePath.ADDFESTIVAL}`);
   };
 
   return (

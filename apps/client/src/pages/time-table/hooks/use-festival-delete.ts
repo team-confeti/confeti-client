@@ -17,6 +17,7 @@ export const useFestivalDelete = () => {
         ),
       );
       setFestivalsToDelete([]);
+      window.location.reload();
       return true;
     } catch (error) {
       console.error(error);
