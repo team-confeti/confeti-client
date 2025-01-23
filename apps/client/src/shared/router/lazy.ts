@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 
+export const ErrorPage = lazy(() => import('@shared/pages/error/error'));
+export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
 export const HomePage = lazy(() => import('@pages/home/page/home'));
 export const MyPage = lazy(() => import('@pages/my/page/my-page'));
 export const MyProfilePage = lazy(
@@ -13,7 +15,7 @@ export const MyConfetiPage = lazy(
   () => import('@pages/my/page/confeti/confeti-more'),
 );
 export const MyArtistPage = lazy(
-  () => import('@pages/my/page/artist/artist-detail'),
+  () => import('@pages/my/page/artist/artist-more'),
 );
 export const ConcertDetailPage = lazy(
   () => import('@pages/confeti/page/concert-detail'),
@@ -32,4 +34,7 @@ export const TimeTableLayout = lazy(
 );
 export const EmptyFestivalPage = lazy(
   () => import('@pages/time-table/page/empty/empty-festival-page'),
+);
+export const TimeTableRequireLoginPage = lazy(
+  () => import('@pages/home/page/auth/require-login'),
 );

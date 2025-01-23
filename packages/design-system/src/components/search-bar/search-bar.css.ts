@@ -56,3 +56,7 @@ export const textSection = style({
 export const closeBtn = style({
   cursor: 'pointer',
 });
+
+export const arrowButton = style({
+  cursor: 'pointer',
+});

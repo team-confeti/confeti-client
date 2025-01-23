@@ -6,6 +6,7 @@ import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
+import { useNavigate } from 'react-router-dom';
 interface CarouselWrapProps {
   performances: {
     index: number;
@@ -20,6 +21,8 @@ interface CarouselWrapProps {
 
 interface CarouselContainerProps {
   children: React.ReactNode;
+  currentImageId: number;
+  performanceType: string;
 }
 
 interface CarouselInfoProps {
@@ -84,7 +87,10 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           />
         ))}
       </div>
-      <TicketingCarousel.Container>
+      <TicketingCarousel.Container
+        currentImageId={performanceData.typeId[currentIndex] ?? -1}
+        performanceType={performanceData.type[currentIndex] || ''}
+      >
         <TicketingCarousel.Info>
           <div className={styles.description}>
             <TicketingCarousel.Dday reserveAt={dDay} />
@@ -115,9 +121,23 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   );
 };
 
-const CarouselContainer = ({ children }: CarouselContainerProps) => (
-  <div className={styles.container}>{children}</div>
-);
+const CarouselContainer = ({
+  children,
+  currentImageId,
+  performanceType,
+}: CarouselContainerProps) => {
+  const navigate = useNavigate();
+
+  const handleContainerClick = () => {
+    navigate(`/${performanceType}-detail/${currentImageId}`);
+  };
+
+  return (
+    <div className={styles.container} onClick={handleContainerClick}>
+      {children}
+    </div>
+  );
+};
 
 const CarouselInfo = ({ children }: CarouselInfoProps) => (
   <section className={styles.info}>

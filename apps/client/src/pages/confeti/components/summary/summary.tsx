@@ -1,9 +1,7 @@
-import * as styles from '@pages/confeti/components/summary/summary.css';
-import { Button } from '@confeti/design-system';
-
-import { BtnHeart } from '@confeti/design-system/icons';
+import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
+import * as styles from '@pages/confeti/components/summary/summary.css';
 
 interface SummaryProps {
   id: number;
@@ -14,7 +12,8 @@ interface SummaryProps {
   area: string;
   reserveAt: string;
   reservationUrl: string;
-  isFavorite: boolean; // isFavorite 추가
+  isFavorite: boolean;
+  type: 'FESTIVAL' | 'CONCERT';
 }
 
 // 날짜 및 시간 포맷팅 함수
@@ -42,11 +41,12 @@ const Summary = ({
   reserveAt,
   reservationUrl,
   isFavorite,
+  type,
 }: SummaryProps) => {
   const { mutate } = useLikeMutation();
 
-  const handleLikeFestival = (id: number, action: 'LIKE' | 'UNLIKE') => {
-    mutate({ id, action, type: 'FESTIVAL' });
+  const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    mutate({ id, action, type });
   };
 
   return (
@@ -56,12 +56,10 @@ const Summary = ({
           <div className={styles.titleWrapper}>
             <div className={styles.title}>
               <div className={styles.titleLeft}>{title}</div>
-              <BtnHeart
+              <LikeButton
+                className={styles.likeButton}
                 isFavorite={isFavorite}
-                className={styles.heartIcon}
-                onClick={() =>
-                  handleLikeFestival(id, isFavorite ? 'UNLIKE' : 'LIKE')
-                }
+                onLikeToggle={handleLike}
               />
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
@@ -86,7 +84,7 @@ const Summary = ({
           </div>
         </h1>
         <Button
-          className={styles.linkBtn}
+          className={styles.linkButton}
           variant="link"
           text={'예매처 바로가기'}
           onClick={() => window.open(reservationUrl, '_blank')}

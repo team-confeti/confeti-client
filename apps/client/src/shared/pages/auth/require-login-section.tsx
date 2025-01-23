@@ -19,7 +19,7 @@ const RequireLoginSection = () => {
   return (
     <section className={styles.container}>
       <div className={styles.content}>
-        <h2 className={styles.title}>로그인이 필요한 서비스에요!</h2>
+        <h2 className={styles.title}>로그인이 필요한 서비스예요!</h2>
         <p className={styles.description}>
           회원 로그인을 하면 각종 정보를 제공 받을 수 있어요
         </p>

@@ -13,13 +13,7 @@ const ArtistCard = ({ title, imageSrc, size = 'lg' }: ArtistCardProps) => {
     <div className={styles.artistCardVariants()}>
       <div className={styles.imageAndHeartWrapper}>
         <img className={styles.artistImg()} src={imageSrc} alt={title} />
-        {size === 'md' && (
-          <SvgBtnHeartFilled24
-            className={styles.heartImg}
-            width={24}
-            height={24}
-          />
-        )}
+        {size === 'md' && <SvgBtnHeartFilled24 className={styles.heartImg} />}
       </div>
       <p className={styles.artistName({ size })}>{title}</p>
     </div>

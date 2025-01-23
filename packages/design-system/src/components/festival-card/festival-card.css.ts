@@ -14,17 +14,13 @@ export const card = style({
 export const poster = recipe({
   base: {
     width: '100%',
-    height: '80%',
+    aspectRatio: '0.704', // 100/142 ratio
     position: 'relative',
   },
   variants: {
     selectable: {
-      true: {
-        cursor: 'pointer',
-      },
-      false: {
-        cursor: 'pointer',
-      },
+      true: { cursor: 'pointer' },
+      false: { cursor: 'pointer' },
     },
   },
 });
@@ -46,7 +42,7 @@ export const icon = style({
 export const title = style([
   themeVars.fontStyles.body4_m_13,
   {
-    width: '10rem',
+    width: '100%',
     textAlign: 'center',
     color: themeVars.color.black,
     overflow: 'hidden',
