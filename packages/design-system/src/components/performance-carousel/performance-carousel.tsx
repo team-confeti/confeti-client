@@ -96,7 +96,6 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
               key={item.performanceId}
               src={item.posterUrl}
             ></img>
-            {index !== activeIndex && <SlideOverlay />}
           </div>
         ))}
       </Slider>
