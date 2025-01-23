@@ -13,7 +13,7 @@ import {
 } from '../hooks/use-festival-data';
 
 import * as styles from './time-table.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const TimeTable = () => {
   const {
@@ -41,6 +41,12 @@ const TimeTable = () => {
     selectedFestivalDateId,
     setSelectedFestivalDateId,
   } = useButtonSelection(festivals);
+
+  useEffect(() => {
+    if (clickedFestivalId === null && festivals.length > 0) {
+      window.location.reload();
+    }
+  }, [clickedFestivalId, festivals.length, festivalsToDelete, festivals]);
 
   const handleDateSelect = (festivalDateId: number) => {
     setSelectedFestivalDateId(festivalDateId);
