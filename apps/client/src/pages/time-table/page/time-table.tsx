@@ -46,7 +46,7 @@ const TimeTable = () => {
     if (clickedFestivalId === null && festivals.length > 0) {
       window.location.reload();
     }
-  }, [clickedFestivalId, festivals.length, festivalsToDelete, festivals]);
+  }, [clickedFestivalId, festivals.length]);
 
   const handleDateSelect = (festivalDateId: number) => {
     setSelectedFestivalDateId(festivalDateId);
