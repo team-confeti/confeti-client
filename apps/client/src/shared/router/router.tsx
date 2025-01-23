@@ -11,7 +11,6 @@ import {
   RequireLoginPage,
   MyProfilePage,
   TimeTablePage,
-  EmptyFestivalPage,
   TimeTableLayout,
   AddFestivalPage,
   TimeTableRequireLoginPage,
@@ -57,10 +56,6 @@ export default function Router() {
           <Route
             path={routePath.TIME_TABLE_REQUIRE_LOGIN}
             element={<TimeTableRequireLoginPage />}
-          />
-          <Route
-            path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
-            element={createProtectedRoute(true, <EmptyFestivalPage />)}
           />
           <Route
             path={routePath.ADDFESTIVAL}

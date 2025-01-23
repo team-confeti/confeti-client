@@ -6,6 +6,7 @@ import {
   IcTimetableFloatFinish,
 } from '@confeti/design-system/icons';
 import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
+import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
 import * as styles from './edit-floating-button.css';
@@ -20,7 +21,7 @@ interface EditFloatingButtonProps {
   onToggleFestivalDeleteMode: () => void;
   onToggleTextVisibility: (visible: boolean) => void;
   onResetModes: () => void;
-  onDeleteComplete: () => void;
+  festivalsToDelete: number[];
 }
 
 const EditFloatingButton = ({
@@ -33,28 +34,24 @@ const EditFloatingButton = ({
   onToggleFestivalDeleteMode,
   onToggleTextVisibility,
   onResetModes,
-  onDeleteComplete,
+  festivalsToDelete,
 }: EditFloatingButtonProps) => {
+  const deleteFestival = useDeleteTimeTableFestival();
   const isAtBottom = useScrollPosition();
   const adjustedAtBottom =
     isEditTimeTableMode || isFestivalDeleteMode ? false : isAtBottom;
   useDisableScroll(isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode);
 
-  const handleToggleButton = async () => {
+  const handleToggleButton = () => {
     if (isEditTimeTableMode || isFestivalDeleteMode) {
-      try {
-        await onDeleteComplete();
-        onResetModes();
-        window.location.reload();
-        return;
-      } catch (error) {
-        console.error(error);
-      }
+      festivalsToDelete.map((id) => deleteFestival.mutate(id));
+      onResetModes();
     }
 
     onToggleEditMode();
     onToggleTextVisibility(true);
   };
+
   const getBackgroundClassName = () => {
     return ` ${
       isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode
