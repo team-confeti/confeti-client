@@ -5,16 +5,18 @@ import {
   Navigation,
   TicketingCarousel,
 } from '@confeti/design-system';
-import { PERFORMANCE_DATA } from '@shared/mocks/banner-data';
+// import { PERFORMANCE_DATA } from '@shared/mocks/banner-data';
 import { USER_DATA } from '@shared/mocks/user-data';
 import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { useTicketing } from '../hooks/use-ticketing';
 import { routePath } from '@shared/constants/path';
+import { useLatestPerformances } from '../hooks/use-latest-performances';
 
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
+  const latestPerformances = useLatestPerformances();
   const userId = localStorage.getItem(USER_ID_KEY);
   const userName = USER_DATA.data.userName;
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
@@ -38,7 +40,7 @@ const Home = () => {
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
             <PerformanceCarousel
-              performData={PERFORMANCE_DATA}
+              performData={latestPerformances}
             ></PerformanceCarousel>
           </section>
           <section className={styles.ticketingBannerContainer}>

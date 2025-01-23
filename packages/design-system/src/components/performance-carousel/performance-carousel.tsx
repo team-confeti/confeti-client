@@ -7,9 +7,10 @@ import './performance-carousel.css';
 
 interface PerformData {
   performanceId: number;
+  typeId: number;
   type: string;
   title: string;
-  subTitle: string;
+  subtitle: string;
   performanceAt: string;
   posterUrl: string;
 }
@@ -72,7 +73,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       <div className="banner-title">
         <p className="title-date">{performData[currentId]?.performanceAt} </p>
         <p className="title-name">{performData[currentId]?.title}</p>
-        <p className="title-sub">{performData[currentId]?.subTitle}</p>
+        <p className="title-sub">{performData[currentId]?.subtitle}</p>
       </div>
       <Slider {...settings}>
         {performData.map((item) => (
