@@ -21,10 +21,12 @@ const TimeTable = () => {
     isEditTimeTableMode,
     isFestivalDeleteMode,
     isTextVisible,
+    isComplete,
     toggleEditMode,
     toggleEditTimeTableMode,
     toggleFestivalDeleteMode,
     toggleTextVisibility,
+    toggleComplete,
     resetModes,
   } = useEditModes();
 
@@ -100,10 +102,11 @@ const TimeTable = () => {
               timeTableInfo={boardData}
               isEditTimeTableMode={isEditTimeTableMode}
               isFestivalDeleteMode={isFestivalDeleteMode}
+              isComplete={isComplete}
+              onToggleComplete={toggleComplete}
             />
           )}
           <EditFloatingButton
-            festivalsToDelete={festivalsToDelete}
             isEditMode={isEditMode}
             isEditTimeTableMode={isEditTimeTableMode}
             isFestivalDeleteMode={isFestivalDeleteMode}
@@ -112,7 +115,9 @@ const TimeTable = () => {
             onToggleEditTimeTableMode={toggleEditTimeTableMode}
             onToggleFestivalDeleteMode={toggleFestivalDeleteMode}
             onToggleTextVisibility={toggleTextVisibility}
+            onToggleComplete={toggleComplete}
             onResetModes={resetModes}
+            festivalsToDelete={festivalsToDelete}
           />
         </>
       )}

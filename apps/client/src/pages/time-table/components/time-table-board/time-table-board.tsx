@@ -8,17 +8,23 @@ import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 import { HALF_HOUR_TO_MINUTES, END_HOUR } from '@pages/time-table/constants';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import * as styles from './time-table-board.css';
+import { useEffect, useState } from 'react';
+import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
 
 interface Props {
   timeTableInfo: TimeTableInfo;
   isEditTimeTableMode: boolean;
   isFestivalDeleteMode: boolean;
+  isComplete: boolean;
+  onToggleComplete: () => void;
 }
 
 const TimeTableBoard = ({
   timeTableInfo,
   isEditTimeTableMode,
   isFestivalDeleteMode,
+  isComplete,
+  onToggleComplete,
 }: Props) => {
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: 'timetable',
@@ -27,6 +33,40 @@ const TimeTableBoard = ({
   const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
   const cellNumber = generateTableRow(ticketOpenHour);
+
+  const [selectedItems, setSelectedItems] = useState<
+    { userTimetableId: number; isSelected: boolean }[]
+  >([]);
+  const mutate = usePatchTimeTableMutation();
+
+  const handleItemClick = (userTimetableId: number, isSelected: boolean) => {
+    setSelectedItems((prev) => {
+      const existingItem = prev.find(
+        (item) => item.userTimetableId === userTimetableId,
+      );
+
+      if (existingItem) {
+        return prev.filter((item) => item.userTimetableId !== userTimetableId);
+      } else {
+        return [...prev, { userTimetableId, isSelected }];
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isComplete) {
+      onToggleComplete();
+
+      const userTimetables = selectedItems.map((item) => ({
+        userTimetableId: item.userTimetableId,
+        isSelected: item.isSelected,
+      }));
+      console.log(123);
+      console.log(userTimetables);
+
+      mutate.mutate(userTimetables);
+    }
+  }, [isComplete, onToggleComplete]);
 
   return (
     <section className={styles.container} ref={elementRef}>
@@ -48,13 +88,16 @@ const TimeTableBoard = ({
                   key={block.userTimetableId}
                   userTimetableId={block.userTimetableId}
                   artists={block.artists}
-                  isSelected={block.isSelected}
+                  isSelected={selectedItems.some(
+                    (item) => item.userTimetableId === block.userTimetableId,
+                  )}
                   startTime={block.startAt}
                   endTime={block.endAt}
                   ticketOpenAt={timeTableInfo.ticketOpenAt}
                   stageCount={timeTableInfo.stageCount}
                   stageOrder={stage.stageOrder}
                   isEditTimeTableMode={isEditTimeTableMode}
+                  onClick={handleItemClick}
                 />
               ))}
             </div>

@@ -4,7 +4,8 @@ import {
   FestivalTimetableResponseExtended,
 } from '@shared/types/festival-timetable-response';
 import { END_POINT } from '@shared/constants/api';
-import { get, del } from '../config/instance';
+import { UserTimetableResponse } from '@shared/types/timetable-response';
+import { get, del, patch } from '../config/instance';
 
 export const getFestivalTimetable = async (
   festivalDateId: number,
@@ -20,5 +21,14 @@ export const deleteFestivalTimetables = async (
 ): Promise<void> => {
   await del<FestivalTimetableResponse>(
     END_POINT.DEL_FESTIVAL_TIMETABLES(festivalId),
+  );
+};
+
+export const patchFestivalTimetable = async (
+  requestData: UserTimetableResponse,
+): Promise<void> => {
+  await patch<BaseResponse<FestivalTimetableResponse>>(
+    END_POINT.GET_FESTIVAL_BUTTON,
+    requestData,
   );
 };

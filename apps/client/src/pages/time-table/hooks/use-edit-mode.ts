@@ -5,6 +5,7 @@ export const useEditModes = () => {
   const [isEditTimeTableMode, setIsEditTimeTableMode] = useState(false);
   const [isFestivalDeleteMode, setIsFestivalDeleteMode] = useState(false);
   const [isTextVisible, setIsTextVisible] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
 
   const resetModes = () => {
     setIsEditTimeTableMode(false);
@@ -31,15 +32,21 @@ export const useEditModes = () => {
     setIsTextVisible(visible);
   };
 
+  const toggleComplete = () => {
+    setIsComplete((prev) => !prev);
+  };
+
   return {
     isEditMode,
     isEditTimeTableMode,
     isFestivalDeleteMode,
     isTextVisible,
+    isComplete,
     toggleEditMode,
     toggleEditTimeTableMode,
     toggleFestivalDeleteMode,
     toggleTextVisibility,
+    toggleComplete,
     resetModes,
   };
 };

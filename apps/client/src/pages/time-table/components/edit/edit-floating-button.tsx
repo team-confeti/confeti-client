@@ -20,6 +20,7 @@ interface EditFloatingButtonProps {
   onToggleEditTimeTableMode: () => void;
   onToggleFestivalDeleteMode: () => void;
   onToggleTextVisibility: (visible: boolean) => void;
+  onToggleComplete: () => void;
   onResetModes: () => void;
   festivalsToDelete: number[];
 }
@@ -33,6 +34,7 @@ const EditFloatingButton = ({
   onToggleEditTimeTableMode,
   onToggleFestivalDeleteMode,
   onToggleTextVisibility,
+  onToggleComplete,
   onResetModes,
   festivalsToDelete,
 }: EditFloatingButtonProps) => {
@@ -64,7 +66,13 @@ const EditFloatingButton = ({
     if (isEditMode && (isEditTimeTableMode || isFestivalDeleteMode)) {
       return renderActionButton({
         variant: 'complete',
-        icon: <IcTimetableFloatFinish width="2.4rem" height="2.4rem" />,
+        icon: (
+          <IcTimetableFloatFinish
+            onClick={onToggleComplete}
+            width="2.4rem"
+            height="2.4rem"
+          />
+        ),
         text: EDIT_BUTTON.COMPLETE,
         onClick: handleToggleButton,
       });
