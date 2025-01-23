@@ -14,6 +14,7 @@ import {
   EmptyFestivalPage,
   TimeTableLayout,
   AddFestivalPage,
+  TimeTableRequireLoginPage,
   ErrorPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
@@ -49,12 +50,22 @@ export default function Router() {
         <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
 
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>
-          <Route path="" element={<TimeTablePage />} />
+          <Route
+            path=""
+            element={createProtectedRoute(true, <TimeTablePage />)}
+          />
+          <Route
+            path={routePath.TIME_TABLE_REQUIRE_LOGIN}
+            element={<TimeTableRequireLoginPage />}
+          />
           <Route
             path={routePath.TIME_TABLE_EMPTY_FESTIVAL}
-            element={<EmptyFestivalPage />}
+            element={createProtectedRoute(true, <EmptyFestivalPage />)}
           />
-          <Route path={routePath.ADDFESTIVAL} element={<AddFestivalPage />} />
+          <Route
+            path={routePath.ADDFESTIVAL}
+            element={createProtectedRoute(true, <AddFestivalPage />)}
+          />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Route>
