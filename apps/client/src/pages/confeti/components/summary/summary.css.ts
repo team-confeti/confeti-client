@@ -66,11 +66,3 @@ export const detailContent = style({
 export const linkBtn = style({
   cursor: 'pointer',
 });
-
-export const heartIcon = style({
-  width: '2.4rem',
-  height: '2.4rem',
-  cursor: 'pointer',
-  flexShrink: 0,
-  marginLeft: '1rem',
-});

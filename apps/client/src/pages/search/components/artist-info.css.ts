@@ -45,11 +45,3 @@ export const releaseDate = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.gray600,
 });
-
-export const heartIcon = style({
-  width: '2.4rem',
-  height: '2.4rem',
-  cursor: 'pointer',
-  flexShrink: 0,
-  marginLeft: '1rem',
-});
