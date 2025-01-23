@@ -18,6 +18,6 @@ export const CAROUSEL_QUERY_OPTIONS = {
   LATEST_PERFORMANCES: () =>
     queryOptions({
       queryKey: CAROUSEL_QUERY_KEY.LATEST_PERFORMANCES,
-      queryFn: getLatestPerformances, // 새로운 API 호출 함수
+      queryFn: getLatestPerformances,
     }),
 };
