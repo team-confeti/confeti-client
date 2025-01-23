@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
-  display: 'flex',
   padding: '1rem 2rem',
   width: '100%',
 });
@@ -29,6 +28,12 @@ export const textSection = style({
 export const name = style({
   ...themeVars.fontStyles.subtitle2_sb_16,
   color: themeVars.color.black,
+});
+
+export const likeButton = style({
+  width: '7.2%',
+  height: '7.2%',
+  cursor: 'pointer',
 });
 
 export const releaseWrapper = style({

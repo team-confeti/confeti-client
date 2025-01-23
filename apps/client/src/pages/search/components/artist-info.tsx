@@ -36,7 +36,11 @@ const ArtistInfo = ({
           </div>
         </div>
 
-        <LikeButton isFavorite={isFavorite} onLikeToggle={handleLike} />
+        <LikeButton
+          className={styles.likeButton}
+          isFavorite={isFavorite}
+          onLikeToggle={handleLike}
+        />
       </div>
     </div>
   );
