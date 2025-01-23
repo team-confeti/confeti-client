@@ -9,7 +9,7 @@ const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
   const handleAddFestivalClick = () => {
-    navigate(`${routePath.TIME_TABLE_OUTLET}/${routePath.ADDFESTIVAL}`);
+    navigate(`${routePath.ADDFESTIVAL}`);
   };
 
   return (
@@ -25,7 +25,9 @@ const EmptyFestivalSection = () => {
       <Button
         className={styles.button}
         text="페스티벌 추가하기"
-        onClick={handleAddFestivalClick}
+        onClick={() => {
+          handleAddFestivalClick();
+        }}
       />
     </section>
   );
