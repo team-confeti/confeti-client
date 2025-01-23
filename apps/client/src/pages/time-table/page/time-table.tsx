@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Spacing } from '@confeti/design-system';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
@@ -11,7 +10,7 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
+import { useFestivalDelete } from '@pages/time-table/hooks/useFestivalDelete';
 import * as styles from './time-table.css';
 
 const TimeTable = () => {
@@ -26,7 +25,9 @@ const TimeTable = () => {
     toggleTextVisibility,
     resetModes,
   } = useEditModes();
-  const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
+  const { festivalsToDelete, handleDeleteFestival, handleCompleteDelete } =
+    useFestivalDelete();
+
   const { festivals } = useFestivalButtonData();
   const {
     clickedFestivalId,
@@ -43,20 +44,6 @@ const TimeTable = () => {
   const { data: boardData } = useFestivalTimetableData(
     selectedFestivalDateId as number,
   );
-
-  const deleteFestival = useDeleteTimeTableFestival();
-
-  const handleDeleteFestival = (festivalId: number) => {
-    setFestivalsToDelete((prev) => [...prev, festivalId]);
-  };
-
-  const handleCompleteDelete = () => {
-    festivalsToDelete.forEach((festivalId) => {
-      deleteFestival.mutate(festivalId);
-    });
-    setFestivalsToDelete([]);
-    resetModes();
-  };
 
   return (
     <>
@@ -99,7 +86,7 @@ const TimeTable = () => {
         />
       )}
       <EditFloatingButton
-        onComplete={handleCompleteDelete}
+        onDeleteComplete={handleCompleteDelete}
         isEditMode={isEditMode}
         isEditTimeTableMode={isEditTimeTableMode}
         isFestivalDeleteMode={isFestivalDeleteMode}
