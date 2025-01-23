@@ -1,7 +1,10 @@
 import { BaseResponse } from '@shared/types/api';
-import { FestivalTimetableResponse } from '@shared/types/festival-timetable-response';
+import {
+  FestivalTimetableResponse,
+  FestivalIds,
+} from '@shared/types/festival-timetable-response';
 import { END_POINT } from '@shared/constants/api';
-import { get } from '../config/instance';
+import { get, post } from '../config/instance';
 
 export const getFestivalButton =
   async (): Promise<FestivalTimetableResponse> => {
@@ -10,3 +13,14 @@ export const getFestivalButton =
     );
     return response.data;
   };
+export const addFestivalTimeTable = async (
+  selectedFestivals: number[],
+): Promise<void> => {
+  const festivals = selectedFestivals.map((festivalId) => ({
+    festivalId,
+  }));
+
+  await post<BaseResponse<FestivalIds>>(END_POINT.POST_FESTIVAL_TIMETABLE, {
+    festivals,
+  });
+};

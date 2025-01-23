@@ -16,6 +16,7 @@ export const END_POINT = {
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `user/timetables/festivals/${festivalDateId}`,
+  POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
   //검색
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
