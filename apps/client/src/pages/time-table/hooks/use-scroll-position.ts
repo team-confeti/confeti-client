@@ -8,14 +8,13 @@ export const useScrollPosition = () => {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
-
       const isBottom = scrollTop + windowHeight >= documentHeight - 100;
       setIsAtBottom(isBottom);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    setIsAtBottom(false);
 
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
