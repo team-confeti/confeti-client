@@ -101,7 +101,6 @@ globalStyle('.slick-arrow.slick-hidden', {
 /* 기본 슬라이드 스타일 */
 globalStyle('.slick-slide', {
   transition: 'transform 0.5s ease, opacity 0.5s ease',
-  opacity: 0.7,
   transform: 'scale(0.8)',
 });
 
