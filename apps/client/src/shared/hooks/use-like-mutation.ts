@@ -42,7 +42,7 @@ const getInvalidateKey = (
 ) => {
   switch (type) {
     case 'ARTIST':
-      return SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST();
+      return SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST('');
     case 'FESTIVAL':
       return PERFORMANCE_QUERY_KEY.FESTIVAL(Number(id));
     case 'CONCERT':
@@ -120,7 +120,14 @@ export const useLikeMutation = () => {
 
     onSettled: (_, __, { id, type }) => {
       const invalidateKey = getInvalidateKey(type, id);
-      queryClient.invalidateQueries({ queryKey: invalidateKey });
+      if (type === 'ARTIST') {
+        queryClient.invalidateQueries({
+          queryKey: SEARCH_ARTIST_QUERY_KEY.ALL,
+          exact: false,
+        });
+      } else {
+        queryClient.invalidateQueries({ queryKey: invalidateKey });
+      }
     },
   });
 };
