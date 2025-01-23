@@ -32,6 +32,7 @@ export const typography = {
     body1: '140%',
     body3: '140%',
     body4: '100%',
+    body4_2: '120%',
     body6: '140%',
   },
 } as const;

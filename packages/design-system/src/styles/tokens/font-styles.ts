@@ -91,6 +91,11 @@ export const fontStyles = {
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.body4,
   },
+  body4_m_13_2: {
+    fontSize: typography.fontSize.body4,
+    fontWeight: typography.fontWeight.medium,
+    lineHeight: typography.lineHeight.body4_2,
+  },
   body5_m_12: {
     fontSize: typography.fontSize.body5,
     fontWeight: typography.fontWeight.medium,
