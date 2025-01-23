@@ -1,6 +1,6 @@
 import { ArtistCard, Header } from '@confeti/design-system';
-import { useMyArtist } from '@pages/my/hooks/use-my-artist';
 import * as styles from './artist-detail.css';
+import { useMyArtist } from '@pages/my/hooks/use-my-favorites';
 
 const ArtistDetail = () => {
   const { data: artistData } = useMyArtist();
