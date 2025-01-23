@@ -5,8 +5,11 @@ import * as styles from './performance-section.css';
 interface PerformanceSectionProps {
   performances?: {
     performanceId: number;
+    typeId: number;
+    type: string;
     title: string;
-    performanceAt: string;
+    performanceStartAt: string;
+    performanceEndAt: string;
     posterUrl: string;
     area: string;
     isFavorite: boolean;
@@ -25,17 +28,21 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
   return (
     <div className={styles.section}>
       <Title text="예정된 공연" />
-      {performances?.map((performance) => (
-        <PerformanceInfo
-          key={performance.performanceId}
-          performanceId={performance.performanceId}
-          title={performance.title}
-          performanceAt={performance.performanceAt}
-          posterUrl={performance.posterUrl}
-          area={performance.area}
-          isFavorite={performance.isFavorite}
-        />
-      ))}
+      {performances?.map((performance) => {
+        console.log('Performance ID:', performance.performanceId); // 디버깅용
+        return (
+          <PerformanceInfo
+            key={performance.performanceId}
+            performanceId={performance.performanceId}
+            type={performance.type}
+            title={performance.title}
+            performanceAt={`${performance.performanceStartAt} - ${performance.performanceEndAt}`}
+            posterUrl={performance.posterUrl}
+            area={performance.area}
+            isFavorite={performance.isFavorite}
+          />
+        );
+      })}
     </div>
   );
 };
