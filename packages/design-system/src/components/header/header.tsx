@@ -25,17 +25,14 @@ const Header = ({
     navigate(-1);
   };
 
-  const handleSearchClick = () => {
-    navigate('/search');
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.location.reload();
   };
 
-  const handleLogoClick = () => {
-    navigate('/');
-  };
-
-  const handleProfileClick = () => {
-    navigate('/my');
-  };
+  const handleSearchClick = () => handleNavigation('/search');
+  const handleLogoClick = () => handleNavigation('/');
+  const handleProfileClick = () => handleNavigation('/my');
 
   if (variant === 'detail') {
     return (
