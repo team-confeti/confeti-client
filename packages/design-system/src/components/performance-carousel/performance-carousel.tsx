@@ -22,6 +22,7 @@ interface DataProps {
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentId, setCurrentId] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,6 +50,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     beforeChange: (current: number, next: number) => {
       current; //빌드에러 제거용
       setCurrentId(next);
+      setActiveIndex(next);
     },
 
     appendDots: (dots: string) => (
@@ -69,6 +71,18 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     dotsClass: 'dots_custom',
   };
 
+  const SlideOverlay = () => (
+    <svg
+      className="slide-overlay"
+      width="100%"
+      height="98.6%"
+      viewBox="0 0 156 208"
+      preserveAspectRatio="none"
+    >
+      <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
+    </svg>
+  );
+
   return (
     <>
       <div className="banner-title">
@@ -84,6 +98,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
               key={item.performanceId}
               src={item.posterUrl}
             ></img>
+            {index !== activeIndex && <SlideOverlay />}
           </div>
         ))}
       </Slider>
