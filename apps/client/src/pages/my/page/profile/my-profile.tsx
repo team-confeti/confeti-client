@@ -29,7 +29,7 @@ const MyProfile = () => {
         showMore={artistData.artists.length > 0}
       >
         {artistData.artists.length > 0 ? (
-          <ArtistSection artists={artistData.artists} />
+          <ArtistSection artists={artistData.artists.slice(0, 3)} />
         ) : (
           <NoArtistSection />
         )}
