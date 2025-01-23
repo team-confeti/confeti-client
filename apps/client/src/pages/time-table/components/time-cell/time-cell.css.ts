@@ -12,7 +12,7 @@ export const timeP = recipe({
   base: {
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 0.4rem',
-    marginRight: '0.7rem',
+    marginRight: '1.25rem',
   },
   variants: {
     bold: {
@@ -33,6 +33,7 @@ export const timeBar = recipe({
   base: {
     height: '0.1rem',
     width: 'calc(100% - 3rem)',
+
     color: themeVars.color.gray300,
     zIndex: themeVars.zIndex.timeTable.row,
   },
