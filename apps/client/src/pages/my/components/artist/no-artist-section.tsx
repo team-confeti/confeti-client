@@ -1,7 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@confeti/design-system';
 import * as styles from './no-artist-section.css';
+import { routePath } from '@shared/constants/path';
 
 const NoArtistSection = () => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(routePath.SEARCH);
+  };
   return (
     <div className={styles.wrapper}>
       <p className={styles.title}>
@@ -10,7 +16,7 @@ const NoArtistSection = () => {
       </p>
 
       <div className={styles.button}>
-        <Button text="아티스트 선택하기" />
+        <Button text="아티스트 선택하기" onClick={handleNavigate} />
       </div>
     </div>
   );
