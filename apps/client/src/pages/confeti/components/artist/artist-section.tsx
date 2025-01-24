@@ -20,7 +20,7 @@ interface FestivalArtistData {
 interface ArtistListProps {
   type: 'concert' | 'festival';
   artistData: ConcertArtistData | FestivalArtistData;
-  isMoreButton: boolean;
+  isMoreButton?: boolean;
 }
 
 const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
