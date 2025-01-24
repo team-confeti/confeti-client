@@ -8,3 +8,20 @@ export interface ArtistSearch {
     isMultipleArtists: boolean;
   };
 }
+
+export interface Performance {
+  performanceId: number;
+  typeId: number;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  title: string;
+  performanceStartAt: string;
+  performanceEndAt: string;
+  posterUrl: string;
+  area: string;
+  isFavorite: boolean;
+}
+
+export interface GetPerformancesSearchResponse {
+  nextCursor: number;
+  performances: Performance[];
+}

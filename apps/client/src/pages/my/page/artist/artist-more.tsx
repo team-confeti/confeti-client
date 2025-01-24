@@ -5,6 +5,9 @@ import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const ArtistMore = () => {
   const { data } = useMyArtist();
+
+  if (!data) return null;
+
   const allArtists = [...data.artists, ...ARTISTS_DATA.artists];
 
   return (
@@ -24,5 +27,4 @@ const ArtistMore = () => {
     </>
   );
 };
-
 export default ArtistMore;

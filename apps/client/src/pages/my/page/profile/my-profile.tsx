@@ -11,9 +11,13 @@ import ConfetiSection from '@pages/my/components/confeti/confeti-section';
 import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 
 const MyProfile = () => {
-  const profileData = useUserProfile();
+  const { data: profileData } = useUserProfile();
   const { data: artistData } = useMyArtist();
   const { data: performanceData } = useMyConfeti();
+
+  if (!profileData || !artistData || !performanceData) {
+    return null;
+  }
 
   return (
     <>
@@ -29,7 +33,7 @@ const MyProfile = () => {
         showMore={artistData.artists.length > 0}
       >
         {artistData.artists.length > 0 ? (
-          <ArtistSection artists={artistData.artists} />
+          <ArtistSection artists={artistData.artists.slice(0, 3)} />
         ) : (
           <NoArtistSection />
         )}

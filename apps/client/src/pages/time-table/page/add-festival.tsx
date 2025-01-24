@@ -42,7 +42,7 @@ const AddFestival = () => {
             <FestivalCard
               key={festival.festivalId}
               typeId={festival.festivalId}
-              type="festival"
+              type="FESTIVAL"
               title={festival.title}
               imageSrc={festival.posterUrl}
               selectable={true}

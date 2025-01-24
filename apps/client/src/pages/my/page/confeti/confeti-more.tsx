@@ -5,6 +5,9 @@ import * as styles from './confeti-more.css';
 
 const ConfetiMore = () => {
   const { data } = useMyConfeti();
+
+  if (!data) return null;
+
   const allPerformances = [
     ...data.performances,
     ...PERFORMANCE_DATA.performances,

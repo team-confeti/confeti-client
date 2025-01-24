@@ -20,7 +20,7 @@ export const END_POINT = {
   POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
   //검색
   GET_ARTISTS_SEARCH: `artists?search=`,
-  GET_PERFORMANCES_SEARCH: (artistId: number, cursor: number) =>
+  GET_PERFORMANCES_SEARCH: (artistId: string, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,

@@ -68,3 +68,9 @@ export const heartIcon = style({
   height: '2.4rem',
   cursor: 'pointer',
 });
+
+export const likeButton = style({
+  width: '7.2%',
+  height: '7.2%',
+  cursor: 'pointer',
+});
