@@ -6,7 +6,7 @@ interface PerformanceSectionProps {
   performances?: {
     performanceId: number;
     typeId: number;
-    type: string;
+    type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
     title: string;
     performanceStartAt: string;
     performanceEndAt: string;
@@ -32,7 +32,7 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
         return (
           <PerformanceInfo
             key={performance.performanceId}
-            performanceId={performance.typeId}
+            typeId={performance.typeId}
             type={performance.type}
             title={performance.title}
             performanceAt={`${performance.performanceStartAt} - ${performance.performanceEndAt}`}

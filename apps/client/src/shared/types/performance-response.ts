@@ -1,7 +1,7 @@
 export interface Performances {
   performanceId: number;
   typeId: number;
-  type: 'concert' | 'festival';
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   title: string;
   subtitle: string;
   performanceAt: string;

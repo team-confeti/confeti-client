@@ -1,15 +1,13 @@
-import {
-  BtnHeartDefault24,
-  BtnHeartFilled24,
-  IcTimeGray14,
-  IcPlaceGray14,
-} from '@confeti/design-system/icons';
-import * as styles from './performance-info.css';
 import { useNavigate } from 'react-router-dom';
+import { IcTimeGray14, IcPlaceGray14 } from '@confeti/design-system/icons';
+import { LikeButton, toast } from '@confeti/design-system';
+import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+import * as styles from './performance-info.css';
 
 interface PerformanceInfoProps {
-  type?: string;
-  performanceId: number;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  typeId: number;
   posterUrl: string;
   title: string;
   performanceAt: string;
@@ -18,7 +16,7 @@ interface PerformanceInfoProps {
 }
 
 const PerformanceInfo = ({
-  performanceId,
+  typeId,
   posterUrl,
   title,
   performanceAt,
@@ -27,13 +25,23 @@ const PerformanceInfo = ({
   type,
 }: PerformanceInfoProps) => {
   const navigate = useNavigate();
+  const { mutate } = useLikeMutation();
+
+  const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    mutate({ id: typeId, action, type: type });
+  };
 
   const handleNavigation = () => {
-    const path =
-      type === 'concert'
-        ? `/concert-detail/${performanceId}`
-        : `/festival-detail/${performanceId}`;
-    navigate(path);
+    if (checkIsNotLoggedIn()) {
+      toast.default('로그인 후 이용 가능해요');
+      return;
+    } else {
+      const path =
+        type === 'CONCERT'
+          ? `/concert-detail/${typeId}`
+          : `/festival-detail/${typeId}`;
+      navigate(path);
+    }
   };
   return (
     <div className={styles.container}>
@@ -61,11 +69,12 @@ const PerformanceInfo = ({
           </div>
         </div>
 
-        {isFavorite ? (
-          <BtnHeartFilled24 className={styles.heartIcon} />
-        ) : (
-          <BtnHeartDefault24 className={styles.heartIcon} />
-        )}
+        <LikeButton
+          onLikeToggle={handleLike}
+          isFavorite={isFavorite}
+          className={styles.likeButton}
+          isLoggedIn={!checkIsNotLoggedIn()}
+        />
       </div>
     </div>
   );

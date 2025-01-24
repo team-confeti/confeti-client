@@ -8,7 +8,7 @@ import './performance-carousel.css';
 interface PerformData {
   performanceId: number;
   typeId: number;
-  type: string;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   title: string;
   subtitle: string;
   performanceAt: string;
