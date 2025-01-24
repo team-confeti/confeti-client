@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Spacing } from '@confeti/design-system';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
@@ -11,9 +12,7 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-
 import * as styles from './time-table.css';
-import { useState, useEffect } from 'react';
 
 const TimeTable = () => {
   const {
@@ -39,8 +38,9 @@ const TimeTable = () => {
   const {
     clickedFestivalId,
     selectedFestivalDates,
-    handleFestivalClick,
     selectedFestivalDateId,
+    clickedFestivalTitle,
+    handleFestivalClick,
     setSelectedFestivalDateId,
   } = useButtonSelection(festivals);
 
@@ -61,7 +61,7 @@ const TimeTable = () => {
   return (
     <>
       {festivals.length === 0 ? (
-        <EmptyFestivalSection></EmptyFestivalSection>
+        <EmptyFestivalSection />
       ) : (
         <>
           <InfoButton.TotalWrap festivals={festivals}>
@@ -77,8 +77,9 @@ const TimeTable = () => {
                       src={logoUrl}
                       alt={title}
                       text={title}
-                      onClick={() => handleFestivalClick(festivalId)}
+                      onClick={() => handleFestivalClick(festivalId, title)}
                       isClicked={clickedFestivalId === festivalId}
+                      isFestivalDeleteMode={isFestivalDeleteMode}
                     />
                     {festivalId && (
                       <DeleteButton
@@ -99,6 +100,7 @@ const TimeTable = () => {
           <Spacing />
           {boardData && (
             <TimeTableBoard
+              clickedFestivalTitle={clickedFestivalTitle}
               timeTableInfo={boardData}
               isEditTimeTableMode={isEditTimeTableMode}
               isFestivalDeleteMode={isFestivalDeleteMode}

@@ -6,17 +6,19 @@ export const container = style({
   backgroundColor: themeVars.color.white,
   maxHeight: '50.8rem',
   overflow: 'hidden',
-  transition: 'max-height 0.3s ease',
+  transition: 'max-height 1.3s ease-in-out',
+  opacity: 1,
 });
 
 export const expanded = style({
-  maxHeight: 'none',
+  maxHeight: '500rem',
   overflow: 'visible',
 });
 
 export const collapsed = style({
-  maxHeight: '50rem',
+  maxHeight: '50.8rem',
   overflow: 'hidden',
+  transition: 'none',
 });
 
 export const wrapper = style({

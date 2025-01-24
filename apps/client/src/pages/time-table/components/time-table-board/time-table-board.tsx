@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
 
 interface Props {
+  clickedFestivalTitle: string | null;
   timeTableInfo: TimeTableInfo;
   isEditTimeTableMode: boolean;
   isFestivalDeleteMode: boolean;
@@ -20,6 +21,7 @@ interface Props {
 }
 
 const TimeTableBoard = ({
+  clickedFestivalTitle,
   timeTableInfo,
   isEditTimeTableMode,
   isFestivalDeleteMode,
@@ -27,7 +29,7 @@ const TimeTableBoard = ({
   onToggleComplete,
 }: Props) => {
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
-    fileName: 'timetable',
+    fileName: `${clickedFestivalTitle}`,
   });
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
   const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;

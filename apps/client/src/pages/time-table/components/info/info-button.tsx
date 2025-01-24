@@ -39,6 +39,7 @@ interface InfoItemsProps {
   text: string;
   size?: SizeType;
   isClicked?: boolean;
+  isFestivalDeleteMode?: boolean;
   onClick: () => void;
 }
 
@@ -81,13 +82,22 @@ const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
     </>
   );
 };
-const InfoItems = ({ src, alt, text, isClicked, onClick }: InfoItemsProps) => (
+
+const InfoItems = ({
+  src,
+  alt,
+  text,
+  isClicked,
+  onClick,
+  isFestivalDeleteMode,
+}: InfoItemsProps) => (
   <>
     <InfoButton.ImageField
       src={src}
       alt={alt}
       isClicked={isClicked}
       onClick={onClick}
+      isFestivalDeleteMode={isFestivalDeleteMode}
     />
     <InfoButton.TextField text={text} color="black" />
   </>
@@ -99,13 +109,17 @@ const ItemImage = ({
   alt,
   isClicked,
   onClick,
-}: ItemImagesProps) => (
-  <img
-    className={cn(ImageVariants({ size, isClicked }))}
-    src={src}
-    alt={alt}
-    onClick={onClick}
-  />
+  isFestivalDeleteMode,
+}: ItemImagesProps & { isFestivalDeleteMode?: boolean }) => (
+  console.log(isFestivalDeleteMode),
+  (
+    <img
+      className={cn(ImageVariants({ size, isClicked, isFestivalDeleteMode }))}
+      src={src}
+      alt={alt}
+      onClick={onClick}
+    />
+  )
 );
 
 const ItemText = ({ size = 'md', text, color }: ItemTextProps) => (
