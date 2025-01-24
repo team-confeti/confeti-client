@@ -45,7 +45,9 @@ const MyProfile = () => {
         showMore={performanceData.performances.length > 3}
       >
         {performanceData.performances.length > 0 ? (
-          <ConfetiSection performances={performanceData.performances} />
+          <ConfetiSection
+            performances={performanceData.performances.slice(0, 3)}
+          />
         ) : (
           <NoConfetiSection />
         )}
