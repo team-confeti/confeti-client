@@ -32,7 +32,7 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
         return (
           <PerformanceInfo
             key={performance.performanceId}
-            performanceId={performance.typeId}
+            typeId={performance.typeId}
             type={performance.type}
             title={performance.title}
             performanceAt={`${performance.performanceStartAt} - ${performance.performanceEndAt}`}
