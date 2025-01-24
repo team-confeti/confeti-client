@@ -100,7 +100,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
           <div key={index}>
             <img
               className="card"
-              key={item.performanceId}
+              key={item.typeId}
               src={item.posterUrl}
               onClick={() => handleContainerClick(item.type, item.typeId)}
             ></img>
