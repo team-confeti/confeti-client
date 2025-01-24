@@ -74,7 +74,7 @@ const PerformanceInfo = ({
           isFavorite={isFavorite}
           className={styles.likeButton}
           isLoggedIn={!checkIsNotLoggedIn()}
-        ></LikeButton>
+        />
       </div>
     </div>
   );

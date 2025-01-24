@@ -6,7 +6,7 @@ interface PerformanceSectionProps {
   performances?: {
     performanceId: number;
     typeId: number;
-    type: string;
+    type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
     title: string;
     performanceStartAt: string;
     performanceEndAt: string;
