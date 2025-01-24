@@ -1,8 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import {
-  SEARCH_ARTIST_QUERY_OPTION,
-  SEARCH_PERFORMANCES_QUERY_OPTION,
-} from '@shared/apis/search/search-queries';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
+import { getPerformancesSearch } from '@shared/apis/search/search';
+import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
 
 interface UseArtistProps {
   keyword: string;
@@ -19,23 +18,33 @@ export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
 
 interface UsePerformancesProps {
   artistId: string;
-  cursor: number;
   enabled: boolean;
 }
 
 export const useSearchPerformances = ({
   artistId,
-  cursor,
   enabled,
 }: UsePerformancesProps) => {
-  const isQueryEnabled = !!artistId && enabled;
-  const { data } = useQuery({
-    ...SEARCH_PERFORMANCES_QUERY_OPTION.SEARCH_PERFORMANCES(
-      artistId,
-      cursor,
-      isQueryEnabled,
-    ),
-  });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['performances', artistId],
+      queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
+        getPerformancesSearch(artistId, pageParam),
+      enabled,
+      initialPageParam: 1,
+      getNextPageParam: (lastPage: GetPerformancesSearchResponse) => {
+        return lastPage.nextCursor !== -1 ? lastPage.nextCursor : undefined;
+      },
+    });
 
-  return data;
+  const performances = data?.pages.flatMap((page) => page.performances) || [];
+  const performanceCount = data?.pages[0]?.performanceCount || 0;
+
+  return {
+    performances,
+    performanceCount,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  };
 };

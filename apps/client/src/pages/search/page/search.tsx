@@ -6,6 +6,7 @@ import PerformanceSection from '@pages/search/components/performance-section';
 import PerformanceCount from '@pages/search/components/performance-count-section';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import { useSearchPerformances } from '../hooks/use-search-data';
+import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 const Search = () => {
   const {
@@ -19,14 +20,13 @@ const Search = () => {
   } = useSearchLogic();
 
   const artistId = artistData[0]?.artistId || '';
-  const performancesData = useSearchPerformances({
-    artistId,
-    cursor: 1,
-    enabled: !!artistId,
-  });
+  const { performances, performanceCount, fetchNextPage, hasNextPage } =
+    useSearchPerformances({
+      artistId,
+      enabled: !!artistId,
+    });
 
-  const performances = performancesData?.performances || [];
-  const performanceCount = performances.length;
+  const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   return (
     <>
@@ -46,6 +46,9 @@ const Search = () => {
             <Spacing />
             <PerformanceCount count={performanceCount} />
             <PerformanceSection performances={performances} />
+            {hasNextPage && (
+              <div ref={observerRef} style={{ height: '2rem' }} />
+            )}
           </main>
           <Footer />
         </>

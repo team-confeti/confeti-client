@@ -23,5 +23,6 @@ export interface Performance {
 
 export interface GetPerformancesSearchResponse {
   nextCursor: number;
+  performanceCount: number;
   performances: Performance[];
 }

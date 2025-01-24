@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 import { getArtistSearch, getPerformancesSearch } from './search';
+import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -30,17 +31,14 @@ export const SEARCH_PERFORMANCES_QUERY_KEY = {
 } as const;
 
 export const SEARCH_PERFORMANCES_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCES_QUERY_KEY.ALL }),
-  SEARCH_PERFORMANCES: (
-    artistId: string,
-    cursor: number,
-    enabled: boolean,
-  ) => ({
-    queryKey: SEARCH_PERFORMANCES_QUERY_KEY.SEARCH_PERFORMANCES(
-      artistId,
-      cursor,
-    ),
-    queryFn: () => getPerformancesSearch(artistId, cursor),
+  SEARCH_PERFORMANCES: (artistId: string, enabled: boolean) => ({
+    queryKey: ['performances', artistId],
+    queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
+      getPerformancesSearch(artistId, pageParam),
     enabled,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: GetPerformancesSearchResponse) => {
+      return lastPage.nextCursor !== -1 ? lastPage.nextCursor : undefined;
+    },
   }),
 };

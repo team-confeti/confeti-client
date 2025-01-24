@@ -19,10 +19,8 @@ export const getPerformancesSearch = async (
   artistId: string,
   cursor: number,
 ): Promise<GetPerformancesSearchResponse> => {
-  const url =
-    cursor === 1
-      ? `performances/association/${artistId}`
-      : `performances/association/${artistId}?cursor=${cursor}`;
+  const baseUrl = `performances/association/${artistId}`;
+  const url = cursor === 1 ? baseUrl : `${baseUrl}?cursor=${cursor}`;
 
   const response = await get<BaseResponse<GetPerformancesSearchResponse>>(url);
   return response.data;
