@@ -7,7 +7,6 @@ import MoreButton from '@pages/confeti/components/button/more-button';
 import PerformanceDetail from '@pages/confeti/components/performance/performance-detail';
 import ArtistTitle from '@pages/confeti/components/artist/artist-title';
 import ArtistSection from '@pages/confeti/components/artist/artist-section';
-import Wrap from '../components/wrap/wrap';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { useConcertDetail } from '@pages/confeti/hooks/use-concert-detail';
 
@@ -24,7 +23,7 @@ const ConcertDetailPage = () => {
   };
 
   return (
-    <Wrap>
+    <>
       <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <Summary
         id={concert.concertId}
@@ -63,7 +62,7 @@ const ConcertDetailPage = () => {
       <ArtistSection type="concert" artistData={concertDetail} />
       <FloatingButton />
       <Footer />
-    </Wrap>
+    </>
   );
 };
 
