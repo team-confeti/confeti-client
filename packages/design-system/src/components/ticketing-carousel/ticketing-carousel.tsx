@@ -128,7 +128,7 @@ const CarouselContainer = ({
 }: CarouselContainerProps) => {
   const navigate = useNavigate();
 
-  const handleContainerClick = () => {
+  const handleNavigateDetail = () => {
     if (performanceType === 'FESTIVAL') {
       navigate(`/festival-detail/${currentImageId}`);
     }
@@ -138,7 +138,7 @@ const CarouselContainer = ({
   };
 
   return (
-    <div className={styles.container} onClick={handleContainerClick}>
+    <div className={styles.container} onClick={handleNavigateDetail}>
       {children}
     </div>
   );
