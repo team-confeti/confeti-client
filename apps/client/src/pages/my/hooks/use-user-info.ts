@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { USER_ID_KEY } from '@shared/constants/user-constants';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 export const useUserProfile = () => {
-  const userId = localStorage.getItem(USER_ID_KEY);
+  const isNotLoggedIn = checkIsNotLoggedIn();
   const { data, isLoading } = useQuery({
     ...USER_QUERY_OPTIONS.PROFILE(),
-    enabled: !!userId,
+    enabled: !isNotLoggedIn,
   });
   return { data, isLoading };
 };

@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { USER_ID_KEY } from '@shared/constants/user-constants';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 export const useMyArtist = () => {
-  const userId = localStorage.getItem(USER_ID_KEY);
+  const isNotLoggedIn = checkIsNotLoggedIn();
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.FAVORITE_ARTISTS(),
-    enabled: !!userId,
+    enabled: !isNotLoggedIn,
   });
   return { data, isLoading: !data };
 };
 
 export const useMyConfeti = () => {
-  const userId = localStorage.getItem(USER_ID_KEY);
+  const isNotLoggedIn = checkIsNotLoggedIn();
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES(),
-    enabled: !!userId,
+    enabled: !isNotLoggedIn,
   });
   return { data, isLoading: !data };
 };
