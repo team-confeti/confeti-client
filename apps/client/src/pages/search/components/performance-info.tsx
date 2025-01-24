@@ -6,7 +6,7 @@ import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './performance-info.css';
 
 interface PerformanceInfoProps {
-  type?: string;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   typeId: number;
   posterUrl: string;
   title: string;
@@ -28,7 +28,7 @@ const PerformanceInfo = ({
   const { mutate } = useLikeMutation();
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
-    mutate({ id: typeId, action, type: 'ARTIST' });
+    mutate({ id: typeId, action, type: type });
   };
 
   const handleNavigation = () => {
@@ -37,7 +37,7 @@ const PerformanceInfo = ({
       return;
     } else {
       const path =
-        type === 'concert'
+        type === 'CONCERT'
           ? `/concert-detail/${typeId}`
           : `/festival-detail/${typeId}`;
       navigate(path);
