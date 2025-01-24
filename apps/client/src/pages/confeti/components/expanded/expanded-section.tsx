@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react';
 import { ConcertArtist } from '../../types/concert';
 import MoreButton from '@pages/confeti/components/button/more-button';
 import ArtistGrid from '@pages/confeti/components/artist/artist-grid';
@@ -14,25 +15,39 @@ interface ExpandedSectionProps {
 }
 
 const ExpandedSection = ({
-  isOpen,
   isExpanded,
   artists,
   dayId,
   toggleExpand,
 }: ExpandedSectionProps) => {
-  if (!isOpen) return null;
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const timer = requestAnimationFrame(() => {
+      if (contentRef.current) {
+        setHeight(isExpanded ? contentRef.current.scrollHeight : 0);
+      }
+    });
+
+    return () => cancelAnimationFrame(timer);
+  }, [isExpanded]);
 
   return (
     <section className={styles.expandedSection}>
-      {isExpanded && (
-        <div className={styles.expandedArtists}>
-          <ArtistGrid
-            artists={artists.slice(MAX_VISIBLE_ARTISTS)}
-            dayId={dayId}
-            type="expanded"
-          />
-        </div>
-      )}
+      <div
+        ref={contentRef}
+        className={`${styles.expandedArtists} ${isExpanded ? styles.expandedArtistsVisible : ''}`}
+        style={{
+          height: isExpanded ? `${height}px` : '0',
+        }}
+      >
+        <ArtistGrid
+          artists={artists.slice(MAX_VISIBLE_ARTISTS)}
+          dayId={dayId}
+          type="expanded"
+        />
+      </div>
       <MoreButton
         isExpanded={isExpanded}
         onToggle={() => toggleExpand(dayId)}

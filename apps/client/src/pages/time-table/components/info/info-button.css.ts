@@ -1,5 +1,14 @@
 import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '@confeti/design-system/styles';
+import { keyframes } from '@vanilla-extract/css';
+
+const shake = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '25%': { transform: 'rotate(-5deg)' },
+  '50%': { transform: 'rotate(5deg)' },
+  '75%': { transform: 'rotate(-5deg)' },
+  '100%': { transform: 'rotate(0deg)' },
+});
 
 export const containerVariants = recipe({
   base: {
@@ -82,6 +91,11 @@ export const ImageVariants = recipe({
         backgroundOrigin: 'border-box',
         backgroundClip: 'content-box, border-box',
         transition: 'background-image 0.4s ease, border-color 0.4s ease',
+      },
+    },
+    isFestivalDeleteMode: {
+      true: {
+        animation: `${shake} 0.5s ease-in-out infinite`,
       },
     },
   },
