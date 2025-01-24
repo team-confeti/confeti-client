@@ -44,7 +44,7 @@ const PerformanceInfo = ({
     }
   };
   return (
-    <div className={styles.container} onClick={handleNavigation}>
+    <div className={styles.container}>
       <div className={styles.wrapper}>
         <img
           src={posterUrl}
