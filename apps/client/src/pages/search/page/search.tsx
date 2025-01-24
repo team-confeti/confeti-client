@@ -6,6 +6,7 @@ import PerformanceSection from '@pages/search/components/performance-section';
 import PerformanceCount from '@pages/search/components/performance-count-section';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import { useSearchPerformances } from '../hooks/use-search-data';
+import ArtistNotFound from '../components/artist-not-found';
 
 const Search = () => {
   const {
@@ -25,6 +26,8 @@ const Search = () => {
     enabled: !!artistId,
   });
 
+  const isLoading = !artistData || artistData.length === 0;
+
   const performances = performancesData?.performances || [];
   const performanceCount = performances.length;
 
@@ -39,13 +42,21 @@ const Search = () => {
       {!barFocus && paramsKeyword.length > 0 && (
         <>
           <main className={styles.resultSection}>
-            <NoticeSection
-              isMultipleArtists={artistData[0]?.isMultipleArtists}
-            />
-            <ArtistSection artist={artistData} />
-            <Spacing />
-            <PerformanceCount count={performanceCount} />
-            <PerformanceSection performances={performances} />
+            {isLoading ? (
+              <div />
+            ) : artistId ? (
+              <>
+                <NoticeSection
+                  isMultipleArtists={artistData[0]?.isMultipleArtists}
+                />
+                <ArtistSection artist={artistData} />
+                <Spacing />
+                <PerformanceCount count={performanceCount} />
+                <PerformanceSection performances={performances} />
+              </>
+            ) : (
+              <ArtistNotFound />
+            )}
           </main>
           <Footer />
         </>
