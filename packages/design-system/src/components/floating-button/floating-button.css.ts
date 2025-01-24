@@ -3,15 +3,23 @@ import { themeVars } from '../../styles';
 
 export const floatingButtonVariants = recipe({
   base: {
-    position: 'absolute',
-    right: '2rem',
-    bottom: '2rem',
+    position: 'sticky',
+    width: '4rem',
+    height: '4rem',
     display: 'flex',
     padding: '0.5rem',
     borderRadius: '2rem',
     backgroundColor: themeVars.color.gray800,
-    flexShrink: '0',
     zIndex: themeVars.zIndex.floatingButton.content,
+    flexShrink: '0',
+    bottom: '1.4rem',
+    right: '2rem',
+    '@media': {
+      screen: {
+        position: 'fixed',
+        right: 'max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem))',
+      },
+    },
   },
   variants: {
     md: {

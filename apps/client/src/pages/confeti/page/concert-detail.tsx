@@ -24,7 +24,6 @@ const ConcertDetailPage = () => {
 
   return (
     <>
-      <FloatingButton />
       <Poster posterBgUrl={concert.posterBgUrl} posterUrl={concert.posterUrl} />
       <Summary
         id={concert.concertId}
@@ -61,6 +60,7 @@ const ConcertDetailPage = () => {
       <Spacing />
       <ArtistTitle />
       <ArtistSection type="concert" artistData={concertDetail} />
+      <FloatingButton />
       <Footer />
     </>
   );
