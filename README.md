@@ -14,13 +14,14 @@
 
 <h2>🏴‍☠️ Confeti FE Developers</h2>
 <div align="center">
-  <!-- 첫 번째 줄: 3명 -->
   <table>
     <thead>
       <tr>
         <th>강민하</th>
         <th>곽지욱</th>
         <th>김다현</th>
+        <th>김채은</th>
+        <th>김한서</th>
       </tr>
     </thead>
     <tbody>
@@ -29,21 +30,35 @@
           <img 
             src="https://github.com/user-attachments/assets/8a6297f6-eb21-4b42-b5fd-9f204a4eed1b" 
             alt="강민하" 
-            style="width: 200px; height: 318px; object-fit: cover;"
+            style="width: 172px; height: 272px"
           />
         </td>
         <td>
           <img 
             src="https://github.com/user-attachments/assets/526939ca-f0fd-4172-a916-cfa8e491b6a8" 
             alt="곽지욱" 
-            style="width: 200px; height: 318px; object-fit: cover;"
+            style="width: 172px; height: 272px"
           />
         </td>
         <td>
           <img 
             src="https://github.com/user-attachments/assets/682d7270-59bf-470c-b835-cece8b071105" 
             alt="김다현" 
-            style="width: 200px; height: 318px; object-fit: cover;"
+            style="width: 172px; height: 272px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873" 
+            alt="김채은" 
+            style="width: 172px; height: 272px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08" 
+            alt="김한서" 
+            style="width: 172px; height: 272px"
           />
         </td>
       </tr>
@@ -57,36 +72,6 @@
         <td>
           <a href="https://github.com/daahyunk" target="_blank">@daahyunk</a>
         </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- 두 번째 줄: 2명 -->
-  <table>
-    <thead>
-      <tr>
-        <th>김채은</th>
-        <th>김한서</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <img 
-            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873" 
-            alt="김채은" 
-            style="width: 200px; height: 318px; object-fit: cover;"
-          />
-        </td>
-        <td>
-          <img 
-            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08" 
-            alt="김한서" 
-            style="width: 200px; height: 318px; object-fit: cover;"
-          />
-        </td>
-      </tr>
-      <tr align="center">
         <td>
           <a href="https://github.com/bongtta" target="_blank">@bongtta</a>
         </td>
@@ -97,7 +82,6 @@
     </tbody>
   </table>
 </div>
-
 <br />
 
 ## 🛠️ Tech Stack
