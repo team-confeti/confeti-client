@@ -1,6 +1,5 @@
 import { cn } from '../../utils';
 import { buttonVariants } from './button.css';
-import SvgIcLink from '../../icons/src/IcLink';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
@@ -16,8 +15,6 @@ const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const linkIcon = variant === 'link' ? <SvgIcLink /> : null;
-
   return (
     <button
       className={cn(buttonVariants({ variant: variant, disabled }), className)}
@@ -25,7 +22,6 @@ const Button = ({
       {...props}
     >
       {text}
-      {linkIcon}
     </button>
   );
 };
