@@ -3,7 +3,7 @@ interface FestivalDate {
   festivalAt: string;
 }
 
-interface FestivalTimetable {
+export interface FestivalTimetable {
   festivalId: number;
   title: string;
   logoUrl: string;
