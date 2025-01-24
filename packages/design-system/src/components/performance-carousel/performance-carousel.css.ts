@@ -41,11 +41,26 @@ globalStyle('.card', {
   height: '100%',
   borderRadius: '1rem',
   boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
-  cursor: 'pointer',
+  outline: 'none !important',
+  WebkitTapHighlightColor: 'transparent',
+});
+
+globalStyle('.imgDiv:focus', {
+  outline: 'none !important',
+});
+
+globalStyle('.imgDiv:active', {
+  outline: 'none !important',
+  border: '0px !important',
 });
 
 globalStyle('.slide-overlay', {
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
+});
+
+globalStyle('.slick-center', {
+  outline: 'none !important',
+  WebkitTapHighlightColor: 'transparent',
 });
