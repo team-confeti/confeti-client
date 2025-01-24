@@ -61,7 +61,7 @@ const TimeTable = () => {
   return (
     <>
       {festivals.length === 0 ? (
-        <EmptyFestivalSection></EmptyFestivalSection>
+        <EmptyFestivalSection />
       ) : (
         <>
           <InfoButton.TotalWrap festivals={festivals}>
@@ -79,6 +79,7 @@ const TimeTable = () => {
                       text={title}
                       onClick={() => handleFestivalClick(festivalId)}
                       isClicked={clickedFestivalId === festivalId}
+                      isFestivalDeleteMode={isFestivalDeleteMode}
                     />
                     {festivalId && (
                       <DeleteButton
