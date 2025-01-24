@@ -59,7 +59,7 @@ export const description = style({
   gap: '0.8rem',
   position: 'absolute',
   top: '1.6rem',
-  width: '85%',
+  width: '80%',
 });
 
 export const infoDday = style({
