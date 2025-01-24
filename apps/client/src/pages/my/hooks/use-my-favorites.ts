@@ -1,12 +1,21 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { USER_ID_KEY } from '@shared/constants/user-constants';
 
 export const useMyArtist = () => {
-  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_ARTISTS());
-  return { data };
+  const userId = localStorage.getItem(USER_ID_KEY);
+  const { data } = useQuery({
+    ...USER_QUERY_OPTIONS.FAVORITE_ARTISTS(),
+    enabled: !!userId,
+  });
+  return { data, isLoading: !data };
 };
 
 export const useMyConfeti = () => {
-  const { data } = useSuspenseQuery(USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES());
-  return { data };
+  const userId = localStorage.getItem(USER_ID_KEY);
+  const { data } = useQuery({
+    ...USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES(),
+    enabled: !!userId,
+  });
+  return { data, isLoading: !data };
 };

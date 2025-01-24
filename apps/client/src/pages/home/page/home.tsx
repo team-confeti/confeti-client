@@ -18,11 +18,14 @@ const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
   const userId = localStorage.getItem(USER_ID_KEY);
-  const profileData = useUserProfile();
+  const { data: profileData, isLoading } = useUserProfile();
   const isHighlighted = Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
+
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
+
+  if (isLoading) return null;
 
   return (
     <>
@@ -38,13 +41,11 @@ const Home = () => {
 
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
-            <PerformanceCarousel
-              performData={latestPerformances}
-            ></PerformanceCarousel>
+            <PerformanceCarousel performData={latestPerformances} />
           </section>
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
-              {isHighlighted ? (
+              {isHighlighted && profileData ? (
                 <>
                   <span className={styles.highlightedText}>
                     {profileData.username}
@@ -65,7 +66,6 @@ const Home = () => {
           </section>
         </div>
       </Navigation.Root>
-
       <Footer />
     </>
   );
