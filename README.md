@@ -1,3 +1,7 @@
+
+![주212기능](https://github.com/user-attachments/assets/7af4ff19-538e-424d-a767-8a7442f25718)
+
+
 ![logo_main](https://github.com/user-attachments/assets/f010308f-2774-418a-947e-ebef95f691da)
 <br/> <strong> "콘서트, 페스티벌 티켓 정보를 한눈에, 손쉽게!"</strong>
 
@@ -9,9 +13,7 @@
 
 ---
 
-<h2>🏴‍☠️ confeti FE Developers</h2>
-<div align="center">
-</div>
+<h2>🏴‍☠️ Confeti FE Developers</h2>
 <div align="center">
   <table>
     <thead>
@@ -24,12 +26,40 @@
       </tr>
     </thead>
     <tbody>
-      <tr align="center">
-        <td colspan="5">
+      <tr>
+        <td>
           <img 
-            src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" 
-            alt="Component 1" 
-            style="width: 100%; height: auto;"
+            src="https://github.com/user-attachments/assets/8a6297f6-eb21-4b42-b5fd-9f204a4eed1b" 
+            alt="강민하" 
+            style="width: 140px; height: 224px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/526939ca-f0fd-4172-a916-cfa8e491b6a8" 
+            alt="곽지욱" 
+            style="width: 140px; height: 224px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/682d7270-59bf-470c-b835-cece8b071105" 
+            alt="김다현" 
+            style="width: 140px; height: 224px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873" 
+            alt="김채은" 
+            style="width: 140px; height: 224px"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08" 
+            alt="김한서" 
+            style="width: 140px; height: 224px"
           />
         </td>
       </tr>
@@ -53,8 +83,67 @@
     </tbody>
   </table>
 </div>
-
 <br />
+
+## 📌 서비스 핵심 기능
+
+### 🏠 홈 페이지 
+
+<img width="500" alt="스크린샷 2025-01-24 오후 11 06 40" src="https://github.com/user-attachments/assets/6a130aa7-dcf0-4ca1-80ea-b3a230446b72" />
+
+**사용자 맞춤형 정보 제공: 사용자의 선호를 기반으로 아티스트 및 공연 정보를 맞춤형으로 제공해요.**
+- 선호 아티스트 및 공연 예매일 임박 공연 정보 제공
+
+### 🔍 검색 페이지 
+
+<img width="800" alt="스크린샷 2025-01-24 오후 11 07 08" src="https://github.com/user-attachments/assets/2ac90fdf-cabb-4d0b-9964-47454b593fb3" />
+
+**검색 기능을 통해 찾고 싶은 아티스트와 해당 아티스트가 참여하는 공연을 검색할 수 있어요.**
+- 검색한 아티스트 & 공연 좋아요 추가/삭제 기능 제공
+
+
+### 👤 마이 페이지 
+
+<img width="800" alt="스크린샷 2025-01-24 오후 11 07 49" src="https://github.com/user-attachments/assets/4111c365-6b2e-4236-8021-de0a0207775d" />
+
+**회원정보와 선호하는 아티스트 및 공연에 대한 정보를 제공해요.**
+- 선호하는 아티스트 목록 및 공연 정보 확인 가능
+- 로그인 & 로그아웃 가능
+
+
+### 🥽 공연 상세보기 페이지 
+
+<img width="500" alt="스크린샷 2025-01-24 오후 11 08 07" src="https://github.com/user-attachments/assets/8db0c9ba-bc58-4e79-89c4-3c33ac013093" />
+
+**공연에 대한 전반적인 내용을 확인할 수 있으며 선호 버튼을 통해 해당 데이터를 기반으로 사용자 맞춤형 정보를 제공해요.**
+- 공연의 기간과 장소, 예매일, 예매처, 티켓 정보 제공
+- 공연에 해당하는 아티스트 정보 제공
+- 공연 좋아요 추가/삭제 기능 제공
+
+
+
+### 🕰️ 타임테이블 페이지 
+
+<img width="500" alt="스크린샷 2025-01-24 오후 10 58 41" src="https://github.com/user-attachments/assets/7a4f3564-6483-4e1a-a13f-5436e6ffd923" />
+<img width="800" alt="스크린샷 2025-01-24 오후 11 26 17" src="https://github.com/user-attachments/assets/77c4079f-4413-4812-b386-b80de3c0dab6" />
+
+**자신만의 타임테이블을 만들고 이미지로 저장해 일정을 한눈에, 손쉽게 확인할 수 있어요.**
+- 페스티벌 추가: 타임테이블을 볼 페스티벌을 선택하여 추가할 수 있어요
+- 타임테이블 편집 및 저장:  좋아하는 아티스트의 무대로 나만의 타임테이블을 만들고 이미지로 저장할 수 있어요
+- 페스티벌 삭제: 사용자 개개인의 일정을 고려해 추가한 페스티벌의 타임테이블을 간편하게 삭제할 수 있어요.
+  
+
+### ➕ 타임테이블 추가 페이지
+
+<img width="500" alt="스크린샷 2025-01-24 오후 11 00 53" src="https://github.com/user-attachments/assets/626ba5b4-7624-46fd-930f-4aa300ead148" />
+
+**타임테이블을 볼 페스티벌을 선택하여 추가할 수 있어요.**
+- 최대 3개까지 타임테이블을 볼 수 있으며, 3개 초과시 토스트 팝업을 띄움
+
+  
+<br />
+
+
 
 ## 🛠️ Tech Stack
 
@@ -76,7 +165,7 @@
 <br />
 
 
-## 🤔Why
+## 🤔 Why?
 
 | 기술 스택         | 선정 이유 |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -220,3 +309,4 @@ ex) `feat: 타임테이블 기능 추가`
 
 ```
 ## 🎸 [콘페티 자세한 컨벤션 알아보기](https://wonderful-celestite-e3c.notion.site/16d210e281b08084846ad4a71d6866a3)
+<img src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" alt="Component 1" style="width: 100%; height: auto;"/>
