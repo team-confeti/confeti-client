@@ -4,7 +4,10 @@ import * as styles from './artist-more.css';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const ArtistMore = () => {
-  const { data } = useMyArtist();
+  const { data, isLoading } = useMyArtist();
+
+  if (isLoading || !data) return null;
+
   const allArtists = [...data.artists, ...ARTISTS_DATA.artists];
 
   return (
@@ -24,5 +27,4 @@ const ArtistMore = () => {
     </>
   );
 };
-
 export default ArtistMore;

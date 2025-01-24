@@ -4,7 +4,10 @@ import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import * as styles from './confeti-more.css';
 
 const ConfetiMore = () => {
-  const { data } = useMyConfeti();
+  const { data, isLoading } = useMyConfeti();
+
+  if (isLoading || !data) return null;
+
   const allPerformances = [
     ...data.performances,
     ...PERFORMANCE_DATA.performances,
