@@ -30,6 +30,7 @@ interface InfoItemContainerProps {
 
 interface FixedButtonProps {
   size?: SizeType;
+  disabled: boolean;
 }
 
 interface InfoItemsProps {
@@ -67,7 +68,7 @@ const InfoItemContainer = ({
   <div className={cn(ItemContainer({ size }))}>{children}</div>
 );
 
-const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
+const FixedButton = ({ size = 'md', disabled }: FixedButtonProps) => {
   const navigate = useNavigate();
   return (
     <>
@@ -75,7 +76,7 @@ const FixedButton = ({ size = 'md' }: FixedButtonProps) => {
         className={cn(ItemsVariants({ size }))}
         onClick={() => navigate(routePath.ADDFESTIVAL)}
       >
-        <AddButton size="md" />
+        <AddButton size="md" disabled={disabled} />
         <InfoButton.TextField text={`페스티벌\n추가`} color="gray" />
       </div>
     </>

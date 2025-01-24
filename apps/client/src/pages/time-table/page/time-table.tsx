@@ -64,7 +64,7 @@ const TimeTable = () => {
         <>
           <InfoButton.TotalWrap festivals={festivals}>
             <InfoButton.ItemContainer>
-              <InfoButton.FixButton />
+              <InfoButton.FixButton disabled={isFestivalDeleteMode} />
               {remainedFestival.map(({ festivalId, title, logoUrl }) => (
                 <div className={styles.festivalBtnWrapper} key={festivalId}>
                   <InfoButton.Items
