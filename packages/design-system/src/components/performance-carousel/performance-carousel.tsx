@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
 import './performance-carousel.css';
+import { useNavigate } from 'react-router-dom';
 
 interface PerformData {
   performanceId: number;
@@ -21,6 +22,7 @@ interface DataProps {
 
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
+  const navigate = useNavigate();
   const [currentId, setCurrentId] = useState(3);
   const [activeIndex, setActiveIndex] = useState(3);
 
@@ -83,6 +85,10 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     </svg>
   );
 
+  const handleContainerClick = (type: string, typeId: number) => {
+    navigate(`/${type}-detail/${typeId}`);
+  };
+
   return (
     <>
       <div className="banner-title">
@@ -97,6 +103,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
               className="card"
               key={item.performanceId}
               src={item.posterUrl}
+              onClick={() => handleContainerClick(item.type, item.typeId)}
             ></img>
             {index !== activeIndex && <SlideOverlay />}
           </div>
