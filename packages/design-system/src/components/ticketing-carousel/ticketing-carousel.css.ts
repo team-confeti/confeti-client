@@ -4,6 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const wrap = style({
   width: '100%',
   height: '29dvh',
+  maxHeight: '22rem',
   overflow: 'hidden',
   position: 'relative',
   borderRadius: '2rem',
@@ -34,7 +35,7 @@ export const container = style({
   width: '100%',
   height: '100%',
   flexShrink: '0',
-  padding: '1.6rem 1.2rem',
+  padding: '1.6rem 2rem',
   position: 'absolute',
   top: 0,
   left: 0,
@@ -54,8 +55,6 @@ export const textSection = style({
 });
 
 export const description = style({
-  ...themeVars.display.flexColumn,
-  gap: '0.8rem',
   position: 'absolute',
   top: '1.6rem',
 });
@@ -76,9 +75,8 @@ export const fixedWord = style({
 });
 
 export const infoBottom = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  width: '93%',
+  ...themeVars.display.flexBetween,
+  width: 'calc(100% - 4rem)',
   position: 'absolute',
-  bottom: '1.6rem',
+  bottom: '0.7rem',
 });

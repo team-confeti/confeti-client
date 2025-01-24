@@ -14,7 +14,9 @@ export const infoButtonVariants = recipe({
         width: '11.7rem',
         height: '3rem',
       },
-      lg: {},
+      lg: {
+        ...themeVars.fontStyles.subtitle2_sb_16,
+      },
     },
   },
 });
