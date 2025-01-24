@@ -97,13 +97,13 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       </div>
       <Slider {...settings}>
         {performData.map((item, index) => (
-          <div key={index}>
-            <img
-              className="card"
-              key={item.typeId}
-              src={item.posterUrl}
-              onClick={() => handleContainerClick(item.type, item.typeId)}
-            ></img>
+          <div
+            key={index}
+            className=".imgDiv"
+            onClick={() => handleContainerClick(item.type, item.typeId)}
+            onFocus={(e) => e.currentTarget.blur()}
+          >
+            <img className="card" key={item.typeId} src={item.posterUrl} />
             {index !== activeIndex && <SlideOverlay />}
           </div>
         ))}

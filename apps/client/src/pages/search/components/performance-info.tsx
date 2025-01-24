@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { IcTimeGray14, IcPlaceGray14 } from '@confeti/design-system/icons';
-import { LikeButton, toast } from '@confeti/design-system';
+import { LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './performance-info.css';
@@ -32,17 +32,13 @@ const PerformanceInfo = ({
   };
 
   const handleNavigation = () => {
-    if (checkIsNotLoggedIn()) {
-      toast.default('로그인 후 이용 가능해요');
-      return;
-    } else {
-      const path =
-        type === 'CONCERT'
-          ? `/concert-detail/${typeId}`
-          : `/festival-detail/${typeId}`;
-      navigate(path);
-    }
+    const path =
+      type === 'CONCERT'
+        ? `/concert-detail/${typeId}`
+        : `/festival-detail/${typeId}`;
+    navigate(path);
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
