@@ -60,6 +60,8 @@ export const description = style({
   position: 'absolute',
   top: '1.6rem',
   width: '80%',
+  wordBreak: 'keep-all',
+  whiteSpace: 'pre-line',
 });
 
 export const infoDday = style({
