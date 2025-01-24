@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Info from '@pages/confeti/components/info/info';
 import Poster from '@pages/confeti/components/poster/poster';
@@ -13,14 +13,22 @@ import { useConcertDetail } from '@pages/confeti/hooks/use-concert-detail';
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedConcertId = typeId ? Number(typeId) : 0;
-  const concertDetail = useConcertDetail(parsedConcertId);
+  const [isMoreButton, setIsMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
   };
+
+  console.log(concertDetail.concertArtists);
+
+  useEffect(() => {
+    if (concertDetail.concertArtists.length >= 4) {
+      setIsMoreButton(true);
+    }
+  }, [concertDetail.concertArtists.length]);
 
   return (
     <>
@@ -59,7 +67,11 @@ const ConcertDetailPage = () => {
       />
       <Spacing />
       <ArtistTitle />
-      <ArtistSection type="concert" artistData={concertDetail} />
+      <ArtistSection
+        type="concert"
+        artistData={concertDetail}
+        isMoreButton={isMoreButton}
+      />
       <FloatingButton />
       <Footer />
     </>
