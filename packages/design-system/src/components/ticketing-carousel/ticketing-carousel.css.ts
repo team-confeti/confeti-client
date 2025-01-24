@@ -78,5 +78,5 @@ export const infoBottom = style({
   ...themeVars.display.flexBetween,
   width: 'calc(100% - 4rem)',
   position: 'absolute',
-  bottom: '0.8rem',
+  bottom: '1rem',
 });
