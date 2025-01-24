@@ -11,19 +11,11 @@ import ConfetiSection from '@pages/my/components/confeti/confeti-section';
 import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 
 const MyProfile = () => {
-  const { data: profileData, isLoading: profileLoading } = useUserProfile();
-  const { data: artistData, isLoading: artistLoading } = useMyArtist();
-  const { data: performanceData, isLoading: performanceLoading } =
-    useMyConfeti();
+  const { data: profileData } = useUserProfile();
+  const { data: artistData } = useMyArtist();
+  const { data: performanceData } = useMyConfeti();
 
-  if (
-    profileLoading ||
-    artistLoading ||
-    performanceLoading ||
-    !profileData ||
-    !artistData ||
-    !performanceData
-  ) {
+  if (!profileData || !artistData || !performanceData) {
     return null;
   }
 

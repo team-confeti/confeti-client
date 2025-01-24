@@ -8,7 +8,8 @@ export const useMyArtist = () => {
     ...USER_QUERY_OPTIONS.FAVORITE_ARTISTS(),
     enabled: !isNotLoggedIn,
   });
-  return { data, isLoading: !data };
+  // 로딩 상태 제거
+  return { data };
 };
 
 export const useMyConfeti = () => {
@@ -17,5 +18,6 @@ export const useMyConfeti = () => {
     ...USER_QUERY_OPTIONS.FAVORITE_PERFORMANCES(),
     enabled: !isNotLoggedIn,
   });
-  return { data, isLoading: !data };
+  // 로딩 상태 제거
+  return { data };
 };

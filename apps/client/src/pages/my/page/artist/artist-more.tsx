@@ -4,9 +4,9 @@ import * as styles from './artist-more.css';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const ArtistMore = () => {
-  const { data, isLoading } = useMyArtist();
+  const { data } = useMyArtist();
 
-  if (isLoading || !data) return null;
+  if (!data) return null;
 
   const allArtists = [...data.artists, ...ARTISTS_DATA.artists];
 
