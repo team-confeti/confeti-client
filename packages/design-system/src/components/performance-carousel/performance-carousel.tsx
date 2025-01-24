@@ -6,11 +6,10 @@ import './dots.css';
 import './performance-carousel.css';
 
 interface PerformData {
-  performanceId: number;
   typeId: number;
   type: string;
   title: string;
-  subtitle: string;
+  subtitle?: string | null;
   performanceAt: string;
   posterUrl: string;
 }
@@ -93,11 +92,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       <Slider {...settings}>
         {performData.map((item, index) => (
           <div key={index}>
-            <img
-              className="card"
-              key={item.performanceId}
-              src={item.posterUrl}
-            ></img>
+            <img className="card" key={item.typeId} src={item.posterUrl}></img>
             {index !== activeIndex && <SlideOverlay />}
           </div>
         ))}
