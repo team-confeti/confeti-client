@@ -9,6 +9,7 @@ import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
 import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
+import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 import * as styles from './edit-floating-button.css';
 
 interface EditFloatingButtonProps {
@@ -23,6 +24,8 @@ interface EditFloatingButtonProps {
   onToggleComplete: () => void;
   onResetModes: () => void;
   festivalsToDelete: number[];
+  remainedFestival: FestivalTimetable[];
+  handleFestivalClick: (festivalId: number, title: string) => void;
 }
 
 const EditFloatingButton = ({
@@ -37,6 +40,8 @@ const EditFloatingButton = ({
   onToggleComplete,
   onResetModes,
   festivalsToDelete,
+  remainedFestival,
+  handleFestivalClick,
 }: EditFloatingButtonProps) => {
   const deleteFestival = useDeleteTimeTableFestival();
   const isAtBottom = useScrollPosition();
@@ -47,13 +52,15 @@ const EditFloatingButton = ({
   const handleToggleButton = () => {
     if (isEditTimeTableMode || isFestivalDeleteMode) {
       festivalsToDelete.map((id) => deleteFestival.mutate(id));
+      if (remainedFestival.length > 0) {
+        handleFestivalClick(remainedFestival[0].festivalId, ''); //리팩토링 필요함
+      }
       onResetModes();
     }
 
     onToggleEditMode();
     onToggleTextVisibility(true);
   };
-
   const getBackgroundClassName = () => {
     return ` ${
       isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode
