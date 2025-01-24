@@ -116,6 +116,7 @@ const TimeTable = () => {
             festivalsToDelete={festivalsToDelete}
             remainedFestival={remainedFestival}
             handleFestivalClick={handleFestivalClick}
+            selectedFestivalId={clickedFestivalId}
           />
         </>
       )}
