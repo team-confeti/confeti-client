@@ -14,9 +14,6 @@ import { routePath } from '@shared/constants/path';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
 
-
-
-
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
