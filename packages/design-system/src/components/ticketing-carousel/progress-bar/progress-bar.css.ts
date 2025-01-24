@@ -9,7 +9,7 @@ export const progressBarVariants = recipe({
     flexDirection: 'column',
     gap: '0.8rem',
     padding: '0.4rem 0.8rem',
-    letterSpacing: '0.1rem',
+    letterSpacing: '0.2rem',
     borderRadius: '3.2rem',
   },
   variants: {

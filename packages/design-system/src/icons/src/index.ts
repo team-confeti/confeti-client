@@ -24,7 +24,6 @@ export { default as IcFloatEdit24 } from './IcFloatEdit24';
 export { default as IcFloatEditLime24 } from './IcFloatEditLime24';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
 export { default as IcIndicatorDefault } from './IcIndicatorDefault';
-export { default as IcLink } from './IcLink';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';
 export { default as IcSelect } from './IcSelect';
 export { default as IcSicGray18 } from './IcSicGray18';

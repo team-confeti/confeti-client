@@ -4,7 +4,7 @@ export const BANNER_DATA = {
     performances: [
       {
         index: 1,
-        performanceId: 1,
+        typeId: 1,
         type: 'concert',
         subtitle: '실리카겔 공연',
         reserveAt: '2025.01.15',
@@ -13,7 +13,7 @@ export const BANNER_DATA = {
       },
       {
         index: 2,
-        performanceId: 2,
+        typeId: 2,
         type: 'festival',
         subtitle: '고고학 공연',
         reserveAt: '2025.10.21',
@@ -22,7 +22,7 @@ export const BANNER_DATA = {
       },
       {
         index: 3,
-        performanceId: 3,
+        typeId: 3,
         type: 'concert',
         subtitle: '오아시스 내한공연',
         reserveAt: '2025.10.21',

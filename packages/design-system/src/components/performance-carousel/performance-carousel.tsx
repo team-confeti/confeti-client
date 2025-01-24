@@ -7,11 +7,10 @@ import './performance-carousel.css';
 import { useNavigate } from 'react-router-dom';
 
 interface PerformData {
-  performanceId: number;
   typeId: number;
   type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   title: string;
-  subtitle: string;
+  subtitle?: string | null;
   performanceAt: string;
   posterUrl: string;
 }
@@ -101,7 +100,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
           <div key={index}>
             <img
               className="card"
-              key={item.performanceId}
+              key={item.typeId}
               src={item.posterUrl}
               onClick={() => handleContainerClick(item.type, item.typeId)}
             ></img>
