@@ -1,6 +1,7 @@
 import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from '@pages/confeti/components/summary/summary.css';
 
 interface SummaryProps {
@@ -60,6 +61,7 @@ const Summary = ({
                 className={styles.likeButton}
                 isFavorite={isFavorite}
                 onLikeToggle={handleLike}
+                isLoggedIn={!checkIsNotLoggedIn()}
               />
             </div>
             <div className={styles.subtitle}>{subtitle}</div>
