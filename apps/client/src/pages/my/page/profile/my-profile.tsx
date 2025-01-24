@@ -30,7 +30,7 @@ const MyProfile = () => {
       <Box
         title="My Artist"
         path={routePath.MY_ARTIST}
-        showMore={artistData.artists.length > 0}
+        showMore={artistData.artists.length > 3}
       >
         {artistData.artists.length > 0 ? (
           <ArtistSection artists={artistData.artists.slice(0, 3)} />
@@ -42,10 +42,12 @@ const MyProfile = () => {
       <Box
         title="My Confeti"
         path={routePath.MY_CONFETI}
-        showMore={performanceData.performances.length > 0}
+        showMore={performanceData.performances.length > 3}
       >
         {performanceData.performances.length > 0 ? (
-          <ConfetiSection performances={performanceData.performances} />
+          <ConfetiSection
+            performances={performanceData.performances.slice(0, 3)}
+          />
         ) : (
           <NoConfetiSection />
         )}

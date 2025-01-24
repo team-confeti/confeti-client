@@ -25,7 +25,7 @@ interface EditFloatingButtonProps {
   onResetModes: () => void;
   festivalsToDelete: number[];
   remainedFestival: FestivalTimetable[];
-  handleFestivalClick: (festivalId: number) => void;
+  handleFestivalClick: (festivalId: number, title: string) => void;
 }
 
 const EditFloatingButton = ({
@@ -53,7 +53,7 @@ const EditFloatingButton = ({
     if (isEditTimeTableMode || isFestivalDeleteMode) {
       festivalsToDelete.map((id) => deleteFestival.mutate(id));
       if (remainedFestival.length > 0) {
-        handleFestivalClick(remainedFestival[0].festivalId);
+        handleFestivalClick(remainedFestival[0].festivalId, ''); //리팩토링 필요함
       }
       onResetModes();
     }

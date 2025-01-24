@@ -14,6 +14,9 @@ export const useButtonSelection = (festivals: Festival[]) => {
   const [clickedFestivalId, setClickedFestivalId] = useState<number | null>(
     festivals.length > 0 ? festivals[0].festivalId : null,
   );
+  const [clickedFestivalTitle, setClickedFestivalTitle] = useState<
+    string | null
+  >(festivals.length > 0 ? festivals[0].title : null);
 
   const festivalDatesMap = useMemo(
     () =>
@@ -40,19 +43,20 @@ export const useButtonSelection = (festivals: Festival[]) => {
       : null,
   );
 
-  const handleFestivalClick = (festivalId: number) => {
+  const handleFestivalClick = (festivalId: number, title: string) => {
     setClickedFestivalId(festivalId);
+    setClickedFestivalTitle(title);
     const newDates = festivalDatesMap.get(festivalId) || [];
     setSelectedFestivalDateId(
       newDates.length > 0 ? newDates[0].festivalDateId : null,
     );
   };
-
   return {
     clickedFestivalId,
     selectedFestivalDates,
-    handleFestivalClick,
     selectedFestivalDateId,
+    clickedFestivalTitle,
+    handleFestivalClick,
     setSelectedFestivalDateId,
   };
 };

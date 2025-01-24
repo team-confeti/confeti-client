@@ -53,7 +53,7 @@ const AddFestival = () => {
             />
           );
         })}
-        {hasNextPage && <div ref={observerRef} style={{ height: '20px' }} />}
+        {hasNextPage && <div ref={observerRef} style={{ height: '2rem' }} />}
       </div>
       <div className={styles.buttonSection}>
         <Button
