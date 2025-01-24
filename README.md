@@ -1,3 +1,6 @@
+
+![표지](https://github.com/user-attachments/assets/ea400cd0-517d-4610-a995-92bea326a91d)
+
 ![logo_main](https://github.com/user-attachments/assets/f010308f-2774-418a-947e-ebef95f691da)
 <br/> <strong> "콘서트, 페스티벌 티켓 정보를 한눈에, 손쉽게!"</strong>
 
@@ -9,9 +12,7 @@
 
 ---
 
-<h2>🏴‍☠️ confeti FE Developers</h2>
-<div align="center">
-</div>
+<h2>🏴‍☠️ Confeti FE Developers</h2>
 <div align="center">
   <table>
     <thead>
@@ -24,11 +25,39 @@
       </tr>
     </thead>
     <tbody>
-      <tr align="center">
-        <td colspan="5">
+      <tr>
+        <td>
           <img 
-            src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" 
-            alt="Component 1" 
+            src="https://github.com/user-attachments/assets/8a6297f6-eb21-4b42-b5fd-9f204a4eed1b" 
+            alt="강민하" 
+            style="width: 100%; height: auto;"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/526939ca-f0fd-4172-a916-cfa8e491b6a8" 
+            alt="곽지욱" 
+            style="width: 100%; height: auto;"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/682d7270-59bf-470c-b835-cece8b071105" 
+            alt="김다현" 
+            style="width: 100%; height: auto;"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873" 
+            alt="김채은" 
+            style="width: 100%; height: auto;"
+          />
+        </td>
+        <td>
+          <img 
+            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08" 
+            alt="김한서" 
             style="width: 100%; height: auto;"
           />
         </td>
@@ -76,7 +105,7 @@
 <br />
 
 
-## 🤔Why
+## 🤔 Why?
 
 | 기술 스택         | 선정 이유 |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -220,3 +249,4 @@ ex) `feat: 타임테이블 기능 추가`
 
 ```
 ## 🎸 [콘페티 자세한 컨벤션 알아보기](https://wonderful-celestite-e3c.notion.site/16d210e281b08084846ad4a71d6866a3)
+<img src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" alt="Component 1" style="width: 100%; height: auto;"/>
