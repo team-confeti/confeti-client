@@ -57,6 +57,7 @@ export const textSection = style({
 export const description = style({
   position: 'absolute',
   top: '1.6rem',
+  width: '85%',
 });
 
 export const infoDday = style({
