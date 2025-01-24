@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import ProgressBar from './progress-bar';
+import { Meta } from '@storybook/react';
+import TicketingCarousel from '../ticketing-carousel';
+import { BANNER_DATA } from '../mocks/bottom-banner-data';
 
-const meta: Meta<typeof ProgressBar> = {
-  title: 'Common/Carousel/TicketingCarousel/ProgressBar',
-  component: ProgressBar,
+const meta: Meta<typeof TicketingCarousel.Wrap> = {
+  title: 'Common/Carousel/TicketingCarousel',
+  component: TicketingCarousel.Wrap,
   parameters: {
     layout: 'centered',
   },
@@ -11,8 +12,18 @@ const meta: Meta<typeof ProgressBar> = {
   args: {},
 };
 
+const bannerData = BANNER_DATA?.data?.performances || [];
+const TotalIndexData = BANNER_DATA?.data?.performanceCount;
+
 export default meta;
 
-export const Medium: StoryObj<typeof ProgressBar> = {
-  render: () => <ProgressBar current={1} total={5} size="md" />,
+export const Default = () => {
+  return (
+    <div style={{ width: '335px', height: '700px' }}>
+      <TicketingCarousel.Wrap
+        performances={bannerData}
+        indexData={TotalIndexData}
+      />
+    </div>
+  );
 };
