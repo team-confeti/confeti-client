@@ -41,6 +41,7 @@ globalStyle('.card', {
   height: '100%',
   borderRadius: '1rem',
   boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
+  cursor: 'pointer',
 });
 
 globalStyle('.slide-overlay', {
