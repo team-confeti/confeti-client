@@ -8,7 +8,7 @@ export const useDateFormat = (reserveAt: string) => {
 
   const calculateDday = () => {
     const currentDate = new Date();
-    const targetDate = new Date(reserveAt.split('.').join('-')); // 같은 형식으로 변환
+    const targetDate = new Date(reserveAt.split('-').join('-')); // 같은 형식으로 변환
 
     // 시간 초기화 (00:00:00)
     currentDate.setHours(0, 0, 0, 0);
