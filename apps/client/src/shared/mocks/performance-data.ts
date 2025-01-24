@@ -4,7 +4,7 @@ export const PERFORMANCE_DATA = {
       index: 100,
       typeId: 1,
       title: 'KT&G 상상실현 페스티벌',
-      type: 'festival',
+      type: 'FESTIVAL',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/KTNG.webp',
     },
@@ -12,7 +12,7 @@ export const PERFORMANCE_DATA = {
       index: 101,
       typeId: 2,
       title: 'HAVE A NICE TRIP',
-      type: 'festival',
+      type: 'FESTIVAL',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/HAVEANICETRIP.webp',
     },
@@ -20,7 +20,7 @@ export const PERFORMANCE_DATA = {
       index: 102,
       typeId: 3,
       title: '품바 21 단독 공연',
-      type: 'concert',
+      type: 'CONCERT',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/pumba21.webp',
     },
@@ -28,7 +28,7 @@ export const PERFORMANCE_DATA = {
       index: 103,
       typeId: 4,
       title: '오로라 내한 공연',
-      type: 'festival',
+      type: 'FESTIVAL',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/olola.webp',
     },
@@ -36,7 +36,7 @@ export const PERFORMANCE_DATA = {
       index: 104,
       typeId: 5,
       title: '벤치위레오 단독 공연',
-      type: 'concert',
+      type: 'CONCERT',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/benchiwile-o.webp',
     },
@@ -44,7 +44,7 @@ export const PERFORMANCE_DATA = {
       index: 105,
       typeId: 6,
       title: '레이나 내한 공연',
-      type: 'festival',
+      type: 'FESTIVAL',
       posterUrl:
         'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/raina.webp',
     },
