@@ -9,9 +9,9 @@ import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
 import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
-import * as styles from './edit-floating-button.css';
-import { queryClient } from '@shared/utils/query-client';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
+import * as styles from './edit-floating-button.css';
+
 interface EditFloatingButtonProps {
   isEditMode: boolean;
   isEditTimeTableMode: boolean;
@@ -52,9 +52,6 @@ const EditFloatingButton = ({
   const handleToggleButton = () => {
     if (isEditTimeTableMode || isFestivalDeleteMode) {
       festivalsToDelete.map((id) => deleteFestival.mutate(id));
-      queryClient.invalidateQueries({
-        queryKey: ['festivalButton', 'festivalTimetable'],
-      });
       if (remainedFestival.length > 0) {
         handleFestivalClick(remainedFestival[0].festivalId);
       }
