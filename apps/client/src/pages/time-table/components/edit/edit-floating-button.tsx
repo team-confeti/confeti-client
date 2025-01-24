@@ -26,6 +26,7 @@ interface EditFloatingButtonProps {
   festivalsToDelete: number[];
   remainedFestival: FestivalTimetable[];
   handleFestivalClick: (festivalId: number, title: string) => void;
+  selectedFestivalId?: number | null;
 }
 
 const EditFloatingButton = ({
@@ -42,6 +43,7 @@ const EditFloatingButton = ({
   festivalsToDelete,
   remainedFestival,
   handleFestivalClick,
+  selectedFestivalId,
 }: EditFloatingButtonProps) => {
   const deleteFestival = useDeleteTimeTableFestival();
   const isAtBottom = useScrollPosition();
@@ -51,9 +53,14 @@ const EditFloatingButton = ({
 
   const handleToggleButton = () => {
     if (isEditTimeTableMode || isFestivalDeleteMode) {
+      const isSelectedFestivalDeleted = selectedFestivalId
+        ? festivalsToDelete.includes(selectedFestivalId)
+        : false;
+
       festivalsToDelete.map((id) => deleteFestival.mutate(id));
-      if (remainedFestival.length > 0) {
-        handleFestivalClick(remainedFestival[0].festivalId, ''); //리팩토링 필요함
+
+      if (isSelectedFestivalDeleted && remainedFestival.length > 0) {
+        handleFestivalClick(remainedFestival[0].festivalId, '');
       }
       onResetModes();
     }
@@ -61,6 +68,7 @@ const EditFloatingButton = ({
     onToggleEditMode();
     onToggleTextVisibility(true);
   };
+
   const getBackgroundClassName = () => {
     return ` ${
       isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode
