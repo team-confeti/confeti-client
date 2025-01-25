@@ -11,7 +11,7 @@ export const container = style({
 });
 
 export const expanded = style({
-  maxHeight: '500rem',
+  maxHeight: '700rem',
   overflow: 'visible',
 });
 

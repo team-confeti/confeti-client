@@ -20,9 +20,10 @@ interface FestivalArtistData {
 interface ArtistListProps {
   type: 'concert' | 'festival';
   artistData: ConcertArtistData | FestivalArtistData;
+  isMoreButton?: boolean;
 }
 
-const ArtistSection = ({ type, artistData }: ArtistListProps) => {
+const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
   const [expandedDays, setExpandedDays] = useState<Record<number, boolean>>({});
 
   const toggleExpand = (dayId: number) => {
@@ -50,13 +51,15 @@ const ArtistSection = ({ type, artistData }: ArtistListProps) => {
             type="visible"
           />
         </div>
-        <ExpandedSection
-          isOpen={isOpen}
-          isExpanded={isExpanded}
-          artists={concertArtists}
-          dayId={CONCERT_DEFAULT_ID}
-          toggleExpand={toggleExpand}
-        />
+        {isMoreButton && (
+          <ExpandedSection
+            isOpen={isOpen}
+            isExpanded={isExpanded}
+            artists={concertArtists}
+            dayId={CONCERT_DEFAULT_ID}
+            toggleExpand={toggleExpand}
+          />
+        )}
       </section>
     );
   }
