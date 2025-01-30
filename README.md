@@ -1,4 +1,3 @@
-
 ![표지](https://github.com/user-attachments/assets/50ee07ca-646a-4125-a665-979c3374b412)
 
 ![logo_main](https://github.com/user-attachments/assets/f010308f-2774-418a-947e-ebef95f691da)
@@ -268,7 +267,6 @@ ex) `feat: 타임테이블 기능 추가`
     └── 📜 vite.config.ts
 
 ```
-
 ## 🎸 [콘페티 자세한 컨벤션 알아보기](https://wonderful-celestite-e3c.notion.site/16d210e281b08084846ad4a71d6866a3)
-
 <img src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" alt="Component 1" style="width: 100%; height: auto;"/>
+
