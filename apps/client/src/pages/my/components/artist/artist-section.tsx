@@ -1,6 +1,6 @@
 import { ArtistCard } from '@confeti/design-system';
-import * as styles from './artist-section.css';
 import { Artists } from '@shared/types/user-response';
+import * as styles from './artist-section.css';
 
 interface ArtistProps {
   artists: Artists[];

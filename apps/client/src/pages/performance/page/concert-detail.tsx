@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Info from '@pages/confeti/components/info/info';
-import Poster from '@pages/confeti/components/poster/poster';
-import Summary from '@pages/confeti/components/summary/summary';
-import MoreButton from '@pages/confeti/components/button/more-button';
-import PerformanceDetail from '@pages/confeti/components/performance/performance-detail';
-import ArtistTitle from '@pages/confeti/components/artist/artist-title';
-import ArtistSection from '@pages/confeti/components/artist/artist-section';
+
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import { useConcertDetail } from '@pages/confeti/hooks/use-concert-detail';
+import Info from '@pages/performance/components/info/info';
+import Poster from '@pages/performance/components/poster/poster';
+import Summary from '@pages/performance/components/summary/summary';
+import MoreButton from '@pages/performance/components/button/more-button';
+import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
+import ArtistTitle from '@pages/performance/components/artist/artist-title';
+import ArtistSection from '@pages/performance/components/artist/artist-section';
+import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
 
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();

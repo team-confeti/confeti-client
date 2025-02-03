@@ -18,10 +18,10 @@ export const MyArtistPage = lazy(
   () => import('@pages/my/page/artist/artist-more'),
 );
 export const ConcertDetailPage = lazy(
-  () => import('@pages/confeti/page/concert-detail'),
+  () => import('@pages/performance/page/concert-detail'),
 );
 export const FestivalDetailPage = lazy(
-  () => import('@pages/confeti/page/festival-detail'),
+  () => import('@pages/performance/page/festival-detail'),
 );
 export const AddFestivalPage = lazy(
   () => import('@pages/time-table/page/add-festival'),

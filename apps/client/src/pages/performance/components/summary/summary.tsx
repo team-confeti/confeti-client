@@ -2,7 +2,7 @@ import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
-import * as styles from '@pages/confeti/components/summary/summary.css';
+import * as styles from './summary.css';
 
 interface SummaryProps {
   id: number;

@@ -1,5 +1,5 @@
-import * as styles from '@pages/confeti/components/info/info.css';
 import { CONFETI_LABEL } from '../../constant/confeti';
+import * as styles from './info.css';
 
 interface InfoProps {
   subtitle: string;
