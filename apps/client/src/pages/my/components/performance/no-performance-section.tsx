@@ -1,4 +1,4 @@
-import * as styles from './no-confeti-section.css';
+import * as styles from './no-performance-section.css';
 
 const NoConfetiSection = () => {
   return (

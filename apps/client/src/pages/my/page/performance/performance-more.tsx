@@ -1,7 +1,7 @@
 import { FestivalCard, Header } from '@confeti/design-system';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
-import * as styles from './confeti-more.css';
+import * as styles from './performance-more.css';
 
 const ConfetiMore = () => {
   const { data } = useMyConfeti();
