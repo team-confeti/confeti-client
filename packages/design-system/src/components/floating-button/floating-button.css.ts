@@ -13,6 +13,7 @@ export const floatingButtonVariants = recipe({
     zIndex: themeVars.zIndex.floatingButton.content,
     flexShrink: '0',
     right: '2rem',
+    bottom: '1.4rem',
     transition: 'all 0.3s ease-in-out',
     '@media': {
       screen: {
