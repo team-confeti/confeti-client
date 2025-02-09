@@ -12,8 +12,8 @@ export const floatingButtonVariants = recipe({
     backgroundColor: themeVars.color.gray800,
     zIndex: themeVars.zIndex.floatingButton.content,
     flexShrink: '0',
-    bottom: '1.4rem',
     right: '2rem',
+    transition: 'all 0.3s ease-in-out',
     '@media': {
       screen: {
         position: 'fixed',
@@ -25,5 +25,16 @@ export const floatingButtonVariants = recipe({
     md: {
       boxShadow: themeVars.shadowStyles.shadow_md_1,
     },
+    isAtBottom: {
+      true: {
+        bottom: '15rem',
+      },
+      false: {
+        bottom: '1.4rem',
+      },
+    },
+  },
+  defaultVariants: {
+    isAtBottom: false,
   },
 });
