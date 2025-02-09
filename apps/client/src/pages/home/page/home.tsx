@@ -6,13 +6,14 @@ import {
   TicketingCarousel,
 } from '@confeti/design-system';
 import { USER_DATA } from '@shared/mocks/user-data';
-import { TAB_MENU } from '../constants/menu';
-import * as styles from './home.css';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
-import { useTicketing } from '../hooks/use-ticketing';
 import { routePath } from '@shared/constants/path';
+
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { TAB_MENU } from '../constants/menu';
+import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
+import * as styles from './home.css';
 
 const Home = () => {
   const { performanceCount, performances } = useTicketing();

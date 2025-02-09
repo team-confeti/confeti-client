@@ -1,4 +1,4 @@
-import { IcArrowGray16 } from 'node_modules/@confeti/design-system/src/icons/src';
+import { IcArrowGray16 } from '@confeti/design-system/icons';
 import * as styles from './logout-button.css.ts';
 
 interface Props {

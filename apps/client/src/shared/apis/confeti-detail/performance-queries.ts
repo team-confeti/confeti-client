@@ -1,5 +1,5 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
-import { getConcertDetail, getFestivalDetail } from './confeti';
+import { getConcertDetail, getFestivalDetail } from './performance';
 import { getFestivalToAdd } from './get-festival-to-add';
 
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';

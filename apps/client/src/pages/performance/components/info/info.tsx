@@ -1,5 +1,5 @@
-import * as styles from '@pages/confeti/components/info/info.css';
-import { CONFETI_LABEL } from '../../constant/confeti';
+import { PERFORMANCE_LABEL } from '../../constant/performance';
+import * as styles from './info.css';
 
 interface InfoProps {
   subtitle: string;
@@ -29,23 +29,25 @@ const Info = ({
     <>
       <section className={styles.container}>
         <section className={styles.section}>
-          <h2 className={styles.title()}>{CONFETI_LABEL.PERFORMANCE_INFO}</h2>
+          <h2 className={styles.title()}>
+            {PERFORMANCE_LABEL.PERFORMANCE_INFO}
+          </h2>
           <div className={styles.content}>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.PERFORMANCE_NAME}
+                {PERFORMANCE_LABEL.PERFORMANCE_NAME}
               </div>
               <div className={styles.text()}>{subtitle}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.PLACE}
+                {PERFORMANCE_LABEL.PLACE}
               </div>
               <div className={styles.text()}>{area}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.PERIOD}
+                {PERFORMANCE_LABEL.PERIOD}
               </div>
               <div className={styles.text()}>
                 {startAt} - {endAt}
@@ -53,19 +55,19 @@ const Info = ({
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.TIME}
+                {PERFORMANCE_LABEL.TIME}
               </div>
               <div className={styles.text()}>{time}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.AGERATING}
+                {PERFORMANCE_LABEL.AGERATING}
               </div>
               <div className={styles.text()}>{ageRating}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
-                {CONFETI_LABEL.RESERVATIONOFFICE}
+                {PERFORMANCE_LABEL.RESERVATIONOFFICE}
               </div>
               <div className={styles.text()}>{reservationOffice}</div>
             </div>
@@ -73,10 +75,10 @@ const Info = ({
         </section>
 
         <section className={styles.section}>
-          <div className={styles.title()}>{CONFETI_LABEL.TICKET_INFO}</div>
+          <div className={styles.title()}>{PERFORMANCE_LABEL.TICKET_INFO}</div>
           <div className={styles.detail}>
             <div className={styles.text({ type: 'label', color: 'gray' })}>
-              {CONFETI_LABEL.PRICE}
+              {PERFORMANCE_LABEL.PRICE}
             </div>
             <div className={styles.priceContent}>
               {priceLines.map((line, index) => (

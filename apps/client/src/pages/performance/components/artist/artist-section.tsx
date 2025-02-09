@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import ExpandedSection from '@pages/performance/components/expanded/expanded-section';
+import ArtistGrid from './artist-grid';
 import { ConcertArtist } from '../../types/concert';
 import { FestivalDate } from '../../types/festival';
-import ArtistGrid from '@pages/confeti/components/artist/artist-grid';
-import ExpandedSection from '@pages/confeti/components/expanded/expanded-section';
 import * as styles from './artist-section.css';
 
 const CONCERT_DEFAULT_ID = -1;

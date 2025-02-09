@@ -1,4 +1,4 @@
-export const CONFETI_LABEL = {
+export const PERFORMANCE_LABEL = {
   PERFORMANCE_INFO: '공연 정보',
   PERFORMANCE_NAME: '공연 이름',
   PLACE: '장소',
