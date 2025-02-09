@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import Info from '@pages/performance/components/info/info';
 import Poster from '@pages/performance/components/poster/poster';
@@ -22,8 +21,6 @@ const ConcertDetailPage = () => {
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
   };
-
-  console.log(concertDetail.concertArtists);
 
   useEffect(() => {
     if (concertDetail.concertArtists.length >= 4) {
