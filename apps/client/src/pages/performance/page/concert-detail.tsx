@@ -9,6 +9,7 @@ import PerformanceDetail from '@pages/performance/components/performance/perform
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
+import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
@@ -17,6 +18,7 @@ const ConcertDetailPage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
+  const isAtBottom = useScrollPosition();
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -70,7 +72,7 @@ const ConcertDetailPage = () => {
         artistData={concertDetail}
         isMoreButton={isMoreButton}
       />
-      <FloatingButton />
+      <FloatingButton isAtBottom={isAtBottom} />
       <Footer />
     </>
   );
