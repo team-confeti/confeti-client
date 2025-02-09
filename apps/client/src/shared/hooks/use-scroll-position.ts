@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const useScrollPosition = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -19,4 +19,12 @@ export const useScrollPosition = () => {
   }, []);
 
   return isAtBottom;
+};
+
+export const useScrollBottom = () => {
+  const handleScrollDown = useCallback(() => {
+    window.scrollBy(0, 1);
+  }, []);
+
+  return handleScrollDown;
 };
