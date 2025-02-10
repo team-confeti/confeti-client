@@ -14,7 +14,9 @@ export const floatingButtonVariants = recipe({
     flexShrink: '0',
     right: '2rem',
     bottom: '1.4rem',
-    transition: 'all 0.3s ease-in-out',
+    transition: 'opacity 0.2s ease-in-out, transform 0.3s ease-in-out',
+    opacity: 1,
+    transform: 'translateY(0)',
     '@media': {
       screen: {
         position: 'fixed',
@@ -25,6 +27,13 @@ export const floatingButtonVariants = recipe({
   variants: {
     md: {
       boxShadow: themeVars.shadowStyles.shadow_md_1,
+    },
+    isButtonHidden: {
+      true: {
+        opacity: 0,
+        transform: 'translateY(1rem)',
+        pointerEvents: 'none',
+      },
     },
   },
 });
