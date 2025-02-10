@@ -18,7 +18,8 @@ const ConcertDetailPage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
-  const isAtBottom = useScrollPosition();
+  const { isDirectionDown, isAtTop } = useScrollPosition();
+  const isButtonHidden = isAtTop || isDirectionDown;
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -72,7 +73,7 @@ const ConcertDetailPage = () => {
         artistData={concertDetail}
         isMoreButton={isMoreButton}
       />
-      <FloatingButton isAtBottom={isAtBottom} />
+      <FloatingButton isButtonHidden={isButtonHidden} />
       <Footer />
     </>
   );

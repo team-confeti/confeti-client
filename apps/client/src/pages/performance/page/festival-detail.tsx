@@ -9,26 +9,23 @@ import PerformanceDetail from '@pages/performance/components/performance/perform
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail';
-import {
-  useScrollPosition,
-  useScrollBottom,
-} from '@shared/hooks/use-scroll-position';
+import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedFestivalId = typeId ? Number(typeId) : 0;
   const festivalDetail = useFestivalDetail(parsedFestivalId);
   const [isExpanded, setIsExpanded] = useState(false);
-  const isAtBottom = useScrollPosition();
   const { festival } = festivalDetail;
-
+  const { isDirectionDown, isAtTop } = useScrollPosition();
+  const isButtonHidden = isAtTop || isDirectionDown;
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
   };
 
   return (
     <>
-      <FloatingButton isAtBottom={isAtBottom} />
+      <FloatingButton isButtonHidden={isButtonHidden} />
       <Poster
         posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
