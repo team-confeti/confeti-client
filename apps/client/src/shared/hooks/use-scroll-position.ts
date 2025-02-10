@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useScrollPosition = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -21,10 +21,43 @@ export const useScrollPosition = () => {
   return isAtBottom;
 };
 
-export const useScrollBottom = () => {
-  const handleScrollDown = useCallback(() => {
-    window.scrollBy(0, 1);
+export const useScrollDirection = () => {
+  const [isDirectionUp, setIsDirectionAtUp] = useState(true);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY > 0) {
+        setIsDirectionAtUp(true);
+      } else if (e.deltaY < 0) {
+        setIsDirectionAtUp(false);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel);
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
   }, []);
 
-  return handleScrollDown;
+  return isDirectionUp;
+};
+
+export const useScrollTop = () => {
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const isTop = scrollTop === 0;
+      setIsAtTop(isTop);
+    };
+
+    setIsAtTop(window.scrollY === 0);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return isAtTop;
 };
