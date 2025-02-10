@@ -3,7 +3,7 @@ import { themeVars } from '../../styles';
 
 export const floatingButtonVariants = recipe({
   base: {
-    position: 'sticky',
+    position: 'absolute',
     width: '4rem',
     height: '4rem',
     display: 'flex',
