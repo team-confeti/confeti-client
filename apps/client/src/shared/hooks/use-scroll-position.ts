@@ -21,7 +21,7 @@ export const useScrollAtBottom = () => {
   return isAtBottom;
 };
 
-export const useScrollInfo = () => {
+export const useScrollPosition = () => {
   const [isDirectionDown, setIsDirectionDown] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
 
