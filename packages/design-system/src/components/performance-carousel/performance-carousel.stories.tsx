@@ -1,12 +1,13 @@
 import type { Meta } from '@storybook/react';
 import PerformanceCarousel from './performance-carousel';
+import { PerformData } from './performance-carousel';
 
-const MOCK_PERFORM_DATA = [
+const MOCK_PERFORM_DATA: PerformData[] = [
   {
     typeId: 1,
     type: 'concert',
     title: '오아시스 내한공연',
-    subTitle: 'LIVE NATION PRESENTS COLDPLAY',
+    subtitle: 'LIVE NATION PRESENTS COLDPLAY',
     performanceAt: '2025.10.21',
     posterUrl: 'https://dummyimage.com/197x262',
   },
@@ -14,47 +15,7 @@ const MOCK_PERFORM_DATA = [
     typeId: 2,
     type: 'festival',
     title: '오아시스 내한공연',
-    subTitle: '라이브 네이션 프레젠트 콜드플레이',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
-  },
-  {
-    typeId: 3,
-    type: 'festival',
-    title: '오아시스 내한공연3',
-    subTitle: 'LIVE NATION PRESENTS COLDPLAY',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
-  },
-  {
-    typeId: 4,
-    type: 'festival',
-    title: '오아시스 내한공연4',
-    subTitle: '콜드플레이 내한 공연', // subTitle 수정
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
-  },
-  {
-    typeId: 5,
-    type: 'festival',
-    title: '오아시스 내한공연5',
-    subTitle: 'LIVE NATION PRESENTS COLDPLAY',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
-  },
-  {
-    typeId: 6,
-    type: 'festival',
-    title: '오아시스 내한공연6',
-    subTitle: 'LIVE NATION PRESENTS COLDPLAY',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
-  },
-  {
-    typeId: 7,
-    type: 'festival',
-    title: '오아시스 내한공연7',
-    subTitle: '콜드플레이와 함께하는 축제',
+    subtitle: '라이브 네이션 프레젠트 콜드플레이',
     performanceAt: '2025.10.21',
     posterUrl: 'https://dummyimage.com/197x262',
   },

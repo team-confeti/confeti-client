@@ -6,9 +6,9 @@ import './dots.css';
 import './performance-carousel.css';
 import { useNavigate } from 'react-router-dom';
 
-interface PerformData {
+export interface PerformData {
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'concert' | 'festival' | 'artist';
   title: string;
   subtitle?: string | null;
   performanceAt: string;
