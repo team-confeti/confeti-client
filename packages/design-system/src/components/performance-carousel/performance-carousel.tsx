@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export interface PerformData {
   typeId: number;
-  type: 'concert' | 'festival' | 'artist';
+  type: 'CONCERT' | 'FESTIVAL' | 'ARTIST';
   title: string;
   subtitle?: string | null;
   performanceAt: string;

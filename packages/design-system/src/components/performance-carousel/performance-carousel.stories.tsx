@@ -5,7 +5,7 @@ import { PerformData } from './performance-carousel';
 const MOCK_PERFORM_DATA: PerformData[] = [
   {
     typeId: 1,
-    type: 'concert',
+    type: 'CONCERT',
     title: '오아시스 내한공연',
     subtitle: 'LIVE NATION PRESENTS COLDPLAY',
     performanceAt: '2025.10.21',
@@ -13,7 +13,7 @@ const MOCK_PERFORM_DATA: PerformData[] = [
   },
   {
     typeId: 2,
-    type: 'festival',
+    type: 'FESTIVAL',
     title: '오아시스 내한공연',
     subtitle: '라이브 네이션 프레젠트 콜드플레이',
     performanceAt: '2025.10.21',
