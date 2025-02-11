@@ -21,24 +21,39 @@ type Story = StoryObj<typeof FestivalCard>;
 
 export const Default: Story = {
   args: {
-    title: '2024 위버스 콘 페스티벌',
-    imageSrc: 'https://dummyimage.com/100x142',
+    title: '오로라 내한 공연',
+    imageSrc: 'https://i.imgur.com/DwH8XUo.png',
   },
+  render: (args) => (
+    <div style={{ width: '10rem', height: '14rem' }}>
+      <FestivalCard {...args} />
+    </div>
+  ),
 };
 
 export const Selectable: Story = {
   args: {
-    title: '2024 위버스 콘 페스티벌',
-    imageSrc: 'https://dummyimage.com/100x142',
+    title: '오로라 내한 공연',
+    imageSrc: 'https://i.imgur.com/DwH8XUo.png',
     selectable: true,
   },
+  render: (args) => (
+    <div style={{ width: '10rem', height: '14rem' }}>
+      <FestivalCard {...args} />
+    </div>
+  ),
 };
 
 export const Preselected: Story = {
   args: {
-    title: '2024 위버스 콘 페스티벌',
-    imageSrc: 'https://dummyimage.com/100x142',
+    title: '오로라 내한 공연',
+    imageSrc: 'https://i.imgur.com/DwH8XUo.png',
     selectable: true,
     isSelected: true,
   },
+  render: (args) => (
+    <div style={{ width: '10rem', height: '14rem' }}>
+      <FestivalCard {...args} />
+    </div>
+  ),
 };
