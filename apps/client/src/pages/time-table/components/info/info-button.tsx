@@ -112,15 +112,12 @@ const ItemImage = ({
   onClick,
   isFestivalDeleteMode,
 }: ItemImagesProps & { isFestivalDeleteMode?: boolean }) => (
-  console.log(isFestivalDeleteMode),
-  (
-    <img
-      className={cn(ImageVariants({ size, isClicked, isFestivalDeleteMode }))}
-      src={src}
-      alt={alt}
-      onClick={onClick}
-    />
-  )
+  <img
+    className={cn(ImageVariants({ size, isClicked, isFestivalDeleteMode }))}
+    src={src}
+    alt={alt}
+    onClick={onClick}
+  />
 );
 
 const ItemText = ({ size = 'md', text, color }: ItemTextProps) => (

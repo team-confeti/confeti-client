@@ -12,8 +12,11 @@ export const floatingButtonVariants = recipe({
     backgroundColor: themeVars.color.gray800,
     zIndex: themeVars.zIndex.floatingButton.content,
     flexShrink: '0',
-    bottom: '1.4rem',
     right: '2rem',
+    bottom: '1.4rem',
+    transition: 'opacity 0.2s ease-in-out, transform 0.3s ease-in-out',
+    opacity: 1,
+    transform: 'translateY(0)',
     '@media': {
       screen: {
         position: 'fixed',
@@ -24,6 +27,13 @@ export const floatingButtonVariants = recipe({
   variants: {
     md: {
       boxShadow: themeVars.shadowStyles.shadow_md_1,
+    },
+    isButtonHidden: {
+      true: {
+        opacity: 0,
+        transform: 'translateY(1rem)',
+        pointerEvents: 'none',
+      },
     },
   },
 });

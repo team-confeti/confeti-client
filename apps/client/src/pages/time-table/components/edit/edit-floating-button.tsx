@@ -7,7 +7,7 @@ import {
 } from '@confeti/design-system/icons';
 import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
 import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
-import { useScrollPosition } from '@pages/time-table/hooks/use-scroll-position';
+import { useScrollAtBottom } from '@shared/hooks/use-scroll-position';
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 import * as styles from './edit-floating-button.css';
@@ -46,7 +46,7 @@ const EditFloatingButton = ({
   selectedFestivalId,
 }: EditFloatingButtonProps) => {
   const deleteFestival = useDeleteTimeTableFestival();
-  const isAtBottom = useScrollPosition();
+  const isAtBottom = useScrollAtBottom();
   const adjustedAtBottom =
     isEditTimeTableMode || isFestivalDeleteMode ? false : isAtBottom;
   useDisableScroll(isEditMode && !isEditTimeTableMode && !isFestivalDeleteMode);

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-
 import Poster from '@pages/performance/components/poster/poster';
 import Summary from '@pages/performance/components/summary/summary';
 import Info from '@pages/performance/components/info/info';
@@ -10,14 +9,15 @@ import PerformanceDetail from '@pages/performance/components/performance/perform
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail';
+import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedFestivalId = typeId ? Number(typeId) : 0;
   const festivalDetail = useFestivalDetail(parsedFestivalId);
   const [isExpanded, setIsExpanded] = useState(false);
-
   const { festival } = festivalDetail;
+  const { isButtonHidden } = useScrollPosition();
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -25,7 +25,7 @@ const FestivalDetailPage = () => {
 
   return (
     <>
-      <FloatingButton />
+      <FloatingButton isButtonHidden={isButtonHidden} />
       <Poster
         posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
