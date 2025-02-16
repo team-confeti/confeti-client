@@ -17,8 +17,8 @@ const FestivalDetailPage = () => {
   const festivalDetail = useFestivalDetail(parsedFestivalId);
   const [isExpanded, setIsExpanded] = useState(false);
   const { festival } = festivalDetail;
-  const { isDirectionDown, isAtTop } = useScrollPosition();
-  const isButtonHidden = isAtTop || isDirectionDown;
+  const { isButtonHidden } = useScrollPosition();
+
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
   };

@@ -18,8 +18,7 @@ const ConcertDetailPage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
-  const { isDirectionDown, isAtTop } = useScrollPosition();
-  const isButtonHidden = isAtTop || isDirectionDown;
+  const { isButtonHidden } = useScrollPosition();
 
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);

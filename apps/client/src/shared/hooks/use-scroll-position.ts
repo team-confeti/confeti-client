@@ -41,5 +41,7 @@ export const useScrollPosition = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return { isDirectionDown, isAtTop };
+  const isButtonHidden = isAtTop || isDirectionDown;
+
+  return { isButtonHidden };
 };
