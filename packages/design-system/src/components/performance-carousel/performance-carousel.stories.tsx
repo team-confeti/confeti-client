@@ -5,19 +5,19 @@ import { PerformData } from './performance-carousel';
 const MOCK_PERFORM_DATA: PerformData[] = [
   {
     typeId: 1,
-    type: 'CONCERT',
-    title: '오아시스 내한공연',
-    subtitle: 'LIVE NATION PRESENTS COLDPLAY',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
+    type: 'FESTIVAL',
+    title: '러브 썸 페스티벌',
+    subtitle: 'LOVESOME',
+    performanceAt: '2025.04.27',
+    posterUrl: 'https://i.imgur.com/b89Kzzd.png',
   },
   {
     typeId: 2,
     type: 'FESTIVAL',
-    title: '오아시스 내한공연',
-    subtitle: '라이브 네이션 프레젠트 콜드플레이',
-    performanceAt: '2025.10.21',
-    posterUrl: 'https://dummyimage.com/197x262',
+    title: '뷰티풀 민트 라이프',
+    subtitle: 'Beautiful Mint Life 2025',
+    performanceAt: '2025.05.11',
+    posterUrl: 'https://i.imgur.com/9yX1b3P.png',
   },
 ];
 
