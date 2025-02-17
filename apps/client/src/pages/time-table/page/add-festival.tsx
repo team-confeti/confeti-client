@@ -1,6 +1,4 @@
-import { useNavigate } from 'react-router-dom';
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
@@ -11,7 +9,6 @@ import * as styles from './add-festival.css';
 const MAX_SELECTIONS = 3;
 
 const AddFestival = () => {
-  const navigate = useNavigate();
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
@@ -24,7 +21,6 @@ const AddFestival = () => {
       showToast();
     } else {
       addFestival(selectedFestivals);
-      navigate(routePath.TIME_TABLE_OUTLET);
     }
   };
 
