@@ -3,8 +3,6 @@ import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-timet
 import { addFestivalTimeTable } from '@shared/apis/time-table/festival-button';
 import { FESTIVAL_BUTTON_QUERY_KEY } from '@shared/apis/time-table/festival-button-queries';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/apis/time-table/festival-timetable-queries';
-import { useNavigate } from 'react-router-dom';
-import { routePath } from '@shared/constants/path';
 
 export const useDeleteTimeTableFestival = () => {
   const queryClient = useQueryClient();
@@ -22,8 +20,7 @@ export const useDeleteTimeTableFestival = () => {
   });
 };
 
-export const useAddTimeTableFestival = () => {
-  const navigate = useNavigate();
+export const useAddTimeTableFestival = (onSuccessCallback?: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -33,7 +30,10 @@ export const useAddTimeTableFestival = () => {
       queryClient.invalidateQueries({
         queryKey: [...FESTIVAL_BUTTON_QUERY_KEY.ALL],
       });
-      navigate(routePath.TIME_TABLE_OUTLET);
+
+      if (onSuccessCallback) {
+        onSuccessCallback();
+      }
     },
   });
 };
