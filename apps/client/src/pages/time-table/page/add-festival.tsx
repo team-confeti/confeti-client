@@ -7,8 +7,7 @@ import { useFestivalButtonData } from '../hooks/use-festival-data';
 import * as styles from './add-festival.css';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@shared/constants/path';
-
-const MAX_SELECTIONS = 3;
+import { MAX_SELECTIONS } from '../constants';
 
 const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
@@ -20,10 +19,10 @@ const AddFestival = () => {
   const { mutate: addFestival } = useAddTimeTableFestival(() => {
     navigate(routePath.TIME_TABLE_OUTLET);
   });
-  const TOTAL_SELECTION = selectedFestivals.length + addedFestivals.length;
+  const TOTAL_SELECTIONS = selectedFestivals.length + addedFestivals.length;
 
   const handleAddClick = () => {
-    if (TOTAL_SELECTION > MAX_SELECTIONS) {
+    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
       showToast();
     } else {
       addFestival(selectedFestivals);

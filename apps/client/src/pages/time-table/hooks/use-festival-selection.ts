@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { toast } from '@confeti/design-system';
-
-const MAX_SELECTIONS = 3;
+import { MAX_SELECTIONS } from '../constants';
 
 const useFestivalSelection = () => {
   const [selectedFestivals, setSelectedFestivals] = useState<number[]>([]);
