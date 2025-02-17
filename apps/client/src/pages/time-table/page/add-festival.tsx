@@ -20,9 +20,10 @@ const AddFestival = () => {
   const { mutate: addFestival } = useAddTimeTableFestival(() => {
     navigate(routePath.TIME_TABLE_OUTLET);
   });
+  const TOTAL_SELECTION = selectedFestivals.length + addedFestivals.length;
 
   const handleAddClick = () => {
-    if (selectedFestivals.length + addedFestivals.length > MAX_SELECTIONS) {
+    if (TOTAL_SELECTION > MAX_SELECTIONS) {
       showToast();
     } else {
       addFestival(selectedFestivals);
