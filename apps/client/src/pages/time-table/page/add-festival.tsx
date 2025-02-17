@@ -14,7 +14,7 @@ const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
-  const { festivals: existingFestivals } = useFestivalButtonData();
+  const { festivals: addedFestivals } = useFestivalButtonData();
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
   const navigate = useNavigate();
   const { mutate: addFestival } = useAddTimeTableFestival(() => {
@@ -22,7 +22,7 @@ const AddFestival = () => {
   });
 
   const handleAddClick = () => {
-    if (selectedFestivals.length + existingFestivals.length > MAX_SELECTIONS) {
+    if (selectedFestivals.length + addedFestivals.length > MAX_SELECTIONS) {
       showToast();
     } else {
       addFestival(selectedFestivals);
