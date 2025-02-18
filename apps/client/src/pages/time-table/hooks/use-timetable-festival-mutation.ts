@@ -26,8 +26,8 @@ export const useAddTimeTableFestival = (onSuccessCallback?: () => void) => {
   return useMutation({
     mutationFn: (selectedFestivals: number[]) =>
       addFestivalTimeTable(selectedFestivals),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
+    onSuccess: () => {
+      queryClient.removeQueries({
         queryKey: [...FESTIVAL_BUTTON_QUERY_KEY.ALL],
       });
       if (onSuccessCallback) {
