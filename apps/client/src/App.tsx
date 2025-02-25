@@ -10,10 +10,11 @@ import { queryClient } from './shared/utils/query-client';
 function App() {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
-    integrations: [Sentry.browserTracingIntegration()],
     tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
     tracesSampleRate: 1.0,
+    normalizeDepth: 6,
   });
+  Sentry.addIntegration(Sentry.browserTracingIntegration());
 
   return (
     <QueryClientProvider client={queryClient}>
