@@ -15,19 +15,13 @@ export const handleAPIError = (error: AxiosError<ErrorResponse>) => {
       scope.setLevel('fatal');
       scope.setTag('error_type', 'network_error');
       scope.captureMessage(`[네트워크 오류] ${window.location.href}`);
-
-      scope.setContext('네트워크 오류 정보', {
-        message: error.message,
-        code: error.code,
-        config: error.config,
-      });
     });
 
     throw new HTTPError(0, '네트워크 오류 발생');
   }
 
   const { config, response } = error;
-  const { data, status, headers } = response;
+  const { data, status } = response;
 
   Sentry.withScope((scope) => {
     scope.setLevel('error');
@@ -37,16 +31,6 @@ export const handleAPIError = (error: AxiosError<ErrorResponse>) => {
     scope.setTag('Status Code', status.toString());
 
     scope.captureMessage(`[API 오류] ${window.location.href}`);
-
-    scope.setContext('API 요청 정보', {
-      method: config?.method,
-      url: config?.url,
-      params: config?.params,
-      data: config?.data,
-      headers: config?.headers,
-    });
-
-    scope.setContext('응답 데이터', { status, headers, data });
   });
 
   if (status >= HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
