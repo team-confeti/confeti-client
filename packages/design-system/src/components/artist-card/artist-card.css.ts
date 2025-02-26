@@ -49,9 +49,15 @@ export const artistName = recipe({
   },
   variants: {
     size: {
-      sm: [themeVars.fontStyles.body4_m_13],
-      md: [themeVars.fontStyles.body2_m_15],
-      lg: [themeVars.fontStyles.body3_m_14],
+      sm: {
+        ...themeVars.fontStyles.body4_m_13,
+      },
+      md: {
+        ...themeVars.fontStyles.body2_m_15,
+      },
+      lg: {
+        ...themeVars.fontStyles.body3_m_14,
+      },
     },
   },
 });

@@ -22,10 +22,20 @@ export const Liked: Story = {
   args: {
     isFavorite: true,
   },
+  render: (args) => (
+    <div style={{ width: '2.5rem', height: '2.5rem' }}>
+      <LikeButton {...args} />
+    </div>
+  ),
 };
 
 export const Unliked: Story = {
   args: {
     isFavorite: false,
   },
+  render: (args) => (
+    <div style={{ width: '2.5rem', height: '2.5rem' }}>
+      <LikeButton {...args} />
+    </div>
+  ),
 };
