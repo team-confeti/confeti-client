@@ -53,15 +53,6 @@ importers:
       '@confeti/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@sentry/react':
-        specifier: ^9.1.0
-        version: 9.1.0(react@19.0.0)
-      '@sentry/tracing':
-        specifier: ^7.120.3
-        version: 7.120.3
-      '@sentry/vite-plugin':
-        specifier: ^3.2.0
-        version: 3.2.0
       '@tanstack/react-query':
         specifier: ^5.62.16
         version: 5.62.16(react@19.0.0)
@@ -105,6 +96,15 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@sentry/react':
+        specifier: ^9.1.0
+        version: 9.1.0(react@19.0.0)
+      '@sentry/tracing':
+        specifier: ^7.120.3
+        version: 7.120.3
+      '@sentry/vite-plugin':
+        specifier: ^3.2.0
+        version: 3.2.0
       '@types/axios':
         specifier: ^0.14.4
         version: 0.14.4
