@@ -29,7 +29,6 @@ export const handleAPIError = (error: AxiosError<ErrorResponse>) => {
     scope.setTag('API URL', config?.url || 'unknown');
     scope.setTag('HTTP Method', config?.method || 'unknown');
     scope.setTag('Status Code', status.toString());
-
     scope.captureMessage(`[API 오류] ${window.location.href}`);
   });
 
