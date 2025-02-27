@@ -1,16 +1,21 @@
 import { recipe } from '@vanilla-extract/recipes';
+import { createVar } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
+
+export const stageCount = createVar();
+export const stageOrder = createVar();
+export const topPosition = createVar();
+export const height = createVar();
 
 export const itemsWrapper = recipe({
   base: {
     ...themeVars.display.flexColumnCenter,
     justifyContent: 'center',
     position: 'absolute',
-    top: 'calc( 0.75rem + var(--top) )',
-    left: 'calc( 3.1rem + ((100% - 3.5rem) / var(--stage-count) * var(--stage-order)))',
-    height: 'var(--diff)',
-    width: 'calc((100% - 3.2rem) / var(--stage-count))',
-    // padding: '0.8rem 0rem',
+    top: `calc( 0.75rem + ${topPosition} )`,
+    left: `calc( 3.1rem + ((100% - 3.5rem) / ${stageCount} * ${stageOrder}))`,
+    height: height,
+    width: `calc((100% - 3.2rem) / ${stageCount})`,
     borderRadius: '2px',
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',

@@ -6,6 +6,7 @@ import {
   calcMinutesFromOpen,
 } from '@pages/time-table/utils';
 import * as styles from './time-table-item.css';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 interface ItemProps {
   artists: Artist[];
@@ -50,9 +51,6 @@ const TimeTableItem = ({
   );
   const { top, diff } = calcPosition(totalMin, minutesFromOpen);
 
-  //TODO: 추후 API 연결할때 필요한 prop, build 에러 방지를 위한 코드
-  userTimetableId;
-
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
       setSelectBlock((prev) => !prev);
@@ -60,16 +58,16 @@ const TimeTableItem = ({
     }
   };
 
+  const dynamicVars = assignInlineVars({
+    [styles.stageCount]: stageCount.toString(),
+    [styles.stageOrder]: (stageOrder - 1).toString(),
+    [styles.topPosition]: `${top}rem`,
+    [styles.height]: `${diff}rem`,
+  });
+
   return (
     <div
-      style={
-        {
-          '--stage-count': stageCount,
-          '--stage-order': stageOrder - 1,
-          '--diff': `${diff}rem`,
-          '--top': `${top}rem`,
-        } as React.CSSProperties
-      }
+      style={dynamicVars}
       className={styles.itemsWrapper({ isSelected: selectBlock })}
       onClick={handleSetSelectedBlock}
     >
