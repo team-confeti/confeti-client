@@ -3,11 +3,19 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider, ToastContainer } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
-
+import * as Sentry from '@sentry/react';
 import Router from '@shared/router/router';
 import { queryClient } from './shared/utils/query-client';
 
 function App() {
+  Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
+    tracesSampleRate: 1.0,
+    normalizeDepth: 6,
+  });
+  Sentry.addIntegration(Sentry.browserTracingIntegration());
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
