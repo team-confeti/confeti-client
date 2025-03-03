@@ -20,16 +20,19 @@ export const useDeleteTimeTableFestival = () => {
   });
 };
 
-export const useAddTimeTableFestival = () => {
+export const useAddTimeTableFestival = (onSuccessCallback?: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (selectedFestivals: number[]) =>
       addFestivalTimeTable(selectedFestivals),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: [...FESTIVAL_BUTTON_QUERY_KEY.ALL],
       });
+      if (onSuccessCallback) {
+        onSuccessCallback();
+      }
     },
   });
 };

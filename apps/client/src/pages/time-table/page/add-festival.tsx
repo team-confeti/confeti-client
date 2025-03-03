@@ -1,30 +1,31 @@
-import { useNavigate } from 'react-router-dom';
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
 import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useFestivalButtonData } from '../hooks/use-festival-data';
 import * as styles from './add-festival.css';
-
-const MAX_SELECTIONS = 3;
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@shared/constants/path';
+import { MAX_SELECTIONS } from '../constants';
 
 const AddFestival = () => {
-  const navigate = useNavigate();
   const { selectedFestivals, handleFestivalClick, showToast } =
     useFestivalSelection();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
-  const { festivals: existingFestivals } = useFestivalButtonData();
+  const { festivals: addedFestivals } = useFestivalButtonData();
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
-  const { mutate: addFestival } = useAddTimeTableFestival();
+  const navigate = useNavigate();
+  const { mutate: addFestival } = useAddTimeTableFestival(() => {
+    navigate(routePath.TIME_TABLE_OUTLET);
+  });
+  const TOTAL_SELECTIONS = selectedFestivals.length + addedFestivals.length;
 
   const handleAddClick = () => {
-    if (selectedFestivals.length + existingFestivals.length > MAX_SELECTIONS) {
+    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
       showToast();
     } else {
       addFestival(selectedFestivals);
-      navigate(routePath.TIME_TABLE_OUTLET);
     }
   };
 
