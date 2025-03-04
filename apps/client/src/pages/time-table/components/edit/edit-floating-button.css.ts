@@ -18,7 +18,7 @@ const fadeOutText = keyframes({
 });
 
 export const box = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   flexDirection: 'column',
   alignItems: 'flex-start',
   padding: '1rem 5.3rem 0.9rem 1.6rem',
@@ -44,14 +44,14 @@ export const boxAtBottom = style({
 });
 
 export const boxButton = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   padding: '0.8rem 0',
   cursor: 'pointer',
 });
 
 export const buttonVariants = recipe({
   base: {
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     height: '5rem',
     position: 'fixed',
     right: '2rem',

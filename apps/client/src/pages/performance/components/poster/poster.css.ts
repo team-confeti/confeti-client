@@ -2,7 +2,7 @@ import { themeVars } from '@confeti/design-system/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   width: '100%',
   height: '100%',
 });

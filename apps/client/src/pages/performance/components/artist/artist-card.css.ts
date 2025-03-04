@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const artist = style({
-  ...themeVars.display.flexColumnCenter,
+  ...themeVars.display.flexColumnAlignTextCenter,
   gap: '1.2rem',
 });
 

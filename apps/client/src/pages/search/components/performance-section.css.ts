@@ -6,7 +6,7 @@ export const section = style({
 });
 
 export const emptyPerformanceSection = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   ...themeVars.fontStyles.body3_m_14,
   height: '23rem',
   fontSize: '1.4rem',

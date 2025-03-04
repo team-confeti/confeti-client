@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 
 export const artistCardVariants = recipe({
   base: {
-    ...themeVars.display.flexColumnCenter,
+    ...themeVars.display.flexColumnAlignTextCenter,
     position: 'relative',
     gap: '1.2rem',
     cursor: 'pointer',
