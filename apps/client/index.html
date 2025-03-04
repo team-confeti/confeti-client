@@ -22,6 +22,18 @@
       content="https://confeti.co.kr/images/thumbnail.jpeg"
     />
     <title>CONFETI</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%');
+    </script>
   </head>
   <body>
     <div id="root"></div>
