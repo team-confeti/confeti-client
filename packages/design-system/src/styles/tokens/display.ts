@@ -1,45 +1,27 @@
 export const display = {
-  flexCenter: {
+  flexJustifyAlignCenter: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   flexAlignCenter: {
     display: 'flex',
     alignItems: 'center',
   },
-  flexCenterStretch: {
-    display: 'flex',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
   flexColumn: {
     display: 'flex',
     flexDirection: 'column',
   },
-  flexColumnCenter: {
+  flexColumnAlignTextCenter: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
   },
-  flexColumnLeft: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    textAlign: 'left',
-  },
-  flexBetween: {
+  flexBetweenAlignCenter: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    alignSelf: 'stretch',
-  },
-  flexColumnStart: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
     alignSelf: 'stretch',
   },
 } as const;
