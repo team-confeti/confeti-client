@@ -11,6 +11,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
+    <title>confeti</title>
+    <meta
+      name="description"
+      content="공연의 설레는 시작과 끝을 콘페티와 함께!"
+    />
+    <meta
+      name="keywords"
+      content="confeti, 콘페티, 공연, 티켓, 예매, 예매정보, 티켓정보, 공연정보, 공연예매, 공연티켓, 공연예매정보, 공연티켓정보"
+    />
+
     <meta property="og:title" content="confeti" />
     <meta
       property="og:description"
@@ -21,7 +31,18 @@
       property="og:image"
       content="https://confeti.co.kr/images/thumbnail.jpeg"
     />
-    <title>CONFETI</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%');
+    </script>
   </head>
   <body>
     <div id="root"></div>
