@@ -3,7 +3,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
   ...themeVars.fontStyles.caption_r_10,
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   textAlign: 'center',
   width: '100%',
   height: '4rem',

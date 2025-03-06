@@ -12,7 +12,10 @@ const shake = keyframes({
 
 export const containerVariants = recipe({
   base: {
-    ...themeVars.display.flexColumnStart,
+    ...themeVars.display.flexColumn,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
     background: themeVars.color.white,
   },
   variants: {
@@ -64,7 +67,7 @@ export const ItemsVariants = recipe({
 
 export const ImageVariants = recipe({
   base: {
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     border: themeVars.border.gray400,
     background: themeVars.color.white,
     flexShrink: '0',

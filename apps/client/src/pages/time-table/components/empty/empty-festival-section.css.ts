@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
-  ...themeVars.display.flexColumnCenter,
+  ...themeVars.display.flexColumnAlignTextCenter,
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -12,7 +12,7 @@ export const container = style({
 });
 
 export const iconDescriptionWrapper = style({
-  ...themeVars.display.flexColumnCenter,
+  ...themeVars.display.flexColumnAlignTextCenter,
   gap: '2rem',
 });
 

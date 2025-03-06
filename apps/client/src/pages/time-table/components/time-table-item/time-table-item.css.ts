@@ -3,7 +3,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const itemsWrapper = recipe({
   base: {
-    ...themeVars.display.flexColumnCenter,
+    ...themeVars.display.flexColumnAlignTextCenter,
     justifyContent: 'center',
     position: 'absolute',
     top: 'calc( 0.75rem + var(--top) )',

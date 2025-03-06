@@ -30,7 +30,7 @@ export const active = style({
 });
 
 export const container = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   background: themeVars.color.black_op,
   width: '100%',
   height: '100%',
@@ -48,7 +48,7 @@ export const info = style({
 });
 
 export const textSection = style({
-  ...themeVars.display.flexBetween,
+  ...themeVars.display.flexBetweenAlignCenter,
   flexDirection: 'column',
   alignItems: 'flex-start',
   alignSelf: 'stretch',
@@ -80,7 +80,7 @@ export const fixedWord = style({
 });
 
 export const infoBottom = style({
-  ...themeVars.display.flexBetween,
+  ...themeVars.display.flexBetweenAlignCenter,
   width: 'calc(100% - 4rem)',
   position: 'absolute',
   bottom: '1rem',

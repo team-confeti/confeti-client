@@ -12,7 +12,7 @@ globalStyle(':root', {
 
 /* HTML & Body Styles */
 globalStyle('html, body', {
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   position: 'relative', //floating button 추가로 인한 position 지정
   width: '100%',
   margin: '0',

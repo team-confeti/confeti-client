@@ -2,7 +2,7 @@ import { themeVars } from '@confeti/design-system/styles';
 import { style } from '@vanilla-extract/css';
 
 export const wrapper = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   flexDirection: 'column',
   padding: '1.6rem 0',
   gap: '2rem',

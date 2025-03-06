@@ -4,7 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const button = recipe({
   base: {
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     width: '100%',
     height: '4.4rem',
     backgroundColor: themeVars.color.white,

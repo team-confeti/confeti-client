@@ -9,7 +9,7 @@ export const overlay = {
     width: '100%',
     height: '100%',
     backgroundColor: color.black_op,
-    ...display.flexCenter,
+    ...display.flexJustifyAlignCenter,
     borderRadius: '1rem',
   },
 } as const;

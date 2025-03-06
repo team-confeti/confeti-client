@@ -19,7 +19,7 @@ export const icon = style({
 
 export const content = style({
   gap: '0.4rem',
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
 });
 
 export const toast = recipe({
@@ -28,7 +28,7 @@ export const toast = recipe({
     width: '32.5rem',
     height: '5rem',
 
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     transform: 'translateX(-50%)',
     borderRadius: '5rem',
     backgroundColor: themeVars.color.gray800,

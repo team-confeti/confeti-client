@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
 
 export const container = style({
-  ...themeVars.display.flexCenter,
+  ...themeVars.display.flexJustifyAlignCenter,
   padding: '0.8rem 2rem',
   width: '100%',
   gap: '0.8rem',

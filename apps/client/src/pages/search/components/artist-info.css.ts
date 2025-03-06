@@ -20,7 +20,9 @@ export const image = style({
 });
 
 export const textSection = style({
-  ...themeVars.display.flexColumnLeft,
+  ...themeVars.display.flexColumn,
+  justifyContent: 'center',
+  textAlign: 'left',
   flex: 1,
   gap: '1.05rem',
 });

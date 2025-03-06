@@ -24,7 +24,7 @@ export const dateSection = style({
 });
 
 export const dateItems = style({
-  ...themeVars.display.flexColumnCenter,
+  ...themeVars.display.flexColumnAlignTextCenter,
   width: '3rem',
   height: '5.5rem',
   gap: '0.6rem',
@@ -32,7 +32,7 @@ export const dateItems = style({
 
 export const dayNum = recipe({
   base: {
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     width: '3rem',
     height: '3rem',
     borderRadius: '1.5rem',
@@ -62,7 +62,7 @@ export const dayNum = recipe({
 
 export const dayKo = recipe({
   base: {
-    ...themeVars.display.flexCenter,
+    ...themeVars.display.flexJustifyAlignCenter,
     background: 'transparent',
   },
   variants: {

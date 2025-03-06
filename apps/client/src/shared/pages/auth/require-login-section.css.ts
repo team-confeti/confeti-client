@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
-  ...themeVars.display.flexColumnCenter,
+  ...themeVars.display.flexColumnAlignTextCenter,
   position: 'absolute',
   top: '55%',
   left: '50%',
