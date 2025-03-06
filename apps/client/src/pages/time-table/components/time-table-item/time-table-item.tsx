@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import {
   parseTimeString,
-  calcPosition,
   calcTotalMinutes,
   calcMinutesFromOpen,
+  calcTotalFestivalMinutes,
 } from '@pages/time-table/utils';
+
 import * as styles from './time-table-item.css';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -42,14 +43,20 @@ const TimeTableItem = ({
   const [startHour, startMin] = parseTimeString(startTime);
   const [endHour, endMin] = parseTimeString(endTime);
   const [openHour, openMin] = parseTimeString(ticketOpenAt);
-  const totalMin = calcTotalMinutes(startHour, startMin, endHour, endMin);
+  const totalPerformMin = calcTotalMinutes(
+    startHour,
+    startMin,
+    endHour,
+    endMin,
+  );
   const minutesFromOpen = calcMinutesFromOpen(
     startHour,
     startMin,
     openHour,
     openMin,
   );
-  const { top, diff } = calcPosition(totalMin, minutesFromOpen);
+
+  const totalFestivalMinutes = calcTotalFestivalMinutes(openHour, openMin);
 
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
@@ -58,11 +65,16 @@ const TimeTableItem = ({
     }
   };
 
+  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + 0.75rem)`;
+  const heightPercentage = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
+  const left = `calc( 3.1rem + ((100% - 3.5rem) / ${stageCount} * ${stageOrder - 1}))`;
+  const width = `calc((100% - 3.2rem) / ${stageCount})`;
+
   const dynamicVars = assignInlineVars({
-    [styles.stageCount]: stageCount.toString(),
-    [styles.stageOrder]: (stageOrder - 1).toString(),
-    [styles.topPosition]: `${top}rem`,
-    [styles.height]: `${diff}rem`,
+    [styles.left]: left,
+    [styles.width]: width,
+    [styles.top]: top,
+    [styles.height]: heightPercentage,
   });
 
   return (
@@ -76,7 +88,7 @@ const TimeTableItem = ({
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>
         {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
-        {`(${totalMin}min)`}
+        {`(${totalPerformMin}min)`}
       </div>
     </div>
   );
