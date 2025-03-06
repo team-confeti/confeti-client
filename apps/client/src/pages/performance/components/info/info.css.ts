@@ -50,7 +50,10 @@ export const text = recipe({
   base: themeVars.fontStyles.body3_r_14,
   variants: {
     type: {
-      label: themeVars.fontStyles.subtitle4_b_14,
+      label: {
+        ...themeVars.fontStyles.subtitle4_b_14,
+        flexShrink: 0,
+      },
       value: themeVars.fontStyles.body3_r_14,
     },
     color: {
