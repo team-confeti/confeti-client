@@ -10,7 +10,8 @@ interface PerformanceInfoProps {
   typeId: number;
   posterUrl: string;
   title: string;
-  performanceAt: string;
+  performanceStartAt: string;
+  performanceEndAt: string;
   area: string;
   isFavorite: boolean;
 }
@@ -19,7 +20,8 @@ const PerformanceInfo = ({
   typeId,
   posterUrl,
   title,
-  performanceAt,
+  performanceStartAt,
+  performanceEndAt,
   area,
   isFavorite,
   type,
@@ -56,7 +58,7 @@ const PerformanceInfo = ({
 
           <div className={styles.infoRow}>
             <IcTimeGray14 className={styles.infoIcon} />
-            <p className={styles.infoText}>{performanceAt}</p>
+            <p className={styles.infoText}>{'dd'}</p>
           </div>
 
           <div className={styles.infoRow}>
