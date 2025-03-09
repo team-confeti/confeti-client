@@ -105,23 +105,22 @@ const TimeTableBoard = ({
             <p className={styles.minutesP}>{HALF_HOUR_TO_MINUTES}</p>
           </div>
         )}
-
-        <div className={styles.timeList}>
-          <p className={styles.timeP}>{END_HOUR}</p>
-          <hr className={styles.timeBar} />
-        </div>
-
-        {!isEditTimeTableMode && !isFestivalDeleteMode && (
-          <div className={styles.saveButtonWrapper}>
-            <Button
-              text="이미지 저장"
-              variant="add"
-              className={styles.saveButton}
-              onClick={downloadImage}
-            ></Button>
-          </div>
-        )}
       </div>
+      <div className={styles.timeList}>
+        <p className={styles.timeP}>{END_HOUR}</p>
+        <hr className={styles.timeBar} />
+      </div>
+
+      {!isEditTimeTableMode && !isFestivalDeleteMode && (
+        <div className={styles.saveButtonWrapper}>
+          <Button
+            text="이미지 저장"
+            variant="add"
+            className={styles.saveButton}
+            onClick={downloadImage}
+          ></Button>
+        </div>
+      )}
     </section>
   );
 };

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import {
   parseTimeString,
-  calcPosition,
   calcTotalMinutes,
   calcMinutesFromOpen,
+  calcTotalFestivalMinutes,
 } from '@pages/time-table/utils';
+
 import * as styles from './time-table-item.css';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 interface ItemProps {
   artists: Artist[];
@@ -41,17 +43,20 @@ const TimeTableItem = ({
   const [startHour, startMin] = parseTimeString(startTime);
   const [endHour, endMin] = parseTimeString(endTime);
   const [openHour, openMin] = parseTimeString(ticketOpenAt);
-  const totalMin = calcTotalMinutes(startHour, startMin, endHour, endMin);
+  const totalPerformMin = calcTotalMinutes(
+    startHour,
+    startMin,
+    endHour,
+    endMin,
+  );
   const minutesFromOpen = calcMinutesFromOpen(
     startHour,
     startMin,
     openHour,
     openMin,
   );
-  const { top, diff } = calcPosition(totalMin, minutesFromOpen);
 
-  //TODO: 추후 API 연결할때 필요한 prop, build 에러 방지를 위한 코드
-  userTimetableId;
+  const totalFestivalMinutes = calcTotalFestivalMinutes(openHour, openMin);
 
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
@@ -60,16 +65,21 @@ const TimeTableItem = ({
     }
   };
 
+  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + 0.75rem)`;
+  const height = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
+  const left = `calc( 2.9rem + ((100% - 2.9rem) / ${stageCount} * ${stageOrder - 1}))`;
+  const width = `calc((100% - 3.2rem) / ${stageCount})`;
+
+  const dynamicVars = assignInlineVars({
+    [styles.left]: left,
+    [styles.width]: width,
+    [styles.top]: top,
+    [styles.height]: height,
+  });
+
   return (
     <div
-      style={
-        {
-          '--stage-count': stageCount,
-          '--stage-order': stageOrder - 1,
-          '--diff': `${diff}rem`,
-          '--top': `${top}rem`,
-        } as React.CSSProperties
-      }
+      style={dynamicVars}
       className={styles.itemsWrapper({ isSelected: selectBlock })}
       onClick={handleSetSelectedBlock}
     >
@@ -78,7 +88,7 @@ const TimeTableItem = ({
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>
         {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
-        {`(${totalMin}min)`}
+        {`(${totalPerformMin}min)`}
       </div>
     </div>
   );
