@@ -66,15 +66,15 @@ const TimeTableItem = ({
   };
 
   const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + 0.75rem)`;
-  const heightPercentage = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
-  const left = `calc( 3.1rem + ((100% - 3.5rem) / ${stageCount} * ${stageOrder - 1}))`;
+  const height = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
+  const left = `calc( 2.9rem + ((100% - 2.9rem) / ${stageCount} * ${stageOrder - 1}))`;
   const width = `calc((100% - 3.2rem) / ${stageCount})`;
 
   const dynamicVars = assignInlineVars({
     [styles.left]: left,
     [styles.width]: width,
     [styles.top]: top,
-    [styles.height]: heightPercentage,
+    [styles.height]: height,
   });
 
   return (

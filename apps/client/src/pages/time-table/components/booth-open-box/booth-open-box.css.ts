@@ -8,7 +8,7 @@ export const wrapper = style({
   top: '0.7rem',
   right: '0',
   height: '4.5rem',
-  width: 'calc(100% - 3.1rem)',
+  width: 'calc(100% - 2.9rem)',
   color: themeVars.color.gray600,
   background: themeVars.color.gray200,
 });
