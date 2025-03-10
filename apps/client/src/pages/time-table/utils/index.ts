@@ -3,8 +3,9 @@ import {
   ONE_HOUR_TO_MINUTES,
 } from '@pages/time-table/constants';
 
-export const generateTableRow = (startTime: number) => {
-  return Array.from({ length: 24 - startTime }, (_, idx) => startTime + idx);
+export const generateTableRow = (startTime: string) => {
+  const startHour = Number(startTime);
+  return Array.from({ length: 24 - startHour }, (_, idx) => startHour + idx);
 };
 
 export const parseTimeString = (timeString: string): string[] => {
