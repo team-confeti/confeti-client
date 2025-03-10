@@ -2,16 +2,13 @@ import {
   TIME_SLOT_HEIGHT_5_MIN,
   ONE_HOUR_TO_MINUTES,
 } from '@pages/time-table/constants';
-import { isString } from '../types/type-guards';
 
 export const generateTableRow = (startTime: number) => {
   return Array.from({ length: 24 - startTime }, (_, idx) => startTime + idx);
 };
 
-export const parseTimeString = (timeString: string | number): string[] => {
-  const time = isString(timeString)
-    ? timeString.split('T')[1]?.slice(0, 5)
-    : '';
+export const parseTimeString = (timeString: string): string[] => {
+  const time = timeString.split('T')[1]?.slice(0, 5);
 
   if (!time) return ['00', '00'];
 

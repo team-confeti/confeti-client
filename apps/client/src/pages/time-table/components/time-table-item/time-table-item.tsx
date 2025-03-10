@@ -11,8 +11,8 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 interface ItemProps {
   artists: Artist[];
-  startTime: string | number;
-  endTime: string | number;
+  startTime: string;
+  endTime: string;
   stageCount: number;
   isSelected: boolean;
   stageOrder: number;
