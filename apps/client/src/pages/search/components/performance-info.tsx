@@ -4,6 +4,7 @@ import { LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './performance-info.css';
+import { useFormattedDate } from '@shared/utils/use-format-date';
 
 interface PerformanceInfoProps {
   type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
@@ -41,6 +42,13 @@ const PerformanceInfo = ({
     navigate(path);
   };
 
+  const formattedDate = useFormattedDate(
+    '',
+    'performance',
+    performanceStartAt,
+    performanceEndAt,
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -58,7 +66,7 @@ const PerformanceInfo = ({
 
           <div className={styles.infoRow}>
             <IcTimeGray14 className={styles.infoIcon} />
-            <p className={styles.infoText}>{'dd'}</p>
+            <p className={styles.infoText}>{formattedDate}</p>
           </div>
 
           <div className={styles.infoRow}>
