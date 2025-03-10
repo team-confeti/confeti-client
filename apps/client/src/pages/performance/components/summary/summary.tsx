@@ -1,8 +1,8 @@
 import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
-import { WEEKDAYS } from '@shared/constants/day.ts';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './summary.css';
+import { useFormattedDate } from '@shared/utils/use-format-date';
 
 interface SummaryProps {
   id: number;
@@ -16,21 +16,6 @@ interface SummaryProps {
   isFavorite: boolean;
   type: 'FESTIVAL' | 'CONCERT';
 }
-
-// 날짜 및 시간 포맷팅 함수
-const formatReserveDate = (reserveAt: string): string => {
-  const date = new Date(reserveAt);
-
-  const weekData = WEEKDAYS;
-
-  const hours = date.getHours();
-  const period = hours >= 12 ? '오후' : '오전';
-  const hour12 = hours % 12 === 0 ? 12 : hours % 12;
-
-  const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 (${weekData[date.getDay()]}) ${period}${hour12}시`;
-
-  return formattedDate;
-};
 
 const Summary = ({
   id,
@@ -49,6 +34,13 @@ const Summary = ({
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });
   };
+  const formattedDate = useFormattedDate(
+    '',
+    'performance-detail',
+    startAt,
+    endAt,
+  );
+  const reserverDate = useFormattedDate(reserveAt, 'reserve');
 
   return (
     <section className={styles.container}>
@@ -69,9 +61,7 @@ const Summary = ({
           <div className={styles.detail}>
             <div className={styles.detailItem}>
               <div className={styles.detailTitle}>기간</div>
-              <div className={styles.detailContent}>
-                {startAt} - {endAt}
-              </div>
+              <div className={styles.detailContent}>{formattedDate}</div>
             </div>
             <div className={styles.detailItem}>
               <div className={styles.detailTitle}>장소</div>
@@ -79,9 +69,7 @@ const Summary = ({
             </div>
             <div className={styles.detailItem}>
               <div className={styles.detailTitle}>예매일</div>
-              <div className={styles.detailContent}>
-                {formatReserveDate(reserveAt)}
-              </div>
+              <div className={styles.detailContent}>{reserverDate}</div>
             </div>
           </div>
         </h1>
