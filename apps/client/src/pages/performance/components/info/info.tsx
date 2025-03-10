@@ -24,12 +24,7 @@ const Info = ({
   price,
 }: InfoProps) => {
   const priceLines = price.split('\n');
-  const formattedDate = useFormattedDate(
-    '',
-    'performance-detail',
-    startAt,
-    endAt,
-  );
+  const formattedDate = useFormattedDate('', 'startEndHalf', startAt, endAt);
 
   return (
     <>

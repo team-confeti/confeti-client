@@ -3,8 +3,8 @@ import { WEEKDAYS } from '@shared/constants/day';
 const getDateParts = (date: string) => {
   const parsedDate = new Date(date);
   const year = parsedDate.getFullYear();
-  const month = parsedDate.getMonth() + 1;
-  const day = parsedDate.getDate();
+  const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+  const day = String(parsedDate.getDate()).padStart(2, '0');
 
   return { year, month, day };
 };
@@ -40,15 +40,15 @@ const getReserveDate = (reserveAt: string): string => {
 
 export const useFormattedDate = (
   date: string = '',
-  domain: string = 'default',
+  formatStyle: string = 'default',
   startAt?: string,
   endAt?: string,
 ) => {
-  if (domain === 'performance' && startAt && endAt) {
+  if (formatStyle === 'startEndFull' && startAt && endAt) {
     return getStartAtEndAt(startAt, endAt, false);
   }
 
-  if (domain === 'performance-detail' && startAt && endAt) {
+  if (formatStyle === 'startEndHalf' && startAt && endAt) {
     return getStartAtEndAt(startAt, endAt, true);
   }
 
@@ -56,10 +56,10 @@ export const useFormattedDate = (
 
   const { year, month, day } = getDateParts(date);
 
-  switch (domain) {
-    case 'timetable':
+  switch (formatStyle) {
+    case 'koHalf':
       return `${year}년 ${month}월`;
-    case 'reserve':
+    case 'koFull':
       return getReserveDate(date);
     default:
       return `${year}.${month}.${day}`;

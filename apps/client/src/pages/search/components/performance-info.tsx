@@ -44,7 +44,7 @@ const PerformanceInfo = ({
 
   const formattedDate = useFormattedDate(
     '',
-    'performance',
+    'startEndFull',
     performanceStartAt,
     performanceEndAt,
   );

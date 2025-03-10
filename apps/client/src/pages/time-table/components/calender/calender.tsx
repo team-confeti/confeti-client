@@ -20,7 +20,7 @@ const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
   const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
     festivalDates || [],
   );
-  const formattedYear = useFormattedDate(firstDate, 'timetable');
+  const formattedYear = useFormattedDate(firstDate, 'koHalf');
 
   const handleDateClick = (festivalDateId: number) => {
     handleDayNumClick(festivalDateId);

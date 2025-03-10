@@ -34,13 +34,8 @@ const Summary = ({
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });
   };
-  const formattedDate = useFormattedDate(
-    '',
-    'performance-detail',
-    startAt,
-    endAt,
-  );
-  const reserverDate = useFormattedDate(reserveAt, 'reserve');
+  const formattedDate = useFormattedDate('', 'startEndHalf', startAt, endAt);
+  const reserverDate = useFormattedDate(reserveAt, 'koFull');
 
   return (
     <section className={styles.container}>
