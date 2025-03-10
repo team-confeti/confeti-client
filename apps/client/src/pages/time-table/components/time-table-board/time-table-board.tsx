@@ -32,9 +32,9 @@ const TimeTableBoard = ({
     fileName: `${clickedFestivalTitle}`,
   });
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
-  const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
+  const isHalfHourOpen = Number(openMin) === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
-  const cellNumber = generateTableRow(ticketOpenHour);
+  const cellNumber = generateTableRow(Number(ticketOpenHour));
 
   const [selectedItems, setSelectedItems] = useState<
     { userTimetableId: number; isSelected: boolean }[]

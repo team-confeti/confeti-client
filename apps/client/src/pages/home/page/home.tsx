@@ -8,7 +8,6 @@ import {
 import { USER_DATA } from '@shared/mocks/user-data';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
-
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { TAB_MENU } from '../constants/menu';
 import { useTicketing } from '../hooks/use-ticketing';
@@ -22,7 +21,6 @@ const Home = () => {
   const { data: profileData } = useUserProfile();
   const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
-
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 
