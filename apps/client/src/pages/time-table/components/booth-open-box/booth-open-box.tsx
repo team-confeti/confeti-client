@@ -9,7 +9,7 @@ const BoothOpenBox = ({ ticketOpenHour }: BoxProps) => {
   return (
     <div className={styles.wrapper}>
       {'TICKET BOOTH OPEN '}
-      {openHour}:{openMin.toString().padStart(2, '0')}
+      {openHour}:{openMin}
     </div>
   );
 };
