@@ -26,15 +26,15 @@ export const calcPosition = (totalMin: number, minutesFromOpen: number) => {
 };
 
 export const calcTotalMinutes = (
-  startHour: number | string,
-  startMin: number | string,
-  endHour: number | string,
-  endMin: number | string,
+  startHour: string,
+  startMin: string,
+  endHour: string,
+  endMin: string,
 ) => {
-  const startHourNum = isString(startHour) ? Number(startHour) : startHour;
-  const startMinNum = isString(startMin) ? Number(startMin) : startMin;
-  const endHourNum = isString(endHour) ? Number(endHour) : endHour;
-  const endMinNum = isString(endMin) ? Number(endMin) : endMin;
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
+  const endHourNum = Number(endHour);
+  const endMinNum = Number(endMin);
 
   return (
     endHourNum * 60 +
@@ -44,15 +44,15 @@ export const calcTotalMinutes = (
 };
 
 export const calcMinutesFromOpen = (
-  startHour: number | string,
-  startMin: number | string,
-  openHour: number | string,
-  openMin: number | string,
+  startHour: string,
+  startMin: string,
+  openHour: string,
+  openMin: string,
 ) => {
-  const startHourNum = isString(startHour) ? Number(startHour) : startHour;
-  const startMinNum = isString(startMin) ? Number(startMin) : startMin;
-  const openHourNum = isString(openHour) ? Number(openHour) : openHour;
-  const openMinNum = isString(openMin) ? Number(openMin) : openMin;
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
+  const openHourNum = Number(openHour);
+  const openMinNum = Number(openMin);
 
   const startTotalMin = startHourNum * ONE_HOUR_TO_MINUTES + startMinNum;
   const openTotalMin = openHourNum * ONE_HOUR_TO_MINUTES + openMinNum;
@@ -61,11 +61,11 @@ export const calcMinutesFromOpen = (
 };
 
 export const calcTotalFestivalMinutes = (
-  startHour: number | string,
-  startMin: number | string,
+  startHour: string,
+  startMin: string,
 ) => {
-  const startHourNum = isString(startHour) ? Number(startHour) : startHour;
-  const startMinNum = isString(startMin) ? Number(startMin) : startMin;
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
 
   const hoursUntilEnd = 24 - startHourNum;
   const totalFestivalMinutes = hoursUntilEnd * 60 - startMinNum;
