@@ -1,3 +1,4 @@
+import { useFormattedDate } from '@shared/utils/use-format-date';
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 import * as styles from './info.css';
 
@@ -22,8 +23,13 @@ const Info = ({
   reservationOffice,
   price,
 }: InfoProps) => {
-  // 'price'를 분리하여 배열로 변환
   const priceLines = price.split('\n');
+  const formattedDate = useFormattedDate(
+    '',
+    'performance-detail',
+    startAt,
+    endAt,
+  );
 
   return (
     <>
@@ -49,9 +55,7 @@ const Info = ({
               <div className={styles.text({ type: 'label', color: 'gray' })}>
                 {PERFORMANCE_LABEL.PERIOD}
               </div>
-              <div className={styles.text()}>
-                {startAt} - {endAt}
-              </div>
+              <div className={styles.text()}>{formattedDate}</div>
             </div>
             <div className={styles.detail}>
               <div className={styles.text({ type: 'label', color: 'gray' })}>
