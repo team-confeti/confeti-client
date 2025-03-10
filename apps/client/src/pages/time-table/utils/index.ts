@@ -16,7 +16,7 @@ export const parseTimeString = (timeString: string | number): string[] => {
   if (!time) return ['00', '00'];
 
   const [hour, min] = time.split(':');
-  return [hour, min.padStart(2, '0')];
+  return [hour, min];
 };
 
 export const calcPosition = (totalMin: number, minutesFromOpen: number) => {
