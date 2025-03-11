@@ -36,6 +36,13 @@ export const buttonVariants = recipe({
         height: '4.4rem',
         padding: '1.2rem 1.6rem',
       },
+      apple: {
+        ...themeVars.fontStyles.subtitle3_b_15,
+        color: themeVars.color.gray800,
+        backgroundColor: themeVars.color.gray200,
+        height: '4.4rem',
+        padding: '1.2rem 1.6rem',
+      },
     },
     disabled: {
       true: {},

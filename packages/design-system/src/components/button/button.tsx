@@ -4,7 +4,7 @@ import { buttonVariants } from './button.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  variant?: 'add' | 'link' | 'default' | 'kakao';
+  variant?: 'add' | 'link' | 'default' | 'kakao' | 'apple';
   disabled?: boolean;
   className?: string;
   icon?: React.ReactNode;
