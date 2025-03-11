@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { ToastProps, ToastEvent } from './types';
 import { eventManager } from './utils/eventManager';
+import { TOAST_DEFAULT_POSITION } from './utils/constants';
 import { IcToastInfo24 } from '../../icons/src';
 import { cn } from '../../utils';
 import * as styles from './toast.css';
@@ -11,7 +12,7 @@ const Toast = ({
   text,
   autoClose = 3000,
   closeOnClick = true,
-  position = 'bottomCenter',
+  position = TOAST_DEFAULT_POSITION,
   icon,
   className,
 }: ToastProps) => {
