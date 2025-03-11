@@ -1,10 +1,14 @@
+import { memo, useMemo } from 'react';
 import useToastContainer from './hooks/useToastContainer';
 import ToastItem from './toast';
 import * as styles from './toast-container.css';
 
 const ToastContainer = () => {
   const { getToastPositionGroupToRender } = useToastContainer();
-  const positionGroup = getToastPositionGroupToRender();
+  const positionGroup = useMemo(
+    () => getToastPositionGroupToRender(),
+    [getToastPositionGroupToRender],
+  );
 
   return Array.from(positionGroup).map(([position, toasts]) => (
     <div
@@ -18,4 +22,4 @@ const ToastContainer = () => {
   ));
 };
 
-export default ToastContainer;
+export default memo(ToastContainer);
