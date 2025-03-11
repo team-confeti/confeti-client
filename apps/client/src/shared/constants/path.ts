@@ -2,6 +2,8 @@ export const routePath = {
   LAYOUT: '/',
   // home-page
   ROOT: '/',
+  // login-page
+  LOGIN: '/login',
   // my-page
   MY: '/my',
   MY_ARTIST: 'artist',
