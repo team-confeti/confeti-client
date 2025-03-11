@@ -1,4 +1,4 @@
-import { EventManager } from '../types/type';
+import { EventManager } from '../types';
 
 export const eventManager: EventManager = {
   list: new Map(),

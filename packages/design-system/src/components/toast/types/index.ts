@@ -1,14 +1,22 @@
-export type ToastPosition = 'topCenter' | 'bottomCenter' | 'middleCenter';
-export type ToastType = 'success' | 'default';
+export type ToastPosition =
+  | 'bottomCenter'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'middleCenter'
+  | 'topCenter'
+  | 'topLeft'
+  | 'topRight';
+
 export type ToastProps = {
   toastId: string;
   text: string;
   autoClose?: false | number;
   closeOnClick?: boolean;
-  type?: ToastType;
   pauseOnHover?: boolean;
   position?: ToastPosition;
   toggle?: boolean;
+  icon?: JSX.Element | 'default';
+  className?: string;
 };
 
 export const enum ToastEvent {

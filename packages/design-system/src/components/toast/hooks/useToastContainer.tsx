@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ToastEvent, ToastPosition, ToastProps } from '../types/type';
+import { ToastEvent, ToastPosition, ToastProps } from '../types';
 import { eventManager } from '../utils/eventManager';
 
 const useToastContainer = () => {
@@ -35,7 +35,6 @@ const useToastContainer = () => {
     eventManager.on(ToastEvent.Delete, deleteToast);
     eventManager.on(ToastEvent.Update, updateToast);
 
-    // 컴포넌트 언마운트 시 리스너 해제
     return () => {
       eventManager.off(ToastEvent.Add, addToast);
       eventManager.off(ToastEvent.Delete, deleteToast);
