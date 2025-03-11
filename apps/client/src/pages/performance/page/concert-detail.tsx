@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import ArtistSection from '@pages/performance/components/artist/artist-section';
+import ArtistTitle from '@pages/performance/components/artist/artist-title';
+import MoreButton from '@pages/performance/components/button/more-button';
 import Info from '@pages/performance/components/info/info';
+import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
 import Poster from '@pages/performance/components/poster/poster';
 import Summary from '@pages/performance/components/summary/summary';
-import MoreButton from '@pages/performance/components/button/more-button';
-import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
-import ArtistTitle from '@pages/performance/components/artist/artist-title';
-import ArtistSection from '@pages/performance/components/artist/artist-section';
 import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();

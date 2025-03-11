@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import ExpandedSection from '@pages/performance/components/expanded/expanded-section';
-import ArtistGrid from './artist-grid';
+import { useState } from 'react';
+
 import { ConcertArtist } from '../../types/concert';
 import { FestivalDate } from '../../types/festival';
+import ArtistGrid from './artist-grid';
 import * as styles from './artist-section.css';
 
 const CONCERT_DEFAULT_ID = -1;

@@ -1,6 +1,7 @@
-import { queryOptions } from '@tanstack/react-query';
-import { getArtistSearch, getPerformancesSearch } from './search';
 import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
+import { queryOptions } from '@tanstack/react-query';
+
+import { getArtistSearch, getPerformancesSearch } from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],

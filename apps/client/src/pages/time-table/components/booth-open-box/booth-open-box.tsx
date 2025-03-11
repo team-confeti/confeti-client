@@ -1,5 +1,6 @@
-import * as styles from './booth-open-box.css';
 import { parseTimeString } from '@pages/time-table/utils';
+
+import * as styles from './booth-open-box.css';
 interface BoxProps {
   ticketOpenHour: string;
 }

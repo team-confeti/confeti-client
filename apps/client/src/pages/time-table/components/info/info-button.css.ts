@@ -1,6 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '@confeti/design-system/styles';
 import { keyframes } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 const shake = keyframes({
   '0%': { transform: 'rotate(0deg)' },

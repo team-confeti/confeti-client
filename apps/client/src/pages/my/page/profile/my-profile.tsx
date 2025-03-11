@@ -1,14 +1,13 @@
-import { Header, Footer, Spacing } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
-
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
-import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
-import Box from '@pages/my/components/profile/box';
-import NoArtistSection from '@pages/my/components/artist/no-artist-section';
+import { Footer, Header, Spacing } from '@confeti/design-system';
 import ArtistSection from '@pages/my/components/artist/artist-section';
-import UserInfo from '@pages/my/components/profile/user-info';
+import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
 import ConfetiSection from '@pages/my/components/performance/performance-section';
+import Box from '@pages/my/components/profile/box';
+import UserInfo from '@pages/my/components/profile/user-info';
+import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { routePath } from '@shared/constants/path';
 
 const MyProfile = () => {
   const { data: profileData } = useUserProfile();

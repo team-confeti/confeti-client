@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-timetable';
 import { addFestivalTimeTable } from '@shared/apis/time-table/festival-button';
 import { FESTIVAL_BUTTON_QUERY_KEY } from '@shared/apis/time-table/festival-button-queries';
+import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-timetable';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/apis/time-table/festival-timetable-queries';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useDeleteTimeTableFestival = () => {
   const queryClient = useQueryClient();

@@ -1,6 +1,6 @@
 import {
-  TIME_SLOT_HEIGHT_5_MIN,
   ONE_HOUR_TO_MINUTES,
+  TIME_SLOT_HEIGHT_5_MIN,
 } from '@pages/time-table/constants';
 
 export const generateTableRow = (startTime: number) => {

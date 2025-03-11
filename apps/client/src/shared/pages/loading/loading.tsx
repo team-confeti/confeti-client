@@ -1,5 +1,6 @@
-import Lottie from 'react-lottie-player';
 import loadingAnimation from '@shared/assets/lotties/confeti-logo-animation.json';
+import Lottie from 'react-lottie-player';
+
 import * as styles from './loading.css';
 
 const Loading = () => {

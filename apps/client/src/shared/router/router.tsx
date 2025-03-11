@@ -1,22 +1,23 @@
+import { routePath } from '@shared/constants/path';
 import { Route, Routes } from 'react-router-dom';
+
 import GlobalLayout from './global-layout';
 import {
+  AddFestivalPage,
   ConcertDetailPage,
+  ErrorPage,
   FestivalDetailPage,
   HomePage,
-  MyConfetiPage,
   MyArtistPage,
+  MyConfetiPage,
   MyPage,
-  SearchPage,
-  RequireLoginPage,
   MyProfilePage,
-  TimeTablePage,
+  RequireLoginPage,
+  SearchPage,
   TimeTableLayout,
-  AddFestivalPage,
+  TimeTablePage,
   TimeTableRequireLoginPage,
-  ErrorPage,
 } from './lazy';
-import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
 
 export default function Router() {

@@ -1,6 +1,6 @@
-import { useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import { useRef } from 'react';
 
 interface UseImageDownloadOptions {
   fileName?: string;

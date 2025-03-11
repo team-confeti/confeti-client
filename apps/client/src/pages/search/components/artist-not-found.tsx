@@ -1,6 +1,7 @@
-import * as styles from './artist-not-found.css';
 import { IcExclamationCircleOutlined32 } from '@confeti/design-system/icons';
+
 import { SEARCH_NOT_FOUND_MESSAGE } from '../constants/notice-message';
+import * as styles from './artist-not-found.css';
 
 const ArtistNotFound = () => {
   return (

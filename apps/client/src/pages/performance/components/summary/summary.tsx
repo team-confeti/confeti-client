@@ -1,7 +1,8 @@
 import { Button, LikeButton } from '@confeti/design-system';
-import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { WEEKDAYS } from '@shared/constants/day.ts';
+import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+
 import * as styles from './summary.css';
 
 interface SummaryProps {
