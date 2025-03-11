@@ -1,8 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { ToastProps, ToastEvent } from './types/type';
+import { ToastProps, ToastEvent } from './types';
 import { eventManager } from './utils/eventManager';
 import { IcToastInfo24 } from '../../icons/src';
+import { cn } from '../../utils';
 import * as styles from './toast.css';
 
 const Toast = ({
@@ -11,13 +12,26 @@ const Toast = ({
   autoClose = 3000,
   closeOnClick = true,
   position = 'bottomCenter',
+  icon,
+  className,
 }: ToastProps) => {
-  const toastRef = useRef<HTMLDivElement>(null);
   const [isExiting, setIsExiting] = useState(false);
+  const isTopPosition = position.startsWith('top');
 
   const handleAnimationEnd = () => {
     if (isExiting) {
       eventManager.emit(ToastEvent.Delete, toastId);
+    }
+  };
+
+  const renderIcon = () => {
+    switch (icon) {
+      case 'default':
+        return <IcToastInfo24 width={'2.4rem'} height={'2.4rem'} />;
+      case undefined:
+        return null;
+      default:
+        return icon;
     }
   };
 
@@ -32,16 +46,18 @@ const Toast = ({
 
   return (
     <div
-      ref={toastRef}
-      className={styles.toast({
-        position,
-        animation: isExiting ? 'exit' : 'enter',
-      })}
+      className={cn(
+        styles.toastVariants({
+          isTopPosition,
+          animation: isExiting ? 'exit' : 'enter',
+        }),
+        className,
+      )}
       onClick={() => closeOnClick && setIsExiting(true)}
       onAnimationEnd={handleAnimationEnd}
     >
       <div className={styles.content}>
-        <IcToastInfo24 className={styles.icon} />
+        {renderIcon()}
         <p>{text}</p>
       </div>
     </div>
