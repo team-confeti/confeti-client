@@ -36,3 +36,13 @@ export const calcMinutesFromOpen = (
   const openTotalMin = openHour * ONE_HOUR_TO_MINUTES + openMin;
   return startTotalMin - openTotalMin;
 };
+
+export const calcTotalFestivalMinutes = (
+  startHour: number,
+  startMin: number,
+) => {
+  const hoursUntilEnd = 24 - startHour;
+  const totalFestivalMinutes = hoursUntilEnd * 60 - startMin;
+
+  return totalFestivalMinutes;
+};

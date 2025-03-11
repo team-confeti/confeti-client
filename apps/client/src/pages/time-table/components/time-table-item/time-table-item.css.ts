@@ -1,16 +1,21 @@
 import { themeVars } from '@confeti/design-system/styles';
+import { createVar } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+
+export const left = createVar();
+export const width = createVar();
+export const top = createVar();
+export const height = createVar();
 
 export const itemsWrapper = recipe({
   base: {
     ...themeVars.display.flexColumnAlignTextCenter,
     justifyContent: 'center',
     position: 'absolute',
-    top: 'calc( 0.75rem + var(--top) )',
-    left: 'calc( 3.1rem + ((100% - 3.5rem) / var(--stage-count) * var(--stage-order)))',
-    height: 'var(--diff)',
-    width: 'calc((100% - 3.2rem) / var(--stage-count))',
-    // padding: '0.8rem 0rem',
+    top: top,
+    left: left,
+    height: height,
+    width: width,
     borderRadius: '2px',
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',

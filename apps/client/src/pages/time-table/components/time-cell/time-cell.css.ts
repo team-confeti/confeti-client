@@ -12,7 +12,7 @@ export const timeP = recipe({
   base: {
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 0.4rem',
-    marginRight: '1.25rem',
+    marginRight: '0.7rem',
   },
   variants: {
     bold: {
