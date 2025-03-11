@@ -1,7 +1,9 @@
+import '../src/styles/reset.css';
+
+import type { Preview } from '@storybook/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import type { Preview } from '@storybook/react';
-import '../src/styles/reset.css';
+
 import { themeClass } from '../src/styles/theme.css';
 
 const preview: Preview = {

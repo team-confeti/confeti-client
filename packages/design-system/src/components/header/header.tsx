@@ -1,12 +1,13 @@
-import { cn } from '../../utils';
+import { useNavigate } from 'react-router-dom';
+
 import {
-  LogoMain,
-  BtnSearchG90024,
   BtnAccountGray24,
   BtnArrowLeft20,
+  BtnSearchG90024,
+  LogoMain,
 } from '../../icons/src';
+import { cn } from '../../utils';
 import * as styles from './header.css';
-import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   variant?: 'default' | 'detail';

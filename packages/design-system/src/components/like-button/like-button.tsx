@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { BtnHeart } from '@confeti/design-system/icons';
 import { toast } from '@confeti/design-system';
+import { BtnHeart } from '@confeti/design-system/icons';
+import { useState } from 'react';
+
 import { cn } from '../../utils';
 import { likeButtonVariants } from './like-button.css';
 

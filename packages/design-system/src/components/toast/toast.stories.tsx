@@ -1,5 +1,6 @@
+import { Button, toast, ToastContainer } from '@confeti/design-system';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ToastContainer, toast } from '@confeti/design-system';
+
 import Toast from './toast';
 
 const meta: Meta<typeof ToastContainer> = {

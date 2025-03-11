@@ -1,6 +1,7 @@
-import { recipe } from '@vanilla-extract/recipes';
-import { themeVars } from '../../styles';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+
+import { themeVars } from '../../styles';
 
 export const artistCardVariants = recipe({
   base: {

@@ -1,4 +1,5 @@
 import '../styles/reset.css';
+
 import { themeClass } from '../styles';
 
 export default function ThemeProvider({

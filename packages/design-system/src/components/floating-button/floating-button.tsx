@@ -1,6 +1,6 @@
+import SvgIcArrowUpBlack30 from '../../icons/src/IcArrowUpBlack30';
 import { cn } from '../../utils';
 import { floatingButtonVariants } from './floating-button.css';
-import SvgIcArrowUpBlack30 from '../../icons/src/IcArrowUpBlack30';
 
 interface FloatingButtonProps {
   isButtonHidden?: boolean;

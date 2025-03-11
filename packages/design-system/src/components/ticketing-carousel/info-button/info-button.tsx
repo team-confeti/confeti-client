@@ -1,6 +1,6 @@
+import SvgIcArrowWhite12 from '../../../icons/src/IcArrowWhite12';
 import { cn } from '../../../utils';
 import { infoButtonVariants } from './info-button.css';
-import SvgIcArrowWhite12 from '../../../icons/src/IcArrowWhite12';
 
 interface InfoButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
