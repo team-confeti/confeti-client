@@ -25,28 +25,26 @@ export const enum ToastEvent {
   Update,
 }
 
-type OnAddCallback = (props: ToastProps) => void;
-type OnDeleteCallback = (id: string) => void;
-type OnUpdateCallback = (id: string, text: string) => void;
+export type EventCallbacks = {
+  [ToastEvent.Add]: (props: ToastProps) => void;
+  [ToastEvent.Delete]: (id: string) => void;
+  [ToastEvent.Update]: (id: string, text: string) => void;
+};
 
-type Callback = OnAddCallback | OnDeleteCallback | OnUpdateCallback;
-
-type TimeoutId = ReturnType<typeof setTimeout>;
+export type TimeoutId = ReturnType<typeof setTimeout>;
 
 export interface EventManager {
-  list: Map<ToastEvent, Callback[]>;
+  list: Map<ToastEvent, EventCallbacks[keyof EventCallbacks][]>;
   emitQueue: Map<ToastEvent, TimeoutId[]>;
 
-  on(event: ToastEvent.Add, callback: OnAddCallback): EventManager;
-  on(event: ToastEvent.Delete, callback: OnDeleteCallback): EventManager;
-  on(event: ToastEvent.Update, callback: OnUpdateCallback): EventManager;
-
-  off(event: ToastEvent.Add, callback: OnAddCallback): EventManager;
-  off(event: ToastEvent.Delete, callback: OnDeleteCallback): EventManager;
-  off(event: ToastEvent.Update, callback: OnUpdateCallback): EventManager;
-
+  on<E extends ToastEvent>(event: E, callback: EventCallbacks[E]): EventManager;
+  off<E extends ToastEvent>(
+    event: E,
+    callback?: EventCallbacks[E],
+  ): EventManager;
   cancelEmit(event: ToastEvent): EventManager;
-  emit(event: ToastEvent.Add, props: ToastProps): void;
-  emit(event: ToastEvent.Delete, id: string): void;
-  emit(event: ToastEvent.Update, id: string, text: string): void;
+  emit<E extends ToastEvent>(
+    event: E,
+    ...args: Parameters<EventCallbacks[E]>
+  ): void;
 }
