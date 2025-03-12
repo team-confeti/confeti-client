@@ -24,4 +24,9 @@ export const routePath = {
   ADDFESTIVAL: 'add-festival',
 
   LOADING: '/loading',
+  //privacy
+  PRIVACY_CONFETI:
+    'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
+  PRIVACY_PERSONAL:
+    'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
 } as const;
