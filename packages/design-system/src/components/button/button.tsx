@@ -1,5 +1,4 @@
 import { cn } from '../../utils';
-import { icon } from '../toast/toast.css';
 import { buttonVariants } from './button.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
