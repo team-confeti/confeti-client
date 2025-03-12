@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
+import Toast from './toast';
 import useToastContainer from './hooks/useToastContainer';
-import ToastItem from './toast';
 import * as styles from './toast-container.css';
 
 const ToastContainer = () => {
@@ -16,7 +16,7 @@ const ToastContainer = () => {
       className={`${styles.container} ${styles.toastPositionStyle({ position })}`}
     >
       {toasts.map((toastProps) => (
-        <ToastItem key={toastProps.toastId} {...toastProps} />
+        <Toast key={toastProps.toastId} {...toastProps} />
       ))}
     </div>
   ));
