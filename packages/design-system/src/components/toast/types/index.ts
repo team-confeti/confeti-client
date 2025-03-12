@@ -13,7 +13,7 @@ export type ToastProps = {
   autoClose?: false | number;
   closeOnClick?: boolean;
   position?: ToastPosition;
-  icon?: JSX.Element | 'default';
+  icon?: JSX.Element | string | 'default';
   className?: string;
   highlightText?: string;
 };
@@ -35,6 +35,7 @@ export type TimeoutId = ReturnType<typeof setTimeout>;
 export interface EventManager {
   list: Map<ToastEvent, EventCallbacks[keyof EventCallbacks][]>;
   emitQueue: Map<ToastEvent, TimeoutId[]>;
+  activeToastCount: number;
 
   on<E extends ToastEvent>(event: E, callback: EventCallbacks[E]): EventManager;
   off<E extends ToastEvent>(

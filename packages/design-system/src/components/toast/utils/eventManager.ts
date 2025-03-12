@@ -5,10 +5,12 @@ import {
   TimeoutId,
   ToastProps,
 } from '../types';
+import { TOAST_MAX_COUNT } from './constants';
 
 export const eventManager: EventManager = {
   list: new Map(),
   emitQueue: new Map(),
+  activeToastCount: 0,
 
   on<E extends ToastEvent>(event: E, callback: EventCallbacks[E]) {
     if (!this.list.has(event)) {
@@ -31,20 +33,15 @@ export const eventManager: EventManager = {
     return this;
   },
 
-  cancelEmit(event) {
-    const timers = this.emitQueue.get(event);
-    if (timers) {
-      timers.forEach(clearTimeout);
-      this.emitQueue.delete(event);
-    }
-    return this;
-  },
-
   emit<E extends ToastEvent>(event: E, ...args: Parameters<EventCallbacks[E]>) {
     if (!this.list.has(event)) return;
 
     const callbacks = this.list.get(event)!;
     const timers: TimeoutId[] = [];
+
+    if (event === ToastEvent.Add && this.activeToastCount >= TOAST_MAX_COUNT) {
+      return;
+    }
 
     callbacks.forEach((callback) => {
       const timer = setTimeout(() => {
@@ -53,11 +50,13 @@ export const eventManager: EventManager = {
             (callback as EventCallbacks[ToastEvent.Add])(
               ...(args as [ToastProps]),
             );
+            this.activeToastCount += 1;
             break;
           case ToastEvent.Delete:
             (callback as EventCallbacks[ToastEvent.Delete])(
               ...(args as [string]),
             );
+            this.activeToastCount -= 1;
             break;
           case ToastEvent.Update:
             (callback as EventCallbacks[ToastEvent.Update])(
@@ -75,5 +74,14 @@ export const eventManager: EventManager = {
         ...timers,
       ]);
     }
+  },
+
+  cancelEmit(event: ToastEvent) {
+    if (this.emitQueue.has(event)) {
+      const timers = this.emitQueue.get(event)!;
+      timers.forEach(clearTimeout);
+      this.emitQueue.delete(event);
+    }
+    return this;
   },
 };
