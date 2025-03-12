@@ -15,6 +15,7 @@ const Toast = ({
   position = TOAST_DEFAULT_POSITION,
   icon,
   className,
+  highlightText,
 }: ToastProps) => {
   const [isExiting, setIsExiting] = useState(false);
   const isTopPosition = position.startsWith('top');
@@ -59,7 +60,10 @@ const Toast = ({
     >
       <div className={styles.content}>
         {renderIcon()}
-        <p>{text}</p>
+        <p className={styles.text}>
+          <span className={styles.highlightText}>{highlightText}</span>
+          {text}
+        </p>
       </div>
     </div>
   );

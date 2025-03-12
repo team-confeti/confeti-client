@@ -12,11 +12,10 @@ export type ToastProps = {
   text: string;
   autoClose?: false | number;
   closeOnClick?: boolean;
-  pauseOnHover?: boolean;
   position?: ToastPosition;
-  toggle?: boolean;
   icon?: JSX.Element | 'default';
   className?: string;
+  highlightText?: string;
 };
 
 export const enum ToastEvent {

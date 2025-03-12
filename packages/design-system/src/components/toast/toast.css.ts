@@ -27,6 +27,17 @@ export const content = style({
   ...themeVars.display.flexJustifyAlignCenter,
 });
 
+export const text = style({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'pre-line',
+  maxWidth: '27rem',
+});
+
+export const highlightText = style({
+  color: themeVars.color.confeti_lime3,
+});
+
 export const toastVariants = recipe({
   base: {
     position: 'relative',
@@ -35,10 +46,11 @@ export const toastVariants = recipe({
 
     ...themeVars.display.flexJustifyAlignCenter,
     borderRadius: '5rem',
-    backgroundColor: themeVars.color.gray800,
-    color: themeVars.color.confeti_lime2,
+    backgroundColor: themeVars.color.white,
+    color: themeVars.color.black,
     textAlign: 'center',
     zIndex: themeVars.zIndex.toast.content,
+    boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
     ...themeVars.fontStyles.body2_m_15,
 
     cursor: 'pointer',
