@@ -23,6 +23,7 @@ const Login = () => {
         title="로그인"
         icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
       />
+
       <div className={styles.container}>
         <div>
           <Confeti3DLogo21 width={'18rem'} height={'18rem'} />
