@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-
-import { ToastProps, ToastEvent } from './types';
-import { eventManager } from './utils/eventManager';
 import { TOAST_DEFAULT_POSITION } from './utils/constants';
 import { IcToastInfo24 } from '../../icons/src';
 import { cn } from '../../utils';
+import { ToastProps } from './types';
+import { useToast } from './hooks/useToast';
 import * as styles from './toast.css';
 
 const Toast = ({
@@ -17,14 +15,13 @@ const Toast = ({
   className,
   highlightText,
 }: ToastProps) => {
-  const [isExiting, setIsExiting] = useState(false);
-  const isTopPosition = position.startsWith('top');
+  const { isExiting, handleAnimationEnd, handleClick } = useToast(
+    toastId,
+    autoClose,
+    closeOnClick,
+  );
 
-  const handleAnimationEnd = () => {
-    if (isExiting) {
-      eventManager.emit(ToastEvent.Delete, toastId);
-    }
-  };
+  const isTopPosition = position.startsWith('top');
 
   const renderIcon = () => {
     switch (icon) {
@@ -37,15 +34,6 @@ const Toast = ({
     }
   };
 
-  useEffect(() => {
-    if (autoClose) {
-      const timer = setTimeout(() => {
-        setIsExiting(true);
-      }, autoClose);
-      return () => clearTimeout(timer);
-    }
-  }, [autoClose]);
-
   return (
     <div
       className={cn(
@@ -55,7 +43,7 @@ const Toast = ({
         }),
         className,
       )}
-      onClick={() => closeOnClick && setIsExiting(true)}
+      onClick={handleClick}
       onAnimationEnd={handleAnimationEnd}
     >
       <div className={styles.content}>
