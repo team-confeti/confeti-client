@@ -3,7 +3,7 @@ import { ToastEvent, ToastPosition, ToastProps } from '../types';
 import { eventManager } from '../utils/eventManager';
 import { TOAST_DEFAULT_POSITION } from '../utils/constants';
 
-const useToastContainer = () => {
+export const useToastContainer = () => {
   const [toastList, setToastList] = useState(new Map<string, ToastProps>());
 
   const addToast = (props: ToastProps) => {
@@ -68,5 +68,3 @@ const useToastContainer = () => {
 
   return { getToastPositionGroupToRender };
 };
-
-export default useToastContainer;
