@@ -2,7 +2,7 @@ import { TOAST_DEFAULT_POSITION } from './utils/constants';
 import { IcToastInfo24 } from '../../icons/src';
 import { cn } from '../../utils';
 import { ToastProps } from './types';
-import { useToast } from './hooks/useToast';
+import { useToast } from './hooks/use-toast';
 import * as styles from './toast.css';
 
 const Toast = ({

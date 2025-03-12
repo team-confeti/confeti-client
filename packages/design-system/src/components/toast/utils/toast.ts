@@ -1,5 +1,5 @@
 import { ToastEvent, ToastProps } from '../types';
-import { eventManager } from './eventManager';
+import { eventManager } from './event-manager';
 
 type ToastOptions = Omit<ToastProps, 'toastId'>;
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ToastEvent } from '../types';
-import { eventManager } from '../utils/eventManager';
+import { eventManager } from '../utils/event-manager';
 
 export const useToast = (
   toastId: string,

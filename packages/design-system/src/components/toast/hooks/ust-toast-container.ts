@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ToastEvent, ToastPosition, ToastProps } from '../types';
-import { eventManager } from '../utils/eventManager';
+import { eventManager } from '../utils/event-manager';
 import { TOAST_DEFAULT_POSITION } from '../utils/constants';
 
 export const useToastContainer = () => {
