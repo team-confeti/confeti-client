@@ -23,34 +23,11 @@ const Login = () => {
         title="로그인"
         icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
       />
-      <section className={styles.container}>
-        <div className={styles.Logo}>
+      <div className={styles.container}>
+        <div>
           <Confeti3DLogo21 width={'18rem'} height={'18rem'} />
           <ImgTypelogoBig width={'17rem'} height={'4rem'} />
         </div>
-        <div className={styles.loginButtonSection}>
-          <Button
-            text="카카오로 계속하기"
-            variant="kakao"
-            icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
-          />
-          <Button
-            text="애플로 계속하기"
-            variant="apple"
-            icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
-          />
-        </div>
-      </section>
-      <div className={styles.description}>
-        <p>{DESCRIPTION.description[0]}</p>
-        <a href={routePath.ROOT} className={styles.atagText}>
-          {DESCRIPTION.atagText[0]}
-        </a>
-        {DESCRIPTION.description[1]}
-        <a href={routePath.ROOT} className={styles.atagText}>
-          {DESCRIPTION.atagText[1]}
-        </a>
-        {DESCRIPTION.description[2]}
       </div>
     </>
   );

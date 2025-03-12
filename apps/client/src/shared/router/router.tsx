@@ -23,9 +23,9 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
+      <Route path={routePath.LOGIN} element={<LoginPage />} />
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
-        <Route path={routePath.LOGIN} element={<LoginPage />} />
 
         <Route path={routePath.MY} element={<MyPage />}>
           <Route
