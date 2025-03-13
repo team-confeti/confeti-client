@@ -26,42 +26,36 @@ const parseLinkContent = (
   lineIndex: number,
   index: number,
 ): JSX.Element | string => {
-  const bracketMatch = part.match(/\[(.*?)\]/);
-  if (bracketMatch) {
-    const content = bracketMatch[1];
-    const link = LINK_MAP[content];
+  const [, content] = part.match(/\[(.*?)\]/) || [];
+  const link = content && LINK_MAP[content];
 
-    if (link) {
-      return (
-        <a
-          key={`${lineIndex}-${index}-${content}`}
-          href={link}
-          className={styles.atagText}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {content}
-        </a>
-      );
-    }
-  }
-  return part;
+  return link ? (
+    <a
+      key={`${lineIndex}-${index}-${content}`}
+      href={link}
+      className={styles.atagText}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {content}
+    </a>
+  ) : (
+    part
+  );
 };
 
-const processLine = (line: string, lineIndex: number): JSX.Element => {
+const processLine = (
+  line: string,
+  lineIndex: number,
+): (JSX.Element | string)[] => {
+  if (!line) return [];
+
   const parts = line.split(/(\[.*?\])/);
   const processedParts = parts.map((part, index) =>
     parseLinkContent(part, lineIndex, index),
   );
 
-  return <p key={`line-${lineIndex}`}>{processedParts}</p>;
-};
-
-const parseDescription = (text: string): (JSX.Element | string)[] | null => {
-  if (!text) return null;
-
-  const lines = text.split('\n');
-  return lines.map((line, lineIndex) => processLine(line, lineIndex));
+  return processedParts;
 };
 
 const Login = () => {
@@ -91,7 +85,7 @@ const Login = () => {
             />
           </div>
           <footer className={styles.description}>
-            {parseDescription(DESCRIPTION_TEXT)}
+            {processLine(DESCRIPTION_TEXT, 0)}
           </footer>
         </div>
       </section>

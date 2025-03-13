@@ -29,6 +29,7 @@ export const description = style({
   ...themeVars.fontStyles.body6_m_11,
   color: themeVars.color.gray400,
   textAlign: 'center',
+  whiteSpace: 'pre-line',
 });
 
 export const atagText = style({
