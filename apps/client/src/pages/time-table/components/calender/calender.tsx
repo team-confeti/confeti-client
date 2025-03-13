@@ -1,12 +1,12 @@
 import { cn } from '@confeti/design-system/utils';
 import {
-  useFormattedYear,
   useFormattedWeek,
   useDayNumSelection,
   createFestivalDateMap,
   checkFestivalDateStatus,
 } from '@pages/time-table/hooks/use-data-formatted';
 import * as styles from './calender.css';
+import { useFormattedDate } from '@shared/utils/use-format-date';
 
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];
@@ -20,7 +20,7 @@ const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
   const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
     festivalDates || [],
   );
-  const formattedYear = useFormattedYear(firstDate);
+  const formattedYear = useFormattedDate(firstDate, 'koHalf');
 
   const handleDateClick = (festivalDateId: number) => {
     handleDayNumClick(festivalDateId);

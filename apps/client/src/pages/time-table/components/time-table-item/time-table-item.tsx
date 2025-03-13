@@ -87,7 +87,7 @@ const TimeTableItem = ({
         {artists.map((artist) => artist.artistName).join(', ')}
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>
-        {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
+        {`${startHour}:${startMin}-${endHour}:${endMin}`}
         {`(${totalPerformMin}min)`}
       </div>
     </div>
