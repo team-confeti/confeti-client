@@ -35,7 +35,7 @@ const parseLinkContent = (
       href={link}
       className={styles.atagText}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
     >
       {content}
     </a>
