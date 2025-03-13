@@ -11,12 +11,14 @@ import { useNavigate } from 'react-router-dom';
 interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
+  icon?: React.ReactNode;
   className?: string;
 }
 
 const Header = ({
   variant = 'default',
   title = '',
+  icon,
   className,
 }: HeaderProps) => {
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ const Header = ({
           onClick={handleBackClick}
           aria-label="뒤로가기"
         >
-          <BtnArrowLeft20 className={styles.icon} />
+          {icon ? icon : <BtnArrowLeft20 className={styles.icon} />}
         </button>
         <h1 className={styles.title}>{title}</h1>
       </header>

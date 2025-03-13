@@ -15,6 +15,7 @@ import {
   AddFestivalPage,
   TimeTableRequireLoginPage,
   ErrorPage,
+  LoginPage,
 } from './lazy';
 import { routePath } from '@shared/constants/path';
 import { createProtectedRoute } from './protected-route';
@@ -22,6 +23,7 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
+      <Route path={routePath.LOGIN} element={<LoginPage />} />
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 

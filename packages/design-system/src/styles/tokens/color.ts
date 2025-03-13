@@ -11,6 +11,7 @@ export const color = {
   gray800: '#323339',
   gray900: '#212224',
   black: '#121212',
+  yellow: '#FBDE4B',
 
   // primary
   confeti_lime: '#B5F602',
