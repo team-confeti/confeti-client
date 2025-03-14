@@ -29,4 +29,6 @@ export const routePath = {
     'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
   PRIVACY_PERSONAL:
     'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
+  //onboarding
+  ONBOARDING: '/onboarding',
 } as const;
