@@ -58,6 +58,12 @@ const processLine = (
   return processedParts;
 };
 
+const handleLogin = (socialUrl: string) => {
+  if (socialUrl === 'kakao') {
+    window.location.href = import.meta.env.VITE_KAKAO_URI;
+  }
+};
+
 const Login = () => {
   return (
     <>
@@ -78,6 +84,7 @@ const Login = () => {
               text="카카오로 계속하기"
               variant="kakao"
               icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
+              onClick={() => handleLogin('kakao')}
             />
             <Button
               text="Apple로 계속하기"
