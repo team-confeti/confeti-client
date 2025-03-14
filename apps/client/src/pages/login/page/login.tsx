@@ -65,6 +65,7 @@ const Login = () => {
         variant="detail"
         title="로그인"
         icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
+        isBackToHome={true}
       />
       <section className={styles.container}>
         <div>

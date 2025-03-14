@@ -12,6 +12,7 @@ interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
   icon?: React.ReactNode;
+  isBackToHome?: boolean;
   className?: string;
 }
 
@@ -19,12 +20,17 @@ const Header = ({
   variant = 'default',
   title = '',
   icon,
+  isBackToHome = false,
   className,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
-  const handleBackClick = () => {
-    navigate(-1);
+  const handleBackClick = (isBackToHome: boolean) => {
+    if (isBackToHome) {
+      navigate('/');
+    } else {
+      navigate(-1);
+    }
   };
 
   const handleNavigation = (path: string) => {
@@ -43,7 +49,7 @@ const Header = ({
       >
         <button
           className={styles.button({ variant: 'back' })}
-          onClick={handleBackClick}
+          onClick={() => handleBackClick(isBackToHome)}
           aria-label="뒤로가기"
         >
           {icon ? icon : <BtnArrowLeft20 className={styles.icon} />}
