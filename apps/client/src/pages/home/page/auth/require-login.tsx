@@ -4,7 +4,7 @@ import { routePath } from '@shared/constants/path';
 const RequireLogin = () => {
   return (
     <div>
-      <RequireLoginSection redirectPath={routePath.TIME_TABLE_OUTLET} />
+      <RequireLoginSection />
     </div>
   );
 };
