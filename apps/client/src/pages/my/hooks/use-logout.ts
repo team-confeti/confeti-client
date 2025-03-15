@@ -14,7 +14,7 @@ export const useLogoutMutation = () => {
     mutationFn: postLogout,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...USER_QUERY_KEY.ALL],
+        queryKey: [...USER_QUERY_KEY.PROFILE()],
       });
       localStorageUtil('remove');
       navigate(`${routePath.ROOT}`);
