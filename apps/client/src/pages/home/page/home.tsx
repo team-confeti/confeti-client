@@ -5,24 +5,36 @@ import {
   Navigation,
   TicketingCarousel,
 } from '@confeti/design-system';
-import { USER_DATA } from '@shared/mocks/user-data';
-import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { TAB_MENU } from '../constants/menu';
 import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
 import * as styles from './home.css';
+import { useEffect } from 'react';
+import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
 
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
-  const userId = localStorage.getItem(USER_ID_KEY);
   const { data: profileData } = useUserProfile();
-  const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
+  const { mutate: login } = useSocialLoginMutation();
+  const kakaoRedirectUrl = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+
+  useEffect(() => {
+    if (code) {
+      login({
+        provider: 'KAKAO',
+        redirectUrl: kakaoRedirectUrl,
+        code,
+      });
+    }
+  }, [code]);
 
   return (
     <>
@@ -42,7 +54,7 @@ const Home = () => {
           </section>
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
-              {isHighlighted ? (
+              {profileData ? (
                 <>
                   <span className={styles.highlightedText}>
                     {profileData.username}
