@@ -10,6 +10,7 @@ export const postSocialLogin = async (socialLoginResponse: KakaoLogin) => {
   return response.data;
 };
 
-export const postLogout = async () => {
-  await post<BaseResponse<void>>(END_POINT.POST_LOGOUT);
+export const postLogout = async (): Promise<BaseResponse<void>> => {
+  const response = await post<BaseResponse<void>>(END_POINT.POST_LOGOUT);
+  return response;
 };
