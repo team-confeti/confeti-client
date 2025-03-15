@@ -12,10 +12,9 @@ export const cookieUtil = (
   switch (action) {
     case 'set':
       if (accessToken)
-        Cookies.set(ACCESS_TOKEN_KEY, accessToken, { path: '/', secure: true });
+        Cookies.set(ACCESS_TOKEN_KEY, accessToken, { secure: true });
       if (refreshToken)
         Cookies.set(REFRESH_TOKEN_KEY, refreshToken, {
-          path: '/',
           secure: true,
         });
       break;
