@@ -3,6 +3,7 @@ import { handleAPIError, handleCheckAndSetToken } from './interceptor';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
