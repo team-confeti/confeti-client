@@ -1,4 +1,4 @@
-import { postSocialLogin } from '@shared/apis/login/login';
+import { postSocialLogin } from '@shared/apis/auth/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@shared/constants/path';
