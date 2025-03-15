@@ -4,15 +4,15 @@ import {
   GetPerformancesSearchResponse,
 } from '@shared/types/search-reponse';
 import { END_POINT } from '@shared/constants/api';
-import { get } from '@shared/apis/config/instance';
+import { axiosPublicInstance } from '@shared/apis/config/instance';
 
 export const getArtistSearch = async (
   keyword: string,
 ): Promise<ArtistSearch> => {
-  const response = await get<BaseResponse<ArtistSearch>>(
+  const response = await axiosPublicInstance.get<BaseResponse<ArtistSearch>>(
     `${END_POINT.GET_ARTISTS_SEARCH}${encodeURIComponent(keyword)}`,
   );
-  return response.data;
+  return response.data.data;
 };
 
 export const getPerformancesSearch = async (
@@ -22,6 +22,9 @@ export const getPerformancesSearch = async (
   const baseUrl = `performances/association/${artistId}`;
   const url = cursor === 1 ? baseUrl : `${baseUrl}?cursor=${cursor}`;
 
-  const response = await get<BaseResponse<GetPerformancesSearchResponse>>(url);
-  return response.data;
+  const response =
+    await axiosPublicInstance.get<BaseResponse<GetPerformancesSearchResponse>>(
+      url,
+    );
+  return response.data.data;
 };
