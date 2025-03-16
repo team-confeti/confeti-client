@@ -4,7 +4,7 @@ import { BaseResponse } from '@shared/types/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
-import { cookieUtil } from '@shared/utils/use-cookie';
+import { tokenUtil } from '@shared/utils/use-token';
 
 export const useLogoutMutation = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const useLogoutMutation = () => {
       queryClient.invalidateQueries({
         queryKey: [...USER_QUERY_KEY.PROFILE()],
       });
-      cookieUtil('remove');
+      tokenUtil('remove');
       navigate(`${routePath.ROOT}`);
     },
   });

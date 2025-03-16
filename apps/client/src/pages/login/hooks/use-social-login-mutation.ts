@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@shared/constants/path';
 import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
 import { BaseResponse } from '@shared/types/api';
-import { cookieUtil } from '@shared/utils/use-cookie';
+import { tokenUtil } from '@shared/utils/use-token';
 
 export const useSocialLoginMutation = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const useSocialLoginMutation = () => {
     onSuccess: (data) => {
       if (data?.data) {
         const { accessToken, refreshToken, isOnboarding } = data.data;
-        cookieUtil('set', accessToken, refreshToken);
+        tokenUtil('set', accessToken, refreshToken);
         navigate(
           isOnboarding ? `${routePath.ONBOARDING}` : `${routePath.ROOT}`,
         );

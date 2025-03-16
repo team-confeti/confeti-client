@@ -4,7 +4,7 @@ import {
 } from '@shared/constants/user-constants';
 import Cookies from 'js-cookie';
 
-export const cookieUtil = (
+export const tokenUtil = (
   action: 'set' | 'remove',
   accessToken?: string,
   refreshToken?: string,
@@ -13,14 +13,11 @@ export const cookieUtil = (
     case 'set':
       if (accessToken)
         Cookies.set(ACCESS_TOKEN_KEY, accessToken, { secure: true });
-      if (refreshToken)
-        Cookies.set(REFRESH_TOKEN_KEY, refreshToken, {
-          secure: true,
-        });
+      if (refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
       break;
     case 'remove':
       Cookies.remove(ACCESS_TOKEN_KEY, { path: '/' });
-      Cookies.remove(REFRESH_TOKEN_KEY, { path: '/' });
+      localStorage.removeItem(REFRESH_TOKEN_KEY);
       break;
     default:
       throw new Error('유효한 action 값을 입력해주세요');
