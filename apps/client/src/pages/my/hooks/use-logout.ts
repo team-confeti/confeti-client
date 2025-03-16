@@ -4,7 +4,7 @@ import { BaseResponse } from '@shared/types/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
-import { tokenUtil } from '@shared/utils/use-token';
+import { tokenUtil } from '@shared/utils/token-handler';
 
 export const useLogoutMutation = () => {
   const navigate = useNavigate();

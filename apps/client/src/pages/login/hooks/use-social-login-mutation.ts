@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@shared/constants/path';
 import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
 import { BaseResponse } from '@shared/types/api';
-import { tokenUtil } from '@shared/utils/use-token';
+import { tokenUtil } from '@shared/utils/token-handler';
 
 export const useSocialLoginMutation = () => {
   const navigate = useNavigate();
