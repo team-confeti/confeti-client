@@ -1,5 +1,4 @@
-import { globalStyle, keyframes } from '@vanilla-extract/css';
-
+import { keyframes, style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 
 export const fadeInOut = keyframes({
@@ -8,12 +7,12 @@ export const fadeInOut = keyframes({
   '100%': { opacity: 1 },
 });
 
-globalStyle('.banner-title', {
+export const bannerTitle = style({
   marginTop: '3rem',
   height: '10.3rem',
 });
 
-globalStyle('.title-date', {
+export const titleDate = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.white,
   textAlign: 'center',
@@ -21,7 +20,7 @@ globalStyle('.title-date', {
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.title-name', {
+export const titleName = style({
   ...themeVars.fontStyles.title1_b_24,
   color: themeVars.color.white,
   textAlign: 'center',
@@ -29,14 +28,14 @@ globalStyle('.title-name', {
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.title-sub', {
+export const titleSub = style({
   ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.gray500,
   textAlign: 'center',
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.card', {
+export const card = style({
   position: 'relative',
   width: '100%',
   height: '100%',
@@ -46,22 +45,8 @@ globalStyle('.card', {
   WebkitTapHighlightColor: 'transparent',
 });
 
-globalStyle('.imgDiv:focus', {
-  outline: 'none !important',
-});
-
-globalStyle('.imgDiv:active', {
-  outline: 'none !important',
-  border: '0px !important',
-});
-
-globalStyle('.slide-overlay', {
+export const slideOverlay = style({
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
-});
-
-globalStyle('.slick-center', {
-  outline: 'none !important',
-  WebkitTapHighlightColor: 'transparent',
 });
