@@ -53,6 +53,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     navigate(`/${type}-detail/${typeId}`);
   };
 
+  //slider의 settings 객체를 커스텀
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -91,18 +92,22 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
 
   return (
     <>
-      <PerformanceCarousel.Info
-        date={performData[currentId]?.performanceAt || ''}
-        title={performData[currentId]?.title || ''}
-        subtitle={performData[currentId]?.subtitle || ''}
-      />
-      <PerformanceCarousel.Badge text=""></PerformanceCarousel.Badge>
-      <PerformanceCarousel.ImageSlider
-        performData={performData}
-        activeIndex={activeIndex}
-        settings={settings}
-        onItemClick={handleContainerClick}
-      />
+      {performData && (
+        <>
+          <PerformanceCarousel.Info
+            date={performData[currentId]?.performanceAt || ''}
+            title={performData[currentId]?.title || ''}
+            subtitle={performData[currentId]?.subtitle || ''}
+          />
+          <PerformanceCarousel.Badge text=""></PerformanceCarousel.Badge>
+          <PerformanceCarousel.ImageSlider
+            performData={performData}
+            activeIndex={activeIndex}
+            settings={settings}
+            onItemClick={handleContainerClick}
+          />
+        </>
+      )}
     </>
   );
 };
@@ -143,7 +148,6 @@ const ImageSlider = ({
           key={index}
           onClick={() => onItemClick(item.type, item.typeId)}
           onFocus={(e) => e.currentTarget.blur()}
-          className="imgDiv"
         >
           <img
             className={styles.card}
