@@ -11,6 +11,7 @@ interface SearchBarProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  placeholder?: string;
 }
 
 export const SearchBar = ({
@@ -19,6 +20,7 @@ export const SearchBar = ({
   onKeyDown,
   onFocus,
   onBlur,
+  placeholder = '아티스트 또는 공연을 검색해보세요!',
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
@@ -66,7 +68,7 @@ export const SearchBar = ({
           <input
             className={styles.textSection}
             type="text"
-            placeholder="아티스트 또는 공연을 검색해보세요!"
+            placeholder={placeholder}
             ref={textInput}
             value={value}
             onChange={handleInputChange}
