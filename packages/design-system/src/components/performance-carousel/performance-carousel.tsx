@@ -16,6 +16,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
 import * as styles from './performance-carousel.css';
+
 export interface PerformData {
   typeId: number;
   type: 'CONCERT' | 'FESTIVAL' | 'ARTIST';
