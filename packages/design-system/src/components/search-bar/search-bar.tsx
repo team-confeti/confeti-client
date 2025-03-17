@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
+import SvgIcNewSearchGray18 from '../../icons/src/IcNewSearchGray18';
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
 import * as styles from './search-bar.css';
@@ -58,7 +58,7 @@ export const SearchBar = ({
           className={styles.arrowButton}
         />
         <div className={styles.searchBar({ type: 'default' })}>
-          <SvgIcSicGray18
+          <SvgIcNewSearchGray18
             className={styles.searchIcon}
             width={18}
             height={18}
@@ -66,7 +66,7 @@ export const SearchBar = ({
           <input
             className={styles.textSection}
             type="text"
-            placeholder="아티스트를 검색해주세요"
+            placeholder="아티스트 또는 공연을 검색해보세요!"
             ref={textInput}
             value={value}
             onChange={handleInputChange}
