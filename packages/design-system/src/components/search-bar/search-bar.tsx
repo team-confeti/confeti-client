@@ -11,6 +11,7 @@ interface SearchBarProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  showBackButton?: boolean;
   placeholder?: string;
 }
 
@@ -20,6 +21,7 @@ export const SearchBar = ({
   onKeyDown,
   onFocus,
   onBlur,
+  showBackButton = true,
   placeholder = '아티스트 또는 공연을 검색해보세요!',
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
@@ -53,12 +55,14 @@ export const SearchBar = ({
   return (
     <div className={styles.container}>
       <div className={styles.frame}>
-        <SvgBtnArrowLeft20
-          width={20}
-          height={20}
-          onClick={handleBackClick}
-          className={styles.arrowButton}
-        />
+        {showBackButton && (
+          <SvgBtnArrowLeft20
+            width={20}
+            height={20}
+            onClick={handleBackClick}
+            className={styles.arrowButton}
+          />
+        )}
         <div className={styles.searchBar({ type: 'default' })}>
           <SvgIcNewSearchGray18
             className={styles.searchIcon}
