@@ -1,11 +1,12 @@
 import type { Settings as SlickSettings } from 'react-slick';
 import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
-import './performance-carousel.css';
-import { useNavigate } from 'react-router-dom';
+
+import * as styles from './performance-carousel.css';
 
 export interface PerformData {
   typeId: number;
@@ -22,7 +23,7 @@ interface DataProps {
 
 const SlideOverlay = () => (
   <svg
-    className="slide-overlay"
+    className={styles.slideOverlay}
     width="100%"
     height="98.6%"
     viewBox="0 0 156 208"
@@ -115,10 +116,10 @@ const Info = ({
   title: string;
   subtitle: string;
 }) => (
-  <div className="banner-title">
-    <p className="title-date">{date}</p>
-    <p className="title-name">{title}</p>
-    <p className="title-sub">{subtitle}</p>
+  <div className={styles.bannerTitle}>
+    <p className={styles.titleDate}>{date}</p>
+    <p className={styles.titleName}>{title}</p>
+    <p className={styles.titleSub}>{subtitle}</p>
   </div>
 );
 
@@ -142,8 +143,14 @@ const ImageSlider = ({
           key={index}
           onClick={() => onItemClick(item.type, item.typeId)}
           onFocus={(e) => e.currentTarget.blur()}
+          className="imgDiv"
         >
-          <img className="card" key={item.typeId} src={item.posterUrl} />
+          <img
+            className={styles.card}
+            key={item.typeId}
+            src={item.posterUrl}
+            alt={item.title}
+          />
           {index !== activeIndex && <SlideOverlay />}
         </div>
       ))}
