@@ -13,6 +13,7 @@ const Search = () => {
   const {
     artistData,
     paramsKeyword,
+    searchKeyword,
     barFocus,
     handleOnChange,
     handleKeydown,
@@ -33,6 +34,7 @@ const Search = () => {
   return (
     <>
       <SearchBar
+        value={searchKeyword}
         onChange={handleOnChange}
         onKeyDown={handleKeydown}
         onFocus={handleOnFocus}
