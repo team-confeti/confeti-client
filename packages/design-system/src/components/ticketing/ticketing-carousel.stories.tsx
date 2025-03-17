@@ -3,7 +3,7 @@ import TicketingCarousel from './ticketing-carousel';
 import { BANNER_DATA } from './mocks/bottom-banner-data';
 
 const meta: Meta<typeof TicketingCarousel.Wrap> = {
-  title: 'Common/Carousel/TicketingCarousel',
+  title: 'Common/Ticketing/TicketingCarousel',
   component: TicketingCarousel.Wrap,
   parameters: {
     layout: 'centered',

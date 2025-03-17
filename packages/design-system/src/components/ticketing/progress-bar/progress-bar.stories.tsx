@@ -3,7 +3,7 @@ import TicketingCarousel from '../ticketing-carousel';
 import { BANNER_DATA } from '../mocks/bottom-banner-data';
 
 const meta: Meta<typeof TicketingCarousel.Wrap> = {
-  title: 'Common/Carousel/ProgressBar',
+  title: 'Common/Ticketing/ProgressBar',
   component: TicketingCarousel.Wrap,
   parameters: {
     layout: 'centered',
