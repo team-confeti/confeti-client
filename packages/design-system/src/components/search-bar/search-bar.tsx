@@ -19,7 +19,6 @@ export const SearchBar = ({
   value,
   onChange,
   onKeyDown,
-  onFocus,
   showBackButton = true,
   placeholder = '아티스트 또는 공연을 검색해보세요!',
 }: SearchBarProps) => {
@@ -81,7 +80,6 @@ export const SearchBar = ({
             onFocus={() => {
               setIsFocused(true);
               setShowClearBtn(true);
-              onFocus?.();
             }}
             onBlur={() => {
               if (!value) {
