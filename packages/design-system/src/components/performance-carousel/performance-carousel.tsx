@@ -1,3 +1,4 @@
+import type { Settings as SlickSettings } from 'react-slick';
 import { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,6 +20,18 @@ interface DataProps {
   performData: PerformData[];
 }
 
+const SlideOverlay = () => (
+  <svg
+    className="slide-overlay"
+    width="100%"
+    height="98.6%"
+    viewBox="0 0 156 208"
+    preserveAspectRatio="none"
+  >
+    <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
+  </svg>
+);
+
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const navigate = useNavigate();
@@ -35,6 +48,10 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleContainerClick = (type: string, typeId: number) => {
+    navigate(`/${type}-detail/${typeId}`);
+  };
+
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -43,7 +60,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     infinite: true,
     centerPadding: '89px',
     slidesToShow: 1,
-    sliceToScroll: 1,
+    slidesToScroll: 1,
     arrows: false,
     speed: 1000,
     cssEase: 'ease-in-out',
@@ -53,7 +70,6 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       setCurrentId(next);
       setActiveIndex(next);
     },
-
     appendDots: (dots: string) => (
       <div
         style={{
@@ -72,44 +88,71 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     dotsClass: 'dots_custom',
   };
 
-  const SlideOverlay = () => (
-    <svg
-      className="slide-overlay"
-      width="100%"
-      height="98.6%"
-      viewBox="0 0 156 208"
-      preserveAspectRatio="none"
-    >
-      <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
-    </svg>
-  );
-
-  const handleContainerClick = (type: string, typeId: number) => {
-    navigate(`/${type}-detail/${typeId}`);
-  };
-
   return (
     <>
-      <div className="banner-title">
-        <p className="title-date">{performData[currentId]?.performanceAt} </p>
-        <p className="title-name">{performData[currentId]?.title}</p>
-        <p className="title-sub">{performData[currentId]?.subtitle}</p>
-      </div>
-      <Slider {...settings}>
-        {performData.map((item, index) => (
-          <div
-            key={index}
-            className=".imgDiv"
-            onClick={() => handleContainerClick(item.type, item.typeId)}
-            onFocus={(e) => e.currentTarget.blur()}
-          >
-            <img className="card" key={item.typeId} src={item.posterUrl} />
-            {index !== activeIndex && <SlideOverlay />}
-          </div>
-        ))}
-      </Slider>
+      <PerformanceCarousel.Info
+        date={performData[currentId]?.performanceAt || ''}
+        title={performData[currentId]?.title || ''}
+        subtitle={performData[currentId]?.subtitle || ''}
+      />
+      <PerformanceCarousel.Badge text=""></PerformanceCarousel.Badge>
+      <PerformanceCarousel.ImageSlider
+        performData={performData}
+        activeIndex={activeIndex}
+        settings={settings}
+        onItemClick={handleContainerClick}
+      />
     </>
   );
 };
+
+const Info = ({
+  date,
+  title,
+  subtitle,
+}: {
+  date: string;
+  title: string;
+  subtitle: string;
+}) => (
+  <div className="banner-title">
+    <p className="title-date">{date}</p>
+    <p className="title-name">{title}</p>
+    <p className="title-sub">{subtitle}</p>
+  </div>
+);
+
+const Badge = ({ text }: { text: string }) => <div>{text}</div>;
+
+const ImageSlider = ({
+  performData,
+  activeIndex,
+  settings,
+  onItemClick,
+}: {
+  performData: PerformData[];
+  activeIndex: number;
+  settings: SlickSettings;
+  onItemClick: (type: string, typeId: number) => void;
+}) => {
+  return (
+    <Slider {...settings}>
+      {performData.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => onItemClick(item.type, item.typeId)}
+          onFocus={(e) => e.currentTarget.blur()}
+        >
+          <img className="card" key={item.typeId} src={item.posterUrl} />
+          {index !== activeIndex && <SlideOverlay />}
+        </div>
+      ))}
+    </Slider>
+  );
+};
+
+PerformanceCarousel.Info = Info;
+PerformanceCarousel.Badge = Badge;
+PerformanceCarousel.ImageSlider = ImageSlider;
 
 export default PerformanceCarousel;
