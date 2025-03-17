@@ -3,7 +3,7 @@ import {
   Footer,
   PerformanceCarousel,
   Navigation,
-  TicketingCarousel,
+  TicketingCard,
 } from '@confeti/design-system';
 import { USER_DATA } from '@shared/mocks/user-data';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
@@ -56,10 +56,9 @@ const Home = () => {
                 </>
               )}
             </p>
-            <TicketingCarousel.Wrap
-              performances={performances}
-              indexData={performanceCount}
-            />
+            <TicketingCard.Root>
+              <TicketingCard.Card performances={performances} />
+            </TicketingCard.Root>
           </section>
         </div>
       </Navigation.Root>
