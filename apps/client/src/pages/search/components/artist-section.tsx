@@ -1,4 +1,5 @@
 import { formatDate } from '@shared/utils/format-date';
+
 import ArtistInfo from '../components/artist-info';
 import Title from '../components/title';
 

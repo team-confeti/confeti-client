@@ -10,13 +10,12 @@ import {
 import { routePath } from '@shared/constants/path';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { USER_DATA } from '@shared/mocks/user-data';
+import { formatDate } from '@shared/utils/format-date';
 
 import { TAB_MENU } from '../constants/menu';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
-
 import { useTicketing } from '../hooks/use-ticketing';
 
-import { formatDate } from '@shared/utils/format-date';
 import * as styles from './home.css';
 
 const Home = () => {

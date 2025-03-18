@@ -1,23 +1,22 @@
 import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
   useRef,
   useState,
-  useEffect,
-  ReactNode,
-  createContext,
-  useContext,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import type { Settings as SlickSettings } from 'react-slick';
-
 import Slider from 'react-slick';
+
+import { InfoOverlay, SlideOverlayOp } from '../../icons/src';
 
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
-import { InfoOverlay, SlideOverlayOp } from '../../icons/src';
-
 import * as styles from './performance-carousel.css';
+
 export interface PerformData {
   typeId: number;
   type: 'CONCERT' | 'FESTIVAL' | 'ARTIST';
