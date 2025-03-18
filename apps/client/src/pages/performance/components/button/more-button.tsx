@@ -1,8 +1,9 @@
-import * as styles from './more-button.css';
 import {
   IcArrowDownGray16,
   IcArrowUpGray16,
 } from '@confeti/design-system/icons';
+
+import * as styles from './more-button.css';
 
 const MORE_BUTTON = {
   EXPANDED: {

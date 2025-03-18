@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import ArtistCard from './artist-card';
 
 const meta: Meta<typeof ArtistCard> = {
