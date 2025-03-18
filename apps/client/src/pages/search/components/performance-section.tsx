@@ -36,7 +36,8 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
             typeId={performance.typeId}
             type={performance.type}
             title={performance.title}
-            performanceAt={`${performance.performanceStartAt} - ${performance.performanceEndAt}`}
+            performanceStartAt={performance.performanceStartAt}
+            performanceEndAt={performance.performanceEndAt}
             posterUrl={performance.posterUrl}
             area={performance.area}
             isFavorite={performance.isFavorite}

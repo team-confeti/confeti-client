@@ -3,12 +3,18 @@ import {
   TIME_SLOT_HEIGHT_5_MIN,
 } from '@pages/time-table/constants';
 
-export const generateTableRow = (startTime: number) => {
-  return Array.from({ length: 24 - startTime }, (_, idx) => startTime + idx);
+export const generateTableRow = (startTime: string) => {
+  const startHour = Number(startTime);
+  return Array.from({ length: 24 - startHour }, (_, idx) => startHour + idx);
 };
 
-export const parseTimeString = (timeString: string): number[] => {
-  return timeString.slice(0, 5).split(':').map(Number);
+export const parseTimeString = (timeString: string): string[] => {
+  const time = timeString.split('T')[1]?.slice(0, 5);
+
+  if (!time) return ['00', '00'];
+
+  const [hour, min] = time.split(':');
+  return [hour, min];
 };
 
 export const calcPosition = (totalMin: number, minutesFromOpen: number) => {
@@ -18,31 +24,49 @@ export const calcPosition = (totalMin: number, minutesFromOpen: number) => {
 };
 
 export const calcTotalMinutes = (
-  startHour: number,
-  startMin: number,
-  endHour: number,
-  endMin: number,
+  startHour: string,
+  startMin: string,
+  endHour: string,
+  endMin: string,
 ) => {
-  return endHour * 60 + endMin - (startHour * ONE_HOUR_TO_MINUTES + startMin);
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
+  const endHourNum = Number(endHour);
+  const endMinNum = Number(endMin);
+
+  return (
+    endHourNum * 60 +
+    endMinNum -
+    (startHourNum * ONE_HOUR_TO_MINUTES + startMinNum)
+  );
 };
 
 export const calcMinutesFromOpen = (
-  startHour: number,
-  startMin: number,
-  openHour: number,
-  openMin: number,
+  startHour: string,
+  startMin: string,
+  openHour: string,
+  openMin: string,
 ) => {
-  const startTotalMin = startHour * ONE_HOUR_TO_MINUTES + startMin;
-  const openTotalMin = openHour * ONE_HOUR_TO_MINUTES + openMin;
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
+  const openHourNum = Number(openHour);
+  const openMinNum = Number(openMin);
+
+  const startTotalMin = startHourNum * ONE_HOUR_TO_MINUTES + startMinNum;
+  const openTotalMin = openHourNum * ONE_HOUR_TO_MINUTES + openMinNum;
+
   return startTotalMin - openTotalMin;
 };
 
 export const calcTotalFestivalMinutes = (
-  startHour: number,
-  startMin: number,
+  startHour: string,
+  startMin: string,
 ) => {
-  const hoursUntilEnd = 24 - startHour;
-  const totalFestivalMinutes = hoursUntilEnd * 60 - startMin;
+  const startHourNum = Number(startHour);
+  const startMinNum = Number(startMin);
+
+  const hoursUntilEnd = 24 - startHourNum;
+  const totalFestivalMinutes = hoursUntilEnd * 60 - startMinNum;
 
   return totalFestivalMinutes;
 };

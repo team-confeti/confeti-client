@@ -9,6 +9,7 @@ import {
   ErrorPage,
   FestivalDetailPage,
   HomePage,
+  LoginPage,
   MyArtistPage,
   MyConfetiPage,
   MyPage,
@@ -24,6 +25,7 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
+      <Route path={routePath.LOGIN} element={<LoginPage />} />
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 

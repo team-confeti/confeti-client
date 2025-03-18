@@ -24,7 +24,6 @@ const Home = () => {
   const { data: profileData } = useUserProfile();
   const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
-
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 
