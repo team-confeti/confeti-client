@@ -4,7 +4,6 @@ import { themeVars } from '../../styles';
 /* Slider */
 globalStyle('.slick-slider', {
   ...themeVars.display.flexColumn,
-  boxSizing: 'border-box',
 
   WebkitUserSelect: 'none',
   MozUserSelect: 'none',
@@ -15,10 +14,10 @@ globalStyle('.slick-slider', {
   msTouchAction: 'pan-y',
   touchAction: 'pan-y',
   WebkitTapHighlightColor: 'transparent',
+  marginTop: '3.2rem',
 });
 
 globalStyle('.slick-list', {
-  gap: '2rem',
   overflow: 'hidden',
   margin: '0',
 });
@@ -62,6 +61,7 @@ globalStyle('.slick-slide', {
   float: 'left',
   height: '100%',
   minHeight: '1px',
+  width: '30rem !important',
 });
 
 globalStyle("[dir='rtl'] .slick-slide", {
@@ -70,6 +70,8 @@ globalStyle("[dir='rtl'] .slick-slide", {
 
 globalStyle('.slick-slide img', {
   display: 'block',
+  width: '30rem',
+  height: '39rem',
 });
 
 globalStyle('.slick-slide.slick-loading img', {
@@ -101,7 +103,7 @@ globalStyle('.slick-arrow.slick-hidden', {
 /* 기본 슬라이드 스타일 */
 globalStyle('.slick-slide', {
   transition: 'transform 1.2s ease, opacity 1s ease',
-  transform: 'scale(0.8)',
+  transform: 'scale(0.95)',
 });
 
 /* 중앙 슬라이드 스타일 */

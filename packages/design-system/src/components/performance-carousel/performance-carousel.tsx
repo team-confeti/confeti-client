@@ -25,7 +25,7 @@ const SlideOverlay = () => (
   <svg
     className={styles.slideOverlay}
     width="100%"
-    height="98.6%"
+    height="99%"
     viewBox="0 0 156 208"
     preserveAspectRatio="none"
   >
@@ -60,7 +60,8 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     dots: true,
     centerMode: true,
     infinite: true,
-    centerPadding: '89px',
+    variableWidth: true,
+    centerPadding: '0px',
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -94,11 +95,11 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     <>
       {performData && (
         <>
-          <PerformanceCarousel.Info
+          {/* <PerformanceCarousel.Info
             date={performData[currentId]?.performanceAt || ''}
             title={performData[currentId]?.title || ''}
             subtitle={performData[currentId]?.subtitle || ''}
-          />
+          /> */}
           <PerformanceCarousel.Badge text=""></PerformanceCarousel.Badge>
           <PerformanceCarousel.ImageSlider
             performData={performData}
@@ -148,6 +149,7 @@ const ImageSlider = ({
           key={index}
           onClick={() => onItemClick(item.type, item.typeId)}
           onFocus={(e) => e.currentTarget.blur()}
+          className={styles.imgDiv}
         >
           <img
             className={styles.card}

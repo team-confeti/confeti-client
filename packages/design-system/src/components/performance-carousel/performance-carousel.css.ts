@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { keyframes, style, globalStyle } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 
 export const fadeInOut = keyframes({
@@ -49,4 +49,11 @@ export const slideOverlay = style({
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
+});
+
+export const imgDiv = style({
+  width: '30rem',
+  height: '100%',
+  flexShrink: '0',
+  padding: '0 0.5rem',
 });
