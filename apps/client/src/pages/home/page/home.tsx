@@ -48,7 +48,12 @@ const Home = () => {
 
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
-            <PerformanceCarousel performData={formattedPerformData} />
+            <PerformanceCarousel performData={formattedPerformData}>
+              <PerformanceCarousel.ImageSlider>
+                <PerformanceCarousel.Badge text="선호하는 아티스트" />
+                <PerformanceCarousel.Info />
+              </PerformanceCarousel.ImageSlider>
+            </PerformanceCarousel>
           </section>
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>

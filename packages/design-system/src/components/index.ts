@@ -6,7 +6,7 @@ export { default as Footer } from './footer/footer';
 export { default as Header } from './header/header';
 export { default as LikeButton } from './like-button/like-button';
 export { default as Navigation } from './navigation/navigation';
-export { default as PerformanceCarousel } from './performance-carousel/performance-carousel';
+export { PerformanceCarousel } from './performance-carousel/performance-carousel';
 export { default as SearchBar } from './search-bar/search-bar';
 export { default as Spacing } from './spacing/spacing';
 export { default as ThemeProvider } from './themeProvider';
