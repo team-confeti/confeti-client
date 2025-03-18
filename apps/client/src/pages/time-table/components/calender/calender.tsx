@@ -6,7 +6,6 @@ import {
 } from '@pages/time-table/hooks/use-data-formatted';
 
 import { cn } from '@confeti/design-system/utils';
-
 import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './calender.css';
