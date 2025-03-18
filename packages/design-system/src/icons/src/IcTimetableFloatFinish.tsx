@@ -5,7 +5,6 @@ const SvgIcTimetableFloatFinish = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 24 24"
     {...props}
   >
     <g clipPath="url(#ic_timetable_float_finish_svg__a)">

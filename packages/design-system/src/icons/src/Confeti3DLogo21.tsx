@@ -6,7 +6,6 @@ const SvgConfeti3DLogo21 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 180 180"
     {...props}
   >
     <path fill="url(#confeti_3d_logo2_1_svg__a)" d="M0 0h180v180H0z" />
@@ -19,7 +18,7 @@ const SvgConfeti3DLogo21 = (props: SVGProps<SVGSVGElement>) => (
       >
         <use
           xlinkHref="#confeti_3d_logo2_1_svg__b"
-          transform="matrix(.00104 0 0 .00104 -.499 -.045)"
+          transform="translate(-.499 -.045)scale(.00104)"
         />
       </pattern>
       <image
