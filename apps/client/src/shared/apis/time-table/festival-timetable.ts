@@ -1,11 +1,12 @@
+import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
   FestivalTimetableResponse,
   FestivalTimetableResponseExtended,
 } from '@shared/types/festival-timetable-response';
-import { END_POINT } from '@shared/constants/api';
 import { UserTimetableResponse } from '@shared/types/timetable-response';
-import { get, del, patch } from '../config/instance';
+
+import { del, get, patch } from '../config/instance';
 
 export const getFestivalTimetable = async (
   festivalDateId: number,

@@ -1,9 +1,10 @@
-import { postSocialLogin } from '@shared/apis/auth/auth';
-import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+
+import { postSocialLogin } from '@shared/apis/auth/auth';
 import { routePath } from '@shared/constants/path';
-import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
 import { BaseResponse } from '@shared/types/api';
+import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
 import { tokenUtil } from '@shared/utils/token-handler';
 
 export const useSocialLoginMutation = () => {

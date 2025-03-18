@@ -1,5 +1,7 @@
 import { useFormattedDate } from '@shared/utils/use-format-date';
+
 import { PERFORMANCE_LABEL } from '../../constant/performance';
+
 import * as styles from './info.css';
 
 interface InfoProps {

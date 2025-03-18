@@ -1,18 +1,21 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
+import { useUserProfile } from '@pages/my/hooks/use-user-info';
+
 import {
   Footer,
-  PerformanceCarousel,
   Navigation,
+  PerformanceCarousel,
   TicketingCarousel,
 } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
+
 import { TAB_MENU } from '../constants/menu';
-import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
+import { useTicketing } from '../hooks/use-ticketing';
+
 import * as styles from './home.css';
-import { useEffect } from 'react';
-import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
 
 const Home = () => {
   const { performanceCount, performances } = useTicketing();

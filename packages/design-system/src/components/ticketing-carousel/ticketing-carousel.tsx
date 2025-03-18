@@ -1,12 +1,14 @@
-import { useEffect, ReactNode } from 'react';
-import * as styles from './ticketing-carousel.css';
-import ProgressBar from './progress-bar/progress-bar';
-import InfoButton from './info-button/info-button';
+import { ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
-import { useNavigate } from 'react-router-dom';
+import InfoButton from './info-button/info-button';
+import ProgressBar from './progress-bar/progress-bar';
+
+import * as styles from './ticketing-carousel.css';
 interface CarouselWrapProps {
   performances: {
     index: number;

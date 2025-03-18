@@ -1,9 +1,10 @@
+import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
-  FestivalTimetableResponse,
   FestivalIds,
+  FestivalTimetableResponse,
 } from '@shared/types/festival-timetable-response';
-import { END_POINT } from '@shared/constants/api';
+
 import { get, post } from '../config/instance';
 
 export const getFestivalButton =

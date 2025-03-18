@@ -1,6 +1,7 @@
+import { dirname, join } from 'node:path';
+
 import type { StorybookConfig } from '@storybook/react-vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import { join, dirname } from 'node:path';
 
 function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));

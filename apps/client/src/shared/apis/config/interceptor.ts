@@ -1,9 +1,11 @@
-import Cookies from 'js-cookie';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import * as Sentry from '@sentry/react';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import Cookies from 'js-cookie';
+
 import { HTTP_STATUS_CODE } from '@shared/constants/api';
-import { ACCESS_TOKEN_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
+import { ACCESS_TOKEN_KEY } from '@shared/constants/user-constants';
+
 import { HTTPError } from './http-error';
 
 interface ErrorResponse {

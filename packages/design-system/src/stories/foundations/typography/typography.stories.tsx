@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { fontStyles } from '../../../styles/tokens/font-styles';
 
 const meta: Meta = {

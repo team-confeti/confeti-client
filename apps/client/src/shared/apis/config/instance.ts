@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { handleAPIError, handleCheckAndSetToken } from './interceptor';
 
 export const axiosInstance = axios.create({

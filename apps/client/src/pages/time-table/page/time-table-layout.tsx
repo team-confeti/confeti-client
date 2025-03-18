@@ -1,6 +1,7 @@
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { Navigation } from '@confeti/design-system';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { TAB_MENU } from '@pages/home/constants/menu';
+
+import { Navigation } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 
 const TimeTableLayout = () => {

@@ -1,8 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { ToastProps, ToastEvent } from './types/type';
-import { eventManager } from './utils/eventManager';
 import { IcToastInfo24 } from '../../icons/src';
+import { ToastEvent, ToastProps } from './types/type';
+import { eventManager } from './utils/eventManager';
+
 import * as styles from './toast.css';
 
 const Toast = ({
