@@ -40,7 +40,7 @@ globalStyle('.slick-slider .slick-track, .slick-slider .slick-list', {
 
 globalStyle('.slick-track', {
   margin: 'auto',
-  paddingBottom: '1.6rem',
+  paddingBottom: '1.5rem',
 });
 
 globalStyle('.slick-track:before, .slick-track:after', {
@@ -72,6 +72,7 @@ globalStyle('.slick-slide img', {
   display: 'block',
   width: '30rem',
   height: '39rem',
+  objectFit: 'cover',
 });
 
 globalStyle('.slick-slide.slick-loading img', {
