@@ -1,4 +1,5 @@
 import { LogoFooter } from '../../icons/src';
+
 import * as styles from './footer.css';
 
 const list = {

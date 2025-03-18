@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LogoFooter, LogoMain, LogoSymbol } from '../../../icons/src';
+
 import * as styles from './logo.css';
 
 const meta: Meta = {

@@ -7,6 +7,7 @@ import {
   LogoMain,
 } from '../../icons/src';
 import { cn } from '../../utils';
+
 import * as styles from './header.css';
 
 interface HeaderProps {

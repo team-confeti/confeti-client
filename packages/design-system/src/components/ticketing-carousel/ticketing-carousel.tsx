@@ -7,6 +7,7 @@ import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
 import InfoButton from './info-button/info-button';
 import ProgressBar from './progress-bar/progress-bar';
+
 import * as styles from './ticketing-carousel.css';
 interface CarouselWrapProps {
   performances: {

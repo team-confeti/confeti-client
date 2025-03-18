@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
 import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
+
 import * as styles from './search-bar.css';
 
 interface SearchBarProps {

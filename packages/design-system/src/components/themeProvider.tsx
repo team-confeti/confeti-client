@@ -1,6 +1,6 @@
-import '../styles/reset.css';
-
 import { themeClass } from '../styles';
+
+import '../styles/reset.css';
 
 export default function ThemeProvider({
   theme,

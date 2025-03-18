@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { IcToastInfo24 } from '../../icons/src';
-import * as styles from './toast.css';
 import { ToastEvent, ToastProps } from './types/type';
 import { eventManager } from './utils/eventManager';
+
+import * as styles from './toast.css';
 
 const Toast = ({
   toastId,

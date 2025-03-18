@@ -1,5 +1,6 @@
 import SvgIcArrowUpBlack30 from '../../icons/src/IcArrowUpBlack30';
 import { cn } from '../../utils';
+
 import { floatingButtonVariants } from './floating-button.css';
 
 interface FloatingButtonProps {
