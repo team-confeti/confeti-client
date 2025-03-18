@@ -118,30 +118,18 @@ const PerformanceCarousel = ({
   );
 };
 
-const Info = ({
-  date,
-  title,
-  customTitle,
-  customDate,
-}: {
-  date?: string;
-  title?: string;
-  customTitle?: string;
-  customDate?: string;
-}) => {
+const Info = () => {
   const { performData, activeIndex } = useCarousel();
-
-  // 직접 props로 전달 받은 값이 있으면 우선 사용, 없으면 performData에서 값 사용
-  const displayTitle =
-    customTitle || title || performData[activeIndex]?.title || '';
-  const displayDate =
-    customDate || date || performData[activeIndex]?.performanceAt || '';
 
   return (
     <div className={styles.bannerTextWrapper}>
-      <p className={styles.titleName}>{displayTitle}</p>
+      <p className={styles.titleName}>
+        {performData[activeIndex]?.title || ''}
+      </p>
       <p className={styles.titleSub}>고양종합운동장</p>
-      <p className={styles.titleDate}>{displayDate}</p>
+      <p className={styles.titleDate}>
+        {performData[activeIndex]?.performanceAt || ''}
+      </p>
     </div>
   );
 };
@@ -192,7 +180,6 @@ const ImageSlider = ({ children }: { children?: ReactNode }) => {
   );
 };
 
-// 서브컴포넌트 연결
 PerformanceCarousel.Info = Info;
 PerformanceCarousel.Badge = Badge;
 PerformanceCarousel.ImageSlider = ImageSlider;
