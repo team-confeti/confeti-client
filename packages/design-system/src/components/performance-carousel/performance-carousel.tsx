@@ -27,7 +27,6 @@ export interface PerformData {
 }
 
 interface CarouselContextType {
-  performData: PerformData[];
   activeIndex: number;
   sliderRef: React.RefObject<Slider | null>;
   settings: SlickSettings;
@@ -50,11 +49,9 @@ const useCarousel = () => {
 // 메인 컴포넌트
 const PerformanceCarousel = ({
   children,
-  performData,
   initialSlide = 3,
 }: {
   children: ReactNode;
-  performData: PerformData[];
   initialSlide?: number;
 }) => {
   const sliderRef = useRef<Slider | null>(null);
@@ -103,7 +100,6 @@ const PerformanceCarousel = ({
 
   // Context 값
   const contextValue: CarouselContextType = {
-    performData,
     activeIndex,
     sliderRef,
     settings,
@@ -117,8 +113,8 @@ const PerformanceCarousel = ({
   );
 };
 
-const Info = () => {
-  const { performData, activeIndex } = useCarousel();
+const Info = ({ performData }: { performData: PerformData[] }) => {
+  const { activeIndex } = useCarousel();
 
   return (
     <div className={styles.bannerTextWrapper}>
@@ -137,9 +133,14 @@ const Badge = ({ text }: { text: string }) => (
   <div className={styles.badge}>{text}</div>
 );
 
-const ImageSlider = ({ children }: { children?: ReactNode }) => {
-  const { performData, activeIndex, settings, handleContainerClick } =
-    useCarousel();
+const ImageSlider = ({
+  children,
+  performData,
+}: {
+  children?: ReactNode;
+  performData: PerformData[];
+}) => {
+  const { activeIndex, settings, handleContainerClick } = useCarousel();
 
   return (
     <Slider {...settings}>
