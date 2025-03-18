@@ -52,6 +52,7 @@ export const slideOverlay = style({
 });
 
 export const imgDiv = style({
+  position: 'relative',
   width: '30rem',
   height: '100%',
   flexShrink: '0',
@@ -60,6 +61,28 @@ export const imgDiv = style({
 
 export const infoOverlay = style({
   position: 'absolute',
-  bottom: '0.2rem',
+  bottom: '0rem',
   borderRadius: '1rem',
+});
+
+export const dots = style({
+  width: '100%',
+  display: 'flex',
+  justifyItems: 'center',
+  textAlign: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '1.6rem 0',
+});
+
+export const badge = style({
+  position: 'absolute',
+  top: '26.6rem',
+  left: '2.5rem',
+  padding: '0.4rem 0.8rem',
+  backgroundColor: themeVars.color.black_op,
+  color: themeVars.color.confeti_lime,
+  border: `0.5px solid ${themeVars.color.confeti_lime}`,
+  borderRadius: '13px',
+  zIndex: themeVars.zIndex.poster.infoText,
 });
