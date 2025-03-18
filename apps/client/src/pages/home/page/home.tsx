@@ -10,6 +10,7 @@ import {
   TicketingCarousel,
 } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
+import { formatDate } from '@shared/utils/format-date';
 
 import { TAB_MENU } from '../constants/menu';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
@@ -20,6 +21,10 @@ import * as styles from './home.css';
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
+  const formattedPerformData = latestPerformances.map((performance) => ({
+    ...performance,
+    performanceAt: formatDate(performance.performanceAt),
+  }));
   const { data: profileData } = useUserProfile();
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
@@ -53,7 +58,7 @@ const Home = () => {
 
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
-            <PerformanceCarousel performData={latestPerformances} />
+            <PerformanceCarousel performData={formattedPerformData} />
           </section>
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
