@@ -17,7 +17,19 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 
-    'simple-import-sort/imports': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^node:'],
+          ['^react', '^@?\\w'],
+          ['^@confeti/', '^@shared/'],
+          ['^\\u0000'],
+          ['^\\.'],
+          ['^.+\\.css$'],
+        ],
+      },
+    ],
     'simple-import-sort/exports': 'error',
   },
 };
