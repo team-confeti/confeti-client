@@ -1,4 +1,5 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
 import { WEEKDAYS } from '@shared/constants/day';
 
 const weekData = WEEKDAYS;

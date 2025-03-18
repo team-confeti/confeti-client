@@ -1,5 +1,5 @@
-import RequireLoginSection from '@shared/pages/auth/require-login-section';
 import { routePath } from '@shared/constants/path';
+import RequireLoginSection from '@shared/pages/auth/require-login-section';
 
 const RequireLogin = () => {
   return (

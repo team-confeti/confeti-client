@@ -1,5 +1,6 @@
-import * as styles from './stage.css';
 import { TimeTableInfoType } from '@pages/time-table/types/time-table-info-type';
+
+import * as styles from './stage.css';
 const Stage = ({ timeTableInfo }: TimeTableInfoType) => {
   return (
     <div className={styles.stageWrapper}>

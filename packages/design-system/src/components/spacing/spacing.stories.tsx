@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import Spacing from './spacing';
 
 const meta: Meta<typeof Spacing> = {

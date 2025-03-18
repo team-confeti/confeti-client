@@ -1,10 +1,10 @@
+import { get } from '@shared/apis/config/instance';
+import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
   ArtistSearch,
   GetPerformancesSearchResponse,
 } from '@shared/types/search-reponse';
-import { END_POINT } from '@shared/constants/api';
-import { get } from '@shared/apis/config/instance';
 
 export const getArtistSearch = async (
   keyword: string,

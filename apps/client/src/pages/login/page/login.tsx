@@ -1,14 +1,15 @@
 import { Header } from '@confeti/design-system';
+import { Button } from '@confeti/design-system';
 import {
   BtnDeleteBlack20,
-  IcKakao,
-  IcApple,
-  ImgTypelogoBig,
   Confeti3DLogo21,
+  IcApple,
+  IcKakao,
+  ImgTypelogoBig,
 } from '@confeti/design-system/icons';
-import { Button } from '@confeti/design-system';
-import * as styles from './login.css';
 import { routePath } from '@shared/constants/path';
+
+import * as styles from './login.css';
 
 const DESCRIPTION_TEXT =
   '가입 시, confeti의\n[이용약관] 및 [개인정보처리방침]에 동의하게 돼요.';

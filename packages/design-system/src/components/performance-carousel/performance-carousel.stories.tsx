@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react';
+
 import PerformanceCarousel from './performance-carousel';
 import { PerformData } from './performance-carousel';
 

@@ -1,5 +1,6 @@
-import * as styles from './notice-section.css';
 import { SEARCH_NOT_FOUND_MESSAGE } from '../constants/notice-message';
+
+import * as styles from './notice-section.css';
 
 interface NoticeSectionProps {
   isMultipleArtists?: boolean;
