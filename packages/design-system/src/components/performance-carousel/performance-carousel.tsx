@@ -70,7 +70,7 @@ const PerformanceCarousel = ({
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [sliderRef]);
+  }, [activeIndex]);
 
   const handleContainerClick = (type: string, typeId: number) => {
     navigate(`/${type}-detail/${typeId}`);
