@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, ReactNode } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import type { Settings as SlickSettings } from 'react-slick';
@@ -65,17 +66,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
       setActiveIndex(next);
     },
     appendDots: (dots: string) => (
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyItems: 'center',
-          textAlign: 'center',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1.6rem 0',
-        }}
-      >
+      <div className={styles.dots}>
         <ul> {dots} </ul>
       </div>
     ),
@@ -84,22 +75,20 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
 
   return (
     <>
-      {performData && (
-        <>
-          {/* <PerformanceCarousel.Info
-            date={performData[currentId]?.performanceAt || ''}
-            title={performData[currentId]?.title || ''}
-            subtitle={performData[currentId]?.subtitle || ''}
-          /> */}
-          <PerformanceCarousel.Badge text=""></PerformanceCarousel.Badge>
-          <PerformanceCarousel.ImageSlider
-            performData={performData}
-            activeIndex={activeIndex}
-            settings={settings}
-            onItemClick={handleContainerClick}
-          />
-        </>
-      )}
+      <PerformanceCarousel.ImageSlider
+        performData={performData}
+        activeIndex={activeIndex}
+        settings={settings}
+        onItemClick={handleContainerClick}
+      >
+        <PerformanceCarousel.Info
+          date={performData[currentId]?.performanceAt || ''}
+          title={performData[currentId]?.title || ''}
+          subtitle={performData[currentId]?.subtitle || ''}
+        >
+          <PerformanceCarousel.Badge text="선호하는 아티스트" />
+        </PerformanceCarousel.Info>
+      </PerformanceCarousel.ImageSlider>
     </>
   );
 };
@@ -108,61 +97,75 @@ const Info = ({
   date,
   title,
   subtitle,
+  children,
 }: {
   date: string;
   title: string;
   subtitle: string;
+  children: ReactNode;
 }) => (
-  <div className={styles.bannerTitle}>
-    <p className={styles.titleDate}>{date}</p>
-    <p className={styles.titleName}>{title}</p>
-    <p className={styles.titleSub}>{subtitle}</p>
-  </div>
+  <>
+    {/* <div className={styles.bannerTitle}>
+      <p className={styles.titleDate}>{date}</p>
+      <p className={styles.titleName}>{title}</p>
+      <p className={styles.titleSub}>{subtitle}</p>
+    </div> */}
+    {children}
+  </>
 );
 
-const Badge = ({ text }: { text: string }) => <div>{text}</div>;
+const Badge = ({ text }: { text: string }) => (
+  <div className={styles.badge}>{text}</div>
+);
 
 const ImageSlider = ({
   performData,
   activeIndex,
   settings,
   onItemClick,
+  children,
 }: {
   performData: PerformData[];
   activeIndex: number;
   settings: SlickSettings;
   onItemClick: (type: string, typeId: number) => void;
+  children: ReactNode;
 }) => {
   return (
-    <Slider {...settings}>
-      {performData.map((item, index) => (
-        <div
-          key={index}
-          onClick={() => onItemClick(item.type, item.typeId)}
-          onFocus={(e) => e.currentTarget.blur()}
-          className={styles.imgDiv}
-        >
-          <img
-            className={styles.card}
-            key={item.typeId}
-            src={item.posterUrl}
-            alt={item.title}
-          />
-          {index !== activeIndex && (
-            <SlideOverlayOp
-              className={styles.slideOverlay}
-              width="100%"
-              height="99%"
+    <>
+      <Slider {...settings}>
+        {performData.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => onItemClick(item.type, item.typeId)}
+            onFocus={(e) => e.currentTarget.blur()}
+            className={styles.imgDiv}
+          >
+            {children}
+            <img
+              className={styles.card}
+              key={item.typeId}
+              src={item.posterUrl}
+              alt={item.title}
             />
-          )}
-          <InfoOverlay
-            className={styles.infoOverlay}
-            width="96.5%"
-            height="50%"
-          />
-        </div>
-      ))}
-    </Slider>
+
+            {index === activeIndex ? (
+              <InfoOverlay
+                className={styles.infoOverlay}
+                width="96.5%"
+                height="50%"
+              />
+            ) : (
+              <SlideOverlayOp
+                className={styles.slideOverlay}
+                width="100%"
+                height="100%"
+              />
+            )}
+          </div>
+        ))}
+      </Slider>
+    </>
   );
 };
 
