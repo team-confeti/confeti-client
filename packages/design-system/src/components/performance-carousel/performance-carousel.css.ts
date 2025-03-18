@@ -1,4 +1,4 @@
-import { keyframes, style, globalStyle } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 
 export const fadeInOut = keyframes({
