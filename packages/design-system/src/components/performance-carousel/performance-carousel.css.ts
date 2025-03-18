@@ -7,31 +7,31 @@ export const fadeInOut = keyframes({
   '100%': { opacity: 1 },
 });
 
-export const bannerTitle = style({
+export const bannerTextWrapper = style({
+  position: 'absolute',
+  top: '26.6rem',
+  left: '2.5rem',
   marginTop: '3rem',
   height: '10.3rem',
+  zIndex: themeVars.zIndex.poster.content,
 });
 
 export const titleDate = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
-  color: themeVars.color.white,
-  textAlign: 'center',
-  marginBottom: '1.2rem',
+  color: themeVars.color.gray400,
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
 export const titleName = style({
   ...themeVars.fontStyles.title1_b_24,
   color: themeVars.color.white,
-  textAlign: 'center',
-  marginBottom: '4px',
+  marginBottom: '1.6rem',
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
 export const titleSub = style({
   ...themeVars.fontStyles.body3_m_14,
-  color: themeVars.color.gray500,
-  textAlign: 'center',
+  color: themeVars.color.white,
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 

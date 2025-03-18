@@ -78,13 +78,12 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
         settings={settings}
         onItemClick={handleContainerClick}
       >
+        <PerformanceCarousel.Badge text="선호하는 아티스트" />
         <PerformanceCarousel.Info
           date={performData[currentId]?.performanceAt || ''}
           title={performData[currentId]?.title || ''}
           subtitle={performData[currentId]?.subtitle || ''}
-        >
-          <PerformanceCarousel.Badge text="선호하는 아티스트" />
-        </PerformanceCarousel.Info>
+        />
       </PerformanceCarousel.ImageSlider>
     </>
   );
@@ -94,20 +93,17 @@ const Info = ({
   date,
   title,
   subtitle,
-  children,
 }: {
   date: string;
   title: string;
   subtitle: string;
-  children: ReactNode;
 }) => (
   <>
-    {/* <div className={styles.bannerTitle}>
-      <p className={styles.titleDate}>{date}</p>
+    <div className={styles.bannerTextWrapper}>
       <p className={styles.titleName}>{title}</p>
-      <p className={styles.titleSub}>{subtitle}</p>
-    </div> */}
-    {children}
+      <p className={styles.titleSub}>고양종합운동장</p>
+      <p className={styles.titleDate}>{date}</p>
+    </div>
   </>
 );
 

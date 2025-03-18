@@ -6,7 +6,7 @@ import {
   checkFestivalDateStatus,
 } from '@pages/time-table/hooks/use-data-formatted';
 import * as styles from './calender.css';
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { useFormattedDate } from '@shared/utils/format-date';
 
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];

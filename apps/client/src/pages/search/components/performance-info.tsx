@@ -4,7 +4,7 @@ import { LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './performance-info.css';
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { useFormattedDate } from '@shared/utils/format-date';
 
 interface PerformanceInfoProps {
   type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';

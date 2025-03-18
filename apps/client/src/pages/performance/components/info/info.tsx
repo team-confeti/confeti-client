@@ -1,4 +1,4 @@
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { useFormattedDate } from '@shared/utils/format-date';
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 import * as styles from './info.css';
 

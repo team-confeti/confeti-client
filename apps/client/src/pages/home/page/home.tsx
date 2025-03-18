@@ -12,11 +12,17 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { TAB_MENU } from '../constants/menu';
 import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
+import { formatDate } from '@shared/utils/format-date';
 import * as styles from './home.css';
 
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
+  const formattedPerformData = latestPerformances.map((performance) => ({
+    ...performance,
+    performanceAt: formatDate(performance.performanceAt),
+  }));
+
   const userId = localStorage.getItem(USER_ID_KEY);
   const { data: profileData } = useUserProfile();
   const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
@@ -38,7 +44,7 @@ const Home = () => {
 
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
-            <PerformanceCarousel performData={latestPerformances} />
+            <PerformanceCarousel performData={formattedPerformData} />
           </section>
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
