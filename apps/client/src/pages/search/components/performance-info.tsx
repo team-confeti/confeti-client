@@ -4,7 +4,8 @@ import { LikeButton } from '@confeti/design-system';
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
-import { useFormattedDate } from '@shared/utils/use-format-date';
+
+import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './performance-info.css';
 
@@ -44,7 +45,7 @@ const PerformanceInfo = ({
     navigate(path);
   };
 
-  const formattedDate = useFormattedDate(
+  const formattedDate = formatDate(
     '',
     'startEndFull',
     performanceStartAt,

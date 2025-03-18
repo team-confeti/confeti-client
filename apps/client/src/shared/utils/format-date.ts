@@ -58,7 +58,7 @@ const getReserveDate = (reserveAt: string): string => {
   return formattedDate;
 };
 
-export const useFormattedDate = (
+export const formatDate = (
   date: string = '',
   formatStyle: string = 'default',
   startAt?: string,
