@@ -179,7 +179,6 @@ const ImageSlider = ({ children }: { children?: ReactNode }) => {
   );
 };
 
-// 서브컴포넌트 연결
 PerformanceCarousel.Info = Info;
 PerformanceCarousel.Badge = Badge;
 PerformanceCarousel.ImageSlider = ImageSlider;
