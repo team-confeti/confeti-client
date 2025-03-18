@@ -1,5 +1,6 @@
-import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 import { infiniteQueryOptions } from '@tanstack/react-query';
+
+import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 
 import { getFestivalToAdd } from './get-festival-to-add';
 

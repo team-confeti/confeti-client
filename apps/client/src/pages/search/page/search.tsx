@@ -1,13 +1,15 @@
-import { Footer, SearchBar, Spacing } from '@confeti/design-system';
 import ArtistSection from '@pages/search/components/artist-section';
 import NoticeSection from '@pages/search/components/notice-section';
 import PerformanceCount from '@pages/search/components/performance-count-section';
 import PerformanceSection from '@pages/search/components/performance-section';
+
+import { Footer, SearchBar, Spacing } from '@confeti/design-system';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import ArtistNotFound from '../components/artist-not-found';
 import { useSearchPerformances } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
+
 import * as styles from './search.css';
 
 const Search = () => {

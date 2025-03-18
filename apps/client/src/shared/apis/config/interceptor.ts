@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/react';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+
 import { HTTP_STATUS_CODE } from '@shared/constants/api';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import { HTTPError } from './http-error';
 

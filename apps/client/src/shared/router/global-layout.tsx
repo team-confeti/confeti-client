@@ -1,9 +1,10 @@
-import { Header } from '@confeti/design-system';
-import * as Sentry from '@sentry/react';
-import ErrorFallback from '@shared/pages/error/error';
-import Loading from '@shared/pages/loading/loading';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
+
+import { Header } from '@confeti/design-system';
+import ErrorFallback from '@shared/pages/error/error';
+import Loading from '@shared/pages/loading/loading';
 
 import ScrollToTop from './scroll-to-top';
 

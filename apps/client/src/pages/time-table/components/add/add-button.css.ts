@@ -1,5 +1,6 @@
-import { themeVars } from '@confeti/design-system/styles';
 import { recipe } from '@vanilla-extract/recipes';
+
+import { themeVars } from '@confeti/design-system/styles';
 
 export const addButtonVariants = recipe({
   base: {

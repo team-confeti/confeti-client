@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   calcMinutesFromOpen,
   calcTotalFestivalMinutes,
@@ -5,7 +6,6 @@ import {
   parseTimeString,
 } from '@pages/time-table/utils';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { useState } from 'react';
 
 import * as styles from './time-table-item.css';
 

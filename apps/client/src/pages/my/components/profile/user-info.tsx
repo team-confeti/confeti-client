@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import { routePath } from '@shared/constants/path.ts';
 import { USER_ID_KEY } from '@shared/constants/user-constants.ts';
-import { useNavigate } from 'react-router-dom';
 
 import LogoutButton from './logout-button.tsx';
 import * as styles from './user-info.css.ts';

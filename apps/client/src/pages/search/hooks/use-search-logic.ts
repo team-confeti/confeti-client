@@ -1,6 +1,7 @@
-import { routePath } from '@shared/constants/path';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { routePath } from '@shared/constants/path';
 
 import { useSearchArtist } from '../hooks/use-search-data';
 

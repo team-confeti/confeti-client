@@ -1,5 +1,6 @@
-import { toast } from '@confeti/design-system';
 import { useState } from 'react';
+
+import { toast } from '@confeti/design-system';
 
 import { MAX_SELECTIONS } from '../constants';
 

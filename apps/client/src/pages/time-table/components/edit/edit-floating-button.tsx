@@ -1,3 +1,6 @@
+import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
+import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
+
 import {
   IcFloatDelete24,
   IcFloatEdit24,
@@ -5,12 +8,11 @@ import {
   IcTimetableFloatClose,
   IcTimetableFloatFinish,
 } from '@confeti/design-system/icons';
-import useDisableScroll from '@pages/time-table/hooks/use-disabled-scroll';
-import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { useScrollAtBottom } from '@shared/hooks/use-scroll-position';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import { EDIT_BOX, EDIT_BUTTON } from '../../constants/edit-floating-text';
+
 import * as styles from './edit-floating-button.css';
 
 interface EditFloatingButtonProps {

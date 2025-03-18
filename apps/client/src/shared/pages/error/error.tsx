@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@confeti/design-system';
 import { IcError404 } from '@confeti/design-system/icons';
-import { useNavigate } from 'react-router-dom';
 
 import * as styles from './error.css';
 

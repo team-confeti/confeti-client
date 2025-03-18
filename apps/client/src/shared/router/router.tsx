@@ -1,5 +1,6 @@
-import { routePath } from '@shared/constants/path';
 import { Route, Routes } from 'react-router-dom';
+
+import { routePath } from '@shared/constants/path';
 
 import GlobalLayout from './global-layout';
 import {

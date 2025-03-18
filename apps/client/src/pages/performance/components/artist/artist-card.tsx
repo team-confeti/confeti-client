@@ -2,6 +2,7 @@ import { IcArtistNon } from '@confeti/design-system/icons';
 
 import { ArtistGridProps } from '../../types/artist';
 import { ConcertArtist } from '../../types/concert';
+
 import * as styles from './artist-card.css';
 
 interface ArtistCardProps {

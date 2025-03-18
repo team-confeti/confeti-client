@@ -1,13 +1,15 @@
-import { Button, FestivalCard, Header } from '@confeti/design-system';
+import { useNavigate } from 'react-router-dom';
 import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
+
+import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
-import { useNavigate } from 'react-router-dom';
 
 import { MAX_SELECTIONS } from '../constants';
 import { useFestivalButtonData } from '../hooks/use-festival-data';
 import useFestivalSelection from '../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
+
 import * as styles from './add-festival.css';
 
 const AddFestival = () => {

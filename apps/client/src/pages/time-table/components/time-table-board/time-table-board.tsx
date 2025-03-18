@@ -1,4 +1,4 @@
-import { Button } from '@confeti/design-system';
+import { useEffect, useState } from 'react';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
 import Stage from '@pages/time-table/components/stage/stage';
 import TimeCell from '@pages/time-table/components/time-cell/time-cell';
@@ -8,7 +8,8 @@ import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
 import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
-import { useEffect, useState } from 'react';
+
+import { Button } from '@confeti/design-system';
 
 import * as styles from './time-table-board.css';
 

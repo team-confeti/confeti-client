@@ -1,5 +1,6 @@
-import { WEEKDAYS } from '@shared/constants/day';
 import { useEffect, useMemo, useState } from 'react';
+
+import { WEEKDAYS } from '@shared/constants/day';
 
 const YEAR_MESSAGE = {
   ERR_MESSAGE: '',

@@ -1,9 +1,10 @@
-import { Spacing } from '@confeti/design-system';
+import { useState } from 'react';
 import EditFloatingButton from '@pages/time-table/components/edit/edit-floating-button';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import DeleteButton from '@pages/time-table/components/info/delete-button';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
-import { useState } from 'react';
+
+import { Spacing } from '@confeti/design-system';
 
 import Calender from '../components/calender/calender';
 import InfoButton from '../components/info/info-button';
@@ -13,6 +14,7 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
+
 import * as styles from './time-table.css';
 
 const TimeTable = () => {

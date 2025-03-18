@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { PERFORMANCE_QUERY_KEY } from '@shared/apis/confeti-detail/performance-queries';
 import {
   deleteLikeArtist,
@@ -9,7 +11,6 @@ import {
 } from '@shared/apis/like/like';
 import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
 import { SEARCH_ARTIST_QUERY_KEY } from '@shared/apis/search/search-queries';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   id: string | number;

@@ -1,7 +1,8 @@
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+
 import { getPerformancesSearch } from '@shared/apis/search/search';
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
 import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 interface UseArtistProps {
   keyword: string;

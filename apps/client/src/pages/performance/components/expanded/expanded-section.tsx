@@ -1,8 +1,9 @@
+import { useEffect, useRef, useState } from 'react';
 import ArtistGrid from '@pages/performance/components/artist/artist-grid';
 import MoreButton from '@pages/performance/components/button/more-button';
-import { useEffect, useRef, useState } from 'react';
 
 import { ConcertArtist } from '../../types/concert';
+
 import * as styles from './expanded-section.css';
 
 export const MAX_VISIBLE_ARTISTS = 4;

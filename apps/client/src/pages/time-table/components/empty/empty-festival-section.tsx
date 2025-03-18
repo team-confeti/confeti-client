@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@confeti/design-system';
 import { IcFestivalGray } from '@confeti/design-system/icons';
 import { routePath } from '@shared/constants/path';
-import { useNavigate } from 'react-router-dom';
 
 import * as styles from './empty-festival-section.css';
 

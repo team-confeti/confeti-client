@@ -1,4 +1,5 @@
 import { PERFORMANCE_LABEL } from '../../constant/performance';
+
 import * as styles from './info.css';
 
 interface InfoProps {

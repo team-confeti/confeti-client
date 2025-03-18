@@ -1,5 +1,6 @@
-import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
 import { queryOptions } from '@tanstack/react-query';
+
+import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
 
 import { getArtistSearch, getPerformancesSearch } from './search';
 

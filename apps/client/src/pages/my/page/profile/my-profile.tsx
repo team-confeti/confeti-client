@@ -1,4 +1,3 @@
-import { Footer, Header, Spacing } from '@confeti/design-system';
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
@@ -7,6 +6,8 @@ import Box from '@pages/my/components/profile/box';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
+
+import { Footer, Header, Spacing } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 
 const MyProfile = () => {

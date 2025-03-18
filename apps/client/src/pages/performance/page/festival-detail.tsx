@@ -1,4 +1,5 @@
-import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import MoreButton from '@pages/performance/components/button/more-button';
@@ -7,9 +8,9 @@ import PerformanceDetail from '@pages/performance/components/performance/perform
 import Poster from '@pages/performance/components/poster/poster';
 import Summary from '@pages/performance/components/summary/summary';
 import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail';
+
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
