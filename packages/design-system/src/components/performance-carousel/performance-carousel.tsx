@@ -137,7 +137,6 @@ const ImageSlider = ({
             onFocus={(e) => e.currentTarget.blur()}
             className={styles.imgDiv}
           >
-            {children}
             <img
               className={styles.card}
               key={item.typeId}
@@ -146,11 +145,14 @@ const ImageSlider = ({
             />
 
             {index === activeIndex ? (
-              <InfoOverlay
-                className={styles.infoOverlay}
-                width="96.5%"
-                height="50%"
-              />
+              <>
+                <InfoOverlay
+                  className={styles.infoOverlay}
+                  width="96.5%"
+                  height="50%"
+                />
+                {children}
+              </>
             ) : (
               <SlideOverlayOp
                 className={styles.slideOverlay}
