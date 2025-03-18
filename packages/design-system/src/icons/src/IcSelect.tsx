@@ -5,7 +5,6 @@ const SvgIcSelect = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 28 28"
     {...props}
   >
     <g clipPath="url(#ic_select_svg__a)">

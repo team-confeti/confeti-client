@@ -5,7 +5,6 @@ const SvgIcArrowUpBlack30 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 30 30"
     {...props}
   >
     <path

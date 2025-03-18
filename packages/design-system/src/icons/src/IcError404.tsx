@@ -5,7 +5,6 @@ const SvgIcError404 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 114 41"
     {...props}
   >
     <path
