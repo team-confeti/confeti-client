@@ -40,3 +40,4 @@ export { default as ImgTypelogoBig } from './ImgTypelogoBig';
 export { default as LogoFooter } from './LogoFooter';
 export { default as LogoMain } from './LogoMain';
 export { default as LogoSymbol } from './LogoSymbol';
+export { default as SlideOverlayOp } from './SlideOverlayOp';

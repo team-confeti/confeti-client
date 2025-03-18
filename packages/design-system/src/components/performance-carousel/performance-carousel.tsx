@@ -8,6 +8,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
+import { InfoOverlay, SlideOverlayOp } from '../../icons/src';
 
 import * as styles from './performance-carousel.css';
 export interface PerformData {
@@ -22,18 +23,6 @@ export interface PerformData {
 interface DataProps {
   performData: PerformData[];
 }
-
-const SlideOverlay = () => (
-  <svg
-    className={styles.slideOverlay}
-    width="100%"
-    height="99%"
-    viewBox="0 0 156 208"
-    preserveAspectRatio="none"
-  >
-    <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
-  </svg>
-);
 
 const PerformanceCarousel = ({ performData }: DataProps) => {
   const sliderRef = useRef<Slider | null>(null);
@@ -55,7 +44,7 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     navigate(`/${type}-detail/${typeId}`);
   };
 
-  //slider의 settings 객체를 커스텀
+  //slider의 settings 객체의 속성을 설정해줌으로써 슬라이드 커스텀
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -159,7 +148,18 @@ const ImageSlider = ({
             src={item.posterUrl}
             alt={item.title}
           />
-          {index !== activeIndex && <SlideOverlay />}
+          {index !== activeIndex && (
+            <SlideOverlayOp
+              className={styles.slideOverlay}
+              width="100%"
+              height="99%"
+            />
+          )}
+          <InfoOverlay
+            className={styles.infoOverlay}
+            width="96.5%"
+            height="50%"
+          />
         </div>
       ))}
     </Slider>
