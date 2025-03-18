@@ -1,3 +1,4 @@
+export { default as InfoOverlay } from './InfoOverlay';
 export { default as BtnAccountBlack24 } from './BtnAccountBlack24';
 export { default as BtnAccountGray24 } from './BtnAccountGray24';
 export { default as BtnAddGray24 } from './BtnAddGray24';
