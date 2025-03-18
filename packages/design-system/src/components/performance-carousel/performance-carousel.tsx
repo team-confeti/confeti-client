@@ -30,6 +30,7 @@ interface CarouselContextType {
   activeIndex: number;
   sliderRef: React.RefObject<Slider | null>;
   settings: SlickSettings;
+  performData: PerformData[];
   handleContainerClick: (type: string, typeId: number) => void;
 }
 
@@ -50,9 +51,11 @@ const useCarousel = () => {
 const PerformanceCarousel = ({
   children,
   initialSlide = 3,
+  performData,
 }: {
   children: ReactNode;
   initialSlide?: number;
+  performData: PerformData[];
 }) => {
   const sliderRef = useRef<Slider | null>(null);
   const navigate = useNavigate();
@@ -103,6 +106,7 @@ const PerformanceCarousel = ({
     activeIndex,
     sliderRef,
     settings,
+    performData,
     handleContainerClick,
   };
 
@@ -113,8 +117,8 @@ const PerformanceCarousel = ({
   );
 };
 
-const Info = ({ performData }: { performData: PerformData[] }) => {
-  const { activeIndex } = useCarousel();
+const Info = () => {
+  const { activeIndex, performData } = useCarousel();
 
   return (
     <div className={styles.bannerTextWrapper}>
@@ -133,14 +137,9 @@ const Badge = ({ text }: { text: string }) => (
   <div className={styles.badge}>{text}</div>
 );
 
-const ImageSlider = ({
-  children,
-  performData,
-}: {
-  children?: ReactNode;
-  performData: PerformData[];
-}) => {
-  const { activeIndex, settings, handleContainerClick } = useCarousel();
+const ImageSlider = ({ children }: { children?: ReactNode }) => {
+  const { activeIndex, settings, handleContainerClick, performData } =
+    useCarousel();
 
   return (
     <Slider {...settings}>
