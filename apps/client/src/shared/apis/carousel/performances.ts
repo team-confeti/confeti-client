@@ -1,6 +1,6 @@
 import { BaseResponse } from '@shared/types/api';
-import { PerformanceResponse } from '@shared/types/performance-response';
 import { END_POINT } from '@shared/constants/api';
+import { PerformanceResponse } from '@shared/types/performance-response';
 import { axiosPublicInstance } from '../config/instance';
 
 export const getLatestPerformances = async (): Promise<PerformanceResponse> => {

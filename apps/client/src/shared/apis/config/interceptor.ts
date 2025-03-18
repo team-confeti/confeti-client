@@ -1,10 +1,10 @@
+import Cookies from 'js-cookie';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import * as Sentry from '@sentry/react';
 import { HTTP_STATUS_CODE } from '@shared/constants/api';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { HTTPError } from './http-error';
 import { ACCESS_TOKEN_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
-import Cookies from 'js-cookie';
+import { HTTPError } from './http-error';
 
 interface ErrorResponse {
   message?: string;

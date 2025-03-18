@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
+import { Button } from '@confeti/design-system';
 import * as styles from './require-login-section.css';
 
 type RoutePathType = (typeof routePath)[keyof typeof routePath];

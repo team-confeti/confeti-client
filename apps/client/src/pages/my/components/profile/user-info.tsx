@@ -1,6 +1,6 @@
+import { useLogoutMutation } from '@pages/my/hooks/use-logout.ts';
 import LogoutButton from './logout-button.tsx';
 import * as styles from './user-info.css.ts';
-import { useLogoutMutation } from '@pages/my/hooks/use-logout.ts';
 
 interface Props {
   userName: string;
