@@ -57,3 +57,9 @@ export const imgDiv = style({
   flexShrink: '0',
   padding: '0 0.5rem',
 });
+
+export const infoOverlay = style({
+  position: 'absolute',
+  bottom: '0.2rem',
+  borderRadius: '1rem',
+});
