@@ -1,5 +1,12 @@
 import type { Settings as SlickSettings } from 'react-slick';
-import { useRef, useState, useEffect, ReactNode } from 'react';
+import {
+  useRef,
+  useState,
+  useEffect,
+  ReactNode,
+  createContext,
+  useContext,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,15 +25,40 @@ export interface PerformData {
   posterUrl: string;
 }
 
-interface DataProps {
+interface CarouselContextType {
   performData: PerformData[];
+  activeIndex: number;
+  sliderRef: React.RefObject<Slider | null>;
+  settings: SlickSettings;
+  handleContainerClick: (type: string, typeId: number) => void;
 }
 
-const PerformanceCarousel = ({ performData }: DataProps) => {
+// Context 생성
+const CarouselContext = createContext<CarouselContextType | null>(null);
+
+const useCarousel = () => {
+  const context = useContext(CarouselContext);
+  if (!context) {
+    throw new Error(
+      'Carousel 컴포넌트는 PerformanceCarousel 내부에서만 사용할 수 있습니다.',
+    );
+  }
+  return context;
+};
+
+// 메인 컴포넌트
+const PerformanceCarousel = ({
+  children,
+  performData,
+  initialSlide = 3,
+}: {
+  children: ReactNode;
+  performData: PerformData[];
+  initialSlide?: number;
+}) => {
   const sliderRef = useRef<Slider | null>(null);
   const navigate = useNavigate();
-  const [currentId, setCurrentId] = useState(3);
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(initialSlide);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,13 +68,13 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [sliderRef]);
 
   const handleContainerClick = (type: string, typeId: number) => {
     navigate(`/${type}-detail/${typeId}`);
   };
 
-  //slider의 settings 객체의 속성을 설정해줌으로써 슬라이드 커스텀
+  // 슬라이더 설정
   const settings = {
     ref: sliderRef,
     className: 'center',
@@ -56,10 +88,8 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     arrows: false,
     speed: 1000,
     cssEase: 'ease-in-out',
-    initialSlide: 3,
-    beforeChange: (current: number, next: number) => {
-      current; //빌드에러 제거용
-      setCurrentId(next);
+    initialSlide: initialSlide,
+    beforeChange: (_current: number, next: number) => {
       setActiveIndex(next);
     },
     appendDots: (dots: string) => (
@@ -70,102 +100,99 @@ const PerformanceCarousel = ({ performData }: DataProps) => {
     dotsClass: 'dots_custom',
   };
 
+  // Context 값
+  const contextValue: CarouselContextType = {
+    performData,
+    activeIndex,
+    sliderRef,
+    settings,
+    handleContainerClick,
+  };
+
   return (
-    <>
-      <PerformanceCarousel.ImageSlider
-        performData={performData}
-        activeIndex={activeIndex}
-        settings={settings}
-        onItemClick={handleContainerClick}
-      >
-        <PerformanceCarousel.Badge text="선호하는 아티스트" />
-        <PerformanceCarousel.Info
-          date={performData[currentId]?.performanceAt || ''}
-          title={performData[currentId]?.title || ''}
-          subtitle={performData[currentId]?.subtitle || ''}
-        />
-      </PerformanceCarousel.ImageSlider>
-    </>
+    <CarouselContext.Provider value={contextValue}>
+      <div>{children}</div>
+    </CarouselContext.Provider>
   );
 };
 
 const Info = ({
   date,
   title,
-  subtitle,
+  customTitle,
+  customDate,
 }: {
-  date: string;
-  title: string;
-  subtitle: string;
-}) => (
-  <>
+  date?: string;
+  title?: string;
+  customTitle?: string;
+  customDate?: string;
+}) => {
+  const { performData, activeIndex } = useCarousel();
+
+  // 직접 props로 전달 받은 값이 있으면 우선 사용, 없으면 performData에서 값 사용
+  const displayTitle =
+    customTitle || title || performData[activeIndex]?.title || '';
+  const displayDate =
+    customDate || date || performData[activeIndex]?.performanceAt || '';
+
+  return (
     <div className={styles.bannerTextWrapper}>
-      <p className={styles.titleName}>{title}</p>
+      <p className={styles.titleName}>{displayTitle}</p>
       <p className={styles.titleSub}>고양종합운동장</p>
-      <p className={styles.titleDate}>{date}</p>
+      <p className={styles.titleDate}>{displayDate}</p>
     </div>
-  </>
-);
+  );
+};
 
 const Badge = ({ text }: { text: string }) => (
   <div className={styles.badge}>{text}</div>
 );
 
-const ImageSlider = ({
-  performData,
-  activeIndex,
-  settings,
-  onItemClick,
-  children,
-}: {
-  performData: PerformData[];
-  activeIndex: number;
-  settings: SlickSettings;
-  onItemClick: (type: string, typeId: number) => void;
-  children: ReactNode;
-}) => {
-  return (
-    <>
-      <Slider {...settings}>
-        {performData.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => onItemClick(item.type, item.typeId)}
-            onFocus={(e) => e.currentTarget.blur()}
-            className={styles.imgDiv}
-          >
-            <img
-              className={styles.card}
-              key={item.typeId}
-              src={item.posterUrl}
-              alt={item.title}
-            />
+const ImageSlider = ({ children }: { children?: ReactNode }) => {
+  const { performData, activeIndex, settings, handleContainerClick } =
+    useCarousel();
 
-            {index === activeIndex ? (
-              <>
-                <InfoOverlay
-                  className={styles.infoOverlay}
-                  width="96.5%"
-                  height="50%"
-                />
-                {children}
-              </>
-            ) : (
-              <SlideOverlayOp
-                className={styles.slideOverlay}
-                width="100%"
-                height="100%"
+  return (
+    <Slider {...settings}>
+      {performData.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => handleContainerClick(item.type, item.typeId)}
+          onFocus={(e) => e.currentTarget.blur()}
+          className={styles.imgDiv}
+        >
+          <img
+            className={styles.card}
+            key={item.typeId}
+            src={item.posterUrl}
+            alt={item.title}
+          />
+
+          {index === activeIndex ? (
+            <>
+              <InfoOverlay
+                className={styles.infoOverlay}
+                width="96.5%"
+                height="50%"
               />
-            )}
-          </div>
-        ))}
-      </Slider>
-    </>
+              {children}
+            </>
+          ) : (
+            <SlideOverlayOp
+              className={styles.slideOverlay}
+              width="100%"
+              height="100%"
+            />
+          )}
+        </div>
+      ))}
+    </Slider>
   );
 };
 
+// 서브컴포넌트 연결
 PerformanceCarousel.Info = Info;
 PerformanceCarousel.Badge = Badge;
 PerformanceCarousel.ImageSlider = ImageSlider;
 
-export default PerformanceCarousel;
+export { PerformanceCarousel };
