@@ -13,7 +13,7 @@ export type ToastProps = {
   autoClose?: false | number;
   closeOnClick?: boolean;
   position?: ToastPosition;
-  icon?: JSX.Element | string | 'default';
+  icon?: JSX.Element | 'default';
   className?: string;
   highlightText?: string;
 };
