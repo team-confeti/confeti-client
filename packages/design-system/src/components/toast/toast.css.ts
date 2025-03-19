@@ -32,27 +32,39 @@ export const text = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'pre-line',
-  maxWidth: '27rem',
+  maxWidth: '28rem',
 });
 
 export const highlightText = style({
   color: themeVars.color.confeti_lime3,
+  display: 'inline-block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  maxWidth: '33vw',
+  verticalAlign: 'bottom',
 });
 
 export const toastVariants = recipe({
   base: {
+    width: '89%',
+    '@media': {
+      'screen and (min-width: 430px)': {
+        width: '39rem',
+      },
+    },
+
     position: 'relative',
-    width: '32.5rem',
-    height: '5rem',
+    padding: '1.1rem 0.8rem',
 
     ...themeVars.display.flexJustifyAlignCenter,
-    borderRadius: '5rem',
+    borderRadius: 20,
     backgroundColor: themeVars.color.white,
     color: themeVars.color.black,
     textAlign: 'center',
     zIndex: themeVars.zIndex.toast.content,
     boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
-    ...themeVars.fontStyles.body2_m_15,
+    ...themeVars.fontStyles.body3_m_14,
 
     cursor: 'pointer',
     pointerEvents: 'auto',
