@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import {
-  parseTimeString,
-  calcTotalMinutes,
   calcMinutesFromOpen,
   calcTotalFestivalMinutes,
+  calcTotalMinutes,
+  parseTimeString,
 } from '@pages/time-table/utils';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import * as styles from './time-table-item.css';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 interface ItemProps {
   artists: Artist[];
@@ -87,7 +87,7 @@ const TimeTableItem = ({
         {artists.map((artist) => artist.artistName).join(', ')}
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>
-        {startTime.slice(0, 5)}-{endTime.slice(0, 5)}
+        {`${startHour}:${startMin}-${endHour}:${endMin}`}
         {`(${totalPerformMin}min)`}
       </div>
     </div>

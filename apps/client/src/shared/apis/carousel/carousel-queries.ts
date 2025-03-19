@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
-import { getTicketing } from './ticketing';
+
 import { getLatestPerformances } from './performances';
+import { getTicketing } from './ticketing';
 
 export const CAROUSEL_QUERY_KEY = {
   ALL: ['carousel'],

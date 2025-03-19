@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import ArtistSection from '@pages/performance/components/artist/artist-section';
+import ArtistTitle from '@pages/performance/components/artist/artist-title';
+import MoreButton from '@pages/performance/components/button/more-button';
+import Info from '@pages/performance/components/info/info';
+import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
 import Poster from '@pages/performance/components/poster/poster';
 import Summary from '@pages/performance/components/summary/summary';
-import Info from '@pages/performance/components/info/info';
-import MoreButton from '@pages/performance/components/button/more-button';
-import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
-import ArtistTitle from '@pages/performance/components/artist/artist-title';
-import ArtistSection from '@pages/performance/components/artist/artist-section';
 import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail';
+
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 
 const FestivalDetailPage = () => {

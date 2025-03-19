@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+
 import { IcArrowGray16 } from '@confeti/design-system/icons';
+
 import * as styles from './box.css';
 
 interface BoxProps {

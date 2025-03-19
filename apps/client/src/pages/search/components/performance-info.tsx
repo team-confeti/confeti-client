@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { IcTimeGray14, IcPlaceGray14 } from '@confeti/design-system/icons';
+
 import { LikeButton } from '@confeti/design-system';
+import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+import { useFormattedDate } from '@shared/utils/use-format-date';
+
 import * as styles from './performance-info.css';
 
 interface PerformanceInfoProps {
@@ -10,7 +13,8 @@ interface PerformanceInfoProps {
   typeId: number;
   posterUrl: string;
   title: string;
-  performanceAt: string;
+  performanceStartAt: string;
+  performanceEndAt: string;
   area: string;
   isFavorite: boolean;
 }
@@ -19,7 +23,8 @@ const PerformanceInfo = ({
   typeId,
   posterUrl,
   title,
-  performanceAt,
+  performanceStartAt,
+  performanceEndAt,
   area,
   isFavorite,
   type,
@@ -39,6 +44,13 @@ const PerformanceInfo = ({
     navigate(path);
   };
 
+  const formattedDate = useFormattedDate(
+    '',
+    'startEndFull',
+    performanceStartAt,
+    performanceEndAt,
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -56,7 +68,7 @@ const PerformanceInfo = ({
 
           <div className={styles.infoRow}>
             <IcTimeGray14 className={styles.infoIcon} />
-            <p className={styles.infoText}>{performanceAt}</p>
+            <p className={styles.infoText}>{formattedDate}</p>
           </div>
 
           <div className={styles.infoRow}>

@@ -1,5 +1,8 @@
+import { useFormattedDate } from '@shared/utils/use-format-date';
+
 import ArtistInfo from '../components/artist-info';
 import Title from '../components/title';
+
 import * as styles from './artist-section.css';
 
 interface ArtistSectionProps {
@@ -13,6 +16,9 @@ interface ArtistSectionProps {
 }
 
 const ArtistSection = ({ artist }: ArtistSectionProps) => {
+  const releaseDate = artist[0].latestReleaseAt;
+  const formattedDate = useFormattedDate(releaseDate);
+
   return (
     <div className={styles.section}>
       <Title text="아티스트" />
@@ -22,7 +28,7 @@ const ArtistSection = ({ artist }: ArtistSectionProps) => {
           id={artist.artistId}
           image={artist.profileUrl}
           name={artist.name}
-          releaseDate={artist.latestReleaseAt}
+          releaseDate={formattedDate}
           isFavorite={artist.isFavorite}
         />
       ))}

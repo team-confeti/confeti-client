@@ -1,6 +1,7 @@
+import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
-import { END_POINT } from '@shared/constants/api';
+
 import { get } from '../config/instance';
 
 export const getFestivalToAdd = async (

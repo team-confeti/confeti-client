@@ -1,11 +1,13 @@
 import { cn } from '../../utils';
+
 import { buttonVariants } from './button.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  variant?: 'add' | 'link' | 'default';
+  variant?: 'add' | 'link' | 'default' | 'kakao' | 'apple';
   disabled?: boolean;
   className?: string;
+  icon?: React.ReactNode;
 }
 
 const Button = ({
@@ -13,6 +15,7 @@ const Button = ({
   variant = 'default',
   disabled = false,
   className,
+  icon,
   ...props
 }: ButtonProps) => {
   return (
@@ -21,6 +24,7 @@ const Button = ({
       disabled={disabled}
       {...props}
     >
+      {icon ? icon : null}
       {text}
     </button>
   );

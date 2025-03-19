@@ -1,6 +1,7 @@
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { ReactNode } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 interface ProtectedRouteProps {
   protect?: boolean;

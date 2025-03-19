@@ -1,6 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
-import { themeVars } from '../../styles';
 import { recipe } from '@vanilla-extract/recipes';
+
+import { themeVars } from '../../styles';
 
 const toastEnterFromBottom = keyframes({
   '0%': { opacity: 0, transform: 'translateY(100%)' },

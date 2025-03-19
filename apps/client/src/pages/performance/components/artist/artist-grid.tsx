@@ -1,5 +1,6 @@
 import { ArtistGridProps } from '../../types/artist';
 import ArtistCard from './artist-card';
+
 import * as styles from './artist-grid.css';
 
 const ArtistGrid = ({ artists, dayId, type }: ArtistGridProps) => (

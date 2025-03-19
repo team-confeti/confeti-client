@@ -1,6 +1,8 @@
 import { memo, useMemo } from 'react';
-import Toast from './toast';
+
 import { useToastContainer } from './hooks/use-toast-container';
+import Toast from './toast';
+
 import * as styles from './toast-container.css';
 
 const ToastContainer = () => {

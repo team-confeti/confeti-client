@@ -1,15 +1,18 @@
 import { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { cn } from '@confeti/design-system/utils';
+import { routePath } from '@shared/constants/path';
+
+import AddButton from '../add/add-button';
+
 import {
   containerVariants,
+  ImageVariants,
   ItemContainer,
   ItemsVariants,
-  ImageVariants,
   TextVariants,
 } from './info-button.css';
-import { routePath } from '@shared/constants/path';
-import AddButton from '../add/add-button';
 
 type SizeType = 'sm' | 'md' | 'lg';
 

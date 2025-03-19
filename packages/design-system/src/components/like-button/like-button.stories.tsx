@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import LikeButton from './like-button';
 
 const meta: Meta<typeof LikeButton> = {

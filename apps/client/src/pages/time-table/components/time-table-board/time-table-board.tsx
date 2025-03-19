@@ -1,15 +1,17 @@
-import { Button } from '@confeti/design-system';
-import TimeCell from '@pages/time-table/components/time-cell/time-cell';
+import { useEffect, useState } from 'react';
 import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
-import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
 import Stage from '@pages/time-table/components/stage/stage';
+import TimeCell from '@pages/time-table/components/time-cell/time-cell';
+import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
+import { END_HOUR, HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
+import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
+import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
 import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
-import { HALF_HOUR_TO_MINUTES, END_HOUR } from '@pages/time-table/constants';
-import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
+
+import { Button } from '@confeti/design-system';
+
 import * as styles from './time-table-board.css';
-import { useEffect, useState } from 'react';
-import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
 
 interface Props {
   clickedFestivalTitle: string | null;
@@ -32,7 +34,7 @@ const TimeTableBoard = ({
     fileName: `${clickedFestivalTitle}`,
   });
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
-  const isHalfHourOpen = openMin === HALF_HOUR_TO_MINUTES;
+  const isHalfHourOpen = Number(openMin) === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
   const cellNumber = generateTableRow(ticketOpenHour);
 

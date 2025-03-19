@@ -1,18 +1,20 @@
 import { useNavigate } from 'react-router-dom';
+import { useUserProfile } from '@pages/my/hooks/use-user-info';
+
 import {
   Footer,
-  PerformanceCarousel,
   Navigation,
+  PerformanceCarousel,
   TicketingCarousel,
 } from '@confeti/design-system';
-import { USER_DATA } from '@shared/mocks/user-data';
-import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
+import { USER_ID_KEY } from '@shared/constants/user-constants';
+import { USER_DATA } from '@shared/mocks/user-data';
 
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { TAB_MENU } from '../constants/menu';
-import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
+import { useTicketing } from '../hooks/use-ticketing';
+
 import * as styles from './home.css';
 
 const Home = () => {
@@ -22,7 +24,6 @@ const Home = () => {
   const { data: profileData } = useUserProfile();
   const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
-
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 

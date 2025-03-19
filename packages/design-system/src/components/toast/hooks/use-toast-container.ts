@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { ToastEvent, ToastPosition, ToastProps } from '../types';
-import { eventManager } from '../utils/event-manager';
 import { TOAST_DEFAULT_POSITION } from '../utils/constants';
+import { eventManager } from '../utils/event-manager';
 
 export const useToastContainer = () => {
   const [toastList, setToastList] = useState(new Map<string, ToastProps>());

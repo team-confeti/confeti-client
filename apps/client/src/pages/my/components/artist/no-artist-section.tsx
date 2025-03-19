@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
+
 import * as styles from './no-artist-section.css';
 
 const NoArtistSection = () => {
