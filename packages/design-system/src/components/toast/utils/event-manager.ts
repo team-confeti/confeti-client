@@ -1,8 +1,8 @@
 import {
-  EventManager,
-  ToastEvent,
   EventCallbacks,
+  EventManager,
   TimeoutId,
+  ToastEvent,
   ToastProps,
 } from '../types';
 import { TOAST_MAX_COUNT } from './constants';
