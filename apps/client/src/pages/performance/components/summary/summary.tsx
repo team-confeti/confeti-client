@@ -2,7 +2,7 @@ import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import * as styles from './summary.css';
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { formatDate } from '@shared/utils/use-format-date';
 
 interface SummaryProps {
   id: number;
@@ -34,8 +34,8 @@ const Summary = ({
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });
   };
-  const formattedDate = useFormattedDate('', 'startEndHalf', startAt, endAt);
-  const reserverDate = useFormattedDate(reserveAt, 'koFull');
+  const formattedDate = formatDate('', 'startEndHalf', startAt, endAt);
+  const reserverDate = formatDate(reserveAt, 'koFull');
 
   return (
     <section className={styles.container}>

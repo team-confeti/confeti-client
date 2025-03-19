@@ -1,4 +1,4 @@
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { formatDate } from '@shared/utils/use-format-date';
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 import * as styles from './info.css';
 
@@ -24,7 +24,7 @@ const Info = ({
   price,
 }: InfoProps) => {
   const priceLines = price.split('\n');
-  const formattedDate = useFormattedDate('', 'startEndHalf', startAt, endAt);
+  const formattedDate = formatDate('', 'startEndHalf', startAt, endAt);
 
   return (
     <>

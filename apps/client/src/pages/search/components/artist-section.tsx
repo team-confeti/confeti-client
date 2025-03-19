@@ -1,4 +1,4 @@
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { formatDate } from '@shared/utils/use-format-date';
 import ArtistInfo from '../components/artist-info';
 import Title from '../components/title';
 import * as styles from './artist-section.css';
@@ -15,7 +15,7 @@ interface ArtistSectionProps {
 
 const ArtistSection = ({ artist }: ArtistSectionProps) => {
   const releaseDate = artist[0].latestReleaseAt;
-  const formattedDate = useFormattedDate(releaseDate);
+  const formattedDate = formatDate(releaseDate);
 
   return (
     <div className={styles.section}>
