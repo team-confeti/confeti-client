@@ -2,8 +2,15 @@ import axios from 'axios';
 
 import { handleAPIError, handleCheckAndSetToken } from './interceptor';
 
-// Axios 인스턴스 생성
 export const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const axiosPublicInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
