@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { postLogout } from '@shared/apis/\bauth/auth';
+import { postLogout } from '@shared/apis/auth/auth';
 import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
 import { routePath } from '@shared/constants/path';
 import { BaseResponse } from '@shared/types/api';
