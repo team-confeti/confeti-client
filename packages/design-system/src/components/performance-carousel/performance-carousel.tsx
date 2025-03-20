@@ -28,7 +28,7 @@ export interface PerformData {
 
 type PerformanceCarouselType = {
   children: ReactNode;
-  initialSlide?: number;
+  initialSlideIndex?: number;
   performData: PerformData[];
 };
 
@@ -56,12 +56,12 @@ const useCarousel = () => {
 // 메인 컴포넌트
 const PerformanceCarousel = ({
   children,
-  initialSlide = 0,
+  initialSlideIndex = 0,
   performData,
 }: PerformanceCarouselType) => {
   const sliderRef = useRef<Slider | null>(null);
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(initialSlide);
+  const [activeIndex, setActiveIndex] = useState(initialSlideIndex);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -91,7 +91,7 @@ const PerformanceCarousel = ({
     arrows: false,
     speed: 1000,
     cssEase: 'ease-in-out',
-    initialSlide: initialSlide,
+    initialSlide: initialSlideIndex,
     beforeChange: (_current: number, next: number) => {
       setActiveIndex(next);
     },
