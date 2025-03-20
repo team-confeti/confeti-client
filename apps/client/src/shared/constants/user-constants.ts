@@ -1,2 +1,2 @@
-export const USER_ID_KEY = 'user-id';
-export const USER_ID = '1';
+export const ACCESS_TOKEN_KEY = 'accessToken' as const;
+export const REFRESH_TOKEN_KEY = 'refreshToken' as const;

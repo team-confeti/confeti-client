@@ -16,8 +16,10 @@ const useFestivalSelection = () => {
   };
 
   const showToast = () => {
-    toast.default(`페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`, {
+    toast({
+      text: `페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`,
       position: 'middleCenter',
+      icon: 'default',
     });
   };
 
