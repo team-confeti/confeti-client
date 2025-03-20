@@ -12,6 +12,5 @@ export { default as FestivalCard } from './festival-card/festival-card';
 export { default as Spacing } from './spacing/spacing';
 export { default as SearchBar } from './search-bar/search-bar';
 export { default as ProgressBar } from './ticketing/progress-bar/progress-bar';
-export { default as InfoButton } from './ticketing/info-button/info-button';
 export { default as LikeButton } from './like-button/like-button';
 export { default as TicketingCard } from './ticketing/ticketing-card';
