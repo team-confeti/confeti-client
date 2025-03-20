@@ -5,7 +5,6 @@ const SvgIcPlaceGray14 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 14 15"
     {...props}
   >
     <g clipPath="url(#ic_place_gray_14_svg__a)">

@@ -6,7 +6,7 @@ import {
 } from '@pages/time-table/hooks/use-data-formatted';
 
 import { cn } from '@confeti/design-system/utils';
-import { useFormattedDate } from '@shared/utils/use-format-date';
+import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './calender.css';
 
@@ -22,7 +22,7 @@ const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
   const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
     festivalDates || [],
   );
-  const formattedYear = useFormattedDate(firstDate, 'koHalf');
+  const formattedYear = formatDate(firstDate, 'koHalf');
 
   const handleDateClick = (festivalDateId: number) => {
     handleDayNumClick(festivalDateId);

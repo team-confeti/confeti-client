@@ -1,4 +1,4 @@
-import { globalStyle, keyframes } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { themeVars } from '../../styles';
 
@@ -8,35 +8,35 @@ export const fadeInOut = keyframes({
   '100%': { opacity: 1 },
 });
 
-globalStyle('.banner-title', {
+export const bannerTextWrapper = style({
+  position: 'absolute',
+  top: '26.6rem',
+  left: '2.5rem',
   marginTop: '3rem',
   height: '10.3rem',
+  zIndex: themeVars.zIndex.poster.content,
 });
 
-globalStyle('.title-date', {
+export const titleDate = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
-  color: themeVars.color.white,
-  textAlign: 'center',
-  marginBottom: '1.2rem',
+  color: themeVars.color.gray400,
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.title-name', {
+export const titleName = style({
   ...themeVars.fontStyles.title1_b_24,
   color: themeVars.color.white,
-  textAlign: 'center',
-  marginBottom: '4px',
+  marginBottom: '1.6rem',
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.title-sub', {
+export const titleSub = style({
   ...themeVars.fontStyles.body3_m_14,
-  color: themeVars.color.gray500,
-  textAlign: 'center',
+  color: themeVars.color.white,
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
-globalStyle('.card', {
+export const card = style({
   position: 'relative',
   width: '100%',
   height: '100%',
@@ -46,22 +46,44 @@ globalStyle('.card', {
   WebkitTapHighlightColor: 'transparent',
 });
 
-globalStyle('.imgDiv:focus', {
-  outline: 'none !important',
-});
-
-globalStyle('.imgDiv:active', {
-  outline: 'none !important',
-  border: '0px !important',
-});
-
-globalStyle('.slide-overlay', {
+export const slideOverlay = style({
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
 });
 
-globalStyle('.slick-center', {
-  outline: 'none !important',
-  WebkitTapHighlightColor: 'transparent',
+export const imgDiv = style({
+  position: 'relative',
+  width: '30rem',
+  height: '100%',
+  flexShrink: '0',
+  padding: '0 0.5rem',
+});
+
+export const infoOverlay = style({
+  position: 'absolute',
+  bottom: '0rem',
+  borderRadius: '1rem',
+});
+
+export const dots = style({
+  width: '100%',
+  display: 'flex',
+  justifyItems: 'center',
+  textAlign: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '1.6rem 0',
+});
+
+export const badge = style({
+  position: 'absolute',
+  top: '26.6rem',
+  left: '2.5rem',
+  padding: '0.4rem 0.8rem',
+  backgroundColor: themeVars.color.black_op,
+  color: themeVars.color.confeti_lime,
+  border: `0.5px solid ${themeVars.color.confeti_lime}`,
+  borderRadius: '13px',
+  zIndex: themeVars.zIndex.poster.infoText,
 });
