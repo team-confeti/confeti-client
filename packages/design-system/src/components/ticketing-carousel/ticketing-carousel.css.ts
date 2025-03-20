@@ -1,5 +1,6 @@
-import { themeVars } from '../../styles';
 import { style } from '@vanilla-extract/css';
+
+import { themeVars } from '../../styles';
 
 export const wrap = style({
   width: '100%',

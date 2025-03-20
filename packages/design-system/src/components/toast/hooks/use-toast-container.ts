@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
-import { ToastEvent, ToastPosition, ToastProps } from '../types/type';
-import { eventManager } from '../utils/eventManager';
 
-const useToastContainer = () => {
+import { ToastEvent, ToastPosition, ToastProps } from '../types';
+import { TOAST_DEFAULT_POSITION } from '../utils/constants';
+import { eventManager } from '../utils/event-manager';
+
+export const useToastContainer = () => {
   const [toastList, setToastList] = useState(new Map<string, ToastProps>());
-  const TOAST_DEFAULT_POSITION = 'bottomCenter';
 
   const addToast = (props: ToastProps) => {
-    setToastList((prev) => new Map(prev).set(props.toastId, props));
+    setToastList((prev) => {
+      const newMap = new Map(prev);
+      newMap.set(props.toastId, props);
+      return newMap;
+    });
   };
 
   const deleteToast = (id: string) => {
     setToastList((prev) => {
+      if (!prev.has(id)) return prev;
+
       const newMap = new Map(prev);
       newMap.delete(id);
       return newMap;
@@ -20,12 +27,11 @@ const useToastContainer = () => {
 
   const updateToast = (id: string, text: string) => {
     setToastList((prev) => {
-      const newMap = new Map(prev);
+      if (!prev.has(id)) return prev;
 
-      if (prev.has(id)) {
-        const updatedProps = { ...prev.get(id)!, text: text };
-        newMap.set(id, updatedProps);
-      }
+      const newMap = new Map(prev);
+      const toast = prev.get(id)!;
+      newMap.set(id, { ...toast, text });
       return newMap;
     });
   };
@@ -35,31 +41,31 @@ const useToastContainer = () => {
     eventManager.on(ToastEvent.Delete, deleteToast);
     eventManager.on(ToastEvent.Update, updateToast);
 
-    // 컴포넌트 언마운트 시 리스너 해제
     return () => {
       eventManager.off(ToastEvent.Add, addToast);
       eventManager.off(ToastEvent.Delete, deleteToast);
       eventManager.off(ToastEvent.Update, updateToast);
-    };
-  }, []);
 
-  const toastListToArray = () => {
-    return Array.from(toastList);
-  };
+      eventManager.cancelEmit(ToastEvent.Add);
+      eventManager.cancelEmit(ToastEvent.Delete);
+      eventManager.cancelEmit(ToastEvent.Update);
+    };
+  }, [addToast, deleteToast, updateToast]);
 
   const getToastPositionGroupToRender = () => {
-    const list = toastListToArray();
     const positionGroup = new Map<ToastPosition, ToastProps[]>();
-    list.forEach(([_, toastProps]) => {
-      const position = toastProps.position || TOAST_DEFAULT_POSITION;
-      positionGroup.has(position)
-        ? positionGroup.get(position)!.push(toastProps)
-        : positionGroup.set(position, [toastProps]);
+
+    toastList.forEach((toast) => {
+      const position = toast.position || TOAST_DEFAULT_POSITION;
+
+      if (!positionGroup.has(position)) {
+        positionGroup.set(position, []);
+      }
+      positionGroup.get(position)!.push(toast);
     });
+
     return positionGroup;
   };
 
   return { getToastPositionGroupToRender };
 };
-
-export default useToastContainer;

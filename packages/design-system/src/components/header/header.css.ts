@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { themeVars } from '../../styles';
 import { recipe } from '@vanilla-extract/recipes';
+
+import { themeVars } from '../../styles';
 
 export const container = recipe({
   base: {

@@ -1,8 +1,12 @@
 import * as Sentry from '@sentry/react';
-import { HTTP_STATUS_CODE } from '@shared/constants/api';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import Cookies from 'js-cookie';
+
+import { HTTP_STATUS_CODE } from '@shared/constants/api';
+import { routePath } from '@shared/constants/path';
+import { ACCESS_TOKEN_KEY } from '@shared/constants/user-constants';
+
 import { HTTPError } from './http-error';
-import { USER_ID_KEY } from '@shared/constants/user-constants';
 
 interface ErrorResponse {
   message?: string;
@@ -40,11 +44,15 @@ export const handleAPIError = (error: AxiosError<ErrorResponse>) => {
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
-  const token = localStorage.getItem(USER_ID_KEY);
+  if (!config || !config.headers) return config;
 
-  if (token) {
-    config.headers.Authorization = token;
+  const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
+  if (!accessToken) {
+    window.location.replace(routePath.ROOT);
+    throw new Error('액세스 토큰이 존재하지 않습니다.');
   }
+
+  config.headers.Authorization = `Bearer ${accessToken}`;
 
   return config;
 };

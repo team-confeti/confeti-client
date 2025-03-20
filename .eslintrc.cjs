@@ -5,6 +5,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
   ],
+  plugins: ['simple-import-sort'],
   parser: '@typescript-eslint/parser',
   settings: {
     react: {
@@ -15,5 +16,20 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^node:'],
+          ['^react', '^@?\\w'],
+          ['^@confeti/', '^@shared/'],
+          ['^\\u0000'],
+          ['^\\.'],
+          ['^.+\\.css$'],
+        ],
+      },
+    ],
+    'simple-import-sort/exports': 'error',
   },
 };

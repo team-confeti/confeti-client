@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { BtnHeart } from '@confeti/design-system/icons';
+
 import { toast } from '@confeti/design-system';
+import { BtnHeart } from '@confeti/design-system/icons';
+
 import { cn } from '../../utils';
+
 import { likeButtonVariants } from './like-button.css';
 
 interface props {
@@ -21,7 +24,7 @@ const LikeButton = ({
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      toast.default('로그인 후 이용 가능해요');
+      toast('로그인 후 이용 가능해요');
       return;
     }
 

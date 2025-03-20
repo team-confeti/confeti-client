@@ -1,10 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
+
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
 import './performance-carousel.css';
-import { useNavigate } from 'react-router-dom';
 
 export interface PerformData {
   typeId: number;

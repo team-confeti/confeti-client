@@ -1,7 +1,7 @@
 /**
  * 슬라이드 전환 및 상태 관리 함수
  */
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useCarouselSlide = (imagesLength: number) => {
   const [currentIndex, setCurrentIndex] = useState(1);

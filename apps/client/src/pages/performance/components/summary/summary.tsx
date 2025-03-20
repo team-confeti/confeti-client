@@ -1,8 +1,9 @@
 import { Button, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
-import * as styles from './summary.css';
 import { useFormattedDate } from '@shared/utils/use-format-date';
+
+import * as styles from './summary.css';
 
 interface SummaryProps {
   id: number;

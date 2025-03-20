@@ -1,5 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { createVar } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+
 import { themeVars } from '@confeti/design-system/styles';
 
 export const left = createVar();

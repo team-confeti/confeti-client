@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/confeti-detail/performance-queries';
 
 export const useFestivalDetail = (festivalId: number) => {

@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react';
+
 import Navigation from './navigation';
 
 const meta: Meta<typeof Navigation.Root> = {

@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
+
 import { themeVars } from '../../styles';
 
 globalStyle('.dots_custom', {

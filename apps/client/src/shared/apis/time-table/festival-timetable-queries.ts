@@ -1,4 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
+
 import { getFestivalTimetable } from './festival-timetable';
 
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {

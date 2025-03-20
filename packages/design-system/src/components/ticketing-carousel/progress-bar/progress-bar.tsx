@@ -1,4 +1,5 @@
 import { cn } from '../../../utils';
+
 import { progressBarVariants } from './progress-bar.css';
 
 interface Props {

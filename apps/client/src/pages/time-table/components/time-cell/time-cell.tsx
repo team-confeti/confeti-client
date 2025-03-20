@@ -1,5 +1,6 @@
-import * as styles from './time-cell.css';
 import { HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
+
+import * as styles from './time-cell.css';
 
 interface TimeCellProps {
   isHalfHourOpen: boolean;

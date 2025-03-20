@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useLogoutMutation } from '@pages/my/hooks/use-logout.ts';
+
 import LogoutButton from './logout-button.tsx';
 import * as styles from './user-info.css.ts';
-import { routePath } from '@shared/constants/path.ts';
-import { USER_ID_KEY } from '@shared/constants/user-constants.ts';
 
 interface Props {
   userName: string;
@@ -12,11 +11,10 @@ interface Props {
 const USER_POSTFIX = '님' as const;
 
 const UserInfo = ({ userName, profileUrl }: Props) => {
-  const navigate = useNavigate();
+  const { mutate: logout } = useLogoutMutation();
 
   const handleLogout = () => {
-    localStorage.removeItem(USER_ID_KEY);
-    navigate(routePath.MY_REQUIRE_LOGIN);
+    logout();
   };
 
   return (

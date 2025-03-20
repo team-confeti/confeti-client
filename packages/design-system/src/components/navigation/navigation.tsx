@@ -1,5 +1,6 @@
+import React, { createContext, ReactNode, useContext, useState } from 'react';
+
 import * as styles from './navigation.css';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface NavContextProps {
   activeTab: number;
