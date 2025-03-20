@@ -1,6 +1,7 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
+
 import { axiosPublicInstance, post } from '../config/instance';
 
 export const postSocialLogin = async (socialLoginResponse: KakaoLogin) => {
