@@ -34,6 +34,9 @@ const Home = () => {
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
+
+  const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
+
   const { mutate: login } = useSocialLoginMutation();
   const kakaoRedirectUrl = import.meta.env.VITE_KAKAO_REDIRECT_URI;
   const params = new URLSearchParams(window.location.search);
@@ -48,8 +51,6 @@ const Home = () => {
       });
     }
   }, [code]);
-  const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
-
   return (
     <>
       <Navigation.Root defaultActiveTab={0}>
