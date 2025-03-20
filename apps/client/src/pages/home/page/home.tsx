@@ -55,7 +55,7 @@ const Home = () => {
           <section className={styles.performanceBannerContainer}>
             <PerformanceCarousel
               performData={formattedPerformData}
-              initialSlide={initialSlideIndex}
+              initialSlideIndex={initialSlideIndex}
             >
               <PerformanceCarousel.ImageSlider>
                 <PerformanceCarousel.Badge text="선호하는 아티스트" />
