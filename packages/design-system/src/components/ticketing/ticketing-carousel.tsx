@@ -1,7 +1,6 @@
 import { useEffect, ReactNode } from 'react';
 import * as styles from './ticketing-carousel.css';
 import ProgressBar from './progress-bar/progress-bar';
-import InfoButton from './info-button/info-button';
 import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
@@ -100,11 +99,6 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
           </div>
 
           <TicketingCarousel.InfoBottom>
-            <InfoButton
-              title={'공연 정보 확인하기'}
-              typeId={performanceData.typeId[currentIndex]}
-              performanceType={performanceData.type[currentIndex]}
-            />
             <ProgressBar
               size="md"
               current={
