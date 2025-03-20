@@ -58,7 +58,17 @@ const getReserveDate = (reserveAt: string): string => {
   return formattedDate;
 };
 
-export const useFormattedDate = (
+const calculateDday = (reserveAt: string): string => {
+  const currentDate = new Date();
+  const reserveAtDate = new Date(reserveAt);
+
+  const timeDifference = reserveAtDate.getTime() - currentDate.getTime();
+  const Dday = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+  return Dday <= 0 ? 'D-DAY' : `D-${Dday}`;
+};
+
+export const formatDate = (
   date: string = '',
   formatStyle: string = 'default',
   startAt?: string,
@@ -79,8 +89,13 @@ export const useFormattedDate = (
   switch (formatStyle) {
     case 'koHalf':
       return `${year}년 ${month}월`;
+      break;
     case 'koFull':
       return getReserveDate(date);
+      break;
+    case 'Dday':
+      return calculateDday(date);
+      break;
     default:
       return `${year}.${month}.${day}`;
   }
