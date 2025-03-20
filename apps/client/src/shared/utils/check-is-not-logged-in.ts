@@ -1,5 +1,6 @@
-import { USER_ID, USER_ID_KEY } from '@shared/constants/user-constants';
+import { ACCESS_TOKEN_KEY } from '@shared/constants/user-constants';
+import Cookies from 'js-cookie';
 
 export const checkIsNotLoggedIn = () => {
-  return localStorage.getItem(USER_ID_KEY) !== USER_ID;
+  return !Cookies.get(ACCESS_TOKEN_KEY);
 };
