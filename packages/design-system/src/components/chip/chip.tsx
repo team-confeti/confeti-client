@@ -42,11 +42,7 @@ const Chip = ({
       {...props}
     >
       {label}
-      {variant === 'search' && (
-        <span className="delete-btn" onClick={handleDeleteClick}>
-          <BtnSearchDelete />
-        </span>
-      )}
+      {variant === 'search' && <BtnSearchDelete onClick={handleDeleteClick} />}
     </button>
   );
 };
