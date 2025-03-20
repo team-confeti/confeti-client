@@ -19,20 +19,26 @@ export const SearchBar = ({
   value,
   onChange,
   onKeyDown,
+  onFocus,
+  onBlur,
   showBackButton = true,
-  placeholder = '아티스트 또는 공연을 검색해보세요!',
+  placeholder,
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
 
+  const updateFocusState = (focused: boolean, showClear: boolean) => {
+    setIsFocused(focused);
+    setShowClearBtn(showClear);
+  };
+
   const handleClear = () => {
     if (textInput.current) {
       textInput.current.value = '';
       textInput.current.focus();
-      setShowClearBtn(false);
-      setIsFocused(false);
+      updateFocusState(false, false);
       if (onChange) {
         onChange({
           target: { value: '' },
@@ -50,6 +56,22 @@ export const SearchBar = ({
 
   const handleBackClick = () => {
     navigate(-1);
+  };
+
+  const handleFocus = () => {
+    updateFocusState(true, true);
+    if (onFocus) {
+      onFocus();
+    }
+  };
+
+  const handleBlur = () => {
+    if (!value) {
+      updateFocusState(false, false);
+    }
+    if (onBlur) {
+      onBlur;
+    }
   };
 
   return (
@@ -77,16 +99,8 @@ export const SearchBar = ({
             value={value}
             onChange={handleInputChange}
             onKeyDown={onKeyDown}
-            onFocus={() => {
-              setIsFocused(true);
-              setShowClearBtn(true);
-            }}
-            onBlur={() => {
-              if (!value) {
-                setIsFocused(false);
-                setShowClearBtn(false);
-              }
-            }}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           {showClearBtn && (
             <SvgBtnClose

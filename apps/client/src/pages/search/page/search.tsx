@@ -39,6 +39,7 @@ const Search = () => {
         onKeyDown={handleKeydown}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        placeholder="아티스트 또는 공연을 검색해보세요!"
       />
       {!barFocus && paramsKeyword.length > 0 && (
         <>
