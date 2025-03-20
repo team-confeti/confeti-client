@@ -7,8 +7,7 @@ globalStyle('.dots_custom', {
   justifyContent: 'center',
   verticalAlign: 'middle',
   margin: 0,
-  paddingTop: '0rem !important',
-  paddingBottom: '0.1rem !important',
+  paddingBottom: '0.1rem',
 });
 
 globalStyle('.dots_custom li', {

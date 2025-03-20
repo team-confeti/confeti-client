@@ -21,7 +21,12 @@ import * as styles from './home.css';
 const Home = () => {
   const { performanceCount, performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
-  const formattedPerformData = latestPerformances.map((performance) => ({
+  const displayPerformances =
+    latestPerformances.length > 7
+      ? latestPerformances.slice(0, 7)
+      : latestPerformances;
+
+  const formattedPerformData = displayPerformances.map((performance) => ({
     ...performance,
     performanceAt: formatDate(performance.performanceAt),
   }));
@@ -32,6 +37,7 @@ const Home = () => {
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
+  const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
 
   return (
     <>
@@ -47,7 +53,10 @@ const Home = () => {
 
         <div className={styles.background}>
           <section className={styles.performanceBannerContainer}>
-            <PerformanceCarousel performData={formattedPerformData}>
+            <PerformanceCarousel
+              performData={formattedPerformData}
+              initialSlide={initialSlideIndex}
+            >
               <PerformanceCarousel.ImageSlider>
                 <PerformanceCarousel.Badge text="선호하는 아티스트" />
                 <PerformanceCarousel.Info />

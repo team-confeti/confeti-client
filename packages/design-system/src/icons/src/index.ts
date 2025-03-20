@@ -1,4 +1,3 @@
-export { default as InfoOverlay } from './InfoOverlay';
 export { default as BtnAccountBlack24 } from './BtnAccountBlack24';
 export { default as BtnAccountGray24 } from './BtnAccountGray24';
 export { default as BtnAddGray24 } from './BtnAddGray24';
@@ -37,6 +36,7 @@ export { default as IcTimetableFloatClose } from './IcTimetableFloatClose';
 export { default as IcTimetableFloatFinish } from './IcTimetableFloatFinish';
 export { default as IcToastInfo24 } from './IcToastInfo24';
 export { default as ImgTypelogoBig } from './ImgTypelogoBig';
+export { default as InfoOverlay } from './InfoOverlay';
 export { default as LogoFooter } from './LogoFooter';
 export { default as LogoMain } from './LogoMain';
 export { default as LogoSymbol } from './LogoSymbol';

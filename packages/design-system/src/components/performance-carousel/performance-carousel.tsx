@@ -26,6 +26,12 @@ export interface PerformData {
   posterUrl: string;
 }
 
+type PerformanceCarouselType = {
+  children: ReactNode;
+  initialSlide?: number;
+  performData: PerformData[];
+};
+
 interface CarouselContextType {
   activeIndex: number;
   sliderRef: React.RefObject<Slider | null>;
@@ -50,13 +56,9 @@ const useCarousel = () => {
 // 메인 컴포넌트
 const PerformanceCarousel = ({
   children,
-  initialSlide = 3,
+  initialSlide = 0,
   performData,
-}: {
-  children: ReactNode;
-  initialSlide?: number;
-  performData: PerformData[];
-}) => {
+}: PerformanceCarouselType) => {
   const sliderRef = useRef<Slider | null>(null);
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(initialSlide);
@@ -66,7 +68,7 @@ const PerformanceCarousel = ({
       if (sliderRef.current) {
         sliderRef.current?.slickNext();
       }
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [activeIndex]);
@@ -137,7 +139,7 @@ const Badge = ({ text }: { text: string }) => (
   <div className={styles.badge}>{text}</div>
 );
 
-const ImageSlider = ({ children }: { children?: ReactNode }) => {
+const ImageSlider = ({ children }: { children: ReactNode }) => {
   const { activeIndex, settings, handleContainerClick, performData } =
     useCarousel();
 
@@ -182,7 +184,5 @@ const ImageSlider = ({ children }: { children?: ReactNode }) => {
 PerformanceCarousel.Info = Info;
 PerformanceCarousel.Badge = Badge;
 PerformanceCarousel.ImageSlider = ImageSlider;
-
-export { PerformanceCarousel };
 
 export default PerformanceCarousel;
