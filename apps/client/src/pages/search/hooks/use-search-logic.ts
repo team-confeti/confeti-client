@@ -29,7 +29,6 @@ export const useSearchLogic = () => {
       setTimeout(() => {
         navigate(`${routePath.SEARCH}?q=${searchKeyword}`);
         setBarFocus(false);
-        setSearchKeyword('');
         (e.target as HTMLInputElement).blur();
       }, 0);
     }

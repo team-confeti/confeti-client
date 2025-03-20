@@ -1,8 +1,9 @@
+import Cookies from 'js-cookie';
+
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from '@shared/constants/user-constants';
-import Cookies from 'js-cookie';
 
 export const tokenUtil = (
   action: 'set' | 'remove',

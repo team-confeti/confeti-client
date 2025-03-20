@@ -1,6 +1,5 @@
 import PerformanceInfo from '../components/performance-info';
 import Title from '../components/title';
-
 import * as styles from './performance-section.css';
 
 interface PerformanceSectionProps {

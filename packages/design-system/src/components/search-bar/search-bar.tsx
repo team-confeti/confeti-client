@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
 import SvgBtnClose from '../../icons/src/BtnClose';
-import SvgIcSicGray18 from '../../icons/src/IcSicGray18';
+import SvgIcNewSearchGray18 from '../../icons/src/IcNewSearchGray18';
 
 import * as styles from './search-bar.css';
 
@@ -13,6 +13,8 @@ interface SearchBarProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  showBackButton?: boolean;
+  placeholder?: string;
 }
 
 export const SearchBar = ({
@@ -21,16 +23,24 @@ export const SearchBar = ({
   onKeyDown,
   onFocus,
   onBlur,
+  showBackButton = true,
+  placeholder,
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
+
+  const updateFocusState = (focused: boolean, showClear: boolean) => {
+    setIsFocused(focused);
+    setShowClearBtn(showClear);
+  };
 
   const handleClear = () => {
     if (textInput.current) {
       textInput.current.value = '';
       textInput.current.focus();
-      setShowClearBtn(false);
+      updateFocusState(false, false);
       if (onChange) {
         onChange({
           target: { value: '' },
@@ -50,17 +60,35 @@ export const SearchBar = ({
     navigate(-1);
   };
 
+  const handleFocus = () => {
+    updateFocusState(true, true);
+    if (onFocus) {
+      onFocus();
+    }
+  };
+
+  const handleBlur = () => {
+    if (!value) {
+      updateFocusState(false, false);
+    }
+    if (onBlur) {
+      onBlur;
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.frame}>
-        <SvgBtnArrowLeft20
-          width={20}
-          height={20}
-          onClick={handleBackClick}
-          className={styles.arrowButton}
-        />
+        {showBackButton && (
+          <SvgBtnArrowLeft20
+            width={20}
+            height={20}
+            onClick={handleBackClick}
+            className={styles.arrowButton}
+          />
+        )}
         <div className={styles.searchBar({ type: 'default' })}>
-          <SvgIcSicGray18
+          <SvgIcNewSearchGray18
             className={styles.searchIcon}
             width={18}
             height={18}
@@ -68,14 +96,13 @@ export const SearchBar = ({
           <input
             className={styles.textSection}
             type="text"
-            placeholder="아티스트를 검색해주세요"
+            placeholder={isFocused ? '' : placeholder}
             ref={textInput}
             value={value}
             onChange={handleInputChange}
             onKeyDown={onKeyDown}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            enterKeyHint="search"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           {showClearBtn && (
             <SvgBtnClose

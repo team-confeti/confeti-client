@@ -28,6 +28,7 @@ export { default as IcFloatEditLime24 } from './IcFloatEditLime24';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
 export { default as IcIndicatorDefault } from './IcIndicatorDefault';
 export { default as IcKakao } from './IcKakao';
+export { default as IcNewSearchGray18 } from './IcNewSearchGray18';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';
 export { default as IcSelect } from './IcSelect';
 export { default as IcSicGray18 } from './IcSicGray18';
