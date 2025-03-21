@@ -1,44 +1,54 @@
 import { Meta, StoryObj } from '@storybook/react';
 import TicketingCard from './ticketing-card';
 
-const meta: Meta<typeof TicketingCard.Root> = {
+const meta: Meta<typeof TicketingCard.Image> = {
   title: 'Common/Ticketing/TicketingCard',
-  component: TicketingCard.Root,
+  component: TicketingCard.Image,
   parameters: {
+    componentSubtitle: '티켓팅 카드 컴포넌트',
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'TicketingCard.Image, TicketingCard.Dday, TicketingCard.SubTitle, TicketingCard.PerformanceInfo를 조합해서 사용할 수 있어요.\n\n' +
+          '1. **Image**: 티켓팅카드 이미지 영역을 감싸는 컨테이너입니다.\n' +
+          '2. **Dday**: 공연 날짜 또는 디데이를 표시하는 컴포넌트입니다.\n' +
+          '3. **SubTitle**: 공연의 부제목을 표시하는 컴포넌트입니다.\n' +
+          '4. **PerformanceInfo**: 공연 정보 확인 버튼을 렌더링하는 컴포넌트입니다.',
+      },
+    },
   },
   tags: ['autodocs'],
-  args: {},
 };
 
 export default meta;
-type Story = StoryObj<typeof TicketingCard.Root>;
+type Story = StoryObj<typeof TicketingCard.Image>;
+
+const samplePerformance = {
+  reservationBgUrl: 'https://i.imgur.com/gJ7iUTp.png',
+  reserveAt: 'D-3',
+  subtitle: 'HAVE A NICE TRIP',
+  type: 'FESTIVAL',
+  typeId: 8,
+};
 
 export const Default: Story = {
   render: () => (
-    <TicketingCard.Root>
-      <TicketingCard.Card
-        performances={[
-          {
-            index: 1,
-            reservationBgUrl:
-              'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/festival/main-banner/main-banner-gogohack.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250317T180734Z&X-Amz-SignedHeaders=host&X-Amz-Credential=AKIAVVZOORJ3CWWPDD4H%2F20250317%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Expires=600&X-Amz-Signature=35935a79f388a73c9b74ea2e4a1493765e855b65e883104129fe8c9d439eb4f',
-            subtitle: 'Awesome Show',
-            reserveAt: '2023-09-20',
-            typeId: 1,
-            type: 'Musical',
-          },
-          {
-            index: 2,
-            reservationBgUrl:
-              'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/festival/main-banner/main-banner-gogohack.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250317T180734Z&X-Amz-SignedHeaders=host&X-Amz-Credential=AKIAVVZOORJ3CWWPDD4H%2F20250317%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Expires=600&X-Amz-Signature=35935a79f388a73c9b74ea2e4a1493765e855b65e883104129fe8c9d439eb4f',
-            subtitle: 'Awesome Show',
-            reserveAt: '2023-09-20',
-            typeId: 2,
-            type: 'Musical',
-          },
-        ]}
-      ></TicketingCard.Card>
-    </TicketingCard.Root>
+    <TicketingCard.Image
+      imageUrl={samplePerformance.reservationBgUrl}
+      textContent={
+        <>
+          <TicketingCard.Dday reserveAt={samplePerformance.reserveAt} />
+          <TicketingCard.SubTitle subtitle={samplePerformance.subtitle} />
+        </>
+      }
+      performanceInfoContent={
+        <TicketingCard.PerformanceInfo
+          title="공연 정보 확인하기"
+          typeId={samplePerformance.typeId}
+          performanceType={samplePerformance.type}
+        />
+      }
+    />
   ),
 };
