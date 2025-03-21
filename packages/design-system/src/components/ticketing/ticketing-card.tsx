@@ -1,44 +1,66 @@
 import { ReactNode } from 'react';
 import * as styles from './ticketing-card.css';
-import InfoButton from './info-button/info-button';
-
-interface TicketingCardRootProps {
-  children: ReactNode;
-}
-interface TicketingCardProps {
-  performances: {
-    index: number;
-    reservationBgUrl: string;
-    subtitle: string;
-    reserveAt: string;
-    typeId: number;
-    type: string;
-  }[];
+import SvgIcArrowWhite12 from '../../icons/src/IcArrowWhite12';
+interface TicketingImageProps {
+  textContent: ReactNode;
+  performanceInfoContent: ReactNode;
+  imageUrl: string;
 }
 
-const Root = ({ children }: TicketingCardRootProps) => {
-  return <div className={styles.root}>{children}</div>;
-};
+interface TicketingDdayProps {
+  reserveAt: string;
+}
 
-const Card = ({ performances }: TicketingCardProps) => {
+interface TicketingSubtitleProps {
+  subtitle: string;
+}
+
+interface TicketingPerformanceInfoProps {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  title: string;
+  typeId: number;
+  performanceType?: string;
+}
+
+const Image = ({
+  textContent,
+  performanceInfoContent,
+  imageUrl,
+}: TicketingImageProps) => {
   return (
-    <div className={styles.card}>
-      {performances.map((performance) => (
-        <div key={performance.index} className={styles.textSection}>
-          <p className={styles.Dday}>D-Day</p>
-          <span className={styles.subTitle}>{performance.subtitle}</span>
-          <div className={styles.ticketInfoSection}>
-            <InfoButton title={'티켓 정보 확인하기'} />
-          </div>
-        </div>
-      ))}
+    <div
+      className={styles.imageField}
+      style={{ backgroundImage: `url(${imageUrl})` }}
+    >
+      <div className={styles.textField}>{textContent}</div>
+      <div>{performanceInfoContent}</div>
     </div>
   );
 };
 
+const Dday = ({ reserveAt }: TicketingDdayProps) => {
+  return <p className={styles.Dday}>{reserveAt}</p>;
+};
+
+const Subtitle = ({ subtitle }: TicketingSubtitleProps) => {
+  return <span className={styles.subTitle}>{subtitle}</span>;
+};
+
+const PerformanceInfo = ({ onClick, title }: TicketingPerformanceInfoProps) => {
+  return (
+    <button onClick={onClick} className={styles.performanceInfoButton}>
+      {title}
+      <SvgIcArrowWhite12 width={'1.2rem'} height={'1.2rem'} />
+    </button>
+  );
+};
+
 const TicketingCard = {
-  Root: Root,
-  Card: Card,
+  Image: Image,
+  Dday: Dday,
+  SubTitle: Subtitle,
+  PerformanceInfo: PerformanceInfo,
 };
 
 export default TicketingCard;

@@ -1,24 +1,21 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 
-export const root = style({
-  width: '100%',
-  height: '20rem',
-  gap: '1rem',
-  overflowX: 'auto',
-  whiteSpace: 'nowrap',
-});
-
-export const card = style({
-  display: 'flex',
+export const imageField = style({
+  ...themeVars.display.flexColumn,
+  justifyContent: 'space-between',
   width: '20rem',
   height: '20rem',
+  padding: '2rem',
+  borderRadius: '1rem',
+  flexShrink: 0,
 });
 
-export const textSection = style({
+export const textField = style({
   ...themeVars.display.flexColumn,
+  width: '100%',
+  height: '100%',
   alignItems: 'flex-start',
-  padding: '2rem',
   gap: '0.4rem',
 });
 
@@ -30,12 +27,14 @@ export const Dday = style({
 export const subTitle = style({
   ...themeVars.fontStyles.title3_b_18,
   color: themeVars.color.confeti_lime,
+  width: '16rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
-export const ticketInfoSection = style({
-  ...themeVars.display.flexColumn,
-  alignItems: 'flex-start',
-  alignSelf: 'stretch',
-  padding: '2rem',
-  marginTop: '4.8rem',
+export const performanceInfoButton = style({
+  ...themeVars.display.flexAlignCenter,
+  ...themeVars.fontStyles.subtitle5_sb_12,
+  color: themeVars.color.white,
 });
