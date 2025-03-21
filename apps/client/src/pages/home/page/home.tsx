@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { formatDate } from '@shared/utils/format-date';
 import {
   Footer,
   PerformanceCarousel,
@@ -9,27 +11,34 @@ import { USER_DATA } from '@shared/mocks/user-data';
 import { USER_ID_KEY } from '@shared/constants/user-constants';
 import { routePath } from '@shared/constants/path';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
-import { TAB_MENU } from '../constants/menu';
 import { useTicketing } from '../hooks/use-ticketing';
 import { useLatestPerformances } from '../hooks/use-latest-performances';
+import { TAB_MENU } from '../constants/menu';
 import * as styles from './home.css';
 import ImgDday01 from '/images/img_dday01.svg';
 import ImgDday02 from '/images/img_dday02.svg';
 import ImgDday03 from '/images/img_dday03.svg';
 import ImgDday04 from '/images/img_dday04.svg';
 import ImgDday05 from '/images/img_dday05.svg';
-import { formatDate } from '@shared/utils/use-format-date';
 
 const Home = () => {
   const { performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
-  const userId = localStorage.getItem(USER_ID_KEY);
   const { data: profileData } = useUserProfile();
+  const userId = localStorage.getItem(USER_ID_KEY);
   const isHighlighted = profileData && Number(userId) === USER_DATA.data.userId;
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
   const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
+
+  const DdayList = useMemo(
+    () =>
+      performances?.map((performance) =>
+        formatDate(performance.reserveAt, 'Dday'),
+      ),
+    [performances],
+  );
 
   return (
     <>
@@ -63,22 +72,27 @@ const Home = () => {
                 </>
               )}
             </p>
-            {performances?.map((performance, index) => (
-              <TicketingCard.Image
-                key={performance.typeId}
-                imageUrl={imageUrls[index]}
-              >
-                <TicketingCard.Dday
-                  reserveAt={formatDate(performance.reserveAt, 'Dday')}
+            <div className={styles.ticketingCardContainer}>
+              {performances?.map((performance, index) => (
+                <TicketingCard.Image
+                  key={performance.typeId}
+                  imageUrl={imageUrls[index]}
+                  textContent={
+                    <>
+                      <TicketingCard.Dday reserveAt={DdayList[index]} />
+                      <TicketingCard.SubTitle subtitle={performance.subtitle} />
+                    </>
+                  }
+                  performanceInfoContent={
+                    <TicketingCard.PerformanceInfo
+                      title={'공연 정보 확인하기'}
+                      typeId={performance.typeId}
+                      performanceType={performance.type}
+                    />
+                  }
                 />
-                <TicketingCard.SubTitle subtitle={performance.subtitle} />
-                <TicketingCard.PerformanceInfo
-                  title={'공연 정보 확인하기'}
-                  typeId={performance.typeId}
-                  performanceType={performance.type}
-                />
-              </TicketingCard.Image>
-            ))}
+              ))}
+            </div>
           </section>
         </div>
       </Navigation.Root>

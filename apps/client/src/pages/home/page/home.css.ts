@@ -5,6 +5,15 @@ export const background = style({
   background: themeVars.color.confeti_purple,
 });
 
+export const ticketingCardContainer = style({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  height: '100%',
+  gap: '1rem',
+  overflowX: 'auto',
+});
+
 export const performanceBannerContainer = style({
   width: '100%',
   paddingTop: '0.1rem',
