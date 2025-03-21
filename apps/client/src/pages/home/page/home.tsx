@@ -60,13 +60,11 @@ const Home = () => {
     }
   }, [code]);
 
-  const DdayList = useMemo(
-    () =>
-      performances?.map((performance) =>
-        formatDate(performance.reserveAt, 'Dday'),
-      ),
-    [performances],
-  );
+  const DdayList = useMemo(() => {
+    if (!performances) return [];
+    return performances.map(({ reserveAt }) => formatDate(reserveAt, 'Dday'));
+  }, [performances]);
+
   return (
     <>
       <Navigation.Root defaultActiveTab={0}>
