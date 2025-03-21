@@ -1,4 +1,4 @@
-import { formatDate } from '@shared/utils/use-format-date';
+import { formatDate } from '@shared/utils/format-date';
 import ArtistInfo from '../components/artist-info';
 import Title from '../components/title';
 import * as styles from './artist-section.css';
