@@ -37,6 +37,10 @@ const Home = () => {
     ...performance,
     performanceAt: formatDate(performance.performanceAt),
   }));
+  const DdayList = performances?.map((performance) => ({
+    ...performance,
+    reserveAt: formatDate(performance.reserveAt, 'Dday'),
+  }));
   const { data: profileData } = useUserProfile();
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
@@ -59,11 +63,6 @@ const Home = () => {
       });
     }
   }, [code]);
-
-  const DdayList = useMemo(() => {
-    if (!performances) return [];
-    return performances.map(({ reserveAt }) => formatDate(reserveAt, 'Dday'));
-  }, [performances]);
 
   return (
     <>
@@ -112,7 +111,9 @@ const Home = () => {
                   imageUrl={imageUrls[index]}
                   textContent={
                     <>
-                      <TicketingCard.Dday reserveAt={DdayList[index]} />
+                      <TicketingCard.Dday
+                        reserveAt={DdayList[index]?.reserveAt}
+                      />
                       <TicketingCard.SubTitle subtitle={performance.subtitle} />
                     </>
                   }
