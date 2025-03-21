@@ -18,7 +18,7 @@ export const ticketingCardContainer = style({
 export const performanceBannerContainer = style({
   width: '100%',
   paddingTop: '0.1rem',
-  background: themeVars.color.confeti_lime_grad,
+  background: themeVars.color.confeti_purple_grad,
 });
 
 export const ticketingBannerContainer = style({
