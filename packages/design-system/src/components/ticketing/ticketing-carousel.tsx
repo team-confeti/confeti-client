@@ -4,12 +4,10 @@ import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
 import { useControlTime } from './hooks/use-control-time';
 import { useDateFormat } from './hooks/use-data-format';
-import InfoButton from './info-button/info-button';
-import ProgressBar from './progress-bar/progress-bar';
 import ProgressBar from './progress-bar/progress-bar';
 
 import * as styles from './ticketing-carousel.css';
-import * as styles from './ticketing-carousel.css';
+
 interface CarouselWrapProps {
   performances: {
     index: number;
@@ -119,27 +117,8 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   );
 };
 
-const CarouselContainer = ({
-  children,
-  currentImageId,
-  performanceType,
-}: CarouselContainerProps) => {
-  const navigate = useNavigate();
-
-  const handleNavigateDetail = () => {
-    if (performanceType === 'FESTIVAL') {
-      navigate(`/festival-detail/${currentImageId}`);
-    }
-    if (performanceType === 'CONCERT') {
-      navigate(`/concert-detail/${currentImageId}`);
-    }
-  };
-
-  return (
-    <div className={styles.container} onClick={handleNavigateDetail}>
-      {children}
-    </div>
-  );
+const CarouselContainer = ({ children }: CarouselContainerProps) => {
+  return <div className={styles.container}>{children}</div>;
 };
 
 const CarouselInfo = ({ children }: CarouselInfoProps) => (
