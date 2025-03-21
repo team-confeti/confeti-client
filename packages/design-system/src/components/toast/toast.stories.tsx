@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ToastContainer, toast } from '@confeti/design-system';
+
+import { Button, toast, ToastContainer } from '@confeti/design-system';
+
 import Toast from './toast';
 
 const meta: Meta<typeof ToastContainer> = {
@@ -29,6 +31,10 @@ type Story = StoryObj<typeof meta>;
 export const Docs: Story = {
   args: {
     showToast: true,
+    position: 'bottomCenter',
+    text: 'Toast 컴포넌트 예시',
+    icon: 'default',
+    autoClose: false,
   },
   render: (args) => {
     return args.showToast ? (
@@ -40,7 +46,16 @@ export const Docs: Story = {
           height: '4vh',
         }}
       >
-        <Toast toastId="toast" text="Toast 컴포넌트 예시" autoClose={999999} />
+        <Toast
+          toastId="toast"
+          text={args.text}
+          position={args.position}
+          icon={args.icon}
+          autoClose={args.autoClose}
+          closeOnClick={args.closeOnClick}
+          highlightText={args.highlightText}
+          className={args.className}
+        />
       </div>
     ) : (
       <div />
@@ -50,20 +65,41 @@ export const Docs: Story = {
 
 export const Example: Story = {
   args: {
-    showToast: false,
+    position: 'bottomCenter',
+    text: '알림 메시지 예시입니다.',
+    icon: 'default',
   },
   render: (args) => {
     const handleButtonClick = () => {
-      toast.success('페스티벌은 3개 까지만 추가할 수 있어요.');
+      toast({
+        text: args.text,
+        position: args.position,
+        icon: args.icon,
+        autoClose: args.autoClose,
+        closeOnClick: args.closeOnClick,
+        highlightText: args.highlightText,
+        className: args.className,
+      });
     };
 
     return (
       <div>
         <Button
           onClick={handleButtonClick}
-          text="이 버튼을 누르면 토스트가 뜹니다"
+          text="이 버튼을 누르면 토스트가 나와요!"
         />
-        {args.showToast && <Toast toastId="toast" text="Toast 컴포넌트 예시" />}
+        {args.showToast && (
+          <Toast
+            toastId="toast"
+            text={args.text}
+            position={args.position}
+            icon={args.icon}
+            autoClose={args.autoClose}
+            closeOnClick={args.closeOnClick}
+            highlightText={args.highlightText}
+            className={args.className}
+          />
+        )}
       </div>
     );
   },

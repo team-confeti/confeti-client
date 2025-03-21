@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+
 import { themeVars } from '../../styles';
 
 export const container = style({
@@ -14,6 +15,11 @@ export const frame = style({
   display: 'flex',
   alignItems: 'center',
   width: '100%',
+  gap: '0.5rem',
+});
+
+export const arrowButton = style({
+  cursor: 'pointer',
 });
 
 export const searchBar = recipe({
@@ -22,9 +28,9 @@ export const searchBar = recipe({
     alignItems: 'center',
     width: '100%',
     height: '3.8rem',
-    padding: '1rem 1.2rem',
+    padding: '1rem 1.4rem',
+    backgroundColor: themeVars.color.gray200,
     borderRadius: '2.1rem',
-    border: themeVars.border.black,
   },
   variants: {
     type: {
@@ -41,11 +47,12 @@ export const textSection = style({
   width: '100%',
   marginLeft: '0.6rem',
   backgroundColor: 'transparent',
-  caretColor: themeVars.color.confeti_lime,
+  caretColor: themeVars.color.black,
 
   selectors: {
     '&::placeholder': {
-      color: themeVars.color.gray400,
+      ...themeVars.fontStyles.body2_r_15,
+      color: themeVars.color.gray500,
     },
     '&:focus': {
       outline: 'none',
@@ -54,9 +61,5 @@ export const textSection = style({
 });
 
 export const closeBtn = style({
-  cursor: 'pointer',
-});
-
-export const arrowButton = style({
   cursor: 'pointer',
 });

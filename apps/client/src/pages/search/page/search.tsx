@@ -1,18 +1,22 @@
-import { SearchBar, Spacing, Footer } from '@confeti/design-system';
-import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
-import NoticeSection from '@pages/search/components/notice-section';
 import ArtistSection from '@pages/search/components/artist-section';
-import PerformanceSection from '@pages/search/components/performance-section';
+import NoticeSection from '@pages/search/components/notice-section';
 import PerformanceCount from '@pages/search/components/performance-count-section';
-import { useSearchLogic } from '../hooks/use-search-logic';
-import { useSearchPerformances } from '../hooks/use-search-data';
+import PerformanceSection from '@pages/search/components/performance-section';
+
+import { Footer, SearchBar, Spacing } from '@confeti/design-system';
+import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
+
 import ArtistNotFound from '../components/artist-not-found';
+import { useSearchPerformances } from '../hooks/use-search-data';
+import { useSearchLogic } from '../hooks/use-search-logic';
+
 import * as styles from './search.css';
 
 const Search = () => {
   const {
     artistData,
     paramsKeyword,
+    searchKeyword,
     barFocus,
     handleOnChange,
     handleKeydown,
@@ -33,10 +37,12 @@ const Search = () => {
   return (
     <>
       <SearchBar
+        value={searchKeyword}
         onChange={handleOnChange}
         onKeyDown={handleKeydown}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        placeholder="아티스트 또는 공연을 검색해보세요!"
       />
       {!barFocus && paramsKeyword.length > 0 && (
         <>

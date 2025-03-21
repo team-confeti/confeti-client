@@ -86,13 +86,10 @@ export const formatDate = (
   switch (formatStyle) {
     case 'koHalf':
       return `${year}년 ${month}월`;
-      break;
     case 'koFull':
       return getReserveDate(date);
-      break;
     case 'Dday':
       return calculateDday(date);
-      break;
     default:
       return `${year}.${month}.${day}`;
   }

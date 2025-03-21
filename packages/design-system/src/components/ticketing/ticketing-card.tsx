@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
-import * as styles from './ticketing-card.css';
+
 import SvgIcArrowWhite12 from '../../icons/src/IcArrowWhite12';
+
+import * as styles from './ticketing-card.css';
 interface TicketingImageProps {
   textContent: ReactNode;
   performanceInfoContent: ReactNode;

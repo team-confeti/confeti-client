@@ -1,6 +1,8 @@
 import { infiniteQueryOptions } from '@tanstack/react-query';
-import { getFestivalToAdd } from './get-festival-to-add';
+
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
+
+import { getFestivalToAdd } from './get-festival-to-add';
 
 export const GET_FESTIVAL_TO_ADD_QUERY_KEY = {
   ALL: ['getFestivalToAdd'],

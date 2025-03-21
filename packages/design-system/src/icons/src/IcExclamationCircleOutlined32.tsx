@@ -5,7 +5,6 @@ const SvgIcExclamationCircleOutlined32 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 32 32"
     {...props}
   >
     <g fill="#C5C6CB" clipPath="url(#ic_exclamation_circle_outlined_32_svg__a)">

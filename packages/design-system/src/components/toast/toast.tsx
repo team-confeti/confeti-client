@@ -1,8 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
-
-import { ToastProps, ToastEvent } from './types/type';
-import { eventManager } from './utils/eventManager';
 import { IcToastInfo24 } from '../../icons/src';
+import { cn } from '../../utils';
+import { useToast } from './hooks/use-toast';
+import { ToastProps } from './types';
+import { TOAST_DEFAULT_POSITION } from './utils/constants';
+
 import * as styles from './toast.css';
 
 const Toast = ({
@@ -10,39 +11,48 @@ const Toast = ({
   text,
   autoClose = 3000,
   closeOnClick = true,
-  position = 'bottomCenter',
+  position = TOAST_DEFAULT_POSITION,
+  icon,
+  className,
+  highlightText,
 }: ToastProps) => {
-  const toastRef = useRef<HTMLDivElement>(null);
-  const [isExiting, setIsExiting] = useState(false);
+  const { isExiting, handleAnimationEnd, handleClick } = useToast(
+    toastId,
+    autoClose,
+    closeOnClick,
+  );
 
-  const handleAnimationEnd = () => {
-    if (isExiting) {
-      eventManager.emit(ToastEvent.Delete, toastId);
+  const isTopPosition = position.startsWith('top');
+
+  const renderIcon = () => {
+    switch (icon) {
+      case 'default':
+        return <IcToastInfo24 width={'2rem'} height={'2rem'} />;
+      case undefined:
+        return null;
+      default:
+        return icon;
     }
   };
 
-  useEffect(() => {
-    if (autoClose) {
-      const timer = setTimeout(() => {
-        setIsExiting(true);
-      }, autoClose);
-      return () => clearTimeout(timer);
-    }
-  }, [autoClose]);
-
   return (
     <div
-      ref={toastRef}
-      className={styles.toast({
-        position,
-        animation: isExiting ? 'exit' : 'enter',
-      })}
-      onClick={() => closeOnClick && setIsExiting(true)}
+      className={cn(
+        styles.toastVariants({
+          isTopPosition,
+          animation: isExiting ? 'exit' : 'enter',
+        }),
+        className,
+      )}
+      onClick={handleClick}
       onAnimationEnd={handleAnimationEnd}
     >
       <div className={styles.content}>
-        <IcToastInfo24 className={styles.icon} />
-        <p>{text}</p>
+        {renderIcon()}
+        <p className={styles.text}>
+          <span className={styles.highlightText}>{highlightText}</span>
+          {text}
+        </p>
       </div>
     </div>
   );

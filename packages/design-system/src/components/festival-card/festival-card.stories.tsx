@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import FestivalCard from './festival-card';
 
 const meta: Meta<typeof FestivalCard> = {

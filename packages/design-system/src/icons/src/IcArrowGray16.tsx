@@ -5,7 +5,6 @@ const SvgIcArrowGray16 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 16 17"
     {...props}
   >
     <g clipPath="url(#ic_arrow_gray_16_svg__a)">

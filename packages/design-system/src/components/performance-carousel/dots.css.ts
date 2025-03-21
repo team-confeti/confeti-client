@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
+
 import { themeVars } from '../../styles';
 
 globalStyle('.dots_custom', {
@@ -6,8 +7,7 @@ globalStyle('.dots_custom', {
   justifyContent: 'center',
   verticalAlign: 'middle',
   margin: 0,
-  paddingTop: '0rem !important',
-  paddingBottom: '2.3rem !important',
+  paddingBottom: '0.1rem',
 });
 
 globalStyle('.dots_custom li', {
@@ -21,7 +21,7 @@ globalStyle('.dots_custom li', {
 globalStyle('.dots_custom li button', {
   border: 'none',
   background: themeVars.color.white,
-  opacity: 0.2,
+  opacity: 1,
   cursor: 'pointer',
   display: 'block',
   height: '0.6rem',
@@ -32,6 +32,8 @@ globalStyle('.dots_custom li button', {
 });
 
 globalStyle('.dots_custom li.slick-active button', {
-  backgroundColor: themeVars.color.confeti_lime3,
+  backgroundColor: themeVars.color.confeti_lime,
   opacity: 1,
+  width: '2.4rem',
+  borderRadius: '10px',
 });

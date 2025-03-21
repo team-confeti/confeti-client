@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { CAROUSEL_QUERY_OPTIONS } from '@shared/apis/carousel/carousel-queries';
 
 export const useTicketing = () => {

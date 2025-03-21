@@ -5,7 +5,6 @@ const SvgBtnArrowLeft24 = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 24 25"
     {...props}
   >
     <g clipPath="url(#btn_arrow_left_24_svg__a)">

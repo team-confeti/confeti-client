@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSearchArtist } from '../hooks/use-search-data';
+
 import { routePath } from '@shared/constants/path';
+
+import { useSearchArtist } from '../hooks/use-search-data';
 
 export const useSearchLogic = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -27,7 +29,6 @@ export const useSearchLogic = () => {
       setTimeout(() => {
         navigate(`${routePath.SEARCH}?q=${searchKeyword}`);
         setBarFocus(false);
-        setSearchKeyword('');
         (e.target as HTMLInputElement).blur();
       }, 0);
     }

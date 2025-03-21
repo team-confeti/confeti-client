@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { IcSelect } from '../../icons/src';
 
 import * as styles from './festival-card.css';
-import { IcSelect } from '../../icons/src';
 
 interface FestivalCardProps {
   typeId: number;

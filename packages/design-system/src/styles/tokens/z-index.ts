@@ -20,6 +20,7 @@ export const zIndex = {
   },
   poster: {
     content: '20',
+    infoText: '25',
   },
   navigation: {
     content: '10',

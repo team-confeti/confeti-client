@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
-import TicketingCarousel from '../ticketing-carousel';
+
 import { BANNER_DATA } from '../mocks/bottom-banner-data';
+import TicketingCarousel from '../ticketing-carousel';
 
 const meta: Meta<typeof TicketingCarousel.Wrap> = {
   title: 'Common/Ticketing/ProgressBar',
