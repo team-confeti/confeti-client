@@ -4,25 +4,29 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
 
 export const dropdownWrapper = style({
-  position: 'relative',
+  position: 'absolute',
+  zIndex: themeVars.zIndex.dropdown.content,
+  lineHeight: 0,
+  boxShadow: themeVars.shadowStyles.shadow_toast.boxShadow,
+  borderRadius: '5px',
 });
 
 export const triggerBtnStyle = recipe({
-  base: {
-    border: '1px solid black',
-  },
+  base: {},
   variants: {
     isToggleOpen: {
-      true: {},
+      true: {
+        borderColor: themeVars.color.confeti_lime3,
+      },
     },
   },
 });
 
 export const dropdownContent = recipe({
   base: {
-    position: 'absolute', // 절대 위치
-    right: 0, // 오른쪽 정렬
-    top: '100%', // 트리거 버튼 아래에 배치
+    position: 'absolute',
+    right: 0,
+    top: '100%',
     display: 'flex',
     flexDirection: 'column',
     borderRadius: '1rem',
@@ -45,4 +49,5 @@ export const dropdownItem = style({
   padding: '1.6rem',
   backgroundColor: themeVars.color.white,
   whiteSpace: 'nowrap',
+  alignItems: 'center',
 });

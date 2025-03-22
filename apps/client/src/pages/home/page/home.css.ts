@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const background = style({
-  background: themeVars.color.confeti_purple,
+  background: themeVars.color.confeti_lime_grad,
 });
 
 export const performanceBannerContainer = style({

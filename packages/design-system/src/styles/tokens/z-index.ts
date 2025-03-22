@@ -25,4 +25,7 @@ export const zIndex = {
   navigation: {
     content: '10',
   },
+  dropdown: {
+    content: '30',
+  },
 } as const;

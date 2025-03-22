@@ -14,6 +14,9 @@ export const shadowStyles = {
   shadow_gloabal: {
     boxShadow: '0px 0px 30px 0px rgba(0,0,0,0.25)',
   },
+  shadow_toast: {
+    boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
+  },
   shadow_home_poster: {
     boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
   },
