@@ -171,7 +171,7 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
           ) : (
             <SlideOverlayOp
               className={styles.slideOverlay}
-              width="100%"
+              width="96.5%"
               height="100%"
             />
           )}
