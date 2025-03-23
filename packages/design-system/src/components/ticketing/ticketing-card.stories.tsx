@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import TicketingCard from './ticketing-card';
 
 const meta: Meta<typeof TicketingCard.Image> = {
-  title: 'Common/Ticketing/TicketingCard',
+  title: 'Common/Card/TicketingCard',
   component: TicketingCard.Image,
   parameters: {
     componentSubtitle: '티켓팅 카드 컴포넌트',
