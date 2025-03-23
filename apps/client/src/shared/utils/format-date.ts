@@ -59,9 +59,16 @@ const getReserveDate = (reserveAt: string): string => {
 };
 
 const calculateDday = (reserveAt: string): string => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const reserveDate = new Date(reserveAt);
+  reserveDate.setHours(0, 0, 0, 0);
+
   const Dday = Math.ceil(
-    (new Date(reserveAt).getTime() - new Date().getTime()) / (1000 * 3600 * 24),
+    (reserveDate.getTime() - today.getTime()) / (1000 * 3600 * 24),
   );
+
   return Dday <= 0 ? 'D-DAY' : `D-${Dday}`;
 };
 
