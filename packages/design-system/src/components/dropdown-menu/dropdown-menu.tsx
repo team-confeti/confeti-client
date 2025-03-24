@@ -104,17 +104,23 @@ interface DropdownItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   icon?: ReactElement<SVGProps<SVGSVGElement>>;
   className?: string;
+  onClick?: () => void;
 }
 
 const DropdownItem = ({
   label,
   icon,
   className,
+  onClick,
   ...props
 }: DropdownItemProps) => {
   return (
     <li>
-      <button {...props} className={cn(styles.dropdownItem, className)}>
+      <button
+        {...props}
+        onClick={onClick}
+        className={cn(styles.dropdownItem, className)}
+      >
         {icon}
         <p>{label}</p>
       </button>
