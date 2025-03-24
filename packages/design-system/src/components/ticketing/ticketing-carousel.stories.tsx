@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/react';
 
-import { BANNER_DATA } from '../mocks/bottom-banner-data';
-import TicketingCarousel from '../ticketing-carousel';
+import { BANNER_DATA } from './mocks/bottom-banner-data';
+import TicketingCarousel from './ticketing-carousel';
 
 const meta: Meta<typeof TicketingCarousel.Wrap> = {
-  title: 'Common/Carousel/ProgressBar',
+  title: 'Common/Ticketing/TicketingCarousel',
   component: TicketingCarousel.Wrap,
   parameters: {
     layout: 'centered',
@@ -20,7 +20,7 @@ export default meta;
 
 export const Default = () => {
   return (
-    <div style={{ width: '335px', height: '700px' }}>
+    <div style={{ width: '375px' }}>
       <TicketingCarousel.Wrap
         performances={bannerData}
         indexData={TotalIndexData}

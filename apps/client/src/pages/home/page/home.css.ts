@@ -3,7 +3,16 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const background = style({
-  background: themeVars.color.confeti_purple,
+  background: themeVars.color.confeti_lime_grad,
+});
+
+export const ticketingCardContainer = style({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  height: '100%',
+  gap: '1rem',
+  overflowX: 'auto',
 });
 
 export const performanceBannerContainer = style({
