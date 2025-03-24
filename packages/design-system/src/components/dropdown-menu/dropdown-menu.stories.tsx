@@ -28,14 +28,13 @@ export const Default: Story = {
           <BtnMeatball width={'2.4rem'} height={'2.4rem'} />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
-          <DropdownMenu.Item
-            label="페스티벌 추가하기"
-            icon={<IcTimetableAddfestival width={'2rem'} height={'2rem'} />}
-          />
-          <DropdownMenu.Item
-            label="페스티벌 삭제하기"
-            icon={<IcTimetableDeletefestival width={'2rem'} height={'2rem'} />}
-          />
+          <DropdownMenu.Item label="페스티벌 추가하기">
+            <IcTimetableAddfestival width={'2rem'} height={'2rem'} />
+          </DropdownMenu.Item>
+
+          <DropdownMenu.Item label="페스티벌 삭제하기">
+            <IcTimetableDeletefestival width={'2rem'} height={'2rem'} />
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu>
     </div>

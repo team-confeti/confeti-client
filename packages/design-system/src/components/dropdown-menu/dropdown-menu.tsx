@@ -102,14 +102,14 @@ const DropdownContent = ({ children, className }: DropdownContentProps) => {
 // Dropdown의 메뉴 리스트 아이템 컴포넌트
 interface DropdownItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  icon?: ReactElement<SVGProps<SVGSVGElement>>;
+  children?: ReactNode;
   className?: string;
   onClick?: () => void;
 }
 
 const DropdownItem = ({
   label,
-  icon,
+  children,
   className,
   onClick,
   ...props
@@ -121,7 +121,7 @@ const DropdownItem = ({
         onClick={onClick}
         className={cn(styles.dropdownItem, className)}
       >
-        {icon}
+        {children}
         <p>{label}</p>
       </button>
     </li>
