@@ -4,6 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
 
 export const dropdownWrapper = style({
+  ...themeVars.fontStyles.subtitle3_b_15,
   position: 'absolute',
   zIndex: themeVars.zIndex.dropdown.content,
   lineHeight: 0,
