@@ -1,9 +1,7 @@
 import {
   ButtonHTMLAttributes,
   createContext,
-  ReactElement,
   ReactNode,
-  SVGProps,
   useContext,
   useRef,
   useState,
