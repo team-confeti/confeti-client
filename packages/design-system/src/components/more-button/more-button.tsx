@@ -4,12 +4,12 @@ import IconButton from '@mui/material/IconButton';
 import { BtnKebabActive, BtnKebabDefault } from '@confeti/design-system/icons';
 
 interface Props {
-  className?: string;
+  isActive?: boolean;
   onToggle?: (isActive: boolean) => void;
 }
 
-const MoreButton = ({ className, onToggle }: Props) => {
-  const [isActive, setIsActive] = useState(false);
+const MoreButton = ({ isActive: controlledIsActive, onToggle }: Props) => {
+  const [isActive, setIsActive] = useState(controlledIsActive ?? false);
 
   const handleClick = () => {
     const newState = !isActive;
@@ -19,7 +19,6 @@ const MoreButton = ({ className, onToggle }: Props) => {
 
   return (
     <IconButton
-      className={className}
       onClick={handleClick}
       aria-label="페스티벌 추가 또는 삭제"
       disableRipple
