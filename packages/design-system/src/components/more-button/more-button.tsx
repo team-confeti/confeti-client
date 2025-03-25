@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 
 import { BtnKebabActive, BtnKebabDefault } from '@confeti/design-system/icons';
@@ -8,13 +8,20 @@ interface Props {
   onToggle?: (isActive: boolean) => void;
 }
 
-const MoreButton = ({ isActive: controlledIsActive, onToggle }: Props) => {
-  const [isActive, setIsActive] = useState(controlledIsActive ?? false);
+const MoreButton = ({
+  isActive: controlledIsActive = false,
+  onToggle,
+}: Props) => {
+  const [isActive, setIsActive] = useState(controlledIsActive);
+
+  useEffect(() => {
+    setIsActive(controlledIsActive);
+  }, [controlledIsActive]);
 
   const handleClick = () => {
     const newState = !isActive;
     setIsActive(newState);
-    if (onToggle) onToggle(newState);
+    onToggle?.(newState);
   };
 
   return (
