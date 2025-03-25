@@ -8,7 +8,7 @@ interface Props {
   onToggle?: (isActive: boolean) => void;
 }
 
-const MoreButton = ({
+const DropdownButton = ({
   isActive: controlledIsActive = false,
   onToggle,
 }: Props) => {
@@ -39,4 +39,4 @@ const MoreButton = ({
   );
 };
 
-export default MoreButton;
+export default DropdownButton;

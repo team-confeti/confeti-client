@@ -1,11 +1,11 @@
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Button } from './button/button';
+export { default as MoreButton } from './dropdown/dropdown-button';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as FloatingButton } from './floating-button/floating-button';
 export { default as Footer } from './footer/footer';
 export { default as Header } from './header/header';
 export { default as LikeButton } from './like-button/like-button';
-export { default as MoreButton } from './more-button/more-button';
 export { default as Navigation } from './navigation/navigation';
 export { default as PerformanceCarousel } from './performance-carousel/performance-carousel';
 export { default as SearchBar } from './search-bar/search-bar';
