@@ -5,7 +5,7 @@ import { postSocialLogin } from '@shared/apis/auth/auth';
 import { routePath } from '@shared/constants/path';
 import { BaseResponse } from '@shared/types/api';
 import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
-import { tokenUtil } from '@shared/utils/token-handler';
+import { authTokenHandler } from '@shared/utils/token-handler';
 
 export const useSocialLoginMutation = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const useSocialLoginMutation = () => {
     onSuccess: (data) => {
       if (data?.data) {
         const { accessToken, refreshToken, isOnboarding } = data.data;
-        tokenUtil('set', accessToken, refreshToken);
+        authTokenHandler('set', accessToken, refreshToken);
         navigate(
           isOnboarding ? `${routePath.ONBOARDING}` : `${routePath.ROOT}`,
         );

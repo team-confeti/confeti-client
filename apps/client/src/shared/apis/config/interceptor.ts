@@ -9,7 +9,7 @@ import {
   REFRESH_TOKEN_KEY,
 } from '@shared/constants/user-constants';
 import { BaseResponse } from '@shared/types/api';
-import { tokenUtil } from '@shared/utils/token-handler';
+import { authTokenHandler } from '@shared/utils/token-handler';
 
 import { HTTPError } from './http-error';
 import { axiosInstance, axiosPublicInstance } from './instance';
@@ -25,7 +25,7 @@ interface TokenResponse {
 }
 
 const redirectToLogin = () => {
-  tokenUtil('remove');
+  authTokenHandler('remove');
   window.location.replace(routePath.ROOT);
   throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
 };
@@ -96,7 +96,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
     const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
       response.data.data;
-    tokenUtil('set', newAccessToken, newRefreshToken);
+    authTokenHandler('set', newAccessToken, newRefreshToken);
 
     const originalConfig = error.config;
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;

@@ -5,7 +5,7 @@ import { postLogout } from '@shared/apis/auth/auth';
 import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
 import { routePath } from '@shared/constants/path';
 import { BaseResponse } from '@shared/types/api';
-import { tokenUtil } from '@shared/utils/token-handler';
+import { authTokenHandler } from '@shared/utils/token-handler';
 
 export const useLogoutMutation = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const useLogoutMutation = () => {
       queryClient.invalidateQueries({
         queryKey: [...USER_QUERY_KEY.PROFILE()],
       });
-      tokenUtil('remove');
+      authTokenHandler('remove');
       navigate(`${routePath.ROOT}`);
     },
   });
