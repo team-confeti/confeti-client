@@ -5,6 +5,7 @@ export { default as BtnArrowLeft20 } from './BtnArrowLeft20';
 export { default as BtnArrowLeft24 } from './BtnArrowLeft24';
 export { default as BtnClose } from './BtnClose';
 export { default as BtnDeleteBlack20 } from './BtnDeleteBlack20';
+export { default as BtnDownload } from './BtnDownload';
 export { default as BtnFestivalDelete } from './BtnFestivalDelete';
 export { default as BtnHeart } from './BtnHeart';
 export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
