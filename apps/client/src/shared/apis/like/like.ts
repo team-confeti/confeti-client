@@ -8,7 +8,7 @@ export const postLikeArtist = async (artistId: string): Promise<void> => {
 };
 
 export const deleteLikeArtist = async (artistId: string): Promise<void> => {
-  await post<BaseResponseWithoutData>(END_POINT.POST_LIKE_ARTIST(artistId));
+  await del<BaseResponseWithoutData>(END_POINT.POST_LIKE_ARTIST(artistId));
 };
 
 export const postLikeFestival = async (festivalId: number): Promise<void> => {
