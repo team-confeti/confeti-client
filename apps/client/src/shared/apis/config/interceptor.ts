@@ -8,21 +8,12 @@ import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from '@shared/constants/user-constants';
-import { BaseResponse } from '@shared/types/api';
+import { BaseResponse, ErrorResponse } from '@shared/types/api';
+import { TokenResponse } from '@shared/types/login-response';
 import { authTokenHandler } from '@shared/utils/token-handler';
 
 import { HTTPError } from './http-error';
 import { axiosInstance, axiosPublicInstance } from './instance';
-
-interface ErrorResponse {
-  message?: string;
-  code?: number;
-}
-
-interface TokenResponse {
-  accessToken: string;
-  refreshToken: string;
-}
 
 const redirectToLogin = () => {
   authTokenHandler('remove');
