@@ -23,7 +23,7 @@ export const getMyArtists = async (): Promise<FavoriteArtistsResponses> => {
 
 export const getPerformances = async (): Promise<PerformanceResponse> => {
   const response = await get<BaseResponse<PerformanceResponse>>(
-    END_POINT.GET_PERFORMANCE_FAVORITE,
+    END_POINT.GET_FAVORITE_PERFORMANCES,
   );
   return response.data;
 };

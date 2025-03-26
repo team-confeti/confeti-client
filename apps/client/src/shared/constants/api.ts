@@ -2,8 +2,8 @@ export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
 
 export const END_POINT = {
   GET_USER_PROFILE: '/user/info',
-  GET_FAVORITE_ARTISTS: '/user/favorites/artists',
-  GET_FAVORITE_PERFORMANCES: '/user/favorites/performances',
+  GET_FAVORITE_ARTISTS: '/user/favorites/artists/preview',
+  GET_FAVORITE_PERFORMANCES: '/user/favorites/performances/preview',
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,
@@ -26,7 +26,6 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
-  GET_PERFORMANCE_FAVORITE: '/user/favorites/performances/preview',
   //로그인,로그아웃
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
