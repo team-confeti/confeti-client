@@ -22,11 +22,21 @@ const meta: Meta<typeof MusicItem> = {
 export default meta;
 type Story = StoryObj<typeof MusicItem>;
 
+const wrapperStyle = {
+  maxWidth: '375px',
+  margin: '0 auto',
+};
+
 export const Default: Story = {
   args: {
     variant: 'default',
     isPlaying: false,
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicItem {...args} />
+    </div>
+  ),
 };
 
 export const Playing: Story = {
@@ -34,16 +44,31 @@ export const Playing: Story = {
     variant: 'default',
     isPlaying: true,
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicItem {...args} />
+    </div>
+  ),
 };
 
 export const Editable: Story = {
   args: {
     variant: 'editable',
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicItem {...args} />
+    </div>
+  ),
 };
 
 export const ConfirmDelete: Story = {
   args: {
     variant: 'confirmDelete',
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicItem {...args} />
+    </div>
+  ),
 };

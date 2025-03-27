@@ -43,11 +43,21 @@ const mockMusics = [
   },
 ];
 
+const wrapperStyle = {
+  maxWidth: '375px',
+  margin: '0 auto',
+};
+
 export const Default: Story = {
   args: {
     musics: mockMusics,
     variant: 'default',
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicList {...args} />
+    </div>
+  ),
 };
 
 export const Editable: Story = {
@@ -55,6 +65,11 @@ export const Editable: Story = {
     musics: mockMusics,
     variant: 'editable',
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicList {...args} />
+    </div>
+  ),
 };
 
 export const ConfirmDelete: Story = {
@@ -62,4 +77,9 @@ export const ConfirmDelete: Story = {
     musics: mockMusics,
     variant: 'confirmDelete',
   },
+  render: (args) => (
+    <div style={wrapperStyle}>
+      <MusicList {...args} />
+    </div>
+  ),
 };
