@@ -4,45 +4,27 @@ import { chipVariants } from './chip.css';
 
 interface ChipProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  variant?: 'home' | 'search';
-  isActive?: boolean;
+  variant?: 'default' | 'active' | 'withDelete';
   onDelete?: () => void;
-  onScrollToSection?: () => void;
-  onActiveChange?: (label: string) => void;
 }
 
 const Chip = ({
   label,
-  variant = 'home',
-  isActive = false,
+  variant = 'default',
   onDelete,
-  onScrollToSection,
-  onActiveChange,
   ...props
 }: ChipProps) => {
-  const handleClick = () => {
-    if (variant === 'home') {
-      onActiveChange?.(label);
-      onScrollToSection?.();
-    }
-  };
-
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.();
   };
 
   return (
-    <button
-      className={chipVariants({
-        variant,
-        isActive: variant === 'home' ? isActive : false,
-      })}
-      onClick={variant === 'home' ? handleClick : undefined}
-      {...props}
-    >
+    <button className={chipVariants({ variant })} {...props}>
       {label}
-      {variant === 'search' && <BtnSearchDelete onClick={handleDeleteClick} />}
+      {variant === 'withDelete' && (
+        <BtnSearchDelete onClick={handleDeleteClick} />
+      )}
     </button>
   );
 };
