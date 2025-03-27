@@ -4,8 +4,11 @@ export interface KakaoLogin {
   code: string;
 }
 
-export type SocialLoginResponse = {
+export type TokenResponse = {
   accessToken: string;
   refreshToken: string;
+};
+
+export type SocialLoginResponse = TokenResponse & {
   isOnboarding: boolean;
 };
