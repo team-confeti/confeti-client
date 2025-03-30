@@ -19,11 +19,13 @@ const MyProfile = () => {
     return null;
   }
 
+  console.log('profileData', profileData);
+
   return (
     <>
       <Header variant="detail" title="마이페이지" />
       <UserInfo
-        userName={profileData.username}
+        userName={profileData.name}
         profileUrl={profileData.profileUrl}
       />
       <Spacing />
