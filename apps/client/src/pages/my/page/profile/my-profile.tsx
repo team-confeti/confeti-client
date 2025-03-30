@@ -19,8 +19,6 @@ const MyProfile = () => {
     return null;
   }
 
-  console.log('profileData', profileData);
-
   return (
     <>
       <Header variant="detail" title="마이페이지" />
