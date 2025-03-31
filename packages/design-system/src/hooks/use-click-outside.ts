@@ -6,16 +6,16 @@ const useClickOutside = (
   enable: boolean = true,
 ) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!enable) return;
+    if (!enable || !ref.current) return;
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('pointerdown', handleClickOutside);
     };
   }, [ref, callback, enable]);
 };

@@ -7,8 +7,8 @@ import {
   useState,
 } from 'react';
 
+import useClickOutside from '../../hooks/use-click-outside';
 import { cn } from '../../utils';
-import useClickOutside from '../../utils/use-click-outside';
 
 import * as styles from './dropdown-menu.css';
 
@@ -40,7 +40,7 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const handleToggleOpen = () => setOpen((prev) => !prev);
   const handleClose = () => setOpen(false);
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
   useClickOutside(ref, handleClose);
 
   const contextValue: DropdownContextProps = {
