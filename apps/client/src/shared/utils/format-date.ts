@@ -58,6 +58,20 @@ const getReserveDate = (reserveAt: string): string => {
   return formattedDate;
 };
 
+const calculateDday = (reserveAt: string): string => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const reserveDate = new Date(reserveAt);
+  reserveDate.setHours(0, 0, 0, 0);
+
+  const Dday = Math.ceil(
+    (reserveDate.getTime() - today.getTime()) / (1000 * 3600 * 24),
+  );
+
+  return Dday <= 0 ? 'D-DAY' : `D-${Dday}`;
+};
+
 export const formatDate = (
   date: string = '',
   formatStyle: string = 'default',
@@ -81,6 +95,8 @@ export const formatDate = (
       return `${year}년 ${month}월`;
     case 'koFull':
       return getReserveDate(date);
+    case 'Dday':
+      return calculateDday(date);
     default:
       return `${year}.${month}.${day}`;
   }

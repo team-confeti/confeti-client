@@ -7,7 +7,7 @@ import {
   Footer,
   Navigation,
   PerformanceCarousel,
-  TicketingCarousel,
+  TicketingCard,
 } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { formatDate } from '@shared/utils/format-date';
@@ -18,8 +18,14 @@ import { useTicketing } from '../hooks/use-ticketing';
 
 import * as styles from './home.css';
 
+import ImgDday01 from '/images/img_dday01.svg';
+import ImgDday02 from '/images/img_dday02.svg';
+import ImgDday03 from '/images/img_dday03.svg';
+import ImgDday04 from '/images/img_dday04.svg';
+import ImgDday05 from '/images/img_dday05.svg';
+
 const Home = () => {
-  const { performanceCount, performances } = useTicketing();
+  const { performances } = useTicketing();
   const { latestPerformances } = useLatestPerformances();
   const displayPerformances =
     latestPerformances.length > 7
@@ -30,12 +36,17 @@ const Home = () => {
     ...performance,
     performanceAt: formatDate(performance.performanceAt),
   }));
+  const DdayList = performances?.map((performance) => ({
+    ...performance,
+    reserveAt: formatDate(performance.reserveAt, 'Dday'),
+  }));
   const { data: profileData } = useUserProfile();
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
 
   const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
+  const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
   const { mutate: login } = useSocialLoginMutation();
   const kakaoRedirectUrl = import.meta.env.VITE_KAKAO_REDIRECT_URI;
@@ -51,6 +62,7 @@ const Home = () => {
       });
     }
   }, [code]);
+
   return (
     <>
       <Navigation.Root defaultActiveTab={0}>
@@ -91,10 +103,29 @@ const Home = () => {
                 </>
               )}
             </p>
-            <TicketingCarousel.Wrap
-              performances={performances}
-              indexData={performanceCount}
-            />
+            <div className={styles.ticketingCardContainer}>
+              {performances?.map((performance, index) => (
+                <TicketingCard.Image
+                  key={performance.typeId}
+                  imageUrl={imageUrls[index]}
+                  textContent={
+                    <>
+                      <TicketingCard.Dday
+                        reserveAt={DdayList[index]?.reserveAt}
+                      />
+                      <TicketingCard.SubTitle subtitle={performance.subtitle} />
+                    </>
+                  }
+                  performanceInfoContent={
+                    <TicketingCard.PerformanceInfo
+                      title={'공연 정보 확인하기'}
+                      typeId={performance.typeId}
+                      performanceType={performance.type}
+                    />
+                  }
+                />
+              ))}
+            </div>
           </section>
         </div>
       </Navigation.Root>

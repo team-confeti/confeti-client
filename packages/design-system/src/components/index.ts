@@ -11,8 +11,7 @@ export { default as PerformanceCarousel } from './performance-carousel/performan
 export { default as SearchBar } from './search-bar/search-bar';
 export { default as Spacing } from './spacing/spacing';
 export { default as ThemeProvider } from './themeProvider';
-export { default as InfoBUtton } from './ticketing-carousel/info-button/info-button';
-export { default as ProgressBar } from './ticketing-carousel/progress-bar/progress-bar';
-export { default as TicketingCarousel } from './ticketing-carousel/ticketing-carousel';
+export { default as ProgressBar } from './ticketing/progress-bar/progress-bar';
+export { default as TicketingCard } from './ticketing/ticketing-card';
 export { default as ToastContainer } from './toast/toast-container';
 export { toast } from './toast/utils/toast';
