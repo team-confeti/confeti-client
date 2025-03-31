@@ -26,9 +26,10 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
-  //로그인,로그아웃
+  //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
+  POST_REISSUE_TOKEN: 'auth/reissue',
 } as const;
 
 export const HTTP_STATUS_CODE = {

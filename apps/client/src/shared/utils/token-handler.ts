@@ -5,7 +5,7 @@ import {
   REFRESH_TOKEN_KEY,
 } from '@shared/constants/user-constants';
 
-export const tokenUtil = (
+export const authTokenHandler = (
   action: 'set' | 'remove',
   accessToken?: string,
   refreshToken?: string,
