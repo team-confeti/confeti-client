@@ -1,6 +1,7 @@
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';
 export { default as Button } from './button/button';
+export { default as DropdownMenu } from './dropdown-menu/dropdown-menu';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as FloatingButton } from './floating-button/floating-button';
 export { default as Footer } from './footer/footer';
