@@ -1,6 +1,5 @@
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Button } from './button/button';
-export { default as MoreButton } from './dropdown/dropdown-button';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as FloatingButton } from './floating-button/floating-button';
 export { default as Footer } from './footer/footer';
