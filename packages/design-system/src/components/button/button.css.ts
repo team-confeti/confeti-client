@@ -30,6 +30,13 @@ export const buttonVariants = recipe({
         height: '5rem',
         padding: '0.8rem 1.6rem',
       },
+      logout: {
+        ...themeVars.fontStyles.subtitle4_b_14,
+        height: '4.6rem',
+        padding: '1rem 3rem',
+        border: `2px solid ${themeVars.color.gray200}`,
+        color: themeVars.color.gray500,
+      },
       kakao: {
         ...themeVars.fontStyles.subtitle3_b_15,
         color: themeVars.color.gray800,
