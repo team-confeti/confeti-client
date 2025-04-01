@@ -1,5 +1,5 @@
 export interface KakaoLogin {
-  provider: string;
+  provider: 'KAKAO';
   redirectUrl: string;
   code: string;
 }
