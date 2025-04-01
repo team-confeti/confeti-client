@@ -3,6 +3,7 @@ import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
 import ConfetiSection from '@pages/my/components/performance/performance-section';
 import Box from '@pages/my/components/profile/box';
+import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
@@ -22,10 +23,7 @@ const MyProfile = () => {
   return (
     <>
       <Header variant="detail" title="마이페이지" />
-      <UserInfo
-        userName={profileData.username}
-        profileUrl={profileData.profileUrl}
-      />
+      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
       <Spacing />
       <Box
         title="My Artist"
@@ -52,6 +50,7 @@ const MyProfile = () => {
           <NoConfetiSection />
         )}
       </Box>
+      <LogoutSection />
       <Footer />
     </>
   );
