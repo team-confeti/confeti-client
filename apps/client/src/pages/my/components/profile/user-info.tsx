@@ -19,7 +19,7 @@ const UserInfo = ({ name, profileUrl }: Props) => {
         <div className={styles.titleWrapper}>
           <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
-          <IcArrowGray16 width={16} height={16} />
+          <IcArrowGray16 width="1.6rem" height="1.6rem" />
         </div>
       </div>
     </div>
