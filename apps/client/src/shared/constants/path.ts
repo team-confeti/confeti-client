@@ -9,6 +9,7 @@ export const routePath = {
   MY_ARTIST: 'artist',
   MY_CONFETI: 'confeti',
   MY_REQUIRE_LOGIN: 'require-login',
+  MY_SETTING: 'setting',
   // search-page
   SEARCH: '/search',
   // detail-page
