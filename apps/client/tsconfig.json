@@ -8,6 +8,10 @@
       "@pages/*": ["src/pages/*"]
     }
   },
-  "include": ["src", "vite.config.ts"],
+  "include": [
+    "src",
+    "vite.config.ts",
+    "../../packages/design-system/src/hooks/use-click-outside.ts"
+  ],
   "exclude": ["node_modules"]
 }
