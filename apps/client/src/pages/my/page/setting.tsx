@@ -1,5 +1,7 @@
+import { Header } from '@confeti/design-system';
+
 const setting = () => {
-  return <div></div>;
+  return <Header variant="detail" title="설정"></Header>;
 };
 
 export default setting;
