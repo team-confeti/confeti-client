@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { useOverlay } from 'node_modules/@confeti/design-system/src/context/overlay-context';
 
 import {
+  Button,
+  Dialog,
   Footer,
   Navigation,
   PerformanceCarousel,
@@ -44,6 +47,7 @@ const Home = () => {
   const navigate = useNavigate();
   const handleGoHome = () => navigate(routePath.ROOT);
   const handleGoToTimeTable = () => navigate(routePath.TIME_TABLE_OUTLET);
+  const overlay = useOverlay();
 
   const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
   const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
@@ -87,6 +91,7 @@ const Home = () => {
               </PerformanceCarousel.ImageSlider>
             </PerformanceCarousel>
           </section>
+
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
               {profileData ? (
