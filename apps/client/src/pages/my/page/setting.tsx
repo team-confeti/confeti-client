@@ -12,7 +12,7 @@ const linkObject = [
   { label: '회원탈퇴', path: routePath.MY_DELETE_ACCOUNT },
 ];
 
-const setting = () => {
+const Setting = () => {
   return (
     <>
       <Header variant="detail" title="설정"></Header>
@@ -26,4 +26,4 @@ const setting = () => {
   );
 };
 
-export default setting;
+export default Setting;
