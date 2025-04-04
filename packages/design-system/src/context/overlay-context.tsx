@@ -40,7 +40,7 @@ export const OverlayProvider = ({ children }: ProviderProps) => {
   }, []);
 
   // 오버레이 닫기 함수
-  const close = useCallback((result?: unknown) => {
+  const close = useCallback(() => {
     setIsOpen(false);
     setOverlayContent(null);
   }, []);

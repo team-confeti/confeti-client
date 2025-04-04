@@ -29,6 +29,6 @@ export const zIndex = {
     content: '30',
   },
   backDrop: {
-    backDrop: '100',
+    content: '100',
   },
 } as const;

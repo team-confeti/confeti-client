@@ -21,7 +21,7 @@ export const backDropStyle = recipe({
     backDrop: {
       true: {
         backgroundColor: themeVars.color.black_op,
-        zIndex: themeVars.zIndex.backDrop.backDrop,
+        zIndex: themeVars.zIndex.backDrop.content,
         overflow: 'hidden',
       },
       false: {
