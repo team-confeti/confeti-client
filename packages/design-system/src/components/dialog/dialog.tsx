@@ -8,6 +8,7 @@ type RootProps = {
   children: ReactNode;
   open: boolean;
   className?: string;
+  backDrop?: boolean;
 };
 
 type ContentProps = {
@@ -27,13 +28,18 @@ type ActionProps = {
   onClick?: () => void;
 };
 
-const DialogRoot = ({ children, open, ...props }: RootProps) => {
+const DialogRoot = ({
+  children,
+  open,
+  backDrop = true,
+  ...props
+}: RootProps) => {
   if (!open) {
     return null;
   } else {
     return (
-      <div className={cn(styles.rootStyle)} {...props}>
-        {children}
+      <div className={styles.backDropStyle({ backDrop: backDrop })} {...props}>
+        <div className={cn(styles.rootStyle)}>{children}</div>
       </div>
     );
   }

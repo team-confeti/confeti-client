@@ -26,12 +26,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ThemeProvider>
-          <OverlayProvider>
-            <div className={rootStyle}>
+          <div className={rootStyle}>
+            <OverlayProvider>
               <Router />
               <ToastContainer />
-            </div>
-          </OverlayProvider>
+            </OverlayProvider>
+          </div>
         </ThemeProvider>
       </BrowserRouter>
       <div style={{ fontSize: '16px' }}>

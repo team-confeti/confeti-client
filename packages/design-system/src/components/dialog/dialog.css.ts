@@ -1,6 +1,34 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '../../styles';
+
+export const backDropStyle = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'fixed',
+    width: '100%',
+    maxWidth: 'var(--max-width)', // 모바일 뷰 너비로 제한
+    height: '100%',
+    top: 0,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    justifyContent: 'center',
+  },
+  variants: {
+    backDrop: {
+      true: {
+        backgroundColor: themeVars.color.black_op,
+        zIndex: themeVars.zIndex.backDrop.backDrop,
+        overflow: 'hidden',
+      },
+      false: {
+        overflow: 'auto',
+      },
+    },
+  },
+});
 
 export const rootStyle = style({
   position: 'fixed',
