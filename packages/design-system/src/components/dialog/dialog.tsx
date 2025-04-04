@@ -1,16 +1,69 @@
+import { ReactNode } from 'react';
+
 import { cn } from '../../utils';
 
-import { dialogVariants } from './dialog.css';
+import * as styles from './dialog.css';
 
-interface Props {
-  children: React.ReactNode;
+type RootProps = {
+  children: ReactNode;
+  open: boolean;
   className?: string;
-}
+};
 
-const Dialog = ({ className, children, ...props }: Props) => (
-  <div className={cn(dialogVariants(), className)} {...props}>
-    {children}
-  </div>
-);
+type ContentProps = {
+  children: ReactNode;
+};
+
+type TitleProps = {
+  children: ReactNode;
+};
+
+type DescriptionProps = {
+  children: ReactNode;
+};
+
+type ActionProps = {
+  children: ReactNode;
+  onClick?: () => void;
+};
+
+const DialogRoot = ({ children, open, ...props }: RootProps) => {
+  if (!open) {
+    return null;
+  } else {
+    return (
+      <div className={cn(styles.rootStyle)} {...props}>
+        {children}
+      </div>
+    );
+  }
+};
+
+const DialogContent = ({ children }: ContentProps) => {
+  return <div className={styles.contentStyle}>{children}</div>;
+};
+
+const DialogTitle = ({ children }: TitleProps) => {
+  return <h1 className={styles.titleStyle}>{children}</h1>;
+};
+
+const DialogDescription = ({ children }: DescriptionProps) => {
+  return <p className={styles.descriptionStyle}>{children}</p>;
+};
+
+const DialogAction = ({ children, onClick }: ActionProps) => {
+  return (
+    <div className={styles.actionStyle} onClick={onClick}>
+      {children}
+    </div>
+  );
+};
+
+const Dialog = Object.assign(DialogRoot, {
+  Content: DialogContent,
+  Title: DialogTitle,
+  Description: DialogDescription,
+  Action: DialogAction,
+});
 
 export default Dialog;
