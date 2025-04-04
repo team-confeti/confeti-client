@@ -7,6 +7,7 @@ export const backDropStyle = recipe({
   base: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     position: 'fixed',
     width: '100%',
     maxWidth: 'var(--max-width)', // 모바일 뷰 너비로 제한
@@ -14,7 +15,7 @@ export const backDropStyle = recipe({
     top: 0,
     left: '50%',
     transform: 'translateX(-50%)',
-    justifyContent: 'center',
+    margin: 0,
   },
   variants: {
     backDrop: {

@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 
+import useClickOutside from '../../hooks/use-click-outside';
 import { cn } from '../../utils';
 
 import * as styles from './dialog.css';
@@ -7,6 +8,7 @@ import * as styles from './dialog.css';
 type RootProps = {
   children: ReactNode;
   open: boolean;
+  handleClose: () => void;
   className?: string;
   backDrop?: boolean;
 };
@@ -25,24 +27,29 @@ type DescriptionProps = {
 
 type ActionProps = {
   children: ReactNode;
-  onClick?: () => void;
 };
 
 const DialogRoot = ({
   children,
   open,
+  handleClose,
   backDrop = true,
   ...props
 }: RootProps) => {
-  if (!open) {
-    return null;
-  } else {
-    return (
-      <div className={styles.backDropStyle({ backDrop: backDrop })} {...props}>
-        <div className={cn(styles.rootStyle)}>{children}</div>
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, handleClose);
+
+  return (
+    <dialog
+      className={styles.backDropStyle({ backDrop: backDrop })}
+      open={open}
+      {...props}
+    >
+      <div ref={ref} className={cn(styles.rootStyle)}>
+        {children}
       </div>
-    );
-  }
+    </dialog>
+  );
 };
 
 const DialogContent = ({ children }: ContentProps) => {
@@ -50,19 +57,15 @@ const DialogContent = ({ children }: ContentProps) => {
 };
 
 const DialogTitle = ({ children }: TitleProps) => {
-  return <h1 className={styles.titleStyle}>{children}</h1>;
+  return <h2 className={styles.titleStyle}>{children}</h2>;
 };
 
 const DialogDescription = ({ children }: DescriptionProps) => {
   return <p className={styles.descriptionStyle}>{children}</p>;
 };
 
-const DialogAction = ({ children, onClick }: ActionProps) => {
-  return (
-    <div className={styles.actionStyle} onClick={onClick}>
-      {children}
-    </div>
-  );
+const DialogAction = ({ children }: ActionProps) => {
+  return <div className={styles.actionStyle}>{children}</div>;
 };
 
 const Dialog = Object.assign(DialogRoot, {

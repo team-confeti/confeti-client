@@ -36,19 +36,13 @@ export const OverlayProvider = ({ children }: ProviderProps) => {
   // 오버레이 열기 함수
   const open = useCallback((contentCallback: ContentCallback) => {
     setOverlayContent(() => contentCallback);
-    // 다음 프레임에서 오픈 상태로 변경 (애니메이션을 위한 타이밍)
-    requestAnimationFrame(() => {
-      setIsOpen(true);
-    });
+    setIsOpen(true);
   }, []);
 
   // 오버레이 닫기 함수
   const close = useCallback((result?: unknown) => {
     setIsOpen(false);
-    // 애니메이션을 위한 지연 후 컨텐츠 제거
-    setTimeout(() => {
-      setOverlayContent(null);
-    }, 300);
+    setOverlayContent(null);
   }, []);
 
   const value: OverlayContextValue = {
