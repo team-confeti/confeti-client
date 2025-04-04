@@ -6,7 +6,6 @@ import {
   BtnSearchG90024,
   LogoMain,
 } from '../../icons/src';
-import { cn } from '../../utils';
 
 import * as styles from './header.css';
 
@@ -15,7 +14,6 @@ interface HeaderProps {
   title?: string;
   icon?: React.ReactNode;
   isBackToHome?: boolean;
-  className?: string;
 }
 
 const Header = ({
@@ -23,7 +21,6 @@ const Header = ({
   title = '',
   icon,
   isBackToHome = false,
-  className,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
@@ -34,9 +31,7 @@ const Header = ({
 
   if (variant === 'detail') {
     return (
-      <header
-        className={cn(styles.container({ variant: 'detail' }), className)}
-      >
+      <header className={styles.container({ variant })}>
         <button
           className={styles.button({ variant: 'back' })}
           onClick={() => (isBackToHome ? navigate('/') : navigate(-1))}
