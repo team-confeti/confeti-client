@@ -44,6 +44,11 @@ export const buttonVariants = recipe({
         height: '4.4rem',
         padding: '1.2rem 1.6rem',
       },
+      cancel: {
+        ...themeVars.fontStyles.subtitle4_b_14,
+        backgroundColor: themeVars.color.gray200,
+        padding: '1rem 3rem',
+      },
     },
     disabled: {
       true: {},
