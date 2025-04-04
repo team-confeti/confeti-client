@@ -83,7 +83,7 @@ const RenderDialog = () => {
 
 type Story = StoryObj<typeof meta>;
 
-export const Example: Story = {
+export const Default: Story = {
   render: (args) => (
     <div style={{ width: '430px', height: '50rem' }}>
       <RenderDialog />
