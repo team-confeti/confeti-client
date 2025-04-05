@@ -12,6 +12,7 @@ export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
 export { default as BtnHeartFilled24 } from './BtnHeartFilled24';
 export { default as BtnMeatball } from './BtnMeatball';
 export { default as BtnSearchBlack24 } from './BtnSearchBlack24';
+export { default as BtnSearchDelete } from './BtnSearchDelete';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as CmpProfileNon } from './CmpProfileNon';
 export { default as Confeti3DLogo21 } from './Confeti3DLogo21';
