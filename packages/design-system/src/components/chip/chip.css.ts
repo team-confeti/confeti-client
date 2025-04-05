@@ -41,7 +41,7 @@ export const chipVariants = recipe({
       withDelete: {
         ...withDeleteChipStyle,
         ...themeVars.display.flexAlignCenter,
-        gap: '0.2rem',
+        gap: '0.4rem',
         backgroundColor: 'transparent',
         color: themeVars.color.gray900,
         ...themeVars.fontStyles.body3_r_14,
