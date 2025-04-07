@@ -46,7 +46,7 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
 
     return (
       <section className={styles.artistSection}>
-        <div className={styles.daySection}>
+        <div className={styles.artistGroup}>
           <ArtistGrid
             artists={VISIBLE_CONCERT_ARTISTS}
             dayId={CONCERT_DEFAULT_ID}

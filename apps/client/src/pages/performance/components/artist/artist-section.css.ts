@@ -6,6 +6,10 @@ export const artistSection = style({
   width: '100%',
 });
 
+export const artistGroup = style({
+  padding: '1.7rem 2rem 5.6rem 2rem',
+});
+
 export const daySection = style({
   padding: '2rem',
   backgroundColor: themeVars.color.white,
@@ -13,6 +17,7 @@ export const daySection = style({
 
 export const dayGroups = style({
   ...themeVars.display.flexColumn,
+  paddingBottom: '5.6rem',
 });
 
 export const dayGroup = style({
