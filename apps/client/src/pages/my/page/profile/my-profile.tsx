@@ -5,7 +5,7 @@ import ConfetiSection from '@pages/my/components/performance/performance-section
 import Box from '@pages/my/components/profile/box';
 import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Footer, Header } from '@confeti/design-system';
