@@ -10,10 +10,15 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Footer, Header, Spacing } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
+import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const MyProfile = () => {
   const { data: profileData } = useUserProfile();
-  const { data: artistData } = useMyArtist();
+
+  // TODO: API 데이터 연결 (ARTISTS_DATA 제거)
+  // const { data: artistData } = useMyArtist();
+  const artistData = ARTISTS_DATA;
+
   const { data: performanceData } = useMyConfeti();
 
   if (!profileData || !artistData || !performanceData) {
