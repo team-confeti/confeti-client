@@ -14,6 +14,7 @@ import {
   MyConfetiPage,
   MyPage,
   MyProfilePage,
+  OnboardingPage,
   RequireLoginPage,
   SearchPage,
   TimeTableLayout,
@@ -67,6 +68,7 @@ export default function Router() {
           />
         </Route>
         <Route path="*" element={<ErrorPage />} />
+        <Route path={routePath.ONBOARDING} element={<OnboardingPage />} />
       </Route>
     </Routes>
   );

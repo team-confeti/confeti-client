@@ -39,3 +39,6 @@ export const TimeTableRequireLoginPage = lazy(
   () => import('@pages/home/page/auth/require-login'),
 );
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
+export const OnboardingPage = lazy(
+  () => import('@pages/onboarding/page/onboarding'),
+);
