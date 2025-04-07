@@ -6,8 +6,12 @@ import { themeVars } from '@confeti/design-system/styles';
 export const button = recipe({
   base: {
     ...themeVars.display.flexJustifyAlignCenter,
-    width: '100%',
+    // width: '100%',
     height: '4.4rem',
+    padding: '1rem 2rem',
+    margin: '0 2rem',
+    border: `1px solid ${themeVars.color.gray300}`,
+    borderRadius: '10px',
     backgroundColor: themeVars.color.white,
     cursor: 'pointer',
   },
@@ -25,7 +29,7 @@ export const button = recipe({
 
 export const text = style({
   ...themeVars.display.flexAlignCenter,
-  color: themeVars.color.gray500,
+  color: themeVars.color.gray800,
   ...themeVars.fontStyles.subtitle4_b_14,
 });
 

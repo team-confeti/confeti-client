@@ -25,10 +25,10 @@ export const dayTitle = style({
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'flex-start',
-  marginBottom: '1.2rem',
+  marginBottom: '1.6rem',
   ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.black,
-  backgroundColor: themeVars.color.gray100,
-  padding: '0.4rem 1.2rem',
+  backgroundColor: themeVars.color.gray200,
+  padding: '0.4rem 0.8rem',
   borderRadius: '1.3rem',
 });
