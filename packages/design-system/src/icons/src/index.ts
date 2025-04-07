@@ -34,6 +34,7 @@ export { default as IcNewSearchGray18 } from './IcNewSearchGray18';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';
 export { default as IcSelect } from './IcSelect';
 export { default as IcSicGray18 } from './IcSicGray18';
+export { default as IcSwitch } from './IcSwitch';
 export { default as IcTimeGray14 } from './IcTimeGray14';
 export { default as IcTimetableAddfestival } from './IcTimetableAddfestival';
 export { default as IcTimetableDeletefestival } from './IcTimetableDeletefestival';
