@@ -8,7 +8,7 @@ import UserInfo from '@pages/my/components/profile/user-info';
 import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Footer, Header, Spacing } from '@confeti/design-system';
+import { Footer, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
@@ -29,7 +29,8 @@ const MyProfile = () => {
     <>
       <Header variant="detail" title="마이페이지" />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
-      <Spacing />
+      {/* TODO: 다가오는 공연 섹션 추가 */}
+
       <Box
         title="My Artist"
         path={routePath.MY_ARTIST}
@@ -41,7 +42,6 @@ const MyProfile = () => {
           <NoArtistSection />
         )}
       </Box>
-      <Spacing />
       <Box
         title="My Confeti"
         path={routePath.MY_CONFETI}
