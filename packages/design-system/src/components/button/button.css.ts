@@ -15,7 +15,6 @@ export const buttonVariants = recipe({
       default: {
         ...themeVars.fontStyles.subtitle4_b_14,
         backgroundColor: themeVars.color.confeti_lime,
-        height: '3.9rem',
         padding: '1rem 3rem',
       },
       link: {
