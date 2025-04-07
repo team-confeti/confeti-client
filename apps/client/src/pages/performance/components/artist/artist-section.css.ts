@@ -11,13 +11,13 @@ export const artistGroup = style({
 });
 
 export const daySection = style({
-  padding: '2rem',
+  padding: '1.6rem 2rem 2rem 2rem',
   backgroundColor: themeVars.color.white,
 });
 
 export const dayGroups = style({
   ...themeVars.display.flexColumn,
-  paddingBottom: '5.6rem',
+  paddingBottom: '5.2rem',
 });
 
 export const dayGroup = style({
