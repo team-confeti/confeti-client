@@ -26,6 +26,7 @@ import { createProtectedRoute } from './protected-route';
 export default function Router() {
   return (
     <Routes>
+      <Route path={routePath.ONBOARDING} element={<OnboardingPage />} />
       <Route path={routePath.LOGIN} element={<LoginPage />} />
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
@@ -68,7 +69,6 @@ export default function Router() {
           />
         </Route>
         <Route path="*" element={<ErrorPage />} />
-        <Route path={routePath.ONBOARDING} element={<OnboardingPage />} />
       </Route>
     </Routes>
   );
