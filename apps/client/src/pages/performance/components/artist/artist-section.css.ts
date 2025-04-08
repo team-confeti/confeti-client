@@ -17,7 +17,7 @@ export const daySection = style({
 
 export const dayGroups = style({
   ...themeVars.display.flexColumn,
-  paddingBottom: '5.2rem',
+  paddingBottom: '5.6rem',
 });
 
 export const dayGroup = style({

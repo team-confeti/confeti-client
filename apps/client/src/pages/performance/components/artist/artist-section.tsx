@@ -88,13 +88,15 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
                 type="visible"
               />
             </div>
-            <ExpandedSection
-              isOpen={day.isOpen}
-              isExpanded={isExpanded}
-              artists={day.artists}
-              dayId={day.festivalDateId}
-              toggleExpand={toggleExpand}
-            />
+            {day.artists.length > MAX_VISIBLE_ARTISTS && (
+              <ExpandedSection
+                isOpen={day.isOpen}
+                isExpanded={isExpanded}
+                artists={day.artists}
+                dayId={day.festivalDateId}
+                toggleExpand={toggleExpand}
+              />
+            )}
           </div>
         );
       })}
