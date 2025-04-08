@@ -1,7 +1,8 @@
 export interface UserProfile {
   userId: number;
   profileUrl: string;
-  username: string;
+  name: string;
+  provider: string;
 }
 
 export interface Artists {
