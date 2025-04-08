@@ -3,21 +3,6 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '../../styles';
 
-export const container = style({
-  ...themeVars.display.flexJustifyAlignCenter,
-  padding: '0.8rem 2rem',
-  width: '100%',
-  gap: '0.8rem',
-  backgroundColor: themeVars.color.white,
-});
-
-export const frame = style({
-  display: 'flex',
-  alignItems: 'center',
-  width: '100%',
-  gap: '0.5rem',
-});
-
 export const arrowButton = style({
   cursor: 'pointer',
 });
