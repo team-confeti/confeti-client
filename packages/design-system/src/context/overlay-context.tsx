@@ -8,14 +8,14 @@ import {
 
 type OverlayProps = {
   isOpen: boolean;
-  close: (result?: unknown) => void;
+  close: () => void;
 };
 
 type ContentCallback = (props: OverlayProps) => ReactNode;
 
 type OverlayContextValue = {
   open: (contentCallback: ContentCallback) => void;
-  close: (result?: unknown) => void;
+  close: () => void;
 };
 
 // 오버레이 컨텍스트 생성
