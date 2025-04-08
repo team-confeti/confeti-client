@@ -1,9 +1,6 @@
-import { themeClass } from '../styles';
-
 import '../styles/reset.css';
 
 export default function ThemeProvider({
-  theme,
   className,
   children,
 }: {
@@ -11,7 +8,5 @@ export default function ThemeProvider({
   theme?: string;
   className?: string;
 }) {
-  return (
-    <div className={`${theme ?? themeClass} ${className}`}>{children}</div>
-  );
+  return <div className={className}>{children}</div>;
 }

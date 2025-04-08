@@ -63,7 +63,7 @@ const RenderDialog = () => {
           <Dialog.Description>Description</Dialog.Description>
         </Dialog.Content>
         <Dialog.Action>
-          <Button text="cancel" onClick={close} variant="cancel" />
+          <Button text="cancel" onClick={close} variant="back" />
           <Button text="default" onClick={close} />
         </Dialog.Action>
       </Dialog>
@@ -75,9 +75,7 @@ const RenderDialog = () => {
       text="Trigger"
       onClick={openDialog}
       style={{ backgroundColor: themeVars.color.gray200, width: '7rem' }}
-    >
-      모달 열기
-    </Button>
+    ></Button>
   );
 };
 

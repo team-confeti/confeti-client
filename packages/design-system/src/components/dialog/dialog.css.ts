@@ -24,9 +24,7 @@ export const backDropStyle = recipe({
         zIndex: themeVars.zIndex.backDrop.content,
         overflow: 'hidden',
       },
-      false: {
-        overflow: 'auto',
-      },
+      false: {},
     },
   },
 });

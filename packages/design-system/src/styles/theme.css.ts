@@ -27,6 +27,5 @@ const properties = defineProperties({
 const sprinkles = createSprinkles(properties);
 
 const themeVars = createGlobalTheme(':root', tokens);
-const themeClass = '';
 
-export { sprinkles, themeClass, themeVars, tokens };
+export { sprinkles, themeVars, tokens };
