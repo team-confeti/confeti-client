@@ -40,7 +40,12 @@ const DialogRoot = ({
   if (!open) return null;
   return createPortal(
     <div className={styles.backDropStyle({ backDrop: backDrop })} {...props}>
-      <div ref={ref} className={cn(styles.rootStyle)}>
+      <div
+        ref={ref}
+        className={cn(styles.rootStyle)}
+        role="dialog"
+        aria-modal="true"
+      >
         {children}
       </div>
     </div>,
