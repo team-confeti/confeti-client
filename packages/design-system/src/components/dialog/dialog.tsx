@@ -5,29 +5,17 @@ import { cn } from '../../utils';
 
 import * as styles from './dialog.css';
 
-type RootProps = {
+interface RootProps {
   children: ReactNode;
   open: boolean;
   handleClose: () => void;
   className?: string;
   backDrop?: boolean;
-};
+}
 
-type ContentProps = {
+interface ChildrenProps {
   children: ReactNode;
-};
-
-type TitleProps = {
-  children: ReactNode;
-};
-
-type DescriptionProps = {
-  children: ReactNode;
-};
-
-type ActionProps = {
-  children: ReactNode;
-};
+}
 
 const DialogRoot = ({
   children,
@@ -52,19 +40,19 @@ const DialogRoot = ({
   );
 };
 
-const DialogContent = ({ children }: ContentProps) => {
+const DialogContent = ({ children }: ChildrenProps) => {
   return <div className={styles.contentStyle}>{children}</div>;
 };
 
-const DialogTitle = ({ children }: TitleProps) => {
+const DialogTitle = ({ children }: ChildrenProps) => {
   return <h2 className={styles.titleStyle}>{children}</h2>;
 };
 
-const DialogDescription = ({ children }: DescriptionProps) => {
+const DialogDescription = ({ children }: ChildrenProps) => {
   return <p className={styles.descriptionStyle}>{children}</p>;
 };
 
-const DialogAction = ({ children }: ActionProps) => {
+const DialogAction = ({ children }: ChildrenProps) => {
   return <div className={styles.actionStyle}>{children}</div>;
 };
 
