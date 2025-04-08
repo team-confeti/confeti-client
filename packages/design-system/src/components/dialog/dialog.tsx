@@ -1,4 +1,5 @@
 import { ReactNode, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 import useClickOutside from '../../hooks/use-click-outside';
 import { cn } from '../../utils';
@@ -17,6 +18,15 @@ interface ChildrenProps {
   children: ReactNode;
 }
 
+type DialogRootComponent = (props: RootProps) => JSX.Element | null;
+type DialogChildComponent = (props: ChildrenProps) => JSX.Element;
+
+interface DialogComposite extends DialogRootComponent {
+  Content: DialogChildComponent;
+  Title: DialogChildComponent;
+  Description: DialogChildComponent;
+  Action: DialogChildComponent;
+}
 const DialogRoot = ({
   children,
   open,
@@ -27,16 +37,14 @@ const DialogRoot = ({
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, handleClose);
 
-  return (
-    <dialog
-      className={styles.backDropStyle({ backDrop: backDrop })}
-      open={open}
-      {...props}
-    >
+  if (!open) return null;
+  return createPortal(
+    <div className={styles.backDropStyle({ backDrop: backDrop })} {...props}>
       <div ref={ref} className={cn(styles.rootStyle)}>
         {children}
       </div>
-    </dialog>
+    </div>,
+    document.body,
   );
 };
 
@@ -61,6 +69,6 @@ const Dialog = Object.assign(DialogRoot, {
   Title: DialogTitle,
   Description: DialogDescription,
   Action: DialogAction,
-});
+}) as DialogComposite;
 
 export default Dialog;
