@@ -8,7 +8,6 @@ export const expandedSection = style({
 });
 
 export const expandedArtists = style({
-  // backgroundColor: themeVars.color.gray200,
   overflow: 'hidden',
   transition: 'height 0.5s ease-out, opacity 0s ease-out',
   opacity: 0,
