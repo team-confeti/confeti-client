@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createGlobalTheme } from '@vanilla-extract/css';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { border } from './tokens/border';
@@ -26,6 +26,7 @@ const properties = defineProperties({
 });
 const sprinkles = createSprinkles(properties);
 
-const [themeClass, themeVars] = createTheme(tokens);
+const themeVars = createGlobalTheme(':root', tokens);
+const themeClass = '';
 
 export { sprinkles, themeClass, themeVars, tokens };
