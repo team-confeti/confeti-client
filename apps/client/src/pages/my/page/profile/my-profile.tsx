@@ -3,16 +3,22 @@ import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
 import ConfetiSection from '@pages/my/components/performance/performance-section';
 import Box from '@pages/my/components/profile/box';
+import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useMyArtist, useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Footer, Header, Spacing } from '@confeti/design-system';
+import { Footer, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
+import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const MyProfile = () => {
   const { data: profileData } = useUserProfile();
-  const { data: artistData } = useMyArtist();
+
+  // TODO: API 데이터 연결 (ARTISTS_DATA 제거)
+  // const { data: artistData } = useMyArtist();
+  const artistData = ARTISTS_DATA;
+
   const { data: performanceData } = useMyConfeti();
 
   if (!profileData || !artistData || !performanceData) {
@@ -22,11 +28,9 @@ const MyProfile = () => {
   return (
     <>
       <Header variant="detail" title="마이페이지" />
-      <UserInfo
-        userName={profileData.name}
-        profileUrl={profileData.profileUrl}
-      />
-      <Spacing />
+      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
+      {/* TODO: 다가오는 공연 섹션 추가 */}
+
       <Box
         title="My Artist"
         path={routePath.MY_ARTIST}
@@ -38,7 +42,6 @@ const MyProfile = () => {
           <NoArtistSection />
         )}
       </Box>
-      <Spacing />
       <Box
         title="My Confeti"
         path={routePath.MY_CONFETI}
@@ -52,6 +55,7 @@ const MyProfile = () => {
           <NoConfetiSection />
         )}
       </Box>
+      <LogoutSection />
       <Footer />
     </>
   );

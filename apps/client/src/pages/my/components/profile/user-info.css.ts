@@ -9,13 +9,6 @@ export const wrapper = style({
   gap: '1.8rem',
 });
 
-export const img = style({
-  width: '8rem',
-  height: '8rem',
-  borderRadius: '50%',
-  objectFit: 'cover',
-});
-
 export const userInfo = style({
   display: 'flex',
   flexDirection: 'column',
@@ -29,7 +22,7 @@ export const title = style({
 export const titleWrapper = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '0.6rem',
+  gap: '0.2rem',
 });
 
 export const titlePostfix = style({

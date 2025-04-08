@@ -2,7 +2,7 @@ export interface UserProfile {
   userId: number;
   profileUrl: string;
   name: string;
-  provider: string;
+  provider: 'KAKAO' | 'APPLE';
 }
 
 export interface Artists {
