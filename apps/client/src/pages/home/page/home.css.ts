@@ -4,7 +4,6 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const background = style({
   background: themeVars.color.confeti_lime_grad,
-
 });
 
 export const ticketingCardContainer = style({

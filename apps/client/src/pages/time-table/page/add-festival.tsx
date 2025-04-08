@@ -34,11 +34,7 @@ const AddFestival = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header
-        variant="detail"
-        title="페스티벌 추가하기"
-        className={styles.headerLayout}
-      />
+      <Header variant="detail" title="페스티벌 추가하기" />
       <div className={styles.container}>
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);

@@ -106,7 +106,7 @@ const Home = () => {
             <div className={styles.ticketingCardContainer}>
               {performances?.map((performance, index) => (
                 <TicketingCard.Image
-                  key={performance.typeId}
+                  key={performance.index}
                   imageUrl={imageUrls[index]}
                   textContent={
                     <>
