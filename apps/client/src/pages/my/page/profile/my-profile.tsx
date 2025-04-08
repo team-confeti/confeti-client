@@ -23,7 +23,7 @@ const MyProfile = () => {
     <>
       <Header variant="detail" title="마이페이지" />
       <UserInfo
-        userName={profileData.username}
+        userName={profileData.name}
         profileUrl={profileData.profileUrl}
       />
       <Spacing />
