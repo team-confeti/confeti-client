@@ -16,6 +16,7 @@ import {
   MyProfilePage,
   RequireLoginPage,
   SearchPage,
+  SettingPage,
   TimeTableLayout,
   TimeTablePage,
   TimeTableRequireLoginPage,
@@ -45,6 +46,10 @@ export default function Router() {
           <Route
             path={routePath.MY_CONFETI}
             element={createProtectedRoute(true, <MyConfetiPage />)}
+          />
+          <Route
+            path={routePath.MY_SETTING}
+            element={createProtectedRoute(true, <SettingPage />)}
           />
         </Route>
 

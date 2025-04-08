@@ -93,7 +93,7 @@ const Home = () => {
               {profileData ? (
                 <>
                   <span className={styles.highlightedText}>
-                    {profileData.username}
+                    {profileData.name}
                   </span>
                   님 <br />
                   예매가 다가오고 있어요!
@@ -107,7 +107,7 @@ const Home = () => {
             <div className={styles.ticketingCardContainer}>
               {performances?.map((performance, index) => (
                 <TicketingCard.Image
-                  key={performance.typeId}
+                  key={performance.index}
                   imageUrl={imageUrls[index]}
                   textContent={
                     <>

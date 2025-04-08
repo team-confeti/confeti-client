@@ -4,55 +4,55 @@ export const ARTISTS_DATA = {
       artistId: 'xyz123abc',
       name: 'televisionoff',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/televisionoff.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'abc456def',
       name: 'junny',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/junny.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'def789ghi',
       name: 'creespy',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/creespy.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'ghi012jkl',
       name: '차울',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/chaul.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'jkl345mno',
       name: '잠비나이',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/jambinai.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'mno678pqr',
       name: '왓에버댓민즈',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/was-ebeodaesminjeu.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'pqr901stu',
       name: '앤드오어',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/aendeuo-eo.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'stu234vwx',
       name: '고고학',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/gogohag.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
     {
       artistId: 'vwx567yz1',
       name: '감귤서리단',
       profileUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-artist/gamgyulseolidan.webp',
+        'https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5',
     },
   ],
 } as const;

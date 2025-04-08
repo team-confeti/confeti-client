@@ -5,8 +5,7 @@ import { themeVars } from '../../styles';
 
 export const container = recipe({
   base: {
-    display: 'flex',
-    alignItems: 'center',
+    ...themeVars.display.flexAlignCenter,
     position: 'relative',
     height: '5rem',
     backgroundColor: themeVars.color.white,
