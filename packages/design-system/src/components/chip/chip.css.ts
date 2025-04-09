@@ -20,7 +20,7 @@ export const chipVariants = recipe({
     border: themeVars.border.gray300,
     cursor: 'pointer',
     transition:
-      'background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out',
+      'background-color 0.1s ease-in-out, color 0.1s ease-in-out, border 0.1s ease-in-out',
   },
   variants: {
     variant: {
