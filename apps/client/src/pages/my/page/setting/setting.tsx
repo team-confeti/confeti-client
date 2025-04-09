@@ -1,7 +1,7 @@
 import { Footer, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 
-import Link from '../components/navigation/link';
+import Link from '../../components/navigation/link';
 
 import * as styles from './setting.css';
 
