@@ -2,7 +2,7 @@ import PerformanceList from '@pages/my/components/performance/performance-list';
 import { useFilteredPerformances } from '@pages/my/hooks/use-filter-performances';
 import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 
-import { Chip, Header } from '@confeti/design-system';
+import { Chip, Footer, Header } from '@confeti/design-system';
 
 import * as styles from './performance-more.css';
 
@@ -33,6 +33,8 @@ const ConfetiMore = () => {
       </nav>
 
       <PerformanceList performances={filteredPerformances} />
+
+      <Footer />
     </>
   );
 };
