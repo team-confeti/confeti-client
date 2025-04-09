@@ -29,33 +29,33 @@ const MusicItem = ({
   onClickDelete,
   dragHandleProps,
 }: MusicItemProps) => {
-  const renderRightIcon = () => {
-    if (variant === 'default') {
-      return (
-        <button onClick={onClickPlayToggle}>
-          {isPlaying ? (
-            <IcPause width={24} height={24} />
-          ) : (
-            <IcPlay width={24} height={24} />
-          )}
-        </button>
-      );
+  const renderControlButton = () => {
+    switch (variant) {
+      case 'default':
+        return (
+          <button onClick={onClickPlayToggle}>
+            {isPlaying ? (
+              <IcPause width={24} height={24} />
+            ) : (
+              <IcPlay width={24} height={24} />
+            )}
+          </button>
+        );
+      case 'editable':
+        return (
+          <button {...dragHandleProps}>
+            <IcHamburger width={24} height={24} />
+          </button>
+        );
+      case 'confirmDelete':
+        return (
+          <button onClick={onClickDelete}>
+            <BtnDeleteBlack width={24} height={24} />
+          </button>
+        );
+      default:
+        return null;
     }
-    if (variant === 'editable') {
-      return (
-        <button {...dragHandleProps}>
-          <IcHamburger width={24} height={24} />
-        </button>
-      );
-    }
-    if (variant === 'confirmDelete') {
-      return (
-        <button onClick={onClickDelete}>
-          <BtnDeleteBlack width={24} height={24} />
-        </button>
-      );
-    }
-    return null;
   };
 
   const renderAlbumCover = () => {
@@ -80,7 +80,7 @@ const MusicItem = ({
         <p className={styles.title}>{title}</p>
         <p className={styles.artist}>{artist}</p>
       </div>
-      <div className={styles.rightIcon}>{renderRightIcon()}</div>
+      <div className={styles.rightIcon}>{renderControlButton()}</div>
     </div>
   );
 };

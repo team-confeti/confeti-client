@@ -3,9 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '../../styles';
 
 export const musicItemWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+  ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
   padding: '1rem 2rem',
 });
@@ -24,24 +22,20 @@ export const albumCover = style({
 });
 
 export const albumOverlay = style({
+  ...themeVars.display.flexJustifyAlignCenter,
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
   height: '100%',
   background: 'rgba(0, 0, 0, 0.5)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   borderRadius: '0.5rem',
 });
 
 export const minusBtn = style({
+  ...themeVars.display.flexJustifyAlignCenter,
   backgroundColor: 'transparent',
   border: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
 });
 
 export const textSection = style({
