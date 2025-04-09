@@ -40,3 +40,6 @@ export const TimeTableRequireLoginPage = lazy(
 );
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
 export const SettingPage = lazy(() => import('@pages/my/page/setting'));
+export const DeleteAccountPage = lazy(
+  () => import('@pages/my/page/delete-account'),
+);
