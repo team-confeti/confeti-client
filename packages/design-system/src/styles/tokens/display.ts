@@ -22,6 +22,11 @@ export const display = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  flexBetweenAlignCenterStretch: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     alignSelf: 'stretch',
   },
 } as const;
