@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
-  ...themeVars.display.flexBetweenAlignCenter,
+  ...themeVars.display.flexBetweenAlignCenterStretch,
   width: '100%',
   padding: '1rem 2rem',
 });
