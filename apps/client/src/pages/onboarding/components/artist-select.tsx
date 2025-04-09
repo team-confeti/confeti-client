@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 
-import { Avatar, Button, Description, SearchBar } from '@confeti/design-system';
+import { Avatar, Description, SearchBar } from '@confeti/design-system';
 
 import * as styles from './artist-select.css';
 
+//TODO: remove mock data
 const mockArtists = Array.from({ length: 100 }, (_, i) => ({
   id: i,
   name: `오아시스 ${i + 1}`,
