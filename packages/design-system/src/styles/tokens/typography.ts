@@ -27,7 +27,7 @@ export const typography = {
   },
   lineHeight: {
     normal: 'normal',
-    title2: '140%',
+    title2: '120%',
     subtitle4: '140%',
     body1: '140%',
     body3: '140%',

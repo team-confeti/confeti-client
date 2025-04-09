@@ -15,7 +15,7 @@ export const header = style({
 
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
-  color: themeVars.color.gray500,
+  color: themeVars.color.black,
 });
 
 export const buttonWrapper = style({

@@ -7,6 +7,15 @@ const meta: Meta<typeof Button> = {
   component: Button,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Button 컴포넌트는 다양한 형태의 버튼을 제공하는 공통 UI 요소입니다. \n\n' +
+          '1. **variant**: 버튼의 스타일을 결정합니다. (default, add, link, logout, kakao, apple)\n' +
+          '2. **disabled**: 버튼을 비활성화할지 여부를 설정합니다.\n' +
+          '3. **text**: 버튼에 표시될 텍스트입니다.',
+      },
+    },
   },
   decorators: [(Story) => <Story />],
   tags: ['autodocs'],
@@ -68,6 +77,21 @@ export const Link: Story = {
     variant: 'link',
     disabled: false,
     text: '예매처 바로가기',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '33.5rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const Logout: Story = {
+  args: {
+    variant: 'logout',
+    disabled: false,
+    text: '로그아웃',
   },
   decorators: [
     (Story) => (

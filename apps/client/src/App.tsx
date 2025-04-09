@@ -3,7 +3,11 @@ import * as Sentry from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { ThemeProvider, ToastContainer } from '@confeti/design-system';
+import {
+  OverlayProvider,
+  ThemeProvider,
+  ToastContainer,
+} from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
 import Router from '@shared/router/router';
 
@@ -23,8 +27,10 @@ function App() {
       <BrowserRouter>
         <ThemeProvider>
           <div className={rootStyle}>
-            <Router />
-            <ToastContainer />
+            <OverlayProvider>
+              <Router />
+              <ToastContainer />
+            </OverlayProvider>
           </div>
         </ThemeProvider>
       </BrowserRouter>

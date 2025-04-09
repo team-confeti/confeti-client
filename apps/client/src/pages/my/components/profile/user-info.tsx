@@ -1,37 +1,26 @@
-import { useLogoutMutation } from '@pages/my/hooks/use-logout.ts';
+import { Avatar } from '@confeti/design-system';
+import { IcArrowGray16 } from '@confeti/design-system/icons';
 
-import LogoutButton from './logout-button.tsx';
 import * as styles from './user-info.css.ts';
 
 interface Props {
-  userName: string;
+  name: string;
   profileUrl: string;
 }
 
 const USER_POSTFIX = '님' as const;
 
-const UserInfo = ({ userName, profileUrl }: Props) => {
-  const { mutate: logout } = useLogoutMutation();
-
-  const handleLogout = () => {
-    logout();
-  };
-
+const UserInfo = ({ name, profileUrl }: Props) => {
   return (
     <div className={styles.wrapper}>
-      <img
-        src={profileUrl}
-        alt={`${userName}의 아바타`}
-        className={styles.img}
-      />
+      <Avatar src={profileUrl} alt={`${name}의 프로필 이미지`} size="xl" />
 
       <div className={styles.userInfo}>
         <div className={styles.titleWrapper}>
-          <h2 className={styles.title}>{userName}</h2>
+          <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
+          <IcArrowGray16 width="1.6rem" height="1.6rem" />
         </div>
-
-        <LogoutButton text="로그아웃하기" onClick={handleLogout} />
       </div>
     </div>
   );

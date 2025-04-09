@@ -46,7 +46,7 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
 
     return (
       <section className={styles.artistSection}>
-        <div className={styles.daySection}>
+        <div className={styles.artistGroup}>
           <ArtistGrid
             artists={VISIBLE_CONCERT_ARTISTS}
             dayId={CONCERT_DEFAULT_ID}
@@ -88,13 +88,15 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
                 type="visible"
               />
             </div>
-            <ExpandedSection
-              isOpen={day.isOpen}
-              isExpanded={isExpanded}
-              artists={day.artists}
-              dayId={day.festivalDateId}
-              toggleExpand={toggleExpand}
-            />
+            {day.artists.length > MAX_VISIBLE_ARTISTS && (
+              <ExpandedSection
+                isOpen={day.isOpen}
+                isExpanded={isExpanded}
+                artists={day.artists}
+                dayId={day.festivalDateId}
+                toggleExpand={toggleExpand}
+              />
+            )}
           </div>
         );
       })}

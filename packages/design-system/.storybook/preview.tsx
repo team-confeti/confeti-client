@@ -3,7 +3,6 @@ import { MemoryRouter } from 'react-router-dom';
 import type { Preview } from '@storybook/react';
 
 import '../src/styles/reset.css';
-import { themeClass } from '../src/styles/theme.css';
 
 const preview: Preview = {
   parameters: {
@@ -21,9 +20,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <div className={themeClass}>
-          <Story />
-        </div>
+        <Story />
       </MemoryRouter>
     ),
   ],
