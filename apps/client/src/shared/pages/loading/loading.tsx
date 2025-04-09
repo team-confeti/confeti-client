@@ -19,7 +19,7 @@ const Loading = () => {
         loop
         animationData={modifiedAnimationData}
         play
-        style={{ width: 390, height: 390 }}
+        style={{ width: '15rem', height: '15rem' }}
       />
     </div>
   );
