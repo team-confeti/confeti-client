@@ -44,6 +44,11 @@ export const fontStyles = {
     fontWeight: typography.fontWeight.bold,
     lineHeight: typography.lineHeight.normal,
   },
+  subtitle3_sb_15: {
+    fontSize: typography.fontSize.subtitle3,
+    fontWeight: typography.fontWeight.semibold,
+    lineHeight: typography.lineHeight.normal,
+  },
   subtitle4_b_14: {
     fontSize: typography.fontSize.subtitle4,
     fontWeight: typography.fontWeight.bold,

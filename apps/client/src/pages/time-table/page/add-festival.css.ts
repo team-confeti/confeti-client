@@ -27,14 +27,3 @@ export const buttonSection = style({
   width: '100%',
   backgroundColor: themeVars.color.white,
 });
-
-export const headerLayout = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  position: 'sticky',
-  top: '5rem',
-  left: 0,
-  padding: '0.8rem 2rem',
-  zIndex: themeVars.zIndex.bottomButton.content,
-});
