@@ -87,6 +87,7 @@ const Home = () => {
               </PerformanceCarousel.ImageSlider>
             </PerformanceCarousel>
           </section>
+
           <section className={styles.ticketingBannerContainer}>
             <p className={styles.ticketingBannerText}>
               {profileData ? (

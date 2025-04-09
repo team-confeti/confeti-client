@@ -1,6 +1,8 @@
+export { OverlayProvider } from '../context/overlay-context';
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';
 export { default as Button } from './button/button';
+export { default as Dialog } from './dialog/dialog';
 export { default as DropdownMenu } from './dropdown-menu/dropdown-menu';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as FloatingButton } from './floating-button/floating-button';
