@@ -1,10 +1,14 @@
 import * as styles from './radio-option.css';
 
-const RadioOption = () => {
+interface RadioProps {
+  text: string;
+}
+
+const RadioOption = ({ text }: RadioProps) => {
   return (
     <label className={styles.wrapper}>
       <input type="radio" className={styles.radioStyle} />
-      <span>원하는 공연이 많이 없어서</span>
+      <span>{text}</span>
     </label>
   );
 };
