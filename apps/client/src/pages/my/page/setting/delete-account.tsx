@@ -16,6 +16,7 @@ const DeleteAccount = () => {
     { value: 'inconvenient', text: '이용하는데 편리하지 않아서' },
     { value: 'rejoin', text: '다른 계정으로 재가입하려고' },
   ];
+
   const handleConfirmWithdrawal = () => {
     // Amplitude에 탈퇴 사유 이벤트 전송
     track('User Withdrawal', {
@@ -24,6 +25,31 @@ const DeleteAccount = () => {
     });
 
     // TODO: 탈퇴 API 연결 추가
+  };
+
+  const handleDialogOpen = () => {
+    overlay.open(({ isOpen, close }) => (
+      <Dialog open={isOpen} handleClose={close}>
+        <Dialog.Content>
+          <Dialog.Title>정말 confeti를 탈퇴하실건가요?</Dialog.Title>
+          <Dialog.Description>
+            탈퇴 시 계정 및 이용 기록은 모두 삭제되며, <br />
+            삭제된 데이터는 복구가 불가능합니다. <br />
+            탈퇴를 진행할까요?
+          </Dialog.Description>
+        </Dialog.Content>
+        <Dialog.Action>
+          <Button text="취소하기" onClick={close} variant="back" />
+          <Button
+            text="탈퇴하기"
+            onClick={() => {
+              handleConfirmWithdrawal();
+              close();
+            }}
+          />
+        </Dialog.Action>
+      </Dialog>
+    ));
   };
 
   return (
@@ -54,30 +80,7 @@ const DeleteAccount = () => {
           variant="add"
           text="탈퇴하기"
           disabled={!selectedReason}
-          onClick={() =>
-            overlay.open(({ isOpen, close }) => (
-              <Dialog open={isOpen} handleClose={close}>
-                <Dialog.Content>
-                  <Dialog.Title>정말 confeti를 탈퇴하실건가요?</Dialog.Title>
-                  <Dialog.Description>
-                    탈퇴 시 계정 및 이용 기록은 모두 삭제되며, <br />
-                    삭제된 데이터는 복구가 불가능합니다. <br />
-                    탈퇴를 진행할까요?
-                  </Dialog.Description>
-                </Dialog.Content>
-                <Dialog.Action>
-                  <Button text="취소하기" onClick={close} variant="back" />
-                  <Button
-                    text="탈퇴하기"
-                    onClick={() => {
-                      handleConfirmWithdrawal();
-                      close();
-                    }}
-                  />
-                </Dialog.Action>
-              </Dialog>
-            ))
-          }
+          onClick={handleDialogOpen}
         />
       </div>
       <Footer />
