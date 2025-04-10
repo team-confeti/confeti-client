@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
+import { init } from '@amplitude/analytics-browser';
 import * as Sentry from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -12,6 +13,8 @@ import { rootStyle } from '@confeti/design-system/styles';
 import Router from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
+
+init(import.meta.env.VITE_AMPLITUDE_API_KEY);
 
 function App() {
   Sentry.init({

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { track } from '@amplitude/analytics-browser';
 import { useOverlay } from 'node_modules/@confeti/design-system/src/context/overlay-context';
 
 import { Button, Dialog, Footer, Header } from '@confeti/design-system';
@@ -15,6 +16,15 @@ const DeleteAccount = () => {
     { value: 'inconvenient', text: '이용하는데 편리하지 않아서' },
     { value: 'rejoin', text: '다른 계정으로 재가입하려고' },
   ];
+  const handleConfirmWithdrawal = () => {
+    // Amplitude에 탈퇴 사유 이벤트 전송
+    track('User Withdrawal', {
+      reason: selectedReason,
+      reason_text: reasons.find((r) => r.value === selectedReason)?.text,
+    });
+
+    // TODO: 탈퇴 API 연결 추가
+  };
 
   return (
     <>
@@ -57,7 +67,13 @@ const DeleteAccount = () => {
                 </Dialog.Content>
                 <Dialog.Action>
                   <Button text="취소하기" onClick={close} variant="back" />
-                  <Button text="탈퇴하기" onClick={close} />
+                  <Button
+                    text="탈퇴하기"
+                    onClick={() => {
+                      handleConfirmWithdrawal();
+                      close();
+                    }}
+                  />
                 </Dialog.Action>
               </Dialog>
             ))

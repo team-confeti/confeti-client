@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.13.2",
     "@confeti/design-system": "workspace:*",
     "@tanstack/react-query": "^5.62.16",
     "@tanstack/react-query-devtools": "^5.62.16",
