@@ -63,10 +63,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
               })}
             >
               <Description
-                descriptionText={[
-                  '공연의 설레는 시작과',
-                  '끝을 콘페티와 함께!',
-                ]}
+                descriptionText={'공연의 설레는 시작과 끝을\n콘페티와 함께!'}
                 fontSize={18}
               />
             </section>
@@ -87,11 +84,9 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
             >
               <div>
                 <Description
-                  descriptionText={[
-                    '멋진 취향이네요!',
-                    '선택하신 아티스트의 공연 소식을',
-                    '빠르게 알려드릴게요.',
-                  ]}
+                  descriptionText={
+                    '멋진 취향이네요!\n선택하신 아티스트의 공연 소식을\n빠르게 알려드릴게요.'
+                  }
                   fontSize={20}
                 />
               </div>

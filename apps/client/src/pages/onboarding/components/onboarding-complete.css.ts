@@ -12,7 +12,7 @@ export const completeContentSection = recipe({
   variants: {
     phase: {
       description: {
-        alignItems: 'center',
+        textAlign: 'center',
         justifyContent: 'center',
       },
       cta: {
