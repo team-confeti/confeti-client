@@ -13,9 +13,7 @@ export const useDeleteAccountMutation = () => {
   return useMutation({
     mutationFn: deleteAccount,
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [...USER_QUERY_KEY.PROFILE()],
-      });
+      queryClient.clear();
 
       authTokenHandler('remove');
       navigate(`${routePath.LOGIN}`);
