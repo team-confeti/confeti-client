@@ -8,11 +8,11 @@ export const descriptionTextVariants = recipe({
   variants: {
     fontSize: {
       18: {
-        ...themeVars.fontStyles.title2_b_20,
+        ...themeVars.fontStyles.title3_b_18,
         color: themeVars.color.gray800,
       },
       20: {
-        ...themeVars.fontStyles.title3_b_18,
+        ...themeVars.fontStyles.title2_b_20,
         color: themeVars.color.black,
       },
     },
