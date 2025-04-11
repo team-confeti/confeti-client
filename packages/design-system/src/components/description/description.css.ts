@@ -4,7 +4,9 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeVars } from '../../styles';
 
 export const descriptionTextVariants = recipe({
-  base: {},
+  base: {
+    whiteSpace: 'pre-line',
+  },
   variants: {
     fontSize: {
       18: {
