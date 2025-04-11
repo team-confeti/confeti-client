@@ -3,16 +3,15 @@ import { cn } from '../../utils';
 import * as styles from './description.css';
 
 interface DescriptionTextProps {
-  descriptionText: string[];
+  descriptionText: string;
   fontSize: 18 | 20;
 }
 
 const Description = ({ descriptionText, fontSize }: DescriptionTextProps) => {
-  return descriptionText.map((text, index) => (
-    <p key={index} className={cn(styles.descriptionTextVariants({ fontSize }))}>
-      {text}
+  return (
+    <p className={cn(styles.descriptionTextVariants({ fontSize }))}>
+      {descriptionText}
     </p>
-  ));
+  );
 };
-
 export default Description;
