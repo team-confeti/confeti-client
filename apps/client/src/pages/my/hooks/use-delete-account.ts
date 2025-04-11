@@ -18,7 +18,7 @@ export const useDeleteAccountMutation = () => {
       });
 
       authTokenHandler('remove');
-      navigate(`${routePath.ROOT}`);
+      navigate(`${routePath.LOGIN}`);
     },
   });
 };
