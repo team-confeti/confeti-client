@@ -10,7 +10,7 @@ export const fontStyles = {
   title2_b_20: {
     fontSize: typography.fontSize.title2,
     fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.lineHeight.body4_2,
+    lineHeight: typography.lineHeight.body6,
   },
   title3_b_18: {
     fontSize: typography.fontSize.title3,
