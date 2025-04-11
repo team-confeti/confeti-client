@@ -19,7 +19,7 @@ const ArtistSelect = ({ children }: artistSelectProps) => {
   return (
     <section className={styles.onboardingContentSection}>
       <Description
-        descriptionText={['선호하는 아티스트를', '모두 선택해주세요']}
+        descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
         fontSize={20}
       />
       <div className={styles.searchBarSection}>
