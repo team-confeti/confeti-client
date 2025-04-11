@@ -9,7 +9,7 @@ export const container = style({
 });
 
 export const selectSection = style({
-  height: `calc( 100dvh - 32.5rem )`,
+  flex: '1',
 });
 
 export const textStyle = style({
@@ -33,7 +33,7 @@ export const buttonWrapper = style({
   padding: '2rem',
 });
 
-export const wrapper = style({
+export const label = style({
   display: 'flex',
   gap: '1rem',
   textAlign: 'center',

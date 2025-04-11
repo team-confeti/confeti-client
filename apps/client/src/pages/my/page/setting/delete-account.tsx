@@ -55,13 +55,13 @@ const DeleteAccount = () => {
   return (
     <>
       <Header variant="detail" title="회원탈퇴" />
-      <div className={styles.selectSection}>
+      <main className={styles.selectSection}>
         <div className={styles.textStyle}>
           탈퇴하시려는 이유를 선택해주세요.
         </div>
         <div className={styles.radioWrapper}>
           {reasons.map((reason) => (
-            <label key={reason.value} className={styles.wrapper}>
+            <label key={reason.value} className={styles.label}>
               <input
                 type="radio"
                 name="withdrawal_reason"
@@ -74,7 +74,7 @@ const DeleteAccount = () => {
             </label>
           ))}
         </div>
-      </div>
+      </main>
       <div className={styles.buttonWrapper}>
         <Button
           variant="add"

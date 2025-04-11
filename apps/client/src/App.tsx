@@ -15,16 +15,15 @@ import Router from '@shared/router/router';
 import { queryClient } from './shared/utils/query-client';
 
 init(import.meta.env.VITE_AMPLITUDE_API_KEY);
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
+  tracesSampleRate: 1.0,
+  normalizeDepth: 6,
+});
+Sentry.addIntegration(Sentry.browserTracingIntegration());
 
 function App() {
-  Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN,
-    tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
-    tracesSampleRate: 1.0,
-    normalizeDepth: 6,
-  });
-  Sentry.addIntegration(Sentry.browserTracingIntegration());
-
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
