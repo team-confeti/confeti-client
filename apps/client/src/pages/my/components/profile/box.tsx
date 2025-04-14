@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IcArrowGray16 } from '@confeti/design-system/icons';
@@ -6,15 +7,17 @@ import * as styles from './box.css';
 
 interface BoxProps {
   title: string;
-  path: string;
+  path?: string;
   showMore?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Box = ({ title, path, showMore = false, children }: BoxProps) => {
   const navigate = useNavigate();
 
   const handleShowMore = () => {
+    if (!path) return;
+
     navigate(path);
   };
 
