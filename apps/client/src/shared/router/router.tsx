@@ -6,6 +6,7 @@ import GlobalLayout from './global-layout';
 import {
   AddFestivalPage,
   ConcertDetailPage,
+  DeleteAccountPage,
   ErrorPage,
   FestivalDetailPage,
   HomePage,
@@ -52,6 +53,10 @@ export default function Router() {
           <Route
             path={routePath.MY_SETTING}
             element={createProtectedRoute(true, <SettingPage />)}
+          />
+          <Route
+            path={routePath.MY_DELETE_ACCOUNT}
+            element={createProtectedRoute(true, <DeleteAccountPage />)}
           />
         </Route>
 

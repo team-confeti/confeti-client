@@ -50,6 +50,9 @@ importers:
 
   apps/client:
     dependencies:
+      '@amplitude/analytics-browser':
+        specifier: ^2.13.2
+        version: 2.13.2
       '@confeti/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -291,6 +294,54 @@ packages:
     resolution:
       {
         integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==,
+      }
+
+  '@amplitude/analytics-browser@2.13.2':
+    resolution:
+      {
+        integrity: sha512-JrpxLwIEbIpoTJiRrHt3MZ6+qJEDIZOuupu+BjMax7g7kUGfKEUk9WG9dSlavx/b8CHihSwse8mVPPmrHgVCrg==,
+      }
+
+  '@amplitude/analytics-client-common@2.3.13':
+    resolution:
+      {
+        integrity: sha512-HOJmUyG0tUXu4LD2fcDZo99z1odEXLBv554YWFhY+QS+v3KFsHANPKH8UU1dbGxhsMqCTDYcCSMqQ4WLN7T6jg==,
+      }
+
+  '@amplitude/analytics-connector@1.6.4':
+    resolution:
+      {
+        integrity: sha512-SpIv0IQMNIq6SH3UqFGiaZyGSc7PBZwRdq7lvP0pBxW8i4Ny+8zwI0pV+VMfMHQwWY3wdIbWw5WQphNjpdq1/Q==,
+      }
+
+  '@amplitude/analytics-core@2.8.0':
+    resolution:
+      {
+        integrity: sha512-8OPvo7ktJDmOZL6QntaDVlv59SnDQcH8STmD5lAPYqjLVghDs4Aj3AmSJrzP+JB9AvMF+6wDzbyaaVD5n/Fe2g==,
+      }
+
+  '@amplitude/analytics-remote-config@0.4.1':
+    resolution:
+      {
+        integrity: sha512-BYl6kQ9qjztrCACsugpxO+foLaQIC0aSEzoXEAb/gwOzInmqkyyI+Ub+aWTBih4xgB/lhWlOcidWHAmNiTJTNw==,
+      }
+
+  '@amplitude/analytics-types@2.9.1':
+    resolution:
+      {
+        integrity: sha512-Hw0pgUQCDV6AgvZD8ymBF3mzyBnPrIvXiPxfTNTg/bAkg1h+GVNdJIL6VAXd53kYuO7Lx/vjdhZS54i+RYtgMA==,
+      }
+
+  '@amplitude/plugin-autocapture-browser@1.1.5':
+    resolution:
+      {
+        integrity: sha512-0Y4C1q7UC2OYN0QqHPh+kZKpa6cqr0a23PFRYkatdEXAtLx+U+tynX6MjcRn6s5MAYkoscxaMd/17aFqdDkiSQ==,
+      }
+
+  '@amplitude/plugin-page-view-tracking-browser@2.3.15':
+    resolution:
+      {
+        integrity: sha512-vljAPfolYdoA+Qci6gfym/mDWo/Ul+DUlcKX11//EfTIj0joOkZDvGve3kWzwjBZwkd+IeLk1baroyFS2/ZTSQ==,
       }
 
   '@ampproject/remapping@2.3.0':
@@ -8266,6 +8317,48 @@ packages:
 snapshots:
   '@adobe/css-tools@4.4.1': {}
 
+  '@amplitude/analytics-browser@2.13.2':
+    dependencies:
+      '@amplitude/analytics-core': 2.8.0
+      '@amplitude/analytics-remote-config': 0.4.1
+      '@amplitude/plugin-autocapture-browser': 1.1.5
+      '@amplitude/plugin-page-view-tracking-browser': 2.3.15
+      tslib: 2.7.0
+
+  '@amplitude/analytics-client-common@2.3.13':
+    dependencies:
+      '@amplitude/analytics-connector': 1.6.4
+      '@amplitude/analytics-core': 2.8.0
+      '@amplitude/analytics-types': 2.9.1
+      tslib: 2.7.0
+
+  '@amplitude/analytics-connector@1.6.4': {}
+
+  '@amplitude/analytics-core@2.8.0':
+    dependencies:
+      tslib: 2.7.0
+
+  '@amplitude/analytics-remote-config@0.4.1':
+    dependencies:
+      '@amplitude/analytics-client-common': 2.3.13
+      '@amplitude/analytics-core': 2.8.0
+      '@amplitude/analytics-types': 2.9.1
+      tslib: 2.7.0
+
+  '@amplitude/analytics-types@2.9.1': {}
+
+  '@amplitude/plugin-autocapture-browser@1.1.5':
+    dependencies:
+      '@amplitude/analytics-core': 2.8.0
+      rxjs: 7.8.1
+      tslib: 2.7.0
+
+  '@amplitude/plugin-page-view-tracking-browser@2.3.15':
+    dependencies:
+      '@amplitude/analytics-client-common': 2.3.13
+      '@amplitude/analytics-types': 2.9.1
+      tslib: 2.7.0
+
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -10043,7 +10136,7 @@ snapshots:
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2)
       '@typescript-eslint/parser': 6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2)
       eslint-config-prettier: 9.1.0(eslint@9.17.0(jiti@1.21.6))
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.30.0)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.30.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.17.0(jiti@1.21.6)))
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.17.0(jiti@1.21.6))
       eslint-plugin-eslint-comments: 3.2.0(eslint@9.17.0(jiti@1.21.6))
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint@9.17.0(jiti@1.21.6))
@@ -11074,7 +11167,7 @@ snapshots:
       eslint: 9.17.0(jiti@1.21.6)
       eslint-plugin-turbo: 2.1.2(eslint@9.17.0(jiti@1.21.6))
 
-  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.30.0):
+  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.30.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.17.0(jiti@1.21.6))):
     dependencies:
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint@9.17.0(jiti@1.21.6))
 
@@ -11092,7 +11185,7 @@ snapshots:
       debug: 4.4.0
       enhanced-resolve: 5.17.1
       eslint: 9.17.0(jiti@1.21.6)
-      eslint-module-utils: 2.11.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.17.0(jiti@1.21.6))
+      eslint-module-utils: 2.11.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.17.0(jiti@1.21.6)))(eslint@9.17.0(jiti@1.21.6))
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
@@ -11105,7 +11198,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.11.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.17.0(jiti@1.21.6)):
+  eslint-module-utils@2.11.0(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.17.0(jiti@1.21.6)))(eslint@9.17.0(jiti@1.21.6)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:

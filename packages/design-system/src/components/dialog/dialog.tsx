@@ -2,6 +2,7 @@ import { ReactNode, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 import useClickOutside from '../../hooks/use-click-outside';
+import { themeClass } from '../../styles';
 import { cn } from '../../utils';
 
 import * as styles from './dialog.css';
@@ -39,14 +40,19 @@ const DialogRoot = ({
 
   if (!open) return null;
   return createPortal(
-    <div className={styles.backDropStyle({ backDrop: backDrop })} {...props}>
+    <div className={themeClass}>
       <div
-        ref={ref}
-        className={cn(styles.rootStyle)}
-        role="dialog"
-        aria-modal="true"
+        className={cn(styles.backDropStyle({ backDrop: backDrop }), themeClass)}
+        {...props}
       >
-        {children}
+        <div
+          ref={ref}
+          className={cn(styles.rootStyle)}
+          role="dialog"
+          aria-modal="true"
+        >
+          {children}
+        </div>
       </div>
     </div>,
     document.body,
