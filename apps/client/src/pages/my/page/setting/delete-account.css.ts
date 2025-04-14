@@ -13,8 +13,7 @@ export const selectSection = style({
 });
 
 export const textStyle = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   width: '100%',
   height: '6rem',
   padding: '1rem 2rem',
@@ -23,8 +22,7 @@ export const textStyle = style({
 });
 
 export const radioWrapper = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '3rem',
   padding: '1rem 2rem',
 });
