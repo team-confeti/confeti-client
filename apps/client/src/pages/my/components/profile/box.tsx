@@ -27,7 +27,7 @@ const Box = ({ title, path, showMore = false, children }: BoxProps) => {
             <button onClick={handleShowMore} className={styles.button}>
               더보기
             </button>
-            <IcArrowGray16 className={styles.icon} />
+            <IcArrowGray16 width={'1.2rem'} height={'1.2rem'} />
           </div>
         )}
       </div>
