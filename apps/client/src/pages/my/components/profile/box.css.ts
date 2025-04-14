@@ -27,8 +27,3 @@ export const button = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.gray500,
 });
-
-export const icon = style({
-  width: '1.2rem',
-  height: '1.2rem',
-});

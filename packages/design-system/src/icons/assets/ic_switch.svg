@@ -1,5 +1,1 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="ic_switch">
-<path id="Vector" d="M9.27047 3.81445L9.27047 12.003L12 9.27351M6.99587 12.1848L6.99587 3.99619L4.26634 6.72572" stroke="#121212" stroke-width="0.909842" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><path stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width=".91" d="M9.27 3.814v8.189L12 9.273m-5.004 2.912V3.996l-2.73 2.73"/></svg>
