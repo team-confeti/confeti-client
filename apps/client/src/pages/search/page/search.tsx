@@ -36,14 +36,18 @@ const Search = () => {
 
   return (
     <>
-      <SearchBar
-        value={searchKeyword}
-        onChange={handleOnChange}
-        onKeyDown={handleKeydown}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        placeholder="아티스트 또는 공연을 검색해보세요!"
-      />
+      <div className={styles.searchBarContainer}>
+        <div className={styles.searchBarFrame}>
+          <SearchBar
+            value={searchKeyword}
+            onChange={handleOnChange}
+            onKeyDown={handleKeydown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            placeholder="아티스트 또는 공연을 검색해보세요!"
+          />
+        </div>
+      </div>
       {!barFocus && paramsKeyword.length > 0 && (
         <>
           <main className={styles.resultSection}>

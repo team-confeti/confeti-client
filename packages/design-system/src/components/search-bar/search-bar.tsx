@@ -77,45 +77,43 @@ export const SearchBar = ({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.frame}>
-        {showBackButton && (
-          <SvgBtnArrowLeft20
-            width={20}
-            height={20}
-            onClick={handleBackClick}
-            className={styles.arrowButton}
-          />
-        )}
-        <div className={styles.searchBar({ type: 'default' })}>
-          <SvgIcNewSearchGray18
-            className={styles.searchIcon}
+    <>
+      {showBackButton && (
+        <SvgBtnArrowLeft20
+          width={20}
+          height={20}
+          onClick={handleBackClick}
+          className={styles.arrowButton}
+        />
+      )}
+      <div className={styles.searchBar({ type: 'default' })}>
+        <SvgIcNewSearchGray18
+          className={styles.searchIcon}
+          width={18}
+          height={18}
+        />
+        <input
+          className={styles.textSection}
+          type="text"
+          placeholder={isFocused ? '' : placeholder}
+          ref={textInput}
+          value={value}
+          onChange={handleInputChange}
+          onKeyDown={onKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+        {showClearBtn && (
+          <SvgBtnClose
+            className={styles.closeBtn}
+            onClick={handleClear}
             width={18}
             height={18}
+            style={{ display: 'flex' }}
           />
-          <input
-            className={styles.textSection}
-            type="text"
-            placeholder={isFocused ? '' : placeholder}
-            ref={textInput}
-            value={value}
-            onChange={handleInputChange}
-            onKeyDown={onKeyDown}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-          {showClearBtn && (
-            <SvgBtnClose
-              className={styles.closeBtn}
-              onClick={handleClear}
-              width={18}
-              height={18}
-              style={{ display: 'flex' }}
-            />
-          )}
-        </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
