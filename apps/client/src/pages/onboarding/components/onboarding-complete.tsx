@@ -82,18 +82,35 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
             <section
               className={styles.completeContentSection({ phase: 'cta' })}
             >
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 <Description
                   descriptionText={
                     '멋진 취향이네요!\n선택하신 아티스트의 공연 소식을\n빠르게 알려드릴게요.'
                   }
                   fontSize={20}
                 />
-              </div>
-              <div className={styles.confetiLogo}>
+              </motion.div>
+
+              <motion.div
+                className={styles.confetiLogo}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 <SvgConfeti3DLogo21 width={'22rem'} height={'22rem'} />
-              </div>
-              <div>{children}</div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                {children}
+              </motion.div>
             </section>
           </motion.div>
         );
