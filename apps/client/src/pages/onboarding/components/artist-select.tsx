@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
 
-import * as styles from './artist-select.css';
+import ArtistSearch from './artist-search';
 
+import * as styles from './artist-select.css';
 //TODO: remove mock data
 const mockArtists = Array.from({ length: 100 }, (_, i) => ({
   id: i,
@@ -16,29 +17,44 @@ interface artistSelectProps {
 }
 
 const ArtistSelect = ({ children }: artistSelectProps) => {
-  return (
-    <section className={styles.onboardingContentSection}>
-      <Description
-        descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
-        fontSize={20}
-      />
-      <div className={styles.searchBarSection}>
-        <SearchBar
-          showBackButton={false}
-          placeholder="아티스트를 검색해주세요"
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  if (isFocused) {
+    return <ArtistSearch />;
+  } else {
+    return (
+      <section className={styles.onboardingContentSection}>
+        <Description
+          descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
+          fontSize={20}
         />
-      </div>
-      <div className={styles.avatarGridSection}>
-        {mockArtists.map((artist) => (
-          <div key={artist.id} className={styles.avatar}>
-            <Avatar size="xl" src={artist.src} alt={`${artist.name} 이미지`} />
-            <p className={styles.artistName}>{artist.name}</p>
-          </div>
-        ))}
-      </div>
-      {children}
-    </section>
-  );
+        <div className={styles.searchBarSection}>
+          <SearchBar
+            showBackButton={false}
+            placeholder="아티스트를 검색해주세요"
+            onFocus={handleFocus}
+          />
+        </div>
+        <div className={styles.avatarGridSection}>
+          {mockArtists.map((artist) => (
+            <div key={artist.id} className={styles.avatar}>
+              <Avatar
+                size="xl"
+                src={artist.src}
+                alt={`${artist.name} 이미지`}
+              />
+              <p className={styles.artistName}>{artist.name}</p>
+            </div>
+          ))}
+        </div>
+        {children}
+      </section>
+    );
+  }
 };
 
 export default ArtistSelect;
