@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
 
@@ -17,14 +18,18 @@ interface artistSelectProps {
 }
 
 const ArtistSelect = ({ children }: artistSelectProps) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isFocused = searchParams.get('search') === 'true';
 
-  const handleFocus = () => {
-    setIsFocused(true);
+  const handleSearchBarFocus = () => {
+    setSearchParams({ search: 'true' });
+  };
+  const handleArtistSelect = () => {
+    setSearchParams({});
   };
 
   if (isFocused) {
-    return <ArtistSearch />;
+    return <ArtistSearch handleArtistSelect={handleArtistSelect} />;
   } else {
     return (
       <section className={styles.onboardingContentSection}>
@@ -36,7 +41,7 @@ const ArtistSelect = ({ children }: artistSelectProps) => {
           <SearchBar
             showBackButton={false}
             placeholder="아티스트를 검색해주세요"
-            onFocus={handleFocus}
+            onFocus={handleSearchBarFocus}
           />
         </div>
         <div className={styles.avatarGridSection}>
