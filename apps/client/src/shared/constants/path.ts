@@ -1,36 +1,43 @@
 export const routePath = {
+  // Home
   LAYOUT: '/',
-  // home-page
   ROOT: '/',
-  // login-page
   LOGIN: '/login',
-  // my-page
+
+  // Shared
+  LOADING: '/loading',
+
+  // My
   MY: '/my',
   MY_ARTIST: 'artist',
   MY_CONFETI: 'confeti',
   MY_REQUIRE_LOGIN: 'require-login',
   MY_SETTING: 'setting',
   MY_DELETE_ACCOUNT: 'delete-account',
-  // search-page
+
+  // MyHistory
+  MY_HISTORY: '/my-history',
+
+  // Search
   SEARCH: '/search',
-  // detail-page
+
+  // Detail
   CONCERT: '/concert-detail/:typeId',
   FESTIVAL: '/festival-detail/:typeId',
-
   MYARTIST: '/my-artist',
 
-  // time-table
+  // TimeTable
   TIME_TABLE_OUTLET: '/timetable',
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',
   TIME_TABLE_REQUIRE_LOGIN: 'require-login',
-  ADDFESTIVAL: 'add-festival',
+  ADD_FESTIVAL: 'add-festival',
 
-  LOADING: '/loading',
-  //privacy
+  // Privacy
   PRIVACY_CONFETI:
     'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
   PRIVACY_PERSONAL:
     'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
-  //onboarding
+
+  // Onboarding
   ONBOARDING: '/onboarding',
 } as const;

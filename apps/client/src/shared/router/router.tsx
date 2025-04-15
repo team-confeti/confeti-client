@@ -13,8 +13,10 @@ import {
   LoginPage,
   MyArtistPage,
   MyConfetiPage,
+  MyHistoryPage,
   MyPage,
   MyProfilePage,
+  MyRecordPage,
   OnboardingPage,
   RequireLoginPage,
   SearchPage,
@@ -33,6 +35,7 @@ export default function Router() {
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 
+        {/* MyPage */}
         <Route path={routePath.MY} element={<MyPage />}>
           <Route
             path=""
@@ -60,10 +63,19 @@ export default function Router() {
           />
         </Route>
 
+        {/* MyRecord */}
+        <Route path={routePath.MY_HISTORY} element={<MyHistoryPage />}>
+          <Route
+            path={routePath.MY_HISTORY}
+            element={createProtectedRoute(true, <MyRecordPage />)}
+          />
+        </Route>
+
         <Route path={routePath.SEARCH} element={<SearchPage />} />
         <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
         <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
 
+        {/* TimeTable */}
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>
           <Route
             path=""
@@ -74,10 +86,11 @@ export default function Router() {
             element={<TimeTableRequireLoginPage />}
           />
           <Route
-            path={routePath.ADDFESTIVAL}
+            path={routePath.ADD_FESTIVAL}
             element={createProtectedRoute(true, <AddFestivalPage />)}
           />
         </Route>
+
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
