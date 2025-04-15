@@ -86,7 +86,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 1, delay: 0.6 }}
               >
                 <Description
                   descriptionText={
@@ -100,7 +100,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
                 className={styles.confetiLogo}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <SvgConfeti3DLogo21 width={'22rem'} height={'22rem'} />
               </motion.div>
@@ -108,7 +108,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
               >
                 {children}
               </motion.div>
