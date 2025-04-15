@@ -33,6 +33,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
     return () => timers.forEach(clearTimeout);
   }, []);
 
+  //TODO : motion.div 컴포넌트화 진행
   const renderPhase = () => {
     switch (phase) {
       case 'loading':
