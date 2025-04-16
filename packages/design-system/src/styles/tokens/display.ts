@@ -18,6 +18,10 @@ export const display = {
     alignItems: 'center',
     textAlign: 'center',
   },
+  flexBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   flexBetweenAlignCenter: {
     display: 'flex',
     justifyContent: 'space-between',
