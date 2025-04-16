@@ -7,7 +7,7 @@ import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import NoUpcomingPerformanceSection from '@pages/my/components/upcomingPerformance/no-upcoming-performance-section';
 import UpcomingPerformanceSection from '@pages/my/components/upcomingPerformance/upcoming-performance-section';
-import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useMyPerformancePreview } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Footer, Header } from '@confeti/design-system';
@@ -22,7 +22,7 @@ const MyProfile = () => {
   // const { data: artistData } = useMyArtist();
   const artistData = ARTISTS_DATA;
   const upcomingPerformanceData = PERFORMANCE_DATA.performances[0];
-  const { data: performanceData } = useMyConfeti();
+  const { data: performanceData } = useMyPerformancePreview();
 
   if (!profileData || !artistData || !performanceData) {
     return null;

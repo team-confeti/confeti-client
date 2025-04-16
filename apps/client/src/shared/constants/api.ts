@@ -2,8 +2,11 @@ export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
 
 export const END_POINT = {
   GET_USER_PROFILE: '/user/info',
-  GET_FAVORITE_ARTISTS: '/user/favorites/artists/preview',
-  GET_FAVORITE_PERFORMANCES: '/user/favorites/performances/preview',
+  GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
+  GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
+  GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
+    `user/favorites/performances?type=${performancesType}`,
+
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,

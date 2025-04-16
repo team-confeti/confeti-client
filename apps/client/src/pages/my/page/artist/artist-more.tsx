@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ArtistList from '@pages/my/components/artist/artist-list';
-import { useMyArtist } from '@pages/my/hooks/use-my-favorites';
+import { useMyArtistPreview } from '@pages/my/hooks/use-my-favorites';
 
 import { Header } from '@confeti/design-system';
 import { IcSwitch } from '@confeti/design-system/icons';
@@ -9,7 +9,7 @@ import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 import * as styles from './artist-more.css';
 
 const ArtistMore = () => {
-  const { data } = useMyArtist();
+  const { data } = useMyArtistPreview();
   const [sortOption, setSortOption] = useState<'latest' | 'name'>('latest');
 
   if (!data) return null;
