@@ -4,6 +4,7 @@ import { themeVars } from '../../styles';
 
 export const descriptionTextVariants = recipe({
   base: {
+    width: '100%',
     whiteSpace: 'pre-line',
   },
   variants: {
