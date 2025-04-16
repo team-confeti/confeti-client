@@ -1,15 +1,7 @@
-import { IcTimeGray14 } from '@confeti/design-system/icons';
+import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
+import { Performance } from '@shared/types/user-response';
 
 import * as styles from './performance-list.css';
-
-interface Performance {
-  index: number;
-  posterUrl: string;
-  title: string;
-  type: string;
-  typeId: number;
-}
-
 interface PerformanceListProps {
   performances: Performance[];
 }
@@ -35,8 +27,7 @@ const PerformanceList = ({ performances }: PerformanceListProps) => {
               </div>
 
               <div className={styles.description}>
-                {/* TODO: icon 변경 */}
-                <IcTimeGray14 width={'1.4rem'} height={'1.4rem'} />
+                <IcPlaceGray14 width={'1.4rem'} height={'1.4rem'} />
                 <p>벡스코 제1전시장 1호</p>
               </div>
             </div>
