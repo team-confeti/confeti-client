@@ -23,3 +23,11 @@ export const useMyPerformancePreview = () => {
   // 로딩 상태 제거
   return { data };
 };
+
+export const useMyPerformances = (performancesType: PerformancesFilterType) => {
+  const { data } = useQuery({
+    ...USER_QUERY_OPTIONS.MY_PERFORMANCES(performancesType),
+  });
+
+  return { data };
+};

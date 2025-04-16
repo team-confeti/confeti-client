@@ -31,3 +31,12 @@ export const getMyPerformancesPreview =
     );
     return response.data;
   };
+
+export const getMyPerformances = async (
+  performancesType: PerformancesFilterType,
+): Promise<MyPerformancesResponse> => {
+  const response = await get<BaseResponse<MyPerformancesResponse>>(
+    END_POINT.GET_MY_PERFORMANCES(performancesType),
+  );
+  return response.data;
+};

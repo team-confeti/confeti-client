@@ -1,19 +1,27 @@
+import { useMemo, useState } from 'react';
 import PerformanceList from '@pages/my/components/performance/performance-list';
-import { useFilteredPerformances } from '@pages/my/hooks/use-filter-performances';
-import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useMyPerformances } from '@pages/my/hooks/use-my-favorites';
 
 import { Chip, Footer, Header } from '@confeti/design-system';
 
 import * as styles from './performance-more.css';
 
+const categories = ['전체', '콘서트', '페스티벌'] as const;
+
 const ConfetiMore = () => {
-  const { data } = useMyConfeti();
-  const categories = ['전체', '콘서트', '페스티벌'] as const;
+  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const filterType = useMemo(() => {
+    switch (selectedCategory) {
+      case '콘서트':
+        return 'CONCERT';
+      case '페스티벌':
+        return 'FESTIVAL';
+      default:
+        return 'ALL';
+    }
+  }, [selectedCategory]);
 
-  const { selectedCategory, setSelectedCategory, filteredPerformances } =
-    useFilteredPerformances(data?.performances || []);
-
-  console.log(data?.performances);
+  const { data } = useMyPerformances(filterType);
 
   return (
     <>
@@ -31,9 +39,7 @@ const ConfetiMore = () => {
           ))}
         </ul>
       </nav>
-
-      <PerformanceList performances={filteredPerformances} />
-
+      <PerformanceList performances={data?.performances ?? []} />
       <Footer />
     </>
   );

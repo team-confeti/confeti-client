@@ -1,34 +1,28 @@
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
-import { Performance } from '@shared/types/user-response';
+import { MyPerformancesResponse } from '@shared/types/user-response';
+import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './performance-list.css';
-interface PerformanceListProps {
-  performances: Performance[];
-}
 
-const PerformanceList = ({ performances }: PerformanceListProps) => {
+const PerformanceList = ({ performances }: MyPerformancesResponse) => {
   return (
     <ul className={styles.wrapper}>
-      {performances.map((performance) => (
-        <li key={performance.index} className={styles.performanceItem}>
-          <img
-            src={performance.posterUrl}
-            alt={performance.title}
-            className={styles.image}
-          />
+      {performances.map(({ title, posterUrl, startAt, endAt, area }) => (
+        <li key={title} className={styles.performanceItem}>
+          <img src={posterUrl} alt={title} className={styles.image} />
 
           <div className={styles.info}>
-            <h2 className={styles.title}>{performance.title}</h2>
+            <h2 className={styles.title}>{title}</h2>
 
             <div>
               <div className={styles.description}>
                 <IcTimeGray14 width={'1.4rem'} height={'1.4rem'} />
-                <p>2025.02.01 - 2025.08.02</p>
+                <p>{formatDate('', 'startEndFull', startAt, endAt)}</p>
               </div>
 
               <div className={styles.description}>
                 <IcPlaceGray14 width={'1.4rem'} height={'1.4rem'} />
-                <p>벡스코 제1전시장 1호</p>
+                <p>{area}</p>
               </div>
             </div>
           </div>
