@@ -4,7 +4,6 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import {
   Footer,
-  Navigation,
   PerformanceCarousel,
   TicketingCard,
 } from '@confeti/design-system';
