@@ -19,6 +19,7 @@ export const searchBarFrame = style({
 
 export const resultSection = style({
   ...themeVars.display.flexColumn,
+  paddingBottom: '9rem',
 });
 
 export const countSection = style({
