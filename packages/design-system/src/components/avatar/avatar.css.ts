@@ -82,6 +82,7 @@ export const imgVariants = recipe({
     height: '100%',
     borderRadius: '100%',
     objectFit: 'cover',
+    cursor: 'pointer',
   },
 });
 
