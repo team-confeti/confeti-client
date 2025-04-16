@@ -11,8 +11,7 @@ export const searchBarContainer = style({
 });
 
 export const searchBarFrame = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   width: '100%',
   gap: '0.5rem',
 });
