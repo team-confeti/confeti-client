@@ -10,12 +10,10 @@ export const wrapper = style({
 
 export const item = style({
   position: 'relative',
-
+  width: '100%',
   ...themeVars.display.flexColumn,
   alignItems: 'center',
-
   gap: '0.9rem',
-  width: '100%',
 
   selectors: {
     '&::after': {

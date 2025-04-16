@@ -20,7 +20,6 @@ const RecordIntroduce = ({ name, profileUrl }: Props) => {
             <h2 className={styles.title}>{name}</h2>
             <p className={styles.description}>{USER_POSTFIX}</p>
           </div>
-
           <h1 className={styles.description}>콘페티 기록을 보여드려요!</h1>
         </div>
       </div>
