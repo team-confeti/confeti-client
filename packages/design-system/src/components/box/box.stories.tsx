@@ -24,6 +24,18 @@ Box 컴포넌트는 제목과 버튼이 포함된 컨테이너입니다.
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: '375px',
+          border: '1px solid #ccc',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
   args: {
     title: '박스 제목',
