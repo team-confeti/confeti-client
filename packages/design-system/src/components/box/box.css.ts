@@ -3,10 +3,8 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const boxVariants = recipe({
-  base: {
-    padding: '2rem',
-  },
+export const container = style({
+  padding: '2.4rem 2rem',
 });
 
 export const header = style({
