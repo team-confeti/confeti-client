@@ -2,32 +2,46 @@ import { useNavigate } from 'react-router-dom';
 
 import { IcArrowGray16 } from '@confeti/design-system/icons';
 
+import { cn } from '../../utils';
+
 import * as styles from './box.css';
 
-interface BoxProps {
+interface Props {
   title: string;
-  path: string;
+  path?: string;
   showMore?: boolean;
+  showMoreText?: string;
   children: React.ReactNode;
+  className?: string;
 }
 
-const Box = ({ title, path, showMore = false, children }: BoxProps) => {
+const Box = ({
+  title,
+  path,
+  showMore,
+  showMoreText,
+  className,
+  children,
+  ...props
+}: Props) => {
   const navigate = useNavigate();
 
   const handleShowMore = () => {
-    navigate(path);
+    if (path) {
+      navigate(path);
+    }
   };
 
   return (
-    <section className={styles.container}>
+    <section className={cn(styles.boxVariants(), className)} {...props}>
       <div className={styles.header}>
         <h3 className={styles.title}>{title}</h3>
         {showMore && (
           <div className={styles.buttonWrapper}>
             <button onClick={handleShowMore} className={styles.button}>
-              더보기
+              {showMoreText}
             </button>
-            <IcArrowGray16 width={'1.2rem'} height={'1.2rem'} />
+            <IcArrowGray16 width="1.2rem" height="1.2rem" />
           </div>
         )}
       </div>
