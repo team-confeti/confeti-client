@@ -20,11 +20,3 @@ export const descriptionTextVariants = recipe({
     },
   },
 });
-
-export const descriptioncontainer = style({
-  ...themeVars.display.flexColumn,
-  width: '100%',
-  padding: '2rem 2rem 0rem 2rem',
-  gap: '1rem',
-  alignSelf: 'stretch',
-});
