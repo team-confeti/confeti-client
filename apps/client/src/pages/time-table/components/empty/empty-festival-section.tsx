@@ -10,7 +10,7 @@ const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
   const handleAddFestivalClick = () => {
-    navigate(`${routePath.ADDFESTIVAL}`);
+    navigate(`${routePath.ADD_FESTIVAL}`);
   };
 
   return (
