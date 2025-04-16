@@ -5,8 +5,7 @@ export const PERFORMANCE_DATA = {
       typeId: 1,
       title: 'KT&G 상상실현 페스티벌',
       type: 'FESTIVAL',
-      posterUrl:
-        'https://confeti-bucket.s3.ap-northeast-2.amazonaws.com/client-dummy/my-confeti/KTNG.webp',
+      posterUrl: 'https://i.imgur.com/DwH8XUo.png',
     },
     {
       index: 101,
