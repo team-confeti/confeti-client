@@ -7,7 +7,7 @@ import ArtistSearch from './artist-search';
 
 import * as styles from './artist-select.css';
 //TODO: remove mock data
-const mockArtists = Array.from({ length: 100 }, (_, i) => ({
+const mockArtists = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   name: `오아시스 ${i + 1}`,
   src: 'https://i.scdn.co/image/ab6761610000f1786a50f39b95ce98a0e6bf5b21',
