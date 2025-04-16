@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IcArrowGray16 } from '@confeti/design-system/icons';
