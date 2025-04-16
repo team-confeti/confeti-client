@@ -35,5 +35,6 @@ export const item = style({
 
 export const emptyText = style({
   color: themeVars.color.gray400,
+  margin: '0 2rem',
   ...themeVars.fontStyles.body3_r_14,
 });
