@@ -24,12 +24,12 @@ const ArtistSelect = ({ children }: artistSelectProps) => {
   const handleSearchBarFocus = () => {
     setSearchParams({ search: 'true' });
   };
-  const handleArtistSelect = () => {
-    setSearchParams({});
-  };
+  // const handleArtistSelect = () => {
+  //   setSearchParams({});
+  // };
 
   if (isFocused) {
-    return <ArtistSearch handleArtistSelect={handleArtistSelect} />;
+    return <ArtistSearch />;
   } else {
     return (
       <section className={styles.onboardingContentSection}>
