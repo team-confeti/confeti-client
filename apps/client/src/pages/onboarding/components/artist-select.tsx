@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
