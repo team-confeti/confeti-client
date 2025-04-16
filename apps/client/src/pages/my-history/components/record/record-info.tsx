@@ -1,4 +1,3 @@
-// record-info.tsx
 import * as styles from './record-info.css.ts';
 
 interface Props {
