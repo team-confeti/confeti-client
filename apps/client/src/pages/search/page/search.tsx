@@ -20,7 +20,6 @@ const Search = () => {
     artistData,
     paramsKeyword,
     searchKeyword,
-    barFocus,
     handleOnChange,
     handleKeydown,
     handleOnFocus,
@@ -52,7 +51,7 @@ const Search = () => {
         </div>
       </div>
 
-      {searchKeyword.length === 0 && (
+      {!paramsKeyword && searchKeyword.length === 0 && (
         <main className={styles.resultSection}>
           <RecentSearchSection />
           <PopularSearchSection />
@@ -60,7 +59,7 @@ const Search = () => {
         </main>
       )}
 
-      {!barFocus && paramsKeyword.length > 0 && (
+      {paramsKeyword && (
         <>
           <main className={styles.resultSection}>
             {isLoading ? (
