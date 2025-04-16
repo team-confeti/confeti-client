@@ -3,28 +3,24 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   padding: '1.75rem 2rem',
   gap: '2.4rem',
   backgroundColor: themeVars.color.gray100,
 });
 
 export const info = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '1.6rem',
 });
 
 export const sectionWrapper = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   gap: '0.2rem',
 });
 
 export const titleWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   gap: '0.2rem',
 });
 

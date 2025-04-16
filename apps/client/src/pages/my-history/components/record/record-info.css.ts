@@ -11,8 +11,7 @@ export const wrapper = style({
 export const item = style({
   position: 'relative',
 
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   alignItems: 'center',
 
   gap: '0.9rem',
