@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IcArrowGray16 } from '@confeti/design-system/icons';
@@ -11,7 +12,7 @@ interface Props {
   path?: string;
   showMore?: boolean;
   showMoreText?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
