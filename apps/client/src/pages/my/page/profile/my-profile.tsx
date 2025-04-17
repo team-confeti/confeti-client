@@ -2,7 +2,6 @@ import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
 import ConfetiSection from '@pages/my/components/performance/performance-section';
-import Box from '@pages/my/components/profile/box';
 import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import NoUpcomingPerformanceSection from '@pages/my/components/upcomingPerformance/no-upcoming-performance-section';
@@ -10,7 +9,7 @@ import UpcomingPerformanceSection from '@pages/my/components/upcomingPerformance
 import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Footer, Header } from '@confeti/design-system';
+import { Box, Footer, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
@@ -44,6 +43,7 @@ const MyProfile = () => {
         title="My Artist"
         path={routePath.MY_ARTIST}
         showMore={artistData.artists.length > 3}
+        showMoreText="더보기"
       >
         {artistData.artists.length > 0 ? (
           <ArtistSection artists={artistData.artists.slice(0, 3)} />
@@ -56,6 +56,7 @@ const MyProfile = () => {
         title="My Confeti"
         path={routePath.MY_CONFETI}
         showMore={performanceData.performances.length > 3}
+        showMoreText="더보기"
       >
         {performanceData.performances.length > 0 ? (
           <ConfetiSection

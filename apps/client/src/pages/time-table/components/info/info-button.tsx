@@ -78,7 +78,7 @@ const FixedButton = ({ size = 'md', disabled }: FixedButtonProps) => {
     <>
       <div
         className={cn(ItemsVariants({ size }))}
-        onClick={() => navigate(routePath.ADDFESTIVAL)}
+        onClick={() => navigate(routePath.ADD_FESTIVAL)}
       >
         <AddButton size="md" disabled={disabled} />
         <InfoButton.TextField text={`페스티벌\n추가`} color="gray" />
