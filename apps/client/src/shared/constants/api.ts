@@ -33,8 +33,9 @@ export const END_POINT = {
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
   POST_REISSUE_TOKEN: 'auth/reissue',
-
   DELETE_ACCOUNT: 'auth/withdraw',
+  //온보딩
+  GET_TOP100_ARTIST: 'user/onboard/artists',
 } as const;
 
 export const HTTP_STATUS_CODE = {
