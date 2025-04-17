@@ -23,7 +23,11 @@ const Chip = ({
     <button className={chipVariants({ variant })} {...props}>
       {label}
       {variant === 'withDelete' && (
-        <BtnSearchDelete onClick={handleDeleteClick} width={16} height={16} />
+        <BtnSearchDelete
+          onClick={handleDeleteClick}
+          width="1.6rem"
+          height="1.6rem"
+        />
       )}
     </button>
   );
