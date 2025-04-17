@@ -19,7 +19,7 @@ export default function RecentSearchSection() {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>최근 검색어</h2>
+        <h1 className={styles.title}>최근 검색어</h1>
         {hasRecentSearches && (
           <button className={styles.clear}>모두 지우기</button> //TODO: 최근 검색어 전체 항목 삭제 API 연동 예정
         )}

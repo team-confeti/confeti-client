@@ -9,7 +9,7 @@ export default function RecentFestivalSection() {
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>최근 본 콘서트/페스티벌</h2>
+      <h1 className={styles.title}>최근 본 콘서트/페스티벌</h1>
       {hasRecentlyViewed ? (
         <ul className={styles.list}>
           {performances.map((festival) => (

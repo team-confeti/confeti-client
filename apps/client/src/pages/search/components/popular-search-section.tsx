@@ -17,7 +17,7 @@ export default function PopularSearchSection() {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>인기 검색어</h2>
+        <h1 className={styles.title}>인기 검색어</h1>
       </div>
 
       <div className={styles.columns}>
