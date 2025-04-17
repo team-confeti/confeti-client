@@ -118,13 +118,18 @@ export const fontStyles = {
   },
 
   // caption
+  caption_m_11: {
+    fontSize: typography.fontSize.caption1,
+    fontWeight: typography.fontWeight.medium,
+    lineHeight: typography.lineHeight.caption1,
+  },
   caption_b_10: {
-    fontSize: typography.fontSize.caption,
+    fontSize: typography.fontSize.caption2,
     fontWeight: typography.fontWeight.bold,
     lineHeight: typography.lineHeight.normal,
   },
   caption_r_10: {
-    fontSize: typography.fontSize.caption,
+    fontSize: typography.fontSize.caption2,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.normal,
   },

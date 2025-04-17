@@ -16,7 +16,8 @@ export const typography = {
     body4: '1.3rem',
     body5: '1.2rem',
     body6: '1.1rem',
-    caption: '1rem',
+    caption1: '1.1rem',
+    caption2: '1rem',
     name: '1.8rem',
   },
   fontWeight: {
@@ -34,5 +35,6 @@ export const typography = {
     body4: '100%',
     body4_2: '120%',
     body6: '140%',
+    caption1: '140%',
   },
 } as const;
