@@ -1,3 +1,4 @@
+export { useOverlay } from '../context/overlay-context';
 export { OverlayProvider } from '../context/overlay-context';
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';

@@ -1,5 +1,5 @@
 import { TAB_MENU } from '@pages/home/constants/menu';
-import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
+import { useMyPerformancePreview } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
@@ -12,7 +12,7 @@ const MyRecord = () => {
   const { data: profileData } = useUserProfile();
 
   // TODO: 실제 타임테이블 & 셋리스트 API 연결
-  const { data: performanceData } = useMyConfeti();
+  const { data: performanceData } = useMyPerformancePreview();
 
   if (!profileData || !performanceData) {
     return null;
