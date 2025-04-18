@@ -25,13 +25,13 @@ jobs:
           if [[ "$PR_ACTION" == "opened" ]]; then
             curl -X POST -H "Content-Type: application/json" \
               -d '{
-                "content": "**해적단의 PR에 `LGTM`이란 말은 없어**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+                "content": "**트랄랄레로 트랄랄라🦈**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
               }' $DISCORD_WEBHOOK_URL
 
           # PR 머지 알림
           elif [[ "$PR_ACTION" == "closed" && "$PR_MERGED" == "true" ]]; then
             curl -X POST -H "Content-Type: application/json" \
               -d '{
-                "content": "**아무 일 없었다**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+                "content": "**퉁퉁퉁퉁퉁퉁퉁퉁퉁 사후르🏏**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
               }' $DISCORD_WEBHOOK_URL
           fi

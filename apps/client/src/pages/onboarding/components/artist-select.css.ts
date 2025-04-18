@@ -35,4 +35,10 @@ export const avatar = style({
 export const artistName = style({
   ...themeVars.fontStyles.body2_m_15,
   color: themeVars.color.black,
+  textAlign: 'center',
+  width: '100%',
+  maxWidth: '9rem',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });

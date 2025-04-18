@@ -2,22 +2,18 @@ import { ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
+import { TopArtist } from '@shared/types/top-artist-response';
 
 import ArtistSearch from './artist-search';
 
 import * as styles from './artist-select.css';
-//TODO: remove mock data
-const mockArtists = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  name: `오아시스 ${i + 1}`,
-  src: 'https://i.scdn.co/image/ab6761610000f1786a50f39b95ce98a0e6bf5b21',
-}));
 
 interface artistSelectProps {
+  artists: TopArtist[] | undefined;
   children: ReactNode;
 }
 
-const ArtistSelect = ({ children }: artistSelectProps) => {
+const ArtistSelect = ({ children, artists }: artistSelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
 
@@ -45,12 +41,12 @@ const ArtistSelect = ({ children }: artistSelectProps) => {
           />
         </div>
         <div className={styles.avatarGridSection}>
-          {mockArtists.map((artist) => (
-            <div key={artist.id} className={styles.avatar}>
+          {artists?.map((artist) => (
+            <div key={artist?.artistId} className={styles.avatar}>
               <Avatar
                 size="xl"
-                src={artist.src}
-                alt={`${artist.name} 이미지`}
+                src={artist?.profileUrl}
+                alt={`${artist?.name} 이미지`}
               />
               <p className={styles.artistName}>{artist.name}</p>
             </div>
