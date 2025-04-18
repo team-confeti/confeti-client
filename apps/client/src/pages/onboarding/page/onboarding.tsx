@@ -9,14 +9,12 @@ import { useGetTopArtist } from '../hooks/use-get-top-artist';
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
-  // const { data: topArtistData } = useGetTopArtist();
-
-  // console.log(topArtistData);
+  const { data: topArtistData } = useGetTopArtist();
 
   return (
     <Funnel>
       <Step name="1">
-        <ArtistSelect>
+        <ArtistSelect artists={topArtistData?.artists}>
           <Button text={'다음'} variant={'add'} onClick={() => setStep(1)} />
         </ArtistSelect>
       </Step>
