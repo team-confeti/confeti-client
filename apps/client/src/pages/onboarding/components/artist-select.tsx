@@ -46,7 +46,7 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
               <Avatar
                 size="xl"
                 src={artist?.profileUrl}
-                alt={`${artist.name} 이미지`}
+                alt={`${artist?.name} 이미지`}
               />
               <p className={styles.artistName}>{artist.name}</p>
             </div>
