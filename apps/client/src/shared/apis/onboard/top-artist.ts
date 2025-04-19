@@ -1,6 +1,6 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
-import { onboardResponse } from '@shared/types/top-artist-response';
+import { onboardResponse } from '@shared/types/onboard-response';
 
 import { axiosInstance } from '../config/instance';
 

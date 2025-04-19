@@ -2,14 +2,14 @@ import { ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
-import { TopArtist } from '@shared/types/top-artist-response';
+import { onboard } from '@shared/types/onboard-response';
 
 import ArtistSearch from './artist-search';
 
 import * as styles from './artist-select.css';
 
 interface artistSelectProps {
-  artists: TopArtist[] | undefined;
+  artists: onboard[] | undefined;
   children: ReactNode;
 }
 
