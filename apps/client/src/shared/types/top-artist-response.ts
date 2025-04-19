@@ -1,9 +1,9 @@
-export interface TopArtist {
+export interface onboard {
   artistId: number;
   profileUrl: string;
   name: string;
 }
 
-export interface TopArtistResponse {
-  artists: TopArtist[];
+export interface onboardResponse {
+  artists: onboard[];
 }
