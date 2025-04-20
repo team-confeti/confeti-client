@@ -21,8 +21,17 @@ export const listImage = style({
 
 export const listText = style({
   ...themeVars.fontStyles.body2_r_15,
+  alignContent: 'center',
   width: '100%',
   height: '3rem',
   color: themeVars.color.black,
   textOverflow: 'ellipsis',
+});
+
+export const fallbackImage = style({
+  width: '100%',
+  height: '100%',
+  borderRadius: '100%',
+  objectFit: 'cover',
+  cursor: 'pointer',
 });
