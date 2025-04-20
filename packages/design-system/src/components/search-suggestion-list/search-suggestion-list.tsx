@@ -6,7 +6,6 @@ interface RelatedKeyword {
   artistId: string;
   profileUrl: string;
   name: string;
-  fallback?: string;
 }
 
 interface SearchSuggestionListProps {
