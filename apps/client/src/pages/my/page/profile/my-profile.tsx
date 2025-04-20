@@ -42,7 +42,7 @@ const MyProfile = () => {
       />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
       <Box title="다가오는 공연">
-        {upcomingPerformanceData ? (
+        {upcomingPerformanceData?.typeId ? (
           <UpcomingPerformanceSection performance={upcomingPerformanceData} />
         ) : (
           <NoUpcomingPerformanceSection />
