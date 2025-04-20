@@ -12,6 +12,7 @@ export const image = style({
   height: '14.2rem',
   objectFit: 'cover',
   borderRadius: 5,
+  cursor: 'pointer',
 });
 
 export const info = style({
@@ -27,6 +28,7 @@ export const title = style({
   textOverflow: 'ellipsis',
   wordBreak: 'keep-all',
   maxHeight: 'calc(1.3em * 2)',
+  cursor: 'pointer',
   ...themeVars.fontStyles.body2_m_15,
 });
 

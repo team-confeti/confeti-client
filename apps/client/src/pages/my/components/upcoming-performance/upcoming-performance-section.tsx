@@ -1,5 +1,6 @@
 import { Button } from '@confeti/design-system';
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { MyUpcomingPerformance } from '@shared/types/user-response';
 import { formatDate } from '@shared/utils/format-date';
 
@@ -11,6 +12,7 @@ type Props = {
 
 const UpcomingPerformanceSection = ({ performance }: Props) => {
   const hasTimetable = performance.type === 'FESTIVAL';
+  const navigateToDetail = useNavigateToDetail();
 
   return (
     <>
@@ -18,11 +20,19 @@ const UpcomingPerformanceSection = ({ performance }: Props) => {
         <img
           src={performance.posterUrl}
           alt={performance.title}
+          onClick={() => navigateToDetail(performance.type, performance.typeId)}
           className={styles.image}
         />
 
         <div className={styles.info}>
-          <h2 className={styles.title}>{performance.title}</h2>
+          <h2
+            className={styles.title}
+            onClick={() =>
+              navigateToDetail(performance.type, performance.typeId)
+            }
+          >
+            {performance.title}
+          </h2>
 
           <div>
             <div className={styles.description}>
