@@ -1,4 +1,3 @@
-import { TAB_MENU } from '@pages/home/constants/menu';
 import { useMyPerformancePreview } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
@@ -6,7 +5,6 @@ import RecordInfo from '@pages/my-history/components/record/record-info';
 import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
 
 import { Footer, Spacing } from '@confeti/design-system';
-import NavigationTabs from '@shared/components/navigation-tabs';
 
 const MyRecord = () => {
   const { data: profileData } = useUserProfile();
@@ -26,8 +24,6 @@ const MyRecord = () => {
 
   return (
     <div>
-      <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />
-
       <RecordIntroduce
         name={profileData.name}
         profileUrl={profileData.profileUrl}
