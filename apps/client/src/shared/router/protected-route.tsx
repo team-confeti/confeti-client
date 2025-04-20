@@ -15,15 +15,25 @@ export const ProtectedRoute = ({
   const location = useLocation();
 
   if (protect && checkIsNotLoggedIn()) {
-    if (location.pathname.startsWith('/timetable')) {
-      return <Navigate to="/timetable/require-login" replace />;
+    const { pathname } = location;
+    let redirectPath = '/my/require-login';
+
+    switch (true) {
+      case pathname.startsWith('/timetable'):
+        redirectPath = '/timetable/require-login';
+        break;
+      case pathname.startsWith('/my-history'):
+        redirectPath = '/my-history/require-login';
+        break;
+      default:
+        redirectPath = '/my/require-login';
     }
-    return <Navigate to="/my/require-login" replace />;
+
+    return <Navigate to={redirectPath} replace />;
   }
 
   return children ? <>{children}</> : <Outlet />;
 };
-
 export const createProtectedRoute = (
   protect: boolean,
   Component: ReactNode,

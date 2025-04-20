@@ -7,7 +7,7 @@ export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
 // Home
 export const HomePage = lazy(() => import('@pages/home/page/home'));
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
-export const TimeTableRequireLoginPage = lazy(
+export const RequireLoginPage = lazy(
   () => import('@pages/home/page/auth/require-login'),
 );
 
@@ -16,7 +16,7 @@ export const MyPage = lazy(() => import('@pages/my/page/my-page'));
 export const MyProfilePage = lazy(
   () => import('@pages/my/page/profile/my-profile'),
 );
-export const RequireLoginPage = lazy(
+export const MyRequireLoginPage = lazy(
   () => import('@pages/my/page/auth/require-login'),
 );
 export const MyConfetiPage = lazy(

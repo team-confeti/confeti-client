@@ -5,6 +5,7 @@ import {
   getMyArtistsPreview,
   getMyPerformances,
   getMyPerformancesPreview,
+  getMyUpcomingPerformance,
   getUserProfile,
 } from './user';
 
@@ -13,6 +14,10 @@ export const USER_QUERY_KEY = {
   PROFILE: () => [...USER_QUERY_KEY.ALL, 'profile'],
   MY_ARTISTS: () => [...USER_QUERY_KEY.ALL, 'artists'],
   MY_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
+  MY_UPCOMING_PERFORMANCE: () => [
+    ...USER_QUERY_KEY.ALL,
+    'upcoming-performance',
+  ],
 } as const;
 
 export const USER_QUERY_OPTIONS = {
@@ -31,6 +36,11 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_PERFORMANCES(),
       queryFn: getMyPerformancesPreview,
+    }),
+  MY_UPCOMING_PERFORMANCE: () =>
+    queryOptions({
+      queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
+      queryFn: getMyUpcomingPerformance,
     }),
   MY_PERFORMANCES: (performancesType: PerformancesFilterType) =>
     queryOptions({

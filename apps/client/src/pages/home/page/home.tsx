@@ -8,6 +8,7 @@ import {
   TicketingCard,
 } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { formatDate } from '@shared/utils/format-date';
 
 import { TAB_MENU } from '../constants/menu';
@@ -29,6 +30,8 @@ const Home = () => {
     latestPerformances.length > 7
       ? latestPerformances.slice(0, 7)
       : latestPerformances;
+
+  const navigateToDetail = useNavigateToDetail();
 
   const formattedPerformData = displayPerformances.map((performance) => ({
     ...performance,
@@ -109,6 +112,9 @@ const Home = () => {
                     title={'공연 정보 확인하기'}
                     typeId={performance.typeId}
                     performanceType={performance.type}
+                    onClick={() =>
+                      navigateToDetail(performance.type, performance.typeId)
+                    }
                   />
                 }
               />

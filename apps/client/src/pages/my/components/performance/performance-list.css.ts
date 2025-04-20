@@ -11,6 +11,7 @@ export const wrapper = style({
 export const performanceItem = style({
   display: 'flex',
   gap: '1.6rem',
+  cursor: 'pointer',
 });
 
 export const image = style({

@@ -17,13 +17,13 @@ import {
   MyPage,
   MyProfilePage,
   MyRecordPage,
+  MyRequireLoginPage,
   OnboardingPage,
   RequireLoginPage,
   SearchPage,
   SettingPage,
   TimeTableLayout,
   TimeTablePage,
-  TimeTableRequireLoginPage,
 } from './lazy';
 import { createProtectedRoute } from './protected-route';
 
@@ -43,7 +43,7 @@ export default function Router() {
           />
           <Route
             path={routePath.MY_REQUIRE_LOGIN}
-            element={<RequireLoginPage />}
+            element={<MyRequireLoginPage />}
           />
           <Route
             path={routePath.MY_ARTIST}
@@ -66,8 +66,12 @@ export default function Router() {
         {/* MyRecord */}
         <Route path={routePath.MY_HISTORY} element={<MyHistoryPage />}>
           <Route
-            path={routePath.MY_HISTORY}
+            path=""
             element={createProtectedRoute(true, <MyRecordPage />)}
+          />
+          <Route
+            path={routePath.MY_HISTORY_REQUIRE_LOGIN}
+            element={<RequireLoginPage />}
           />
         </Route>
 
@@ -83,7 +87,7 @@ export default function Router() {
           />
           <Route
             path={routePath.TIME_TABLE_REQUIRE_LOGIN}
-            element={<TimeTableRequireLoginPage />}
+            element={<RequireLoginPage />}
           />
           <Route
             path={routePath.ADD_FESTIVAL}
