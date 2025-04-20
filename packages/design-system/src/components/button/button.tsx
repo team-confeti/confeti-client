@@ -1,3 +1,5 @@
+import { type ReactNode } from 'react';
+
 import { cn } from '../../utils';
 
 import { buttonVariants } from './button.css';
@@ -7,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'add' | 'link' | 'logout' | 'kakao' | 'apple' | 'back';
   disabled?: boolean;
   className?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }
 
 const Button = ({

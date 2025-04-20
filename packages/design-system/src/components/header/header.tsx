@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -13,7 +14,7 @@ import * as styles from './header.css';
 interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   isBackToHome?: boolean;
   handleNavigateToSettings?: () => void;
 }

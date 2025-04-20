@@ -1,8 +1,8 @@
-import { useLayoutEffect } from 'react';
+import { type ReactNode, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface ScrollToTopProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function ScrollToTop({ children }: ScrollToTopProps) {

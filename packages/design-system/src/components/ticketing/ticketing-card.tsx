@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import SvgIcArrowWhite12 from '../../icons/src/IcArrowWhite12';
 

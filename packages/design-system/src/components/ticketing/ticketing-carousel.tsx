@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 
 import { useCarouselData } from './hooks/use-carousel-data';
 import { useCarouselSlide } from './hooks/use-carousel-slide';
@@ -21,7 +21,7 @@ interface CarouselWrapProps {
 }
 
 interface CarouselContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   currentImageId: number;
   performanceType: string;
 }
