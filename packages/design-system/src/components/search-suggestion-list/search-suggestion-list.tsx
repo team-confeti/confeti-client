@@ -1,13 +1,40 @@
+import { CmpProfileNon } from '../../icons/src';
+
 import * as styles from './search-suggestion-list.css';
 
-const SearchSuggestionList = () => {
+interface RelatedKeyword {
+  artistId: string;
+  profileUrl: string;
+  name: string;
+  fallback?: string;
+}
+
+interface SearchSuggestionListProps {
+  relatedKeyword: RelatedKeyword[] | undefined;
+}
+
+const SearchSuggestionList = ({
+  relatedKeyword,
+}: SearchSuggestionListProps) => {
   return (
-    <li className={styles.listContainer}>
-      <div className={styles.listImageContainer}>
-        <img className={styles.listImage}></img>
-      </div>
-      <p className={styles.listText}></p>
-    </li>
+    <>
+      {relatedKeyword?.map((artist) => (
+        <li key={artist.artistId} className={styles.listContainer}>
+          <div className={styles.listImageContainer}>
+            {artist.profileUrl ? (
+              <img
+                className={styles.listImage}
+                src={artist.profileUrl}
+                alt={artist.name}
+              />
+            ) : (
+              <CmpProfileNon className={styles.fallbackImage} />
+            )}
+          </div>
+          <p className={styles.listText}>{artist.name}</p>
+        </li>
+      ))}
+    </>
   );
 };
 
