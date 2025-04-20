@@ -1,8 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { debounce } from '@shared/utils/debounce';
 
 import { useArtistRelatedKeyword } from '../hooks/use-get-related-keyword';
 
