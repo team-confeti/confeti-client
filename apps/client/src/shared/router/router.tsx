@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import EditProfile from '@pages/my/page/edit/edit-profile';
 
 import { routePath } from '@shared/constants/path';
 
@@ -57,6 +58,10 @@ export default function Router() {
           <Route
             path={routePath.MY_DELETE_ACCOUNT}
             element={createProtectedRoute(true, <DeleteAccountPage />)}
+          />
+          <Route
+            path={routePath.MY_EDIT_PROFILE}
+            element={createProtectedRoute(true, <EditProfile />)}
           />
         </Route>
 
