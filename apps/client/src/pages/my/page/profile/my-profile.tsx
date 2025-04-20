@@ -6,22 +6,24 @@ import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
 import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
-import { useMyPerformancePreview } from '@pages/my/hooks/use-my-favorites';
+import {
+  useMyPerformancePreview,
+  useMyUpcomingPerformance,
+} from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Box, Footer, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
-import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
 
 const MyProfile = () => {
   const { data: profileData } = useUserProfile();
+  const { data: upcomingPerformanceData } = useMyUpcomingPerformance();
+  const { data: performanceData } = useMyPerformancePreview();
 
   // TODO: API 데이터 연결 (ARTISTS_DATA 제거)
   // const { data: artistData } = useMyArtist();
   const artistData = ARTISTS_DATA;
-  const upcomingPerformanceData = PERFORMANCE_DATA.performances[0];
-  const { data: performanceData } = useMyPerformancePreview();
 
   if (!profileData || !artistData || !performanceData) {
     return null;
