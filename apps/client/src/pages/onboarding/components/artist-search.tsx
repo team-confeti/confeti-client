@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { debounce } from 'lodash';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { debounce } from '@shared/utils/debounce';
 
 import { useArtistRelatedKeyword } from '../hooks/use-get-related-keyword';
 
