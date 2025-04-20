@@ -4,8 +4,8 @@ import NoConfetiSection from '@pages/my/components/performance/no-performance-se
 import ConfetiSection from '@pages/my/components/performance/performance-section';
 import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
-import NoUpcomingPerformanceSection from '@pages/my/components/upcomingPerformance/no-upcoming-performance-section';
-import UpcomingPerformanceSection from '@pages/my/components/upcomingPerformance/upcoming-performance-section';
+import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
+import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
 import { useMyPerformancePreview } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
