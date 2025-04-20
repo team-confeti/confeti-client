@@ -18,6 +18,7 @@ export const listImageContainer = style({
 
 export const listImage = style({
   borderRadius: '3rem',
+  cursor: 'pointer',
 });
 
 export const listText = style({
@@ -27,6 +28,7 @@ export const listText = style({
   height: '3rem',
   color: themeVars.color.black,
   textOverflow: 'ellipsis',
+  cursor: 'pointer',
 });
 
 export const fallbackImage = style({
