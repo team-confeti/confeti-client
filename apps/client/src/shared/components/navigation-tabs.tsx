@@ -20,8 +20,6 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
     navigate(path);
   };
 
-  console.log(TAB_MENU.HOME);
-
   return (
     <Navigation.Root defaultActiveTab={defaultActiveTab}>
       <Navigation.List>
