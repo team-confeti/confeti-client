@@ -8,11 +8,12 @@ import * as styles from './user-info.css.ts';
 interface Props {
   name: string;
   profileUrl: string;
+  showArrow?: boolean;
 }
 
 const USER_POSTFIX = '님' as const;
 
-const UserInfo = ({ name, profileUrl }: Props) => {
+const UserInfo = ({ name, profileUrl, showArrow = true }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -27,7 +28,14 @@ const UserInfo = ({ name, profileUrl }: Props) => {
         <div className={styles.titleWrapper}>
           <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
-          <IcArrowGray16 width="1.6rem" height="1.6rem" onClick={handleClick} />
+          {showArrow && (
+            <IcArrowGray16
+              className={styles.arrowIcon}
+              width="1.6rem"
+              height="1.6rem"
+              onClick={handleClick}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -28,3 +28,7 @@ export const titleWrapper = style({
 export const titlePostfix = style({
   ...themeVars.fontStyles.body1_r_16,
 });
+
+export const arrowIcon = style({
+  cursor: 'pointer',
+});

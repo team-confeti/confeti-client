@@ -19,7 +19,11 @@ const EditProfile = () => {
   return (
     <>
       <Header variant="detail" title="프로필 편집" />
-      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
+      <UserInfo
+        name={profileData.name}
+        profileUrl={profileData.profileUrl}
+        showArrow={false}
+      />
       <Footer />
     </>
   );
