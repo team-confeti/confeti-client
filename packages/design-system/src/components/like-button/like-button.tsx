@@ -23,10 +23,6 @@ const LikeButton = ({
   const [liked, setLiked] = useState(isFavorite);
   const [animate, setAnimate] = useState(false);
 
-  useEffect(() => {
-    setLiked(isFavorite);
-  }, [isFavorite]);
-
   const handleClick = () => {
     if (!isLoggedIn) {
       toast('로그인 후 이용 가능해요');
