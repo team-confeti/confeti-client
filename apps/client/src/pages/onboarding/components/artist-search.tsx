@@ -50,9 +50,7 @@ const ArtistSearch = () => {
       </div>
 
       {hasArtistResults ? (
-        <section className={styles.searchSuggestionListSection}>
-          <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
-        </section>
+        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
       ) : (
         <section className={styles.artistSearchContainer}>
           <p className={styles.artistSearchDescription}>

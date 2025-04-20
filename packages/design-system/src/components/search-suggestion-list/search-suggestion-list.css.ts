@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '../../styles';
 
@@ -34,4 +35,15 @@ export const fallbackImage = style({
   borderRadius: '100%',
   objectFit: 'cover',
   cursor: 'pointer',
+});
+
+export const searchSuggestionListSection = recipe({
+  base: {
+    ...themeVars.display.flexColumn,
+    alignItems: 'flex-start',
+    gap: '2rem',
+    width: '100%',
+    height: 'auto',
+    padding: '2rem',
+  },
 });

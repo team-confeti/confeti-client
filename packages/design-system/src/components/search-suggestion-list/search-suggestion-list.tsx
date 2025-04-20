@@ -16,7 +16,7 @@ const SearchSuggestionList = ({
   relatedKeyword,
 }: SearchSuggestionListProps) => {
   return (
-    <ul>
+    <ul className={styles.searchSuggestionListSection()}>
       {relatedKeyword?.map((artist) => (
         <li key={artist.artistId} className={styles.listContainer}>
           <div className={styles.listImageContainer}>

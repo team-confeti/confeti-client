@@ -27,12 +27,3 @@ export const artistSearchDescription = style({
   ...themeVars.fontStyles.body2_m_15,
   color: themeVars.color.gray500,
 });
-
-export const searchSuggestionListSection = style({
-  ...themeVars.display.flexColumn,
-  alignItems: 'flex-start',
-  gap: '2rem',
-  width: '100%',
-  height: 'auto',
-  padding: '2rem',
-});
