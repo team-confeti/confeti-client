@@ -4,7 +4,7 @@ import { useFunnel } from '@shared/utils/use-funnel';
 
 import ArtistSelect from '../components/artist-select';
 import OnBoardingComplete from '../components/onboarding-complete';
-import { useGetTopArtist } from '../hooks/use-get-top-artist';
+import { useGetTopArtist } from '../hooks/use-onboard';
 
 const Onboarding = () => {
   const TOTAL_STEPS = 2;

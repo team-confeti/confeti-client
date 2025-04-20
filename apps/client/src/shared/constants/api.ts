@@ -36,6 +36,8 @@ export const END_POINT = {
   DELETE_ACCOUNT: 'auth/withdraw',
   //온보딩
   GET_TOP100_ARTIST: 'user/onboard/artists',
+  GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
+    `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {

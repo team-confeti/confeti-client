@@ -4,9 +4,11 @@ import { onboardResponse } from '@shared/types/onboard-response';
 
 import { axiosInstance } from '../config/instance';
 
-export const getTopArtist = async (): Promise<onboardResponse> => {
+export const getArtistRelatedKeyword = async (
+  keyword: string,
+): Promise<onboardResponse> => {
   const response = await axiosInstance.get<BaseResponse<onboardResponse>>(
-    END_POINT.GET_TOP100_ARTIST,
+    END_POINT.GET_ARTIST_RELATED_KEYWORDS(keyword, 10),
   );
   return response.data.data;
 };
