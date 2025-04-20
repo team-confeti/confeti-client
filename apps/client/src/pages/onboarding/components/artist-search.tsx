@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { debounce } from '@shared/utils/debounce';
 
 import { useArtistRelatedKeyword } from '../hooks/use-get-related-keyword';
@@ -8,32 +9,13 @@ import { useArtistRelatedKeyword } from '../hooks/use-get-related-keyword';
 import * as styles from './artist-search.css';
 
 const ArtistSearch = () => {
-  const [keyword, setKeyword] = useState('');
-  const [debouncedKeyword, setDebouncedKeyword] = useState('');
+  const { keyword, debouncedKeyword, handleInputChange } =
+    useDebouncedKeyword();
 
   const relatedKeywordsData = useArtistRelatedKeyword({
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
   });
-
-  const debounceInput = useCallback(
-    debounce((nextValue: string) => {
-      setDebouncedKeyword(nextValue);
-    }, 500),
-    [],
-  );
-
-  const handleSearchBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setKeyword(inputValue);
-    debounceInput(inputValue);
-  };
-
-  useEffect(() => {
-    return () => {
-      debounceInput.cancel();
-    };
-  }, [debounceInput]);
 
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
@@ -44,7 +26,7 @@ const ArtistSearch = () => {
           <SearchBar
             placeholder="아티스트 또는 공연을 검색해보세요!"
             value={keyword}
-            onChange={handleSearchBarChange}
+            onChange={handleInputChange}
           />
         </div>
       </div>
