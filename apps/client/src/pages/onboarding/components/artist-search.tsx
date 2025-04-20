@@ -1,7 +1,7 @@
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 
-import { useArtistRelatedKeyword } from '../hooks/use-get-related-keyword';
+import { useArtistRelatedKeyword } from '../hooks/use-onboard';
 
 import * as styles from './artist-search.css';
 
