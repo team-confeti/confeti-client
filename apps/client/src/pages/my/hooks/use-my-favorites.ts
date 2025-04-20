@@ -28,8 +28,10 @@ export const useMyPerformancePreview = () => {
 };
 
 export const useMyUpcomingPerformance = () => {
+  const isNotLoggedIn = checkIsNotLoggedIn();
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
+    enabled: !isNotLoggedIn,
   });
   return { data };
 };
@@ -42,7 +44,7 @@ export const useMyArtist = (sortBy: ArtistSortType) => {
 };
 
 export const useMyPerformances = (performancesType: PerformancesFilterType) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES(performancesType),
   });
   return { data };

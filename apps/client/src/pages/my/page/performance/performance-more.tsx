@@ -20,7 +20,6 @@ const ConfetiMore = () => {
         return 'ALL';
     }
   }, [selectedCategory]);
-
   const { data } = useMyPerformances(filterType);
 
   return (
@@ -39,7 +38,7 @@ const ConfetiMore = () => {
           ))}
         </ul>
       </nav>
-      <PerformanceList performances={data?.performances ?? []} />
+      <PerformanceList performances={data.performances ?? []} />
       <Footer />
     </>
   );
