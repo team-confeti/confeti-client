@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
@@ -17,6 +18,7 @@ import { routePath } from '@shared/constants/path';
 import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 const MyProfile = () => {
+  const navigate = useNavigate();
   const { data: profileData } = useUserProfile();
   const { data: upcomingPerformanceData } = useMyUpcomingPerformance();
   const { data: performanceData } = useMyPerformancePreview();
@@ -31,7 +33,13 @@ const MyProfile = () => {
 
   return (
     <>
-      <Header variant="detail" title="마이페이지" />
+      <Header
+        variant="detail"
+        title="마이페이지"
+        handleNavigateToSettings={() => {
+          navigate(routePath.MY_SETTING);
+        }}
+      />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
       <Box title="다가오는 공연">
         {upcomingPerformanceData ? (
