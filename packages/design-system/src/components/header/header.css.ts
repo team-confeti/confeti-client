@@ -67,6 +67,13 @@ export const icon = style({
   height: '100%',
 });
 
+export const settingsIcon = style({
+  width: '2.4rem',
+  height: '2.4rem',
+  position: 'absolute',
+  right: '2rem',
+});
+
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
   color: themeVars.color.black,

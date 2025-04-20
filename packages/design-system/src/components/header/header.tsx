@@ -4,6 +4,7 @@ import {
   BtnAccountGray24,
   BtnArrowLeft20,
   BtnSearchG90024,
+  BtnSettings24,
   LogoMain,
 } from '../../icons/src';
 
@@ -14,6 +15,7 @@ interface HeaderProps {
   title?: string;
   icon?: React.ReactNode;
   isBackToHome?: boolean;
+  handleNavigateToSettings?: () => void;
 }
 
 const Header = ({
@@ -21,6 +23,7 @@ const Header = ({
   title = '',
   icon,
   isBackToHome = false,
+  handleNavigateToSettings,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
@@ -40,6 +43,15 @@ const Header = ({
           {icon || <BtnArrowLeft20 className={styles.icon} />}
         </button>
         <h1 className={styles.title}>{title}</h1>
+
+        {handleNavigateToSettings && (
+          <button
+            className={styles.settingsIcon}
+            onClick={handleNavigateToSettings}
+          >
+            <BtnSettings24 className={styles.icon} />
+          </button>
+        )}
       </header>
     );
   }
