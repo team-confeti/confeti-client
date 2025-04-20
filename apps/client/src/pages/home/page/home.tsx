@@ -43,8 +43,6 @@ const Home = () => {
   }));
   const { data: profileData } = useUserProfile();
 
-  console.log(formattedPerformData);
-
   const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
   const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
