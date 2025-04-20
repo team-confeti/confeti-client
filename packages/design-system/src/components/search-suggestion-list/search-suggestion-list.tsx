@@ -16,7 +16,7 @@ const SearchSuggestionList = ({
   relatedKeyword,
 }: SearchSuggestionListProps) => {
   return (
-    <>
+    <ul>
       {relatedKeyword?.map((artist) => (
         <li key={artist.artistId} className={styles.listContainer}>
           <div className={styles.listImageContainer}>
@@ -33,7 +33,7 @@ const SearchSuggestionList = ({
           <p className={styles.listText}>{artist.name}</p>
         </li>
       ))}
-    </>
+    </ul>
   );
 };
 
