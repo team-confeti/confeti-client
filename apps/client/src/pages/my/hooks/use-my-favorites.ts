@@ -24,6 +24,13 @@ export const useMyPerformancePreview = () => {
   return { data };
 };
 
+export const useMyUpcomingPerformance = () => {
+  const { data } = useQuery({
+    ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
+  });
+  return { data };
+};
+
 export const useMyPerformances = (performancesType: PerformancesFilterType) => {
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES(performancesType),

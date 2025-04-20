@@ -4,6 +4,7 @@ import { BaseResponse } from '@shared/types/api';
 import {
   FavoriteArtistsResponses,
   MyPerformancesResponse,
+  MyUpcomingPerformance,
   PerformanceResponse,
   PerformancesFilterType,
   UserProfile,
@@ -28,6 +29,14 @@ export const getMyPerformancesPreview =
   async (): Promise<PerformanceResponse> => {
     const response = await get<BaseResponse<PerformanceResponse>>(
       END_POINT.GET_MY_PERFORMANCES_PREVIEW,
+    );
+    return response.data;
+  };
+
+export const getMyUpcomingPerformance =
+  async (): Promise<MyUpcomingPerformance> => {
+    const response = await get<BaseResponse<MyUpcomingPerformance>>(
+      END_POINT.GET_MY_UPCOMING_PERFORMANCE,
     );
     return response.data;
   };
