@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { toast } from '@confeti/design-system';
 import { BtnHeart } from '@confeti/design-system/icons';
@@ -21,6 +21,11 @@ const LikeButton = ({
   isLoggedIn = true,
 }: props) => {
   const [liked, setLiked] = useState(isFavorite);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setLiked(isFavorite);
+  }, [isFavorite]);
 
   const handleClick = () => {
     if (!isLoggedIn) {
@@ -29,15 +34,25 @@ const LikeButton = ({
     }
 
     const newAction = liked ? 'UNLIKE' : 'LIKE';
+
+    if (!liked) {
+      setAnimate(true);
+    }
+
     setLiked(!liked);
     onLikeToggle(newAction);
+  };
+
+  const handleAnimationEnd = () => {
+    setAnimate(false);
   };
 
   return (
     <BtnHeart
       isFavorite={liked}
-      className={cn(likeButtonVariants({ liked }), className)}
+      className={cn(likeButtonVariants({ liked, animate }), className)}
       onClick={handleClick}
+      onAnimationEnd={handleAnimationEnd}
     />
   );
 };
