@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-keywords-queries';
+import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
 
 interface UseArtistRelatedKeywordProps {
