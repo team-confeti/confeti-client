@@ -48,6 +48,7 @@ const EditProfile = () => {
         name={profileData.name}
         profileUrl={profileData.profileUrl}
         showArrow={false}
+        showEditBtn={true}
       />
       <EditName
         name={name}

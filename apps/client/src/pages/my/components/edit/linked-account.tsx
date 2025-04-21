@@ -7,8 +7,8 @@ const LinkedAccount = () => {
     <section className={styles.container}>
       <h3 className={styles.title}>연결된 계정</h3>
       <div className={styles.iconWrapper}>
-        <IcKakao width={30} height={30} />
-        <IcApple width={30} height={30} />
+        <IcKakao className={styles.kakaoIcon} />
+        <IcApple className={styles.appleIcon} />
       </div>
     </section>
   );

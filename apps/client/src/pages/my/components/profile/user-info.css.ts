@@ -10,6 +10,24 @@ export const wrapper = style({
   backgroundColor: themeVars.color.gray100,
 });
 
+export const profileWrapper = style({
+  position: 'relative',
+});
+
+export const editIcon = style({
+  position: 'absolute',
+  bottom: 0,
+  right: '0.1rem',
+  width: '2.4rem',
+  height: '2.4rem',
+  padding: '0.4rem',
+  backgroundColor: themeVars.color.white,
+  boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
+  borderRadius: '12px',
+  border: `0.6px solid ${themeVars.color.gray200}`,
+  cursor: 'pointer',
+});
+
 export const userInfo = style({
   display: 'flex',
   flexDirection: 'column',
@@ -31,5 +49,7 @@ export const titlePostfix = style({
 });
 
 export const arrowIcon = style({
+  width: '1.6rem',
+  height: '1.6rem',
   cursor: 'pointer',
 });
