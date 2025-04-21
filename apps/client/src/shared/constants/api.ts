@@ -1,4 +1,10 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
+export const CONFIG = {
+  BASE_URL: import.meta.env.VITE_BASE_URL as string,
+  KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
+  KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
+  AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
+  SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
+} as const;
 
 export const END_POINT = {
   GET_USER_PROFILE: '/user/info',

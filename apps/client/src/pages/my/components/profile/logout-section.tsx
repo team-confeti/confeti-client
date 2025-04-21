@@ -35,7 +35,10 @@ const LogoutSection = () => {
       <LogoutDialog
         isOpen={isOpen}
         onClose={close}
-        onConfirm={() => logout()}
+        onConfirm={() => {
+          logout();
+          close();
+        }}
       />
     ));
   };

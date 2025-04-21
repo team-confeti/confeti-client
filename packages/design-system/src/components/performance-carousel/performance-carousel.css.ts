@@ -87,3 +87,9 @@ export const badge = style({
   borderRadius: '13px',
   zIndex: themeVars.zIndex.poster.infoText,
 });
+
+export const carouselContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+});

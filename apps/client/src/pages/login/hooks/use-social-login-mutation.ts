@@ -11,7 +11,7 @@ export const useSocialLoginMutation = () => {
   const navigate = useNavigate();
 
   return useMutation<BaseResponse<SocialLoginResponse>, Error, KakaoLogin>({
-    mutationFn: (socialLoginResponse) => postSocialLogin(socialLoginResponse),
+    mutationFn: (socialLoginData) => postSocialLogin(socialLoginData),
     onSuccess: (data) => {
       if (data?.data) {
         const { accessToken, refreshToken, isOnboarding } = data.data;
