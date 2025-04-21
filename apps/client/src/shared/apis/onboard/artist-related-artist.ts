@@ -1,0 +1,14 @@
+import { END_POINT } from '@shared/constants/api';
+import { BaseResponse } from '@shared/types/api';
+import { onboardResponse } from '@shared/types/onboard-response';
+
+import { axiosInstance } from '../config/instance';
+
+export const getArtistRelatedArtist = async (
+  artistId: string,
+): Promise<onboardResponse> => {
+  const response = await axiosInstance.get<BaseResponse<onboardResponse>>(
+    END_POINT.GET_ARTIST_RELATED_ARTIST(artistId, 10),
+  );
+  return response.data.data;
+};
