@@ -1,7 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { PerformancesFilterType } from '@shared/types/user-response';
+import {
+  ArtistSortType,
+  PerformancesFilterType,
+} from '@shared/types/user-response';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 export const useMyArtistPreview = () => {
@@ -25,16 +28,24 @@ export const useMyPerformancePreview = () => {
 };
 
 export const useMyUpcomingPerformance = () => {
+  const isNotLoggedIn = checkIsNotLoggedIn();
   const { data } = useQuery({
     ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
+    enabled: !isNotLoggedIn,
+  });
+  return { data };
+};
+
+export const useMyArtist = (sortBy: ArtistSortType) => {
+  const { data } = useSuspenseQuery({
+    ...USER_QUERY_OPTIONS.MY_ARTISTS(sortBy),
   });
   return { data };
 };
 
 export const useMyPerformances = (performancesType: PerformancesFilterType) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES(performancesType),
   });
-
   return { data };
 };

@@ -2,7 +2,9 @@ import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  ArtistSortType,
   FavoriteArtistsResponses,
+  MyArtistsResponse,
   MyPerformancesResponse,
   MyUpcomingPerformance,
   PerformanceResponse,
@@ -40,6 +42,15 @@ export const getMyUpcomingPerformance =
     );
     return response.data;
   };
+
+export const getMyArtists = async (
+  sortBy: ArtistSortType,
+): Promise<MyArtistsResponse> => {
+  const response = await get<BaseResponse<MyArtistsResponse>>(
+    END_POINT.GET_MY_ARTISTS(sortBy),
+  );
+  return response.data;
+};
 
 export const getMyPerformances = async (
   performancesType: PerformancesFilterType,

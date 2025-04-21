@@ -16,11 +16,15 @@ export const likeButtonVariants = recipe({
   variants: {
     liked: {
       true: {
-        animation: `${heartAnimation} 0.3s ease-in-out`,
         fill: '#FB0D0D',
       },
       false: {
         fill: '#93959D',
+      },
+    },
+    animate: {
+      true: {
+        animation: `${heartAnimation} 0.3s ease-in-out`,
       },
     },
   },
