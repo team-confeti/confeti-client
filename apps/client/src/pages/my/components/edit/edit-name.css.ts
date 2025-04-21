@@ -22,6 +22,10 @@ export const inputWrapper = style({
   border: `1px solid ${themeVars.color.gray300}`,
 });
 
+export const inputWrapperError = style({
+  border: `1px solid ${themeVars.color.confeti_red}`,
+});
+
 export const textSection = style({
   flexGrow: 1,
   backgroundColor: themeVars.color.white,
@@ -37,6 +41,10 @@ export const textSection = style({
       outline: 'none',
     },
   },
+});
+
+export const textSectionInvalid = style({
+  color: themeVars.color.gray500,
 });
 
 export const closeBtn = style({

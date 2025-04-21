@@ -1,14 +1,17 @@
 import { useRef, useState } from 'react';
 import SvgBtnClose from 'node_modules/@confeti/design-system/src/icons/src/BtnClose';
 
+import { cn } from '@confeti/design-system/utils';
+
 import * as styles from './edit-name.css';
 
 interface EditNameProps {
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isInvalid: boolean;
 }
 
-const EditName = ({ name, onChange }: EditNameProps) => {
+const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
   const textInput = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -30,7 +33,12 @@ const EditName = ({ name, onChange }: EditNameProps) => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>이름</h3>
-      <div className={styles.inputWrapper}>
+      <div
+        className={cn(
+          styles.inputWrapper,
+          isInvalid ? styles.inputWrapperError : undefined,
+        )}
+      >
         <input
           ref={textInput}
           type="text"
@@ -39,7 +47,10 @@ const EditName = ({ name, onChange }: EditNameProps) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={isFocused ? '' : '2~10자로 입력해 주세요'}
-          className={styles.textSection}
+          className={cn(
+            styles.textSection,
+            isInvalid ? styles.textSectionInvalid : undefined,
+          )}
         />
         {showClearBtn && (
           <SvgBtnClose

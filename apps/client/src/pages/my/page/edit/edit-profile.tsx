@@ -26,7 +26,9 @@ const EditProfile = () => {
     setName(e.target.value);
   };
 
-  const isNameInvalid = name.length < 2 || name.length > 10;
+  const isNameInvalid =
+    (name.length > 0 && name.length < 2) || name.length > 10;
+  const isButtonDisabled = name.length < 2 || isNameInvalid;
 
   return (
     <>
@@ -36,9 +38,13 @@ const EditProfile = () => {
         profileUrl={profileData.profileUrl}
         showArrow={false}
       />
-      <EditName name={name} onChange={handleInputChange} />
+      <EditName
+        name={name}
+        onChange={handleInputChange}
+        isInvalid={isNameInvalid}
+      />
       <div className={styles.buttonSection}>
-        <Button variant="add" text={'저장하기'} disabled={isNameInvalid} />
+        <Button variant="add" text={'저장하기'} disabled={isButtonDisabled} />
       </div>
       <Footer />
     </>
