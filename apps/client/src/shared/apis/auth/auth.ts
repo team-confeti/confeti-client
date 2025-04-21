@@ -1,14 +1,27 @@
-import { END_POINT } from '@shared/constants/api';
+import { BASE_URL, END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
 
-import { axiosPublicInstance, del, post } from '../config/instance';
+import { del, post } from '../config/instance';
 
-export const postSocialLogin = async (socialLoginResponse: KakaoLogin) => {
-  const response = await axiosPublicInstance.post<
-    BaseResponse<SocialLoginResponse>
-  >(END_POINT.POST_SOCIAL_LOGIN, socialLoginResponse);
-  return response.data;
+export const postSocialLogin = async (
+  socialLoginData: KakaoLogin,
+): Promise<BaseResponse<SocialLoginResponse>> => {
+  const response = await fetch(`${BASE_URL}${END_POINT.POST_SOCIAL_LOGIN}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(socialLoginData),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`Error: ${response.status} - ${error.message}`);
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 export const postLogout = async (): Promise<BaseResponse<void>> => {
