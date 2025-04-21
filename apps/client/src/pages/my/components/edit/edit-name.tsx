@@ -3,20 +3,21 @@ import SvgBtnClose from 'node_modules/@confeti/design-system/src/icons/src/BtnCl
 
 import * as styles from './edit-name.css';
 
-const EditName = () => {
+interface EditNameProps {
+  name: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const EditName = ({ name, onChange }: EditNameProps) => {
   const textInput = useRef<HTMLInputElement>(null);
-  const [name, setName] = useState('');
+
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
   const handleClear = () => {
-    setName('');
+    onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
     textInput.current?.focus();
   };
 
@@ -34,7 +35,7 @@ const EditName = () => {
           ref={textInput}
           type="text"
           value={name}
-          onChange={handleInputChange}
+          onChange={onChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={isFocused ? '' : '2~10자로 입력해 주세요'}
