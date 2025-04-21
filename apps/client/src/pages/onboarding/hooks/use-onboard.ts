@@ -41,3 +41,11 @@ export const useArtistRelatedKeyword = ({
 
   return data;
 };
+
+export const useArtistRelatedArtist = (artistId: string) => {
+  const { data } = useQuery({
+    ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(artistId),
+  });
+
+  return data;
+};
