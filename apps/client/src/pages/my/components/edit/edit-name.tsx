@@ -28,6 +28,7 @@ const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
     e.preventDefault();
     handleClear();
   };
+
   const showClearBtn = isFocused;
 
   return (

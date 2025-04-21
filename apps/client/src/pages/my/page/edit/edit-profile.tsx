@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import EditName from '@pages/my/components/edit/edit-name';
+import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Button, Footer, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
-import { ARTISTS_DATA } from '@shared/mocks/artists-data';
 
 import * as styles from './edit-profile.css';
 
 const EditProfile = () => {
   const { data: profileData } = useUserProfile();
-
-  const artistData = ARTISTS_DATA;
 
   const [name, setName] = useState('');
   const [hasShownToast, setHasShownToast] = useState(false);
@@ -32,9 +29,7 @@ const EditProfile = () => {
     }
   }, [name, hasShownToast]);
 
-  const { data: performanceData } = useMyConfeti();
-
-  if (!profileData || !artistData || !performanceData) {
+  if (!profileData) {
     return null;
   }
 
@@ -59,6 +54,7 @@ const EditProfile = () => {
         onChange={handleInputChange}
         isInvalid={isNameInvalid}
       />
+      <LinkedAccount />
       <div className={styles.buttonSection}>
         <Button variant="add" text={'저장하기'} disabled={isButtonDisabled} />
       </div>
