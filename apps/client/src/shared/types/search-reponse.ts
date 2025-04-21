@@ -7,6 +7,10 @@ export interface ArtistSearch {
   isMultipleArtists: boolean;
 }
 
+export interface ArtistSearchResponse {
+  artist: ArtistSearch;
+}
+
 export interface Performance {
   performanceId: number;
   typeId: number;
