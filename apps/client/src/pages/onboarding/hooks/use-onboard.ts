@@ -42,6 +42,12 @@ export const useArtistRelatedKeyword = ({
   return data;
 };
 
+/**
+ * 🔍 아티스트 연관 아티스트를 가져오는 커스텀 훅
+ *
+ * @param artistId - 기준이 되는 아티스트의 ID
+ * - 해당 아티스트와 연관된 다른 아티스트 데이터를 서버에서 불러옴
+ */
 export const useArtistRelatedArtist = (artistId: string) => {
   const { data } = useQuery({
     ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(artistId),
