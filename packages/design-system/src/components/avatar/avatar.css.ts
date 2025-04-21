@@ -1,11 +1,14 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { screen, themeVars } from '../../styles';
 
 export const avatarVariants = recipe({
   base: {
+    position: 'relative',
     borderRadius: '100%',
     overflow: 'hidden',
+    WebkitUserSelect: 'none',
   },
   variants: {
     size: {
@@ -94,4 +97,11 @@ export const fallback = recipe({
     backgroundColor: themeVars.color.gray100,
     ...themeVars.display.flexJustifyAlignCenter,
   },
+});
+
+export const overlay = style(themeVars.overlay.default);
+
+export const icon = style({
+  width: '2.8rem',
+  height: '2.8rem',
 });
