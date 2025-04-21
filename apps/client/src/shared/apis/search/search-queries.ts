@@ -2,7 +2,11 @@ import { queryOptions } from '@tanstack/react-query';
 
 import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
 
-import { getArtistSearch, getPerformancesSearch } from './search';
+import {
+  getArtistRelatedKeyword,
+  getArtistSearch,
+  getPerformancesSearch,
+} from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -18,6 +22,11 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
   SEARCH_ARTIST: (keyword: string, enabled: boolean) => ({
     queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
     queryFn: () => getArtistSearch(keyword),
+    enabled,
+  }),
+  SEARCH_RELATED_KEYWORD: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
+    queryFn: () => getArtistRelatedKeyword(keyword),
     enabled,
   }),
 };
