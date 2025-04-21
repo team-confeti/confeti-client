@@ -12,7 +12,7 @@ import {
 } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 
-import * as styles from './search.css';
+import * as styles from './search-page.css';
 
 const SearchPage = () => {
   const {
@@ -47,7 +47,6 @@ const SearchPage = () => {
     });
 
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
-  const isLoading = !artistData || artistData.length === 0;
 
   const relatedKeywordsData = useSearchRelatedKeyword({
     keyword: debouncedKeyword,
@@ -85,7 +84,6 @@ const SearchPage = () => {
 
       {paramsKeyword && (
         <SearchResult
-          isLoading={isLoading}
           artistData={artistData}
           performanceCount={performanceCount}
           performances={performances}

@@ -10,7 +10,6 @@ import PerformanceSection from './performance/performance-section';
 import * as styles from './search-result.css';
 
 interface SearchResultProps {
-  isLoading: boolean;
   artistData: ArtistSearch[];
   performanceCount: number;
   performances: Performance[];
@@ -19,21 +18,16 @@ interface SearchResultProps {
 }
 
 const SearchResult = ({
-  isLoading,
   artistData,
   performanceCount,
   performances,
   hasNextPage,
   observerRef,
 }: SearchResultProps) => {
-  console.log(artistData);
-
   return (
     <>
       <main className={styles.resultSection}>
-        {isLoading ? (
-          <div />
-        ) : artistData.length > 0 ? (
+        {artistData.length > 0 ? (
           <>
             <NoticeSection
               isMultipleArtists={artistData[0]?.isMultipleArtists}
