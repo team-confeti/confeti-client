@@ -1,3 +1,4 @@
+import EditName from '@pages/my/components/edit/edit-name';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useMyConfeti } from '@pages/my/hooks/use-my-favorites';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
@@ -24,6 +25,7 @@ const EditProfile = () => {
         profileUrl={profileData.profileUrl}
         showArrow={false}
       />
+      <EditName />
       <Footer />
     </>
   );

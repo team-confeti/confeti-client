@@ -7,6 +7,7 @@ export const wrapper = style({
   alignItems: 'center',
   padding: '3rem 2rem',
   gap: '1.8rem',
+  backgroundColor: themeVars.color.gray100,
 });
 
 export const userInfo = style({
