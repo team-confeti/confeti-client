@@ -1,19 +1,17 @@
-import ArtistSection from '@pages/search/components/artist-section';
-import NoticeSection from '@pages/search/components/notice-section';
-import PerformanceCount from '@pages/search/components/performance-count-section';
-import PerformanceSection from '@pages/search/components/performance-section';
-
 import { Footer, Spacing } from '@confeti/design-system';
 import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 
-import ArtistNotFound from '../artist-not-found';
+import ArtistNotFound from './artist/artist-not-found';
+import ArtistSection from './artist/artist-section';
+import NoticeSection from './common/notice-section';
+import PerformanceCount from './performance/performance-count-section';
+import PerformanceSection from './performance/performance-section';
 
 import * as styles from './search-result.css';
 
 interface SearchResultProps {
   isLoading: boolean;
   artistData: ArtistSearch[];
-  artistId: string;
   performanceCount: number;
   performances: Performance[];
   hasNextPage: boolean;
@@ -23,7 +21,6 @@ interface SearchResultProps {
 const SearchResult = ({
   isLoading,
   artistData,
-  artistId,
   performanceCount,
   performances,
   hasNextPage,
@@ -36,7 +33,7 @@ const SearchResult = ({
       <main className={styles.resultSection}>
         {isLoading ? (
           <div />
-        ) : artistId ? (
+        ) : artistData.length > 0 ? (
           <>
             <NoticeSection
               isMultipleArtists={artistData[0]?.isMultipleArtists}

@@ -1,5 +1,5 @@
-import PerformanceInfo from '../components/performance-info';
-import Title from '../components/title';
+import Title from '../common/title';
+import PerformanceInfo from './performance-info';
 
 import * as styles from './performance-section.css';
 

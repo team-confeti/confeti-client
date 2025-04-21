@@ -2,9 +2,9 @@ import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
-import PopularSearchSection from '../components/popular-search-section';
-import RecentFestivalSection from '../components/recent-festivals-section';
-import RecentSearchSection from '../components/recent-search-section';
+import PopularSearchSection from '../components/search-home/popular-search-section';
+import RecentFestivalSection from '../components/search-home/recent-festivals-section';
+import RecentSearchSection from '../components/search-home/recent-search-section';
 import SearchResult from '../components/search-result/search-result';
 import {
   useSearchPerformances,
@@ -87,7 +87,6 @@ const Search = () => {
         <SearchResult
           isLoading={isLoading}
           artistData={artistData}
-          artistId={artistId}
           performanceCount={performanceCount}
           performances={performances}
           hasNextPage={hasNextPage}

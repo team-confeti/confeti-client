@@ -1,7 +1,7 @@
 import { formatDate } from '@shared/utils/format-date';
 
-import ArtistInfo from '../components/artist-info';
-import Title from '../components/title';
+import Title from '../common/title';
+import ArtistInfo from './artist-info';
 
 import * as styles from './artist-section.css';
 
