@@ -1,3 +1,5 @@
+import { artist } from '@pages/performance/components/artist/artist-card.css';
+
 export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
 
 export const END_POINT = {
@@ -41,6 +43,8 @@ export const END_POINT = {
   GET_TOP100_ARTIST: 'user/onboard/artists',
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
+    `user/onboard/artists/${artistId}/related?limit=${limit}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
