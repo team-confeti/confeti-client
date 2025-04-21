@@ -49,3 +49,14 @@ export const useSearchPerformances = ({
     isFetchingNextPage,
   };
 };
+
+export const useSearchRelatedKeyword = ({
+  keyword,
+  enabled,
+}: UseArtistProps) => {
+  const { data } = useQuery({
+    ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_RELATED_KEYWORD(keyword, enabled),
+  });
+
+  return data;
+};

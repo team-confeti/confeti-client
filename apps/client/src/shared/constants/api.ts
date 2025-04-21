@@ -25,19 +25,24 @@ export const END_POINT = {
   GET_CONCERT_DETAIL: '/performances/concerts',
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
+
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
+
   //검색
   GET_ARTISTS_SEARCH: `artists?search=`,
+  GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
+    `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH: (artistId: string, cursor: number) =>
     `performances/association/${artistId}?cursor=${cursor}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
+
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',

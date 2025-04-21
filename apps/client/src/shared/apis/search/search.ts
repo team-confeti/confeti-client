@@ -4,6 +4,7 @@ import { BaseResponse } from '@shared/types/api';
 import {
   ArtistSearch,
   GetPerformancesSearchResponse,
+  RelatedArtistResponse,
 } from '@shared/types/search-reponse';
 
 export const getArtistSearch = async (
@@ -11,6 +12,15 @@ export const getArtistSearch = async (
 ): Promise<ArtistSearch> => {
   const response = await get<BaseResponse<ArtistSearch>>(
     `${END_POINT.GET_ARTISTS_SEARCH}${encodeURIComponent(keyword)}`,
+  );
+  return response.data;
+};
+
+export const getArtistRelatedKeyword = async (
+  keyword: string,
+): Promise<RelatedArtistResponse> => {
+  const response = await get<BaseResponse<RelatedArtistResponse>>(
+    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, 10)}`,
   );
   return response.data;
 };
