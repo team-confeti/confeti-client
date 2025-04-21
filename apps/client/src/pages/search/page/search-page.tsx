@@ -14,7 +14,7 @@ import { useSearchLogic } from '../hooks/use-search-logic';
 
 import * as styles from './search.css';
 
-const Search = () => {
+const SearchPage = () => {
   const {
     artistData,
     paramsKeyword,
@@ -97,4 +97,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchPage;
