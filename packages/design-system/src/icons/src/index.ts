@@ -50,6 +50,7 @@ export { default as IcTimetableAddfestival } from './IcTimetableAddfestival';
 export { default as IcTimetableDeletefestival } from './IcTimetableDeletefestival';
 export { default as IcTimetableFloatClose } from './IcTimetableFloatClose';
 export { default as IcTimetableFloatFinish } from './IcTimetableFloatFinish';
+export { default as IcToastInfo16 } from './IcToastInfo16';
 export { default as IcToastInfo24 } from './IcToastInfo24';
 export { default as ImgTypelogoBig } from './ImgTypelogoBig';
 export { default as InfoOverlay } from './InfoOverlay';
