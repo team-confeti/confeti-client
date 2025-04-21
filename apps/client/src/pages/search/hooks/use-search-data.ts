@@ -1,8 +1,4 @@
-import {
-  useInfiniteQuery,
-  useQuery,
-  useSuspenseQuery,
-} from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import { getPerformancesSearch } from '@shared/apis/search/search';
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
@@ -14,7 +10,7 @@ interface UseArtistProps {
 }
 
 export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
-  const { data } = useSuspenseQuery({
+  const { data } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
   });
 

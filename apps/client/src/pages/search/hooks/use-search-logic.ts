@@ -15,7 +15,6 @@ export const useSearchLogic = () => {
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
-  const artistData = searchData?.artist ? [searchData.artist] : [];
 
   const handleOnFocus = () => setBarFocus(true);
   const handleOnBlur = () => setBarFocus(false);
@@ -26,7 +25,7 @@ export const useSearchLogic = () => {
   };
 
   return {
-    artistData,
+    artistData: searchData?.artist,
     paramsKeyword,
     barFocus,
     handleOnFocus,

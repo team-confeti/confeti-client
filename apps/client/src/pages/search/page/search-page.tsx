@@ -39,7 +39,7 @@ const SearchPage = () => {
     }
   };
 
-  const artistId = artistData[0]?.artistId || '';
+  const artistId = artistData?.artistId || '';
   const { performances, performanceCount, fetchNextPage, hasNextPage } =
     useSearchPerformances({
       artistId,
@@ -84,7 +84,7 @@ const SearchPage = () => {
 
       {paramsKeyword && (
         <SearchResult
-          artistData={artistData}
+          artistData={artistData ?? null}
           performanceCount={performanceCount}
           performances={performances}
           hasNextPage={hasNextPage}

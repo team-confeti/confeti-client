@@ -10,7 +10,7 @@ import PerformanceSection from './performance/performance-section';
 import * as styles from './search-result.css';
 
 interface SearchResultProps {
-  artistData: ArtistSearch[];
+  artistData: ArtistSearch | null;
   performanceCount: number;
   performances: Performance[];
   hasNextPage: boolean;
@@ -27,11 +27,9 @@ const SearchResult = ({
   return (
     <>
       <main className={styles.resultSection}>
-        {artistData.length > 0 ? (
+        {artistData ? (
           <>
-            <NoticeSection
-              isMultipleArtists={artistData[0]?.isMultipleArtists}
-            />
+            <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
             <ArtistSection artist={artistData} />
             <Spacing />
             <PerformanceCount count={performanceCount} />
