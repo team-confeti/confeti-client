@@ -1,6 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
+import {
+  ARTIST_RELATED_ARTIST_QUERY_OPTION,
+  ARTIST_RELATED_KEYWORDS_QUERY_OPTION,
+} from '@shared/apis/onboard/artist-related-queries';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
 
 interface UseArtistRelatedKeywordProps {
@@ -50,7 +53,7 @@ export const useArtistRelatedKeyword = ({
  */
 export const useArtistRelatedArtist = (artistId: string) => {
   const { data } = useQuery({
-    ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(artistId),
+    ...ARTIST_RELATED_ARTIST_QUERY_OPTION.RELATED_ARTIST(artistId),
   });
 
   return data;
