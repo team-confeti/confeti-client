@@ -10,13 +10,14 @@ import {
   ToastContainer,
 } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
+import { CONFIG } from '@shared/constants/api';
 import Router from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
-init(import.meta.env.VITE_AMPLITUDE_API_KEY);
+init(CONFIG.AMPLITUDE_API_KEY);
 Sentry.init({
-  dsn: import.meta.env.VITE_SENTRY_DSN,
+  dsn: CONFIG.SENTRY_DSN,
   tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
   tracesSampleRate: 1.0,
   normalizeDepth: 6,

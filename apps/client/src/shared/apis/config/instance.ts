@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-import { BASE_URL } from '@shared/constants/api';
+import { CONFIG } from '@shared/constants/api';
 
 import { handleAPIError, handleCheckAndSetToken } from './interceptor';
 
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: CONFIG.BASE_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
