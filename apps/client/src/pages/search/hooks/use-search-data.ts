@@ -10,11 +10,11 @@ interface UseArtistProps {
 }
 
 export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
   });
 
-  return data;
+  return { data, isLoading };
 };
 
 interface UsePerformancesProps {

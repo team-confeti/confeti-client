@@ -21,6 +21,7 @@ const SearchPage = () => {
     handleOnFocus,
     handleOnBlur,
     navigateWithKeyword,
+    isLoading,
   } = useSearchLogic();
   const {
     keyword: searchKeyword,
@@ -89,6 +90,7 @@ const SearchPage = () => {
           performances={performances}
           hasNextPage={hasNextPage}
           observerRef={observerRef}
+          isLoading={isLoading}
         />
       )}
     </>

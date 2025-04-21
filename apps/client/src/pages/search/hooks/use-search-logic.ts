@@ -11,7 +11,7 @@ export const useSearchLogic = () => {
   const [searchParams] = useSearchParams();
   const paramsKeyword = searchParams.get('q') || '';
 
-  const searchData = useSearchArtist({
+  const { data: searchData, isLoading } = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
@@ -31,5 +31,6 @@ export const useSearchLogic = () => {
     handleOnFocus,
     handleOnBlur,
     navigateWithKeyword,
+    isLoading,
   };
 };

@@ -1,4 +1,5 @@
 import { Footer, Spacing } from '@confeti/design-system';
+import Loading from '@shared/pages/loading/loading';
 import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 
 import ArtistNotFound from './artist/artist-not-found';
@@ -15,6 +16,7 @@ interface SearchResultProps {
   performances: Performance[];
   hasNextPage: boolean;
   observerRef: (node: HTMLDivElement | null) => void;
+  isLoading: boolean;
 }
 
 const SearchResult = ({
@@ -23,7 +25,12 @@ const SearchResult = ({
   performances,
   hasNextPage,
   observerRef,
+  isLoading,
 }: SearchResultProps) => {
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <main className={styles.resultSection}>
