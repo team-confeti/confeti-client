@@ -1,3 +1,5 @@
+import { useSearchParams } from 'react-router-dom';
+
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
@@ -6,6 +8,7 @@ import PopularSearchSection from '../components/search-home/popular-search-secti
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
 import {
+  useSearchArtist,
   useSearchPerformances,
   useSearchRelatedKeyword,
 } from '../hooks/use-search-data';
@@ -15,23 +18,31 @@ import SearchResult from './search-result-page';
 import * as styles from './search-page.css';
 
 const SearchPage = () => {
-  const {
-    artistData,
-    paramsKeyword,
-    handleOnFocus,
-    handleOnBlur,
-    navigateWithKeyword,
-    isLoading,
-  } = useSearchLogic();
+  const [searchParams] = useSearchParams();
+  const paramsKeyword = searchParams.get('q') || '';
+
+  const { handleOnFocus, handleOnBlur, navigateWithKeyword } = useSearchLogic();
   const {
     keyword: searchKeyword,
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword();
+  const { data: searchData, isLoading } = useSearchArtist({
+    keyword: paramsKeyword,
+    enabled: !!paramsKeyword,
+  });
+  const { data: relatedKeywordsData } = useSearchRelatedKeyword({
+    keyword: debouncedKeyword,
+    enabled: !!debouncedKeyword.trim(),
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleInputChange(e);
-  };
+  const artistData = searchData?.artist;
+  const artistId = artistData?.artistId || '';
+  const { performances, performanceCount, fetchNextPage, hasNextPage } =
+    useSearchPerformances({
+      artistId,
+      enabled: !!artistId,
+    });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchKeyword.trim()) {
@@ -40,21 +51,40 @@ const SearchPage = () => {
     }
   };
 
-  const artistId = artistData?.artistId || '';
-  const { performances, performanceCount, fetchNextPage, hasNextPage } =
-    useSearchPerformances({
-      artistId,
-      enabled: !!artistId,
-    });
-
+  // TODO: 무한 스크롤 제거
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
-  const relatedKeywordsData = useSearchRelatedKeyword({
-    keyword: debouncedKeyword,
-    enabled: !!debouncedKeyword.trim(),
-  });
+  const hasRelatedKeywordResults =
+    (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
-  const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
+  const renderSearchContents = () => {
+    if (!paramsKeyword && searchKeyword.length === 0) {
+      return (
+        <main className={styles.resultSection}>
+          <RecentSearchSection />
+          <PopularSearchSection />
+          <RecentFestivalSection />
+        </main>
+      );
+    }
+
+    if (!!searchKeyword && hasRelatedKeywordResults) {
+      return (
+        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
+      );
+    }
+
+    return (
+      <SearchResult
+        artistData={artistData ?? null}
+        performanceCount={performanceCount}
+        performances={performances}
+        hasNextPage={hasNextPage}
+        observerRef={observerRef}
+        isLoading={isLoading}
+      />
+    );
+  };
 
   return (
     <>
@@ -62,7 +92,7 @@ const SearchPage = () => {
         <div className={styles.searchBarFrame}>
           <SearchBar
             value={searchKeyword}
-            onChange={handleChange}
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
@@ -71,28 +101,7 @@ const SearchPage = () => {
         </div>
       </div>
 
-      {!!searchKeyword && hasArtistResults && (
-        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
-      )}
-
-      {!paramsKeyword && searchKeyword.length === 0 && (
-        <main className={styles.resultSection}>
-          <RecentSearchSection />
-          <PopularSearchSection />
-          <RecentFestivalSection />
-        </main>
-      )}
-
-      {!hasArtistResults && paramsKeyword && (
-        <SearchResult
-          artistData={artistData ?? null}
-          performanceCount={performanceCount}
-          performances={performances}
-          hasNextPage={hasNextPage}
-          observerRef={observerRef}
-          isLoading={isLoading}
-        />
-      )}
+      {renderSearchContents()}
     </>
   );
 };
