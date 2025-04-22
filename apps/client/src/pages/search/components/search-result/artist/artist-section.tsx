@@ -1,10 +1,8 @@
+import { Box } from '@confeti/design-system';
 import { ArtistSearch } from '@shared/types/search-reponse';
 import { formatDate } from '@shared/utils/format-date';
 
-import Title from '../title';
 import ArtistInfo from './artist-info';
-
-import * as styles from './artist-section.css';
 
 interface ArtistSectionProps {
   artist: ArtistSearch;
@@ -12,10 +10,10 @@ interface ArtistSectionProps {
 
 const ArtistSection = ({ artist }: ArtistSectionProps) => {
   const formattedDate = formatDate(artist.latestReleaseAt);
+  const artistCount = artist.artistId ? 1 : 0;
 
   return (
-    <div className={styles.section}>
-      <Title text="아티스트" />
+    <Box title={`아티스트 (${artistCount})`}>
       <ArtistInfo
         id={artist.artistId}
         image={artist.profileUrl}
@@ -23,7 +21,7 @@ const ArtistSection = ({ artist }: ArtistSectionProps) => {
         releaseDate={formattedDate}
         isFavorite={artist.isFavorite}
       />
-    </div>
+    </Box>
   );
 };
 
