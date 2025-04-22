@@ -1,7 +1,7 @@
 import { ArtistSearch } from '@shared/types/search-reponse';
 import { formatDate } from '@shared/utils/format-date';
 
-import Title from '../common/title';
+import Title from '../title';
 import ArtistInfo from './artist-info';
 
 import * as styles from './artist-section.css';

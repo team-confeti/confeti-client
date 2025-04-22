@@ -3,7 +3,7 @@ import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 
 import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
-import NoticeSection from '../components/search-result/common/notice-section';
+import NoticeSection from '../components/search-result/notice-section';
 import PerformanceCount from '../components/search-result/performance/performance-count-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
 

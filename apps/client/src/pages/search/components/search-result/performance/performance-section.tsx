@@ -1,4 +1,4 @@
-import Title from '../common/title';
+import Title from '../title';
 import PerformanceInfo from './performance-info';
 
 import * as styles from './performance-section.css';
