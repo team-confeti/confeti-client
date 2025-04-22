@@ -6,7 +6,15 @@ import { useArtistRelatedKeyword } from '../hooks/use-onboard';
 
 import * as styles from './artist-search.css';
 
-const ArtistSearch = () => {
+interface ArtistSearchProps {
+  onArtistSelect: (artistId: string) => void;
+  handleSearchParams: () => void;
+}
+
+const ArtistSearch = ({
+  onArtistSelect,
+  handleSearchParams,
+}: ArtistSearchProps) => {
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
 
@@ -31,7 +39,11 @@ const ArtistSearch = () => {
       </div>
 
       {hasArtistResults ? (
-        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
+        <SearchSuggestionList
+          relatedKeyword={relatedKeywordsData?.artists}
+          onArtistSelect={onArtistSelect}
+          handleSearchParams={handleSearchParams}
+        />
       ) : (
         <section className={styles.artistSearchContainer}>
           <p className={styles.artistSearchDescription}>

@@ -4,37 +4,39 @@ import { useSearchParams } from 'react-router-dom';
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
 import { onboard } from '@shared/types/onboard-response';
 
-import { ONBOARD_LIMIT } from '../constants/limit';
-import { useArtistRelatedArtist } from '../hooks/use-onboard';
 import ArtistSearch from './artist-search';
 
 import * as styles from './artist-select.css';
 
 interface artistSelectProps {
   artists: onboard[] | undefined;
+  onArtistSelect: (artistId: string) => void;
   children: ReactNode;
 }
 
-const ArtistSelect = ({ children, artists }: artistSelectProps) => {
+const ArtistSelect = ({
+  children,
+  artists,
+  onArtistSelect,
+}: artistSelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
-
-  const { mutate } = useArtistRelatedArtist();
 
   const handleSearchBarFocus = () => {
     setSearchParams({ search: 'true' });
   };
 
-  const handleArtistSelect = (artistId: string) => {
-    mutate({ artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST });
+  const handleSearchArtistSelect = () => {
+    setSearchParams({});
   };
 
-  // const handleArtistSelect = () => {
-  //   setSearchParams({});
-  // };
-
   if (isFocused) {
-    return <ArtistSearch />;
+    return (
+      <ArtistSearch
+        onArtistSelect={onArtistSelect}
+        handleSearchParams={handleSearchArtistSelect}
+      />
+    );
   } else {
     return (
       <section className={styles.onboardingContentSection}>
@@ -56,7 +58,7 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
                 size="xl"
                 src={artist?.profileUrl}
                 alt={`${artist?.name} 이미지`}
-                onClick={() => handleArtistSelect(artist?.artistId)}
+                onClick={() => onArtistSelect(artist?.artistId)}
               />
               <p className={styles.artistName}>{artist.name}</p>
             </div>
