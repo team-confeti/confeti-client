@@ -22,7 +22,8 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const paramsKeyword = searchParams.get('q') || '';
 
-  const { handleOnFocus, handleOnBlur, navigateWithKeyword } = useSearchLogic();
+  const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
+    useSearchLogic();
   const {
     keyword: searchKeyword,
     debouncedKeyword,
@@ -45,11 +46,10 @@ const SearchPage = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchKeyword.trim()) {
-      navigateWithKeyword(searchKeyword);
+      handleNavigateWithKeyword(searchKeyword);
       (e.target as HTMLInputElement).blur();
     }
   };
-
   // TODO: 무한 스크롤 제거
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
@@ -57,7 +57,9 @@ const SearchPage = () => {
     const isInitialState = !paramsKeyword && searchKeyword.length === 0;
     const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
     const isSuggestionState =
-      !!searchKeyword && (relatedKeywordsData?.artists?.length ?? 0) > 0;
+      !!searchKeyword &&
+      (relatedKeywordsData?.artists?.length ?? 0) > 0 &&
+      !paramsKeyword;
     const isResultState = !!paramsKeyword;
 
     switch (true) {
@@ -75,7 +77,10 @@ const SearchPage = () => {
 
       case isSuggestionState:
         return (
-          <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
+          <SearchSuggestionList
+            relatedKeyword={relatedKeywordsData?.artists}
+            onClick={handleNavigateWithKeyword}
+          />
         );
 
       case isResultState:

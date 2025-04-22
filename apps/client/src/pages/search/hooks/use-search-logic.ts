@@ -8,7 +8,7 @@ export const useSearchLogic = () => {
   const handleOnFocus = () => setBarFocus(true);
   const handleOnBlur = () => setBarFocus(false);
 
-  const navigateWithKeyword = (keyword: string) => {
+  const handleNavigateWithKeyword = (keyword: string) => {
     navigate(`/search?q=${keyword}`);
     setBarFocus(false);
   };
@@ -17,6 +17,6 @@ export const useSearchLogic = () => {
     barFocus,
     handleOnFocus,
     handleOnBlur,
-    navigateWithKeyword,
+    handleNavigateWithKeyword,
   };
 };
