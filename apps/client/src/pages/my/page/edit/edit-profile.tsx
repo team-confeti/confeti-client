@@ -19,7 +19,7 @@ const EditProfile = () => {
     if (name.length > 10 && !hasShownToast) {
       toast({
         text: '2~10자로 입력해 주세요',
-        position: 'middleCenter',
+        // position: 'middleCenter',
         icon: <IcToastInfo16 width={16} height={16} />,
       });
 

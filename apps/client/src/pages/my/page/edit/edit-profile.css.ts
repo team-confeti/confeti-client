@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
 export const buttonSection = style({
-  position: 'relative',
-  bottom: '0',
-  left: '0',
+  marginTop: '12.1rem',
   padding: '2rem',
 });
