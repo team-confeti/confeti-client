@@ -16,11 +16,13 @@ export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
   return { data, isLoading };
 };
 
-export const useArtistRelatedData = (artistId: string) => {
+export const useArtistRelatedData = (artistId: string | null) => {
   const results = useSuspenseQueries({
     queries: [
       {
-        ...SEARCH_ARTIST_RELATED_QUERY_OPTION.SEARCH_PERFORMANCES(artistId),
+        ...SEARCH_ARTIST_RELATED_QUERY_OPTION.SEARCH_RELATED_PERFORMANCES(
+          artistId,
+        ),
       },
     ],
   });

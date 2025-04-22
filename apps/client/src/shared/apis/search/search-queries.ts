@@ -2,8 +2,8 @@ import { queryOptions } from '@tanstack/react-query';
 
 import {
   getArtistRelatedKeyword,
+  getArtistRelatedPerformances,
   getArtistSearch,
-  getPerformancesSearch,
 } from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
@@ -31,7 +31,7 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
 
 export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
   ALL: ['performances'],
-  SEARCH_PERFORMANCES: (artistId: string) => [
+  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => [
     ...SEARCH_ARTIST_RELATED_QUERY_KEY.ALL,
     'search',
     artistId,
@@ -40,8 +40,9 @@ export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
 
 export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
-  SEARCH_PERFORMANCES: (artistId: string) => ({
-    queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_PERFORMANCES(artistId),
-    queryFn: () => getPerformancesSearch(artistId),
+  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => ({
+    queryKey:
+      SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_RELATED_PERFORMANCES(artistId),
+    queryFn: () => getArtistRelatedPerformances(artistId),
   }),
 };

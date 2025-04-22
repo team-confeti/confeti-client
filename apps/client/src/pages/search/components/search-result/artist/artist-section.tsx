@@ -15,7 +15,7 @@ const ArtistSection = ({ artist }: ArtistSectionProps) => {
   return (
     <Box title={`아티스트 (${artistCount})`}>
       <ArtistInfo
-        id={artist.artistId}
+        id={artist.artistId || ''}
         image={artist.profileUrl}
         name={artist.name}
         releaseDate={formattedDate}

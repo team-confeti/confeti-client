@@ -1,5 +1,5 @@
 export interface ArtistSearch {
-  artistId: string;
+  artistId: string | null;
   name: string;
   profileUrl: string;
   latestReleaseAt: string;
@@ -23,9 +23,7 @@ export interface Performance {
   isFavorite: boolean;
 }
 
-export interface GetPerformancesSearchResponse {
-  nextCursor: number;
-  performanceCount: number;
+export interface PerformancesSearchResponse {
   performances: Performance[];
 }
 

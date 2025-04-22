@@ -13,18 +13,20 @@ interface Props {
   artistData: ArtistSearch | null;
 }
 const SearchResult = ({ artistData }: Props) => {
-  const { performancesData } = useArtistRelatedData(artistData?.artistId ?? '');
+  const { performancesData } = useArtistRelatedData(
+    artistData?.artistId || null,
+  );
 
   return (
     <>
       <main className={styles.resultSection}>
-        {artistData ? (
+        {artistData?.artistId ? (
           <>
             <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
             <ArtistSection artist={artistData} />
             <Spacing />
             <PerformanceSection
-              performanceCount={performancesData?.performanceCount ?? 0}
+              performanceCount={performancesData?.performances.length ?? 0}
               performances={performancesData?.performances ?? []}
             />
           </>
