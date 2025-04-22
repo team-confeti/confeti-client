@@ -27,11 +27,9 @@ export const getArtistRelatedKeyword = async (
 
 export const getPerformancesSearch = async (
   artistId: string,
-  cursor: number,
 ): Promise<GetPerformancesSearchResponse> => {
-  const baseUrl = `performances/association/${artistId}`;
-  const url = cursor === 1 ? baseUrl : `${baseUrl}?cursor=${cursor}`;
-
-  const response = await get<BaseResponse<GetPerformancesSearchResponse>>(url);
+  const response = await get<BaseResponse<GetPerformancesSearchResponse>>(
+    `${END_POINT.GET_PERFORMANCES_SEARCH(artistId)}`,
+  );
   return response.data;
 };

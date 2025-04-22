@@ -36,8 +36,8 @@ export const END_POINT = {
   GET_ARTISTS_SEARCH: `artists?search=`,
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
-  GET_PERFORMANCES_SEARCH: (artistId: string, cursor: number) =>
-    `performances/association/${artistId}?cursor=${cursor}`,
+  GET_PERFORMANCES_SEARCH: (artistId: string) =>
+    `performances/association/${artistId}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
