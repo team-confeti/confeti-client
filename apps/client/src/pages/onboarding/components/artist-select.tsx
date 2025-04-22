@@ -25,13 +25,13 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
     setSearchParams({ search: 'true' });
   };
 
-  // const handleArtistSelect = () => {
-  //   setSearchParams({});
-  // };
-
   const handleArtistSelect = (artistId: string) => {
     mutate({ artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST });
   };
+
+  // const handleArtistSelect = () => {
+  //   setSearchParams({});
+  // };
 
   if (isFocused) {
     return <ArtistSearch />;
