@@ -17,17 +17,41 @@ export type TicketingPerformances = Pick<
   'index' | 'typeId' | 'type' | 'subtitle' | 'reserveAt'
 >;
 
-export type TicketingPerformancesResponse = {
-  performanceCount: number;
-  performances: TicketingPerformances[];
-};
-
 export type CarouselPerformances = Pick<
   Performances,
   'performanceId' | 'typeId' | 'type' | 'title' | 'startAt' | 'posterUrl'
 >;
 
+export type SuggestPerformance = Pick<
+  Performances,
+  'typeId' | 'type' | 'title' | 'posterUrl'
+>;
+
+export type MusicList = {
+  artistName: string;
+  title: string;
+  artWorkUrl: string;
+  previewUrl: string;
+};
+
+export type TicketingPerformancesResponse = {
+  performanceCount: number;
+  performances: TicketingPerformances[];
+};
+
 export type CarouselPerformancesResponse = {
   isPersonalized: boolean;
   performances: CarouselPerformances[];
 };
+
+export type SuggestPerformanceResponse = {
+  performances: SuggestPerformance[];
+};
+
+export interface SuggestMusicResponse {
+  id: number;
+  typeId: number;
+  type: 'FESTIVAL' | 'CONCERT';
+  title: string;
+  musics: MusicList[];
+}
