@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export const useDebouncedKeyword = (delay = 500) => {
-  const [keyword, setKeyword] = useState('');
-  const [debouncedKeyword, setDebouncedKeyword] = useState('');
+export const useDebouncedKeyword = (initialKeyword = '', delay = 500) => {
+  const [keyword, setKeyword] = useState(initialKeyword);
+  const [debouncedKeyword, setDebouncedKeyword] = useState(initialKeyword);
   const timerRef = useRef<number | null>(null);
 
   const handleInputChange = useCallback(
@@ -28,6 +28,11 @@ export const useDebouncedKeyword = (delay = 500) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    setKeyword(initialKeyword);
+    setDebouncedKeyword(initialKeyword);
+  }, [initialKeyword]);
 
   return {
     keyword,
