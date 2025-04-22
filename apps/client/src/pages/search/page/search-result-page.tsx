@@ -1,28 +1,23 @@
 import { Footer, Spacing } from '@confeti/design-system';
-import { ArtistSearch, Performance } from '@shared/types/search-reponse';
+import { ArtistSearch } from '@shared/types/search-reponse';
 
 import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
+import { useSearchPerformances } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
 interface SearchResultProps {
   artistData: ArtistSearch | null;
-  performanceCount: number;
-  performances: Performance[];
-  hasNextPage: boolean;
-  observerRef: (node: HTMLDivElement | null) => void;
 }
 
-const SearchResult = ({
-  artistData,
-  performanceCount,
-  performances,
-  hasNextPage,
-  observerRef,
-}: SearchResultProps) => {
+const SearchResult = ({ artistData }: SearchResultProps) => {
+  const { data: performancesData } = useSearchPerformances(
+    artistData?.artistId || '',
+  );
+
   return (
     <>
       <main className={styles.resultSection}>
@@ -32,12 +27,9 @@ const SearchResult = ({
             <ArtistSection artist={artistData} />
             <Spacing />
             <PerformanceSection
-              performanceCount={performanceCount}
-              performances={performances}
+              performanceCount={performancesData?.performanceCount ?? 0}
+              performances={performancesData?.performances ?? []}
             />
-            {hasNextPage && (
-              <div ref={observerRef} style={{ height: '2rem' }} />
-            )}
           </>
         ) : (
           <ArtistNotFound />
