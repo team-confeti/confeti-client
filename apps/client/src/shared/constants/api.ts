@@ -25,6 +25,7 @@ export const END_POINT = {
   GET_CONCERT_DETAIL: '/performances/concerts',
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
+  PATCH_USER_INFO: '/user/info',
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>

@@ -18,14 +18,7 @@ export const iconWrapper = style({
   padding: '1rem 0',
 });
 
-export const kakaoIcon = style({
+export const icon = style({
   width: '3rem',
   height: '3rem',
-  padding: '0.3rem',
-});
-
-export const appleIcon = style({
-  width: '3rem',
-  height: '3rem',
-  padding: '0.3rem',
 });

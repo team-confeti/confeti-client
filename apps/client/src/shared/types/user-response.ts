@@ -57,3 +57,8 @@ export interface PerformanceResponse {
 export interface MyPerformancesResponse {
   performances: MyPerformances[];
 }
+
+export interface UserInfo {
+  name: string;
+  profileUrl: string;
+}

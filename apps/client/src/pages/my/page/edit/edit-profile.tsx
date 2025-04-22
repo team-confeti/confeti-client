@@ -6,11 +6,13 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
 import { Button, Footer, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
+import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
 
 import * as styles from './edit-profile.css';
 
 const EditProfile = () => {
   const { data: profileData } = useUserProfile();
+  const { mutate: updateUserInfo } = useUserProfileMutation();
 
   const [name, setName] = useState('');
   const [hasShownToast, setHasShownToast] = useState(false);
@@ -19,7 +21,6 @@ const EditProfile = () => {
     if (name.length > 10 && !hasShownToast) {
       toast({
         text: '2~10자로 입력해 주세요',
-        // position: 'middleCenter',
         icon: <IcToastInfo16 width={16} height={16} />,
       });
 
@@ -29,9 +30,7 @@ const EditProfile = () => {
     }
   }, [name, hasShownToast]);
 
-  if (!profileData) {
-    return null;
-  }
+  if (!profileData) return null;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -57,7 +56,17 @@ const EditProfile = () => {
       />
       <LinkedAccount />
       <div className={styles.buttonSection}>
-        <Button variant="add" text={'저장하기'} disabled={isButtonDisabled} />
+        <Button
+          variant="add"
+          text="저장하기"
+          disabled={isButtonDisabled}
+          onClick={() =>
+            updateUserInfo({
+              name: name,
+              profileUrl: profileData.profileUrl,
+            })
+          }
+        />
       </div>
       <Footer />
     </>

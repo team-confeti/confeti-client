@@ -1,4 +1,4 @@
-import { get } from '@shared/apis/config/instance';
+import { get, patch } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
@@ -9,6 +9,7 @@ import {
   MyUpcomingPerformance,
   PerformanceResponse,
   PerformancesFilterType,
+  UserInfo,
   UserProfile,
 } from '@shared/types/user-response';
 
@@ -57,6 +58,14 @@ export const getMyPerformances = async (
 ): Promise<MyPerformancesResponse> => {
   const response = await get<BaseResponse<MyPerformancesResponse>>(
     END_POINT.GET_MY_PERFORMANCES(performancesType),
+  );
+  return response.data;
+};
+
+export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
+  const response = await patch<BaseResponse<UserInfo>>(
+    END_POINT.PATCH_USER_INFO,
+    userInfo,
   );
   return response.data;
 };
