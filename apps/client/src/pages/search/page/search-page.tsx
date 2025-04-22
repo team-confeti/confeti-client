@@ -85,20 +85,26 @@ const SearchPage = () => {
 
   return (
     <>
-      <div className={styles.searchBarContainer}>
-        <div className={styles.searchBarFrame}>
-          <SearchBar
-            value={searchKeyword}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            onFocus={handleOnFocus}
-            onBlur={handleOnBlur}
-            placeholder="아티스트 또는 공연을 검색해보세요!"
-          />
-        </div>
-      </div>
+      {isSearchLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.searchBarContainer}>
+            <div className={styles.searchBarFrame}>
+              <SearchBar
+                value={searchKeyword}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+                placeholder="아티스트 또는 공연을 검색해보세요!"
+              />
+            </div>
+          </div>
 
-      {renderSearchContents()}
+          {renderSearchContents()}
+        </>
+      )}
     </>
   );
 };

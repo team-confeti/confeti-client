@@ -29,19 +29,19 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
   }),
 };
 
-export const SEARCH_PERFORMANCES_QUERY_KEY = {
+export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
   ALL: ['performances'],
   SEARCH_PERFORMANCES: (artistId: string) => [
-    ...SEARCH_PERFORMANCES_QUERY_KEY.ALL,
+    ...SEARCH_ARTIST_RELATED_QUERY_KEY.ALL,
     'search',
     artistId,
   ],
 } as const;
 
-export const SEARCH_PERFORMANCES_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCES_QUERY_KEY.ALL }),
+export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
   SEARCH_PERFORMANCES: (artistId: string) => ({
-    queryKey: SEARCH_PERFORMANCES_QUERY_KEY.SEARCH_PERFORMANCES(artistId),
+    queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_PERFORMANCES(artistId),
     queryFn: () => getPerformancesSearch(artistId),
   }),
 };

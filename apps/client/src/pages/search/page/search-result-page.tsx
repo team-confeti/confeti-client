@@ -5,18 +5,15 @@ import ArtistNotFound from '../components/search-result/artist/artist-not-found'
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
-import { useSearchPerformances } from '../hooks/use-search-data';
+import { useArtistRelatedData } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
-interface SearchResultProps {
+interface Props {
   artistData: ArtistSearch | null;
 }
-
-const SearchResult = ({ artistData }: SearchResultProps) => {
-  const { data: performancesData } = useSearchPerformances(
-    artistData?.artistId || '',
-  );
+const SearchResult = ({ artistData }: Props) => {
+  const { performancesData } = useArtistRelatedData(artistData?.artistId ?? '');
 
   return (
     <>
