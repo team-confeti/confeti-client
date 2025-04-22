@@ -47,7 +47,10 @@ const EditProfile = () => {
 
   const isNameInvalid =
     (name.length > 0 && name.length < 2) || name.length > 10;
-  const isButtonDisabled = name.length < 2 || isNameInvalid;
+  const isImageChanged = newImgUrl !== profileData.profileUrl;
+
+  const isButtonDisabled =
+    (name.length < 2 || isNameInvalid) && !isImageChanged;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -92,7 +95,7 @@ const EditProfile = () => {
           disabled={isButtonDisabled}
           onClick={() =>
             updateUserInfo({
-              name: name,
+              name: name || profileData.name,
               profileUrl: newImgUrl,
             })
           }
