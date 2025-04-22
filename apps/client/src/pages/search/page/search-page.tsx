@@ -28,7 +28,7 @@ const SearchPage = () => {
     keyword: searchKeyword,
     debouncedKeyword,
     handleInputChange,
-  } = useDebouncedKeyword();
+  } = useDebouncedKeyword(paramsKeyword);
   const { data: artistData, isLoading: isSearchLoading } = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
@@ -45,7 +45,11 @@ const SearchPage = () => {
     });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && searchKeyword.trim()) {
+    if (
+      e.key === 'Enter' &&
+      !e.nativeEvent.isComposing &&
+      searchKeyword.trim()
+    ) {
       handleNavigateWithKeyword(searchKeyword);
       (e.target as HTMLInputElement).blur();
     }
@@ -54,13 +58,10 @@ const SearchPage = () => {
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
   const renderSearchContents = () => {
-    const isInitialState = !paramsKeyword && searchKeyword.length === 0;
+    const isInitialState = !paramsKeyword && !searchKeyword;
     const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
-    const isSuggestionState =
-      !!searchKeyword &&
-      (relatedKeywordsData?.artists?.length ?? 0) > 0 &&
-      !paramsKeyword;
-    const isResultState = !!paramsKeyword;
+    const isSuggestionState = !!relatedKeywordsData?.artists;
+    const isResultState = !!artistData;
 
     switch (true) {
       case isInitialState:
