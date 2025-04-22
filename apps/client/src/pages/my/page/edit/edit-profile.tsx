@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EditName from '@pages/my/components/edit/edit-name';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
@@ -16,6 +16,15 @@ const EditProfile = () => {
 
   const [name, setName] = useState('');
   const [hasShownToast, setHasShownToast] = useState(false);
+
+  const [newImgUrl, setNewImgUrl] = useState(profileData?.profileUrl || '');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (profileData?.profileUrl) {
+      setNewImgUrl(profileData.profileUrl);
+    }
+  }, [profileData]);
 
   useEffect(() => {
     if (name.length > 10 && !hasShownToast) {
@@ -40,14 +49,35 @@ const EditProfile = () => {
     (name.length > 0 && name.length < 2) || name.length > 10;
   const isButtonDisabled = name.length < 2 || isNameInvalid;
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setNewImgUrl(imageUrl);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <>
       <Header variant="detail" title="프로필 편집" />
       <UserInfo
         name={profileData.name}
-        profileUrl={profileData.profileUrl}
+        profileUrl={newImgUrl}
         showArrow={false}
         showEditBtn={true}
+        onEditImage={triggerFileInput}
+      />
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
       />
       <EditName
         name={name}
@@ -63,7 +93,7 @@ const EditProfile = () => {
           onClick={() =>
             updateUserInfo({
               name: name,
-              profileUrl: profileData.profileUrl,
+              profileUrl: newImgUrl,
             })
           }
         />

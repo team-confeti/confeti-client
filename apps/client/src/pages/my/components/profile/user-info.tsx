@@ -10,6 +10,7 @@ interface Props {
   profileUrl: string;
   showEditBtn?: boolean;
   showArrow?: boolean;
+  onEditImage?: () => void;
 }
 
 const USER_POSTFIX = '님' as const;
@@ -18,7 +19,8 @@ const UserInfo = ({
   name,
   profileUrl,
   showEditBtn,
-  showArrow = true,
+  showArrow,
+  onEditImage,
 }: Props) => {
   const navigate = useNavigate();
 
@@ -30,7 +32,9 @@ const UserInfo = ({
     <div className={styles.wrapper}>
       <div className={styles.profileWrapper}>
         <Avatar src={profileUrl} alt={`${name}의 프로필 이미지`} size="xl" />
-        {showEditBtn && <IcEdit16 className={styles.editIcon} />}
+        {showEditBtn && (
+          <IcEdit16 className={styles.editIcon} onClick={onEditImage} />
+        )}
       </div>
 
       <div className={styles.userInfo}>
