@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import Loading from '@shared/pages/loading/loading';
+import { ErrorPage } from '@shared/router/lazy';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
@@ -49,21 +50,11 @@ const SearchPage = () => {
   };
 
   const renderSearchContents = () => {
-    const isInitialState = !paramsKeyword && !searchKeyword;
     const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
     const isSuggestionState = !!relatedKeywordsData?.artists;
     const isResultState = !!artistData;
 
     switch (true) {
-      case isInitialState:
-        return (
-          <main className={styles.resultSection}>
-            <RecentSearchSection />
-            <PopularSearchSection />
-            <RecentFestivalSection />
-          </main>
-        );
-
       case isLoadingState:
         return <Loading />;
 
@@ -79,7 +70,13 @@ const SearchPage = () => {
         return <SearchResult artistData={artistData?.artist ?? null} />;
 
       default:
-        return null;
+        return (
+          <main className={styles.resultSection}>
+            <RecentSearchSection />
+            <PopularSearchSection />
+            <RecentFestivalSection />
+          </main>
+        );
     }
   };
 
