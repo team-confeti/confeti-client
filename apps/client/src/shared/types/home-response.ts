@@ -53,5 +53,5 @@ export interface SuggestMusicResponse {
   typeId: number;
   type: 'FESTIVAL' | 'CONCERT';
   title: string;
-  musics: MusicList[];
+  musicList: MusicList[];
 }

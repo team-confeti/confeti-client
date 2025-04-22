@@ -1,9 +1,20 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
+import {
+  CarouselPerformancesResponse,
+  SuggestMusicResponse,
+  SuggestPerformanceResponse,
+  TicketingPerformancesResponse,
+} from '@shared/types/home-response';
 
 const useHomeData = () => {
-  const results = useSuspenseQueries({
+  const [
+    ticketingResult,
+    latestPerformancesResult,
+    suggestPerformanceResult,
+    suggestMusicResult,
+  ] = useSuspenseQueries({
     queries: [
       HOME_QUERY_OPTIONS.TICKETING(),
       HOME_QUERY_OPTIONS.LATEST_PERFORMANCES(),
@@ -12,8 +23,12 @@ const useHomeData = () => {
     ],
   });
 
-  const [ticketing, latestPerformances, suggestPerformance, suggestMusic] =
-    results.map((result) => result.data);
+  const ticketing = ticketingResult.data as TicketingPerformancesResponse;
+  const latestPerformances =
+    latestPerformancesResult.data as CarouselPerformancesResponse;
+  const suggestPerformance =
+    suggestPerformanceResult.data as SuggestPerformanceResponse;
+  const suggestMusic = suggestMusicResult.data as SuggestMusicResponse;
 
   return {
     ticketing,
