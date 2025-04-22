@@ -1,5 +1,3 @@
-import { artist } from '@pages/performance/components/artist/artist-card.css';
-
 export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
 
 export const END_POINT = {
