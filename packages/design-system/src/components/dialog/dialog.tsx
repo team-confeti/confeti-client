@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react';
+import { type ReactNode, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 import useClickOutside from '../../hooks/use-click-outside';

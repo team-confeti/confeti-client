@@ -1,9 +1,11 @@
+import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
   BtnAccountGray24,
   BtnArrowLeft20,
   BtnSearchG90024,
+  BtnSettings24,
   LogoMain,
 } from '../../icons/src';
 
@@ -12,8 +14,9 @@ import * as styles from './header.css';
 interface HeaderProps {
   variant?: 'default' | 'detail';
   title?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   isBackToHome?: boolean;
+  handleNavigateToSettings?: () => void;
 }
 
 const Header = ({
@@ -21,6 +24,7 @@ const Header = ({
   title = '',
   icon,
   isBackToHome = false,
+  handleNavigateToSettings,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
@@ -40,6 +44,15 @@ const Header = ({
           {icon || <BtnArrowLeft20 className={styles.icon} />}
         </button>
         <h1 className={styles.title}>{title}</h1>
+
+        {handleNavigateToSettings && (
+          <button
+            className={styles.settingsIcon}
+            onClick={handleNavigateToSettings}
+          >
+            <BtnSettings24 className={styles.icon} />
+          </button>
+        )}
       </header>
     );
   }

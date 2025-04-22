@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { track } from '@amplitude/analytics-browser';
 import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account';
-import { useOverlay } from 'node_modules/@confeti/design-system/src/context/overlay-context';
 
-import { Button, Dialog, Footer, Header } from '@confeti/design-system';
+import {
+  Button,
+  Dialog,
+  Footer,
+  Header,
+  useOverlay,
+} from '@confeti/design-system';
 
 import * as styles from './delete-account.css';
 

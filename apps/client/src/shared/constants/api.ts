@@ -1,9 +1,21 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
+export const CONFIG = {
+  BASE_URL: import.meta.env.VITE_BASE_URL as string,
+  KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
+  KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
+  AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
+  SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
+} as const;
 
 export const END_POINT = {
   GET_USER_PROFILE: '/user/info',
-  GET_FAVORITE_ARTISTS: '/user/favorites/artists/preview',
-  GET_FAVORITE_PERFORMANCES: '/user/favorites/performances/preview',
+  GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
+  GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
+  GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
+  GET_MY_ARTISTS: (sortBy: 'createdAt' | 'alphabetically') =>
+    `/user/favorites/artists?sortBy=${sortBy}`,
+  GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
+    `user/favorites/performances?type=${performancesType}`,
+
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,
@@ -30,8 +42,11 @@ export const END_POINT = {
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
   POST_REISSUE_TOKEN: 'auth/reissue',
-
   DELETE_ACCOUNT: 'auth/withdraw',
+  //온보딩
+  GET_TOP100_ARTIST: 'user/onboard/artists',
+  GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
+    `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {

@@ -20,7 +20,7 @@ const meta: Meta<typeof Description> = {
   },
   tags: ['autodocs'],
   args: {
-    descriptionText: ['선호하는 아티스트를', '모두 선택해주세요'],
+    descriptionText: '선호하는 아티스트를 \n모두 선택해주세요',
     fontSize: 20,
   },
 };
@@ -34,18 +34,15 @@ export const Default: Story = {
 
 export const FontSize18: Story = {
   args: {
-    descriptionText: ['이건 18px로 표시돼요'],
+    descriptionText: '이건 18px로 표시돼요',
     fontSize: 18,
   },
 };
 
 export const MultiLineText: Story = {
   args: {
-    descriptionText: [
-      '이건 여러 줄로 구성된 설명입니다.',
-      '이렇게 각 줄이 <p> 태그로 구분돼요.',
-      '폰트 크기는 20px입니다.',
-    ],
+    descriptionText:
+      '이건 여러 줄로 구성된 설명입니다.\n폰트 크기는 20px입니다.',
     fontSize: 20,
   },
 };

@@ -7,6 +7,9 @@ import { Footer, SearchBar, Spacing } from '@confeti/design-system';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import ArtistNotFound from '../components/artist-not-found';
+import PopularSearchSection from '../components/popular-search-section';
+import RecentFestivalSection from '../components/recent-festivals-section';
+import RecentSearchSection from '../components/recent-search-section';
 import { useSearchPerformances } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 
@@ -17,7 +20,6 @@ const Search = () => {
     artistData,
     paramsKeyword,
     searchKeyword,
-    barFocus,
     handleOnChange,
     handleKeydown,
     handleOnFocus,
@@ -48,7 +50,16 @@ const Search = () => {
           />
         </div>
       </div>
-      {!barFocus && paramsKeyword.length > 0 && (
+
+      {!paramsKeyword && searchKeyword.length === 0 && (
+        <main className={styles.resultSection}>
+          <RecentSearchSection />
+          <PopularSearchSection />
+          <RecentFestivalSection />
+        </main>
+      )}
+
+      {paramsKeyword && (
         <>
           <main className={styles.resultSection}>
             {isLoading ? (

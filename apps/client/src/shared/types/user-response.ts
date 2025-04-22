@@ -11,9 +11,23 @@ export interface Artists {
   profileUrl: string;
 }
 
+export interface MyArtists extends Artists {
+  createdAt: string;
+  isFavorite: boolean;
+}
+
+export interface MyArtistsResponse {
+  artists: MyArtists[];
+  artistCount: number;
+}
+
 export interface FavoriteArtistsResponses {
   artists: Artists[];
 }
+
+export type PerformancesFilterType = 'FESTIVAL' | 'CONCERT' | 'ALL';
+
+export type ArtistSortType = 'createdAt' | 'alphabetically';
 
 export interface Performance {
   index: number;
@@ -23,6 +37,23 @@ export interface Performance {
   posterUrl: string;
 }
 
+export interface MyPerformances extends Omit<Performance, 'index'> {
+  startAt: string;
+  endAt: string;
+  area: string;
+  isFavorite: boolean;
+}
+
+export interface MyUpcomingPerformance extends Omit<Performance, 'index'> {
+  startAt: string;
+  endAt: string;
+  area: string;
+}
+
 export interface PerformanceResponse {
   performances: Performance[];
+}
+
+export interface MyPerformancesResponse {
+  performances: MyPerformances[];
 }

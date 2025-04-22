@@ -1,6 +1,8 @@
+export { useOverlay } from '../context/overlay-context';
 export { OverlayProvider } from '../context/overlay-context';
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';
+export { default as Box } from './box/box';
 export { default as Button } from './button/button';
 export { default as Chip } from './chip/chip';
 export { default as Description } from './description/description';
@@ -14,6 +16,7 @@ export { default as LikeButton } from './like-button/like-button';
 export { default as Navigation } from './navigation/navigation';
 export { default as PerformanceCarousel } from './performance-carousel/performance-carousel';
 export { default as SearchBar } from './search-bar/search-bar';
+export { default as SearchSuggestionList } from './search-suggestion-list/search-suggestion-list';
 export { default as Spacing } from './spacing/spacing';
 export { default as ThemeProvider } from './themeProvider';
 export { default as ProgressBar } from './ticketing/progress-bar/progress-bar';

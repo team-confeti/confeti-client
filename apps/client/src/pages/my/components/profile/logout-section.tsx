@@ -1,15 +1,46 @@
 import { useLogoutMutation } from '@pages/my/hooks/use-logout';
 
-import { Button } from '@confeti/design-system';
+import { Button, Dialog } from '@confeti/design-system';
+import { useOverlay } from '@confeti/design-system';
 
 import * as styles from './logout-section.css';
 
+const LogoutDialog = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}) => (
+  <Dialog open={isOpen} handleClose={onClose}>
+    <Dialog.Content>
+      <Dialog.Title>로그아웃</Dialog.Title>
+      <Dialog.Description>로그아웃 하시겠어요?</Dialog.Description>
+    </Dialog.Content>
+    <Dialog.Action>
+      <Button text="돌아가기" onClick={onClose} variant="back" />
+      <Button text="로그아웃" onClick={onConfirm} />
+    </Dialog.Action>
+  </Dialog>
+);
+
 const LogoutSection = () => {
   const { mutate: logout } = useLogoutMutation();
+  const overlay = useOverlay();
 
-  // TODO: logout 버튼 클릭시 로그아웃 모달 띄우기
   const handleLogout = () => {
-    logout();
+    overlay.open(({ isOpen, close }) => (
+      <LogoutDialog
+        isOpen={isOpen}
+        onClose={close}
+        onConfirm={() => {
+          logout();
+          close();
+        }}
+      />
+    ));
   };
 
   return (

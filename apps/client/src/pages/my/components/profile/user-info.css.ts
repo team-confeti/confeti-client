@@ -26,6 +26,7 @@ export const editIcon = style({
   borderRadius: '12px',
   border: `0.6px solid ${themeVars.color.gray200}`,
   cursor: 'pointer',
+  backgroundColor: themeVars.color.gray100,
 });
 
 export const userInfo = style({

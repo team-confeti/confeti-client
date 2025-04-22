@@ -1,12 +1,27 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getMyArtists, getPerformances, getUserProfile } from './user';
+import {
+  ArtistSortType,
+  PerformancesFilterType,
+} from './../../types/user-response';
+import {
+  getMyArtists,
+  getMyArtistsPreview,
+  getMyPerformances,
+  getMyPerformancesPreview,
+  getMyUpcomingPerformance,
+  getUserProfile,
+} from './user';
 
 export const USER_QUERY_KEY = {
   ALL: ['users'],
   PROFILE: () => [...USER_QUERY_KEY.ALL, 'profile'],
-  FAVORITE_ARTISTS: () => [...USER_QUERY_KEY.ALL, 'artists'],
-  FAVORITE_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
+  MY_ARTISTS: () => [...USER_QUERY_KEY.ALL, 'artists'],
+  MY_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
+  MY_UPCOMING_PERFORMANCE: () => [
+    ...USER_QUERY_KEY.ALL,
+    'upcoming-performance',
+  ],
 } as const;
 
 export const USER_QUERY_OPTIONS = {
@@ -16,14 +31,29 @@ export const USER_QUERY_OPTIONS = {
       queryKey: USER_QUERY_KEY.PROFILE(),
       queryFn: getUserProfile,
     }),
-  FAVORITE_ARTISTS: () =>
+  MY_ARTISTS_PREVIEW: () =>
     queryOptions({
-      queryKey: USER_QUERY_KEY.FAVORITE_ARTISTS(),
-      queryFn: getMyArtists,
+      queryKey: USER_QUERY_KEY.MY_ARTISTS(),
+      queryFn: getMyArtistsPreview,
     }),
-  FAVORITE_PERFORMANCES: () =>
+  MY_PERFORMANCES_PREVIEW: () =>
     queryOptions({
-      queryKey: USER_QUERY_KEY.FAVORITE_PERFORMANCES(),
-      queryFn: getPerformances,
+      queryKey: USER_QUERY_KEY.MY_PERFORMANCES(),
+      queryFn: getMyPerformancesPreview,
+    }),
+  MY_UPCOMING_PERFORMANCE: () =>
+    queryOptions({
+      queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
+      queryFn: getMyUpcomingPerformance,
+    }),
+  MY_ARTISTS: (sortBy: ArtistSortType) =>
+    queryOptions({
+      queryKey: [USER_QUERY_KEY.MY_ARTISTS(), sortBy],
+      queryFn: () => getMyArtists(sortBy),
+    }),
+  MY_PERFORMANCES: (performancesType: PerformancesFilterType) =>
+    queryOptions({
+      queryKey: [USER_QUERY_KEY.MY_PERFORMANCES(), performancesType],
+      queryFn: () => getMyPerformances(performancesType),
     }),
 };

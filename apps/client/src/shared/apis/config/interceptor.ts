@@ -13,9 +13,9 @@ import { TokenResponse } from '@shared/types/login-response';
 import { authTokenHandler } from '@shared/utils/token-handler';
 
 import { HTTPError } from './http-error';
-import { axiosInstance, axiosPublicInstance } from './instance';
+import { axiosInstance, post } from './instance';
 
-const redirectToLogin = () => {
+const redirectToHome = () => {
   authTokenHandler('remove');
   window.location.replace(routePath.ROOT);
   throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
@@ -73,38 +73,36 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
   const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
   if (!refreshToken) {
-    return redirectToLogin();
+    return redirectToHome();
   }
 
   try {
-    const response = await axiosPublicInstance.post<
-      BaseResponse<TokenResponse>
-    >(END_POINT.POST_REISSUE_TOKEN, null, {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
+    const response = await post<BaseResponse<TokenResponse>>(
+      END_POINT.POST_REISSUE_TOKEN,
+      null,
+      {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
       },
-    });
+    );
 
     const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-      response.data.data;
+      response.data;
     authTokenHandler('set', newAccessToken, newRefreshToken);
 
     const originalConfig = error.config;
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
     return axiosInstance(originalConfig);
   } catch (error) {
-    return redirectToLogin();
+    return redirectToHome();
   }
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
   const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
 
-  if (!accessToken) {
-    redirectToLogin();
-  }
-
-  if (config.headers) {
+  if (accessToken && config.headers) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
 

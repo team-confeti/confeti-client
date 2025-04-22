@@ -101,3 +101,23 @@ export const formatDate = (
       return `${year}.${month}.${day}`;
   }
 };
+
+/**
+ * 아티스트가 추가된 날짜를 기준으로 "오늘 추가됨" 또는 "N일 전 추가됨" 형식의 문자열을 반환합니다.
+ *
+ * @param {string} createdAt - ISO 형식의 날짜 문자열 (예: "2025-04-20T23:28:30")
+ * @returns {string} - 포맷된 날짜 정보 (예: "오늘 추가됨", "2일 전 추가됨")
+ */
+export const getAddedDate = (createdAt: string): string => {
+  const createdDate = new Date(createdAt);
+  const now = new Date();
+
+  const diffTime = now.getTime() - createdDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) {
+    return '오늘 추가됨';
+  }
+
+  return `${diffDays}일 전 추가됨`;
+};

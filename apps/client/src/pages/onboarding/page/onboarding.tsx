@@ -4,15 +4,17 @@ import { useFunnel } from '@shared/utils/use-funnel';
 
 import ArtistSelect from '../components/artist-select';
 import OnBoardingComplete from '../components/onboarding-complete';
+import { useGetTopArtist } from '../hooks/use-onboard';
 
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
+  const { data: topArtistData } = useGetTopArtist();
 
   return (
     <Funnel>
       <Step name="1">
-        <ArtistSelect>
+        <ArtistSelect artists={topArtistData?.artists}>
           <Button text={'다음'} variant={'add'} onClick={() => setStep(1)} />
         </ArtistSelect>
       </Step>

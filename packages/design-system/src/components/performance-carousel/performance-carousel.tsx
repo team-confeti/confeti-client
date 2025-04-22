@@ -1,6 +1,6 @@
 import {
   createContext,
-  ReactNode,
+  type ReactNode,
   useContext,
   useEffect,
   useRef,
@@ -81,10 +81,10 @@ const PerformanceCarousel = ({
   const settings = {
     ref: sliderRef,
     className: 'center',
-    dots: true,
+    dots: performData.length > 1,
     centerMode: true,
-    infinite: true,
-    variableWidth: true,
+    infinite: performData.length > 1,
+    variableWidth: performData.length > 1,
     centerPadding: '0px',
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -114,7 +114,13 @@ const PerformanceCarousel = ({
 
   return (
     <CarouselContext.Provider value={contextValue}>
-      <div>{children}</div>
+      <div
+        className={
+          performData.length === 1 ? styles.carouselContainer : undefined
+        }
+      >
+        {children}
+      </div>
     </CarouselContext.Provider>
   );
 };
