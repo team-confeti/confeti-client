@@ -4,12 +4,13 @@ import { useFunnel } from '@shared/utils/use-funnel';
 
 import ArtistSelect from '../components/artist-select';
 import OnBoardingComplete from '../components/onboarding-complete';
+import { ONBOARD_LIMIT } from '../constants/limit';
 import { useGetTopArtist } from '../hooks/use-onboard';
 
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
-  const { data: topArtistData } = useGetTopArtist(20);
+  const { data: topArtistData } = useGetTopArtist(ONBOARD_LIMIT.TOP_ARTIST);
 
   return (
     <Funnel>

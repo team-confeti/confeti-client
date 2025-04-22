@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
 import { onboard } from '@shared/types/onboard-response';
 
+import { ONBOARD_LIMIT } from '../constants/limit';
 import { useArtistRelatedArtist } from '../hooks/use-onboard';
 import ArtistSearch from './artist-search';
 
@@ -29,7 +30,7 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
   // };
 
   const handleArtistSelect = (artistId: string) => {
-    mutate({ artistId, limit: 18 });
+    mutate({ artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST });
   };
 
   if (isFocused) {

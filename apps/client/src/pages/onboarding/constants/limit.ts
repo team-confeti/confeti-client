@@ -1,0 +1,5 @@
+export const ONBOARD_LIMIT = {
+  TOP_ARTIST: 18,
+  RELATED_ARTIST: 18,
+  RELATED_KEYWORD: 10,
+} as const;

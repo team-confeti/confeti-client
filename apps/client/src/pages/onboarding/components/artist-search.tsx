@@ -1,6 +1,7 @@
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 
+import { ONBOARD_LIMIT } from '../constants/limit';
 import { useArtistRelatedKeyword } from '../hooks/use-onboard';
 
 import * as styles from './artist-search.css';
@@ -12,7 +13,7 @@ const ArtistSearch = () => {
   const relatedKeywordsData = useArtistRelatedKeyword({
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
-    limit: 6,
+    limit: ONBOARD_LIMIT.RELATED_KEYWORD,
   });
 
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
