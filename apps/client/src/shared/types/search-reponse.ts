@@ -16,8 +16,8 @@ export interface Performance {
   typeId: number;
   type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   title: string;
-  performanceStartAt: string;
-  performanceEndAt: string;
+  startAt: string;
+  endAt: string;
   posterUrl: string;
   area: string;
   isFavorite: boolean;

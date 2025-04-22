@@ -1,50 +1,43 @@
-import Title from '../title';
+import { Box } from '@confeti/design-system';
+import { Performance } from '@shared/types/search-reponse';
+
 import PerformanceInfo from './performance-info';
 
 import * as styles from './performance-section.css';
 
-interface PerformanceSectionProps {
-  performances?: {
-    performanceId: number;
-    typeId: number;
-    type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
-    title: string;
-    performanceStartAt: string;
-    performanceEndAt: string;
-    posterUrl: string;
-    area: string;
-    isFavorite: boolean;
-  }[];
+interface Props {
+  performanceCount: number;
+  performances: Performance[];
 }
 
-const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
-  if (performances?.length === 0) {
+const PerformanceSection = ({ performanceCount, performances }: Props) => {
+  if (performanceCount === 0 || performances.length === 0) {
     return (
-      <div className={styles.emptyPerformanceSection}>
-        아직 예정된 공연이 없어요!
-      </div>
+      <Box title={'예정된 공연 (0)'}>
+        <div className={styles.emptyPerformanceSection}>
+          아직 예정된 공연이 없어요
+        </div>
+      </Box>
     );
   }
 
   return (
-    <div className={styles.section}>
-      <Title text="예정된 공연" />
-      {performances?.map((performance) => {
-        return (
-          <PerformanceInfo
-            key={performance.performanceId}
-            typeId={performance.typeId}
-            type={performance.type}
-            title={performance.title}
-            performanceStartAt={performance.performanceStartAt}
-            performanceEndAt={performance.performanceEndAt}
-            posterUrl={performance.posterUrl}
-            area={performance.area}
-            isFavorite={performance.isFavorite}
-          />
-        );
-      })}
-    </div>
+    <Box title={`예정된 공연 (${performanceCount})`}>
+      {performances.map((performance) => (
+        <PerformanceInfo
+          key={performance.performanceId}
+          performanceId={performance.performanceId}
+          typeId={performance.typeId}
+          type={performance.type}
+          title={performance.title}
+          startAt={performance.startAt}
+          endAt={performance.endAt}
+          posterUrl={performance.posterUrl}
+          area={performance.area}
+          isFavorite={performance.isFavorite}
+        />
+      ))}
+    </Box>
   );
 };
 

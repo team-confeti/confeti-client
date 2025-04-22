@@ -4,7 +4,6 @@ import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
-import PerformanceCount from '../components/search-result/performance/performance-count-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
 
 import * as styles from './search-result-page.css';
@@ -32,8 +31,10 @@ const SearchResult = ({
             <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
             <ArtistSection artist={artistData} />
             <Spacing />
-            <PerformanceCount count={performanceCount} />
-            <PerformanceSection performances={performances} />
+            <PerformanceSection
+              performanceCount={performanceCount}
+              performances={performances}
+            />
             {hasNextPage && (
               <div ref={observerRef} style={{ height: '2rem' }} />
             )}
