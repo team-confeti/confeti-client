@@ -2,13 +2,13 @@ import { Footer, Spacing } from '@confeti/design-system';
 import Loading from '@shared/pages/loading/loading';
 import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 
-import ArtistNotFound from './artist/artist-not-found';
-import ArtistSection from './artist/artist-section';
-import NoticeSection from './common/notice-section';
-import PerformanceCount from './performance/performance-count-section';
-import PerformanceSection from './performance/performance-section';
+import ArtistNotFound from '../components/search-result/artist/artist-not-found';
+import ArtistSection from '../components/search-result/artist/artist-section';
+import NoticeSection from '../components/search-result/common/notice-section';
+import PerformanceCount from '../components/search-result/performance/performance-count-section';
+import PerformanceSection from '../components/search-result/performance/performance-section';
 
-import * as styles from './search-result.css';
+import * as styles from './search-result-page.css';
 
 interface SearchResultProps {
   artistData: ArtistSearch | null;
