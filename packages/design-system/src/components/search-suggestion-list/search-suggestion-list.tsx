@@ -10,7 +10,7 @@ interface RelatedKeyword {
 
 interface SearchSuggestionListProps {
   relatedKeyword: RelatedKeyword[] | undefined;
-  onClick: (keyword: string) => void;
+  onClick?: (keyword: string) => void;
 }
 
 const SearchSuggestionList = ({
@@ -23,7 +23,7 @@ const SearchSuggestionList = ({
         <li
           key={artist.artistId}
           className={styles.listContainer}
-          onClick={() => onClick(artist.name)}
+          onClick={() => onClick?.(artist.name)}
         >
           <div className={styles.listImageContainer}>
             {artist.profileUrl ? (
