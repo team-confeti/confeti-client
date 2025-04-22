@@ -11,11 +11,15 @@ import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
 import { TAB_MENU } from '../constants/menu';
+import useHomeData from '../hooks/use-home-data';
 
 const Home = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
+
+  const { ticketing, latestPerformances, suggestPerformance, suggestMusic } =
+    useHomeData();
 
   useEffect(() => {
     if (code) {
@@ -37,7 +41,7 @@ const Home = () => {
       <CategoryTabs />
       <Spacing size="lg" color="white" />
 
-      <TicketingSection />
+      <TicketingSection data={ticketing.performances} />
       <Spacing size="2xl" color="white" />
 
       <SuggestPerformanceSection />
