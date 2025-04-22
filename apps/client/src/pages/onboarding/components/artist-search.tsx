@@ -12,6 +12,7 @@ const ArtistSearch = () => {
   const relatedKeywordsData = useArtistRelatedKeyword({
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
+    limit: 6,
   });
 
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;

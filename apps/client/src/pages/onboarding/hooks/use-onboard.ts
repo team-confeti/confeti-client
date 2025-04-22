@@ -1,14 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-import {
-  ARTIST_RELATED_ARTIST_QUERY_OPTION,
-  ARTIST_RELATED_KEYWORDS_QUERY_OPTION,
-} from '@shared/apis/onboard/artist-related-queries';
+import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related';
+import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
+import { BaseResponse } from '@shared/types/api';
+import { onboardResponse } from '@shared/types/onboard-response';
 
 interface UseArtistRelatedKeywordProps {
   keyword: string;
   enabled: boolean;
+  limit: number;
 }
 
 /**
@@ -16,9 +17,9 @@ interface UseArtistRelatedKeywordProps {
  * - 온보딩 화면 첫 진입 시 사용
  * - 서버에서 인기 아티스트 리스트를 불러옴
  */
-export const useGetTopArtist = () => {
+export const useGetTopArtist = (limit: number) => {
   const { data } = useQuery({
-    ...TOP_ARTIST_QUERY_OPTION.TOP_ARTIST(),
+    ...TOP_ARTIST_QUERY_OPTION.TOP_ARTIST(limit),
   });
 
   return { data };
@@ -36,9 +37,10 @@ export const useGetTopArtist = () => {
 export const useArtistRelatedKeyword = ({
   keyword,
   enabled,
+  limit,
 }: UseArtistRelatedKeywordProps) => {
   const { data } = useQuery({
-    ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(keyword),
+    ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(keyword, limit),
     enabled,
   });
 
@@ -51,10 +53,13 @@ export const useArtistRelatedKeyword = ({
  * @param artistId - 기준이 되는 아티스트의 ID
  * - 해당 아티스트와 연관된 다른 아티스트 데이터를 서버에서 불러옴
  */
-export const useArtistRelatedArtist = (artistId: string) => {
-  const { data } = useQuery({
-    ...ARTIST_RELATED_ARTIST_QUERY_OPTION.RELATED_ARTIST(artistId),
+export const useArtistRelatedArtist = () => {
+  return useMutation<
+    BaseResponse<onboardResponse>,
+    Error,
+    { artistId: string; limit: number }
+  >({
+    mutationFn: ({ artistId, limit }) =>
+      getArtistRelatedArtist(artistId, limit),
   });
-
-  return data;
 };

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
 import { onboard } from '@shared/types/onboard-response';
 
+import { useArtistRelatedArtist } from '../hooks/use-onboard';
 import ArtistSearch from './artist-search';
 
 import * as styles from './artist-select.css';
@@ -17,12 +18,19 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
 
+  const { mutate } = useArtistRelatedArtist();
+
   const handleSearchBarFocus = () => {
     setSearchParams({ search: 'true' });
   };
+
   // const handleArtistSelect = () => {
   //   setSearchParams({});
   // };
+
+  const handleArtistSelect = (artistId: string) => {
+    mutate({ artistId, limit: 18 });
+  };
 
   if (isFocused) {
     return <ArtistSearch />;
@@ -47,6 +55,7 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
                 size="xl"
                 src={artist?.profileUrl}
                 alt={`${artist?.name} 이미지`}
+                onClick={() => handleArtistSelect(artist?.artistId)}
               />
               <p className={styles.artistName}>{artist.name}</p>
             </div>

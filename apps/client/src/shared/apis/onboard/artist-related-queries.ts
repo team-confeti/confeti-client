@@ -16,9 +16,9 @@ export const ARTIST_RELATED_ARTIST_QUERY_KEY = {
 
 export const ARTIST_RELATED_ARTIST_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: ARTIST_RELATED_ARTIST_QUERY_KEY.ALL }),
-  RELATED_ARTIST: (artistId: string) => ({
+  RELATED_ARTIST: (artistId: string, limit: number) => ({
     queryKey: ARTIST_RELATED_ARTIST_QUERY_KEY.RELATED_ARTIST(artistId),
-    queryFn: () => getArtistRelatedArtist(artistId),
+    queryFn: () => getArtistRelatedArtist(artistId, limit),
   }),
 };
 
@@ -33,8 +33,8 @@ export const ARTIST_RELATED_KEYWORDS_QUERY_KEY = {
 
 export const ARTIST_RELATED_KEYWORDS_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: ARTIST_RELATED_KEYWORDS_QUERY_KEY.ALL }),
-  RELATED_KEYWORD: (keyword: string) => ({
+  RELATED_KEYWORD: (keyword: string, limit: number) => ({
     queryKey: ARTIST_RELATED_KEYWORDS_QUERY_KEY.RELATED_KEYWORD(keyword),
-    queryFn: () => getArtistRelatedKeyword(keyword),
+    queryFn: () => getArtistRelatedKeyword(keyword, limit),
   }),
 };

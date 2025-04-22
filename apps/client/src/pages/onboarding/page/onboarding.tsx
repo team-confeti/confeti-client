@@ -9,7 +9,7 @@ import { useGetTopArtist } from '../hooks/use-onboard';
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
-  const { data: topArtistData } = useGetTopArtist();
+  const { data: topArtistData } = useGetTopArtist(20);
 
   return (
     <Funnel>

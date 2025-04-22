@@ -13,11 +13,12 @@ import { axiosInstance } from '../config/instance';
 
 export const getArtistRelatedArtist = async (
   artistId: string,
-): Promise<onboardResponse> => {
+  limit: number,
+): Promise<BaseResponse<onboardResponse>> => {
   const response = await axiosInstance.get<BaseResponse<onboardResponse>>(
-    END_POINT.GET_ARTIST_RELATED_ARTIST(artistId, 10),
+    END_POINT.GET_ARTIST_RELATED_ARTIST(artistId, limit),
   );
-  return response.data.data;
+  return response.data;
 };
 
 /**
@@ -29,9 +30,10 @@ export const getArtistRelatedArtist = async (
 
 export const getArtistRelatedKeyword = async (
   keyword: string,
+  limit: number,
 ): Promise<onboardResponse> => {
   const response = await axiosInstance.get<BaseResponse<onboardResponse>>(
-    END_POINT.GET_ARTIST_RELATED_KEYWORDS(keyword, 10),
+    END_POINT.GET_ARTIST_RELATED_KEYWORDS(keyword, limit),
   );
   return response.data.data;
 };
