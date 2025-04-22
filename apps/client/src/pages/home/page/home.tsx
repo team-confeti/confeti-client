@@ -35,7 +35,7 @@ const Home = () => {
     <>
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
 
-      <PerformanceCarouselSection />
+      <PerformanceCarouselSection data={latestPerformances.performances} />
       <Spacing size="xl" color="white" />
 
       <CategoryTabs />

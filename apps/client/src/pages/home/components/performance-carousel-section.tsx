@@ -1,20 +1,19 @@
 import { PerformanceCarousel } from '@confeti/design-system';
+import { CarouselPerformances } from '@shared/types/home-response';
 import { formatDate } from '@shared/utils/format-date';
-
-import { useLatestPerformances } from '../hooks/use-latest-performances';
 
 import * as styles from './performance-carousel-section.css';
 
-const PerformanceCarouselSection = () => {
-  const { latestPerformances } = useLatestPerformances();
-  const displayPerformances =
-    latestPerformances.length > 7
-      ? latestPerformances.slice(0, 7)
-      : latestPerformances;
+const PerformanceCarouselSection = ({
+  data,
+}: {
+  data: CarouselPerformances[];
+}) => {
+  const displayPerformances = data.length > 7 ? data.slice(0, 7) : data;
 
   const formattedPerformData = displayPerformances.map((performance) => ({
     ...performance,
-    performanceAt: formatDate(performance.performanceAt),
+    performanceAt: formatDate(performance.startAt),
   }));
 
   const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
