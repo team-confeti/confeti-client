@@ -2,9 +2,9 @@ import MusicItem from '../music-item/music-item';
 
 interface Music {
   id: string;
-  albumImage: string;
+  artWorkUrl: string;
   title: string;
-  artist: string;
+  artistName: string;
   isPlaying?: boolean;
 }
 
@@ -28,9 +28,9 @@ const MusicList = ({
       {musics.map((music) => (
         <MusicItem
           key={music.id}
-          albumImage={music.albumImage}
+          albumImage={music.artWorkUrl}
           title={music.title}
-          artist={music.artist}
+          artist={music.artistName}
           isPlaying={music.isPlaying}
           variant={variant}
           onClickPlayToggle={() => onClickPlayToggle?.(music.id)}
