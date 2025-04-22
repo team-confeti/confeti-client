@@ -33,7 +33,7 @@ export const END_POINT = {
   POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
 
   //검색
-  GET_ARTISTS_SEARCH: `artists?search=`,
+  GET_ARTISTS_SEARCH: `artists/search?term=`,
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH: (artistId: string) =>
