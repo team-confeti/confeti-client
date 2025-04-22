@@ -54,9 +54,9 @@ export const useSearchRelatedKeyword = ({
   keyword,
   enabled,
 }: UseArtistProps) => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_RELATED_KEYWORD(keyword, enabled),
   });
 
-  return data;
+  return { data, isLoading };
 };

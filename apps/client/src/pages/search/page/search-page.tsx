@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import Loading from '@shared/pages/loading/loading';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
@@ -27,21 +28,19 @@ const SearchPage = () => {
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword();
-  const { data: searchData, isLoading } = useSearchArtist({
+  const { data: artistData, isLoading: isSearchLoading } = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
-  const { data: relatedKeywordsData } = useSearchRelatedKeyword({
-    keyword: debouncedKeyword,
-    enabled: !!debouncedKeyword.trim(),
-  });
-
-  const artistData = searchData?.artist;
-  const artistId = artistData?.artistId || '';
+  const { data: relatedKeywordsData, isLoading: isRelatedKeywordLoading } =
+    useSearchRelatedKeyword({
+      keyword: debouncedKeyword,
+      enabled: !!debouncedKeyword.trim(),
+    });
   const { performances, performanceCount, fetchNextPage, hasNextPage } =
     useSearchPerformances({
-      artistId,
-      enabled: !!artistId,
+      artistId: artistData?.artist?.artistId || '',
+      enabled: !!artistData?.artist?.artistId,
     });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -54,36 +53,45 @@ const SearchPage = () => {
   // TODO: 무한 스크롤 제거
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
 
-  const hasRelatedKeywordResults =
-    (relatedKeywordsData?.artists?.length ?? 0) > 0;
-
   const renderSearchContents = () => {
-    if (!paramsKeyword && searchKeyword.length === 0) {
-      return (
-        <main className={styles.resultSection}>
-          <RecentSearchSection />
-          <PopularSearchSection />
-          <RecentFestivalSection />
-        </main>
-      );
-    }
+    const isInitialState = !paramsKeyword && searchKeyword.length === 0;
+    const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
+    const isSuggestionState =
+      !!searchKeyword && (relatedKeywordsData?.artists?.length ?? 0) > 0;
+    const isResultState = !!paramsKeyword;
 
-    if (!!searchKeyword && hasRelatedKeywordResults) {
-      return (
-        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
-      );
-    }
+    switch (true) {
+      case isInitialState:
+        return (
+          <main className={styles.resultSection}>
+            <RecentSearchSection />
+            <PopularSearchSection />
+            <RecentFestivalSection />
+          </main>
+        );
 
-    return (
-      <SearchResult
-        artistData={artistData ?? null}
-        performanceCount={performanceCount}
-        performances={performances}
-        hasNextPage={hasNextPage}
-        observerRef={observerRef}
-        isLoading={isLoading}
-      />
-    );
+      case isLoadingState:
+        return <Loading />;
+
+      case isSuggestionState:
+        return (
+          <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
+        );
+
+      case isResultState:
+        return (
+          <SearchResult
+            artistData={artistData?.artist ?? null}
+            performanceCount={performanceCount}
+            performances={performances}
+            hasNextPage={hasNextPage}
+            observerRef={observerRef}
+          />
+        );
+
+      default:
+        return null;
+    }
   };
 
   return (
