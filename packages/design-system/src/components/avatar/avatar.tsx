@@ -13,6 +13,7 @@ interface Props {
   fallback?: string;
   className?: string;
   isSelected?: boolean;
+  onClick?: () => void;
 }
 
 const Avatar = ({
@@ -22,12 +23,16 @@ const Avatar = ({
   size,
   fallback,
   isSelected = false,
+  onClick,
   ...props
 }: Props) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
 
   const handleClick = () => {
     setInternalSelected((prev) => !prev);
+    if (onClick) {
+      onClick();
+    }
   };
 
   const renderFallback = !src && !fallback && (
