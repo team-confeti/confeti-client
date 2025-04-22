@@ -7,6 +7,7 @@ import {
   IcKakao,
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
+import { CONFIG } from '@shared/constants/api';
 import { routePath } from '@shared/constants/path';
 
 import * as styles from './login.css';
@@ -61,7 +62,7 @@ const processLine = (
 
 const handleLogin = (socialUrl: string) => {
   if (socialUrl === 'kakao') {
-    window.location.href = import.meta.env.VITE_KAKAO_URI;
+    window.location.href = CONFIG.KAKAO_URI;
   }
 };
 

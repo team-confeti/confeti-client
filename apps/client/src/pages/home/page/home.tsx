@@ -8,6 +8,7 @@ import {
   TicketingCard,
 } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
+import { CONFIG } from '@shared/constants/api';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { formatDate } from '@shared/utils/format-date';
 
@@ -47,7 +48,6 @@ const Home = () => {
   const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
   const { mutate: login } = useSocialLoginMutation();
-  const kakaoRedirectUrl = import.meta.env.VITE_KAKAO_REDIRECT_URI;
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
 
@@ -55,7 +55,7 @@ const Home = () => {
     if (code) {
       login({
         provider: 'KAKAO',
-        redirectUrl: kakaoRedirectUrl,
+        redirectUrl: CONFIG.KAKAO_REDIRECT_URI,
         code,
       });
     }

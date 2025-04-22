@@ -14,7 +14,7 @@ export const useLogoutMutation = () => {
   return useMutation<BaseResponse<void>, Error>({
     mutationFn: postLogout,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [...USER_QUERY_KEY.PROFILE()],
       });
       authTokenHandler('remove');
