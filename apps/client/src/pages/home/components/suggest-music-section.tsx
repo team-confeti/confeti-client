@@ -1,14 +1,20 @@
-import { Box } from '@confeti/design-system';
+import { Box, MusicList } from '@confeti/design-system';
+import { MusicList as MusicListType } from '@shared/types/home-response';
 
-const SuggestMusicSection = () => {
+const SuggestMusicSection = ({ data }: { data: MusicListType[] }) => {
+  // TODO: response body에 고유한 id 값 추가 요청
+  const musics = data.map((music, index) => ({
+    ...music,
+    id: `${music.title}-${index}`,
+  }));
+
   return (
     <Box
       title="미리 음악을 한 번 들어볼까요?"
       titleSize="lg"
       subtitle="♥ 인천 펜타포트 락 페스티벌"
     >
-      {/* TODO: 음악 리스트 컴포넌트 추가 */}
-      <p>음악 리스트</p>
+      <MusicList musics={musics} />
     </Box>
   );
 };

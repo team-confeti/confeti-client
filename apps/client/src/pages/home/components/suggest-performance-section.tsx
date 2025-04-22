@@ -16,7 +16,11 @@ const SuggestPerformanceSection = ({
     >
       <div className={styles.container}>
         {data.map((performance) => (
-          <div key={performance.typeId} className={styles.cardWrapper}>
+          // TODO: response body에 고유한 id 값 추가 요청
+          <div
+            key={`${performance.typeId}-${performance.title}`}
+            className={styles.cardWrapper}
+          >
             <FestivalCard
               typeId={performance.typeId}
               type={performance.type}

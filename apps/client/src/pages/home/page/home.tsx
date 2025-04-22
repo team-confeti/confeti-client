@@ -47,7 +47,7 @@ const Home = () => {
       <SuggestPerformanceSection data={suggestPerformance.performances} />
       <Spacing size="lg" color="white" />
 
-      <SuggestMusicSection />
+      <SuggestMusicSection data={suggestMusic.musicList} />
 
       <Footer />
     </>
