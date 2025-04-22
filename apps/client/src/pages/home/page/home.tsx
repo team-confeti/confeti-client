@@ -5,6 +5,7 @@ import { Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
 import { CONFIG } from '@shared/constants/api';
 
+import CategoryTabs from '../components/category-tabs';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
@@ -32,6 +33,9 @@ const Home = () => {
 
       <PerformanceCarouselSection />
       <Spacing size="xl" color="white" />
+
+      <CategoryTabs />
+      <Spacing size="lg" color="white" />
 
       <TicketingSection />
       <Spacing size="2xl" color="white" />
