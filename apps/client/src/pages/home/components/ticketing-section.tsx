@@ -1,6 +1,6 @@
 import { TicketingCard } from '@confeti/design-system';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
-import { Ticketing } from '@shared/types/ticketing-response';
+import { TicketingPerformances } from '@shared/types/home-response';
 import { formatDate } from '@shared/utils/format-date';
 
 import TicketingInfo from './ticketing-info';
@@ -15,7 +15,7 @@ import ImgDday05 from '/images/img_dday05.svg';
 
 const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
-const TicketingSection = ({ data }: { data: Ticketing[] }) => {
+const TicketingSection = ({ data }: { data: TicketingPerformances[] }) => {
   const navigateToDetail = useNavigateToDetail();
 
   const DdayList = data?.map((performance) => ({
