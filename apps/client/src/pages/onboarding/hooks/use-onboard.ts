@@ -4,7 +4,7 @@ import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related';
 import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
 import { BaseResponse } from '@shared/types/api';
-import { onboard, onboardResponse } from '@shared/types/onboard-response';
+import { onboardResponse } from '@shared/types/onboard-response';
 
 interface UseArtistRelatedKeywordProps {
   keyword: string;
