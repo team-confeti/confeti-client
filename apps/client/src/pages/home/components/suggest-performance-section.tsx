@@ -11,7 +11,6 @@ const SuggestPerformanceSection = ({
   data: SuggestPerformance[];
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  console.log(ref);
   return (
     <Box
       title="이런 공연은 어떠세요?"
