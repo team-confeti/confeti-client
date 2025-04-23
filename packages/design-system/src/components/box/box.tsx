@@ -14,6 +14,7 @@ interface Props {
   showMoreText?: string;
   children: ReactNode;
   className?: string;
+  onClick?: VoidFunction;
 }
 
 const Box = ({
@@ -23,6 +24,7 @@ const Box = ({
   showMoreText,
   className,
   children,
+  onClick,
   ...props
 }: Props) => {
   const navigate = useNavigate();

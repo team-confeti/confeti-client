@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
@@ -5,10 +6,10 @@ import RecordIntroduce from '@pages/my-history/components/record/record-introduc
 import { useMyTimeTablePreview } from '@pages/my-history/hooks/use-my-history';
 
 import { Footer, Spacing } from '@confeti/design-system';
+import { routePath } from '@shared/constants/path';
 
 const MyRecord = () => {
   const { data: profileData } = useUserProfile();
-
   const { data: timetablePreviewData } = useMyTimeTablePreview();
 
   if (!profileData || !timetablePreviewData) {
@@ -39,6 +40,7 @@ const MyRecord = () => {
         previewData={timetablePreviewData.timetables.slice(0, 3)}
         emptyMessage="아직 My 타임테이블이 없어요."
         ctaText="타임테이블 추가하기"
+        navigatePath={routePath.MY_HISTORY_OVERVIEW}
       />
       <Spacing size="lg" color="white" />
 
