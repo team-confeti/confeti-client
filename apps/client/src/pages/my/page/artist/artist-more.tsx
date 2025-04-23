@@ -30,7 +30,6 @@ const ArtistMore = () => {
       <div className={styles.header}>
         <p>전체 {data.artistCount}</p>
         <button className={styles.sort} onClick={toggleSort}>
-          {/* SORT_LABELS를 사용하여 동적으로 표시 */}
           <p>{SORT_LABELS[sortOption]}</p>
           <IcSwitch width={'1.6rem'} height={'1.6rem'} />
         </button>
