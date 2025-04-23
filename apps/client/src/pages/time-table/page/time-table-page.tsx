@@ -3,8 +3,9 @@ import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festi
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 
+import { FestivalTimetable } from '@shared/types/festival-timetable-response';
+
 import Calender from '../components/calender/calender';
-import { useButtonSelection } from '../hooks/use-button-selection';
 import { useEditModes } from '../hooks/use-edit-mode';
 import {
   useFestivalButtonData,
@@ -23,32 +24,31 @@ const TimeTablePage = () => {
 
   const { festivals } = useFestivalButtonData();
   const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
-  const [selectedFestivalId, setSelectedFestivalId] = useState<number>(
-    festivals[0].festivalId,
-  );
+  const [selectedFestivalInfo, setSelectedFestivalInfo] =
+    useState<FestivalTimetable>(festivals[0]);
+  const [selectedDateId, setSelectedDateId] = useState<number>(1);
 
   const handleSelectFestival = (id: number) => {
-    setSelectedFestivalId(id);
+    const selectedFestival = festivals.find(
+      (festival) => festival.festivalId === id,
+    );
+
+    // 찾은 정보로 상태 업데이트
+    if (selectedFestival) {
+      setSelectedFestivalInfo(selectedFestival);
+      setSelectedDateId(selectedFestival.festivalDates[0].festivalDateId);
+    }
   };
 
   const handleDeleteFestival = (festivalId: number) => {
     setFestivalsToDelete((prev) => [...prev, festivalId]);
   };
 
-  const {
-    selectedFestivalDates,
-    selectedFestivalDateId,
-    clickedFestivalTitle,
-    setSelectedFestivalDateId,
-  } = useButtonSelection(festivals);
-
-  const handleDateSelect = (festivalDateId: number) => {
-    setSelectedFestivalDateId(festivalDateId);
+  const handleSelectDate = (dateId: number) => {
+    setSelectedDateId(dateId);
   };
 
-  const { data: boardData } = useFestivalTimetableData(
-    selectedFestivalDateId as number,
-  );
+  const { data: boardData } = useFestivalTimetableData(selectedDateId);
 
   return (
     <>
@@ -58,17 +58,17 @@ const TimeTablePage = () => {
         <>
           <FestivalSelector
             festivals={festivals}
-            selectedFestivalId={selectedFestivalId}
+            selectedFestivalId={selectedFestivalInfo.festivalId}
             handleSelectFestival={handleSelectFestival}
           />
           <Calender
-            festivalDates={selectedFestivalDates}
-            onDateSelect={handleDateSelect}
+            festivalDates={selectedFestivalInfo.festivalDates}
+            onDateSelect={handleSelectDate}
           />
 
           {boardData && (
             <TimeTableBoard
-              clickedFestivalTitle={clickedFestivalTitle}
+              clickedFestivalTitle={selectedFestivalInfo.title}
               timeTableInfo={boardData}
               isEditTimeTableMode={isEditTimeTableMode}
               isFestivalDeleteMode={isFestivalDeleteMode}
