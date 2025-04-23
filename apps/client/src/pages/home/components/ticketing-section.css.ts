@@ -4,7 +4,6 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const ticketingCardContainer = style({
   display: 'flex',
-  flexDirection: 'row',
   width: '100%',
   height: '100%',
   gap: '1rem',
