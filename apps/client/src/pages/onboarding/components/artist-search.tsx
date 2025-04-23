@@ -41,7 +41,7 @@ const ArtistSearch = ({
       {hasArtistResults ? (
         <SearchSuggestionList
           relatedKeyword={relatedKeywordsData?.artists}
-          onArtistSelect={onArtistSelect}
+          onSelectArtistId={onArtistSelect}
           handleSearchParams={handleSearchParams}
         />
       ) : (

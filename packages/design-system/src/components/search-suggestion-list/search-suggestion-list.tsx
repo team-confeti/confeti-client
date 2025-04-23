@@ -10,23 +10,21 @@ interface RelatedKeyword {
 
 interface SearchSuggestionListProps {
   relatedKeyword: RelatedKeyword[] | undefined;
-  onArtistSelect?: (artistId: string) => void;
+  onSelectArtistId?: (id: string) => void;
+  onSelectKeyword?: (keyword: string) => void;
   handleSearchParams?: () => void;
-  onClick?: (keyword: string) => void;
 }
 
 const SearchSuggestionList = ({
   relatedKeyword,
-  onArtistSelect,
+  onSelectArtistId,
+  onSelectKeyword,
   handleSearchParams,
-  onClick,
 }: SearchSuggestionListProps) => {
-  const handleClick = (artistId: string, name: string) => {
-    onArtistSelect?.(artistId);
-    if (handleSearchParams) {
-      handleSearchParams();
-    }
-    onClick?.(name);
+  const handleClick = (artistId: string, artistName: string) => {
+    handleSearchParams?.();
+    onSelectArtistId?.(artistId);
+    onSelectKeyword?.(artistName);
   };
 
   return (

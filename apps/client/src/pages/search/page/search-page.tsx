@@ -61,7 +61,7 @@ const SearchPage = () => {
         return (
           <SearchSuggestionList
             relatedKeyword={relatedKeywordsData?.artists}
-            onClick={handleNavigateWithKeyword}
+            onSelectKeyword={handleNavigateWithKeyword}
           />
         );
 
