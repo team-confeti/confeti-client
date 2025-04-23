@@ -79,7 +79,7 @@ const TimeTableBoard = ({
         <hr className={styles.timeBar} />
       </div>
 
-      {!isEditTimeTableMode && !isFestivalDeleteMode && (
+      {/* {!isEditTimeTableMode && !isFestivalDeleteMode && (
         <div className={styles.saveButtonWrapper}>
           <Button
             text="이미지 저장"
@@ -88,7 +88,7 @@ const TimeTableBoard = ({
             onClick={downloadImage}
           ></Button>
         </div>
-      )}
+      )} */}
     </section>
   );
 };
