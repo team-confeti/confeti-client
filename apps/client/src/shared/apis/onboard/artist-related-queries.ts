@@ -5,36 +5,29 @@ import {
   getArtistRelatedKeyword,
 } from './artist-related';
 
-export const ARTIST_RELATED_ARTIST_QUERY_KEY = {
-  ALL: ['related-artists'],
+export const ARTIST_RELATED_QUERY_KEY = {
+  ALL: ['related'],
   RELATED_ARTIST: (artistId: string) => [
-    ...ARTIST_RELATED_ARTIST_QUERY_KEY.ALL,
-    'related-artists',
+    ...ARTIST_RELATED_QUERY_KEY.ALL,
+    'artist',
     artistId,
   ],
-} as const;
-
-export const ARTIST_RELATED_ARTIST_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: ARTIST_RELATED_ARTIST_QUERY_KEY.ALL }),
-  RELATED_ARTIST: (artistId: string, limit: number) => ({
-    queryKey: ARTIST_RELATED_ARTIST_QUERY_KEY.RELATED_ARTIST(artistId),
-    queryFn: () => getArtistRelatedArtist(artistId, limit),
-  }),
-};
-
-export const ARTIST_RELATED_KEYWORDS_QUERY_KEY = {
-  ALL: ['related-keywords'],
   RELATED_KEYWORD: (keyword: string) => [
-    ...ARTIST_RELATED_KEYWORDS_QUERY_KEY.ALL,
-    'related-keywords',
+    ...ARTIST_RELATED_QUERY_KEY.ALL,
+    'keyword',
     keyword,
   ],
 } as const;
 
-export const ARTIST_RELATED_KEYWORDS_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: ARTIST_RELATED_KEYWORDS_QUERY_KEY.ALL }),
-  RELATED_KEYWORD: (keyword: string, limit: number) => ({
-    queryKey: ARTIST_RELATED_KEYWORDS_QUERY_KEY.RELATED_KEYWORD(keyword),
+export const ARTIST_RELATED_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: ARTIST_RELATED_QUERY_KEY.ALL }),
+  ARTIST: (artistId: string, limit: number) => ({
+    queryKey: ARTIST_RELATED_QUERY_KEY.RELATED_ARTIST(artistId),
+    queryFn: () => getArtistRelatedArtist(artistId, limit),
+  }),
+
+  KEYWORD: (keyword: string, limit: number) => ({
+    queryKey: ARTIST_RELATED_QUERY_KEY.RELATED_KEYWORD(keyword),
     queryFn: () => getArtistRelatedKeyword(keyword, limit),
   }),
 };

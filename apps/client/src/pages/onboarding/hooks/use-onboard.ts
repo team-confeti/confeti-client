@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related';
-import { ARTIST_RELATED_KEYWORDS_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
+import { ARTIST_RELATED_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
@@ -46,7 +46,7 @@ export const useArtistRelatedKeyword = ({
   limit,
 }: UseArtistRelatedKeywordProps) => {
   const { data } = useQuery({
-    ...ARTIST_RELATED_KEYWORDS_QUERY_OPTION.RELATED_KEYWORD(keyword, limit),
+    ...ARTIST_RELATED_QUERY_OPTION.KEYWORD(keyword, limit),
     enabled,
   });
 
@@ -68,7 +68,8 @@ export const useArtistRelatedArtist = () => {
     Error,
     { artistId: string; limit: number }
   >({
-    mutationFn: ({ artistId, limit }) =>
-      getArtistRelatedArtist(artistId, limit),
+    mutationFn: ({ artistId, limit }) => {
+      return getArtistRelatedArtist(artistId, limit);
+    },
   });
 };
