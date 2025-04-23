@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
