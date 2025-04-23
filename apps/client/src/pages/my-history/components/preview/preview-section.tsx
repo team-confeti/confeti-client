@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, FestivalCard } from '@confeti/design-system';
-import { Performance } from '@shared/types/user-response';
+import { MyTimeTable } from '@shared/types/my-history-response';
 
 import * as styles from './preview-section.css';
 
@@ -15,7 +15,7 @@ interface Props {
   title: string;
   showMore?: boolean;
   buttonLabel?: string;
-  performances?: Performance[];
+  previewData?: MyTimeTable[];
   emptyMessage: string;
   ctaText: string;
 }
@@ -25,11 +25,11 @@ const PreviewSection = ({
   title,
   showMore = true,
   buttonLabel = '전체보기',
-  performances,
+  previewData,
   emptyMessage,
   ctaText,
 }: Props) => {
-  const hasContent = performances && performances.length > 0;
+  const hasContent = previewData && previewData.length > 0;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -42,13 +42,12 @@ const PreviewSection = ({
     <Box title={title} showMore={showMore} showMoreText={buttonLabel}>
       {hasContent ? (
         <div className={styles.container}>
-          {performances.map((performance) => (
+          {previewData.map((previewData) => (
             <FestivalCard
-              key={performance.index}
-              typeId={performance.typeId}
-              type={performance.type}
-              title={performance.title}
-              imageSrc={performance.posterUrl}
+              key={previewData.typeId}
+              typeId={previewData.typeId}
+              title={previewData.title}
+              imageSrc={previewData.posterUrl}
             />
           ))}
         </div>

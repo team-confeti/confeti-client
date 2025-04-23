@@ -7,6 +7,8 @@ export const CONFIG = {
 } as const;
 
 export const END_POINT = {
+  //내 공연
+  GET_MY_TIMETABLE: 'user/timetables/preview',
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
