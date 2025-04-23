@@ -26,15 +26,19 @@ const DeleteFestivalPage = () => {
         <div className={styles.festivalButtonsWrapper}>
           {festivals.map(({ festivalId, title, logoUrl }) => (
             <FestivalButton
-              isDeleteMode={true}
               isSelected={false}
               imgUrl={logoUrl}
               title={title}
               key={festivalId}
-              isChecked={festivalsToDelete.includes(festivalId)}
               onClick={() => handleToggleFestival(festivalId)}
-              onCheckChange={() => handleToggleFestival(festivalId)}
-            />
+            >
+              <input
+                type="checkbox"
+                checked={festivalsToDelete.includes(festivalId)}
+                onChange={() => handleToggleFestival(festivalId)}
+                className={styles.checkBox}
+              />
+            </FestivalButton>
           ))}
         </div>
       </main>

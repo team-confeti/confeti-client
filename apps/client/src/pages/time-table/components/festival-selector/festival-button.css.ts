@@ -55,11 +55,3 @@ export const text = style({
   color: themeVars.color.black,
   ...themeVars.fontStyles.subtitle5_sb_12,
 });
-
-export const checkBox = style({
-  appearance: 'none',
-  borderRadius: '3rem',
-  width: '2.2rem',
-  height: '2.2rem',
-  border: `1px solid ${themeVars.color.gray400}`,
-});

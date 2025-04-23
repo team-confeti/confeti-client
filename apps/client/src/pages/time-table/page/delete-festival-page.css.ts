@@ -38,3 +38,11 @@ export const buttonStyle = style({
 export const modalText = style({
   color: themeVars.color.confeti_lime3,
 });
+
+export const checkBox = style({
+  appearance: 'none',
+  borderRadius: '3rem',
+  width: '2.2rem',
+  height: '2.2rem',
+  border: `1px solid ${themeVars.color.gray400}`,
+});

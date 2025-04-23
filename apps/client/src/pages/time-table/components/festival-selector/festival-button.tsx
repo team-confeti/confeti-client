@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { cn } from '@confeti/design-system/utils';
 
@@ -9,9 +9,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   imgUrl: string;
   title: string;
   className?: string;
-  isDeleteMode?: boolean;
-  isChecked?: boolean;
-  onCheckChange?: (checked: boolean) => void;
+  children?: ReactNode;
 }
 
 const FestivalButton = ({
@@ -19,23 +17,12 @@ const FestivalButton = ({
   isSelected,
   imgUrl,
   title,
-  isDeleteMode = false,
-  isChecked,
-  onCheckChange,
+  children,
   ...props
 }: Props) => {
   return (
     <label className={cn(styles.buttonContainer, className)}>
-      {isDeleteMode && (
-        <>
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={() => onCheckChange?.(!isChecked)}
-            className={styles.checkBox}
-          />
-        </>
-      )}
+      {children}
       <button className={styles.festivalButton({ isSelected })} {...props}>
         <img src={imgUrl} alt={title} />
       </button>
