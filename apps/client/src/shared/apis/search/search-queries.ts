@@ -1,8 +1,10 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
-
-import { getArtistSearch, getPerformancesSearch } from './search';
+import {
+  getArtistRelatedKeyword,
+  getArtistRelatedPerformances,
+  getArtistSearch,
+} from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -20,27 +22,27 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
     queryFn: () => getArtistSearch(keyword),
     enabled,
   }),
+  SEARCH_RELATED_KEYWORD: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
+    queryFn: () => getArtistRelatedKeyword(keyword),
+    enabled,
+  }),
 };
 
-export const SEARCH_PERFORMANCES_QUERY_KEY = {
+export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
   ALL: ['performances'],
-  SEARCH_PERFORMANCES: (artistId: string, cursor: number) => [
-    ...SEARCH_PERFORMANCES_QUERY_KEY.ALL,
+  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => [
+    ...SEARCH_ARTIST_RELATED_QUERY_KEY.ALL,
     'search',
     artistId,
-    cursor,
   ],
 } as const;
 
-export const SEARCH_PERFORMANCES_QUERY_OPTION = {
-  SEARCH_PERFORMANCES: (artistId: string, enabled: boolean) => ({
-    queryKey: ['performances', artistId],
-    queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
-      getPerformancesSearch(artistId, pageParam),
-    enabled,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage: GetPerformancesSearchResponse) => {
-      return lastPage.nextCursor !== -1 ? lastPage.nextCursor : undefined;
-    },
+export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
+  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => ({
+    queryKey:
+      SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_RELATED_PERFORMANCES(artistId),
+    queryFn: () => getArtistRelatedPerformances(artistId),
   }),
 };

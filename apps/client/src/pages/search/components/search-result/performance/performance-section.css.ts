@@ -8,9 +8,8 @@ export const section = style({
 
 export const emptyPerformanceSection = style({
   ...themeVars.display.flexJustifyAlignCenter,
-  ...themeVars.fontStyles.body3_m_14,
-  height: '23rem',
-  fontSize: '1.4rem',
+  ...themeVars.fontStyles.body2_r_15,
   color: themeVars.color.gray500,
+  paddingTop: '9.4rem',
   textAlign: 'center',
 });

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { POPULAR_KEYWORDS } from '../mocks/search-data';
+import { POPULAR_KEYWORDS } from '../../mocks/search-data';
 
 import * as styles from './popular-search-section.css';
 

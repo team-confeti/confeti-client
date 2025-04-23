@@ -39,7 +39,7 @@ export const MyRecordPage = lazy(
 );
 
 // Search
-export const SearchPage = lazy(() => import('@pages/search/page/search'));
+export const SearchPage = lazy(() => import('@pages/search/page/search-page'));
 
 // Detail
 export const ConcertDetailPage = lazy(
