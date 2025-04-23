@@ -27,8 +27,6 @@ export interface FavoriteArtistsResponses {
 
 export type PerformancesFilterType = 'FESTIVAL' | 'CONCERT' | 'ALL';
 
-export type ArtistSortType = 'createdAt' | 'alphabetically';
-
 export interface Performance {
   index: number;
   typeId: number;

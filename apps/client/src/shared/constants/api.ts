@@ -17,7 +17,7 @@ export const END_POINT = {
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
-  GET_MY_ARTISTS: (sortBy: 'createdAt' | 'alphabetically') =>
+  GET_MY_ARTISTS: (sortBy: SortOption) =>
     `/user/favorites/artists?sortBy=${sortBy}`,
   GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
     `user/favorites/performances?type=${performancesType}`,
