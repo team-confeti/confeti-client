@@ -34,9 +34,10 @@ const MyHistoryOverviewPage = () => {
           />
         </div>
         <div className={styles.gridContainer}>
-          {timetableOverviewData?.timetables.map((item, index) => (
+          {timetableOverviewData?.timetables.map((item) => (
             <FestivalCard
-              key={index}
+              //TODO : 서버에게 고유한 값(id) 요청
+              key={item.posterUrl}
               typeId={item.typeId}
               imageSrc={item.posterUrl}
               title={item.title}
