@@ -1,7 +1,7 @@
-import BoothOpenBox from '@pages/time-table/components/booth-open-box/booth-open-box';
-import Stage from '@pages/time-table/components/stage/stage';
-import TimeCell from '@pages/time-table/components/time-cell/time-cell';
-import TimeTableItem from '@pages/time-table/components/time-table-item/time-table-item';
+import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-open-box';
+import Stage from '@pages/time-table/components/time-table-board/stage';
+import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
+import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
 import { END_HOUR, HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
