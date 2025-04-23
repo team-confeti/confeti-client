@@ -40,7 +40,11 @@ const ArtistSearch = ({
 
       {hasArtistResults ? (
         <SearchSuggestionList
-          relatedKeyword={relatedKeywordsData?.artists}
+          relatedKeyword={relatedKeywordsData?.artists?.map((artist) => ({
+            id: artist.artistId,
+            title: artist.name,
+            profileUrl: artist.profileUrl,
+          }))}
           onSelectArtistId={onArtistSelect}
           handleSearchParams={handleSearchParams}
         />
