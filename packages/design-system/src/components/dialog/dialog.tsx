@@ -10,7 +10,7 @@ import * as styles from './dialog.css';
 interface RootProps {
   children: ReactNode;
   open: boolean;
-  handleClose: () => void;
+  handleClose?: () => void;
   className?: string;
   backDrop?: boolean;
 }
@@ -36,7 +36,9 @@ const DialogRoot = ({
   ...props
 }: RootProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  useClickOutside(ref, handleClose);
+  if (handleClose) {
+    useClickOutside(ref, handleClose);
+  }
 
   if (!open) return null;
   return createPortal(

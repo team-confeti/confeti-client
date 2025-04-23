@@ -43,17 +43,14 @@ export const checkBox = style({
   appearance: 'none',
 });
 
+export const festivalButtonBox = style({
+  position: 'relative',
+});
+
 export const checkboxBase = style({
+  position: 'absolute',
+  top: '1rem',
+  right: '0',
   width: '2.2rem',
   height: '2.2rem',
-});
-
-export const checked = style({
-  fill: themeVars.color.confeti_lime,
-  stroke: themeVars.color.gray900,
-});
-
-export const unchecked = style({
-  fill: themeVars.color.gray100,
-  stroke: themeVars.color.gray300,
 });
