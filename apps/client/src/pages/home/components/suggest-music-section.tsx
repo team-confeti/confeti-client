@@ -9,12 +9,6 @@ const SuggestMusicSection = ({
   data: MusicListType[];
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  // TODO: response body에 고유한 id 값 추가 요청
-  const musics = data.map((music, index) => ({
-    ...music,
-    id: `${music.title}-${index}`,
-  }));
-
   return (
     <Box
       title="미리 음악을 한 번 들어볼까요?"
@@ -23,7 +17,7 @@ const SuggestMusicSection = ({
       subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
     >
       <div ref={ref}>
-        <MusicList musics={musics} />
+        <MusicList musics={data} />
       </div>
     </Box>
   );
