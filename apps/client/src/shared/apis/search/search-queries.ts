@@ -4,6 +4,7 @@ import {
   getArtistRelatedKeyword,
   getArtistRelatedPerformances,
   getArtistSearch,
+  getPerformanceRelatedKeyword,
 } from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
@@ -29,6 +30,25 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
   }),
 };
 
+export const SEARCH_PERFORMANCE_QUERY_KEY = {
+  ALL: ['performances'],
+  SEARCH_PERFORMANCES: (keyword: string) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'search',
+    keyword,
+  ],
+} as const;
+
+export const SEARCH_PERFORMANCE_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCE_QUERY_KEY.ALL }),
+  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
+    queryFn: () => getPerformanceRelatedKeyword(keyword),
+    enabled,
+  }),
+};
+
+// TODO: 추후 삭제 예정
 export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
   ALL: ['performances'],
   SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => [
@@ -38,6 +58,7 @@ export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
   ],
 } as const;
 
+// TODO: 추후 삭제 예정
 export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
   SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => ({

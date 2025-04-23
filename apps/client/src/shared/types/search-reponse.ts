@@ -36,3 +36,13 @@ export interface RelatedArtist {
 export interface RelatedArtistResponse {
   artists: RelatedArtist[];
 }
+
+export interface RelatedPerformance {
+  id: string;
+  title: string;
+  posterUrl: string;
+}
+
+export interface RelatedPerformanceResponse {
+  performances: RelatedPerformance[];
+}

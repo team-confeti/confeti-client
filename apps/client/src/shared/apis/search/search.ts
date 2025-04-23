@@ -5,6 +5,7 @@ import {
   ArtistSearchResponse,
   PerformancesSearchResponse,
   RelatedArtistResponse,
+  RelatedPerformanceResponse,
 } from '@shared/types/search-reponse';
 
 export const getArtistSearch = async (
@@ -20,7 +21,16 @@ export const getArtistRelatedKeyword = async (
   keyword: string,
 ): Promise<RelatedArtistResponse> => {
   const response = await get<BaseResponse<RelatedArtistResponse>>(
-    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, 10)}`,
+    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, 3)}`,
+  );
+  return response.data;
+};
+
+export const getPerformanceRelatedKeyword = async (
+  keyword: string,
+): Promise<RelatedPerformanceResponse> => {
+  const response = await get<BaseResponse<RelatedPerformanceResponse>>(
+    `${END_POINT.GET_PERFORMANCES_SEARCH_RELATED_KEYWORD(keyword, 3)}`,
   );
   return response.data;
 };
