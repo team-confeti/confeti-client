@@ -14,6 +14,6 @@ export const ticketingCardContainer = style({
 export const ticketingBannerContainer = style({
   ...themeVars.display.flexColumn,
   width: '100%',
-  padding: '0 2rem',
+  padding: '0 0 0 2rem',
   gap: '1.6rem',
 });

@@ -1,4 +1,5 @@
 import { Box, FestivalCard } from '@confeti/design-system';
+import { IcHeart } from '@confeti/design-system/icons';
 import { SuggestPerformance } from '@shared/types/home-response';
 
 import * as styles from './suggest-performance-section.css';
@@ -15,7 +16,8 @@ const SuggestPerformanceSection = ({
     <Box
       title="이런 공연은 어떠세요?"
       titleSize="lg"
-      subtitle="♥ confeti's pick!"
+      subtitle="confeti's pick!"
+      subtitleIcon={<IcHeart width="1.4rem" height="1.4rem" />}
       className={styles.boxWrapper}
     >
       <div className={styles.container} ref={ref}>
