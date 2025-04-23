@@ -67,41 +67,47 @@ const EditProfile = () => {
 
   return (
     <>
-      <Header variant="detail" title="프로필 편집" />
-      <UserInfo
-        name={profileData.name}
-        profileUrl={newImgUrl}
-        showArrow={false}
-        showEditBtn={true}
-        onEditImage={triggerFileInput}
-      />
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        style={{ display: 'none' }}
-      />
-      <EditName
-        name={name}
-        onChange={handleInputChange}
-        isInvalid={isNameInvalid}
-      />
-      <LinkedAccount />
-      <div className={styles.buttonSection}>
-        <Button
-          variant="add"
-          text="저장하기"
-          disabled={isButtonDisabled}
-          onClick={() =>
-            updateUserInfo({
-              name: name || profileData.name,
-              profileUrl: newImgUrl,
-            })
-          }
-        />
+      <div className={styles.pageWrapper}>
+        <Header variant="detail" title="프로필 편집" />
+
+        <div className={styles.content}>
+          <UserInfo
+            name={profileData.name}
+            profileUrl={newImgUrl}
+            showArrow={false}
+            showEditBtn={true}
+            onEditImage={triggerFileInput}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <EditName
+            name={name}
+            onChange={handleInputChange}
+            isInvalid={isNameInvalid}
+          />
+          <LinkedAccount />
+        </div>
+
+        <div className={styles.buttonWrapper}>
+          <Button
+            variant="add"
+            text="저장하기"
+            disabled={isButtonDisabled}
+            onClick={() =>
+              updateUserInfo({
+                name: name || profileData.name,
+                profileUrl: newImgUrl,
+              })
+            }
+          />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
