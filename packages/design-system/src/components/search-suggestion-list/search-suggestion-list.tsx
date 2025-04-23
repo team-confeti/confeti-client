@@ -10,20 +10,30 @@ interface RelatedKeyword {
 
 interface SearchSuggestionListProps {
   relatedKeyword: RelatedKeyword[] | undefined;
-  onClick?: (keyword: string) => void;
+  onSelectArtistId?: (id: string) => void;
+  onSelectKeyword?: (keyword: string) => void;
+  handleSearchParams?: () => void;
 }
 
 const SearchSuggestionList = ({
   relatedKeyword,
-  onClick,
+  onSelectArtistId,
+  onSelectKeyword,
+  handleSearchParams,
 }: SearchSuggestionListProps) => {
+  const handleClick = (artistId: string, artistName: string) => {
+    handleSearchParams?.();
+    onSelectArtistId?.(artistId);
+    onSelectKeyword?.(artistName);
+  };
+
   return (
     <ul className={styles.searchSuggestionListSection()}>
       {relatedKeyword?.map((artist) => (
         <li
           key={artist.artistId}
           className={styles.listContainer}
-          onClick={() => onClick?.(artist.name)}
+          onClick={() => handleClick(artist.artistId, artist.name)}
         >
           <div className={styles.listImageContainer}>
             {artist.profileUrl ? (

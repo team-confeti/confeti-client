@@ -49,9 +49,11 @@ export const END_POINT = {
   POST_REISSUE_TOKEN: 'auth/reissue',
   DELETE_ACCOUNT: 'auth/withdraw',
   //온보딩
-  GET_TOP100_ARTIST: 'user/onboard/artists',
+  GET_TOP100_ARTIST: (limit: number) => `user/onboard/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
+    `user/onboard/artists/${artistId}/related?limit=${limit}`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
