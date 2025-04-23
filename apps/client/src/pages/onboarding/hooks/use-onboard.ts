@@ -62,9 +62,7 @@ export const useArtistRelatedKeyword = ({
  * @param setArtists - 연관 아티스트 목록을 업데이트하는 상태 변경 함수
  * @returns { mutate: Mutation } - 아티스트 연관 아티스트 데이터를 가져오는 Mutation 함수
  */
-export const useArtistRelatedArtist = (
-  setArtists: React.Dispatch<React.SetStateAction<onboard[]>>,
-) => {
+export const useArtistRelatedArtist = () => {
   return useMutation<
     BaseResponse<onboardResponse>,
     Error,
@@ -72,9 +70,5 @@ export const useArtistRelatedArtist = (
   >({
     mutationFn: ({ artistId, limit }) =>
       getArtistRelatedArtist(artistId, limit),
-    onSuccess: (responseData) => {
-      const updatedArtists = responseData?.data?.artists || [];
-      setArtists(updatedArtists);
-    },
   });
 };

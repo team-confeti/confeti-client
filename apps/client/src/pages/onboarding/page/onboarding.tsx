@@ -14,10 +14,15 @@ const Onboarding = () => {
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
   const { data: topArtistData } = useGetTopArtist(ONBOARD_LIMIT.TOP_ARTIST);
   const [artists, setArtists] = useState(topArtistData?.artists || []);
-  const { mutate } = useArtistRelatedArtist(setArtists);
+  const { mutateAsync } = useArtistRelatedArtist();
 
-  const handleArtistSelect = (artistId: string) => {
-    mutate({ artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST });
+  const handleArtistSelect = async (artistId: string) => {
+    const response = await mutateAsync({
+      artistId,
+      limit: ONBOARD_LIMIT.RELATED_ARTIST,
+    });
+    const updatedArtists = response?.data?.artists || [];
+    setArtists(updatedArtists);
   };
 
   return (
