@@ -5,10 +5,10 @@ import { Button, FestivalCard, Header } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
-import { MAX_SELECTIONS } from '../constants';
-import { useFestivalButtonData } from '../hooks/use-festival-data';
-import useFestivalSelection from '../hooks/use-festival-selection';
-import { useGetFestivalToAdd } from '../hooks/use-get-festival-to-add';
+import { MAX_SELECTIONS } from '../../constants';
+import { useFestivalButtonData } from '../../hooks/use-festival-data';
+import useFestivalSelection from '../../hooks/use-festival-selection';
+import { useGetFestivalToAdd } from '../../hooks/use-get-festival-to-add';
 
 import * as styles from './add-festival.css';
 
