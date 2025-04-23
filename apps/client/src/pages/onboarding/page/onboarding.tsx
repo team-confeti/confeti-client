@@ -17,11 +17,11 @@ const Onboarding = () => {
   const { mutateAsync } = useArtistRelatedArtist();
 
   const handleArtistSelect = async (artistId: string) => {
-    const response = await mutateAsync({
+    const relatedArtist = await mutateAsync({
       artistId,
       limit: ONBOARD_LIMIT.RELATED_ARTIST,
     });
-    const updatedArtists = response?.data?.artists || [];
+    const updatedArtists = relatedArtist?.data?.artists || [];
     setArtists(updatedArtists);
   };
 
