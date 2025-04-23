@@ -23,7 +23,6 @@ const TimeTablePage = () => {
   } = useEditModes();
 
   const { festivals } = useFestivalButtonData();
-  const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
   const [selectedFestivalInfo, setSelectedFestivalInfo] =
     useState<FestivalTimetable>(festivals[0]);
   const [selectedDateId, setSelectedDateId] = useState<number>(1);
@@ -38,10 +37,6 @@ const TimeTablePage = () => {
       setSelectedFestivalInfo(selectedFestival);
       setSelectedDateId(selectedFestival.festivalDates[0].festivalDateId);
     }
-  };
-
-  const handleDeleteFestival = (festivalId: number) => {
-    setFestivalsToDelete((prev) => [...prev, festivalId]);
   };
 
   const handleSelectDate = (dateId: number) => {

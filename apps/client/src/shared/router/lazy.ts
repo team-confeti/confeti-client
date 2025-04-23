@@ -50,6 +50,10 @@ export const FestivalDetailPage = lazy(
 );
 
 // TimeTable
+export const DeleteFestivalPage = lazy(
+  () => import('@pages/time-table/page/delete-festival-page'),
+);
+
 export const AddFestivalPage = lazy(
   () => import('@pages/time-table/page/add-festival'),
 );
@@ -58,9 +62,6 @@ export const TimeTablePage = lazy(
 );
 export const TimeTableLayout = lazy(
   () => import('@pages/time-table/page/time-table-layout'),
-);
-export const EmptyFestivalPage = lazy(
-  () => import('@pages/time-table/page/empty/empty-festival-page'),
 );
 
 // Onboarding
