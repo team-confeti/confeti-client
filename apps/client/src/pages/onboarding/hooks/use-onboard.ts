@@ -2,6 +2,7 @@ import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related';
 import { ARTIST_RELATED_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
+import { postAuthOnboarding } from '@shared/apis/onboard/auth-onboard';
 import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
@@ -70,6 +71,23 @@ export const useArtistRelatedArtist = () => {
   >({
     mutationFn: ({ artistId, limit }) => {
       return getArtistRelatedArtist(artistId, limit);
+    },
+  });
+};
+
+/**
+ * 온보딩 완료 후 인증된 아티스트 목록을 서버에 전송하는 커스텀 훅
+ *
+ * 이 훅은 사용자가 선택한 아티스트 목록을 서버에 전송하여 온보딩을 완료합니다.
+ * 성공적으로 데이터를 전송하면 온보딩 상태가 갱신되며, 해당 데이터를 서버에 저장합니다.
+ *
+ * @param favoriteArtists - 사용자가 선택한 선호하는 아티스트 목록
+ * @returns { mutate: Mutation } - 온보딩 완료 데이터를 서버에 전송하는 Mutation 함수
+ */
+export const usePostAuthOnboarding = () => {
+  return useMutation({
+    mutationFn: (favoriteArtists: string[]) => {
+      return postAuthOnboarding(favoriteArtists);
     },
   });
 };
