@@ -7,6 +7,7 @@ export const orderByButtonContainer = style({
   width: '7.8rem',
   padding: '0rem 0.4rem',
   gap: '0.2rem',
+  cursor: 'pointer',
 });
 
 export const orderByText = style({

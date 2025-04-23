@@ -2,16 +2,16 @@ import SvgIcSwitch from 'node_modules/@confeti/design-system/src/icons/src/IcSwi
 
 import * as styles from './order-by-button.css';
 
-const SORT_LABELS = {
-  RECENT: '최근추가순',
-  OLDEST: '오래된순',
-} as const;
+interface OrderByButtonProps {
+  orderByText: string;
+  onClick: () => void;
+}
 
-const OrderByButton = () => {
+const OrderByButton = ({ orderByText, onClick }: OrderByButtonProps) => {
   return (
-    <div className={styles.orderByButtonContainer}>
-      <p className={styles.orderByText}>{SORT_LABELS.RECENT}</p>
-      <SvgIcSwitch width={'1.6rem'} height={'1.6rem'} />
+    <div className={styles.orderByButtonContainer} onClick={onClick}>
+      <p className={styles.orderByText}>{orderByText}</p>
+      <SvgIcSwitch width="1.6rem" height="1.6rem" />
     </div>
   );
 };

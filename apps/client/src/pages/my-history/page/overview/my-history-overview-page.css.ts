@@ -17,4 +17,5 @@ export const gridContainer = style({
   gridTemplateColumns: 'repeat(3, 1fr)',
   columnGap: '1.8rem',
   rowGap: '3rem',
+  marginTop: '2rem',
 });

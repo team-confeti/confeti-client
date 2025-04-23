@@ -1,10 +1,14 @@
 import * as styles from './count-display.css';
 
-const CountDisplay = () => {
+interface CountDisplayProps {
+  count: number;
+}
+
+const CountDisplay = ({ count }: CountDisplayProps) => {
   return (
     <div className={styles.countDisplayContainer}>
       <p className={styles.countDisplayText}>전체</p>
-      <p className={styles.countDisplayText}>12</p>
+      <p className={styles.countDisplayText}>{count}</p>
     </div>
   );
 };
