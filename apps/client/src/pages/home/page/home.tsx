@@ -4,6 +4,7 @@ import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-muta
 import { Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
 import { CONFIG } from '@shared/constants/api';
+import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 
 import CategoryTabs from '../components/category-tabs';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
@@ -17,6 +18,12 @@ const Home = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
+
+  const scrollRefs = {
+    ticketing: useMoveScroll(),
+    suggestPerformance: useMoveScroll(),
+    suggestMusic: useMoveScroll(),
+  };
 
   const { ticketing, latestPerformances, suggestPerformance, suggestMusic } =
     useHomeData();
@@ -38,16 +45,31 @@ const Home = () => {
       <PerformanceCarouselSection data={latestPerformances.performances} />
       <Spacing size="xl" color="white" />
 
-      <CategoryTabs />
+      <CategoryTabs
+        scrollHandlers={{
+          ticketing: scrollRefs.ticketing.onMoveToElement,
+          suggestPerformance: scrollRefs.suggestPerformance.onMoveToElement,
+          suggestMusic: scrollRefs.suggestMusic.onMoveToElement,
+        }}
+      />
       <Spacing size="lg" color="white" />
 
-      <TicketingSection data={ticketing.performances} />
+      <TicketingSection
+        ref={scrollRefs.ticketing.element}
+        data={ticketing.performances}
+      />
       <Spacing size="2xl" color="white" />
 
-      <SuggestPerformanceSection data={suggestPerformance.performances} />
+      <SuggestPerformanceSection
+        ref={scrollRefs.suggestPerformance.element}
+        data={suggestPerformance.performances}
+      />
       <Spacing size="lg" color="white" />
 
-      <SuggestMusicSection data={suggestMusic.musicList} />
+      <SuggestMusicSection
+        ref={scrollRefs.suggestMusic.element}
+        data={suggestMusic.musicList}
+      />
 
       <Footer />
     </>

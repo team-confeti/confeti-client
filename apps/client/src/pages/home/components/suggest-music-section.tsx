@@ -1,7 +1,13 @@
 import { Box, MusicList } from '@confeti/design-system';
 import { MusicList as MusicListType } from '@shared/types/home-response';
 
-const SuggestMusicSection = ({ data }: { data: MusicListType[] }) => {
+const SuggestMusicSection = ({
+  data,
+  ref,
+}: {
+  data: MusicListType[];
+  ref: React.RefObject<HTMLDivElement | null>;
+}) => {
   // TODO: response body에 고유한 id 값 추가 요청
   const musics = data.map((music, index) => ({
     ...music,
@@ -14,7 +20,9 @@ const SuggestMusicSection = ({ data }: { data: MusicListType[] }) => {
       titleSize="lg"
       subtitle="♥ 인천 펜타포트 락 페스티벌"
     >
-      <MusicList musics={musics} />
+      <div ref={ref}>
+        <MusicList musics={musics} />
+      </div>
     </Box>
   );
 };

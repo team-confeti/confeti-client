@@ -5,16 +5,20 @@ import * as styles from './suggest-performance-section.css';
 
 const SuggestPerformanceSection = ({
   data,
+  ref,
 }: {
   data: SuggestPerformance[];
+  ref: React.RefObject<HTMLDivElement | null>;
 }) => {
+  console.log(ref);
   return (
     <Box
       title="이런 공연은 어떠세요?"
       titleSize="lg"
       subtitle="♥ confeti's pick!"
+      className={styles.boxWrapper}
     >
-      <div className={styles.container}>
+      <div className={styles.container} ref={ref}>
         {data.map((performance) => (
           // TODO: response body에 고유한 id 값 추가 요청
           <div

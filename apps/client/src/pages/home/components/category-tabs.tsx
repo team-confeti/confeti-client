@@ -4,20 +4,34 @@ import { Chip } from '@confeti/design-system';
 
 import * as styles from './category-tabs.css';
 
-const CategoryTabs = () => {
-  const categories = ['티켓 오픈', '추천 공연', '플레이리스트'] as const;
-
+const CategoryTabs = ({
+  scrollHandlers,
+}: {
+  scrollHandlers: {
+    ticketing: () => void;
+    suggestPerformance: () => void;
+    suggestMusic: () => void;
+  };
+}) => {
+  const categories = [
+    { label: '티켓 오픈', onClick: scrollHandlers.ticketing },
+    { label: '추천 공연', onClick: scrollHandlers.suggestPerformance },
+    { label: '플레이리스트', onClick: scrollHandlers.suggestMusic },
+  ];
   const [selectedCategory, setSelectedCategory] = useState('티켓 오픈');
 
   return (
     <nav>
       <ul className={styles.chipList}>
-        {categories.map((category) => (
-          <li key={category}>
+        {categories.map(({ label, onClick }) => (
+          <li key={label}>
             <Chip
-              label={category}
-              variant={selectedCategory === category ? 'active' : 'default'}
-              onClick={() => setSelectedCategory(category)}
+              label={label}
+              variant={selectedCategory === label ? 'active' : 'default'}
+              onClick={() => {
+                setSelectedCategory(label);
+                onClick();
+              }}
             />
           </li>
         ))}

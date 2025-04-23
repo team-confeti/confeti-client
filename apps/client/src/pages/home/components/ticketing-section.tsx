@@ -15,7 +15,13 @@ import ImgDday05 from '/images/img_dday05.svg';
 
 const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
-const TicketingSection = ({ data }: { data: TicketingPerformances[] }) => {
+const TicketingSection = ({
+  data,
+  ref,
+}: {
+  data: TicketingPerformances[];
+  ref: React.RefObject<HTMLDivElement | null>;
+}) => {
   const navigateToDetail = useNavigateToDetail();
 
   const DdayList = data?.map((performance) => ({
@@ -24,7 +30,7 @@ const TicketingSection = ({ data }: { data: TicketingPerformances[] }) => {
   }));
 
   return (
-    <section className={styles.ticketingBannerContainer}>
+    <section className={styles.ticketingBannerContainer} ref={ref}>
       <TicketingInfo />
       <div className={styles.ticketingCardContainer}>
         {data?.map((performance, index) => (

@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+export const boxWrapper = style({
+  padding: '2rem 0 2rem 2rem',
+});
+
 export const container = style({
   display: 'flex',
   width: '100%',
