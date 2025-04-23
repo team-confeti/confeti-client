@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import FestivalButton from '@pages/time-table/components/festival-selector/festival-button';
 
 import { DropdownMenu } from '@confeti/design-system';
@@ -6,31 +7,50 @@ import {
   IcTimetableAddfestival,
   IcTimetableDeletefestival,
 } from '@confeti/design-system/icons';
-import { FestivalTimetableResponse } from '@shared/types/festival-timetable-response';
+import { routePath } from '@shared/constants/path';
+import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import * as styles from './festival-selector.css';
 
-const FestivalSelector = ({ festivals }: FestivalTimetableResponse) => {
+interface Props {
+  festivals: FestivalTimetable[];
+  selectedFestivalId: number;
+  handleSelectFestival: (id: number) => void;
+}
+
+const FestivalSelector = ({
+  festivals,
+  selectedFestivalId,
+  handleSelectFestival,
+}: Props) => {
+  const navigate = useNavigate();
+  const handleAddFestivalClick = () => {
+    navigate(`${routePath.ADD_FESTIVAL}`);
+  };
+
   return (
     <div className={styles.festivalSelectorWrapper}>
       <div className={styles.festivalButtonsWrapper}>
         {festivals.map(({ festivalId, title, logoUrl }) => (
           <FestivalButton
-            isSelected={true}
+            isSelected={festivalId == selectedFestivalId}
             key={festivalId}
             imgUrl={logoUrl}
             title={title}
+            onClick={() => handleSelectFestival(festivalId)}
           />
         ))}
       </div>
-
       <div className={styles.dropdownContainer}>
         <DropdownMenu>
           <DropdownMenu.Trigger>
             <BtnMeatball width={'2.4rem'} height={'2.4rem'} />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item label="페스티벌 추가하기">
+            <DropdownMenu.Item
+              label="페스티벌 추가하기"
+              onClick={handleAddFestivalClick}
+            >
               <IcTimetableAddfestival width={'2rem'} height={'2rem'} />
             </DropdownMenu.Item>
             <DropdownMenu.Item label="페스티벌 삭제하기">

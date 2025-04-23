@@ -21,18 +21,24 @@ const TimeTablePage = () => {
     toggleComplete,
   } = useEditModes();
 
+  const { festivals } = useFestivalButtonData();
   const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
+  const [selectedFestivalId, setSelectedFestivalId] = useState<number>(
+    festivals[0].festivalId,
+  );
+
+  const handleSelectFestival = (id: number) => {
+    setSelectedFestivalId(id);
+  };
 
   const handleDeleteFestival = (festivalId: number) => {
     setFestivalsToDelete((prev) => [...prev, festivalId]);
   };
-  const { festivals } = useFestivalButtonData();
+
   const {
-    clickedFestivalId,
     selectedFestivalDates,
     selectedFestivalDateId,
     clickedFestivalTitle,
-    handleFestivalClick,
     setSelectedFestivalDateId,
   } = useButtonSelection(festivals);
 
@@ -44,17 +50,17 @@ const TimeTablePage = () => {
     selectedFestivalDateId as number,
   );
 
-  const remainedFestival = festivals.filter(
-    ({ festivalId }) => !festivalsToDelete.includes(festivalId),
-  );
-
   return (
     <>
       {festivals.length === 0 ? (
         <EmptyFestivalSection />
       ) : (
         <>
-          <FestivalSelector festivals={festivals} />
+          <FestivalSelector
+            festivals={festivals}
+            selectedFestivalId={selectedFestivalId}
+            handleSelectFestival={handleSelectFestival}
+          />
           <Calender
             festivalDates={selectedFestivalDates}
             onDateSelect={handleDateSelect}
