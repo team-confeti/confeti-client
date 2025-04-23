@@ -38,13 +38,14 @@ export const titleVariants = recipe({
 });
 
 export const subtitle = style({
+  ...themeVars.display.flexAlignCenter,
+  gap: '0.4rem',
   ...themeVars.fontStyles.subtitle4_b_14,
   color: themeVars.color.confeti_lime3,
 });
 
 export const buttonWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
 });
 
 export const button = style({

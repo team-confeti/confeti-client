@@ -10,6 +10,7 @@ import * as styles from './box.css';
 interface Props {
   title: string;
   subtitle?: string;
+  subtitleIcon?: ReactNode;
   titleSize?: 'md' | 'lg';
   path?: string;
   showMore?: boolean;
@@ -22,6 +23,7 @@ const Box = ({
   title,
   titleSize = 'md',
   subtitle,
+  subtitleIcon,
   path,
   showMore,
   showMoreText,
@@ -41,7 +43,12 @@ const Box = ({
     <section className={cn(styles.boxVariants(), className)} {...props}>
       <div className={styles.header}>
         <div className={styles.titleWrapper}>
-          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+          {subtitle && (
+            <div className={styles.subtitle}>
+              {subtitleIcon}
+              {subtitle}
+            </div>
+          )}
           <h3 className={styles.titleVariants({ titleSize })}>{title}</h3>
         </div>
         {showMore && (
