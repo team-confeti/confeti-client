@@ -3,6 +3,7 @@ import FestivalButton from '@pages/time-table/components/festival-selector/festi
 import { useFestivalButtonData } from '@pages/time-table/hooks/use-festival-data';
 
 import { Button, Dialog, Header, useOverlay } from '@confeti/design-system';
+import { CheckboxFestival } from '@confeti/design-system/icons';
 
 import * as styles from './delete-festival-page.css';
 
@@ -18,6 +19,16 @@ const DeleteFestivalPage = () => {
   const numberToDelete = festivalsToDelete.length;
   const { festivals } = useFestivalButtonData();
   const overlay = useOverlay();
+  const handleConfirm = () => {
+    overlay.open(({ isOpen, close }) => (
+      <ConfirmDialog
+        numberToDelete={numberToDelete}
+        isOpen={isOpen}
+        onClose={close}
+        onConfirm={() => console.log()}
+      />
+    ));
+  };
 
   return (
     <div className={styles.container}>
@@ -38,6 +49,7 @@ const DeleteFestivalPage = () => {
                 onChange={() => handleToggleFestival(festivalId)}
                 className={styles.checkBox}
               />
+              <CheckboxFestival width={'2.2rem'} height={'2.2rem'} />
             </FestivalButton>
           ))}
         </div>
@@ -46,16 +58,7 @@ const DeleteFestivalPage = () => {
         <Button
           text={numberToDelete + ' ' + `개 항목 삭제하기`}
           className={styles.buttonStyle}
-          onClick={() =>
-            overlay.open(({ isOpen, close }) => (
-              <ConfirmDialog
-                numberToDelete={numberToDelete}
-                isOpen={isOpen}
-                onClose={close}
-                onConfirm={() => console.log()}
-              />
-            ))
-          }
+          onClick={handleConfirm}
         ></Button>
       </footer>
     </div>

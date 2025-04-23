@@ -9,6 +9,7 @@ export { default as BtnDeleteBlack } from './BtnDeleteBlack';
 export { default as BtnDeleteBlack20 } from './BtnDeleteBlack20';
 export { default as BtnDownload } from './BtnDownload';
 export { default as BtnFestivalDelete } from './BtnFestivalDelete';
+export { default as BtnHeart } from './BtnHeart';
 export { default as BtnHeartDefault24 } from './BtnHeartDefault24';
 export { default as BtnHeartFilled24 } from './BtnHeartFilled24';
 export { default as BtnMeatball } from './BtnMeatball';
