@@ -38,7 +38,7 @@ export const MyRecordPage = lazy(
   () => import('@pages/my-history/page/record/my-record'),
 );
 export const MyHistoryOverviewPage = lazy(
-  () => import('@pages/my-history/page/all/my-history-overview-page'),
+  () => import('@pages/my-history/page/overview/my-history-overview-page'),
 );
 
 // Search
