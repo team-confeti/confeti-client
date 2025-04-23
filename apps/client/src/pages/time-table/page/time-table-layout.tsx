@@ -9,7 +9,8 @@ const TimeTableLayout = () => {
 
   const isNavHidden =
     location.pathname ===
-    `${routePath.TIME_TABLE_OUTLET}/${routePath.ADD_FESTIVAL}`;
+      `${routePath.TIME_TABLE_OUTLET}/${routePath.ADD_FESTIVAL}` ||
+    `${routePath.TIME_TABLE_OUTLET}/${routePath.DELETE_FESTIVAL}`;
 
   return (
     <>

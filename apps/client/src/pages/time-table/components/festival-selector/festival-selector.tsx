@@ -24,8 +24,12 @@ const FestivalSelector = ({
   handleSelectFestival,
 }: Props) => {
   const navigate = useNavigate();
-  const handleAddFestivalClick = () => {
+  const handleAddFestival = () => {
     navigate(`${routePath.ADD_FESTIVAL}`);
+  };
+
+  const handleDeleteFestival = () => {
+    navigate(`${routePath.DELETE_FESTIVAL}`);
   };
 
   return (
@@ -49,11 +53,14 @@ const FestivalSelector = ({
           <DropdownMenu.Content>
             <DropdownMenu.Item
               label="페스티벌 추가하기"
-              onClick={handleAddFestivalClick}
+              onClick={handleAddFestival}
             >
               <IcTimetableAddfestival width={'2rem'} height={'2rem'} />
             </DropdownMenu.Item>
-            <DropdownMenu.Item label="페스티벌 삭제하기">
+            <DropdownMenu.Item
+              label="페스티벌 삭제하기"
+              onClick={handleDeleteFestival}
+            >
               <IcTimetableDeletefestival width={'2rem'} height={'2rem'} />
             </DropdownMenu.Item>
           </DropdownMenu.Content>
