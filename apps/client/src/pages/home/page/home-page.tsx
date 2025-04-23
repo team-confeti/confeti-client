@@ -12,7 +12,7 @@ import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
 import { TAB_MENU } from '../constants/menu';
-import useHomeData from '../hooks/use-home-data';
+import useHomeQueries from '../hooks/use-home-queries';
 
 const HomePage = () => {
   const { mutate: login } = useSocialLoginMutation();
@@ -40,7 +40,7 @@ const HomePage = () => {
     latestPerformances,
     suggestPerformance,
     suggestMusic,
-  } = useHomeData();
+  } = useHomeQueries();
 
   return (
     <>

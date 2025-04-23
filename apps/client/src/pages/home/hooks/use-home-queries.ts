@@ -3,7 +3,7 @@ import { useSuspenseQueries } from '@tanstack/react-query';
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 
-const useHomeData = () => {
+const useHomeQueries = () => {
   const [
     userInfoResult,
     ticketingResult,
@@ -29,4 +29,4 @@ const useHomeData = () => {
   };
 };
 
-export default useHomeData;
+export default useHomeQueries;
