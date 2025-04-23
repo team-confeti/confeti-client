@@ -1,4 +1,4 @@
-import { SEARCH_NOT_FOUND_MESSAGE } from '../constants/notice-message';
+import { SEARCH_NOT_FOUND_MESSAGE } from '@pages/search/constants/notice-message';
 
 import * as styles from './notice-section.css';
 

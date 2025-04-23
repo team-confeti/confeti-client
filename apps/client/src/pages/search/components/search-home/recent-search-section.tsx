@@ -4,7 +4,7 @@ import { Chip } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
-import { RECENT_SEARCHES } from '../mocks/search-data';
+import { RECENT_SEARCHES } from '../../mocks/search-data';
 
 import * as styles from './recent-search-section.css';
 

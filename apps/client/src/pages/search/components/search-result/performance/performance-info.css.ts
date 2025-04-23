@@ -2,15 +2,9 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const container = style({
-  ...themeVars.display.flexColumn,
-  padding: '1rem 2rem',
-});
-
 export const wrapper = style({
   display: 'flex',
-  justifyContent: 'space-between',
-  width: '100%',
+  padding: '0.4rem 0 1.6rem 0',
 });
 
 export const poster = style({

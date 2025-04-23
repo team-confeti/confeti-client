@@ -26,23 +26,21 @@ const ArtistInfo = ({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <img src={image} alt={name} className={styles.image} />
-        <div className={styles.textSection}>
-          <p className={styles.name}>{name}</p>
-          <div className={styles.releaseWrapper}>
-            <span className={styles.releaseLabel}>최근 발매일</span>
-            <span className={styles.releaseDate}>{releaseDate}</span>
-          </div>
+    <div className={styles.wrapper}>
+      <img src={image} alt={name} className={styles.image} />
+      <div className={styles.textSection}>
+        <p className={styles.name}>{name}</p>
+        <div className={styles.releaseWrapper}>
+          <span className={styles.releaseLabel}>최근 발매일</span>
+          <span className={styles.releaseDate}>{releaseDate}</span>
         </div>
-        <LikeButton
-          className={styles.likeButton}
-          isFavorite={isFavorite}
-          onLikeToggle={handleLike}
-          isLoggedIn={!checkIsNotLoggedIn()}
-        />
       </div>
+      <LikeButton
+        className={styles.likeButton}
+        isFavorite={isFavorite}
+        onLikeToggle={handleLike}
+        isLoggedIn={!checkIsNotLoggedIn()}
+      />
     </div>
   );
 };
