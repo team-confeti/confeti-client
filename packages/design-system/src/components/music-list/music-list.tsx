@@ -23,7 +23,6 @@ const MusicList = ({
   onClickDelete,
   getDragHandleProps,
 }: MusicListProps) => {
-  console.log(musics);
   return (
     <div>
       {musics.map((music) => (
