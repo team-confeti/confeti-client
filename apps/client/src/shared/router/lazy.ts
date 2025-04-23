@@ -51,7 +51,7 @@ export const FestivalDetailPage = lazy(
 
 // TimeTable
 export const DeleteFestivalPage = lazy(
-  () => import('@pages/time-table/page/delete-festival-page'),
+  () => import('@pages/time-table/page/delete-festival/delete-festival-page'),
 );
 
 export const AddFestivalPage = lazy(

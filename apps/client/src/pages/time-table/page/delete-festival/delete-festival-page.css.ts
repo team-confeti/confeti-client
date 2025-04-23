@@ -20,12 +20,6 @@ export const festivalSelectorWrapper = style({
   padding: '1.6rem 2rem',
 });
 
-export const festivalButtonsWrapper = style({
-  display: 'flex',
-  gap: '1.4rem',
-  overflow: 'scroll',
-});
-
 export const buttonContainer = style({
   padding: '2rem',
 });
@@ -37,20 +31,4 @@ export const buttonStyle = style({
 
 export const modalText = style({
   color: themeVars.color.confeti_lime3,
-});
-
-export const checkBox = style({
-  appearance: 'none',
-});
-
-export const festivalButtonBox = style({
-  position: 'relative',
-});
-
-export const checkboxBase = style({
-  position: 'absolute',
-  top: '1rem',
-  right: '0',
-  width: '2.2rem',
-  height: '2.2rem',
 });

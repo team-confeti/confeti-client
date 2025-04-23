@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { themeVars } from '@confeti/design-system/styles';
-
 export const festivalSelectorWrapper = style({
   display: 'flex',
   position: 'relative',
