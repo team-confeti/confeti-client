@@ -18,16 +18,6 @@ const Home = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
-
-  const scrollRefs = {
-    ticketing: useMoveScroll(),
-    suggestPerformance: useMoveScroll(),
-    suggestMusic: useMoveScroll(),
-  };
-
-  const { ticketing, latestPerformances, suggestPerformance, suggestMusic } =
-    useHomeData();
-
   useEffect(() => {
     if (code) {
       login({
@@ -37,6 +27,15 @@ const Home = () => {
       });
     }
   }, [code]);
+
+  const scrollRefs = {
+    ticketing: useMoveScroll(),
+    suggestPerformance: useMoveScroll(),
+    suggestMusic: useMoveScroll(),
+  };
+
+  const { ticketing, latestPerformances, suggestPerformance, suggestMusic } =
+    useHomeData();
 
   return (
     <>
