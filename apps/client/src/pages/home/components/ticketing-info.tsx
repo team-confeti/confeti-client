@@ -1,16 +1,12 @@
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
-
 import * as styles from './ticketing-info.css';
 
-const TicketingInfo = () => {
-  const { data: profileData } = useUserProfile();
-
+const TicketingInfo = ({ userName }: { userName: string | null }) => {
   return (
     <div>
       <p className={styles.ticketingBannerText}>
-        {profileData ? (
+        {userName ? (
           <>
-            <span className={styles.highlightedText}>{profileData.name}</span>
+            <span className={styles.highlightedText}>{userName}</span>
             님 <br />
             예매가 다가오고 있어요!
           </>

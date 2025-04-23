@@ -17,9 +17,11 @@ const imageUrls = [ImgDday01, ImgDday02, ImgDday03, ImgDday04, ImgDday05];
 
 const TicketingSection = ({
   data,
+  userName,
   ref,
 }: {
   data: TicketingPerformances[];
+  userName: string | null;
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const navigateToDetail = useNavigateToDetail();
@@ -31,7 +33,7 @@ const TicketingSection = ({
 
   return (
     <section className={styles.ticketingBannerContainer} ref={ref}>
-      <TicketingInfo />
+      <TicketingInfo userName={userName} />
       <div className={styles.ticketingCardContainer}>
         {data?.map((performance, index) => (
           <TicketingCard.Image

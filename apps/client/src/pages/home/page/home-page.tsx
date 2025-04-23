@@ -34,8 +34,13 @@ const HomePage = () => {
     suggestMusic: useMoveScroll(),
   };
 
-  const { ticketing, latestPerformances, suggestPerformance, suggestMusic } =
-    useHomeData();
+  const {
+    userName,
+    ticketing,
+    latestPerformances,
+    suggestPerformance,
+    suggestMusic,
+  } = useHomeData();
 
   return (
     <>
@@ -56,6 +61,7 @@ const HomePage = () => {
       <TicketingSection
         ref={scrollRefs.ticketing.element}
         data={ticketing.performances}
+        userName={userName}
       />
       <Spacing size="2xl" color="white" />
 

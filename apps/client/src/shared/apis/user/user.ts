@@ -11,8 +11,10 @@ import {
   PerformancesFilterType,
   UserProfile,
 } from '@shared/types/user-response';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
-export const getUserProfile = async (): Promise<UserProfile> => {
+export const getUserProfile = async (): Promise<UserProfile | null> => {
+  if (checkIsNotLoggedIn()) return null;
   const response = await get<BaseResponse<UserProfile>>(
     END_POINT.GET_USER_PROFILE,
   );
