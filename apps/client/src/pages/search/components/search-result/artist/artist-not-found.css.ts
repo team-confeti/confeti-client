@@ -12,16 +12,10 @@ export const container = style({
   color: themeVars.color.gray600,
 });
 
-export const icon = style({
-  width: '8rem',
-  height: '8rem',
-  marginBottom: '3rem',
-});
-
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
   color: themeVars.color.gray800,
-  marginBottom: '0.8rem',
+  margin: '3rem 0 0.6rem 0',
 });
 
 export const subtitle = style({
