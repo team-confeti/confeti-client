@@ -41,8 +41,19 @@ export const modalText = style({
 
 export const checkBox = style({
   appearance: 'none',
-  borderRadius: '3rem',
+});
+
+export const checkboxBase = style({
   width: '2.2rem',
   height: '2.2rem',
-  border: `1px solid ${themeVars.color.gray400}`,
+});
+
+export const checked = style({
+  fill: themeVars.color.confeti_lime,
+  stroke: themeVars.color.gray900,
+});
+
+export const unchecked = style({
+  fill: themeVars.color.gray100,
+  stroke: themeVars.color.gray300,
 });

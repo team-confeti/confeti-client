@@ -4,6 +4,7 @@ import { useFestivalButtonData } from '@pages/time-table/hooks/use-festival-data
 
 import { Button, Dialog, Header, useOverlay } from '@confeti/design-system';
 import { CheckboxFestival } from '@confeti/design-system/icons';
+import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './delete-festival-page.css';
 
@@ -49,7 +50,16 @@ const DeleteFestivalPage = () => {
                 onChange={() => handleToggleFestival(festivalId)}
                 className={styles.checkBox}
               />
-              <CheckboxFestival width={'2.2rem'} height={'2.2rem'} />
+              <CheckboxFestival
+                width={'2.2rem'}
+                height={'2.2rem'}
+                className={cn(
+                  styles.checkboxBase,
+                  festivalsToDelete.includes(festivalId)
+                    ? styles.checked
+                    : styles.unchecked,
+                )}
+              />
             </FestivalButton>
           ))}
         </div>
