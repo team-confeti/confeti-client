@@ -14,7 +14,7 @@ import TicketingSection from '../components/ticketing-section';
 import { TAB_MENU } from '../constants/menu';
 import useHomeData from '../hooks/use-home-data';
 
-const Home = () => {
+const HomePage = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
@@ -75,4 +75,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
