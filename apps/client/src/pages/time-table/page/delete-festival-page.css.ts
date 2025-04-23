@@ -34,3 +34,7 @@ export const buttonStyle = style({
   color: themeVars.color.black,
   height: '5rem',
 });
+
+export const modalText = style({
+  color: themeVars.color.confeti_lime3,
+});

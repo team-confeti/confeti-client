@@ -9,6 +9,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   imgUrl: string;
   title: string;
   className?: string;
+  isDeleteMode?: boolean;
+  isChecked?: boolean;
+  onCheckChange?: (checked: boolean) => void;
 }
 
 const FestivalButton = ({
@@ -16,15 +19,28 @@ const FestivalButton = ({
   isSelected,
   imgUrl,
   title,
+  isDeleteMode = false,
+  isChecked,
+  onCheckChange,
   ...props
 }: Props) => {
   return (
-    <div className={cn(styles.buttonContainer, className)}>
+    <label className={cn(styles.buttonContainer, className)}>
+      {isDeleteMode && (
+        <>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => onCheckChange?.(!isChecked)}
+            className={styles.checkBox}
+          />
+        </>
+      )}
       <button className={styles.festivalButton({ isSelected })} {...props}>
         <img src={imgUrl} alt={title} />
       </button>
       <span className={styles.text}>{title}</span>
-    </div>
+    </label>
   );
 };
 
