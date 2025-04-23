@@ -55,12 +55,13 @@ const Onboarding = () => {
       <Step name="1">
         <ArtistSelect artists={artists} onArtistSelect={handleArtistSelect}>
           <Button
-            text={'시작하기'}
+            text={'다음'}
             variant={'add'}
             onClick={() => {
               mutateAuthOnboard(selectedArtistIds);
               setStep(1);
             }}
+            disabled={selectedArtistIds.length < 1}
           />
         </ArtistSelect>
       </Step>
