@@ -70,8 +70,9 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
 
   return (
     <div className={styles.dayGroups}>
-      {festivalDates.map((day) => {
+      {festivalDates.map((day, index) => {
         const isExpanded = expandedDays[day.festivalDateId] || false;
+        const isFirstDay = index === 0;
 
         const VISIBLE_FESTIVAL_ARTISTS = day.artists.slice(
           0,
@@ -80,7 +81,7 @@ const ArtistSection = ({ type, artistData, isMoreButton }: ArtistListProps) => {
 
         return (
           <div key={day.festivalDateId} className={styles.dayGroup}>
-            <div className={styles.daySection}>
+            <div className={styles.daySection({ isFirstDay })}>
               <h3 className={styles.dayTitle}>{day.festivalAt}</h3>
               <ArtistGrid
                 artists={VISIBLE_FESTIVAL_ARTISTS}

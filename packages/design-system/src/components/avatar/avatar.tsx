@@ -13,6 +13,7 @@ interface Props {
   fallback?: string;
   className?: string;
   isSelected?: boolean;
+  isHandleClick?: boolean;
   onClick?: () => void;
 }
 
@@ -23,16 +24,17 @@ const Avatar = ({
   size,
   fallback,
   isSelected = false,
+  isHandleClick = true,
   onClick,
   ...props
 }: Props) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
 
   const handleClick = () => {
-    setInternalSelected((prev) => !prev);
-    if (onClick) {
-      onClick();
+    if (isHandleClick) {
+      setInternalSelected((prev) => !prev);
     }
+    onClick?.();
   };
 
   const renderFallback = !src && !fallback && (
@@ -50,7 +52,7 @@ const Avatar = ({
       ) : (
         renderFallback || <span className={styles.fallback()}>{fallback}</span>
       )}
-      {internalSelected && (
+      {internalSelected && isHandleClick && (
         <div className={styles.overlay}>
           <IcSelect className={styles.icon} />
         </div>
