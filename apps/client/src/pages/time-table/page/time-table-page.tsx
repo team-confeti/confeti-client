@@ -3,6 +3,8 @@ import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festi
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
 import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
+import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
+import { useTimeTableEdit } from '@pages/time-table/hooks/use-time-table-edit';
 
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
@@ -11,13 +13,13 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-import { useTimeTableEdit } from '../hooks/use-time-table-edit';
 
 import * as styles from './time-table-page.css';
 
 const TimeTablePage = () => {
   const { isEditTimeTableMode, isComplete, toggleEditTimeTableMode } =
     useTimeTableEdit();
+
   const { festivals } = useFestivalButtonData();
   const [selectedFestivalInfo, setSelectedFestivalInfo] =
     useState<FestivalTimetable>(festivals[0]);
@@ -40,6 +42,10 @@ const TimeTablePage = () => {
 
   const { data: boardData } = useFestivalTimetableData(selectedDateId);
 
+  const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
+    fileName: `${selectedFestivalInfo.title}`,
+  });
+
   return (
     <>
       {festivals.length === 0 ? (
@@ -58,16 +64,16 @@ const TimeTablePage = () => {
 
           {boardData && (
             <TimeTableBoard
-              clickedFestivalTitle={selectedFestivalInfo.title}
               timeTableInfo={boardData}
               isEditMode={isEditTimeTableMode}
               isComplete={isComplete}
+              ref={elementRef}
             />
           )}
           <TimeTableActions
             isEditMode={isEditTimeTableMode}
             onToggleEditMode={toggleEditTimeTableMode}
-            onDownload={() => {}}
+            onDownload={downloadImage}
           />
         </div>
       )}
