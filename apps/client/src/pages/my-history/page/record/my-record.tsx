@@ -2,7 +2,10 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
 import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
-import { useMyTimeTablePreview } from '@pages/my-history/hooks/use-my-history';
+import {
+  useMySetListPreview,
+  useMyTimeTablePreview,
+} from '@pages/my-history/hooks/use-my-history';
 
 import { Footer, Spacing } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
@@ -10,6 +13,7 @@ import { routePath } from '@shared/constants/path';
 const MyRecord = () => {
   const { data: profileData } = useUserProfile();
   const { data: timetablePreviewData } = useMyTimeTablePreview();
+  const { data: setListPreviewData } = useMySetListPreview();
 
   if (!profileData || !timetablePreviewData) {
     return null;
@@ -46,7 +50,7 @@ const MyRecord = () => {
       <PreviewSection
         previewType="SET_LIST"
         title="My 셋리스트"
-        // performances={timetablePreviewData.timetables}
+        previewData={setListPreviewData.setlists}
         emptyMessage="아직 My 셋리스트가 없어요."
         ctaText="셋리스트 추가하기"
       />
