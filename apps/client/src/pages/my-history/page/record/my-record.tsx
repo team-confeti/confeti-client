@@ -43,7 +43,7 @@ const MyRecord = () => {
         previewData={timetablePreviewData.timetables.slice(0, 3)}
         emptyMessage="아직 My 타임테이블이 없어요."
         ctaText="타임테이블 추가하기"
-        navigatePath={routePath.MY_HISTORY_OVERVIEW}
+        navigatePath={`${routePath.MY_HISTORY_OVERVIEW}?type=TIME_TABLE`}
       />
       <Spacing size="lg" color="white" />
 
@@ -54,6 +54,7 @@ const MyRecord = () => {
         previewData={setListPreviewData.setlists?.slice(0, 3)}
         emptyMessage="아직 My 셋리스트가 없어요."
         ctaText="셋리스트 추가하기"
+        navigatePath={`${routePath.MY_HISTORY_OVERVIEW}?type=SET_LIST`}
       />
       <Spacing size="xl" color="white" />
 
