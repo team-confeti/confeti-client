@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
+import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
@@ -11,8 +12,6 @@ import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
-
-import * as styles from './time-table-page.css';
 
 const TimeTablePage = () => {
   const {
@@ -71,6 +70,7 @@ const TimeTablePage = () => {
               onToggleComplete={toggleComplete}
             />
           )}
+          <TimeTableActions />
         </>
       )}
     </>
