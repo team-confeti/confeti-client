@@ -7,22 +7,17 @@ import TimeTableBoard from '@pages/time-table/components/time-table-board/time-t
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '../components/calender/calender';
-import { useEditModes } from '../hooks/use-edit-mode';
 import {
   useFestivalButtonData,
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
+import { useTimeTableEdit } from '../hooks/use-time-table-edit';
 
 import * as styles from './time-table-page.css';
 
 const TimeTablePage = () => {
-  const {
-    isEditTimeTableMode,
-    isFestivalDeleteMode,
-    isComplete,
-    toggleComplete,
-  } = useEditModes();
-
+  const { isEditTimeTableMode, isComplete, toggleEditTimeTableMode } =
+    useTimeTableEdit();
   const { festivals } = useFestivalButtonData();
   const [selectedFestivalInfo, setSelectedFestivalInfo] =
     useState<FestivalTimetable>(festivals[0]);
@@ -33,7 +28,6 @@ const TimeTablePage = () => {
       (festival) => festival.festivalId === id,
     );
 
-    // 찾은 정보로 상태 업데이트
     if (selectedFestival) {
       setSelectedFestivalInfo(selectedFestival);
       setSelectedDateId(selectedFestival.festivalDates[0].festivalDateId);
@@ -66,13 +60,15 @@ const TimeTablePage = () => {
             <TimeTableBoard
               clickedFestivalTitle={selectedFestivalInfo.title}
               timeTableInfo={boardData}
-              isEditTimeTableMode={isEditTimeTableMode}
-              isFestivalDeleteMode={isFestivalDeleteMode}
+              isEditMode={isEditTimeTableMode}
               isComplete={isComplete}
-              onToggleComplete={toggleComplete}
             />
           )}
-          <TimeTableActions />
+          <TimeTableActions
+            isEditMode={isEditTimeTableMode}
+            onToggleEditMode={toggleEditTimeTableMode}
+            onDownload={() => {}}
+          />
         </div>
       )}
     </>

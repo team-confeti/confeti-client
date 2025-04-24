@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const wrapper = style({
+export const actionsWrapper = style({
   display: 'flex',
   padding: '2rem',
   gap: '0.8rem',
@@ -16,11 +16,10 @@ export const wrapper = style({
   zIndex: themeVars.zIndex.timeTableActions.content,
 });
 
-export const downloadButton = style({
-  padding: '0rem',
-});
-
 export const editButton = style({
   color: themeVars.color.confeti_lime2,
   backgroundColor: themeVars.color.gray800,
+  flex: 1,
+  height: '5rem',
+  transition: 'all 0.18s ease-out',
 });
