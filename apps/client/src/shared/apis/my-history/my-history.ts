@@ -28,3 +28,10 @@ export const getMySetListPreview = async () => {
   );
   return response.data;
 };
+
+export const getMySetListOverView = async (sortBy: SortOption) => {
+  const response = await get<BaseResponse<MyHistorySetListResponse>>(
+    END_POINT.GET_MY_SET_LIST_OVERVIEW(sortBy),
+  );
+  return response.data;
+};

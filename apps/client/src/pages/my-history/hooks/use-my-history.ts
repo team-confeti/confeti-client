@@ -21,3 +21,10 @@ export const useMySetListPreview = () => {
   const { data } = useSuspenseQuery(MY_HISTORY_QUERY_OPTION.SETLIST.PREVIEW());
   return { data };
 };
+
+export const useMySetListOverView = (sortBy: SortOption) => {
+  const { data } = useSuspenseQuery(
+    MY_HISTORY_QUERY_OPTION.SETLIST.OVERVIEW(sortBy),
+  );
+  return { data };
+};
