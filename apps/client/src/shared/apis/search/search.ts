@@ -5,7 +5,6 @@ import {
   ArtistSearchResponse,
   IntendedPerformanceRequest,
   IntendedPerformanceResponse,
-  PerformancesSearchResponse,
   PerformanceTypeAnalysis,
   RelatedArtistResponse,
   RelatedPerformanceResponse,

@@ -4,7 +4,6 @@ import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
 import {
   getArtistRelatedKeyword,
-  getArtistRelatedPerformances,
   getArtistSearch,
   getIntendedPerformance,
   getPerformanceRelatedKeyword,
