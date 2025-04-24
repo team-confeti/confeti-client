@@ -13,6 +13,8 @@ import {
   useFestivalTimetableData,
 } from '../hooks/use-festival-data';
 
+import * as styles from './time-table-page.css';
+
 const TimeTablePage = () => {
   const {
     isEditTimeTableMode,
@@ -49,7 +51,7 @@ const TimeTablePage = () => {
       {festivals.length === 0 ? (
         <EmptyFestivalSection />
       ) : (
-        <>
+        <div className={styles.wrapper}>
           <FestivalSelector
             festivals={festivals}
             selectedFestivalId={selectedFestivalInfo.festivalId}
@@ -71,7 +73,7 @@ const TimeTablePage = () => {
             />
           )}
           <TimeTableActions />
-        </>
+        </div>
       )}
     </>
   );

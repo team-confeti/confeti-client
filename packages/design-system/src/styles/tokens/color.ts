@@ -27,6 +27,8 @@ export const color = {
   white_op_20: 'rgba(255, 255, 255, 0.20)',
 
   // gradients
+  white_grad:
+    'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)',
   confeti_grad: 'linear-gradient(180deg, #E9FFAC 0%, #B5F602 100%)',
   confeti_grad2: 'linear-gradient(180deg, #EFF0F4 0%, #E9FFAC 100%)',
   confeti_purple_grad: 'linear-gradient(180deg, #131433 -3.3%, #9747FF 89.71%)',

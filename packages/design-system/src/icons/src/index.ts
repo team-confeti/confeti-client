@@ -30,6 +30,7 @@ export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowUpGray16 } from './IcArrowUpGray16';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
 export { default as IcArtistNon } from './IcArtistNon';
+export { default as IcEditGreen24 } from './IcEditGreen24';
 export { default as IcError404 } from './IcError404';
 export { default as IcExclamationCircleOutlined32 } from './IcExclamationCircleOutlined32';
 export { default as IcFestivalGray } from './IcFestivalGray';

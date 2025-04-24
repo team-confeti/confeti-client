@@ -31,4 +31,7 @@ export const zIndex = {
   backDrop: {
     content: '100',
   },
+  timeTableActions: {
+    content: '100',
+  },
 } as const;
