@@ -4,7 +4,8 @@ import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Button, Footer, Header } from '@confeti/design-system';
+import { Button, Footer, Header, toast } from '@confeti/design-system';
+import { IcToastInfo16 } from '@confeti/design-system/icons';
 import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
 import { urlToFile } from '@shared/utils/url-to-file';
 
@@ -22,6 +23,20 @@ const EditProfile = () => {
   );
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [hasShownToast, setHasShownToast] = useState(false);
+
+  useEffect(() => {
+    if (name.length > 10 && !hasShownToast) {
+      toast({
+        text: '2~10자로 입력해 주세요',
+        icon: <IcToastInfo16 width={16} height={16} />,
+      });
+      setHasShownToast(true);
+    } else if (name.length <= 10 && hasShownToast) {
+      setHasShownToast(false);
+    }
+  }, [name, hasShownToast]);
 
   useEffect(() => {
     if (profileData?.profileUrl) {
