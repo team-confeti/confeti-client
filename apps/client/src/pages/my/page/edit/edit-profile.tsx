@@ -4,9 +4,9 @@ import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Button, Footer, Header, toast } from '@confeti/design-system';
-import { IcToastInfo16 } from '@confeti/design-system/icons';
+import { Button, Footer, Header } from '@confeti/design-system';
 import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
+import { urlToFile } from '@shared/utils/url-to-file';
 
 import * as styles from './edit-profile.css';
 
@@ -15,29 +15,19 @@ const EditProfile = () => {
   const { mutate: updateUserInfo } = useUserProfileMutation();
 
   const [name, setName] = useState('');
-  const [hasShownToast, setHasShownToast] = useState(false);
 
-  const [newImgUrl, setNewImgUrl] = useState(profileData?.profileUrl || '');
+  const [profileFile, setProfileFile] = useState<File | null>(null);
+  const [previewImgUrl, setPreviewImgUrl] = useState(
+    profileData?.profileUrl || '',
+  );
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (profileData?.profileUrl) {
-      setNewImgUrl(profileData.profileUrl);
+      setPreviewImgUrl(profileData.profileUrl);
     }
   }, [profileData]);
-
-  useEffect(() => {
-    if (name.length > 10 && !hasShownToast) {
-      toast({
-        text: '2~10자로 입력해 주세요',
-        icon: <IcToastInfo16 width={16} height={16} />,
-      });
-
-      setHasShownToast(true);
-    } else if (name.length <= 10 && hasShownToast) {
-      setHasShownToast(false);
-    }
-  }, [name, hasShownToast]);
 
   if (!profileData) return null;
 
@@ -47,17 +37,16 @@ const EditProfile = () => {
 
   const isNameInvalid =
     (name.length > 0 && name.length < 2) || name.length > 10;
-  const isImageChanged = newImgUrl !== profileData.profileUrl;
+  const isImageChanged = !!profileFile;
 
   const isButtonDisabled =
     (name.length < 2 || isNameInvalid) && !isImageChanged;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setNewImgUrl(imageUrl);
+      setProfileFile(file); // 저장
+      setPreviewImgUrl(URL.createObjectURL(file)); // 화면 미리보기
     }
   };
 
@@ -65,15 +54,25 @@ const EditProfile = () => {
     fileInputRef.current?.click();
   };
 
+  const handleSave = async () => {
+    const fileToSend = profileFile
+      ? profileFile
+      : await urlToFile(profileData.profileUrl, 'current-profile.jpg');
+
+    updateUserInfo({
+      name: name || profileData.name,
+      profileFile: fileToSend,
+    });
+  };
+
   return (
     <>
+      <Header variant="detail" title="프로필 편집" />
       <div className={styles.pageWrapper}>
-        <Header variant="detail" title="프로필 편집" />
-
         <div className={styles.content}>
           <UserInfo
             name={profileData.name}
-            profileUrl={newImgUrl}
+            profileUrl={previewImgUrl}
             showArrow={false}
             showEditBtn={true}
             onEditImage={triggerFileInput}
@@ -98,12 +97,7 @@ const EditProfile = () => {
             variant="add"
             text="저장하기"
             disabled={isButtonDisabled}
-            onClick={() =>
-              updateUserInfo({
-                name: name || profileData.name,
-                profileUrl: newImgUrl,
-              })
-            }
+            onClick={handleSave}
           />
         </div>
         <Footer />

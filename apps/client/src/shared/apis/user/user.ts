@@ -63,9 +63,25 @@ export const getMyPerformances = async (
 };
 
 export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
+  const formData = new FormData();
+  formData.append('name', userInfo.name);
+
+  if (userInfo.profileFile) {
+    formData.append('profileFile', userInfo.profileFile);
+  } else {
+    const emptyFile = new Blob([], { type: 'image/jpeg' });
+    formData.append('profileFile', emptyFile, 'empty.jpg');
+  }
+
   const response = await patch<BaseResponse<UserInfo>>(
     END_POINT.PATCH_USER_INFO,
-    userInfo,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
   );
+
   return response.data;
 };

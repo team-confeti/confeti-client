@@ -11,5 +11,6 @@ export const content = style({
 });
 
 export const buttonWrapper = style({
+  marginTop: '12.1rem',
   padding: '2rem',
 });

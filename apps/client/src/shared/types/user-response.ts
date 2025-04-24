@@ -60,5 +60,6 @@ export interface MyPerformancesResponse {
 
 export interface UserInfo {
   name: string;
-  profileUrl: string;
+  profileFile?: File;
+  profileUrl?: string;
 }
