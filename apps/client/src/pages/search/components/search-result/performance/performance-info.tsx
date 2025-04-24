@@ -9,6 +9,7 @@ import { formatDate } from '@shared/utils/format-date';
 import * as styles from './performance-info.css';
 
 const PerformanceInfo = ({
+  typeId,
   posterUrl,
   title,
   startAt,
@@ -16,7 +17,6 @@ const PerformanceInfo = ({
   area,
   isFavorite,
   type,
-  typeId,
 }: Performance) => {
   const { mutate } = useLikeMutation();
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
