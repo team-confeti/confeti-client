@@ -25,8 +25,11 @@ export const END_POINT = {
     `user/favorites/concerts/${concertId}`,
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
+  // 홈 페이지
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
+  GET_SUGGEST_PERFORMANCE: 'performances/recommend',
+  GET_SUGGEST_MUSIC: 'performances/recommend/musics',
 
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',

@@ -5,7 +5,7 @@ export const ErrorPage = lazy(() => import('@shared/pages/error/error'));
 export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
 
 // Home
-export const HomePage = lazy(() => import('@pages/home/page/home'));
+export const HomePage = lazy(() => import('@pages/home/page/home-page'));
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
 export const RequireLoginPage = lazy(
   () => import('@pages/home/page/auth/require-login'),
