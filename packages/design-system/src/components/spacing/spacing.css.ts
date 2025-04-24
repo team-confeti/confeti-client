@@ -12,6 +12,7 @@ const spacingVariants = recipe({
       md: { height: '1rem' },
       lg: { height: '2rem' },
       xl: { height: '3rem' },
+      '2xl': { height: '4rem' },
     },
     color: {
       gray: { backgroundColor: themeVars.color.gray100 },

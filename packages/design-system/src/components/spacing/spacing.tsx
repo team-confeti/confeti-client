@@ -5,7 +5,7 @@ import { cn } from '../../utils';
 import { spacingVariants } from './spacing.css';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   color?: 'gray' | 'white';
   children?: never;
 }
