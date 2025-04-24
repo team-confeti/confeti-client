@@ -53,3 +53,7 @@ export interface SuggestMusicPerformanceResponse {
   performanceId: number;
   title: string;
 }
+
+export interface SuggestMusicResponse {
+  musicList: MusicList[];
+}

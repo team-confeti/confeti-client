@@ -3,11 +3,12 @@ import { BaseResponse } from '@shared/types/api';
 import {
   CarouselPerformancesResponse,
   SuggestMusicPerformanceResponse,
+  SuggestMusicResponse,
   SuggestPerformanceResponse,
   TicketingPerformancesResponse,
 } from '@shared/types/home-response';
 
-import { get, patch } from '../config/instance';
+import { get } from '../config/instance';
 
 export const getLatestPerformances =
   async (): Promise<CarouselPerformancesResponse> => {
@@ -40,3 +41,18 @@ export const getSuggestMusicPerformance =
     );
     return response.data;
   };
+
+export const getSuggestMusic = async (
+  performanceId: number,
+  musicId?: string[],
+): Promise<SuggestMusicResponse> => {
+  const query = new URLSearchParams();
+
+  query.append('performanceId', String(performanceId));
+  musicId?.forEach((id) => query.append('musicId', id));
+
+  const url = `performances/recommend/musics?${query.toString()}`;
+
+  const response = await get<BaseResponse<SuggestMusicResponse>>(url);
+  return response.data;
+};
