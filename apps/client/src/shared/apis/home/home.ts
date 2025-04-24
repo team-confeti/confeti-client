@@ -40,17 +40,3 @@ export const getSuggestMusic = async (): Promise<SuggestMusicResponse> => {
   );
   return response.data;
 };
-
-export const patchRefreshMusic = async (
-  performanceId: number,
-  musicList: MusicList[],
-): Promise<MusicList[]> => {
-  const response = await patch<BaseResponse<MusicList[]>>(
-    END_POINT.PATCH_REFRESH_MUSIC,
-    {
-      performanceId,
-      musicList,
-    },
-  );
-  return response.data;
-};

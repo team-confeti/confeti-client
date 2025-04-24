@@ -3,8 +3,6 @@ import { IcLoad, IcMusic } from '@confeti/design-system/icons';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { SuggestMusicResponse } from '@shared/types/home-response';
 
-import { useRefreshMusic } from '../hooks/use-refresh-music';
-
 import * as styles from './suggest-music-section.css';
 
 const SuggestMusicSection = ({
@@ -17,15 +15,6 @@ const SuggestMusicSection = ({
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
     data.musicList,
   );
-
-  const { mutate: refreshMusic } = useRefreshMusic();
-
-  const handleRefreshMusic = () => {
-    refreshMusic({
-      performanceId: data.id,
-      musicList: data.musicList,
-    });
-  };
 
   return (
     <Box
@@ -42,7 +31,6 @@ const SuggestMusicSection = ({
         text="다른 노래 더보기"
         icon={<IcLoad width="2.8rem" height="2.8rem" />}
         className={styles.button}
-        onClick={handleRefreshMusic}
       />
     </Box>
   );

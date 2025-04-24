@@ -34,7 +34,6 @@ export const END_POINT = {
   GET_LATEST_PERFORMANCES: 'performances/info',
   GET_SUGGEST_PERFORMANCE: 'performances/recommend',
   GET_SUGGEST_MUSIC: 'performances/recommend/musics',
-  PATCH_REFRESH_MUSIC: 'performances/recommend/musics',
 
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
