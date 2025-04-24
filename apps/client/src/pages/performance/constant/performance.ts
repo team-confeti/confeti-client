@@ -5,6 +5,7 @@ export const PERFORMANCE_LABEL = {
   DETAIL_INFO: '상세 정보',
   TICKET_INFO: '티켓 정보',
   LOCATION: '오시는 길',
+  ARTIST: '아티스트',
 
   //label
   PERIOD: '기간',
