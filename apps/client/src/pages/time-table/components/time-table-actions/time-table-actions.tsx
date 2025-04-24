@@ -7,9 +7,8 @@ const TimeTableActions = () => {
   return (
     <div className={styles.wrapper}>
       <ButtonIcon
-        className={styles.downloadButton}
         ariaLabel="download-button"
-        icon={<BtnDownload width={'3rem'} height={'3rem'} />}
+        icon={<BtnDownload width={'5rem'} height={'5rem'} />}
       />
       <Button text="타임테이블 편집하기"></Button>
     </div>
