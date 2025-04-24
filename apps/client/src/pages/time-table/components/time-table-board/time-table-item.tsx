@@ -14,9 +14,9 @@ interface ItemProps {
   artists: Artist[];
   startTime: string;
   endTime: string;
-  stageCount: number;
+
   isSelected: boolean;
-  stageOrder: number;
+
   ticketOpenAt: string;
   userTimetableId: number;
   isEditTimeTableMode: boolean;
@@ -34,8 +34,7 @@ const TimeTableItem = ({
   endTime,
   ticketOpenAt,
   isSelected,
-  stageOrder,
-  stageCount,
+
   userTimetableId,
   isEditTimeTableMode,
   onClick,

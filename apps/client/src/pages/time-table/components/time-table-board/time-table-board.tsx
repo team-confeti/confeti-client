@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-open-box';
 import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
 import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
@@ -22,6 +22,7 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
   const isHalfHourOpen = Number(openMin) === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
   const cellNumber = generateTableRow(ticketOpenHour);
+  const ref = useRef<HTMLDivElement>(null);
 
   const patchTimeTableMutation = usePatchTimeTableMutation();
 
@@ -51,10 +52,11 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
 
     patchTimeTableMutation.mutate(updatedTimetables);
   };
+
   useEffect(() => {
     if (ref.current) {
       const stageCount = timeTableInfo.stages.length;
-      const calculatedWidth = `${stageCount * 10.2 + 6.9}rem`;
+      const calculatedWidth = `${stageCount * 10.2 + 2.9}rem`;
       ref.current.style.width = calculatedWidth;
       ref.current.style.minWidth = calculatedWidth;
     }
@@ -64,7 +66,6 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
     <section className={styles.container}>
       <div className={styles.wrapper} ref={ref}>
         <BoothOpenBox ticketOpenAt={timeTableInfo.ticketOpenAt} />
-
         {cellNumber.map((hour) => (
           <div key={hour}>
             <TimeCell hour={hour} isHalfHourOpen={isHalfHourOpen} />
@@ -83,8 +84,6 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
                   startTime={block.startAt}
                   endTime={block.endAt}
                   ticketOpenAt={timeTableInfo.ticketOpenAt}
-                  stageCount={timeTableInfo.stageCount}
-                  stageOrder={stage.stageOrder}
                   isEditTimeTableMode={isEditMode}
                   onClick={handleTimeTableItemClick}
                 />

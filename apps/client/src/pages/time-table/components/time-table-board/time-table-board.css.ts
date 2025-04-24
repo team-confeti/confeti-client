@@ -29,12 +29,14 @@ export const stagesContainer = style({
   left: '2.9rem',
   top: 0,
   bottom: 0,
+  backgroundColor: themeVars.color.white,
 });
 
 export const timeList = style({
   display: 'flex',
   alignItems: 'center',
   marginBottom: '3rem',
+  backgroundColor: themeVars.color.white,
 });
 
 export const minutesP = style({

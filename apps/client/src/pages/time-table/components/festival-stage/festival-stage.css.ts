@@ -24,7 +24,6 @@ export const stageWrapper = style({
   gap: '0.2rem',
   position: 'sticky',
   top: '0',
-  backgroundColor: themeVars.color.white_op_20,
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   backdropFilter: 'blur(2px)',
   borderTop: themeVars.border.gray200,
@@ -37,7 +36,7 @@ export const stageWrapper = style({
   '::-webkit-scrollbar': {
     display: 'none',
   },
-  msOverflowStyle: 'none',
+
   scrollbarWidth: 'none',
 
   maxWidth: '47.7rem',
