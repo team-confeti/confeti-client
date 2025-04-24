@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-open-box';
 import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
 import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
@@ -15,10 +15,9 @@ import * as styles from './time-table-board.css';
 interface Props {
   timeTableInfo: TimeTableInfo;
   isEditMode: boolean;
-  ref: RefObject<HTMLDivElement | null>;
 }
 
-const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
+const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
   const isHalfHourOpen = Number(openMin) === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
@@ -52,10 +51,18 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
 
     patchTimeTableMutation.mutate(updatedTimetables);
   };
+  useEffect(() => {
+    if (ref.current) {
+      const stageCount = timeTableInfo.stages.length;
+      const calculatedWidth = `${stageCount * 10.2 + 6.9}rem`;
+      ref.current.style.width = calculatedWidth;
+      ref.current.style.minWidth = calculatedWidth;
+    }
+  }, [timeTableInfo.stages.length, ref]);
 
   return (
-    <section className={styles.container} ref={ref}>
-      <div className={styles.wrapper}>
+    <section className={styles.container}>
+      <div className={styles.wrapper} ref={ref}>
         <BoothOpenBox ticketOpenAt={timeTableInfo.ticketOpenAt} />
 
         {cellNumber.map((hour) => (

@@ -30,7 +30,7 @@ export const stageWrapper = style({
   borderTop: themeVars.border.gray200,
   zIndex: 10,
   width: '100%',
-  marginBottom: '1.2rem',
+
   padding: '0.8rem 2rem',
   paddingLeft: '4.8rem',
   overflowX: 'auto',

@@ -14,6 +14,7 @@ export const container = style({
   },
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
+  paddingTop: '1.2rem',
 });
 
 export const wrapper = style({

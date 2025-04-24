@@ -263,12 +263,11 @@ const TimeTablePage = () => {
           />
 
           {mockData.data && (
-            <div className={styles.timeTableWrapper}>
+            <div className={styles.timeTableWrapper} ref={elementRef}>
               <FestivalStage timeTableInfo={mockData.data} />
               <TimeTableBoard
                 timeTableInfo={mockData.data}
                 isEditMode={isEditTimeTableMode}
-                ref={elementRef}
               />
             </div>
           )}
