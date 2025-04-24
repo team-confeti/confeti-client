@@ -7,6 +7,7 @@ const TimeTableActions = () => {
   return (
     <div className={styles.wrapper}>
       <ButtonIcon
+        className={styles.downloadButton}
         ariaLabel="download-button"
         icon={<BtnDownload width={'3rem'} height={'3rem'} />}
       />

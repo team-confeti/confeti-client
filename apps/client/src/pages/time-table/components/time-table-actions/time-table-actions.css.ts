@@ -5,3 +5,7 @@ export const wrapper = style({
   padding: '2rem',
   gap: '0.8rem',
 });
+
+export const downloadButton = style({
+  padding: '0rem',
+});
