@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
+import FestivalStage from '@pages/time-table/components/festival-stage/festival-stage';
 import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
@@ -62,11 +63,14 @@ const TimeTablePage = () => {
           />
 
           {boardData && (
-            <TimeTableBoard
-              timeTableInfo={boardData}
-              isEditMode={isEditTimeTableMode}
-              ref={elementRef}
-            />
+            <>
+              <FestivalStage timeTableInfo={boardData} />
+              <TimeTableBoard
+                timeTableInfo={boardData}
+                isEditMode={isEditTimeTableMode}
+                ref={elementRef}
+              />
+            </>
           )}
 
           <TimeTableActions

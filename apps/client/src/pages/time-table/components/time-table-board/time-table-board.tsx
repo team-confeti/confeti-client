@@ -1,6 +1,5 @@
 import { RefObject } from 'react';
 import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-open-box';
-import Stage from '@pages/time-table/components/time-table-board/stage';
 import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
 import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
 import { END_HOUR, HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
@@ -56,7 +55,6 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
 
   return (
     <section className={styles.container} ref={ref}>
-      <Stage timeTableInfo={timeTableInfo}></Stage>
       <div className={styles.wrapper}>
         <BoothOpenBox ticketOpenHour={timeTableInfo.ticketOpenAt} />
 

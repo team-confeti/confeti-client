@@ -4,6 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   backgroundColor: themeVars.color.white,
+  padding: '0rem 2rem 2rem 2rem',
 });
 
 export const wrapper = style({
