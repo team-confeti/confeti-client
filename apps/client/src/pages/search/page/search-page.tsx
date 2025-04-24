@@ -9,7 +9,6 @@ import PopularSearchSection from '../components/search-home/popular-search-secti
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
 import {
-  useIntendedPerformance,
   usePerformanceTypeAnalysis,
   useRelatedSearch,
   useSearchArtist,
@@ -47,16 +46,6 @@ const SearchPage = () => {
   const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
     keyword: searchKeyword,
     enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
-  });
-
-  const { data: intendedPerformanceData } = useIntendedPerformance({
-    request: {
-      pid: Number(relatedPerformances?.performances[0]?.id) || null,
-      aid: artistData?.artist.artistId || null,
-      ptitle: performanceTypeAnalysisData?.processedTerm || null,
-      ptype: performanceTypeAnalysisData?.performanceType || null,
-    },
-    enabled: !!artistData || !!performanceTypeAnalysisData,
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -109,7 +98,8 @@ const SearchPage = () => {
         return (
           <SearchResult
             artistData={artistData?.artist ?? null}
-            intendedPerformanceData={intendedPerformanceData ?? null}
+            relatedPerformances={relatedPerformances ?? null}
+            performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
           />
         );
 

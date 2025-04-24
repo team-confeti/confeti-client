@@ -1,4 +1,4 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
 import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
@@ -53,19 +53,14 @@ export const usePerformanceTypeAnalysis = ({
 
 interface UseIntendedPerformanceProps {
   request: IntendedPerformanceRequest;
-  enabled: boolean;
 }
 
 export const useIntendedPerformance = ({
   request,
-  enabled,
 }: UseIntendedPerformanceProps) => {
-  const { data, isLoading } = useQuery({
-    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_INTENDED_PERFORMANCE(
-      request,
-      enabled,
-    ),
+  const { data } = useSuspenseQuery({
+    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_INTENDED_PERFORMANCE(request),
   });
 
-  return { data, isLoading };
+  return { data };
 };

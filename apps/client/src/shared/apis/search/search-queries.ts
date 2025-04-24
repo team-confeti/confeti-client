@@ -68,12 +68,8 @@ export const SEARCH_PERFORMANCE_QUERY_OPTION = {
     queryFn: () => getPerformanceTypeAnalysis(keyword),
     enabled,
   }),
-  SEARCH_INTENDED_PERFORMANCE: (
-    request: IntendedPerformanceRequest,
-    enabled: boolean,
-  ) => ({
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => ({
     queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_INTENDED_PERFORMANCE(request),
     queryFn: () => getIntendedPerformance(request),
-    enabled,
   }),
 };

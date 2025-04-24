@@ -1,21 +1,38 @@
 import { Footer, Spacing } from '@confeti/design-system';
 import {
   ArtistSearch,
-  IntendedPerformanceResponse,
+  PerformanceTypeAnalysis,
+  RelatedPerformanceResponse,
 } from '@shared/types/search-reponse';
 
 import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
+import { useIntendedPerformance } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
 interface Props {
   artistData: ArtistSearch | null;
-  intendedPerformanceData: IntendedPerformanceResponse | null;
+  relatedPerformances: RelatedPerformanceResponse | null;
+  performanceTypeAnalysisData: PerformanceTypeAnalysis | null;
 }
-const SearchResult = ({ artistData, intendedPerformanceData }: Props) => {
+
+const SearchResult = ({
+  artistData,
+  relatedPerformances,
+  performanceTypeAnalysisData,
+}: Props) => {
+  const { data: intendedPerformanceData } = useIntendedPerformance({
+    request: {
+      pid: Number(relatedPerformances?.performances?.[0]?.id) || null,
+      aid: artistData?.artistId || null,
+      ptitle: performanceTypeAnalysisData?.processedTerm || null,
+      ptype: performanceTypeAnalysisData?.performanceType || null,
+    },
+  });
+
   return (
     <>
       <main className={styles.resultSection}>
