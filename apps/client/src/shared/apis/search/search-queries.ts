@@ -1,10 +1,14 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
+
 import {
   getArtistRelatedKeyword,
   getArtistRelatedPerformances,
   getArtistSearch,
+  getIntendedPerformance,
   getPerformanceRelatedKeyword,
+  getPerformanceTypeAnalysis,
 } from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
@@ -37,6 +41,19 @@ export const SEARCH_PERFORMANCE_QUERY_KEY = {
     'search',
     keyword,
   ],
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'type-analysis',
+    keyword,
+  ],
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'intended',
+    request.pid,
+    request.aid,
+    request.ptitle,
+    request.ptype,
+  ],
 } as const;
 
 export const SEARCH_PERFORMANCE_QUERY_OPTION = {
@@ -44,6 +61,20 @@ export const SEARCH_PERFORMANCE_QUERY_OPTION = {
   SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) => ({
     queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
     queryFn: () => getPerformanceRelatedKeyword(keyword),
+    enabled,
+  }),
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string, enabled: boolean) => ({
+    queryKey:
+      SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCE_TYPE_ANALYSIS(keyword),
+    queryFn: () => getPerformanceTypeAnalysis(keyword),
+    enabled,
+  }),
+  SEARCH_INTENDED_PERFORMANCE: (
+    request: IntendedPerformanceRequest,
+    enabled: boolean,
+  ) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_INTENDED_PERFORMANCE(request),
+    queryFn: () => getIntendedPerformance(request),
     enabled,
   }),
 };

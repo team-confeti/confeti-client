@@ -29,6 +29,7 @@ export const END_POINT = {
     `user/favorites/concerts/${concertId}`,
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
+
   // 홈 페이지
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
@@ -40,6 +41,10 @@ export const END_POINT = {
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
+  DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
+    `user/timetables/festivals/${festivalId}`,
+  GET_FESTIVAL_TO_ADD: (cursor?: number) =>
+    `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
 
   //검색
   GET_ARTISTS_SEARCH: `artists/search?term=`,
@@ -49,16 +54,15 @@ export const END_POINT = {
     `performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH: (artistId: string | null) =>
     `performances/association/${artistId}`,
-  GET_FESTIVAL_TO_ADD: (cursor?: number) =>
-    `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
-  DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
-    `user/timetables/festivals/${festivalId}`,
+  GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
+    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
 
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
   POST_REISSUE_TOKEN: 'auth/reissue',
   DELETE_ACCOUNT: 'auth/withdraw',
+
   //온보딩
   GET_TOP100_ARTIST: (limit: number) => `user/onboard/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
