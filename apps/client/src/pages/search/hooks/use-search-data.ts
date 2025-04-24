@@ -6,15 +6,16 @@ import {
 
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
 import { SEARCH_ARTIST_RELATED_QUERY_OPTION } from '@shared/apis/search/search-queries';
+import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
 import { SEARCH_PERFORMANCE_QUERY_OPTION } from './../../../shared/apis/search/search-queries';
 
-interface UseArtistProps {
+interface KeywordProps {
   keyword: string;
   enabled: boolean;
 }
 
-export const useSearchArtist = ({ keyword, enabled }: UseArtistProps) => {
+export const useSearchArtist = ({ keyword, enabled }: KeywordProps) => {
   const { data, isLoading } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
   });
@@ -40,7 +41,7 @@ export const useArtistRelatedData = (artistId: string | null) => {
   };
 };
 
-export const useRelatedSearch = ({ keyword, enabled }: UseArtistProps) => {
+export const useRelatedSearch = ({ keyword, enabled }: KeywordProps) => {
   return useQueries({
     queries: [
       SEARCH_ARTIST_QUERY_OPTION.SEARCH_RELATED_KEYWORD(keyword, enabled),
@@ -57,4 +58,37 @@ export const useRelatedSearch = ({ keyword, enabled }: UseArtistProps) => {
       isLoading: results.some((r) => r.isLoading),
     }),
   });
+};
+
+export const usePerformanceTypeAnalysis = ({
+  keyword,
+  enabled,
+}: KeywordProps) => {
+  const { data, isLoading } = useQuery({
+    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_PERFORMANCE_TYPE_ANALYSIS(
+      keyword,
+      enabled,
+    ),
+  });
+
+  return { data, isLoading };
+};
+
+interface UseIntendedPerformanceProps {
+  request: IntendedPerformanceRequest;
+  enabled: boolean;
+}
+
+export const useIntendedPerformance = ({
+  request,
+  enabled,
+}: UseIntendedPerformanceProps) => {
+  const { data, isLoading } = useQuery({
+    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_INTENDED_PERFORMANCE(
+      request,
+      enabled,
+    ),
+  });
+
+  return { data, isLoading };
 };

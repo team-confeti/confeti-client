@@ -9,7 +9,6 @@ import { formatDate } from '@shared/utils/format-date';
 import * as styles from './performance-info.css';
 
 const PerformanceInfo = ({
-  typeId,
   posterUrl,
   title,
   startAt,

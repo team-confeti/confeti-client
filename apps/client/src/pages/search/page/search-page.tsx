@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
@@ -7,7 +8,12 @@ import Loading from '@shared/pages/loading/loading';
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
-import { useRelatedSearch, useSearchArtist } from '../hooks/use-search-data';
+import {
+  useIntendedPerformance,
+  usePerformanceTypeAnalysis,
+  useRelatedSearch,
+  useSearchArtist,
+} from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
 
@@ -16,6 +22,8 @@ import * as styles from './search-page.css';
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const paramsKeyword = searchParams.get('q') || '';
+  const [isPerformanceAnalysisTriggered, setIsPerformanceAnalysisTriggered] =
+    useState(false);
 
   const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
@@ -36,6 +44,20 @@ const SearchPage = () => {
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
   });
+  const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
+    keyword: searchKeyword,
+    enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
+  });
+
+  const { data: intendedPerformanceData } = useIntendedPerformance({
+    request: {
+      pid: Number(relatedPerformances?.performances[0]?.id) || null,
+      aid: artistData?.artist.artistId || null,
+      ptitle: performanceTypeAnalysisData?.processedTerm || null,
+      ptype: performanceTypeAnalysisData?.performanceType || null,
+    },
+    enabled: !!artistData || !!performanceTypeAnalysisData,
+  });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -43,6 +65,7 @@ const SearchPage = () => {
       !e.nativeEvent.isComposing &&
       searchKeyword.trim()
     ) {
+      setIsPerformanceAnalysisTriggered(true);
       handleNavigateWithKeyword(searchKeyword);
       (e.target as HTMLInputElement).blur();
     }
@@ -83,7 +106,12 @@ const SearchPage = () => {
         );
 
       case isResultState:
-        return <SearchResult artistData={artistData?.artist ?? null} />;
+        return (
+          <SearchResult
+            artistData={artistData?.artist ?? null}
+            intendedPerformanceData={intendedPerformanceData ?? null}
+          />
+        );
 
       default:
         return (
