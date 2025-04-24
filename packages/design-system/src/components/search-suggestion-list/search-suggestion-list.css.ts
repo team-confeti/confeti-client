@@ -39,6 +39,13 @@ export const fallbackImage = style({
   cursor: 'pointer',
 });
 
+export const performanceImage = style({
+  width: '3rem',
+  height: '3rem',
+  objectFit: 'cover',
+  cursor: 'pointer',
+});
+
 export const searchSuggestionListSection = recipe({
   base: {
     ...themeVars.display.flexColumn,
@@ -46,6 +53,6 @@ export const searchSuggestionListSection = recipe({
     gap: '2rem',
     width: '100%',
     height: 'auto',
-    padding: '2rem',
+    padding: '2rem 2rem 0 2rem',
   },
 });

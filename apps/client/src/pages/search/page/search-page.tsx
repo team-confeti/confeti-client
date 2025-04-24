@@ -7,10 +7,7 @@ import Loading from '@shared/pages/loading/loading';
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
-import {
-  useSearchArtist,
-  useSearchRelatedKeyword,
-} from '../hooks/use-search-data';
+import { useRelatedSearch, useSearchArtist } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
 
@@ -31,11 +28,14 @@ const SearchPage = () => {
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
-  const { data: relatedKeywordsData, isLoading: isRelatedKeywordLoading } =
-    useSearchRelatedKeyword({
-      keyword: debouncedKeyword,
-      enabled: !!debouncedKeyword.trim(),
-    });
+
+  const {
+    data: { relatedArtists, relatedPerformances },
+    isLoading: isRelatedKeywordLoading,
+  } = useRelatedSearch({
+    keyword: debouncedKeyword,
+    enabled: !!debouncedKeyword.trim(),
+  });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -49,8 +49,8 @@ const SearchPage = () => {
   };
 
   const renderSearchContents = () => {
-    const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
-    const isSuggestionState = !!relatedKeywordsData?.artists;
+    const isLoadingState = isSearchLoading || isRelatedKeywordLoading;
+    const isSuggestionState = !!relatedArtists?.artists;
     const isResultState = !!artistData;
 
     switch (true) {
@@ -59,10 +59,27 @@ const SearchPage = () => {
 
       case isSuggestionState:
         return (
-          <SearchSuggestionList
-            relatedKeyword={relatedKeywordsData?.artists}
-            onSelectKeyword={handleNavigateWithKeyword}
-          />
+          <>
+            <SearchSuggestionList
+              relatedKeyword={relatedArtists?.artists?.map((artist) => ({
+                id: artist.artistId,
+                title: artist.name,
+                profileUrl: artist.profileUrl,
+              }))}
+              onSelectKeyword={handleNavigateWithKeyword}
+            />
+            <SearchSuggestionList
+              relatedKeyword={relatedPerformances?.performances?.map(
+                (performance) => ({
+                  id: performance.id,
+                  title: performance.title,
+                  profileUrl: performance.posterUrl,
+                }),
+              )}
+              onSelectKeyword={handleNavigateWithKeyword}
+              listType="performance"
+            />
+          </>
         );
 
       case isResultState:
