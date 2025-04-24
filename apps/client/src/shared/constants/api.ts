@@ -45,6 +45,8 @@ export const END_POINT = {
   GET_ARTISTS_SEARCH: `artists/search?term=`,
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
+    `performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH: (artistId: string | null) =>
     `performances/association/${artistId}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
