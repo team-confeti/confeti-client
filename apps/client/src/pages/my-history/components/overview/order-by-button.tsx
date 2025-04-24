@@ -4,7 +4,7 @@ import * as styles from './order-by-button.css';
 
 interface OrderByButtonProps {
   orderByText: string;
-  onClick: () => void;
+  onClick: VoidFunction;
 }
 
 const OrderByButton = ({ orderByText, onClick }: OrderByButtonProps) => {
