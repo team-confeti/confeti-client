@@ -44,10 +44,11 @@ export const MY_HISTORY_QUERY_OPTION = {
         queryKey: MY_HISTORY_QUERY_KEY.TIME_TABLE.PREVIEW(),
         queryFn: getMyTimeTablePreview,
       }),
-    OVERVIEW: (sortBy: SortOption) =>
+    OVERVIEW: (sortBy: SortOption, enabled: boolean = true) =>
       queryOptions({
         queryKey: MY_HISTORY_QUERY_KEY.TIME_TABLE.OVERVIEW(sortBy),
         queryFn: () => getMyTimeTableOverView(sortBy),
+        enabled,
       }),
   },
   SETLIST: {
@@ -60,10 +61,11 @@ export const MY_HISTORY_QUERY_OPTION = {
         queryKey: MY_HISTORY_QUERY_KEY.SETLIST.PREVIEW(),
         queryFn: getMySetListPreview,
       }),
-    OVERVIEW: (sortBy: SortOption) =>
+    OVERVIEW: (sortBy: SortOption, enabled: boolean = true) =>
       queryOptions({
         queryKey: MY_HISTORY_QUERY_KEY.SETLIST.OVERVIEW(sortBy),
         queryFn: () => getMySetListOverView(sortBy),
+        enabled,
       }),
   },
 } as const;

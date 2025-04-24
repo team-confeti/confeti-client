@@ -17,21 +17,29 @@ import {
 import * as styles from './my-history-overview-page.css';
 
 const MyHistoryOverviewPage = () => {
+  //TODO: FestivalCard에 Skeleton 추가
   const [sortOption, setSortOption] = useState<SortOption>(SORT_OPTIONS.RECENT);
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
-  const { data: timetableOverviewData } = useMyTimeTableOverView(sortOption);
-  const { data: setListOverviewData } = useMySetListOverView(sortOption);
+  const isSetList = type === 'SET_LIST';
+  const { data: setListOverviewData } = useMySetListOverView(
+    sortOption,
+    isSetList,
+  );
+  const { data: timetableOverviewData } = useMyTimeTableOverView(
+    sortOption,
+    !isSetList,
+  );
 
-  const overviewData =
-    type === 'SET_LIST'
-      ? setListOverviewData.setlists
-      : timetableOverviewData.timetables;
-
-  const overViewCount =
-    'setlistCount' in overviewData
-      ? setListOverviewData.setlistCount
-      : timetableOverviewData.timetableCount;
+  const overviewData = isSetList
+    ? {
+        data: setListOverviewData?.setlists,
+        count: setListOverviewData?.setlistCount,
+      }
+    : {
+        data: timetableOverviewData?.timetables,
+        count: timetableOverviewData?.timetableCount,
+      };
 
   const toggleSort = () => {
     setSortOption((prev) =>
@@ -43,20 +51,20 @@ const MyHistoryOverviewPage = () => {
     <>
       <Header
         variant="detail"
-        title={type === 'SET_LIST' ? 'My 셋리스트' : 'My 타임테이블'}
+        title={isSetList ? 'My 셋리스트' : 'My 타임테이블'}
       />
       <section className={styles.overviewContainer}>
         <div className={styles.filterContainer}>
-          <CountDisplay count={overViewCount || 0} />
+          <CountDisplay count={overviewData.count || 0} />
           <OrderByButton
             orderByText={SORT_LABELS[sortOption]}
             onClick={toggleSort}
           />
         </div>
         <div className={styles.gridContainer}>
-          {overviewData?.map((item) => (
+          {overviewData.data?.map((item) => (
             <FestivalCard
-              key={item.posterUrl} // TODO: 서버에게 고유한 값(id) 요청
+              key={item.typeId}
               typeId={item.typeId}
               imageSrc={item.posterUrl}
               title={item.title}
