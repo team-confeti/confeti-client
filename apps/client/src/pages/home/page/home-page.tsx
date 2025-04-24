@@ -73,6 +73,7 @@ const HomePage = () => {
 
       <SuggestMusicSection
         ref={scrollRefs.suggestMusic.element}
+        title={suggestMusic.title}
         data={suggestMusic.musicList}
       />
 
