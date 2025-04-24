@@ -1,11 +1,6 @@
-import {
-  useQueries,
-  useQuery,
-  useSuspenseQueries,
-} from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
-import { SEARCH_ARTIST_RELATED_QUERY_OPTION } from '@shared/apis/search/search-queries';
 import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
 import { SEARCH_PERFORMANCE_QUERY_OPTION } from './../../../shared/apis/search/search-queries';
@@ -21,24 +16,6 @@ export const useSearchArtist = ({ keyword, enabled }: KeywordProps) => {
   });
 
   return { data, isLoading };
-};
-
-export const useArtistRelatedData = (artistId: string | null) => {
-  const results = useSuspenseQueries({
-    queries: [
-      {
-        ...SEARCH_ARTIST_RELATED_QUERY_OPTION.SEARCH_RELATED_PERFORMANCES(
-          artistId,
-        ),
-      },
-    ],
-  });
-
-  const [performancesQuery] = results;
-
-  return {
-    performancesData: performancesQuery?.data,
-  };
 };
 
 export const useRelatedSearch = ({ keyword, enabled }: KeywordProps) => {

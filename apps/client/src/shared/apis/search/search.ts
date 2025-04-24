@@ -38,15 +38,6 @@ export const getPerformanceRelatedKeyword = async (
   return response.data;
 };
 
-export const getArtistRelatedPerformances = async (
-  artistId: string | null,
-): Promise<PerformancesSearchResponse> => {
-  const response = await get<BaseResponse<PerformancesSearchResponse>>(
-    `${END_POINT.GET_PERFORMANCES_SEARCH(artistId)}`,
-  );
-  return response.data;
-};
-
 export const getPerformanceTypeAnalysis = async (
   keyword: string,
 ): Promise<PerformanceTypeAnalysis> => {

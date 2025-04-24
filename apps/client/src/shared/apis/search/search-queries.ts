@@ -78,23 +78,3 @@ export const SEARCH_PERFORMANCE_QUERY_OPTION = {
     enabled,
   }),
 };
-
-// TODO: 추후 삭제 예정
-export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
-  ALL: ['performances'],
-  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => [
-    ...SEARCH_ARTIST_RELATED_QUERY_KEY.ALL,
-    'search',
-    artistId,
-  ],
-} as const;
-
-// TODO: 추후 삭제 예정
-export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
-  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => ({
-    queryKey:
-      SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_RELATED_PERFORMANCES(artistId),
-    queryFn: () => getArtistRelatedPerformances(artistId),
-  }),
-};
