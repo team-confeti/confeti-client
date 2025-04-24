@@ -1,30 +1,49 @@
-import { Box, MusicList } from '@confeti/design-system';
-import { IcMusic } from '@confeti/design-system/icons';
+import { Box, Button, MusicList } from '@confeti/design-system';
+import { IcLoad, IcMusic } from '@confeti/design-system/icons';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { MusicList as MusicListType } from '@shared/types/home-response';
+import { SuggestMusicResponse } from '@shared/types/home-response';
+
+import { useRefreshMusic } from '../hooks/use-refresh-music';
+
+import * as styles from './suggest-music-section.css';
 
 const SuggestMusicSection = ({
   data,
-  title,
   ref: scrollRef,
 }: {
-  data: MusicListType[];
-  title: string;
+  data: SuggestMusicResponse;
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(data);
+  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
+    data.musicList,
+  );
+
+  const { mutate: refreshMusic } = useRefreshMusic();
+
+  const handleRefreshMusic = () => {
+    refreshMusic({
+      performanceId: data.id,
+      musicList: data.musicList,
+    });
+  };
 
   return (
     <Box
       title="미리 음악을 한 번 들어볼까요?"
       titleSize="lg"
-      subtitle={title}
+      subtitle={data.title}
       subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
     >
       <div ref={scrollRef}>
         <MusicList musics={musicList} onClickPlayToggle={onClickPlayToggle} />
         <audio ref={audioRef} />
       </div>
+      <Button
+        text="다른 노래 더보기"
+        icon={<IcLoad width="2.8rem" height="2.8rem" />}
+        className={styles.button}
+        onClick={handleRefreshMusic}
+      />
     </Box>
   );
 };

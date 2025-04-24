@@ -73,9 +73,9 @@ const HomePage = () => {
 
       <SuggestMusicSection
         ref={scrollRefs.suggestMusic.element}
-        title={suggestMusic.title}
-        data={suggestMusic.musicList}
+        data={suggestMusic}
       />
+      <Spacing size="2xl" color="white" />
 
       <Footer />
     </>

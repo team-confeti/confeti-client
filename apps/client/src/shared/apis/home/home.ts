@@ -2,12 +2,13 @@ import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
   CarouselPerformancesResponse,
+  MusicList,
   SuggestMusicResponse,
   SuggestPerformanceResponse,
   TicketingPerformancesResponse,
 } from '@shared/types/home-response';
 
-import { get } from '../config/instance';
+import { get, patch } from '../config/instance';
 
 export const getLatestPerformances =
   async (): Promise<CarouselPerformancesResponse> => {
@@ -36,6 +37,20 @@ export const getSuggestPerformance =
 export const getSuggestMusic = async (): Promise<SuggestMusicResponse> => {
   const response = await get<BaseResponse<SuggestMusicResponse>>(
     END_POINT.GET_SUGGEST_MUSIC,
+  );
+  return response.data;
+};
+
+export const patchRefreshMusic = async (
+  performanceId: number,
+  musicList: MusicList[],
+): Promise<MusicList[]> => {
+  const response = await patch<BaseResponse<MusicList[]>>(
+    END_POINT.PATCH_REFRESH_MUSIC,
+    {
+      performanceId,
+      musicList,
+    },
   );
   return response.data;
 };
