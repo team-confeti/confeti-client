@@ -15,16 +15,20 @@ const EditProfile = () => {
   const { data: profileData } = useUserProfile();
   const { mutate: updateUserInfo } = useUserProfileMutation();
 
-  const [name, setName] = useState('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  const [name, setName] = useState('');
   const [profileFile, setProfileFile] = useState<File | null>(null);
   const [previewImgUrl, setPreviewImgUrl] = useState(
     profileData?.profileUrl || '',
   );
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
   const [hasShownToast, setHasShownToast] = useState(false);
+
+  useEffect(() => {
+    if (profileData?.profileUrl) {
+      setPreviewImgUrl(profileData.profileUrl);
+    }
+  }, [profileData]);
 
   useEffect(() => {
     if (name.length > 10 && !hasShownToast) {
@@ -38,24 +42,17 @@ const EditProfile = () => {
     }
   }, [name, hasShownToast]);
 
-  useEffect(() => {
-    if (profileData?.profileUrl) {
-      setPreviewImgUrl(profileData.profileUrl);
-    }
-  }, [profileData]);
-
   if (!profileData) return null;
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
 
   const isNameInvalid =
     (name.length > 0 && name.length < 2) || name.length > 10;
   const isImageChanged = !!profileFile;
-
   const isButtonDisabled =
     (name.length < 2 || isNameInvalid) && !isImageChanged;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
