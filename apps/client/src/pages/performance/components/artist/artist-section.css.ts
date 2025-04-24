@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -10,9 +11,18 @@ export const artistGroup = style({
   padding: '1.7rem 2rem 5.6rem 2rem',
 });
 
-export const daySection = style({
-  padding: '1.6rem 2rem 2rem 2rem',
-  backgroundColor: themeVars.color.white,
+export const daySection = recipe({
+  base: {
+    padding: '2rem',
+    backgroundColor: themeVars.color.white,
+  },
+  variants: {
+    isFirstDay: {
+      true: {
+        paddingTop: '1.6rem',
+      },
+    },
+  },
 });
 
 export const dayGroups = style({
