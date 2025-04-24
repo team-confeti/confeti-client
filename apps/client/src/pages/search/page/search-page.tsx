@@ -30,8 +30,7 @@ const SearchPage = () => {
   });
 
   const {
-    relatedArtistsData,
-    relatedPerformancesData,
+    data: { relatedArtists, relatedPerformances },
     isLoading: isRelatedKeywordLoading,
   } = useRelatedSearch({
     keyword: debouncedKeyword,
@@ -50,8 +49,8 @@ const SearchPage = () => {
   };
 
   const renderSearchContents = () => {
-    const isLoadingState = isRelatedKeywordLoading || isSearchLoading;
-    const isSuggestionState = !!relatedArtistsData?.artists;
+    const isLoadingState = isSearchLoading || isRelatedKeywordLoading;
+    const isSuggestionState = !!relatedArtists?.artists;
     const isResultState = !!artistData;
 
     switch (true) {
@@ -62,7 +61,7 @@ const SearchPage = () => {
         return (
           <>
             <SearchSuggestionList
-              relatedKeyword={relatedArtistsData?.artists?.map((artist) => ({
+              relatedKeyword={relatedArtists?.artists?.map((artist) => ({
                 id: artist.artistId,
                 title: artist.name,
                 profileUrl: artist.profileUrl,
@@ -70,7 +69,7 @@ const SearchPage = () => {
               onSelectKeyword={handleNavigateWithKeyword}
             />
             <SearchSuggestionList
-              relatedKeyword={relatedPerformancesData?.performances?.map(
+              relatedKeyword={relatedPerformances?.performances?.map(
                 (performance) => ({
                   id: performance.id,
                   title: performance.title,

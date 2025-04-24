@@ -41,23 +41,20 @@ export const useArtistRelatedData = (artistId: string | null) => {
 };
 
 export const useRelatedSearch = ({ keyword, enabled }: UseArtistProps) => {
-  const [RelatedArtistsResult, RelatedPerformancesResult] = useQueries({
+  return useQueries({
     queries: [
-      {
-        ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_RELATED_KEYWORD(keyword, enabled),
-      },
-      {
-        ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_RELATED_PERFORMANCES(
-          keyword,
-          enabled,
-        ),
-      },
+      SEARCH_ARTIST_QUERY_OPTION.SEARCH_RELATED_KEYWORD(keyword, enabled),
+      SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_RELATED_PERFORMANCES(
+        keyword,
+        enabled,
+      ),
     ],
+    combine: (results) => ({
+      data: {
+        relatedArtists: results[0].data,
+        relatedPerformances: results[1].data,
+      },
+      isLoading: results.some((r) => r.isLoading),
+    }),
   });
-
-  return {
-    relatedArtistsData: RelatedArtistsResult.data,
-    relatedPerformancesData: RelatedPerformancesResult.data,
-    isLoading: RelatedArtistsResult.isLoading,
-  };
 };
