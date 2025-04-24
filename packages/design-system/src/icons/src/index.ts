@@ -24,6 +24,7 @@ export { default as Confeti3DLogo21 } from './Confeti3DLogo21';
 export { default as IcApple } from './IcApple';
 export { default as IcArrowDownGray16 } from './IcArrowDownGray16';
 export { default as IcArrowGray16 } from './IcArrowGray16';
+export { default as IcArrowLeftWhite20 } from './IcArrowLeftWhite20';
 export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowUpGray16 } from './IcArrowUpGray16';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
