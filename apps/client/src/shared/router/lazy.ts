@@ -5,7 +5,7 @@ export const ErrorPage = lazy(() => import('@shared/pages/error/error'));
 export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
 
 // Home
-export const HomePage = lazy(() => import('@pages/home/page/home'));
+export const HomePage = lazy(() => import('@pages/home/page/home-page'));
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
 export const RequireLoginPage = lazy(
   () => import('@pages/home/page/auth/require-login'),
@@ -37,9 +37,12 @@ export const MyHistoryPage = lazy(
 export const MyRecordPage = lazy(
   () => import('@pages/my-history/page/record/my-record'),
 );
+export const MyHistoryOverviewPage = lazy(
+  () => import('@pages/my-history/page/overview/my-history-overview-page'),
+);
 
 // Search
-export const SearchPage = lazy(() => import('@pages/search/page/search'));
+export const SearchPage = lazy(() => import('@pages/search/page/search-page'));
 
 // Detail
 export const ConcertDetailPage = lazy(

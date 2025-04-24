@@ -1,3 +1,5 @@
+import { SortOption } from './sort-label';
+
 export const CONFIG = {
   BASE_URL: import.meta.env.VITE_BASE_URL as string,
   KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
@@ -7,11 +9,15 @@ export const CONFIG = {
 } as const;
 
 export const END_POINT = {
+  //내 공연
+  GET_MY_TIMETABLE: 'user/timetables/preview',
+  GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
+    `user/timetables?sortBy=${sortBy}`,
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
-  GET_MY_ARTISTS: (sortBy: 'createdAt' | 'alphabetically') =>
+  GET_MY_ARTISTS: (sortBy: SortOption) =>
     `/user/favorites/artists?sortBy=${sortBy}`,
   GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
     `user/favorites/performances?type=${performancesType}`,
@@ -21,33 +27,46 @@ export const END_POINT = {
     `/user/favorites/festivals/${festivalId}`,
   POST_LIKE_CONCERT: (concertId: number) =>
     `user/favorites/concerts/${concertId}`,
+  PATCH_USER_INFO: '/user/info',
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
+  // 홈 페이지
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
-  PATCH_USER_INFO: '/user/info',
+  GET_SUGGEST_PERFORMANCE: 'performances/recommend',
+  GET_SUGGEST_MUSIC: 'performances/recommend/musics',
+
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
+
   //검색
-  GET_ARTISTS_SEARCH: `artists?search=`,
-  GET_PERFORMANCES_SEARCH: (artistId: string, cursor: number) =>
-    `performances/association/${artistId}?cursor=${cursor}`,
+  GET_ARTISTS_SEARCH: `artists/search?term=`,
+  GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
+    `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
+    `performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_PERFORMANCES_SEARCH: (artistId: string | null) =>
+    `performances/association/${artistId}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `user/timetables/festivals/${festivalId}`,
+
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',
   POST_LOGOUT: 'auth/logout',
   POST_REISSUE_TOKEN: 'auth/reissue',
   DELETE_ACCOUNT: 'auth/withdraw',
   //온보딩
-  GET_TOP100_ARTIST: 'user/onboard/artists',
+  GET_TOP100_ARTIST: (limit: number) => `user/onboard/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+  GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
+    `user/onboard/artists/${artistId}/related?limit=${limit}`,
+  POST_AUTH_ONBOARD: `auth/onboard`,
 } as const;
 
 export const HTTP_STATUS_CODE = {

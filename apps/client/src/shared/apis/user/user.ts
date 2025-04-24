@@ -1,8 +1,8 @@
 import { get, patch } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
+import { SortOption } from '@shared/constants/sort-label';
 import { BaseResponse } from '@shared/types/api';
 import {
-  ArtistSortType,
   FavoriteArtistsResponses,
   MyArtistsResponse,
   MyPerformancesResponse,
@@ -12,8 +12,10 @@ import {
   UserInfo,
   UserProfile,
 } from '@shared/types/user-response';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
-export const getUserProfile = async (): Promise<UserProfile> => {
+export const getUserProfile = async (): Promise<UserProfile | null> => {
+  if (checkIsNotLoggedIn()) return null;
   const response = await get<BaseResponse<UserProfile>>(
     END_POINT.GET_USER_PROFILE,
   );
@@ -45,7 +47,7 @@ export const getMyUpcomingPerformance =
   };
 
 export const getMyArtists = async (
-  sortBy: ArtistSortType,
+  sortBy: SortOption,
 ): Promise<MyArtistsResponse> => {
   const response = await get<BaseResponse<MyArtistsResponse>>(
     END_POINT.GET_MY_ARTISTS(sortBy),

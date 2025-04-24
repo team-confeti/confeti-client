@@ -18,6 +18,7 @@ export const routePath = {
 
   // MyHistory
   MY_HISTORY: '/my-history',
+  MY_HISTORY_OVERVIEW: 'overview',
   MY_HISTORY_REQUIRE_LOGIN: 'require-login',
 
   // Search

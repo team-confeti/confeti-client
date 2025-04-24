@@ -2,6 +2,12 @@ import { PerformanceBase } from './performance-common';
 
 export interface Concert extends PerformanceBase {
   concertId: number;
+  address: string;
+  reservations: {
+    url: string;
+    name: string;
+    logoUrl: string;
+  }[];
 }
 
 export interface ConcertArtist {

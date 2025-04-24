@@ -14,6 +14,7 @@ import {
   LoginPage,
   MyArtistPage,
   MyConfetiPage,
+  MyHistoryOverviewPage,
   MyHistoryPage,
   MyPage,
   MyProfilePage,
@@ -73,6 +74,10 @@ export default function Router() {
           <Route
             path=""
             element={createProtectedRoute(true, <MyRecordPage />)}
+          />
+          <Route
+            path={routePath.MY_HISTORY_OVERVIEW}
+            element={<MyHistoryOverviewPage />}
           />
           <Route
             path={routePath.MY_HISTORY_REQUIRE_LOGIN}
