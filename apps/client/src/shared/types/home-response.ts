@@ -49,10 +49,7 @@ export type SuggestPerformanceResponse = {
   performances: SuggestPerformance[];
 };
 
-export interface SuggestMusicResponse {
-  id: number;
-  typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+export interface SuggestMusicPerformanceResponse {
+  performanceId: number;
   title: string;
-  musicList: MusicList[];
 }

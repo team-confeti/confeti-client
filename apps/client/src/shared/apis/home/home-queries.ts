@@ -2,7 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 
 import {
   getLatestPerformances,
-  getSuggestMusic,
+  getSuggestMusicPerformance,
   getSuggestPerformance,
   getTicketing,
 } from './home';
@@ -32,9 +32,9 @@ export const HOME_QUERY_OPTIONS = {
       queryKey: HOME_QUERY_KEY.SUGGEST_PERFORMANCE(),
       queryFn: getSuggestPerformance,
     }),
-  SUGGEST_MUSIC: () =>
+  SUGGEST_MUSIC_PERFORMANCE: () =>
     queryOptions({
       queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(),
-      queryFn: getSuggestMusic,
+      queryFn: getSuggestMusicPerformance,
     }),
 };

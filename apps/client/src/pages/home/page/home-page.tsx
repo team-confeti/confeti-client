@@ -12,7 +12,7 @@ import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
 import { TAB_MENU } from '../constants/menu';
-import useHomeQueries from '../hooks/use-home-queries';
+import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
   const { mutate: login } = useSocialLoginMutation();
@@ -39,7 +39,7 @@ const HomePage = () => {
     ticketing,
     latestPerformances,
     suggestPerformance,
-    suggestMusic,
+    suggestMusicPerformance,
   } = useHomeQueries();
 
   return (
@@ -73,7 +73,7 @@ const HomePage = () => {
 
       <SuggestMusicSection
         ref={scrollRefs.suggestMusic.element}
-        data={suggestMusic}
+        data={suggestMusicPerformance}
       />
       <Spacing size="2xl" color="white" />
 

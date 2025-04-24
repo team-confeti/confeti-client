@@ -1,7 +1,7 @@
 import { Box, Button, MusicList } from '@confeti/design-system';
 import { IcLoad, IcMusic } from '@confeti/design-system/icons';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { SuggestMusicResponse } from '@shared/types/home-response';
+import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
 
 import * as styles from './suggest-music-section.css';
 
@@ -9,7 +9,7 @@ const SuggestMusicSection = ({
   data,
   ref: scrollRef,
 }: {
-  data: SuggestMusicResponse;
+  data: SuggestMusicPerformanceResponse;
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
