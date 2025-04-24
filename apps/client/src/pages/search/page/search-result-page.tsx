@@ -8,7 +8,6 @@ import ArtistNotFound from '../components/search-result/artist/artist-not-found'
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
-import { useArtistRelatedData } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
@@ -17,10 +16,6 @@ interface Props {
   intendedPerformanceData: IntendedPerformanceResponse | null;
 }
 const SearchResult = ({ artistData, intendedPerformanceData }: Props) => {
-  const { performancesData } = useArtistRelatedData(
-    artistData?.artistId || null,
-  );
-
   return (
     <>
       <main className={styles.resultSection}>

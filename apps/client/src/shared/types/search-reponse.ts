@@ -54,6 +54,8 @@ export interface PerformanceTypeAnalysis {
 
 export interface IntendedPerformance {
   performanceId: number;
+  typeId: number;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
   title: string;
   posterUrl: string;
   area: string;
