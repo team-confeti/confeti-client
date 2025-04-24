@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import CountDisplay from '@pages/my-history/components/overview/count-display';
 import OrderByButton from '@pages/my-history/components/overview/order-by-button';
-import { useMyTimeTableOverView } from '@pages/my-history/hooks/use-my-history';
+import {
+  useMySetListOverView,
+  useMyTimeTableOverView,
+} from '@pages/my-history/hooks/use-my-history';
 
 import { FestivalCard, Header } from '@confeti/design-system';
 import {
@@ -14,7 +18,20 @@ import * as styles from './my-history-overview-page.css';
 
 const MyHistoryOverviewPage = () => {
   const [sortOption, setSortOption] = useState<SortOption>(SORT_OPTIONS.RECENT);
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get('type');
   const { data: timetableOverviewData } = useMyTimeTableOverView(sortOption);
+  const { data: setListOverviewData } = useMySetListOverView(sortOption);
+
+  const overviewData =
+    type === 'SET_LIST'
+      ? setListOverviewData.setlists
+      : timetableOverviewData.timetables;
+
+  const overViewCount =
+    'setlistCount' in overviewData
+      ? setListOverviewData.setlistCount
+      : timetableOverviewData.timetableCount;
 
   const toggleSort = () => {
     setSortOption((prev) =>
@@ -24,20 +41,22 @@ const MyHistoryOverviewPage = () => {
 
   return (
     <>
-      <Header variant="detail" title="My 타임테이블" />
+      <Header
+        variant="detail"
+        title={type === 'SET_LIST' ? 'My 셋리스트' : 'My 타임테이블'}
+      />
       <section className={styles.overviewContainer}>
         <div className={styles.filterContainer}>
-          <CountDisplay count={timetableOverviewData?.timetableCount || 0} />
+          <CountDisplay count={overViewCount || 0} />
           <OrderByButton
             orderByText={SORT_LABELS[sortOption]}
             onClick={toggleSort}
           />
         </div>
         <div className={styles.gridContainer}>
-          {timetableOverviewData?.timetables.map((item) => (
+          {overviewData?.map((item) => (
             <FestivalCard
-              //TODO : 서버에게 고유한 값(id) 요청
-              key={item.posterUrl}
+              key={item.posterUrl} // TODO: 서버에게 고유한 값(id) 요청
               typeId={item.typeId}
               imageSrc={item.posterUrl}
               title={item.title}
