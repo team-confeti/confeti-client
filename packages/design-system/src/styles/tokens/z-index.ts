@@ -31,9 +31,7 @@ export const zIndex = {
   backDrop: {
     content: '100',
   },
-  hero: {
-    background: '0',
-    overlay: '1',
-    content: '2',
-  },
+  heroBackground: '0',
+  heroOverlay: '1',
+  heroContent: '2',
 } as const;

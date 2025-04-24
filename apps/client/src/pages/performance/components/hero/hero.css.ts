@@ -16,7 +16,7 @@ export const background = style({
   position: 'absolute',
   top: 0,
   left: 0,
-  zIndex: themeVars.zIndex.hero.background,
+  zIndex: themeVars.zIndex.heroBackground,
 });
 
 export const backgroundOverlay = style({
@@ -25,7 +25,7 @@ export const backgroundOverlay = style({
   left: 0,
   width: '100%',
   height: '100%',
-  zIndex: themeVars.zIndex.hero.overlay,
+  zIndex: themeVars.zIndex.heroOverlay,
   background: 'linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 100%)',
   backdropFilter: 'blur(2px)',
 });
@@ -37,7 +37,7 @@ export const backButton = style({
   background: 'none',
   border: 'none',
   color: themeVars.color.white,
-  zIndex: themeVars.zIndex.hero.content,
+  zIndex: themeVars.zIndex.heroContent,
 });
 
 export const textWrapper = style({
@@ -45,7 +45,7 @@ export const textWrapper = style({
   bottom: '2rem',
   left: '2rem',
   color: '#fff',
-  zIndex: themeVars.zIndex.hero.content,
+  zIndex: themeVars.zIndex.heroContent,
   maxWidth: '50%',
 });
 
@@ -68,5 +68,5 @@ export const poster = style({
   aspectRatio: '11.4 / 16.2',
   objectFit: 'cover',
   borderRadius: '1rem',
-  zIndex: themeVars.zIndex.hero.content,
+  zIndex: themeVars.zIndex.heroContent,
 });
