@@ -8,6 +8,7 @@ import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-tim
 import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 
+import { toast } from '@confeti/design-system';
 import { UserTimetable } from '@shared/types/timetable-response';
 
 import * as styles from './time-table-board.css';
@@ -15,16 +16,10 @@ import * as styles from './time-table-board.css';
 interface Props {
   timeTableInfo: TimeTableInfo;
   isEditMode: boolean;
-  isComplete: boolean;
   ref: RefObject<HTMLDivElement | null>;
 }
 
-const TimeTableBoard = ({
-  timeTableInfo,
-  isEditMode,
-  isComplete,
-  ref,
-}: Props) => {
+const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
   const [openHour, openMin] = parseTimeString(timeTableInfo.ticketOpenAt);
   const isHalfHourOpen = Number(openMin) === HALF_HOUR_TO_MINUTES;
   const ticketOpenHour = isHalfHourOpen ? openHour + 1 : openHour;
@@ -36,7 +31,14 @@ const TimeTableBoard = ({
     userTimetableId: number,
     isSelected: boolean,
   ) => {
-    if (!isEditMode) return;
+    if (!isEditMode) {
+      toast({
+        text: ` 버튼으로 편집할 수 있어요.`,
+        position: 'middleCenter',
+        highlightText: `'타임테이블 편집하기'`,
+      });
+      return;
+    }
 
     const updatedTimetables: UserTimetable[] = timeTableInfo.stages.flatMap(
       (stage) =>

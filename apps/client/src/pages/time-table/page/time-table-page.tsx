@@ -17,8 +17,7 @@ import {
 import * as styles from './time-table-page.css';
 
 const TimeTablePage = () => {
-  const { isEditTimeTableMode, isComplete, toggleEditTimeTableMode } =
-    useTimeTableEdit();
+  const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
 
   const { festivals } = useFestivalButtonData();
   const [selectedFestivalInfo, setSelectedFestivalInfo] =
@@ -66,10 +65,10 @@ const TimeTablePage = () => {
             <TimeTableBoard
               timeTableInfo={boardData}
               isEditMode={isEditTimeTableMode}
-              isComplete={isComplete}
               ref={elementRef}
             />
           )}
+
           <TimeTableActions
             isEditMode={isEditTimeTableMode}
             onToggleEditMode={toggleEditTimeTableMode}

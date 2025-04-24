@@ -61,8 +61,8 @@ const TimeTableItem = ({
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
       setSelectBlock((prev) => !prev);
-      onClick(userTimetableId, !selectBlock);
     }
+    onClick(userTimetableId, !selectBlock);
   };
 
   const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + 0.75rem)`;
