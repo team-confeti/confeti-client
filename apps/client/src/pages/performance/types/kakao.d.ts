@@ -7,6 +7,7 @@ declare global {
 
   interface KakaoNamespace {
     maps: {
+      load: (callback: () => void) => void;
       LatLng: new (lat: number, lng: number) => kakao.maps.LatLng;
       Map: new (
         container: HTMLElement,
