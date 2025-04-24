@@ -18,6 +18,7 @@ interface Props {
   previewData?: MyTimeTable[];
   emptyMessage: string;
   ctaText: string;
+  navigatePath?: string;
 }
 
 const PreviewSection = ({
@@ -28,6 +29,7 @@ const PreviewSection = ({
   previewData,
   emptyMessage,
   ctaText,
+  navigatePath,
 }: Props) => {
   const hasContent = previewData && previewData.length > 0;
   const navigate = useNavigate();
@@ -39,7 +41,12 @@ const PreviewSection = ({
   };
 
   return (
-    <Box title={title} showMore={showMore} showMoreText={buttonLabel}>
+    <Box
+      title={title}
+      showMore={showMore}
+      showMoreText={buttonLabel}
+      path={navigatePath}
+    >
       {hasContent ? (
         <div className={styles.container}>
           {previewData.map((previewData) => (

@@ -1,3 +1,5 @@
+import { SortOption } from './sort-label';
+
 export const CONFIG = {
   BASE_URL: import.meta.env.VITE_BASE_URL as string,
   KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
@@ -9,11 +11,13 @@ export const CONFIG = {
 export const END_POINT = {
   //내 공연
   GET_MY_TIMETABLE: 'user/timetables/preview',
+  GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
+    `user/timetables?sortBy=${sortBy}`,
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
-  GET_MY_ARTISTS: (sortBy: 'createdAt' | 'alphabetically') =>
+  GET_MY_ARTISTS: (sortBy: SortOption) =>
     `/user/favorites/artists?sortBy=${sortBy}`,
   GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
     `user/favorites/performances?type=${performancesType}`,

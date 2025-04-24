@@ -1,9 +1,8 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import {
-  ArtistSortType,
-  PerformancesFilterType,
-} from './../../types/user-response';
+import { SortOption } from '@shared/constants/sort-label';
+
+import { PerformancesFilterType } from './../../types/user-response';
 import {
   getMyArtists,
   getMyArtistsPreview,
@@ -46,7 +45,7 @@ export const USER_QUERY_OPTIONS = {
       queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
       queryFn: getMyUpcomingPerformance,
     }),
-  MY_ARTISTS: (sortBy: ArtistSortType) =>
+  MY_ARTISTS: (sortBy: SortOption) =>
     queryOptions({
       queryKey: [USER_QUERY_KEY.MY_ARTISTS(), sortBy],
       queryFn: () => getMyArtists(sortBy),
