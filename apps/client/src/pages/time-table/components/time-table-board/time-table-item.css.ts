@@ -14,14 +14,13 @@ export const itemsWrapper = recipe({
     justifyContent: 'center',
     position: 'absolute',
     top: top,
-    left: left,
+    width: '100%',
     height: height,
-    width: width,
     borderRadius: '2px',
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
-    tableLayout: 'fixed',
+    minWidth: '10.2rem',
   },
   variants: {
     isSelected: {

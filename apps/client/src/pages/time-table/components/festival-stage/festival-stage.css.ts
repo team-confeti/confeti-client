@@ -6,7 +6,7 @@ export const stageBoxWrapper = style({
   display: 'flex',
   alignItems: 'center',
   flex: 1,
-  minWidth: '10.2rem',
+  minWidth: '10rem',
 });
 
 export const stageBox = style({
@@ -23,7 +23,7 @@ export const stageWrapper = style({
   display: 'flex',
   gap: '0.2rem',
   position: 'sticky',
-  top: '5rem',
+  top: '0',
   backgroundColor: themeVars.color.white_op_20,
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   backdropFilter: 'blur(2px)',

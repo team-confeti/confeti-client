@@ -16,6 +16,206 @@ import {
 } from '../hooks/use-festival-data';
 
 import * as styles from './time-table-page.css';
+const mockData = {
+  data: {
+    ticketOpenAt: '2025-11-08T10:00:00',
+    stageCount: 4,
+    stages: [
+      {
+        stageOrder: 1,
+        stageName: 'MAY FOREST STAGE',
+        festivalTimes: [
+          {
+            userTimetableId: 1,
+            startAt: '2025-11-08T12:00:00',
+            endAt: '2025-11-08T12:40:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_001',
+                artistName: '음악대장',
+              },
+              {
+                artistId: 'artist_002',
+                artistName: '사운드웨이브',
+              },
+            ],
+          },
+          {
+            userTimetableId: 2,
+            startAt: '2025-11-08T13:00:00',
+            endAt: '2025-11-08T13:50:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_003',
+                artistName: '메이플라워',
+              },
+            ],
+          },
+          {
+            userTimetableId: 3,
+            startAt: '2025-11-08T14:10:00',
+            endAt: '2025-11-08T15:00:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_004',
+                artistName: '블루문',
+              },
+              {
+                artistId: 'artist_005',
+                artistName: '선셋밴드',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageOrder: 2,
+        stageName: 'OCEAN BREEZE STAGE',
+        festivalTimes: [
+          {
+            userTimetableId: 4,
+            startAt: '2025-11-08T12:30:00',
+            endAt: '2025-11-08T13:10:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_006',
+                artistName: '웨이브메이커',
+              },
+            ],
+          },
+          {
+            userTimetableId: 5,
+            startAt: '2025-11-08T13:30:00',
+            endAt: '2025-11-08T14:20:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_007',
+                artistName: '코스모스',
+              },
+              {
+                artistId: 'artist_008',
+                artistName: '스타더스트',
+              },
+            ],
+          },
+          {
+            userTimetableId: 6,
+            startAt: '2025-11-08T14:40:00',
+            endAt: '2025-11-08T15:30:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_009',
+                artistName: '댄스머신',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageOrder: 3,
+        stageName: 'SUNSET BEACH STAGE',
+        festivalTimes: [
+          {
+            userTimetableId: 7,
+            startAt: '2025-11-08T12:10:00',
+            endAt: '2025-11-08T12:50:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_010',
+                artistName: '썸머타임',
+              },
+            ],
+          },
+          {
+            userTimetableId: 8,
+            startAt: '2025-11-08T13:10:00',
+            endAt: '2025-11-08T13:50:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_011',
+                artistName: '비치보이즈',
+              },
+              {
+                artistId: 'artist_012',
+                artistName: '산들바람',
+              },
+            ],
+          },
+          {
+            userTimetableId: 9,
+            startAt: '2025-11-08T14:10:00',
+            endAt: '2025-11-08T15:10:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_013',
+                artistName: '트로피컬웨이브',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        stageOrder: 4,
+        stageName: 'NIGHT SKY STAGE',
+        festivalTimes: [
+          {
+            userTimetableId: 10,
+            startAt: '2025-11-08T12:20:00',
+            endAt: '2025-11-08T13:00:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_014',
+                artistName: '별빛소리',
+              },
+              {
+                artistId: 'artist_015',
+                artistName: '문라이트',
+              },
+            ],
+          },
+          {
+            userTimetableId: 11,
+            startAt: '2025-11-08T13:20:00',
+            endAt: '2025-11-08T14:10:00',
+            isSelected: true,
+            artists: [
+              {
+                artistId: 'artist_016',
+                artistName: '디제이나이트',
+              },
+            ],
+          },
+          {
+            userTimetableId: 12,
+            startAt: '2025-11-08T14:30:00',
+            endAt: '2025-11-08T15:20:00',
+            isSelected: false,
+            artists: [
+              {
+                artistId: 'artist_017',
+                artistName: '미드나이트드림',
+              },
+              {
+                artistId: 'artist_018',
+                artistName: '스타더스트',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+};
 
 const TimeTablePage = () => {
   const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
@@ -62,15 +262,15 @@ const TimeTablePage = () => {
             onDateSelect={handleSelectDate}
           />
 
-          {boardData && (
-            <>
-              <FestivalStage timeTableInfo={boardData} />
+          {mockData.data && (
+            <div className={styles.timeTableWrapper}>
+              <FestivalStage timeTableInfo={mockData.data} />
               <TimeTableBoard
-                timeTableInfo={boardData}
+                timeTableInfo={mockData.data}
                 isEditMode={isEditTimeTableMode}
                 ref={elementRef}
               />
-            </>
+            </div>
           )}
 
           <TimeTableActions

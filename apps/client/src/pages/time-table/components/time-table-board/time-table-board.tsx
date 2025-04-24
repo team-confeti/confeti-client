@@ -56,7 +56,7 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
   return (
     <section className={styles.container} ref={ref}>
       <div className={styles.wrapper}>
-        <BoothOpenBox ticketOpenHour={timeTableInfo.ticketOpenAt} />
+        <BoothOpenBox ticketOpenAt={timeTableInfo.ticketOpenAt} />
 
         {cellNumber.map((hour) => (
           <div key={hour}>
@@ -64,42 +64,38 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode, ref }: Props) => {
           </div>
         ))}
 
-        {timeTableInfo.stages.map((stage) => (
-          <div key={stage.stageOrder}>
-            {stage.festivalTimes.map((block) => {
-              const timeTableItemProps = {
-                key: block.userTimetableId,
-                userTimetableId: block.userTimetableId,
-                artists: block.artists,
-                isSelected: block.isSelected,
-                startTime: block.startAt,
-                endTime: block.endAt,
-                ticketOpenAt: timeTableInfo.ticketOpenAt,
-                stageCount: timeTableInfo.stageCount,
-                stageOrder: stage.stageOrder,
-                isEditTimeTableMode: isEditMode,
-                onClick: handleTimeTableItemClick,
-              };
-
-              return (
+        <div className={styles.stagesContainer}>
+          {timeTableInfo.stages.map((stage) => (
+            <div key={stage.stageOrder} className={styles.stageColumn}>
+              {stage.festivalTimes.map((block) => (
                 <TimeTableItem
-                  {...timeTableItemProps}
                   key={block.userTimetableId}
+                  userTimetableId={block.userTimetableId}
+                  artists={block.artists}
+                  isSelected={block.isSelected}
+                  startTime={block.startAt}
+                  endTime={block.endAt}
+                  ticketOpenAt={timeTableInfo.ticketOpenAt}
+                  stageCount={timeTableInfo.stageCount}
+                  stageOrder={stage.stageOrder}
+                  isEditTimeTableMode={isEditMode}
+                  onClick={handleTimeTableItemClick}
                 />
-              );
-            })}
-          </div>
-        ))}
+              ))}
+            </div>
+          ))}
+        </div>
 
         {isHalfHourOpen && (
           <div className={styles.timeList}>
             <p className={styles.minutesP}>{HALF_HOUR_TO_MINUTES}</p>
           </div>
         )}
-      </div>
-      <div className={styles.timeList}>
-        <p className={styles.timeP}>{END_HOUR}</p>
-        <hr className={styles.timeBar} />
+
+        <div className={styles.timeList}>
+          <p className={styles.timeP}>{END_HOUR}</p>
+          <hr className={styles.timeBar} />
+        </div>
       </div>
     </section>
   );

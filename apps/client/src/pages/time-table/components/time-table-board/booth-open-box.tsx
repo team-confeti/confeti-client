@@ -1,12 +1,13 @@
 import { parseTimeString } from '@pages/time-table/utils';
 
 import * as styles from './booth-open-box.css';
+
 interface BoxProps {
-  ticketOpenHour: string;
+  ticketOpenAt: string;
 }
 
-const BoothOpenBox = ({ ticketOpenHour }: BoxProps) => {
-  const [openHour, openMin] = parseTimeString(ticketOpenHour);
+const BoothOpenBox = ({ ticketOpenAt }: BoxProps) => {
+  const [openHour, openMin] = parseTimeString(ticketOpenAt);
   return (
     <div className={styles.wrapper}>
       {'TICKET BOOTH OPEN '}

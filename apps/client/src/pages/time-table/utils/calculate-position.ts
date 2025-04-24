@@ -74,3 +74,31 @@ export const calculateItemPosition = (
 
   return { top, height, left, width, totalPerformMin };
 };
+
+// 상수 정의
+const SIDE_PADDING = 2.9;
+const TOTAL_PADDING = 3.2;
+const TOP_PADDING = 0.75;
+
+interface TableItemPosition {
+  top: string;
+  height: string;
+  left: string;
+  width: string;
+}
+
+export const calcTableItemPosition = (
+  totalMin: number,
+  minutesFromOpen: number,
+  totalFestivalMinutes: number,
+  stageCount: number,
+  stageOrder: number,
+): TableItemPosition => {
+  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + ${TOP_PADDING}rem)`;
+  const height = `calc((${totalMin} / ${totalFestivalMinutes}) * 100%)`;
+  const stageWidth = `calc((100% - ${TOTAL_PADDING}rem) / ${stageCount})`;
+  const left = `calc(${SIDE_PADDING}rem + (${stageWidth} * ${stageOrder - 1}))`;
+  const width = `calc((100% - ${TOTAL_PADDING}rem) / ${stageCount})`;
+
+  return { top, height, left, width };
+};
