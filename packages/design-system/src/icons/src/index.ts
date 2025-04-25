@@ -19,13 +19,20 @@ export { default as BtnSearchBlack24 } from './BtnSearchBlack24';
 export { default as BtnSearchDelete } from './BtnSearchDelete';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as BtnSettings24 } from './BtnSettings24';
+
 export { default as CheckboxFestival } from './CheckboxFestival';
 export { default as CheckboxFestivalActive } from './CheckboxFestivalActive';
+
+export { default as BtnSwitch } from './BtnSwitch';
+
 export { default as CmpProfileNon } from './CmpProfileNon';
+export { default as CmpSearchArtistImg } from './CmpSearchArtistImg';
+export { default as CmpSearchImg } from './CmpSearchImg';
 export { default as Confeti3DLogo21 } from './Confeti3DLogo21';
 export { default as IcApple } from './IcApple';
 export { default as IcArrowDownGray16 } from './IcArrowDownGray16';
 export { default as IcArrowGray16 } from './IcArrowGray16';
+export { default as IcArrowLeftWhite20 } from './IcArrowLeftWhite20';
 export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowUpGray16 } from './IcArrowUpGray16';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
@@ -39,9 +46,12 @@ export { default as IcFloatDelete24 } from './IcFloatDelete24';
 export { default as IcFloatEdit24 } from './IcFloatEdit24';
 export { default as IcFloatEditLime24 } from './IcFloatEditLime24';
 export { default as IcHamburger } from './IcHamburger';
+export { default as IcHeart } from './IcHeart';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
 export { default as IcIndicatorDefault } from './IcIndicatorDefault';
 export { default as IcKakao } from './IcKakao';
+export { default as IcLoad } from './IcLoad';
+export { default as IcMusic } from './IcMusic';
 export { default as IcNewSearchGray18 } from './IcNewSearchGray18';
 export { default as IcPause } from './IcPause';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';
@@ -56,6 +66,7 @@ export { default as IcTimetableDeletefestival } from './IcTimetableDeletefestiva
 export { default as IcTimetableFloatClose } from './IcTimetableFloatClose';
 export { default as IcTimetableFloatFinish } from './IcTimetableFloatFinish';
 export { default as IcToastInfo24 } from './IcToastInfo24';
+export { default as IcWarning60 } from './IcWarning60';
 export { default as ImgTypelogoBig } from './ImgTypelogoBig';
 export { default as InfoOverlay } from './InfoOverlay';
 export { default as LogoFooter } from './LogoFooter';

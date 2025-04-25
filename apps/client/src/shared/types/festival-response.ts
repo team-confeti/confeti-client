@@ -2,6 +2,12 @@ import { PerformanceBase } from './performance-common';
 
 export interface Festival extends PerformanceBase {
   festivalId: number;
+  address: string;
+  reservations: {
+    url: string;
+    name: string;
+    logoUrl: string;
+  }[];
 }
 
 export interface FestivalDate {

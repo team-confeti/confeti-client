@@ -16,14 +16,36 @@ export const header = style({
   marginBottom: '1.6rem',
 });
 
-export const title = style({
-  ...themeVars.fontStyles.title4_b_16,
-  color: themeVars.color.black,
+export const titleWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const titleVariants = recipe({
+  base: {
+    color: themeVars.color.black,
+  },
+  variants: {
+    titleSize: {
+      md: {
+        ...themeVars.fontStyles.title4_b_16,
+      },
+      lg: {
+        ...themeVars.fontStyles.title3_b_18,
+      },
+    },
+  },
+});
+
+export const subtitle = style({
+  ...themeVars.display.flexAlignCenter,
+  gap: '0.4rem',
+  ...themeVars.fontStyles.subtitle4_b_14,
+  color: themeVars.color.confeti_lime3,
 });
 
 export const buttonWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
 });
 
 export const button = style({

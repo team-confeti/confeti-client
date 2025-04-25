@@ -72,7 +72,8 @@ export const SearchBar = ({
       updateFocusState(false, false);
     }
     if (onBlur) {
-      onBlur;
+      onBlur();
+      setIsFocused(false);
     }
   };
 

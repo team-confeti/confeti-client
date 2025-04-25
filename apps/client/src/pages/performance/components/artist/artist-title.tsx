@@ -1,11 +1,11 @@
-import * as styles from './artist-title.css';
+import { PERFORMANCE_LABEL } from '../../constant/performance';
 
-const ARTIST_TITLE_TEXT = '아티스트';
+import * as styles from './artist-title.css';
 
 const ArtistTitle = () => {
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{ARTIST_TITLE_TEXT}</h2>
+      <h2 className={styles.title}>{PERFORMANCE_LABEL.ARTIST}</h2>
     </section>
   );
 };

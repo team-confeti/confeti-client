@@ -1,8 +1,14 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { GetPerformancesSearchResponse } from '@shared/types/search-reponse';
+import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
-import { getArtistSearch, getPerformancesSearch } from './search';
+import {
+  getArtistRelatedKeyword,
+  getArtistSearch,
+  getIntendedPerformance,
+  getPerformanceRelatedKeyword,
+  getPerformanceTypeAnalysis,
+} from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -20,27 +26,50 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
     queryFn: () => getArtistSearch(keyword),
     enabled,
   }),
+  SEARCH_RELATED_KEYWORD: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
+    queryFn: () => getArtistRelatedKeyword(keyword),
+    enabled,
+  }),
 };
 
-export const SEARCH_PERFORMANCES_QUERY_KEY = {
+export const SEARCH_PERFORMANCE_QUERY_KEY = {
   ALL: ['performances'],
-  SEARCH_PERFORMANCES: (artistId: string, cursor: number) => [
-    ...SEARCH_PERFORMANCES_QUERY_KEY.ALL,
+  SEARCH_PERFORMANCES: (keyword: string) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
     'search',
-    artistId,
-    cursor,
+    keyword,
+  ],
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'type-analysis',
+    keyword,
+  ],
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'intended',
+    request.pid,
+    request.aid,
+    request.ptitle,
+    request.ptype,
   ],
 } as const;
 
-export const SEARCH_PERFORMANCES_QUERY_OPTION = {
-  SEARCH_PERFORMANCES: (artistId: string, enabled: boolean) => ({
-    queryKey: ['performances', artistId],
-    queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
-      getPerformancesSearch(artistId, pageParam),
+export const SEARCH_PERFORMANCE_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCE_QUERY_KEY.ALL }),
+  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
+    queryFn: () => getPerformanceRelatedKeyword(keyword),
     enabled,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage: GetPerformancesSearchResponse) => {
-      return lastPage.nextCursor !== -1 ? lastPage.nextCursor : undefined;
-    },
+  }),
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string, enabled: boolean) => ({
+    queryKey:
+      SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCE_TYPE_ANALYSIS(keyword),
+    queryFn: () => getPerformanceTypeAnalysis(keyword),
+    enabled,
+  }),
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_INTENDED_PERFORMANCE(request),
+    queryFn: () => getIntendedPerformance(request),
   }),
 };

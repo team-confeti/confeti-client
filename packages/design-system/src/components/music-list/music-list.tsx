@@ -1,19 +1,19 @@
 import MusicItem from '../music-item/music-item';
 
 interface Music {
-  id: string;
-  albumImage: string;
+  musicId: string;
+  artWorkUrl: string;
   title: string;
-  artist: string;
+  artistName: string;
   isPlaying?: boolean;
 }
 
 interface MusicListProps {
   musics: Music[];
   variant?: 'default' | 'editable' | 'confirmDelete';
-  onClickPlayToggle?: (id: string) => void;
-  onClickDelete?: (id: string) => void;
-  getDragHandleProps?: (id: string) => React.HTMLAttributes<HTMLElement>;
+  onClickPlayToggle?: (musicId: string) => void;
+  onClickDelete?: (musicId: string) => void;
+  getDragHandleProps?: (musicId: string) => React.HTMLAttributes<HTMLElement>;
 }
 
 const MusicList = ({
@@ -27,15 +27,15 @@ const MusicList = ({
     <div>
       {musics.map((music) => (
         <MusicItem
-          key={music.id}
-          albumImage={music.albumImage}
+          key={music.musicId}
+          albumImage={music.artWorkUrl}
           title={music.title}
-          artist={music.artist}
+          artist={music.artistName}
           isPlaying={music.isPlaying}
           variant={variant}
-          onClickPlayToggle={() => onClickPlayToggle?.(music.id)}
-          onClickDelete={() => onClickDelete?.(music.id)}
-          dragHandleProps={getDragHandleProps?.(music.id)}
+          onClickPlayToggle={() => onClickPlayToggle?.(music.musicId)}
+          onClickDelete={() => onClickDelete?.(music.musicId)}
+          dragHandleProps={getDragHandleProps?.(music.musicId)}
         />
       ))}
     </div>
