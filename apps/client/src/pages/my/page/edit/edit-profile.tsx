@@ -14,7 +14,6 @@ import * as styles from './edit-profile.css';
 const EditProfile = () => {
   const { data: profileData } = useUserProfile();
   const { mutate: updateUserInfo } = useUserProfileMutation();
-
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [name, setName] = useState('');
@@ -23,24 +22,6 @@ const EditProfile = () => {
     profileData?.profileUrl || '',
   );
   const [hasShownToast, setHasShownToast] = useState(false);
-
-  useEffect(() => {
-    if (profileData?.profileUrl) {
-      setPreviewImgUrl(profileData.profileUrl);
-    }
-  }, [profileData]);
-
-  useEffect(() => {
-    if (name.length > 10 && !hasShownToast) {
-      toast({
-        text: '2~10자로 입력해 주세요',
-        icon: <IcToastInfo16 width={16} height={16} />,
-      });
-      setHasShownToast(true);
-    } else if (name.length <= 10 && hasShownToast) {
-      setHasShownToast(false);
-    }
-  }, [name, hasShownToast]);
 
   if (!profileData) return null;
 
@@ -52,6 +33,23 @@ const EditProfile = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
+    showToastForNameLength(name, hasShownToast, setHasShownToast);
+  };
+
+  const showToastForNameLength = (
+    name: string,
+    hasShownToast: boolean,
+    setHasShownToast: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    if (name.length > 10 && !hasShownToast) {
+      toast({
+        text: '2~10자로 입력해 주세요',
+        icon: <IcToastInfo16 width={16} height={16} />,
+      });
+      setHasShownToast(true);
+    } else if (name.length <= 10 && hasShownToast) {
+      setHasShownToast(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +68,6 @@ const EditProfile = () => {
     const fileToSend = profileFile
       ? profileFile
       : await urlToFile(profileData.profileUrl, 'current-profile.jpg');
-
     updateUserInfo({
       name: name || profileData.name,
       profileFile: fileToSend,
@@ -84,7 +81,7 @@ const EditProfile = () => {
         <div className={styles.userInfo}>
           <UserInfo
             name={profileData.name}
-            profileUrl={previewImgUrl}
+            profileUrl={previewImgUrl || profileData.profileUrl}
             showArrow={false}
             showEditBtn={true}
             onEditImage={triggerFileInput}
@@ -113,8 +110,8 @@ const EditProfile = () => {
             onClick={handleSave}
           />
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

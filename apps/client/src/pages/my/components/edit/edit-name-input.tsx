@@ -14,12 +14,11 @@ interface EditNameInputProps {
 const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocusBlur = () => setIsFocused((prev) => !prev);
 
   const handleClear = () => {
     onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
-    textInput.current?.focus();
+    textInput.current?.blur();
   };
 
   const handleClearMouseDown = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -41,8 +40,8 @@ const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
           type="text"
           value={name}
           onChange={onChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={handleFocusBlur}
+          onBlur={handleFocusBlur}
           placeholder={isFocused ? '' : '2~10자로 입력해 주세요'}
           className={cn(
             styles.textSection,

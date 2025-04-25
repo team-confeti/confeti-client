@@ -4,7 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const editProfileContainer = style({
   ...themeVars.display.flexColumn,
-  height: '100vh',
+  height: '100svh',
 });
 
 export const userInfo = style({
@@ -16,6 +16,6 @@ export const userInfo = style({
 export const editProfileContent = style({
   ...themeVars.display.flexBetween,
   flexDirection: 'column',
-  height: '100%',
+  height: '100svh',
   padding: '2rem',
 });
