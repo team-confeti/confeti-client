@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import EditName from '@pages/my/components/edit/edit-name';
+import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
@@ -57,8 +57,8 @@ const EditProfile = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileFile(file); // 저장
-      setPreviewImgUrl(URL.createObjectURL(file)); // 화면 미리보기
+      setProfileFile(file);
+      setPreviewImgUrl(URL.createObjectURL(file));
     }
   };
 
@@ -80,8 +80,8 @@ const EditProfile = () => {
   return (
     <>
       <Header variant="detail" title="프로필 편집" />
-      <div className={styles.pageWrapper}>
-        <div className={styles.content}>
+      <div className={styles.editProfileContainer}>
+        <div className={styles.userInfo}>
           <UserInfo
             name={profileData.name}
             profileUrl={previewImgUrl}
@@ -96,15 +96,16 @@ const EditProfile = () => {
             onChange={handleFileChange}
             style={{ display: 'none' }}
           />
-          <EditName
-            name={name}
-            onChange={handleInputChange}
-            isInvalid={isNameInvalid}
-          />
-          <LinkedAccount />
         </div>
-
-        <div className={styles.buttonWrapper}>
+        <div className={styles.editProfileContent}>
+          <div>
+            <EditNameInput
+              name={name}
+              onChange={handleInputChange}
+              isInvalid={isNameInvalid}
+            />
+            <LinkedAccount />
+          </div>
           <Button
             variant="add"
             text="저장하기"
@@ -112,8 +113,8 @@ const EditProfile = () => {
             onClick={handleSave}
           />
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };
