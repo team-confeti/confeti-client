@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
 import FestivalStage from '@pages/time-table/components/festival-stage/festival-stage';
 import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
+import { useFestivalSelection } from '@pages/time-table/hooks/use-festival-select';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { useTimeTableEdit } from '@pages/time-table/hooks/use-time-table-edit';
-
-import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '../components/calender/calender';
 import {
@@ -21,24 +19,13 @@ const TimeTablePage = () => {
   const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
 
   const { festivals } = useFestivalButtonData();
-  const [selectedFestivalInfo, setSelectedFestivalInfo] =
-    useState<FestivalTimetable>(festivals[0]);
-  const [selectedDateId, setSelectedDateId] = useState<number>(1);
 
-  const handleSelectFestival = (id: number) => {
-    const selectedFestival = festivals.find(
-      (festival) => festival.festivalId === id,
-    );
-
-    if (selectedFestival) {
-      setSelectedFestivalInfo(selectedFestival);
-      setSelectedDateId(selectedFestival.festivalDates[0].festivalDateId);
-    }
-  };
-
-  const handleSelectDate = (dateId: number) => {
-    setSelectedDateId(dateId);
-  };
+  const {
+    selectedFestivalInfo,
+    selectedDateId,
+    handleSelectFestival,
+    handleSelectDate,
+  } = useFestivalSelection(festivals);
 
   const { data: boardData } = useFestivalTimetableData(selectedDateId);
 
