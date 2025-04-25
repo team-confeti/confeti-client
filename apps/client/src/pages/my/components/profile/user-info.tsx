@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from '@confeti/design-system';
 import { IcArrowGray16, IcEdit16 } from '@confeti/design-system/icons';
+import { routePath } from '@shared/constants/path.ts';
 
 import * as styles from './user-info.css.ts';
 
@@ -25,7 +26,7 @@ const UserInfo = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/my/edit-profile');
+    navigate(routePath.MY_EDIT_PROFILE);
   };
 
   return (
@@ -42,7 +43,12 @@ const UserInfo = ({
           <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
           {showArrow && (
-            <IcArrowGray16 className={styles.arrowIcon} onClick={handleClick} />
+            <IcArrowGray16
+              className={styles.arrowIcon}
+              onClick={handleClick}
+              width={'1.6rem'}
+              height={'1.6rem'}
+            />
           )}
         </div>
       </div>
