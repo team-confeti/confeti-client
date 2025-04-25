@@ -8,6 +8,8 @@ import {
 import { calcTableItemPosition } from '@pages/time-table/utils/calculate-position';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import { cn } from '@confeti/design-system/utils';
+
 import * as styles from './time-table-item.css';
 
 interface ItemProps {
@@ -77,10 +79,13 @@ const TimeTableItem = ({
   return (
     <div
       style={dynamicVars}
-      className={styles.itemsWrapper({ isSelected: selectBlock })}
+      className={cn(
+        styles.itemsWrapper({ isSelected: selectBlock }),
+        'time-table-item',
+      )}
       onClick={handleSetSelectedBlock}
     >
-      <div className={styles.artistName({ isSelected: selectBlock })}>
+      <div className={cn(styles.artistName({ isSelected: selectBlock }))}>
         {artists.map((artist) => artist.artistName).join(', ')}
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>

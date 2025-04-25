@@ -28,12 +28,12 @@ export const itemsWrapper = recipe({
   variants: {
     isSelected: {
       true: {
-        backgroundColor: `${themeVars.color.confeti_lime} !important`,
+        backgroundColor: `${themeVars.color.confeti_lime}`,
         color: themeVars.color.black,
         border: `1px solid ${themeVars.color.gray400}`,
       },
       false: {
-        backgroundColor: `${themeVars.color.gray100} !important`,
+        backgroundColor: `${themeVars.color.gray100}`,
         border: `1px solid ${themeVars.color.gray400}`,
       },
     },
@@ -49,11 +49,12 @@ export const artistName = recipe({
     maxWidth: '100%',
     display: 'block',
     ...themeVars.fontStyles.subtitle4_b_14,
-
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     backgroundColor: 'inherit',
+    boxSizing: 'border-box',
+    padding: '0 0.2rem',
   },
   variants: {
     isSelected: {
