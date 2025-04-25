@@ -17,20 +17,23 @@ export const itemsWrapper = recipe({
     width: '100%',
     height: height,
     borderRadius: '2px',
-    zIndex: themeVars.zIndex.timeTable.content,
+    zIndex: themeVars.zIndex.timeTable.content + 1,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
     minWidth: '10.2rem',
+    boxSizing: 'border-box',
+    margin: 0,
+    padding: '0.5rem',
   },
   variants: {
     isSelected: {
       true: {
-        backgroundColor: themeVars.color.confeti_lime,
+        backgroundColor: `${themeVars.color.confeti_lime} !important`,
         color: themeVars.color.black,
         border: `1px solid ${themeVars.color.gray400}`,
       },
       false: {
-        backgroundColor: themeVars.color.gray100,
+        backgroundColor: `${themeVars.color.gray100} !important`,
         border: `1px solid ${themeVars.color.gray400}`,
       },
     },
@@ -50,6 +53,7 @@ export const artistName = recipe({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    backgroundColor: 'inherit',
   },
   variants: {
     isSelected: {
@@ -70,6 +74,7 @@ export const durationP = recipe({
   base: {
     ...themeVars.fontStyles.caption_r_10,
     whiteSpace: 'nowrap',
+    backgroundColor: 'inherit',
   },
   variants: {
     isSelected: {

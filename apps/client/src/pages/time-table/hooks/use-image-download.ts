@@ -17,59 +17,128 @@ export const useImageDownload = <T extends HTMLElement>({
     const element = elementRef.current;
     if (element) {
       try {
-        // 원래 스타일 저장
-        const originalStyles = new Map();
+        // 요소를 복제하고 화면 밖에 배치할 임시 컨테이너 생성
+        const container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.style.top = '-9999px';
+        document.body.appendChild(container);
 
-        // 스크롤이 있는 모든 요소 찾기
-        const scrollElements = element.querySelectorAll('*');
-        scrollElements.forEach((el) => {
-          const htmlEl = el as HTMLElement;
-          // 스크롤이 있는 요소 찾기
+        // 요소 복제
+        const clone = element.cloneNode(true) as HTMLElement;
+        container.appendChild(clone);
+
+        // 스타일 복사를 위한 함수
+        const copyComputedStyles = (
+          source: HTMLElement,
+          target: HTMLElement,
+        ) => {
+          const sourceStyle = window.getComputedStyle(source);
+
+          // 기본 레이아웃 스타일
+          target.style.width = sourceStyle.width;
+          target.style.overflow = 'visible';
+          target.style.maxHeight = 'none';
+
+          // 정확한 높이 복사 (원본 요소의 실제 높이)
+          const rect = source.getBoundingClientRect();
           if (
-            htmlEl.scrollHeight > htmlEl.clientHeight ||
-            htmlEl.scrollWidth > htmlEl.clientWidth
+            source.scrollHeight > source.clientHeight ||
+            source.scrollWidth > source.clientWidth
           ) {
-            originalStyles.set(htmlEl, {
-              overflow: htmlEl.style.overflow,
-              height: htmlEl.style.height,
-              maxHeight: htmlEl.style.maxHeight,
-            });
-
-            // 스크롤 요소의 스타일 변경
-            htmlEl.style.overflow = 'visible';
-            htmlEl.style.height = 'auto';
-            htmlEl.style.maxHeight = 'none';
+            target.style.height = 'auto';
+          } else {
+            target.style.height = `${rect.height}px`;
           }
-        });
 
-        // 메인 요소 스타일도 저장 및 수정
-        originalStyles.set(element, {
-          overflow: element.style.overflow,
-          height: element.style.height,
-          maxHeight: element.style.maxHeight,
-        });
-        element.style.overflow = 'visible';
-        element.style.height = 'auto';
-        element.style.maxHeight = 'none';
+          // 배경 관련 스타일 복사 및 강화
+          target.style.backgroundColor = sourceStyle.backgroundColor;
+          target.style.backgroundImage = sourceStyle.backgroundImage;
+          target.style.backgroundSize = sourceStyle.backgroundSize;
+          target.style.backgroundPosition = sourceStyle.backgroundPosition;
+          target.style.backgroundRepeat = sourceStyle.backgroundRepeat;
+          target.style.backgroundClip = 'padding-box';
+
+          // 텍스트 스타일 복사
+          target.style.color = sourceStyle.color;
+          target.style.fontSize = sourceStyle.fontSize;
+          target.style.fontFamily = sourceStyle.fontFamily;
+          target.style.fontWeight = sourceStyle.fontWeight;
+          target.style.fontStyle = sourceStyle.fontStyle;
+          target.style.lineHeight = sourceStyle.lineHeight;
+          target.style.textAlign = sourceStyle.textAlign;
+
+          // 박스 모델 스타일
+          target.style.boxSizing = 'border-box';
+          target.style.margin = sourceStyle.margin;
+          target.style.padding = sourceStyle.padding;
+          target.style.border = sourceStyle.border;
+          target.style.borderRadius = sourceStyle.borderRadius;
+
+          // 포지셔닝 스타일
+          target.style.position = sourceStyle.position;
+          target.style.display = sourceStyle.display;
+          target.style.flexDirection = sourceStyle.flexDirection;
+          target.style.justifyContent = sourceStyle.justifyContent;
+          target.style.alignItems = sourceStyle.alignItems;
+
+          // 투명 배경 처리
+          if (
+            sourceStyle.backgroundColor === 'rgba(0, 0, 0, 0)' ||
+            sourceStyle.backgroundColor === 'transparent'
+          ) {
+            let parentEl = source.parentElement;
+            while (parentEl) {
+              const parentStyle = window.getComputedStyle(parentEl);
+              if (
+                parentStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+                parentStyle.backgroundColor !== 'transparent'
+              ) {
+                target.style.backgroundColor = parentStyle.backgroundColor;
+                break;
+              }
+              parentEl = parentEl.parentElement;
+            }
+          }
+        };
+
+        // 메인 요소 스타일 복사
+        copyComputedStyles(element, clone);
+
+        // 요소 내 모든 노드에 대해 스타일 복사
+        const sourceElements = element.querySelectorAll('*');
+        const targetElements = clone.querySelectorAll('*');
+
+        for (
+          let i = 0;
+          i < sourceElements.length && i < targetElements.length;
+          i++
+        ) {
+          copyComputedStyles(
+            sourceElements[i] as HTMLElement,
+            targetElements[i] as HTMLElement,
+          );
+        }
+
+        // reflow 강제 트리거
+        clone.offsetHeight;
 
         const scale = window.devicePixelRatio * 2;
 
-        // 수정된 후 전체 크기 다시 계산
-        // reflow를 유도하기 위해 강제로 offsetHeight 접근
-        element.offsetHeight;
-
+        // 전체 크기 계산
         const fullHeight = Math.max(
-          element.scrollHeight,
-          element.offsetHeight,
-          element.clientHeight,
+          clone.scrollHeight,
+          clone.offsetHeight,
+          clone.clientHeight,
         );
         const fullWidth = Math.max(
-          element.scrollWidth,
-          element.offsetWidth,
-          element.clientWidth,
+          clone.scrollWidth,
+          clone.offsetWidth,
+          clone.clientWidth,
         );
 
-        const blob = await domtoimage.toBlob(element, {
+        // 이미지 생성
+        const blob = await domtoimage.toBlob(clone, {
           filter: (node: Node) => {
             const el = node as Element;
             return !excludeTags.includes(el.tagName);
@@ -85,28 +154,17 @@ export const useImageDownload = <T extends HTMLElement>({
           },
         });
 
-        // 원래 스타일로 복원
-        scrollElements.forEach((el) => {
-          const htmlEl = el as HTMLElement;
-          const originalStyle = originalStyles.get(htmlEl);
-          if (originalStyle) {
-            htmlEl.style.overflow = originalStyle.overflow;
-            htmlEl.style.height = originalStyle.height;
-            htmlEl.style.maxHeight = originalStyle.maxHeight;
-          }
-        });
-
-        // 메인 요소 스타일 복원
-        const mainOriginalStyle = originalStyles.get(element);
-        if (mainOriginalStyle) {
-          element.style.overflow = mainOriginalStyle.overflow;
-          element.style.height = mainOriginalStyle.height;
-          element.style.maxHeight = mainOriginalStyle.maxHeight;
-        }
+        // 임시 컨테이너 정리
+        document.body.removeChild(container);
 
         saveAs(blob, fileName);
       } catch (error) {
         console.error('이미지 생성 실패:', error);
+        // 오류 발생 시 임시 요소 정리
+        const container = document.querySelector('div[style*="-9999px"]');
+        if (container && container.parentElement) {
+          container.parentElement.removeChild(container);
+        }
         throw error;
       }
     }

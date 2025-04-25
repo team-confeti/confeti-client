@@ -53,6 +53,7 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
     patchTimeTableMutation.mutate(updatedTimetables);
   };
 
+  // 스테이지 개수에 따라 타임테이블 보드의 너비를 동적으로 조절하는 useEffect
   useEffect(() => {
     if (ref.current) {
       const stageCount = timeTableInfo.stages.length;

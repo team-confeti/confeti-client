@@ -7,6 +7,8 @@ export const timeList = style({
   display: 'flex',
   alignItems: 'center',
   paddingBottom: '3rem',
+  position: 'relative',
+  zIndex: themeVars.zIndex.timeTable.row,
 });
 
 export const timeP = recipe({
@@ -14,6 +16,9 @@ export const timeP = recipe({
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 0.4rem',
     marginRight: '0.7rem',
+    position: 'relative',
+    zIndex: 2,
+    backgroundColor: themeVars.color.white,
   },
   variants: {
     bold: {
@@ -34,9 +39,10 @@ export const timeBar = recipe({
   base: {
     height: '0.1rem',
     width: 'calc(100% - 3rem)',
-
     color: themeVars.color.gray300,
     zIndex: themeVars.zIndex.timeTable.row,
+    position: 'relative',
+    backgroundColor: 'currentColor',
   },
   variants: {
     bold: {
