@@ -1,17 +1,27 @@
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 
+import { ONBOARD_LIMIT } from '../constants/limit';
 import { useArtistRelatedKeyword } from '../hooks/use-onboard';
 
 import * as styles from './artist-search.css';
 
-const ArtistSearch = () => {
+interface ArtistSearchProps {
+  onArtistSelect: (artistId: string) => void;
+  handleSearchParams: () => void;
+}
+
+const ArtistSearch = ({
+  onArtistSelect,
+  handleSearchParams,
+}: ArtistSearchProps) => {
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
 
   const relatedKeywordsData = useArtistRelatedKeyword({
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
+    limit: ONBOARD_LIMIT.RELATED_KEYWORD,
   });
 
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
@@ -29,7 +39,15 @@ const ArtistSearch = () => {
       </div>
 
       {hasArtistResults ? (
-        <SearchSuggestionList relatedKeyword={relatedKeywordsData?.artists} />
+        <SearchSuggestionList
+          relatedKeyword={relatedKeywordsData?.artists?.map((artist) => ({
+            id: artist.artistId,
+            title: artist.name,
+            profileUrl: artist.profileUrl,
+          }))}
+          onSelectArtistId={onArtistSelect}
+          handleSearchParams={handleSearchParams}
+        />
       ) : (
         <section className={styles.artistSearchContainer}>
           <p className={styles.artistSearchDescription}>

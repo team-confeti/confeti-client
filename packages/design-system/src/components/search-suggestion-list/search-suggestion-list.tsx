@@ -1,36 +1,56 @@
-import { CmpProfileNon } from '../../icons/src';
+import { CmpSearchArtistImg, CmpSearchImg } from '../../icons/src';
 
 import * as styles from './search-suggestion-list.css';
 
-interface RelatedKeyword {
-  artistId: string;
+interface KeywordProps {
+  id: string;
+  title: string;
   profileUrl: string;
-  name: string;
 }
 
 interface SearchSuggestionListProps {
-  relatedKeyword: RelatedKeyword[] | undefined;
+  relatedKeyword: KeywordProps[] | undefined;
+  onSelectArtistId?: (id: string) => void;
+  onSelectKeyword?: (keyword: string) => void;
+  handleSearchParams?: () => void;
+  listType?: 'artist' | 'performance';
 }
 
 const SearchSuggestionList = ({
   relatedKeyword,
+  onSelectArtistId,
+  onSelectKeyword,
+  handleSearchParams,
+  listType,
 }: SearchSuggestionListProps) => {
+  const handleClick = (id: string, title: string) => {
+    handleSearchParams?.();
+    onSelectArtistId?.(id);
+    onSelectKeyword?.(title);
+  };
+
   return (
     <ul className={styles.searchSuggestionListSection()}>
-      {relatedKeyword?.map((artist) => (
-        <li key={artist.artistId} className={styles.listContainer}>
+      {relatedKeyword?.map((keyword) => (
+        <li
+          key={keyword.id}
+          className={styles.listContainer}
+          onClick={() => handleClick(keyword.id, keyword.title)}
+        >
           <div className={styles.listImageContainer}>
-            {artist.profileUrl ? (
+            {listType === 'performance' ? (
+              <CmpSearchImg className={styles.fallbackImage} />
+            ) : keyword.profileUrl ? (
               <img
                 className={styles.listImage}
-                src={artist.profileUrl}
-                alt={artist.name}
+                src={keyword.profileUrl}
+                alt={keyword.title}
               />
             ) : (
-              <CmpProfileNon className={styles.fallbackImage} />
+              <CmpSearchArtistImg className={styles.fallbackImage} />
             )}
           </div>
-          <p className={styles.listText}>{artist.name}</p>
+          <p className={styles.listText}>{keyword.title}</p>
         </li>
       ))}
     </ul>

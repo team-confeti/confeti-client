@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
-import MoreButton from '@pages/performance/components/button/more-button';
-import Info from '@pages/performance/components/info/info';
-import PerformanceDetail from '@pages/performance/components/performance/performance-detail';
-import Poster from '@pages/performance/components/poster/poster';
-import Summary from '@pages/performance/components/summary/summary';
+import DetailInfo from '@pages/performance/components/detail-info/detail-info';
+import Hero from '@pages/performance/components/hero/hero';
+import Location from '@pages/performance/components/location/location';
+import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
+import Reservation from '@pages/performance/components/reservation/reservation';
 import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
@@ -16,55 +15,38 @@ const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedFestivalId = typeId ? Number(typeId) : 0;
   const festivalDetail = useFestivalDetail(parsedFestivalId);
-  const [isExpanded, setIsExpanded] = useState(false);
   const { festival } = festivalDetail;
   const { isButtonHidden } = useScrollPosition();
-
-  const toggleExpanded = () => {
-    setIsExpanded((prev) => !prev);
-  };
 
   return (
     <>
       <FloatingButton isButtonHidden={isButtonHidden} />
-      <Poster
+      <Hero
         posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
-      />
-      <Summary
-        id={festival.festivalId}
         title={festival.title}
-        subtitle={festival.subtitle}
+        startAt={festival.startAt}
+        onClickBack={() => window.history.back()}
+      />
+      <PerformanceInfo
+        id={festival.festivalId}
         startAt={festival.startAt}
         endAt={festival.endAt}
         area={festival.area}
         reserveAt={festival.reserveAt}
-        reservationUrl={festival.reservationUrl}
         isFavorite={festival.isFavorite}
         type="FESTIVAL"
       />
       <Spacing />
-      <Info
-        subtitle={festival.subtitle}
-        area={festival.area}
-        startAt={festival.startAt}
-        endAt={festival.endAt}
+      <Reservation reservations={festival.reservations} />
+      <Spacing />
+      <DetailInfo
+        title={festival.title}
         time={festival.time}
         ageRating={festival.ageRating}
-        reservationOffice={festival.reservationOffice}
         price={festival.price}
       />
-      <Spacing />
-      <PerformanceDetail
-        isExpanded={isExpanded}
-        infoImgUrl={festival.infoImgUrl}
-        title={festival.title}
-      />
-      <MoreButton
-        hasShadow={true}
-        isExpanded={isExpanded}
-        onToggle={toggleExpanded}
-      />
+      <Location address={festival.address} />
       <Spacing />
       <ArtistTitle />
       <ArtistSection type="festival" artistData={festivalDetail} />

@@ -5,13 +5,14 @@ import { themeVars } from '../../styles';
 export const musicItemWrapper = style({
   ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
-  padding: '1rem 2rem',
+  padding: '1rem 0',
 });
 
 export const albumCoverWrapper = style({
   position: 'relative',
   width: '6.8rem',
   height: '6.8rem',
+  flexShrink: 0,
 });
 
 export const albumCover = style({
@@ -58,6 +59,7 @@ export const artist = style({
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
+  lineHeight: '1.5rem',
 });
 
 export const rightIcon = style({

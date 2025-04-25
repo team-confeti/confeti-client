@@ -10,22 +10,33 @@ import * as styles from './artist-select.css';
 
 interface artistSelectProps {
   artists: onboard[] | undefined;
+  onArtistSelect: (artistId: string) => void;
   children: ReactNode;
 }
 
-const ArtistSelect = ({ children, artists }: artistSelectProps) => {
+const ArtistSelect = ({
+  children,
+  artists,
+  onArtistSelect,
+}: artistSelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
 
   const handleSearchBarFocus = () => {
     setSearchParams({ search: 'true' });
   };
-  // const handleArtistSelect = () => {
-  //   setSearchParams({});
-  // };
+
+  const handleSearchArtistSelect = () => {
+    setSearchParams({});
+  };
 
   if (isFocused) {
-    return <ArtistSearch />;
+    return (
+      <ArtistSearch
+        onArtistSelect={onArtistSelect}
+        handleSearchParams={handleSearchArtistSelect}
+      />
+    );
   } else {
     return (
       <section className={styles.onboardingContentSection}>
@@ -47,6 +58,7 @@ const ArtistSelect = ({ children, artists }: artistSelectProps) => {
                 size="xl"
                 src={artist?.profileUrl}
                 alt={`${artist?.name} 이미지`}
+                onClick={() => onArtistSelect(artist?.artistId)}
               />
               <p className={styles.artistName}>{artist.name}</p>
             </div>

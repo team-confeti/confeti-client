@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const useScrollAtBottom = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -44,4 +44,12 @@ export const useScrollPosition = () => {
   const isButtonHidden = isAtTop || isDirectionDown;
 
   return { isButtonHidden };
+};
+
+export const useMoveScroll = () => {
+  const element = useRef<HTMLDivElement | null>(null);
+  const onMoveToElement = () => {
+    element.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  return { element, onMoveToElement };
 };
