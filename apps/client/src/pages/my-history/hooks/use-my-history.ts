@@ -31,3 +31,8 @@ export const useMySetListOverView = (sortBy: SortOption, enabled: boolean) => {
   );
   return { data };
 };
+
+export const useMyHistoryRecord = () => {
+  const { data } = useSuspenseQuery(MY_HISTORY_QUERY_OPTION.RECORD.ALL());
+  return { data };
+};

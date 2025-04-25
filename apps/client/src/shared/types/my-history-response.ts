@@ -20,3 +20,9 @@ export interface MyHistorySetListResponse {
   setlistCount: number;
   setlists: MyHistorySetList[];
 }
+
+export interface MyHistoryRecord {
+  totalCount: number;
+  timetableCount: number;
+  setlistCount: number;
+}

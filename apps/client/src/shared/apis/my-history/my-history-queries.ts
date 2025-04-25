@@ -3,6 +3,7 @@ import { queryOptions } from '@tanstack/react-query';
 import { SortOption } from '@shared/constants/sort-label';
 
 import {
+  getMyHistoryRecord,
   getMySetListOverView,
   getMySetListPreview,
   getMyTimeTableOverView,
@@ -30,6 +31,9 @@ export const MY_HISTORY_QUERY_KEY = {
       'overview',
       sortBy,
     ],
+  },
+  RECORD: {
+    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'record'],
   },
 } as const;
 
@@ -66,6 +70,13 @@ export const MY_HISTORY_QUERY_OPTION = {
         queryKey: MY_HISTORY_QUERY_KEY.SETLIST.OVERVIEW(sortBy),
         queryFn: () => getMySetListOverView(sortBy),
         enabled,
+      }),
+  },
+  RECORD: {
+    ALL: () =>
+      queryOptions({
+        queryKey: MY_HISTORY_QUERY_KEY.RECORD.ALL(),
+        queryFn: getMyHistoryRecord,
       }),
   },
 } as const;
