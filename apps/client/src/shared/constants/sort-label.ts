@@ -1,4 +1,4 @@
-export enum SORT_OPTIONS {
+export const enum SORT_OPTIONS {
   RECENT = 'createdAt',
   OLDEST = 'oldestFirst',
   ALPHABETICAL = 'alphabetically',

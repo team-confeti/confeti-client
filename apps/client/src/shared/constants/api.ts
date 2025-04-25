@@ -13,6 +13,9 @@ export const END_POINT = {
   GET_MY_TIMETABLE: 'user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `user/timetables?sortBy=${sortBy}`,
+  GET_MY_SET_LIST: '/my/setlists/preview',
+  GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
+    `/my/setlists/all?sortBy=${sortBy}`,
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
