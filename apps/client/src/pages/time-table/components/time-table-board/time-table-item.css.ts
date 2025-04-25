@@ -17,7 +17,7 @@ export const itemsWrapper = recipe({
     width: '100%',
     height: height,
     borderRadius: '2px',
-    zIndex: themeVars.zIndex.timeTable.content + 1,
+    zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
     minWidth: '10.2rem',
