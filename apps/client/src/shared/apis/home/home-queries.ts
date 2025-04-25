@@ -3,6 +3,7 @@ import { queryOptions } from '@tanstack/react-query';
 import {
   getLatestPerformances,
   getSuggestMusic,
+  getSuggestMusicPerformance,
   getSuggestPerformance,
   getTicketing,
 } from './home';
@@ -12,7 +13,13 @@ export const HOME_QUERY_KEY = {
   LATEST_PERFORMANCES: () => [...HOME_QUERY_KEY.ALL, 'latestPerformances'],
   TICKETING: () => [...HOME_QUERY_KEY.ALL, 'ticketing'],
   SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestPerformance'],
-  SUGGEST_MUSIC: () => [...HOME_QUERY_KEY.ALL, 'suggestMusic'],
+  SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestMusic'],
+  SUGGEST_MUSIC: (performanceId: number, musicId?: string[]) => [
+    ...HOME_QUERY_KEY.ALL,
+    'suggestMusic',
+    performanceId,
+    musicId,
+  ],
 } as const;
 
 export const HOME_QUERY_OPTIONS = {
@@ -32,9 +39,14 @@ export const HOME_QUERY_OPTIONS = {
       queryKey: HOME_QUERY_KEY.SUGGEST_PERFORMANCE(),
       queryFn: getSuggestPerformance,
     }),
-  SUGGEST_MUSIC: () =>
+  SUGGEST_MUSIC_PERFORMANCE: () =>
     queryOptions({
-      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(),
-      queryFn: getSuggestMusic,
+      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC_PERFORMANCE(),
+      queryFn: getSuggestMusicPerformance,
+    }),
+  SUGGEST_MUSIC: (performanceId: number, musicId?: string[]) =>
+    queryOptions({
+      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId, musicId),
+      queryFn: () => getSuggestMusic(performanceId, musicId),
     }),
 };

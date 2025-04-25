@@ -43,6 +43,7 @@ export { default as IcHeart } from './IcHeart';
 export { default as IcIndicatorActive } from './IcIndicatorActive';
 export { default as IcIndicatorDefault } from './IcIndicatorDefault';
 export { default as IcKakao } from './IcKakao';
+export { default as IcLoad } from './IcLoad';
 export { default as IcMusic } from './IcMusic';
 export { default as IcNewSearchGray18 } from './IcNewSearchGray18';
 export { default as IcPause } from './IcPause';
