@@ -33,23 +33,24 @@ const EditProfile = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-    showToastForNameLength(name, hasShownToast, setHasShownToast);
+    const shouldShowToast = showToastForNameLength(name, hasShownToast);
+    setHasShownToast(shouldShowToast);
   };
 
   const showToastForNameLength = (
     name: string,
     hasShownToast: boolean,
-    setHasShownToast: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => {
+  ): boolean => {
     if (name.length > 10 && !hasShownToast) {
       toast({
         text: '2~10자로 입력해 주세요',
-        icon: <IcToastInfo16 width={16} height={16} />,
+        icon: <IcToastInfo16 width={'1.6rem'} height={'1.6rem'} />,
       });
-      setHasShownToast(true);
+      return true;
     } else if (name.length <= 10 && hasShownToast) {
-      setHasShownToast(false);
+      return false;
     }
+    return hasShownToast;
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
