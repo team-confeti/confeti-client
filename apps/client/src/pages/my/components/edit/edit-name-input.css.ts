@@ -2,8 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const container = style({});
-
 export const title = style({
   padding: '1rem 0',
   ...themeVars.fontStyles.title4_b_16,

@@ -27,7 +27,7 @@ const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
   };
 
   return (
-    <section className={styles.container}>
+    <>
       <h3 className={styles.title}>이름</h3>
       <div
         className={cn(
@@ -58,7 +58,7 @@ const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
           />
         )}
       </div>
-    </section>
+    </>
   );
 };
 
