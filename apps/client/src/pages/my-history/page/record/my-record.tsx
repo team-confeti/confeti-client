@@ -3,6 +3,7 @@ import PreviewSection from '@pages/my-history/components/preview/preview-section
 import RecordInfo from '@pages/my-history/components/record/record-info';
 import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
 import {
+  useMyHistoryRecord,
   useMySetListPreview,
   useMyTimeTablePreview,
 } from '@pages/my-history/hooks/use-my-history';
@@ -14,16 +15,11 @@ const MyRecord = () => {
   const { data: profileData } = useUserProfile();
   const { data: timetablePreviewData } = useMyTimeTablePreview();
   const { data: setListPreviewData } = useMySetListPreview();
+  const { data: RecordCountData } = useMyHistoryRecord();
 
   if (!profileData || !timetablePreviewData) {
     return null;
   }
-
-  const RecordCount = {
-    totalPerformance: 5,
-    totalTimeTable: 4,
-    totalSetList: 3,
-  };
 
   return (
     <div>
@@ -32,9 +28,9 @@ const MyRecord = () => {
         profileUrl={profileData.profileUrl}
       />
       <RecordInfo
-        totalPerformance={RecordCount.totalPerformance}
-        totalTimeTable={RecordCount.totalTimeTable}
-        totalSetList={RecordCount.totalSetList}
+        totalPerformance={RecordCountData.totalCount}
+        totalTimeTable={RecordCountData.timetableCount}
+        totalSetList={RecordCountData.setlistCount}
       />
 
       <PreviewSection

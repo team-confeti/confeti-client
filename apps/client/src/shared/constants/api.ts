@@ -10,7 +10,7 @@ export const CONFIG = {
 
 export const END_POINT = {
   //내 공연
-  GET_MY_RECORD: `user/performances/record`,
+  GET_MY_RECORD: `performances/record`,
   GET_MY_TIMETABLE: 'user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `user/timetables?sortBy=${sortBy}`,
