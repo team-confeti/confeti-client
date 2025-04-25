@@ -44,12 +44,12 @@ export const getSuggestMusicPerformance =
 
 export const getSuggestMusic = async (
   performanceId: number,
-  musicId?: string[],
+  musicIds?: string[],
 ): Promise<SuggestMusicResponse> => {
   const query = new URLSearchParams();
 
   query.append('performanceId', String(performanceId));
-  musicId?.forEach((id) => query.append('musicId', id));
+  musicIds?.forEach((id) => query.append('musicId', id));
 
   const url = `performances/recommend/musics?${query.toString()}`;
 

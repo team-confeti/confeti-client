@@ -19,13 +19,15 @@ const SuggestMusicSection = ({
   const [musicIdList, setMusicIdList] = useState<string[] | undefined>(
     undefined,
   );
+
   const {
     data: suggestMusic,
     refetch,
     isLoading,
   } = useSuggestMusic(data.performanceId, musicIdList);
+
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
-    suggestMusic?.musicList ?? [],
+    suggestMusic?.musics ?? [],
   );
 
   const handleRefreshMusic = () => {

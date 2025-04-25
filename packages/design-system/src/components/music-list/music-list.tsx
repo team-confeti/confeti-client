@@ -2,7 +2,7 @@ import MusicItem from '../music-item/music-item';
 
 interface Music {
   musicId: string;
-  artWorkUrl: string;
+  artworkUrl: string;
   title: string;
   artistName: string;
   isPlaying?: boolean;
@@ -28,7 +28,7 @@ const MusicList = ({
       {musics.map((music) => (
         <MusicItem
           key={music.musicId}
-          albumImage={music.artWorkUrl}
+          albumImage={music.artworkUrl}
           title={music.title}
           artist={music.artistName}
           isPlaying={music.isPlaying}

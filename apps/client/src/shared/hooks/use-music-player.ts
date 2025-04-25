@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 
-import { MusicList } from '@shared/types/home-response';
+import { musics } from '@shared/types/home-response';
 
-export const useMusicPlayer = (data: MusicList[]) => {
+export const useMusicPlayer = (data: musics[]) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentPlayingId, setCurrentPlayingId] = useState<string | null>(null);
 

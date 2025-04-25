@@ -27,11 +27,11 @@ export type SuggestPerformance = Pick<
   'typeId' | 'type' | 'title' | 'posterUrl'
 >;
 
-export type MusicList = {
+export type musics = {
   musicId: string;
   artistName: string;
   title: string;
-  artWorkUrl: string;
+  artworkUrl: string;
   previewUrl: string;
 };
 
@@ -55,5 +55,5 @@ export interface SuggestMusicPerformanceResponse {
 }
 
 export interface SuggestMusicResponse {
-  musicList: MusicList[];
+  musics: musics[];
 }
