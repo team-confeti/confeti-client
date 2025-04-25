@@ -1,7 +1,7 @@
 import MusicItem from '../music-item/music-item';
 
 interface Music {
-  musicId: number;
+  musicId: string;
   artWorkUrl: string;
   title: string;
   artistName: string;
@@ -11,9 +11,9 @@ interface Music {
 interface MusicListProps {
   musics: Music[];
   variant?: 'default' | 'editable' | 'confirmDelete';
-  onClickPlayToggle?: (musicId: number) => void;
-  onClickDelete?: (musicId: number) => void;
-  getDragHandleProps?: (musicId: number) => React.HTMLAttributes<HTMLElement>;
+  onClickPlayToggle?: (musicId: string) => void;
+  onClickDelete?: (musicId: string) => void;
+  getDragHandleProps?: (musicId: string) => React.HTMLAttributes<HTMLElement>;
 }
 
 const MusicList = ({

@@ -28,7 +28,7 @@ export type SuggestPerformance = Pick<
 >;
 
 export type MusicList = {
-  musicId: number;
+  musicId: string;
   artistName: string;
   title: string;
   artWorkUrl: string;
@@ -49,10 +49,11 @@ export type SuggestPerformanceResponse = {
   performances: SuggestPerformance[];
 };
 
-export interface SuggestMusicResponse {
-  id: number;
-  typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+export interface SuggestMusicPerformanceResponse {
+  performanceId: number;
   title: string;
+}
+
+export interface SuggestMusicResponse {
   musicList: MusicList[];
 }

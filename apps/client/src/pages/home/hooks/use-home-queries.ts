@@ -1,22 +1,22 @@
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useQuery, useSuspenseQueries } from '@tanstack/react-query';
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 
-const useHomeQueries = () => {
+export const useHomeQueries = () => {
   const [
     userInfoResult,
     ticketingResult,
     latestPerformancesResult,
     suggestPerformanceResult,
-    suggestMusicResult,
+    suggestMusicPerformanceResult,
   ] = useSuspenseQueries({
     queries: [
       USER_QUERY_OPTIONS.PROFILE(),
       HOME_QUERY_OPTIONS.TICKETING(),
       HOME_QUERY_OPTIONS.LATEST_PERFORMANCES(),
       HOME_QUERY_OPTIONS.SUGGEST_PERFORMANCE(),
-      HOME_QUERY_OPTIONS.SUGGEST_MUSIC(),
+      HOME_QUERY_OPTIONS.SUGGEST_MUSIC_PERFORMANCE(),
     ],
   });
 
@@ -25,8 +25,14 @@ const useHomeQueries = () => {
     ticketing: ticketingResult.data,
     latestPerformances: latestPerformancesResult.data,
     suggestPerformance: suggestPerformanceResult.data,
-    suggestMusic: suggestMusicResult.data,
+    suggestMusicPerformance: suggestMusicPerformanceResult.data,
   };
 };
 
-export default useHomeQueries;
+export const useSuggestMusic = (performanceId: number, musicId?: string[]) => {
+  const { data, refetch, isLoading } = useQuery({
+    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(performanceId, musicId),
+  });
+
+  return { data, refetch, isLoading };
+};

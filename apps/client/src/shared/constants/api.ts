@@ -37,7 +37,7 @@ export const END_POINT = {
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: 'performances/info',
   GET_SUGGEST_PERFORMANCE: 'performances/recommend',
-  GET_SUGGEST_MUSIC: 'performances/recommend/musics',
+  GET_SUGGEST_MUSIC_PERFORMANCE: 'performances/recommend/performance',
 
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
