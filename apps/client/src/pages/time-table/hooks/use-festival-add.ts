@@ -4,7 +4,7 @@ import { toast } from '@confeti/design-system';
 
 import { MAX_SELECTIONS } from '../constants';
 
-const useFestivalSelection = () => {
+const useFestivalAdd = () => {
   const [selectedFestivals, setSelectedFestivals] = useState<number[]>([]);
 
   const removeSelect = (festivalId: number) => {
@@ -38,4 +38,4 @@ const useFestivalSelection = () => {
   };
 };
 
-export default useFestivalSelection;
+export default useFestivalAdd;

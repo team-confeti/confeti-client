@@ -6,15 +6,15 @@ import { routePath } from '@shared/constants/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import { MAX_SELECTIONS } from '../../constants';
+import useFestivalAdd from '../../hooks/use-festival-add';
 import { useFestivalButtonData } from '../../hooks/use-festival-data';
-import useFestivalSelection from '../../hooks/use-festival-selection';
 import { useGetFestivalToAdd } from '../../hooks/use-get-festival-to-add';
 
 import * as styles from './add-festival.css';
 
 const AddFestival = () => {
   const { selectedFestivals, handleFestivalClick, showToast } =
-    useFestivalSelection();
+    useFestivalAdd();
   const { festivals, fetchNextPage, hasNextPage } = useGetFestivalToAdd();
   const { festivals: addedFestivals } = useFestivalButtonData();
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
