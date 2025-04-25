@@ -3,19 +3,17 @@ import SvgBtnClose from 'node_modules/@confeti/design-system/src/icons/src/BtnCl
 
 import { cn } from '@confeti/design-system/utils';
 
-import * as styles from './edit-name.css';
+import * as styles from './edit-name-input.css';
 
-interface EditNameProps {
+interface EditNameInputProps {
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isInvalid: boolean;
 }
 
-const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
+const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
   const textInput = useRef<HTMLInputElement>(null);
-
   const [isFocused, setIsFocused] = useState(false);
-
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
@@ -28,8 +26,6 @@ const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
     e.preventDefault();
     handleClear();
   };
-
-  const showClearBtn = isFocused;
 
   return (
     <section className={styles.container}>
@@ -53,13 +49,13 @@ const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
             isInvalid ? styles.textSectionInvalid : undefined,
           )}
         />
-        {showClearBtn && (
+        {isFocused && (
           <SvgBtnClose
             className={styles.closeBtn}
             onClick={handleClear}
             onMouseDown={handleClearMouseDown}
-            width={18}
-            height={18}
+            width={'1.8rem'}
+            height={'1.8rem'}
           />
         )}
       </div>
@@ -67,4 +63,4 @@ const EditName = ({ name, onChange, isInvalid }: EditNameProps) => {
   );
 };
 
-export default EditName;
+export default EditNameInput;

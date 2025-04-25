@@ -2,9 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const container = style({
-  padding: '2rem',
-});
+export const container = style({});
 
 export const title = style({
   padding: '1rem 0',
