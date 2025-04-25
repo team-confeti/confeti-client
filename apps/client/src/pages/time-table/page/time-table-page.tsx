@@ -61,17 +61,13 @@ const TimeTablePage = () => {
             festivalDates={selectedFestivalInfo.festivalDates}
             onDateSelect={handleSelectDate}
           />
-
-          {boardData && (
-            <div className={styles.timeTableWrapper} ref={elementRef}>
-              <FestivalStage timeTableInfo={boardData} />
-              <TimeTableBoard
-                timeTableInfo={boardData}
-                isEditMode={isEditTimeTableMode}
-              />
-            </div>
-          )}
-
+          <div className={styles.timeTableWrapper} ref={elementRef}>
+            <FestivalStage timeTableInfo={boardData} />
+            <TimeTableBoard
+              timeTableInfo={boardData}
+              isEditMode={isEditTimeTableMode}
+            />
+          </div>
           <TimeTableActions
             isEditMode={isEditTimeTableMode}
             onToggleEditMode={toggleEditTimeTableMode}
