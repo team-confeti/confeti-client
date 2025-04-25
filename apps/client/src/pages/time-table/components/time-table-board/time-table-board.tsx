@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-open-box';
 import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
 import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
@@ -53,19 +53,14 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
     patchTimeTableMutation.mutate(updatedTimetables);
   };
 
-  // 스테이지 개수에 따라 타임테이블 보드의 너비를 동적으로 조절하는 useEffect
-  useEffect(() => {
-    if (ref.current) {
-      const stageCount = timeTableInfo.stages.length;
-      const calculatedWidth = `${stageCount * 10.2 + 2.9}rem`;
-      ref.current.style.width = calculatedWidth;
-      ref.current.style.minWidth = calculatedWidth;
-    }
-  }, [timeTableInfo.stages.length, ref]);
-
   return (
     <section className={styles.container}>
-      <div className={styles.wrapper} ref={ref}>
+      <div
+        className={styles.wrapper({
+          stageCount: timeTableInfo.stages.length === 4 ? 4 : undefined,
+        })}
+        ref={ref}
+      >
         <BoothOpenBox ticketOpenAt={timeTableInfo.ticketOpenAt} />
         {cellNumber.map((hour) => (
           <div key={hour}>

@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -18,9 +19,19 @@ export const container = style({
   overflowY: 'visible',
 });
 
-export const wrapper = style({
-  width: '100%',
-  position: 'relative',
+export const wrapper = recipe({
+  base: {
+    width: '100%',
+    position: 'relative',
+  },
+  variants: {
+    stageCount: {
+      4: {
+        width: '43.7rem',
+        minWidth: '43.7rem',
+      },
+    },
+  },
 });
 
 export const stagesContainer = style({

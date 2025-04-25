@@ -27,7 +27,7 @@ export const stageWrapper = style({
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   backdropFilter: 'blur(2px)',
   borderTop: themeVars.border.gray200,
-  zIndex: 10,
+  zIndex: themeVars.zIndex.header.content,
   width: '100%',
 
   padding: '0.8rem 2rem',

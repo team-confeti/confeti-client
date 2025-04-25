@@ -5,7 +5,6 @@ import {
   calcTotalMinutes,
   parseTimeString,
 } from '@pages/time-table/utils';
-import { calcTableItemPosition } from '@pages/time-table/utils/calculate-position';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { cn } from '@confeti/design-system/utils';
