@@ -27,7 +27,6 @@ const FestivalSelector = ({
   const handleAddFestival = () => {
     navigate(`${routePath.ADD_FESTIVAL}`);
   };
-
   const handleDeleteFestival = () => {
     navigate(`${routePath.DELETE_FESTIVAL}`);
   };
@@ -48,7 +47,13 @@ const FestivalSelector = ({
       <div className={styles.dropdownContainer}>
         <DropdownMenu>
           <DropdownMenu.Trigger>
-            <BtnMeatball width={'2.4rem'} height={'2.4rem'} />
+            {({ open }: { open: boolean }) => (
+              <BtnMeatball
+                width={'2.4rem'}
+                height={'2.4rem'}
+                isDropdownOpen={open}
+              />
+            )}
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item
