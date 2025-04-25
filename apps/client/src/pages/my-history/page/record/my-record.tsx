@@ -17,7 +17,7 @@ const MyRecord = () => {
   const { data: setListPreviewData } = useMySetListPreview();
   const { data: RecordCountData } = useMyHistoryRecord();
 
-  if (!profileData || !timetablePreviewData) {
+  if (!profileData) {
     return null;
   }
 
