@@ -3,7 +3,7 @@ import FestivalSelector from '@pages/time-table/components/festival-selector/fes
 import FestivalStage from '@pages/time-table/components/festival-stage/festival-stage';
 import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
 import TimeTableBoard from '@pages/time-table/components/time-table-board/time-table-board';
-import { useFestivalSelection } from '@pages/time-table/hooks/use-festival-select';
+import { useFestivalSelect } from '@pages/time-table/hooks/use-festival-select';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { useTimeTableEdit } from '@pages/time-table/hooks/use-time-table-edit';
 
@@ -25,7 +25,7 @@ const TimeTablePage = () => {
     selectedDateId,
     handleSelectFestival,
     handleSelectDate,
-  } = useFestivalSelection(festivals);
+  } = useFestivalSelect(festivals);
 
   const { data: boardData } = useFestivalTimetableData(selectedDateId);
 

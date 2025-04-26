@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 // 커스텀 훅: festivals 관련 상태 관리
-export const useFestivalSelection = (festivals: FestivalTimetable[]) => {
+export const useFestivalSelect = (festivals: FestivalTimetable[]) => {
   // 초기값을 festivals의 첫 번째 항목으로 설정
   const initialFestivalId =
     festivals.length > 0 ? festivals[0].festivalId : undefined;
