@@ -26,3 +26,20 @@ export interface MyHistoryRecord {
   timetableCount: number;
   setlistCount: number;
 }
+
+export interface SetListPerformance {
+  performanceId: number;
+  title: string;
+  posterUrl: string;
+}
+
+export interface SetListPerformanceResponse {
+  performanceCount: number;
+  performances: SetListPerformance[];
+}
+
+export interface SetListPerformanceRequest {
+  pid: number | null;
+  aid: string | null;
+  term: string | null;
+}
