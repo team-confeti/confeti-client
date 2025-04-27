@@ -7,6 +7,7 @@ import {
   AddFestivalPage,
   ConcertDetailPage,
   DeleteAccountPage,
+  DeleteFestivalPage,
   ErrorPage,
   FestivalDetailPage,
   HomePage,
@@ -97,6 +98,10 @@ export default function Router() {
           <Route
             path={routePath.ADD_FESTIVAL}
             element={createProtectedRoute(true, <AddFestivalPage />)}
+          />
+          <Route
+            path={routePath.DELETE_FESTIVAL}
+            element={createProtectedRoute(true, <DeleteFestivalPage />)}
           />
         </Route>
 

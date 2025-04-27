@@ -9,7 +9,12 @@ interface Props {
 
 const ButtonIcon = ({ onClick, ariaLabel, icon }: Props) => {
   return (
-    <IconButton onClick={onClick} aria-label={ariaLabel} disableRipple>
+    <IconButton
+      onClick={onClick}
+      aria-label={ariaLabel}
+      disableRipple
+      sx={{ padding: 0 }}
+    >
       {icon}
     </IconButton>
   );

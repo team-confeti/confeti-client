@@ -44,9 +44,7 @@ export const useDayNumSelection = (
   }, [festivalDates]);
 
   const handleDayNumClick = (festivalDateId: number) => {
-    setSelectedDateId((prev) =>
-      prev === festivalDateId ? null : festivalDateId,
-    );
+    setSelectedDateId(festivalDateId);
   };
 
   return {
