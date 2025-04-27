@@ -12,6 +12,6 @@ export const wrapper = style({
   width: 'calc(100% - 2.9rem)',
   color: themeVars.color.gray600,
   background: themeVars.color.gray200,
-  zIndex: 1,
+  zIndex: themeVars.zIndex.timeTable.row,
   marginTop: '0.7rem',
 });

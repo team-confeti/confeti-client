@@ -46,8 +46,7 @@ export const stagesContainer = style({
 });
 
 export const timeList = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexAlignCenter,
   marginBottom: '2.2rem',
   backgroundColor: themeVars.color.white,
 });

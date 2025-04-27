@@ -3,8 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const stageBoxWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
+  ...themeVars.display.flexJustifyAlignCenter,
   flex: 1,
   minWidth: '10rem',
 });
