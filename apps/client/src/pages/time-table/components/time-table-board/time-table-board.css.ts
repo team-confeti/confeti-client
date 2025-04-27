@@ -17,6 +17,7 @@ export const container = style({
   scrollbarWidth: 'none',
   paddingTop: '1.2rem',
   overflowY: 'visible',
+  marginBottom: '9rem',
 });
 
 export const wrapper = recipe({
@@ -47,7 +48,7 @@ export const stagesContainer = style({
 export const timeList = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '3rem',
+  marginBottom: '2.2rem',
   backgroundColor: themeVars.color.white,
 });
 
@@ -69,6 +70,7 @@ export const timeBar = style({
   height: '0.1rem',
   width: '100%',
   color: themeVars.color.gray300,
+  zIndex: themeVars.zIndex.timeTable.row,
 });
 
 export const saveButton = style({
