@@ -33,7 +33,7 @@ export const editButton = style({
 
 export const timeTableWrapper = style({
   maxWidth: '47.7rem',
-  // overflowX: 'auto',
+  backgroundColor: themeVars.color.white,
   '::-webkit-scrollbar': {
     display: 'none',
   },
