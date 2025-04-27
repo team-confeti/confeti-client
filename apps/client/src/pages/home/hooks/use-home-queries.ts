@@ -29,9 +29,9 @@ export const useHomeQueries = () => {
   };
 };
 
-export const useSuggestMusic = (performanceId: number, musicId?: string[]) => {
+export const useSuggestMusic = (performanceId: number, musicIds?: string[]) => {
   const { data, refetch, isLoading } = useQuery({
-    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(performanceId, musicId),
+    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(performanceId, musicIds),
   });
 
   return { data, refetch, isLoading };

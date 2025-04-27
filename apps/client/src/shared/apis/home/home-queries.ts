@@ -14,11 +14,11 @@ export const HOME_QUERY_KEY = {
   TICKETING: () => [...HOME_QUERY_KEY.ALL, 'ticketing'],
   SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestPerformance'],
   SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestMusic'],
-  SUGGEST_MUSIC: (performanceId: number, musicId?: string[]) => [
+  SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) => [
     ...HOME_QUERY_KEY.ALL,
     'suggestMusic',
     performanceId,
-    musicId,
+    musicIds,
   ],
 } as const;
 
@@ -44,9 +44,9 @@ export const HOME_QUERY_OPTIONS = {
       queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC_PERFORMANCE(),
       queryFn: getSuggestMusicPerformance,
     }),
-  SUGGEST_MUSIC: (performanceId: number, musicId?: string[]) =>
+  SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) =>
     queryOptions({
-      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId, musicId),
-      queryFn: () => getSuggestMusic(performanceId, musicId),
+      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId, musicIds),
+      queryFn: () => getSuggestMusic(performanceId, musicIds),
     }),
 };
