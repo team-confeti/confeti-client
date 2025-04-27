@@ -38,7 +38,7 @@ export interface RelatedArtistResponse {
 }
 
 export interface RelatedPerformance {
-  id: string;
+  id: number;
   title: string;
   posterUrl: string;
 }
