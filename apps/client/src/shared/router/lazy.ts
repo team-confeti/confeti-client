@@ -40,6 +40,9 @@ export const MyRecordPage = lazy(
 export const MyHistoryOverviewPage = lazy(
   () => import('@pages/my-history/page/overview/my-history-overview-page'),
 );
+export const AddSetlistPage = lazy(
+  () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
+);
 
 // Search
 export const SearchPage = lazy(() => import('@pages/search/page/search-page'));

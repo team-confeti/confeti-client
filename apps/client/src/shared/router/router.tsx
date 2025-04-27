@@ -5,6 +5,7 @@ import { routePath } from '@shared/constants/path';
 import GlobalLayout from './global-layout';
 import {
   AddFestivalPage,
+  AddSetlistPage,
   ConcertDetailPage,
   DeleteAccountPage,
   DeleteFestivalPage,
@@ -72,12 +73,16 @@ export default function Router() {
             element={createProtectedRoute(true, <MyRecordPage />)}
           />
           <Route
+            path={routePath.MY_HISTORY_REQUIRE_LOGIN}
+            element={<RequireLoginPage />}
+          />
+          <Route
             path={routePath.MY_HISTORY_OVERVIEW}
             element={<MyHistoryOverviewPage />}
           />
           <Route
-            path={routePath.MY_HISTORY_REQUIRE_LOGIN}
-            element={<RequireLoginPage />}
+            path={routePath.MY_HISTORY_ADD_SETLIST}
+            element={createProtectedRoute(true, <AddSetlistPage />)}
           />
         </Route>
 
