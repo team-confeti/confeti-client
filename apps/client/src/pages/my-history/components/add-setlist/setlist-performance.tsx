@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAddPerformanceMutation } from '@pages/my-history/hooks/use-add-performance-mutation';
 
 import { Button, FestivalCard } from '@confeti/design-system';
+import { routePath } from '@shared/constants/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
 
 import * as styles from './setlist-performance.css';
@@ -11,19 +14,30 @@ interface Props {
 }
 
 const SetlistPerformance = ({ performanceCount, performances }: Props) => {
-  const [selectedFestivals, setSelectedFestivals] = useState<number[]>([]);
+  const navigate = useNavigate();
+  const [selectedFestivals, setSelectedFestivals] = useState<
+    Pick<SetListPerformance, 'type' | 'typeId'>[]
+  >([]);
 
-  // TODO: 셋리스트 만들기 API 연동
+  const { mutate: addPerformanceToSetList } = useAddPerformanceMutation();
+
+  // TODO: 1개 추가, 여러개 추가시 네비게이션 추가 필요
+  // 1개 추가 -> 해당 공연의 셋리스트 페이지로 이동
+  // 여러개 추가 -> 셋리스트 초기 페이지로 이동(현재 적용상태)
   const handleAddClick = () => {
-    console.log(selectedFestivals);
+    addPerformanceToSetList(selectedFestivals, {
+      onSuccess: () => {
+        navigate(routePath.MY_HISTORY);
+      },
+    });
   };
 
-  const handleFestivalSelect = (performanceId: number, isSelected: boolean) => {
+  const handleFestivalSelect = (typeId: number, isSelected: boolean) => {
     setSelectedFestivals((prev) => {
       if (isSelected) {
-        return [...prev, performanceId];
+        return [...prev, { type: 'FESTIVAL', typeId }];
       } else {
-        return prev.filter((id) => id !== performanceId);
+        return prev.filter((item) => item.typeId !== typeId);
       }
     });
   };
@@ -36,20 +50,20 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
 
       <section className={styles.performanceContainer}>
         {performances.map((performance) => {
-          const isSelected = selectedFestivals.includes(
-            performance.performanceId,
+          const isSelected = selectedFestivals.some(
+            (item) => item.typeId === performance.performanceId,
           );
 
           return (
             <FestivalCard
               key={performance.performanceId}
-              typeId={performance.performanceId}
+              typeId={performance.typeId}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}
               isSelected={isSelected}
               onSelectChange={(_title, isSelected) =>
-                handleFestivalSelect(performance.performanceId, isSelected)
+                handleFestivalSelect(performance.typeId, isSelected)
               }
             />
           );
