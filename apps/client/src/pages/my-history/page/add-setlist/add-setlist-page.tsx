@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
-import { useRelatedSearch } from '@pages/search/hooks/use-search-data';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
 
 import { useSearchSetListPerformance } from '../hooks/use-performance-search';

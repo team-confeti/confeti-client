@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
@@ -10,7 +11,6 @@ import RecentFestivalSection from '../components/search-home/recent-festivals-se
 import RecentSearchSection from '../components/search-home/recent-search-section';
 import {
   usePerformanceTypeAnalysis,
-  useRelatedSearch,
   useSearchArtist,
 } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
