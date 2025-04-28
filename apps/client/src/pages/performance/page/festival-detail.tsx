@@ -10,6 +10,7 @@ import { useFestivalDetail } from '@pages/performance/hooks/use-festival-detail'
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
+import { addRecentViewItem } from '@shared/utils/recent-view';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
@@ -17,6 +18,10 @@ const FestivalDetailPage = () => {
   const festivalDetail = useFestivalDetail(parsedFestivalId);
   const { festival } = festivalDetail;
   const { isButtonHidden } = useScrollPosition();
+
+  if (festival.festivalId) {
+    addRecentViewItem({ type: 'festival', typeId: festival.festivalId });
+  }
 
   return (
     <>
