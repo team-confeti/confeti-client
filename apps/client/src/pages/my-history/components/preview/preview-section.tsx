@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, FestivalCard } from '@confeti/design-system';
-import { MyTimeTable } from '@shared/types/my-history-response';
+import {
+  MyHistorySetList,
+  MyTimeTable,
+} from '@shared/types/my-history-response';
 
 import * as styles from './preview-section.css';
 
@@ -15,7 +18,7 @@ interface Props {
   title: string;
   showMore?: boolean;
   buttonLabel?: string;
-  previewData?: MyTimeTable[];
+  previewData?: MyHistorySetList[] | MyTimeTable[];
   emptyMessage: string;
   ctaText: string;
   navigatePath?: string;
