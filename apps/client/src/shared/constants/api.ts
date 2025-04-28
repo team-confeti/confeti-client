@@ -31,6 +31,7 @@ export const END_POINT = {
     `/user/favorites/festivals/${festivalId}`,
   POST_LIKE_CONCERT: (concertId: number) =>
     `user/favorites/concerts/${concertId}`,
+  PATCH_USER_INFO: '/user/info',
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
 

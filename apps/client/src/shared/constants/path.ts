@@ -14,6 +14,7 @@ export const routePath = {
   MY_REQUIRE_LOGIN: 'require-login',
   MY_SETTING: 'setting',
   MY_DELETE_ACCOUNT: 'delete-account',
+  MY_EDIT_PROFILE: 'edit-profile',
 
   // MyHistory
   MY_HISTORY: '/my-history',
