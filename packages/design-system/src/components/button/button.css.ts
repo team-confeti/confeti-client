@@ -57,7 +57,9 @@ export const buttonVariants = recipe({
       },
     },
     disabled: {
-      true: {},
+      true: {
+        backgroundColor: themeVars.color.gray400,
+      },
       false: {},
     },
   },

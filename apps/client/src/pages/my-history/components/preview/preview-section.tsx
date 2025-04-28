@@ -6,7 +6,7 @@ import { MyTimeTable } from '@shared/types/my-history-response';
 import * as styles from './preview-section.css';
 
 const routeMap = {
-  SET_LIST: '/setlist/add-setlist', // TODO: SET_LIST 실제 경로로 변경
+  SET_LIST: 'setlist/add-setlist',
   TIME_TABLE: '/timetable/add-festival',
 } as const;
 

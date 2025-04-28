@@ -60,11 +60,16 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
 
 // Dropdown의 메뉴를 trigger 하는 컴포넌트
 interface DropdownTriggerProps {
-  children: ReactNode;
+  children: ReactNode | (({ open }: { open: boolean }) => ReactNode);
   className?: string;
+  onClick?: () => void;
 }
 
-const DropdownTrigger = ({ children, className }: DropdownTriggerProps) => {
+const DropdownTrigger = ({
+  children,
+  className,
+  onClick,
+}: DropdownTriggerProps) => {
   const { handleToggleOpen, open } = useDropdownContext();
 
   return (
@@ -72,10 +77,11 @@ const DropdownTrigger = ({ children, className }: DropdownTriggerProps) => {
       onClick={(e) => {
         e.stopPropagation();
         handleToggleOpen();
+        onClick?.();
       }}
       className={cn(styles.triggerBtnStyle({ isToggleOpen: open }), className)}
     >
-      {children}
+      {typeof children === 'function' ? children({ open }) : children}
     </button>
   );
 };

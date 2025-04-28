@@ -38,11 +38,40 @@ export interface RelatedArtistResponse {
 }
 
 export interface RelatedPerformance {
-  id: string;
+  id: number;
   title: string;
   posterUrl: string;
 }
 
 export interface RelatedPerformanceResponse {
   performances: RelatedPerformance[];
+}
+
+export interface PerformanceTypeAnalysis {
+  processedTerm: string;
+  performanceType: 'CONCERT' | 'FESTIVAL' | 'PERFORMANCE';
+}
+
+export interface IntendedPerformance {
+  performanceId: number;
+  typeId: number;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  title: string;
+  posterUrl: string;
+  area: string;
+  startAt: string;
+  endAt: string;
+  isFavorite: boolean;
+}
+
+export interface IntendedPerformanceResponse {
+  performanceCount: number;
+  performances: IntendedPerformance[];
+}
+
+export interface IntendedPerformanceRequest {
+  pid: number | null;
+  aid: string | null;
+  ptitle: string | null;
+  ptype: 'FESTIVAL' | 'CONCERT' | 'PERFORMANCE' | null;
 }

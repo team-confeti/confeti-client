@@ -3,7 +3,9 @@ import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
   ArtistSearchResponse,
-  PerformancesSearchResponse,
+  IntendedPerformanceRequest,
+  IntendedPerformanceResponse,
+  PerformanceTypeAnalysis,
   RelatedArtistResponse,
   RelatedPerformanceResponse,
 } from '@shared/types/search-reponse';
@@ -35,11 +37,29 @@ export const getPerformanceRelatedKeyword = async (
   return response.data;
 };
 
-export const getArtistRelatedPerformances = async (
-  artistId: string | null,
-): Promise<PerformancesSearchResponse> => {
-  const response = await get<BaseResponse<PerformancesSearchResponse>>(
-    `${END_POINT.GET_PERFORMANCES_SEARCH(artistId)}`,
+export const getPerformanceTypeAnalysis = async (
+  keyword: string,
+): Promise<PerformanceTypeAnalysis> => {
+  const response = await get<BaseResponse<PerformanceTypeAnalysis>>(
+    `${END_POINT.GET_PERFORMANCE_TYPE_ANALYSIS(keyword)}`,
   );
+  return response.data;
+};
+
+export const getIntendedPerformance = async (
+  request: IntendedPerformanceRequest,
+): Promise<IntendedPerformanceResponse> => {
+  const { pid, aid, ptitle, ptype } = request;
+
+  const query = new URLSearchParams();
+
+  if (pid !== null) query.append('pid', String(pid));
+  if (aid !== null) query.append('aid', aid);
+  if (ptitle !== null) query.append('ptitle', ptitle);
+  if (ptype !== null) query.append('ptype', ptype);
+
+  const url = `performances/search?${query.toString()}`;
+
+  const response = await get<BaseResponse<IntendedPerformanceResponse>>(url);
   return response.data;
 };
