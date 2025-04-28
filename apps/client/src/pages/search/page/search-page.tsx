@@ -9,8 +9,10 @@ import Loading from '@shared/pages/loading/loading';
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
+import { useRecentSearch } from '../hooks/use-recent-search';
 import {
   usePerformanceTypeAnalysis,
+  usePopularSearch,
   useSearchArtist,
 } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
@@ -26,6 +28,8 @@ const SearchPage = () => {
 
   const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
+  const { addSearchKeyword } = useRecentSearch();
+
   const {
     keyword: searchKeyword,
     debouncedKeyword,
@@ -35,6 +39,7 @@ const SearchPage = () => {
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
+  const { data: popularSearchData } = usePopularSearch();
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -55,6 +60,7 @@ const SearchPage = () => {
       searchKeyword.trim()
     ) {
       setIsPerformanceAnalysisTriggered(true);
+      addSearchKeyword(searchKeyword);
       handleNavigateWithKeyword(searchKeyword);
       (e.target as HTMLInputElement).blur();
     }
@@ -107,7 +113,7 @@ const SearchPage = () => {
         return (
           <main className={styles.resultSection}>
             <RecentSearchSection />
-            <PopularSearchSection />
+            <PopularSearchSection popularSearchData={popularSearchData} />
             <RecentFestivalSection />
           </main>
         );
