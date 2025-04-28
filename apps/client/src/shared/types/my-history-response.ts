@@ -31,6 +31,8 @@ export interface SetListPerformance {
   performanceId: number;
   title: string;
   posterUrl: string;
+  type: 'FESTIVAL' | 'CONCERT';
+  typeId: number;
 }
 
 export interface SetListPerformanceResponse {

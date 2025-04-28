@@ -46,8 +46,7 @@ const MyRecord = () => {
       <PreviewSection
         previewType="SET_LIST"
         title="My 셋리스트"
-        //TODO : ? 키워드 관련 이슈 => 빈 값일 경우 서버에서 반환 값 통일 요청
-        previewData={setListPreviewData.setlists?.slice(0, 3)}
+        previewData={setListPreviewData}
         emptyMessage="아직 My 셋리스트가 없어요."
         ctaText="셋리스트 추가하기"
         navigatePath={`${routePath.MY_HISTORY_OVERVIEW}?type=SET_LIST`}

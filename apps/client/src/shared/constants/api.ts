@@ -17,6 +17,9 @@ export const END_POINT = {
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
+  POST_ADD_PERFORMANCE_TO_SET_LIST: '/my/setlists',
+
+  // 마이페이지
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',

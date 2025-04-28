@@ -3,6 +3,7 @@ import { SortOption } from '@shared/constants/sort-label';
 import { BaseResponse } from '@shared/types/api';
 import {
   MyHistoryRecord,
+  MyHistorySetList,
   MyHistorySetListResponse,
   MyHistoryTimetableResponse,
 } from '@shared/types/my-history-response';
@@ -24,9 +25,10 @@ export const getMyTimeTableOverView = async (sortBy: SortOption) => {
 };
 
 export const getMySetListPreview = async () => {
-  const response = await get<BaseResponse<MyHistorySetListResponse>>(
+  const response = await get<BaseResponse<MyHistorySetList[]>>(
     END_POINT.GET_MY_SET_LIST,
   );
+
   return response.data;
 };
 
