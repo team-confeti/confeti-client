@@ -8,9 +8,17 @@ export const timeTableOnboardContainer = style({
   alignItems: 'flex-start',
   width: '100%',
   height: '100%',
-  padding: '3rem 0rem',
+  padding: '3rem 2rem',
   gap: '0.8rem',
   flexShrink: 0,
+});
+
+export const timeTableImageContainer = style({
+  ...themeVars.display.flexColumn,
+  alignItems: 'flex-start',
+  textAlign: 'center',
+  gap: '2rem',
+  alignSelf: 'stretch',
 });
 
 export const timeTableOnboardContent = style({
