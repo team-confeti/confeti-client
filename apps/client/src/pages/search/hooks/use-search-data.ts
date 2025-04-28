@@ -45,3 +45,11 @@ export const useIntendedPerformance = ({
 
   return { data };
 };
+
+export const usePopularSearch = () => {
+  const { data } = useSuspenseQuery({
+    ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_POPULAR_SEARCH(),
+  });
+
+  return { data };
+};

@@ -11,6 +11,7 @@ import RecentFestivalSection from '../components/search-home/recent-festivals-se
 import RecentSearchSection from '../components/search-home/recent-search-section';
 import {
   usePerformanceTypeAnalysis,
+  usePopularSearch,
   useSearchArtist,
 } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
@@ -35,6 +36,7 @@ const SearchPage = () => {
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
+  const { data: popularSearchData } = usePopularSearch();
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -107,7 +109,7 @@ const SearchPage = () => {
         return (
           <main className={styles.resultSection}>
             <RecentSearchSection />
-            <PopularSearchSection />
+            <PopularSearchSection popularSearchData={popularSearchData} />
             <RecentFestivalSection />
           </main>
         );
