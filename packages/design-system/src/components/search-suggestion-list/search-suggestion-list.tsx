@@ -3,7 +3,7 @@ import { CmpSearchArtistImg, CmpSearchImg } from '../../icons/src';
 import * as styles from './search-suggestion-list.css';
 
 interface KeywordProps {
-  id: string;
+  id: string | number;
   title: string;
   profileUrl: string;
 }
@@ -11,7 +11,7 @@ interface KeywordProps {
 interface SearchSuggestionListProps {
   relatedKeyword: KeywordProps[] | undefined;
   onSelectArtistId?: (id: string) => void;
-  onSelectKeyword?: (keyword: string) => void;
+  onSelectKeyword?: (keyword: string, id: string | number) => void;
   handleSearchParams?: () => void;
   listType?: 'artist' | 'performance';
 }
@@ -23,10 +23,10 @@ const SearchSuggestionList = ({
   handleSearchParams,
   listType,
 }: SearchSuggestionListProps) => {
-  const handleClick = (id: string, title: string) => {
+  const handleClick = (id: string | number, title: string) => {
     handleSearchParams?.();
-    onSelectArtistId?.(id);
-    onSelectKeyword?.(title);
+    onSelectArtistId?.(id.toString());
+    onSelectKeyword?.(title, id);
   };
 
   return (
