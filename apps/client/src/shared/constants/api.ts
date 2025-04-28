@@ -60,6 +60,7 @@ export const END_POINT = {
   GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
     `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
   GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
+  GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
 
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',

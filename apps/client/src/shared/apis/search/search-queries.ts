@@ -9,7 +9,31 @@ import {
   getPerformanceRelatedKeyword,
   getPerformanceTypeAnalysis,
   getPopularSearch,
+  getRecentView,
 } from './search';
+
+export const SEARCH_PAGE_QUERY_KEY = {
+  ALL: ['search'],
+  SEARCH_POPULAR_SEARCH: () => [...SEARCH_PAGE_QUERY_KEY.ALL, 'popular'],
+  RECENT_VIEW: (items: string) => [
+    ...SEARCH_PAGE_QUERY_KEY.ALL,
+    'recent',
+    items,
+  ],
+} as const;
+
+export const SEARCH_PAGE_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_PAGE_QUERY_KEY.ALL }),
+  SEARCH_POPULAR_SEARCH: () => ({
+    queryKey: SEARCH_PAGE_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
+    // TODO: limit 상수 처리
+    queryFn: () => getPopularSearch(10),
+  }),
+  RECENT_VIEW: (items: string) => ({
+    queryKey: SEARCH_PAGE_QUERY_KEY.RECENT_VIEW(items),
+    queryFn: () => getRecentView(items),
+  }),
+};
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -18,7 +42,6 @@ export const SEARCH_ARTIST_QUERY_KEY = {
     'search',
     keyword,
   ],
-  SEARCH_POPULAR_SEARCH: () => [...SEARCH_ARTIST_QUERY_KEY.ALL, 'popular'],
 } as const;
 
 export const SEARCH_ARTIST_QUERY_OPTION = {
@@ -32,11 +55,6 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
     queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
     queryFn: () => getArtistRelatedKeyword(keyword),
     enabled,
-  }),
-  SEARCH_POPULAR_SEARCH: () => ({
-    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
-    // TODO: limit 상수 처리
-    queryFn: () => getPopularSearch(10),
   }),
 };
 
