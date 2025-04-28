@@ -23,12 +23,9 @@ export { default as BtnSearchBlack24 } from './BtnSearchBlack24';
 export { default as BtnSearchDelete } from './BtnSearchDelete';
 export { default as BtnSearchG90024 } from './BtnSearchG90024';
 export { default as BtnSettings24 } from './BtnSettings24';
-
+export { default as BtnSwitch } from './BtnSwitch';
 export { default as CheckboxFestival } from './CheckboxFestival';
 export { default as CheckboxFestivalActive } from './CheckboxFestivalActive';
-
-export { default as BtnSwitch } from './BtnSwitch';
-
 export { default as CmpProfileNon } from './CmpProfileNon';
 export { default as CmpSearchArtistImg } from './CmpSearchArtistImg';
 export { default as CmpSearchImg } from './CmpSearchImg';
@@ -41,8 +38,8 @@ export { default as IcArrowUpBlack30 } from './IcArrowUpBlack30';
 export { default as IcArrowUpGray16 } from './IcArrowUpGray16';
 export { default as IcArrowWhite12 } from './IcArrowWhite12';
 export { default as IcArtistNon } from './IcArtistNon';
-export { default as IcEdit16 } from './IcEdit16';
 export { default as IcCheck } from './IcCheck';
+export { default as IcEdit16 } from './IcEdit16';
 export { default as IcEditGreen24 } from './IcEditGreen24';
 export { default as IcError404 } from './IcError404';
 export { default as IcExclamationCircleOutlined32 } from './IcExclamationCircleOutlined32';
@@ -73,6 +70,12 @@ export { default as IcTimetableFloatFinish } from './IcTimetableFloatFinish';
 export { default as IcToastInfo16 } from './IcToastInfo16';
 export { default as IcToastInfo24 } from './IcToastInfo24';
 export { default as IcWarning60 } from './IcWarning60';
+export { default as ImgOnboard1 } from './ImgOnboard1';
+export { default as ImgOnboard2 } from './ImgOnboard2';
+export { default as ImgOnboard3 } from './ImgOnboard3';
+export { default as ImgOnboard4 } from './ImgOnboard4';
+export { default as ImgOnboard5 } from './ImgOnboard5';
+export { default as ImgOnboard6 } from './ImgOnboard6';
 export { default as ImgTypelogoBig } from './ImgTypelogoBig';
 export { default as InfoOverlay } from './InfoOverlay';
 export { default as LogoFooter } from './LogoFooter';
