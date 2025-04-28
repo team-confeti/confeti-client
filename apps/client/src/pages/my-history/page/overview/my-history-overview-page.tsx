@@ -34,7 +34,7 @@ const MyHistoryOverviewPage = () => {
   const overviewData = isSetList
     ? {
         data: setListOverviewData?.setlists,
-        count: setListOverviewData?.setlistCount,
+        count: setListOverviewData?.totalCount,
       }
     : {
         data: timetableOverviewData?.timetables,

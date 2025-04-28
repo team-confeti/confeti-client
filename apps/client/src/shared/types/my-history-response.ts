@@ -17,7 +17,7 @@ export interface MyHistorySetList {
 }
 
 export interface MyHistorySetListResponse {
-  setlistCount: number;
+  totalCount: number;
   setlists: MyHistorySetList[];
 }
 
