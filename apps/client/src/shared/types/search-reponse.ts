@@ -84,3 +84,15 @@ export interface PopularSearch {
 export interface PopularSearchResponse {
   popularTerms: PopularSearch[];
 }
+
+export interface RecentPerformanceView {
+  performanceId: number;
+  typeId: number;
+  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  title: string;
+  posterUrl: string;
+}
+
+export interface RecentPerformanceViewResponse {
+  performances: RecentPerformanceView[];
+}

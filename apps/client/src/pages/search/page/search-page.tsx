@@ -5,6 +5,7 @@ import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
+import { getRecentViewItems } from '@shared/utils/recent-view';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
@@ -13,6 +14,7 @@ import { useRecentSearch } from '../hooks/use-recent-search';
 import {
   usePerformanceTypeAnalysis,
   usePopularSearch,
+  useRecentView,
   useSearchArtist,
 } from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
@@ -40,6 +42,11 @@ const SearchPage = () => {
     enabled: !!paramsKeyword,
   });
   const { data: popularSearchData } = usePopularSearch();
+  const recentViewItems = getRecentViewItems();
+  const items = recentViewItems
+    .map((item) => `${item.type}:${item.typeId}`)
+    .join(',');
+  const { data: recentViewData } = useRecentView(items);
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -114,7 +121,7 @@ const SearchPage = () => {
           <main className={styles.resultSection}>
             <RecentSearchSection />
             <PopularSearchSection popularSearchData={popularSearchData} />
-            <RecentFestivalSection />
+            <RecentFestivalSection recentViewData={recentViewData} />
           </main>
         );
     }

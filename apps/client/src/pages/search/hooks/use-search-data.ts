@@ -1,9 +1,11 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
+import {
+  SEARCH_PAGE_QUERY_OPTION,
+  SEARCH_PERFORMANCE_QUERY_OPTION,
+} from '@shared/apis/search/search-queries';
 import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
-
-import { SEARCH_PERFORMANCE_QUERY_OPTION } from './../../../shared/apis/search/search-queries';
 
 interface KeywordProps {
   keyword: string;
@@ -48,7 +50,15 @@ export const useIntendedPerformance = ({
 
 export const usePopularSearch = () => {
   const { data } = useSuspenseQuery({
-    ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_POPULAR_SEARCH(),
+    ...SEARCH_PAGE_QUERY_OPTION.SEARCH_POPULAR_SEARCH(),
+  });
+
+  return { data };
+};
+
+export const useRecentView = (items: string) => {
+  const { data } = useSuspenseQuery({
+    ...SEARCH_PAGE_QUERY_OPTION.RECENT_VIEW(items),
   });
 
   return { data };

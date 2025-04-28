@@ -1,10 +1,14 @@
 import { FestivalCard } from '@confeti/design-system';
-import { PERFORMANCE_DATA } from '@shared/mocks/performance-data';
+import { RecentPerformanceViewResponse } from '@shared/types/search-reponse';
 
 import * as styles from './recent-festivals-section.css';
 
-export default function RecentFestivalSection() {
-  const performances = PERFORMANCE_DATA.performances;
+interface Props {
+  recentViewData: RecentPerformanceViewResponse;
+}
+
+export default function RecentFestivalSection({ recentViewData }: Props) {
+  const performances = recentViewData.performances;
   const hasRecentlyViewed = performances.length > 0;
 
   return (
@@ -13,7 +17,7 @@ export default function RecentFestivalSection() {
       {hasRecentlyViewed ? (
         <ul className={styles.list}>
           {performances.map((festival) => (
-            <li key={festival.typeId} className={styles.item}>
+            <li key={festival.performanceId} className={styles.item}>
               <FestivalCard
                 typeId={festival.typeId}
                 title={festival.title}
