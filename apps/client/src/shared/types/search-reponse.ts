@@ -75,3 +75,12 @@ export interface IntendedPerformanceRequest {
   ptitle: string | null;
   ptype: 'FESTIVAL' | 'CONCERT' | 'PERFORMANCE' | null;
 }
+
+export interface PopularSearch {
+  rank: number;
+  popularTerm: string;
+}
+
+export interface PopularSearchResponse {
+  popularTerms: PopularSearch[];
+}

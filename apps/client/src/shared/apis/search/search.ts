@@ -6,6 +6,7 @@ import {
   IntendedPerformanceRequest,
   IntendedPerformanceResponse,
   PerformanceTypeAnalysis,
+  PopularSearchResponse,
   RelatedArtistResponse,
   RelatedPerformanceResponse,
 } from '@shared/types/search-reponse';
@@ -61,5 +62,15 @@ export const getIntendedPerformance = async (
   const url = `performances/search?${query.toString()}`;
 
   const response = await get<BaseResponse<IntendedPerformanceResponse>>(url);
+  return response.data;
+};
+
+export const getPopularSearch = async (
+  limit: number,
+): Promise<PopularSearchResponse> => {
+  const response = await get<BaseResponse<PopularSearchResponse>>(
+    `${END_POINT.GET_POPULAR_SEARCH(limit)}`,
+  );
+
   return response.data;
 };

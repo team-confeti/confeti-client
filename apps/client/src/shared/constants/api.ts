@@ -59,6 +59,7 @@ export const END_POINT = {
     `performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
     `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+  GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
 
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: 'auth/login',

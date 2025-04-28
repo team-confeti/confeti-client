@@ -8,6 +8,7 @@ import {
   getIntendedPerformance,
   getPerformanceRelatedKeyword,
   getPerformanceTypeAnalysis,
+  getPopularSearch,
 } from './search';
 
 export const SEARCH_ARTIST_QUERY_KEY = {
@@ -17,6 +18,7 @@ export const SEARCH_ARTIST_QUERY_KEY = {
     'search',
     keyword,
   ],
+  SEARCH_POPULAR_SEARCH: () => [...SEARCH_ARTIST_QUERY_KEY.ALL, 'popular'],
 } as const;
 
 export const SEARCH_ARTIST_QUERY_OPTION = {
@@ -30,6 +32,11 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
     queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
     queryFn: () => getArtistRelatedKeyword(keyword),
     enabled,
+  }),
+  SEARCH_POPULAR_SEARCH: () => ({
+    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
+    // TODO: limit 상수 처리
+    queryFn: () => getPopularSearch(10),
   }),
 };
 
