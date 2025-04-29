@@ -29,9 +29,10 @@ export const SEARCH_PAGE_QUERY_OPTION = {
     // TODO: limit 상수 처리
     queryFn: () => getPopularSearch(10),
   }),
-  RECENT_VIEW: (items: string) => ({
+  RECENT_VIEW: (items: string, enabled: boolean) => ({
     queryKey: SEARCH_PAGE_QUERY_KEY.RECENT_VIEW(items),
     queryFn: () => getRecentView(items),
+    enabled,
   }),
 };
 

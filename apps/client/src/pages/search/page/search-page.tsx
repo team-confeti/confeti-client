@@ -46,7 +46,7 @@ const SearchPage = () => {
   const items = recentViewItems
     .map((item) => `${item.type}:${item.typeId}`)
     .join(',');
-  const { data: recentViewData } = useRecentView(items);
+  const { data: recentViewData } = useRecentView(items, items.length > 0);
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -121,7 +121,7 @@ const SearchPage = () => {
           <main className={styles.resultSection}>
             <RecentSearchSection />
             <PopularSearchSection popularSearchData={popularSearchData} />
-            <RecentFestivalSection recentViewData={recentViewData} />
+            <RecentFestivalSection recentViewData={recentViewData ?? null} />
           </main>
         );
     }
