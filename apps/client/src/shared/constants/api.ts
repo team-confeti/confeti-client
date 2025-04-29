@@ -18,6 +18,15 @@ export const END_POINT = {
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
   POST_ADD_PERFORMANCE_TO_SET_LIST: '/my/setlists',
+  GET_SET_LIST_DETAIL: (setlistId: number) => `/my/setlists/${setlistId}`,
+  POST_START_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/start`,
+  POST_COMPLETE_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/complete`,
+  DELETE_MUSIC_FROM_SETLIST: (setlistId: number, orders: number) =>
+    `/my/setlists/${setlistId}/musics/${orders}`,
+  DELETE_CANCEL_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/cancel`,
 
   // 마이페이지
   GET_USER_PROFILE: '/user/info',
