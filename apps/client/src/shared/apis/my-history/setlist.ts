@@ -1,12 +1,13 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  SetListDetail,
   SetListPerformance,
   SetListPerformanceRequest,
   SetListPerformanceResponse,
 } from '@shared/types/my-history-response';
 
-import { get, post } from '../config/instance';
+import { del, get, post } from '../config/instance';
 
 export const getSetListPerformance = async (
   request: SetListPerformanceRequest,
@@ -33,5 +34,24 @@ export const postAddPerformanceToSetList = async (
     items,
   );
 
+  return response.data;
+};
+
+export const getSetListDetail = async (
+  setlistId: number,
+): Promise<SetListDetail> => {
+  const response = await get<BaseResponse<SetListDetail>>(
+    `my/setlists/${setlistId}`,
+  );
+  return response.data;
+};
+
+export const deleteMusicFromSetList = async (
+  setlistId: number,
+  orders: number,
+): Promise<string> => {
+  const response = await del<BaseResponse<string>>(
+    `my/setlists/${setlistId}/musics/${orders}`,
+  );
   return response.data;
 };
