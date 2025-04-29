@@ -4,11 +4,11 @@ import { RecentPerformanceViewResponse } from '@shared/types/search-reponse';
 import * as styles from './recent-festivals-section.css';
 
 interface Props {
-  recentViewData: RecentPerformanceViewResponse;
+  recentViewData: RecentPerformanceViewResponse | null;
 }
 
 export default function RecentFestivalSection({ recentViewData }: Props) {
-  const performances = recentViewData.performances;
+  const performances = recentViewData?.performances ?? [];
   const hasRecentlyViewed = performances.length > 0;
 
   return (
