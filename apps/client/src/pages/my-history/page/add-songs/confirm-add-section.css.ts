@@ -51,10 +51,15 @@ export const musicListContainer = style({
   padding: '1rem 2rem 1rem 2rem',
 });
 
+export const totalNumTextHighlight = style({
+  color: themeVars.color.confeti_lime3,
+});
+
 export const dialogTitleContainer = style({
   display: 'flex',
   alignItems: 'center',
-  width: '13rem',
+  justifyContent: 'center',
+  maxWidth: '13rem',
 });
 
 export const dialogHighlightText = style({

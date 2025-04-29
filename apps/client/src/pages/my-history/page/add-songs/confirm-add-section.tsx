@@ -3,11 +3,34 @@ import { BtnArrowLeft20 } from '@confeti/design-system/icons';
 
 import * as styles from './confirm-add-section.css';
 
-const ConfirmAddSection = () => {
-  const totalNum = 6;
+interface MusicItemType {
+  musicId: number;
+  title: string;
+  artistName: string;
+  artworkUrl: string;
+}
+
+interface Props {
+  handleRemoveSong: (songId: number) => void;
+  selectedSongs: MusicItemType[];
+  handleConfirmAddSection: () => void;
+}
+
+const ConfirmAddSection = ({
+  handleRemoveSong,
+  selectedSongs,
+  handleConfirmAddSection,
+}: Props) => {
+  const totalNum = selectedSongs.length;
   const overlay = useOverlay();
 
-  const handleOpenDeleteDialog = ({ title }: { title: string }) => {
+  const handleOpenDeleteDialog = ({
+    title,
+    musicId,
+  }: {
+    title: string;
+    musicId: number;
+  }) => {
     overlay.open(({ isOpen, close }) => (
       <Dialog open={isOpen} handleClose={close}>
         <Dialog.Content>
@@ -26,6 +49,7 @@ const ConfirmAddSection = () => {
           <Button
             text="삭제하기"
             onClick={() => {
+              handleRemoveSong(musicId);
               close();
             }}
           />
@@ -37,27 +61,38 @@ const ConfirmAddSection = () => {
   return (
     <div>
       <header className={styles.headerContainer}>
-        <button aria-label="뒤로가기">
+        <button aria-label="뒤로가기" onClick={handleConfirmAddSection}>
           <BtnArrowLeft20 width={'2rem'} height={'2rem'} />
         </button>
       </header>
       <div className={styles.textContainer}>
-        <p className={styles.totalNumText}>총 {totalNum}곡</p>
+        <p className={styles.totalNumText}>
+          총 <span className={styles.totalNumTextHighlight}>{totalNum}</span>곡
+        </p>
         <p className={styles.confirmText}>선택하신 곡 목록이 맞나요?</p>
       </div>
       <div className={styles.musicListContainer}>
-        <MusicItem
-          albumImage=""
-          title="test"
-          artist="test"
-          variant="confirmDelete"
-          onClickDelete={() =>
-            handleOpenDeleteDialog({ title: 'Highlight-Toched' })
-          }
-        />
+        {selectedSongs.map((song) => (
+          <MusicItem
+            key={song.musicId}
+            albumImage=""
+            title="test"
+            artist="test"
+            variant="confirmDelete"
+            onClickDelete={() =>
+              handleOpenDeleteDialog({
+                title: song.title,
+                musicId: Number(song.musicId),
+              })
+            }
+          />
+        ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button text="셋리스트에 추가하기" />
+        <Button
+          text="셋리스트에 추가하기"
+          disabled={selectedSongs.length === 0}
+        />
       </div>
     </div>
   );
