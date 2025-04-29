@@ -24,3 +24,8 @@ export const buttonContainer = style({
   padding: '2rem',
   backgroundColor: themeVars.color.white_grad,
 });
+
+export const musicListContainer = style({
+  padding: '1rem 2rem 1rem 2rem',
+  cursor: 'pointer',
+});

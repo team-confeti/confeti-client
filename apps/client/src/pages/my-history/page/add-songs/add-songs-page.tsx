@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 
-import { Button, SearchBar, toast } from '@confeti/design-system';
+import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
 
 import * as styles from './add-songs-page.css';
 
@@ -39,7 +39,20 @@ const AddSongsPage = () => {
             />
           </div>
           <div className={styles.renderContentContainer}>
-            <div>{/* {renderSearchContent()} */}</div>
+            <div
+              className={styles.musicListContainer}
+              onClick={() =>
+                toast({
+                  text: '(이)가 대기열에 추가되었습니다.',
+                  highlightText: '곡이름',
+                  position: 'middleCenter',
+                })
+              }
+            >
+              <MusicItem albumImage="" title="test" artist="test" />
+            </div>
+
+            {/* <div>{renderSearchContent()}</div> */}
           </div>
 
           <div className={styles.buttonContainer}>
