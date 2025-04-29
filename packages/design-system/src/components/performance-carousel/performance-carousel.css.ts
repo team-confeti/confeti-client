@@ -27,6 +27,10 @@ export const titleName = style({
   ...themeVars.fontStyles.title1_b_24,
   color: themeVars.color.white,
   marginBottom: '1.6rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  maxWidth: '100%',
   animation: `${fadeInOut} 1s ease-out forwards`,
 });
 
