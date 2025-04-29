@@ -18,7 +18,10 @@ const HomePage = () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
   const REDIRECT_URI =
-    window.location.protocol + '//' + window.location.host + '/';
+    window.location.protocol +
+    '//' +
+    window.location.hostname.replace(/^www\./, '') +
+    '/';
 
   useEffect(() => {
     if (code) {
