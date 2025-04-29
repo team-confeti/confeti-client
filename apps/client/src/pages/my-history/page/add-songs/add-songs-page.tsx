@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
+import {
+  useArtistMusicSearch,
+  useMusicSearch,
+} from '@pages/my-history/page/hooks/use-music-search';
 
 import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
 
@@ -16,6 +20,15 @@ const AddSongsPage = () => {
   const [keyword, setKeyword] = useState('');
   const [isConfirmAddSection, setIsConfirmAddSection] = useState(false);
   const [selectedSongs, setSelectedSongs] = useState<MusicItemType[]>([]);
+  const { data: musicSearchData } = useMusicSearch(
+    { term: keyword, offset: 0, limit: 5 },
+    true,
+  );
+
+  const { data: artistMusicSearchData } = useArtistMusicSearch(
+    { aid: 'test', term: keyword, offset: 0, limit: 5 },
+    true,
+  );
   const handleInputChangeWithReset = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -77,21 +90,49 @@ const AddSongsPage = () => {
             />
           </div>
           <div className={styles.renderContentContainer}>
-            <div
-              className={styles.musicListContainer}
-              onClick={() => {
-                handleAddSong({
-                  musicId: 1,
-                  title: 'test',
-                  artistName: 'test',
-                  artworkUrl: 'test',
-                });
-              }}
-            >
-              <MusicItem albumImage="" title="test" artist="test" />
-            </div>
+            {artistMusicSearchData &&
+              artistMusicSearchData.musics.map((song) => (
+                <div
+                  key={song.musicId}
+                  className={styles.musicListContainer}
+                  onClick={() => {
+                    handleAddSong({
+                      musicId: song.musicId,
+                      title: song.title,
+                      artistName: song.artistName,
+                      artworkUrl: song.artworkUrl,
+                    });
+                  }}
+                >
+                  <MusicItem
+                    albumImage={song.artworkUrl}
+                    title={song.title}
+                    artist={song.artistName}
+                  />
+                </div>
+              ))}
 
-            {/* <div>{renderSearchContent()}</div> */}
+            {musicSearchData &&
+              musicSearchData.musics.map((song) => (
+                <div
+                  key={song.musicId}
+                  className={styles.musicListContainer}
+                  onClick={() => {
+                    handleAddSong({
+                      musicId: song.musicId,
+                      title: song.title,
+                      artistName: song.artistName,
+                      artworkUrl: song.artworkUrl,
+                    });
+                  }}
+                >
+                  <MusicItem
+                    albumImage={song.artworkUrl}
+                    title={song.title}
+                    artist={song.artistName}
+                  />
+                </div>
+              ))}
           </div>
 
           <div className={styles.buttonContainer}>
