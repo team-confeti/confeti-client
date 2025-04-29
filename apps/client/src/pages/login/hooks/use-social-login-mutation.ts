@@ -24,6 +24,8 @@ export const useSocialLoginMutation = () => {
           isOnboarding ? `${routePath.ONBOARDING}` : `${routePath.ROOT}`,
         );
       }
+      // TODO: 토큰 발급 후 새로고침 필요
+      window.location.reload();
     },
   });
 };
@@ -41,6 +43,8 @@ export const useAppleLoginMutation = () => {
           isOnboarding ? `${routePath.ONBOARDING}` : `${routePath.ROOT}`,
         );
       }
+      // TODO: 토큰 발급 후 새로고침 필요
+      window.location.reload();
     },
   });
 };
