@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { musics } from '@shared/types/home-response';
 
@@ -12,6 +12,7 @@ export const useMusicPlayer = (data: musics[]) => {
       return;
 
     const audio = audioRef.current;
+
     if (currentPlayingId === musicId && !audio.paused) {
       audio.pause();
       setCurrentPlayingId(null);
@@ -23,7 +24,20 @@ export const useMusicPlayer = (data: musics[]) => {
     setCurrentPlayingId(musicId);
   };
 
-  // isPlaying 상태를 추가한 data
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleEnded = () => {
+      setCurrentPlayingId(null);
+    };
+
+    audio.addEventListener('ended', handleEnded);
+    return () => {
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
   const musicList = data.map((music) => ({
     ...music,
     isPlaying: music.musicId === currentPlayingId,

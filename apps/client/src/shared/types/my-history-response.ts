@@ -45,3 +45,26 @@ export interface SetListPerformanceRequest {
   aid: string | null;
   term: string | null;
 }
+
+export interface SetListMusic {
+  musicId: number;
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
+  orders: number;
+}
+
+export interface SetListDetail {
+  setlistId: number;
+  type: 'FESTIVAL' | 'CONCERT';
+  typeId: number;
+  posterUrl: string;
+  posterBgUrl: string;
+  title: string;
+  subTitle: string;
+  startAt: string;
+  endAt: string;
+  musics: SetListMusic[];
+}
