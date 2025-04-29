@@ -26,6 +26,5 @@ export const completeContentSection = recipe({
 });
 
 export const confetiLogo = style({
-  display: 'flex',
-  justifyContent: 'center',
+  ...themeVars.display.flexJustifyAlignCenter,
 });
