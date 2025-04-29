@@ -1,5 +1,3 @@
-import { S } from 'node_modules/vite/dist/node/types.d-aGj9QkWt';
-
 import { Performances } from './performance-response';
 
 export type MyTimeTable = Pick<Performances, 'typeId' | 'posterUrl' | 'title'>;

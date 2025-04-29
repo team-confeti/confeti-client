@@ -8,7 +8,6 @@ import {
   BtnSettings24,
   LogoMain,
 } from '../../icons/src';
-import { cn } from '../../utils';
 
 import * as styles from './header.css';
 
@@ -18,7 +17,6 @@ interface HeaderProps {
   icon?: ReactNode;
   isBackToHome?: boolean;
   handleNavigateToSettings?: () => void;
-  className?: string;
 }
 
 const Header = ({
@@ -27,7 +25,6 @@ const Header = ({
   icon,
   isBackToHome = false,
   handleNavigateToSettings,
-  className,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
@@ -38,7 +35,7 @@ const Header = ({
 
   if (variant === 'detail') {
     return (
-      <header className={cn(styles.container({ variant }), className)}>
+      <header className={styles.container({ variant })}>
         <button
           className={styles.button({ variant: 'back' })}
           onClick={() => (isBackToHome ? navigate('/') : navigate(-1))}
