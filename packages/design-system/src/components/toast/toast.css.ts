@@ -55,7 +55,7 @@ export const toastVariants = recipe({
     },
 
     position: 'relative',
-    padding: '1.1rem 0.8rem',
+    padding: '0.8rem',
 
     ...themeVars.display.flexJustifyAlignCenter,
     borderRadius: 20,

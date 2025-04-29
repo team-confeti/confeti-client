@@ -15,7 +15,7 @@ export const useUserProfileMutation = () => {
       queryClient.invalidateQueries({
         queryKey: USER_QUERY_KEY.PROFILE(),
       });
-      toast({ text: '성공적으로 저장되었어요!' });
+      toast({ text: '성공적으로 저장되었어요!', position: 'middleCenter' });
     },
   });
 };
