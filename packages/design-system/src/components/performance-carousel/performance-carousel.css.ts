@@ -14,6 +14,7 @@ export const bannerTextWrapper = style({
   left: '2.5rem',
   marginTop: '3rem',
   height: '10.3rem',
+  width: 'calc(100% - 5rem)',
   zIndex: themeVars.zIndex.poster.content,
 });
 
