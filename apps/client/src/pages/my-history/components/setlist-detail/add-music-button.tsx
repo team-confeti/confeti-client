@@ -1,6 +1,6 @@
 import { IcAdd } from '@confeti/design-system/icons';
 
-import * as styles from './setlist-tracks.css';
+import * as styles from './add-music-button.css';
 
 const AddMusicButton = ({ onClick }: { onClick: () => void }) => {
   return (

@@ -3,9 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const header = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  ...themeVars.display.flexBetweenAlignCenter,
   padding: '2rem',
 });
 
@@ -20,4 +18,8 @@ export const editButton = style({
   background: 'none',
   border: 'none',
   cursor: 'pointer',
+});
+
+export const editButtonDone = style({
+  color: themeVars.color.confeti_lime3,
 });

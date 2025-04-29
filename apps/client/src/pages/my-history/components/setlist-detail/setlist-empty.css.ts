@@ -4,18 +4,15 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  ...themeVars.display.flexColumnAlignTextCenter,
   justifyContent: 'center',
   padding: '0 2rem',
-  textAlign: 'center',
 });
 
 export const title = style({
   ...themeVars.fontStyles.title3_b_18,
-  marginBottom: '0.6rem',
   color: themeVars.color.gray900,
+  marginBottom: '0.6rem',
 });
 
 export const subtitle = style({

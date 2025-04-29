@@ -15,7 +15,10 @@ const SetListHeader = ({
     <header className={styles.header}>
       <h2 className={styles.title}>셋리스트</h2>
       {showEditButton && (
-        <button className={styles.editButton} onClick={onClickToggleEdit}>
+        <button
+          className={`${styles.editButton} ${isEditMode ? styles.editButtonDone : ''}`}
+          onClick={onClickToggleEdit}
+        >
           {isEditMode ? '완료' : '편집'}
         </button>
       )}
