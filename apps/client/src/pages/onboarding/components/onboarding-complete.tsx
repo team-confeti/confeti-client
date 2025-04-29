@@ -102,7 +102,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <SvgConfeti3DLogo21 width={'22rem'} height={'22rem'} />
+                <SvgConfeti3DLogo21 width={'18rem'} height={'18rem'} />
               </motion.div>
 
               <motion.div

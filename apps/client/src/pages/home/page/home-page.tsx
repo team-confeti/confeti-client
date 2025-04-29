@@ -17,8 +17,13 @@ const HomePage = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
-  const REDIRECT_URI =
-    window.location.protocol + '//' + window.location.host + '/';
+  const isLocalhost = window.location.hostname === 'localhost';
+  const REDIRECT_URI = isLocalhost
+    ? 'http://localhost:5173/'
+    : window.location.protocol +
+      '//' +
+      window.location.hostname.replace(/^www\./, '') +
+      '/';
 
   useEffect(() => {
     if (code) {

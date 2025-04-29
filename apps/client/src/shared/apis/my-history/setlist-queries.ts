@@ -6,11 +6,15 @@ import {
   SetListPerformanceRequest,
 } from '@shared/types/my-history-response';
 
+
 import {
   getArtistMusicSearch,
   getMusicSearch,
   getSetListPerformance,
+  getSetListDetail, 
+  getSetListPerformance
 } from './setlist';
+
 
 export const SETLIST_QUERY_KEY = {
   ALL: ['setlist'],
@@ -19,6 +23,7 @@ export const SETLIST_QUERY_KEY = {
     'performance',
     request,
   ],
+
   SEARCH_MUSIC: (request: MusicSearchRequest) => [
     ...SETLIST_QUERY_KEY.ALL,
     'music',
@@ -28,6 +33,12 @@ export const SETLIST_QUERY_KEY = {
     ...SETLIST_QUERY_KEY.ALL,
     'artist-music',
     request,
+
+  DETAIL: (setlistId: number) => [
+    ...SETLIST_QUERY_KEY.ALL,
+    'detail',
+    setlistId,
+
   ],
 };
 
@@ -43,6 +54,7 @@ export const SETLIST_QUERY_OPTION = {
       enabled,
     }),
 
+
   SEARCH_MUSIC: (request: MusicSearchRequest, enabled: boolean) =>
     queryOptions({
       queryKey: SETLIST_QUERY_KEY.SEARCH_MUSIC(request),
@@ -55,5 +67,11 @@ export const SETLIST_QUERY_OPTION = {
       queryKey: SETLIST_QUERY_KEY.SEARCH_ARTIST_MUSIC(request),
       queryFn: () => getArtistMusicSearch(request),
       enabled,
+
+  DETAIL: (setlistId: number) =>
+    queryOptions({
+      queryKey: SETLIST_QUERY_KEY.DETAIL(setlistId),
+      queryFn: () => getSetListDetail(setlistId),
+
     }),
 };

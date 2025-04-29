@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { FESTIVAL_BUTTON_QUERY_OPTIONS } from '@shared/apis/time-table/festival-button-queries';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/time-table/festival-timetable-queries';
@@ -10,10 +10,15 @@ export const useFestivalButtonData = () => {
   return data;
 };
 
-export const useFestivalTimetableData = (festivalDateId: number) => {
-  const { data } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(festivalDateId),
+export const useFestivalTimetableData = (festivalDateId?: number) => {
+  const options = FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(
+    festivalDateId || 0,
   );
+  const { data } = useQuery({
+    queryKey: options.queryKey,
+    queryFn: options.queryFn,
+    enabled: festivalDateId !== undefined,
+  });
 
   return { data };
 };

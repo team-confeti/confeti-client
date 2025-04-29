@@ -26,6 +26,7 @@ import {
   OnboardingPage,
   RequireLoginPage,
   SearchPage,
+  SetlistDetailPage,
   SettingPage,
   TimeTableLayout,
   TimeTablePage,
@@ -93,6 +94,10 @@ export default function Router() {
           <Route
             path={routePath.MY_HISTORY_ADD_SONGS}
             element={createProtectedRoute(true, <AddSongsPage />)}
+          />
+          <Route
+            path={routePath.MY_HISTORY_SETLIST_DETAIL}
+            element={createProtectedRoute(true, <SetlistDetailPage />)}
           />
         </Route>
 

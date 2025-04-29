@@ -46,6 +46,7 @@ export interface SetListPerformanceRequest {
   term: string | null;
 }
 
+
 export interface MusicSearchRequest {
   term: string;
   offset: number;
@@ -77,4 +78,27 @@ export interface ArtistMusicSearchResponse {
   nextOffset: number;
   isLast: boolean;
   musics: MusicInfoResponse[];
+
+export interface SetListMusic {
+  musicId: number;
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
+  orders: number;
+}
+
+export interface SetListDetail {
+  setlistId: number;
+  type: 'FESTIVAL' | 'CONCERT';
+  typeId: number;
+  posterUrl: string;
+  posterBgUrl: string;
+  title: string;
+  subTitle: string;
+  startAt: string;
+  endAt: string;
+  musics: SetListMusic[];
+
 }

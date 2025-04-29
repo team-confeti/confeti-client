@@ -44,9 +44,9 @@ export const textWrapper = style({
   position: 'absolute',
   bottom: '2rem',
   left: '2rem',
-  color: '#fff',
+  color: themeVars.color.white,
   zIndex: themeVars.zIndex.heroContent,
-  maxWidth: '54%',
+  maxWidth: '50%',
 });
 
 export const year = style({
@@ -57,7 +57,7 @@ export const year = style({
 export const title = style({
   ...themeVars.fontStyles.title1_b_24,
   marginBottom: '0.4rem',
-  wordBreak: 'keep-all',
+  wordBreak: 'break-word',
 });
 
 export const poster = style({
