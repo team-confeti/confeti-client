@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { CONFIG, END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
@@ -8,31 +10,31 @@ import {
 
 import { del, post } from '../config/instance';
 
+const authInstance = axios.create({
+  baseURL: CONFIG.BASE_URL,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 export const postSocialLogin = async (
   socialLoginData: KakaoLogin | AppleLogin,
 ): Promise<BaseResponse<SocialLoginResponse>> => {
-  const isLocalhost = window.location.hostname === 'localhost';
+  try {
+    const response = await authInstance.post<BaseResponse<SocialLoginResponse>>(
+      END_POINT.POST_SOCIAL_LOGIN,
+      socialLoginData,
+    );
 
-  const response = await fetch(
-    isLocalhost
-      ? `${CONFIG.BASE_URL}${END_POINT.POST_SOCIAL_LOGIN}`
-      : `${CONFIG.BASE_URL}/${END_POINT.POST_SOCIAL_LOGIN}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(socialLoginData),
-    },
-  );
-
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(`Error: ${response.status} - ${error.message}`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error) && error.response) {
+      const { status, data } = error.response;
+      throw new Error(`Error: ${status} - ${data.message}`);
+    }
+    throw new Error('Unexpected error occurred');
   }
-
-  const data = await response.json();
-  return data;
 };
 
 export const postLogout = async (): Promise<BaseResponse<void>> => {
