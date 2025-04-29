@@ -35,41 +35,41 @@ const TimeTablePage = () => {
     fileName: `${selectedFestivalInfo.title}`,
   });
 
-  return (
-    <>
-      {!hasTimetableHistory && <TimeTableOnboard />}
-      {festivals ? (
-        <EmptyFestivalSection />
-      ) : (
-        <div className={styles.wrapper}>
-          <FestivalSelector
-            festivals={festivals}
-            selectedFestivalId={selectedFestivalInfo.festivalId}
-            handleSelectFestival={handleSelectFestival}
-          />
-          <Calender
-            festivalDates={selectedFestivalInfo.festivalDates}
-            onDateSelect={handleSelectDate}
-          />
-          {boardData && (
-            <div className={styles.timeTableWrapper} ref={elementRef}>
-              <FestivalStage timeTableInfo={boardData} />
-              <TimeTableBoard
-                timeTableInfo={boardData}
-                isEditMode={isEditTimeTableMode}
-              />
-            </div>
-          )}
+  let content;
 
-          <TimeTableActions
+  if (!hasTimetableHistory) {
+    content = <TimeTableOnboard />;
+  } else if (hasTimetableHistory && festivals.length === 0) {
+    content = <EmptyFestivalSection />;
+  } else if (festivals.length > 0 && boardData) {
+    content = (
+      <div className={styles.wrapper}>
+        <FestivalSelector
+          festivals={festivals}
+          selectedFestivalId={selectedFestivalInfo.festivalId}
+          handleSelectFestival={handleSelectFestival}
+        />
+        <Calender
+          festivalDates={selectedFestivalInfo.festivalDates}
+          onDateSelect={handleSelectDate}
+        />
+        <div className={styles.timeTableWrapper} ref={elementRef}>
+          <FestivalStage timeTableInfo={boardData} />
+          <TimeTableBoard
+            timeTableInfo={boardData}
             isEditMode={isEditTimeTableMode}
-            onToggleEditMode={toggleEditTimeTableMode}
-            onDownload={downloadImage}
           />
         </div>
-      )}
-    </>
-  );
+        <TimeTableActions
+          isEditMode={isEditTimeTableMode}
+          onToggleEditMode={toggleEditTimeTableMode}
+          onDownload={downloadImage}
+        />
+      </div>
+    );
+  }
+
+  return <>{content}</>;
 };
 
 export default TimeTablePage;
