@@ -17,6 +17,7 @@ import { axiosInstance } from './instance';
 
 const redirectToHome = () => {
   authTokenHandler('remove');
+  window.location.replace(routePath.ROOT);
   throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
 };
 
