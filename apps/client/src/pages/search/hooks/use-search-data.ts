@@ -56,9 +56,9 @@ export const usePopularSearch = () => {
   return { data };
 };
 
-export const useRecentView = (items: string) => {
-  const { data } = useSuspenseQuery({
-    ...SEARCH_PAGE_QUERY_OPTION.RECENT_VIEW(items),
+export const useRecentView = (items: string, enabled: boolean) => {
+  const { data } = useQuery({
+    ...SEARCH_PAGE_QUERY_OPTION.RECENT_VIEW(items, enabled),
   });
 
   return { data };

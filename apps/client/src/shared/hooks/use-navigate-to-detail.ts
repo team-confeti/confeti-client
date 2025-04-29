@@ -4,7 +4,7 @@ export const useNavigateToDetail = () => {
   const navigate = useNavigate();
 
   return (type: string, typeId: number) => {
-    switch (type) {
+    switch (type.toUpperCase()) {
       case 'CONCERT':
         navigate(`/concert-detail/${typeId}`);
         break;
