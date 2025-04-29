@@ -5,9 +5,10 @@ import { cn } from '@confeti/design-system/utils';
 import * as styles from './step-one.css';
 interface StepOneProps {
   handleNextStep: VoidFunction;
+  handleNavigate: VoidFunction;
 }
 
-const StepOne = ({ handleNextStep }: StepOneProps) => {
+const StepOne = ({ handleNextStep, handleNavigate }: StepOneProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -30,6 +31,7 @@ const StepOne = ({ handleNextStep }: StepOneProps) => {
             text="타임 테이블 바로 시작하기"
             variant="add"
             className={cn(styles.customAddButton)}
+            onClick={handleNavigate}
           />
         </div>
       </div>
