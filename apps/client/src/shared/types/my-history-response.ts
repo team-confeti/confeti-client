@@ -46,7 +46,6 @@ export interface SetListPerformanceRequest {
   term: string | null;
 }
 
-
 export interface MusicSearchRequest {
   term: string;
   offset: number;
@@ -78,6 +77,7 @@ export interface ArtistMusicSearchResponse {
   nextOffset: number;
   isLast: boolean;
   musics: MusicInfoResponse[];
+}
 
 export interface SetListMusic {
   musicId: number;
@@ -100,5 +100,4 @@ export interface SetListDetail {
   startAt: string;
   endAt: string;
   musics: SetListMusic[];
-
 }

@@ -1,14 +1,11 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
-
   ArtistMusicSearchRequest,
   ArtistMusicSearchResponse,
   MusicSearchRequest,
   MusicSearchResponse,
-
   SetListDetail,
-
   SetListPerformance,
   SetListPerformanceRequest,
   SetListPerformanceResponse,
@@ -43,7 +40,6 @@ export const postAddPerformanceToSetList = async (
 
   return response.data;
 };
-
 
 export const getMusicSearch = async (
   request: MusicSearchRequest,
@@ -109,4 +105,3 @@ export const deleteCancelEditSetList = async (
     END_POINT.DELETE_CANCEL_EDIT_SETLIST(setlistId),
   );
 };
-
