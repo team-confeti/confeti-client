@@ -80,7 +80,7 @@ const Login = () => {
     const redirectUri =
       window.location.hostname === 'localhost'
         ? 'http://localhost:5173/'
-        : 'https://confeti.co.kr/';
+        : 'https://confeti.co.kr';
 
     window.location.href = `${CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
   };
