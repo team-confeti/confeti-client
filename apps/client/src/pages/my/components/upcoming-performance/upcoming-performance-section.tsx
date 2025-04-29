@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@confeti/design-system';
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
+import { routePath } from '@shared/constants/path';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { MyUpcomingPerformance } from '@shared/types/user-response';
 import { formatDate } from '@shared/utils/format-date';
@@ -13,6 +16,10 @@ interface Props {
 const UpcomingPerformanceSection = ({ performance }: Props) => {
   const hasTimetable = performance.type === 'FESTIVAL';
   const navigateToDetail = useNavigateToDetail();
+  const navigate = useNavigate();
+  const navigateToTimeTable = () => {
+    navigate(`${routePath.TIME_TABLE_OUTLET}`);
+  };
 
   return (
     <>
@@ -56,7 +63,11 @@ const UpcomingPerformanceSection = ({ performance }: Props) => {
       </div>
 
       {hasTimetable && (
-        <Button className={styles.button} text="타임테이블 보기" />
+        <Button
+          className={styles.button}
+          onClick={navigateToTimeTable}
+          text="타임테이블 보기"
+        />
       )}
     </>
   );
