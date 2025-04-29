@@ -20,7 +20,7 @@ export type SocialLoginResponse = TokenResponse & {
 };
 
 // Apple Login 타입 정의
-interface ClientConfig {
+interface AppleIDClientConfig {
   clientId: string;
   redirectURI: string;
   scope?: string;
@@ -28,28 +28,32 @@ interface ClientConfig {
   nonce?: string;
   usePopup?: boolean;
 }
-interface Authorization {
+
+interface AppleAuthorization {
   code: string;
   id_token: string;
   state?: string;
 }
 
-interface User {
-  email: string;
-  name: string;
+interface AppleUser {
+  email?: string;
+  name?: {
+    firstName?: string;
+    lastName?: string;
+  };
 }
 
-interface SigninResponse {
-  authorization: Authorization;
-  user?: User;
+interface AppleSigninResponse {
+  authorization: AppleAuthorization;
+  user?: AppleUser;
 }
 
 declare global {
   interface Window {
     AppleID: {
       auth: {
-        init: (config: ClientConfig) => void;
-        signIn: (config?: ClientConfig) => Promise<SigninResponse>;
+        init: (config: AppleIDClientConfig) => void;
+        signIn: (config?: AppleIDClientConfig) => Promise<AppleSigninResponse>;
       };
     };
   }

@@ -21,10 +21,14 @@ export const initAppleAuth = () => {
 };
 
 export const getAppleAuthData = async (): Promise<AppleLogin> => {
-  const res = await window.AppleID.auth.signIn();
+  const response = await window.AppleID.auth.signIn();
 
-  const code = res.authorization?.code;
-  const name = res.user?.name ?? '';
+  const code = response.authorization?.code;
+  const nameObj = response.user?.name;
+  const name =
+    nameObj?.firstName && nameObj?.lastName
+      ? `${nameObj.firstName} ${nameObj.lastName}`
+      : '';
 
   if (!code) throw new Error('애플 로그인에 실패했습니다. (코드 없음)');
 
