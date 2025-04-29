@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, FestivalCard } from '@confeti/design-system';
-import { MyTimeTable } from '@shared/types/my-history-response';
+import {
+  MyHistorySetList,
+  MyTimeTable,
+} from '@shared/types/my-history-response';
 
 import * as styles from './preview-section.css';
 
 const routeMap = {
-  SET_LIST: '/setlist/add-setlist', // TODO: SET_LIST 실제 경로로 변경
+  SET_LIST: 'setlist/add-setlist',
   TIME_TABLE: '/timetable/add-festival',
 } as const;
 
@@ -15,7 +18,7 @@ interface Props {
   title: string;
   showMore?: boolean;
   buttonLabel?: string;
-  previewData?: MyTimeTable[];
+  previewData?: MyHistorySetList[] | MyTimeTable[];
   emptyMessage: string;
   ctaText: string;
   navigatePath?: string;

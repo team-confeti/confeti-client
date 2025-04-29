@@ -37,7 +37,11 @@ const MyProfile = () => {
           navigate(routePath.MY_SETTING);
         }}
       />
-      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
+      <UserInfo
+        name={profileData.name}
+        profileUrl={profileData.profileUrl}
+        showArrow={true}
+      />
       <Box title="다가오는 공연">
         {upcomingPerformanceData?.typeId ? (
           <UpcomingPerformanceSection performance={upcomingPerformanceData} />

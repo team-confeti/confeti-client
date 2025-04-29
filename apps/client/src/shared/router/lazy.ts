@@ -40,6 +40,9 @@ export const MyRecordPage = lazy(
 export const MyHistoryOverviewPage = lazy(
   () => import('@pages/my-history/page/overview/my-history-overview-page'),
 );
+export const AddSetlistPage = lazy(
+  () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
+);
 
 // Search
 export const SearchPage = lazy(() => import('@pages/search/page/search-page'));
@@ -53,17 +56,18 @@ export const FestivalDetailPage = lazy(
 );
 
 // TimeTable
+export const DeleteFestivalPage = lazy(
+  () => import('@pages/time-table/page/delete-festival/delete-festival-page'),
+);
+
 export const AddFestivalPage = lazy(
-  () => import('@pages/time-table/page/add-festival'),
+  () => import('@pages/time-table/page/add-festival/add-festival'),
 );
 export const TimeTablePage = lazy(
-  () => import('@pages/time-table/page/time-table'),
+  () => import('@pages/time-table/page/time-table-page'),
 );
 export const TimeTableLayout = lazy(
   () => import('@pages/time-table/page/time-table-layout'),
-);
-export const EmptyFestivalPage = lazy(
-  () => import('@pages/time-table/page/empty/empty-festival-page'),
 );
 
 // Onboarding

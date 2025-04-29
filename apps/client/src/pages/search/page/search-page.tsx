@@ -1,13 +1,22 @@
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
+import { getRecentViewItems } from '@shared/utils/recent-view';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
-import { useRelatedSearch, useSearchArtist } from '../hooks/use-search-data';
+import { useRecentSearch } from '../hooks/use-recent-search';
+import {
+  usePerformanceTypeAnalysis,
+  usePopularSearch,
+  useRecentView,
+  useSearchArtist,
+} from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
 
@@ -16,9 +25,13 @@ import * as styles from './search-page.css';
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const paramsKeyword = searchParams.get('q') || '';
+  const [isPerformanceAnalysisTriggered, setIsPerformanceAnalysisTriggered] =
+    useState(false);
 
   const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
+  const { addSearchKeyword } = useRecentSearch();
+
   const {
     keyword: searchKeyword,
     debouncedKeyword,
@@ -28,6 +41,12 @@ const SearchPage = () => {
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
+  const { data: popularSearchData } = usePopularSearch();
+  const recentViewItems = getRecentViewItems();
+  const items = recentViewItems
+    .map((item) => `${item.type}:${item.typeId}`)
+    .join(',');
+  const { data: recentViewData } = useRecentView(items);
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -36,6 +55,10 @@ const SearchPage = () => {
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
   });
+  const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
+    keyword: searchKeyword,
+    enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
+  });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -43,6 +66,8 @@ const SearchPage = () => {
       !e.nativeEvent.isComposing &&
       searchKeyword.trim()
     ) {
+      setIsPerformanceAnalysisTriggered(true);
+      addSearchKeyword(searchKeyword);
       handleNavigateWithKeyword(searchKeyword);
       (e.target as HTMLInputElement).blur();
     }
@@ -83,14 +108,20 @@ const SearchPage = () => {
         );
 
       case isResultState:
-        return <SearchResult artistData={artistData?.artist ?? null} />;
+        return (
+          <SearchResult
+            artistData={artistData?.artist ?? null}
+            relatedPerformances={relatedPerformances ?? null}
+            performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
+          />
+        );
 
       default:
         return (
           <main className={styles.resultSection}>
             <RecentSearchSection />
-            <PopularSearchSection />
-            <RecentFestivalSection />
+            <PopularSearchSection popularSearchData={popularSearchData} />
+            <RecentFestivalSection recentViewData={recentViewData} />
           </main>
         );
     }

@@ -1,4 +1,4 @@
-import { get } from '@shared/apis/config/instance';
+import { get, patch } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { SortOption } from '@shared/constants/sort-label';
 import { BaseResponse } from '@shared/types/api';
@@ -9,6 +9,7 @@ import {
   MyUpcomingPerformance,
   PerformanceResponse,
   PerformancesFilterType,
+  UserInfo,
   UserProfile,
 } from '@shared/types/user-response';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
@@ -60,5 +61,29 @@ export const getMyPerformances = async (
   const response = await get<BaseResponse<MyPerformancesResponse>>(
     END_POINT.GET_MY_PERFORMANCES(performancesType),
   );
+  return response.data;
+};
+
+export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
+  const formData = new FormData();
+  formData.append('name', userInfo.name);
+
+  if (userInfo.profileFile) {
+    formData.append('profileFile', userInfo.profileFile);
+  } else {
+    const emptyFile = new Blob([], { type: 'image/jpeg' });
+    formData.append('profileFile', emptyFile, 'empty.jpg');
+  }
+
+  const response = await patch<BaseResponse<UserInfo>>(
+    END_POINT.PATCH_USER_INFO,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+
   return response.data;
 };

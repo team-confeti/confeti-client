@@ -11,6 +11,7 @@ import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
+import { addRecentViewItem } from '@shared/utils/recent-view';
 
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
@@ -19,6 +20,10 @@ const ConcertDetailPage = () => {
   const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
   const { isButtonHidden } = useScrollPosition();
+
+  if (concert.concertId) {
+    addRecentViewItem({ type: 'concert', typeId: concert.concertId });
+  }
 
   useEffect(() => {
     if (concertDetail.concertArtists.length >= 4) {

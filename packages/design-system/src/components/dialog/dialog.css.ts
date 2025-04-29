@@ -54,7 +54,7 @@ export const titleStyle = style({
 });
 
 export const descriptionStyle = style({
-  display: 'flex',
+  ...themeVars.display.flexColumn,
   textAlign: 'center',
   ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.gray600,

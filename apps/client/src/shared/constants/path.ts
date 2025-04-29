@@ -14,11 +14,13 @@ export const routePath = {
   MY_REQUIRE_LOGIN: 'require-login',
   MY_SETTING: 'setting',
   MY_DELETE_ACCOUNT: 'delete-account',
+  MY_EDIT_PROFILE: 'edit-profile',
 
   // MyHistory
   MY_HISTORY: '/my-history',
-  MY_HISTORY_OVERVIEW: 'overview',
   MY_HISTORY_REQUIRE_LOGIN: 'require-login',
+  MY_HISTORY_OVERVIEW: 'overview',
+  MY_HISTORY_ADD_SETLIST: 'setlist/add-setlist',
 
   // Search
   SEARCH: '/search',
@@ -33,6 +35,7 @@ export const routePath = {
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',
   TIME_TABLE_REQUIRE_LOGIN: 'require-login',
   ADD_FESTIVAL: 'add-festival',
+  DELETE_FESTIVAL: 'delete-festival',
 
   // Privacy
   PRIVACY_CONFETI:

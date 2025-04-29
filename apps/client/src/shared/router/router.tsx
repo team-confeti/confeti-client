@@ -1,12 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
+import EditProfile from '@pages/my/page/edit/edit-profile';
 
 import { routePath } from '@shared/constants/path';
 
 import GlobalLayout from './global-layout';
 import {
   AddFestivalPage,
+  AddSetlistPage,
   ConcertDetailPage,
   DeleteAccountPage,
+  DeleteFestivalPage,
   ErrorPage,
   FestivalDetailPage,
   HomePage,
@@ -62,6 +65,10 @@ export default function Router() {
             path={routePath.MY_DELETE_ACCOUNT}
             element={createProtectedRoute(true, <DeleteAccountPage />)}
           />
+          <Route
+            path={routePath.MY_EDIT_PROFILE}
+            element={createProtectedRoute(true, <EditProfile />)}
+          />
         </Route>
 
         {/* MyRecord */}
@@ -71,12 +78,16 @@ export default function Router() {
             element={createProtectedRoute(true, <MyRecordPage />)}
           />
           <Route
+            path={routePath.MY_HISTORY_REQUIRE_LOGIN}
+            element={<RequireLoginPage />}
+          />
+          <Route
             path={routePath.MY_HISTORY_OVERVIEW}
             element={<MyHistoryOverviewPage />}
           />
           <Route
-            path={routePath.MY_HISTORY_REQUIRE_LOGIN}
-            element={<RequireLoginPage />}
+            path={routePath.MY_HISTORY_ADD_SETLIST}
+            element={createProtectedRoute(true, <AddSetlistPage />)}
           />
         </Route>
 
@@ -97,6 +108,10 @@ export default function Router() {
           <Route
             path={routePath.ADD_FESTIVAL}
             element={createProtectedRoute(true, <AddFestivalPage />)}
+          />
+          <Route
+            path={routePath.DELETE_FESTIVAL}
+            element={createProtectedRoute(true, <DeleteFestivalPage />)}
           />
         </Route>
 

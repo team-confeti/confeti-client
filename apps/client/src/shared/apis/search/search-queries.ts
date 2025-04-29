@@ -1,11 +1,39 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
+
 import {
   getArtistRelatedKeyword,
-  getArtistRelatedPerformances,
   getArtistSearch,
+  getIntendedPerformance,
   getPerformanceRelatedKeyword,
+  getPerformanceTypeAnalysis,
+  getPopularSearch,
+  getRecentView,
 } from './search';
+
+export const SEARCH_PAGE_QUERY_KEY = {
+  ALL: ['search'],
+  SEARCH_POPULAR_SEARCH: () => [...SEARCH_PAGE_QUERY_KEY.ALL, 'popular'],
+  RECENT_VIEW: (items: string) => [
+    ...SEARCH_PAGE_QUERY_KEY.ALL,
+    'recent',
+    items,
+  ],
+} as const;
+
+export const SEARCH_PAGE_QUERY_OPTION = {
+  ALL: () => queryOptions({ queryKey: SEARCH_PAGE_QUERY_KEY.ALL }),
+  SEARCH_POPULAR_SEARCH: () => ({
+    queryKey: SEARCH_PAGE_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
+    // TODO: limit 상수 처리
+    queryFn: () => getPopularSearch(10),
+  }),
+  RECENT_VIEW: (items: string) => ({
+    queryKey: SEARCH_PAGE_QUERY_KEY.RECENT_VIEW(items),
+    queryFn: () => getRecentView(items),
+  }),
+};
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['artist'],
@@ -37,6 +65,19 @@ export const SEARCH_PERFORMANCE_QUERY_KEY = {
     'search',
     keyword,
   ],
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'type-analysis',
+    keyword,
+  ],
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => [
+    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    'intended',
+    request.pid,
+    request.aid,
+    request.ptitle,
+    request.ptype,
+  ],
 } as const;
 
 export const SEARCH_PERFORMANCE_QUERY_OPTION = {
@@ -46,24 +87,14 @@ export const SEARCH_PERFORMANCE_QUERY_OPTION = {
     queryFn: () => getPerformanceRelatedKeyword(keyword),
     enabled,
   }),
-};
-
-// TODO: 추후 삭제 예정
-export const SEARCH_ARTIST_RELATED_QUERY_KEY = {
-  ALL: ['performances'],
-  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => [
-    ...SEARCH_ARTIST_RELATED_QUERY_KEY.ALL,
-    'search',
-    artistId,
-  ],
-} as const;
-
-// TODO: 추후 삭제 예정
-export const SEARCH_ARTIST_RELATED_QUERY_OPTION = {
-  ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_RELATED_QUERY_KEY.ALL }),
-  SEARCH_RELATED_PERFORMANCES: (artistId: string | null) => ({
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string, enabled: boolean) => ({
     queryKey:
-      SEARCH_ARTIST_RELATED_QUERY_KEY.SEARCH_RELATED_PERFORMANCES(artistId),
-    queryFn: () => getArtistRelatedPerformances(artistId),
+      SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCE_TYPE_ANALYSIS(keyword),
+    queryFn: () => getPerformanceTypeAnalysis(keyword),
+    enabled,
+  }),
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_INTENDED_PERFORMANCE(request),
+    queryFn: () => getIntendedPerformance(request),
   }),
 };

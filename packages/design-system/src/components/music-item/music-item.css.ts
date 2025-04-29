@@ -59,6 +59,7 @@ export const artist = style({
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
+  lineHeight: '1.5rem',
 });
 
 export const rightIcon = style({
