@@ -9,14 +9,15 @@ const TimeTableOnboard = () => {
     TOTAL_STEPS,
     routePath.TIME_TABLE_OUTLET,
   );
-  const createHandleNextStep = (currentStep: number) => () => {
-    setStep(currentStep + 1);
+
+  const createHandleNextStep = (nextStep: number) => () => {
+    setStep(nextStep);
   };
 
   return (
     <Funnel>
       <Step name="1">
-        <StepOne currentStep={1} handleNextStep={createHandleNextStep(1)} />
+        <StepOne handleNextStep={createHandleNextStep(1)} />
       </Step>
     </Funnel>
   );

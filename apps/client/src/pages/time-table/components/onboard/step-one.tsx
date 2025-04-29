@@ -4,7 +4,6 @@ import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step-one.css';
 interface StepOneProps {
-  currentStep: number;
   handleNextStep: VoidFunction;
 }
 
