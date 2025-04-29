@@ -9,6 +9,9 @@ import {
 } from '@confeti/design-system/icons';
 import { CONFIG } from '@shared/constants/api';
 import { routePath } from '@shared/constants/path';
+import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
+
+import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
 
 import * as styles from './login.css';
 
@@ -60,13 +63,28 @@ const processLine = (
   return processedParts;
 };
 
-const handleLogin = (socialUrl: string) => {
-  if (socialUrl === 'kakao') {
-    window.location.href = CONFIG.KAKAO_URI;
-  }
-};
-
 const Login = () => {
+  const { mutate: appleLoginMutate } = useAppleLoginMutation();
+
+  const handleAppleLogin = async () => {
+    try {
+      initAppleAuth();
+      const loginData = await getAppleAuthData();
+      appleLoginMutate(loginData);
+    } catch (error) {
+      console.error('애플 로그인 에러:', error);
+    }
+  };
+
+  const handleKakaoLogin = () => {
+    const redirectUri =
+      window.location.hostname === 'localhost'
+        ? 'http://localhost:5173/'
+        : 'https://confeti.co.kr/';
+
+    window.location.href = `${CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
+  };
+
   return (
     <>
       <Header
@@ -86,12 +104,13 @@ const Login = () => {
               text="카카오로 계속하기"
               variant="kakao"
               icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
-              onClick={() => handleLogin('kakao')}
+              onClick={handleKakaoLogin}
             />
             <Button
               text="Apple로 계속하기"
               variant="apple"
               icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
+              onClick={handleAppleLogin}
             />
           </div>
           <footer className={styles.description}>
