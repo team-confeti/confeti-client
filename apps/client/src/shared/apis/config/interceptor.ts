@@ -17,7 +17,6 @@ import { axiosInstance } from './instance';
 
 const redirectToHome = () => {
   authTokenHandler('remove');
-  window.location.replace(routePath.ROOT);
   throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
 };
 
@@ -103,7 +102,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
     const originalConfig = error.config;
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
     return axiosInstance(originalConfig);
-  } catch (err) {
+  } catch (error) {
     return redirectToHome();
   }
 };
