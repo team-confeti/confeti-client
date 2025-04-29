@@ -10,10 +10,15 @@ export const useFestivalButtonData = () => {
   return data;
 };
 
-export const useFestivalTimetableData = (festivalDateId: number) => {
-  const { data } = useQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(festivalDateId),
+export const useFestivalTimetableData = (festivalDateId?: number) => {
+  const options = FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(
+    festivalDateId || 0,
   );
+  const { data } = useQuery({
+    queryKey: options.queryKey,
+    queryFn: options.queryFn,
+    enabled: festivalDateId !== undefined,
+  });
 
   return { data };
 };
