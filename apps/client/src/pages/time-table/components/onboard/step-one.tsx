@@ -1,5 +1,6 @@
 import { Button, Description } from '@confeti/design-system';
 import { ImgOnboard1 } from '@confeti/design-system/icons';
+import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step-one.css';
 
@@ -14,9 +15,16 @@ const StepOne = () => {
             }
             fontSize={20}
           />
-          <ImgOnboard1 width={'100%'} height={'100%'} />
+          <ImgOnboard1 width={'100%'} height={'31rem'} />
         </div>
-        <Button text="타임 테이블 사용법 알아보기" variant="add" />
+        <div className={styles.timeTableOnboardButtonContainer}>
+          <Button text="타임 테이블 사용법 알아보기" variant="add" />
+          <Button
+            text="타임 테이블 바로 시작하기"
+            variant="add"
+            className={cn(styles.customAddButton)}
+          />
+        </div>
       </div>
     </section>
   );

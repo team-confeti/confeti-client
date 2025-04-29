@@ -4,26 +4,33 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const timeTableOnboardContainer = style({
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   padding: '3rem 2rem',
-  gap: '0.8rem',
-  flexShrink: 0,
-});
-
-export const timeTableImageContainer = style({
-  ...themeVars.display.flexColumn,
-  alignItems: 'flex-start',
-  textAlign: 'center',
-  gap: '2rem',
-  alignSelf: 'stretch',
+  boxSizing: 'border-box',
 });
 
 export const timeTableOnboardContent = style({
   ...themeVars.display.flexColumn,
+  flex: 1,
   width: '100%',
-  alignItems: 'flex-start',
-  gap: '1.9rem',
+});
+
+export const timeTableImageContainer = style({
+  ...themeVars.display.flexColumnAlignTextCenter,
+  justifyContent: 'center',
+  gap: '2rem',
+  flex: 1,
+});
+
+export const timeTableOnboardButtonContainer = style({
+  ...themeVars.display.flexJustifyAlignCenter,
+  width: '100%',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const customAddButton = style({
+  border: themeVars.border.lime3,
+  backgroundColor: themeVars.color.white,
 });
