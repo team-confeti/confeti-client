@@ -50,6 +50,8 @@ export const contentStyle = style({
 });
 
 export const titleStyle = style({
+  display: 'flex',
+  flexDirection: 'row',
   ...themeVars.fontStyles.title4_b_16,
 });
 

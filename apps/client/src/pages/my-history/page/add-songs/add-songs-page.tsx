@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 
-import { Button, SearchBar } from '@confeti/design-system';
+import { Button, SearchBar, toast } from '@confeti/design-system';
 
 import * as styles from './add-songs-page.css';
 

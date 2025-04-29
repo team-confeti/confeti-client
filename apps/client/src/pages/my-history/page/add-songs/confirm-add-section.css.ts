@@ -3,8 +3,15 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 export const headerContainer = style({
-  position: 'relative',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  position: 'sticky',
+  top: '5rem',
+  height: '4.5rem',
+  padding: '1.2rem 2rem 1.2rem 2rem',
+  backgroundColor: themeVars.color.white,
   borderBottom: `0px`,
+  zIndex: themeVars.zIndex.header.content,
 });
 
 export const textContainer = style({
@@ -12,6 +19,10 @@ export const textContainer = style({
   flexDirection: 'column',
   gap: '0.8rem',
   padding: '1rem 2rem 1rem 2rem',
+  position: 'sticky',
+  top: '9.5rem',
+  backgroundColor: themeVars.color.white,
+  zIndex: themeVars.zIndex.header.content,
 });
 
 export const totalNumText = style({
@@ -34,4 +45,22 @@ export const buttonContainer = style({
   width: 'min(100%, var(--max-width))',
   maxWidth: '100%',
   zIndex: themeVars.zIndex.timeTableActions.content,
+});
+
+export const musicListContainer = style({
+  padding: '1rem 2rem 1rem 2rem',
+});
+
+export const dialogTitleContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  width: '13rem',
+});
+
+export const dialogHighlightText = style({
+  color: themeVars.color.confeti_lime3,
+  display: 'inline-block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
