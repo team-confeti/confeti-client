@@ -51,3 +51,7 @@ export interface FestivalTimetableResponseExtended {
   stages: Stage[];
   data: FestivalTimetableExtended;
 }
+
+export interface TimeTableCreationHistory {
+  hasTimetableHistory: boolean;
+}
