@@ -11,14 +11,16 @@ import Calender from '../components/calender/calender';
 import {
   useFestivalButtonData,
   useFestivalTimetableData,
+  useTimeTableCreationHistory,
 } from '../hooks/use-festival-data';
+import TimeTableOnboard from './onboading/time-table-onboard-page';
 
 import * as styles from './time-table-page.css';
 
 const TimeTablePage = () => {
   const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
-
   const { festivals } = useFestivalButtonData();
+  const { hasTimetableHistory } = useTimeTableCreationHistory();
 
   const {
     selectedFestivalInfo,
@@ -35,6 +37,7 @@ const TimeTablePage = () => {
 
   return (
     <>
+      {!hasTimetableHistory && <TimeTableOnboard />}
       {festivals.length === 0 ? (
         <EmptyFestivalSection />
       ) : (
