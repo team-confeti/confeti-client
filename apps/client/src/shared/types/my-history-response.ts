@@ -1,3 +1,5 @@
+import { S } from 'node_modules/vite/dist/node/types.d-aGj9QkWt';
+
 import { Performances } from './performance-response';
 
 export type MyTimeTable = Pick<Performances, 'typeId' | 'posterUrl' | 'title'>;
@@ -44,4 +46,37 @@ export interface SetListPerformanceRequest {
   pid: number | null;
   aid: string | null;
   term: string | null;
+}
+
+export interface MusicSearchRequest {
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface MusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
+}
+
+export interface MusicInfoResponse {
+  musicId: number;
+  title: string;
+  artistName: string;
+  artworkUrl: string;
+  previewUrl: string;
+}
+
+export interface ArtistMusicSearchRequest {
+  aid: string;
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface ArtistMusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
 }

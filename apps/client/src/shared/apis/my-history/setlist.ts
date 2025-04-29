@@ -1,6 +1,10 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  ArtistMusicSearchRequest,
+  ArtistMusicSearchResponse,
+  MusicSearchRequest,
+  MusicSearchResponse,
   SetListPerformance,
   SetListPerformanceRequest,
   SetListPerformanceResponse,
@@ -33,5 +37,29 @@ export const postAddPerformanceToSetList = async (
     items,
   );
 
+  return response.data;
+};
+
+export const getMusicSearch = async (
+  request: MusicSearchRequest,
+): Promise<MusicSearchResponse> => {
+  const response = await get<BaseResponse<MusicSearchResponse>>(
+    END_POINT.GET_MUSIC_SEARCH(request.term, request.offset, request.limit),
+  );
+
+  return response.data;
+};
+
+export const getArtistMusicSearch = async (
+  request: ArtistMusicSearchRequest,
+): Promise<ArtistMusicSearchResponse> => {
+  const response = await get<BaseResponse<ArtistMusicSearchResponse>>(
+    END_POINT.GET_ARTIST_MUSIC_SEARCH(
+      request.aid,
+      request.term,
+      request.offset,
+      request.limit,
+    ),
+  );
   return response.data;
 };
