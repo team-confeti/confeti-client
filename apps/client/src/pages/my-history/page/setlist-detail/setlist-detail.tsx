@@ -7,7 +7,10 @@ import Hero from '@shared/components/hero/hero';
 import SetListHeader from '../../components/setlist-detail/setlist-detail-header';
 import SetListEmpty from '../../components/setlist-detail/setlist-empty';
 import SetListTracks from '../../components/setlist-detail/setlist-tracks';
-import { useSetListDetail } from '../../hooks/use-setlist-detail';
+import {
+  useCompleteEditSetList,
+  useSetListDetail,
+} from '../../hooks/use-setlist-detail';
 
 const SetListDetailPage = () => {
   const { setlistId } = useParams<{ setlistId: string }>();
@@ -21,12 +24,23 @@ const SetListDetailPage = () => {
 
   const [isEditMode, setIsEditMode] = useState(false);
 
+  const { mutate: completeEditSetList } = useCompleteEditSetList();
+
   const handleClickAdd = () => {
     console.log('곡 추가하기 버튼 클릭');
   };
 
   const handleGetDragHandleProps = (musicId: string) => {
-    return {}; // dnd kit 등 쓰면 여기 props 반환
+    return {}; //TODO: 드래그앤드랍 구현
+  };
+
+  const handleCompleteEdit = () => {
+    if (!setlistId) return;
+    completeEditSetList(Number(setlistId), {
+      onSuccess: () => {
+        setIsEditMode(false);
+      },
+    });
   };
 
   return (
@@ -42,7 +56,13 @@ const SetListDetailPage = () => {
       <SetListHeader
         isEditMode={isEditMode}
         showEditButton={!hasNoMusic}
-        onClickToggleEdit={() => setIsEditMode((prev) => !prev)}
+        onClickToggleEdit={() => {
+          if (isEditMode) {
+            handleCompleteEdit();
+          } else {
+            setIsEditMode(true);
+          }
+        }}
       />
 
       {hasNoMusic ? (
@@ -54,6 +74,7 @@ const SetListDetailPage = () => {
           isEditMode={isEditMode}
           onClickAdd={handleClickAdd}
           getDragHandleProps={handleGetDragHandleProps}
+          onCompleteEdit={() => setIsEditMode(false)}
         />
       )}
 

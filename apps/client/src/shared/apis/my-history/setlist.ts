@@ -7,7 +7,7 @@ import {
   SetListPerformanceResponse,
 } from '@shared/types/my-history-response';
 
-import { del, get, post } from '../config/instance';
+import { del, get, patch, post } from '../config/instance';
 
 export const getSetListPerformance = async (
   request: SetListPerformanceRequest,
@@ -41,7 +41,7 @@ export const getSetListDetail = async (
   setlistId: number,
 ): Promise<SetListDetail> => {
   const response = await get<BaseResponse<SetListDetail>>(
-    `my/setlists/${setlistId}`,
+    END_POINT.GET_SET_LIST_DETAIL(setlistId),
   );
   return response.data;
 };
@@ -51,7 +51,29 @@ export const deleteMusicFromSetList = async (
   orders: number,
 ): Promise<string> => {
   const response = await del<BaseResponse<string>>(
-    `my/setlists/${setlistId}/musics/${orders}`,
+    END_POINT.DELETE_MUSIC_FROM_SETLIST(setlistId, orders),
   );
   return response.data;
+};
+
+export const postStartEditSetList = async (
+  setlistId: number,
+): Promise<void> => {
+  await post<BaseResponse<void>>(END_POINT.POST_START_EDIT_SETLIST(setlistId));
+};
+
+export const patchCompleteEditSetList = async (
+  setlistId: number,
+): Promise<void> => {
+  await patch<BaseResponse<void>>(
+    END_POINT.POST_COMPLETE_EDIT_SETLIST(setlistId),
+  );
+};
+
+export const deleteCancelEditSetList = async (
+  setlistId: number,
+): Promise<void> => {
+  await del<BaseResponse<void>>(
+    END_POINT.DELETE_CANCEL_EDIT_SETLIST(setlistId),
+  );
 };
