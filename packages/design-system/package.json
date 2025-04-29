@@ -13,7 +13,7 @@
     "generate:component": "turbo gen react-component",
     "svgr": "svgr --out-dir src/icons/src src/icons/assets --typescript --icon --jsx-runtime automatic",
     "optimize-svg": "pnpm exec svgo -f src/icons/assets -o src/icons/assets",
-    "build": "npm run optimize-svg",
+    "build": "npm run",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
