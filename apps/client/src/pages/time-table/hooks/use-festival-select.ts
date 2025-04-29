@@ -8,12 +8,16 @@ export const useFestivalSelect = (festivals: FestivalTimetable[]) => {
   const initialFestivalId =
     festivals.length > 0 ? festivals[0].festivalId : undefined;
   const initialDateId =
-    festivals.length > 0 ? festivals[0].festivalDates[0].festivalDateId : 1;
+    festivals.length > 0
+      ? festivals[0].festivalDates[0].festivalDateId
+      : undefined;
 
   const [selectedFestivalId, setSelectedFestivalId] = useState<
     number | undefined
   >(initialFestivalId);
-  const [selectedDateId, setSelectedDateId] = useState<number>(initialDateId);
+  const [selectedDateId, setSelectedDateId] = useState<number | undefined>(
+    initialDateId,
+  );
 
   // festivals가 변경되면 자동으로 첫 번째 항목 선택
   useEffect(() => {
