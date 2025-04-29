@@ -8,7 +8,7 @@ const SvgConfeti3DLogo21 = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
-    <path fill="url(#confeti_3d_logo2_1_svg__a)" d="M0 0h220v220H0z" />
+    <path fill="url(#confeti_3d_logo2_1_svg__a)" d="M0 0h180v180H0z" />
     <defs>
       <pattern
         id="confeti_3d_logo2_1_svg__a"
