@@ -14,7 +14,7 @@ import {
 
 import * as styles from './setlist-tracks.css';
 
-interface RawTrack {
+interface SetListTrack {
   musicId: number;
   trackId: string;
   trackName: string;
@@ -26,7 +26,7 @@ interface RawTrack {
 
 interface SetListTracksProps {
   setlistId: number;
-  tracks: RawTrack[];
+  tracks: SetListTrack[];
   isEditMode: boolean;
   onClickAdd: () => void;
   getDragHandleProps: (musicId: string) => React.HTMLAttributes<HTMLElement>;
@@ -40,9 +40,9 @@ const SetListTracks = ({
   onClickAdd,
   getDragHandleProps,
 }: SetListTracksProps) => {
-  const [localTracks, setLocalTracks] = useState<RawTrack[]>(tracks);
+  const [localTracks, setLocalTracks] = useState<SetListTrack[]>(tracks);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedTrack, setSelectedTrack] = useState<RawTrack | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<SetListTrack | null>(null);
 
   const { mutate: deleteMusic } = useDeleteMusicMutation(setlistId);
   const { mutate: startEditSetlist } = useStartEditSetList();
@@ -90,7 +90,7 @@ const SetListTracks = ({
     });
   };
 
-  const handleOpenDialog = (track: RawTrack) => {
+  const handleOpenDialog = (track: SetListTrack) => {
     setSelectedTrack(track);
     setDialogOpen(true);
   };
