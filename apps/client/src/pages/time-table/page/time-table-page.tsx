@@ -27,7 +27,7 @@ const TimeTablePage = () => {
     handleSelectDate,
   } = useFestivalSelect(festivals);
 
-  const { data: boardData } = useFestivalTimetableData(selectedDateId);
+  const { data: boardData } = useFestivalTimetableData(selectedDateId ?? 1);
 
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
