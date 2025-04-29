@@ -7,6 +7,7 @@ import {
   IcKakao,
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
+import { postSocialLogin } from '@shared/apis/auth/auth';
 import { CONFIG } from '@shared/constants/api';
 import { routePath } from '@shared/constants/path';
 
@@ -66,6 +67,63 @@ const handleLogin = (socialUrl: string) => {
   }
 };
 
+const REDIRECT_URI =
+  window.location.protocol + '//' + window.location.host + '/callback/apple';
+
+export const appleLogin = async () => {
+  window.AppleID.auth.init({
+    clientId: CONFIG.APPLE_CLIENT_ID,
+    scope: 'name',
+    redirectURI: 'https://collie-needed-globally.ngrok-free.app/callback/apple', // 네가 정한 콜백 URL
+    state: 'initial',
+    usePopup: true,
+  });
+
+  try {
+    const res = await window.AppleID.auth.signIn();
+    console.log('애플 로그인 결과:', res);
+    console.log(res.user);
+
+    const code = res.authorization?.code;
+    const name = res.user?.name?.firstName
+      ? `${res.user.name.firstName} ${res.user.name.lastName ?? ''}`.trim()
+      : '';
+
+    if (!code) {
+      throw new Error('애플 로그인에 실패했습니다. (코드 없음)');
+    }
+
+    await postSocialLogin({
+      provider: 'APPLE',
+      code,
+      name,
+    });
+
+    // 로그인 성공 후 이동
+    window.location.href = '/'; // 홈으로 보내거나 원하는 페이지로 이동
+  } catch (error) {
+    console.error('애플 로그인 에러:', error);
+  }
+};
+
+// export const appleLogin = async () => {
+//   const RESPONSE_TYPE = 'code id_token'; // 요청하는 응답 타입
+//   const RESPONSE_MODE = 'fragment';
+
+//   const AUTH_URL =
+//     `https://appleid.apple.com/auth/authorize?` +
+//     `client_id=${encodeURIComponent(CONFIG.APPLE_CLIENT_ID)}` +
+//     `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
+//     `&response_type=${encodeURIComponent(RESPONSE_TYPE)}` +
+//     `&response_mode=${encodeURIComponent(RESPONSE_MODE)}` +
+//     `&scope=${encodeURIComponent('')}` +
+//     `&state=${encodeURIComponent('previewInsure')}` +
+//     `&nonce=${encodeURIComponent('821')}`;
+
+//   // 브라우저에서 Apple 로그인 페이지로 리디렉션
+//   window.location.href = AUTH_URL;
+// };
+
 const Login = () => {
   return (
     <>
@@ -92,6 +150,7 @@ const Login = () => {
               text="Apple로 계속하기"
               variant="apple"
               icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
+              onClick={appleLogin}
             />
           </div>
           <footer className={styles.description}>

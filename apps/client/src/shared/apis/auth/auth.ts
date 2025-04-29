@@ -1,12 +1,18 @@
 import { CONFIG, END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
-import { KakaoLogin, SocialLoginResponse } from '@shared/types/login-response';
+import {
+  AppleLogin,
+  KakaoLogin,
+  SocialLoginResponse,
+} from '@shared/types/login-response';
 
 import { del, post } from '../config/instance';
 
 export const postSocialLogin = async (
-  socialLoginData: KakaoLogin,
+  socialLoginData: KakaoLogin | AppleLogin,
 ): Promise<BaseResponse<SocialLoginResponse>> => {
+  console.log(socialLoginData);
+
   const response = await fetch(
     `${CONFIG.BASE_URL}${END_POINT.POST_SOCIAL_LOGIN}`,
     {
