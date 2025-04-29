@@ -11,6 +11,8 @@ import {
 import { Footer, Spacing } from '@confeti/design-system';
 import { routePath } from '@shared/constants/path';
 
+import * as styles from './my-record.css';
+
 const MyRecord = () => {
   const { data: profileData } = useUserProfile();
   const { data: timetablePreviewData } = useMyTimeTablePreview();
@@ -22,7 +24,7 @@ const MyRecord = () => {
   }
 
   return (
-    <div>
+    <div className={styles.myRecordContainer}>
       <RecordIntroduce
         name={profileData.name}
         profileUrl={profileData.profileUrl}
@@ -52,7 +54,6 @@ const MyRecord = () => {
         navigatePath={`${routePath.MY_HISTORY_OVERVIEW}?type=SET_LIST`}
       />
       <Spacing size="xl" color="white" />
-
       <Footer />
     </div>
   );
