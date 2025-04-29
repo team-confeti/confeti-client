@@ -32,7 +32,12 @@ const UserInfo = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.profileWrapper}>
-        <Avatar src={profileUrl} alt={`${name}의 프로필 이미지`} size="xl" />
+        <Avatar
+          src={profileUrl}
+          alt={`${name}의 프로필 이미지`}
+          size="xl"
+          isHandleClick={false}
+        />
         {showEditBtn && (
           <IcEdit16 className={styles.editIcon} onClick={onEditImage} />
         )}
