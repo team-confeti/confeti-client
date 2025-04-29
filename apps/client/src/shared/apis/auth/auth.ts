@@ -11,8 +11,6 @@ import { del, post } from '../config/instance';
 export const postSocialLogin = async (
   socialLoginData: KakaoLogin | AppleLogin,
 ): Promise<BaseResponse<SocialLoginResponse>> => {
-  console.log(socialLoginData);
-
   const response = await fetch(
     `${CONFIG.BASE_URL}${END_POINT.POST_SOCIAL_LOGIN}`,
     {
