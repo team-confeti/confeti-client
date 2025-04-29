@@ -29,7 +29,7 @@ const TimeTablePage = () => {
     handleSelectDate,
   } = useFestivalSelect(festivals);
 
-  const { data: boardData } = useFestivalTimetableData(selectedDateId);
+  const { data: boardData } = useFestivalTimetableData(selectedDateId ?? 1);
 
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
@@ -51,13 +51,16 @@ const TimeTablePage = () => {
             festivalDates={selectedFestivalInfo.festivalDates}
             onDateSelect={handleSelectDate}
           />
-          <div className={styles.timeTableWrapper} ref={elementRef}>
-            <FestivalStage timeTableInfo={boardData} />
-            <TimeTableBoard
-              timeTableInfo={boardData}
-              isEditMode={isEditTimeTableMode}
-            />
-          </div>
+          {boardData && (
+            <div className={styles.timeTableWrapper} ref={elementRef}>
+              <FestivalStage timeTableInfo={boardData} />
+              <TimeTableBoard
+                timeTableInfo={boardData}
+                isEditMode={isEditTimeTableMode}
+              />
+            </div>
+          )}
+
           <TimeTableActions
             isEditMode={isEditTimeTableMode}
             onToggleEditMode={toggleEditTimeTableMode}

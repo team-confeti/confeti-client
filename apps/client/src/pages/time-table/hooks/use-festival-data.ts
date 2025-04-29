@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { FESTIVAL_BUTTON_QUERY_OPTIONS } from '@shared/apis/time-table/festival-button-queries';
 import {
@@ -14,7 +14,7 @@ export const useFestivalButtonData = () => {
 };
 
 export const useFestivalTimetableData = (festivalDateId: number) => {
-  const { data } = useSuspenseQuery(
+  const { data } = useQuery(
     FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(festivalDateId),
   );
   return { data };

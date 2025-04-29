@@ -4,16 +4,18 @@ export const CONFIG = {
   BASE_URL: import.meta.env.VITE_BASE_URL as string,
   KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
   KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
+  APPLE_CLIENT_ID: import.meta.env.VITE_APPLE_CLIENT_ID as string,
+  APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,
   AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
 } as const;
 
 export const END_POINT = {
   //내 공연
-  GET_MY_RECORD: `performances/record`,
-  GET_MY_TIMETABLE: 'user/timetables/preview',
+  GET_MY_RECORD: '/performances/record',
+  GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
-    `user/timetables?sortBy=${sortBy}`,
+    `/user/timetables?sortBy=${sortBy}`,
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
@@ -27,58 +29,58 @@ export const END_POINT = {
   GET_MY_ARTISTS: (sortBy: SortOption) =>
     `/user/favorites/artists?sortBy=${sortBy}`,
   GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
-    `user/favorites/performances?type=${performancesType}`,
+    `/user/favorites/performances?type=${performancesType}`,
 
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,
   POST_LIKE_FESTIVAL: (festivalId: number) =>
     `/user/favorites/festivals/${festivalId}`,
   POST_LIKE_CONCERT: (concertId: number) =>
-    `user/favorites/concerts/${concertId}`,
+    `/user/favorites/concerts/${concertId}`,
   PATCH_USER_INFO: '/user/info',
   GET_FESTIVAL_DETAIL: '/performances/festivals',
   GET_CONCERT_DETAIL: '/performances/concerts',
 
   // 홈 페이지
   GET_TICKETING: '/performances/reservation',
-  GET_LATEST_PERFORMANCES: 'performances/info',
-  GET_SUGGEST_PERFORMANCE: 'performances/recommend',
-  GET_SUGGEST_MUSIC_PERFORMANCE: 'performances/recommend/performance',
+  GET_LATEST_PERFORMANCES: '/performances/info',
+  GET_SUGGEST_PERFORMANCE: '/performances/recommend',
+  GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
 
   //타임 테이블
   GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
-    `user/timetables/festivals/${festivalDateId}`,
-  POST_FESTIVAL_TIMETABLE: `user/timetables/festivals`,
+    `/user/timetables/festivals/${festivalDateId}`,
+  POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
-    `user/timetables/festivals/${festivalId}`,
+    `/user/timetables/festivals/${festivalId}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
 
   //검색
-  GET_ARTISTS_SEARCH: `artists/search?term=`,
+  GET_ARTISTS_SEARCH: '/artists/search?term=',
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
-    `artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+    `/artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
-    `performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+    `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
-    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
-  GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
-  GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
+    `/performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+  GET_POPULAR_SEARCH: (limit: number) => `/search/terms/popular?limit=${limit}`,
+  GET_RECENT_VIEW: (items: string) => `/performances/expected?items=${items}`,
 
   //로그인,로그아웃,토큰재발급
-  POST_SOCIAL_LOGIN: 'auth/login',
-  POST_LOGOUT: 'auth/logout',
-  POST_REISSUE_TOKEN: 'auth/reissue',
-  DELETE_ACCOUNT: 'auth/withdraw',
+  POST_SOCIAL_LOGIN: '/auth/login',
+  POST_LOGOUT: '/auth/logout',
+  POST_REISSUE_TOKEN: '/auth/reissue',
+  DELETE_ACCOUNT: '/auth/withdraw',
 
   //온보딩
-  GET_TOP100_ARTIST: (limit: number) => `user/onboard/artists?limit=${limit}`,
+  GET_TOP100_ARTIST: (limit: number) => `/user/onboard/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
-    `user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
+    `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
-    `user/onboard/artists/${artistId}/related?limit=${limit}`,
-  POST_AUTH_ONBOARD: `auth/onboard`,
+    `/user/onboard/artists/${artistId}/related?limit=${limit}`,
+  POST_AUTH_ONBOARD: '/auth/onboard',
 } as const;
 
 export const HTTP_STATUS_CODE = {
