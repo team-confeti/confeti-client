@@ -3,7 +3,6 @@ import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-muta
 
 import { Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
-import { CONFIG } from '@shared/constants/api';
 import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 
 import CategoryTabs from '../components/category-tabs';
@@ -18,11 +17,14 @@ const HomePage = () => {
   const { mutate: login } = useSocialLoginMutation();
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
+  const REDIRECT_URI =
+    window.location.protocol + '//' + window.location.host + '/';
+
   useEffect(() => {
     if (code) {
       login({
         provider: 'KAKAO',
-        redirectUrl: CONFIG.KAKAO_REDIRECT_URI,
+        redirectUrl: REDIRECT_URI,
         code,
       });
     }
