@@ -1,5 +1,25 @@
+import StepOne from '@pages/time-table/components/onboard/step-one';
+
+import { routePath } from '@shared/constants/path';
+import { useFunnel } from '@shared/utils/use-funnel';
+
 const TimeTableOnboard = () => {
-  return <section></section>;
+  const TOTAL_STEPS = 6;
+  const { Funnel, Step, setStep } = useFunnel(
+    TOTAL_STEPS,
+    routePath.TIME_TABLE_OUTLET,
+  );
+  const createHandleNextStep = (currentStep: number) => () => {
+    setStep(currentStep + 1);
+  };
+
+  return (
+    <Funnel>
+      <Step name="1">
+        <StepOne currentStep={1} handleNextStep={createHandleNextStep(1)} />
+      </Step>
+    </Funnel>
+  );
 };
 
 export default TimeTableOnboard;

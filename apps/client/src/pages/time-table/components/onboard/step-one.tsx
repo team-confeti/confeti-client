@@ -3,8 +3,12 @@ import { ImgOnboard1 } from '@confeti/design-system/icons';
 import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step-one.css';
+interface StepOneProps {
+  currentStep: number;
+  handleNextStep: VoidFunction;
+}
 
-const StepOne = () => {
+const StepOne = ({ handleNextStep }: StepOneProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -18,7 +22,11 @@ const StepOne = () => {
           <ImgOnboard1 width={'100%'} height={'31rem'} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
-          <Button text="타임 테이블 사용법 알아보기" variant="add" />
+          <Button
+            text="타임 테이블 사용법 알아보기"
+            variant="add"
+            onClick={handleNextStep}
+          />
           <Button
             text="타임 테이블 바로 시작하기"
             variant="add"
