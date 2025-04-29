@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
-import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
+import { CONFIG, END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
 import { routePath } from '@shared/constants/path';
 import {
   ACCESS_TOKEN_KEY,
@@ -13,7 +13,7 @@ import { TokenResponse } from '@shared/types/login-response';
 import { authTokenHandler } from '@shared/utils/token-handler';
 
 import { HTTPError } from './http-error';
-import { axiosInstance, post } from './instance';
+import { axiosInstance } from './instance';
 
 const redirectToHome = () => {
   authTokenHandler('remove');
@@ -49,12 +49,15 @@ export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
 
   switch (status) {
     case HTTP_STATUS_CODE.UNAUTHORIZED:
-    case HTTP_STATUS_CODE.NOT_FOUND:
       try {
         return await handleTokenError(error);
       } catch (tokenError) {
         throw new HTTPError(status, '인증 토큰 갱신에 실패했습니다.');
       }
+
+    case HTTP_STATUS_CODE.NOT_FOUND:
+      throw new HTTPError(status, '요청하신 리소스를 찾을 수 없습니다.');
+
     default:
       if (status >= HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
         throw new HTTPError(status, '서버 내부 오류가 발생했습니다.');
@@ -77,18 +80,24 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
   }
 
   try {
-    const response = await post<BaseResponse<TokenResponse>>(
-      END_POINT.POST_REISSUE_TOKEN,
-      null,
+    const response = await fetch(
+      `${CONFIG.BASE_URL}${END_POINT.POST_REISSUE_TOKEN}`,
       {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${refreshToken}`,
+          'Content-Type': 'application/json',
         },
+        credentials: 'include',
       },
     );
 
+    if (!response.ok) throw new Error('토큰 재발급 실패');
+
+    const result: BaseResponse<TokenResponse> = await response.json();
     const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-      response.data;
+      result.data;
+
     authTokenHandler('set', newAccessToken, newRefreshToken);
 
     const originalConfig = error.config;
@@ -105,6 +114,5 @@ export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
   if (accessToken && config.headers) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
-
   return config;
 };
