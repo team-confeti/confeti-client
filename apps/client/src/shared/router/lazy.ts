@@ -44,6 +44,10 @@ export const AddSetlistPage = lazy(
   () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
 );
 
+export const AddSongsPage = lazy(
+  () => import('@pages/my-history/page/add-songs/add-songs-page'),
+);
+
 // Search
 export const SearchPage = lazy(() => import('@pages/search/page/search-page'));
 

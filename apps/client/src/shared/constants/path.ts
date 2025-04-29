@@ -21,6 +21,7 @@ export const routePath = {
   MY_HISTORY_REQUIRE_LOGIN: 'require-login',
   MY_HISTORY_OVERVIEW: 'overview',
   MY_HISTORY_ADD_SETLIST: 'setlist/add-setlist',
+  MY_HISTORY_ADD_SONGS: 'setlist/add-songs',
 
   // Search
   SEARCH: '/search',
