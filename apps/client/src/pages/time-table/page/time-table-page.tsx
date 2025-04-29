@@ -38,7 +38,7 @@ const TimeTablePage = () => {
   return (
     <>
       {!hasTimetableHistory && <TimeTableOnboard />}
-      {festivals.length === 0 ? (
+      {festivals ? (
         <EmptyFestivalSection />
       ) : (
         <div className={styles.wrapper}>
