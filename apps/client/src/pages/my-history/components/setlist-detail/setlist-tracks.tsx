@@ -1,4 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 
 import { Button, Dialog, MusicList } from '@confeti/design-system';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
@@ -29,7 +42,6 @@ interface SetListTracksProps {
   tracks: SetListTrack[];
   isEditMode: boolean;
   onClickAdd: () => void;
-  getDragHandleProps: (musicId: string) => React.HTMLAttributes<HTMLElement>;
   onCompleteEdit: () => void;
 }
 
@@ -38,7 +50,6 @@ const SetListTracks = ({
   tracks,
   isEditMode,
   onClickAdd,
-  getDragHandleProps,
 }: SetListTracksProps) => {
   const [localTracks, setLocalTracks] = useState<SetListTrack[]>(tracks);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -47,6 +58,12 @@ const SetListTracks = ({
   const { mutate: deleteMusic } = useDeleteMusicMutation(setlistId);
   const { mutate: startEditSetlist } = useStartEditSetList();
   const { mutate: cancelEditSetlist } = useCancelEditSetList();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 5 },
+    }),
+  );
 
   useEffect(() => {
     setLocalTracks(tracks);
@@ -95,26 +112,50 @@ const SetListTracks = ({
     setDialogOpen(true);
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setLocalTracks((prevTracks) => {
+      const oldIndex = prevTracks.findIndex(
+        (track) => String(track.musicId) === active.id,
+      );
+      const newIndex = prevTracks.findIndex(
+        (track) => String(track.musicId) === over.id,
+      );
+      return arrayMove(prevTracks, oldIndex, newIndex);
+    });
+  };
+
   return (
     <div className={styles.wrapper}>
       {isEditMode && <AddMusicButton onClick={onClickAdd} />}
-
-      <MusicList
-        musics={musicList}
-        variant={isEditMode ? 'editable' : 'default'}
-        onClickPlayToggle={!isEditMode ? onClickPlayToggle : undefined}
-        onClickDelete={
-          isEditMode
-            ? (musicId) => {
-                const target = localTracks.find(
-                  (t) => String(t.musicId) === musicId,
-                );
-                if (target) handleOpenDialog(target);
-              }
-            : undefined
-        }
-        getDragHandleProps={isEditMode ? getDragHandleProps : undefined}
-      />
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={localTracks.map((track) => String(track.musicId))}
+          strategy={verticalListSortingStrategy}
+        >
+          <MusicList
+            musics={musicList}
+            variant={isEditMode ? 'editable' : 'default'}
+            onClickPlayToggle={!isEditMode ? onClickPlayToggle : undefined}
+            onClickDelete={
+              isEditMode
+                ? (musicId) => {
+                    const target = localTracks.find(
+                      (t) => String(t.musicId) === musicId,
+                    );
+                    if (target) handleOpenDialog(target);
+                  }
+                : undefined
+            }
+          />
+        </SortableContext>
+      </DndContext>
 
       <audio ref={audioRef} />
 

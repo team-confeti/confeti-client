@@ -30,10 +30,6 @@ const SetListDetailPage = () => {
     console.log('곡 추가하기 버튼 클릭');
   };
 
-  const handleGetDragHandleProps = (_musicId: string) => {
-    return {}; //TODO: 드래그앤드랍 구현
-  };
-
   const handleCompleteEdit = () => {
     if (!setlistId) return;
     completeEditSetList(Number(setlistId), {
@@ -73,7 +69,6 @@ const SetListDetailPage = () => {
           tracks={setlistDetail.musics}
           isEditMode={isEditMode}
           onClickAdd={handleClickAdd}
-          getDragHandleProps={handleGetDragHandleProps}
           onCompleteEdit={() => setIsEditMode(false)}
         />
       )}

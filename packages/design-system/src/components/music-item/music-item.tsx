@@ -1,3 +1,6 @@
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
 import {
   BtnDelete,
   BtnDeleteBlack,
@@ -9,6 +12,7 @@ import {
 import * as styles from './music-item.css';
 
 interface MusicItemProps {
+  musicId: string;
   variant?: 'default' | 'editable' | 'confirmDelete';
   albumImage: string;
   title: string;
@@ -16,10 +20,10 @@ interface MusicItemProps {
   isPlaying?: boolean;
   onClickPlayToggle?: () => void;
   onClickDelete?: () => void;
-  dragHandleProps?: React.HTMLAttributes<HTMLElement>;
 }
 
 const MusicItem = ({
+  musicId,
   variant = 'default',
   albumImage,
   title,
@@ -27,8 +31,12 @@ const MusicItem = ({
   isPlaying = false,
   onClickPlayToggle,
   onClickDelete,
-  dragHandleProps,
 }: MusicItemProps) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: musicId,
+    });
+
   const renderControlButton = () => {
     switch (variant) {
       case 'default':
@@ -43,7 +51,7 @@ const MusicItem = ({
         );
       case 'editable':
         return (
-          <button {...dragHandleProps}>
+          <button {...listeners}>
             <IcHamburger width={24} height={24} />
           </button>
         );
@@ -74,7 +82,15 @@ const MusicItem = ({
   };
 
   return (
-    <div className={styles.musicItemWrapper}>
+    <div
+      ref={setNodeRef}
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+      }}
+      {...attributes}
+      className={styles.musicItemWrapper}
+    >
       {renderAlbumCover()}
       <div className={styles.textSection}>
         <p className={styles.title}>{title}</p>
