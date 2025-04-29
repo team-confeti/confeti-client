@@ -30,7 +30,7 @@ const SetListDetailPage = () => {
     console.log('곡 추가하기 버튼 클릭');
   };
 
-  const handleGetDragHandleProps = (musicId: string) => {
+  const handleGetDragHandleProps = (_musicId: string) => {
     return {}; //TODO: 드래그앤드랍 구현
   };
 
