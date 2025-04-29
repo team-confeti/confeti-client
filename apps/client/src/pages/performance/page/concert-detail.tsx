@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import ArtistSection from '@pages/performance/components/artist/artist-section';
 import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
-import Hero from '@pages/performance/components/hero/hero';
 import Location from '@pages/performance/components/location/location';
 import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
 import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 
 const ConcertDetailPage = () => {
