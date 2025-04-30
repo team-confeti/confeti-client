@@ -8,7 +8,7 @@ export const useAddSongsMutation = (setlistId: number) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (musics: AddMusicToSetListRequest) =>
+    mutationFn: (musics: AddMusicToSetListRequest[]) =>
       postAddMusicToSetList(setlistId, musics),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
