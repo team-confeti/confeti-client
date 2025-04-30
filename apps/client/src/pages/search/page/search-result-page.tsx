@@ -17,12 +17,14 @@ interface Props {
   artistData: ArtistSearch | null;
   relatedPerformances: RelatedPerformanceResponse | null;
   performanceTypeAnalysisData: PerformanceTypeAnalysis | null;
+  refetchArtist?: () => void;
 }
 
 const SearchResult = ({
   artistData,
   relatedPerformances,
   performanceTypeAnalysisData,
+  refetchArtist,
 }: Props) => {
   const { data: intendedPerformanceData } = useIntendedPerformance({
     request: {
@@ -33,13 +35,15 @@ const SearchResult = ({
     },
   });
 
+  // console.log(artistData);
+
   return (
     <>
       <main className={styles.resultSection}>
         {artistData?.artistId ? (
           <>
             <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
-            <ArtistSection artist={artistData} />
+            <ArtistSection artist={artistData} refetchArtist={refetchArtist} />
             <Spacing />
             <PerformanceSection
               performanceCount={intendedPerformanceData?.performanceCount ?? 0}
