@@ -82,15 +82,22 @@ export const dots = style({
 });
 
 export const badge = style({
+  ...themeVars.fontStyles.body5_m_12,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.4rem 0.8rem',
   position: 'absolute',
   top: '26.6rem',
   left: '2.5rem',
-  padding: '0.4rem 0.8rem',
+
+  height: '2.2rem',
   backgroundColor: themeVars.color.black_op,
   color: themeVars.color.confeti_lime,
   border: `0.5px solid ${themeVars.color.confeti_lime}`,
   borderRadius: '13px',
   zIndex: themeVars.zIndex.poster.infoText,
+  flexShrink: 0,
 });
 
 export const carouselContainer = style({
