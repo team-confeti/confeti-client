@@ -72,9 +72,18 @@ export const END_POINT = {
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
-    `/performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
-  GET_POPULAR_SEARCH: (limit: number) => `/search/terms/popular?limit=${limit}`,
-  GET_RECENT_VIEW: (items: string) => `/performances/expected?items=${items}`,
+    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+  GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
+  GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
+  GET_MUSIC_SEARCH: (keyword: string, offset: number, limit: number) =>
+    `my/setlists/search/musics?term=${keyword}&offset=${offset}&limit=${limit}`,
+  GET_ARTIST_MUSIC_SEARCH: (
+    aid: string,
+    keyword: string,
+    offset: number,
+    limit: number,
+  ) =>
+    `my/setlists/search/artist-musics?aid=${aid}&term=${keyword}&offset=${offset}&limit=${limit}`,
 
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: '/auth/login',
