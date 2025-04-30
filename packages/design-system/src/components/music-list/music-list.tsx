@@ -13,6 +13,7 @@ interface MusicListProps {
   variant?: 'default' | 'editable' | 'confirmDelete';
   onClickPlayToggle?: (musicId: string) => void;
   onClickDelete?: (musicId: string) => void;
+  onClickAdd?: (musicId: string) => void;
 }
 
 const MusicList = ({
@@ -20,6 +21,7 @@ const MusicList = ({
   variant = 'default',
   onClickPlayToggle,
   onClickDelete,
+  onClickAdd,
 }: MusicListProps) => {
   return (
     <div>
@@ -34,6 +36,7 @@ const MusicList = ({
           variant={variant}
           onClickPlayToggle={() => onClickPlayToggle?.(music.musicId)}
           onClickDelete={() => onClickDelete?.(music.musicId)}
+          onClickAdd={() => onClickAdd?.(music.musicId)}
         />
       ))}
     </div>
