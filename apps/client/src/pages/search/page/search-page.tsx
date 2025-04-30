@@ -28,7 +28,7 @@ const SearchPage = () => {
   const [isPerformanceAnalysisTriggered, setIsPerformanceAnalysisTriggered] =
     useState(false);
 
-  const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
+  const { barFocus, handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
   const { addSearchKeyword } = useRecentSearch();
 
@@ -75,7 +75,7 @@ const SearchPage = () => {
 
   const renderSearchContents = () => {
     const isLoadingState = isSearchLoading || isRelatedKeywordLoading;
-    const isSuggestionState = !!relatedArtists?.artists;
+    const isSuggestionState = !!relatedArtists?.artists && barFocus;
     const isResultState = !!artistData;
 
     switch (true) {
