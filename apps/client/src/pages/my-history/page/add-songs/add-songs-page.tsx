@@ -6,7 +6,6 @@ import {
 } from '@pages/my-history/page/hooks/use-music-search';
 
 import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
-import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
