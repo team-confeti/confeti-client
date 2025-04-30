@@ -1,14 +1,34 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { SetListPerformanceRequest } from '@shared/types/my-history-response';
+import {
+  ArtistMusicSearchRequest,
+  MusicSearchRequest,
+  SetListPerformanceRequest,
+} from '@shared/types/my-history-response';
 
-import { getSetListDetail, getSetListPerformance } from './setlist';
+import {
+  getArtistMusicSearch,
+  getMusicSearch,
+  getSetListDetail,
+  getSetListPerformance,
+} from './setlist';
 
 export const SETLIST_QUERY_KEY = {
   ALL: ['setlist'],
   SEARCH_PERFORMANCE: (request: SetListPerformanceRequest) => [
     ...SETLIST_QUERY_KEY.ALL,
     'performance',
+    request,
+  ],
+
+  SEARCH_MUSIC: (request: MusicSearchRequest) => [
+    ...SETLIST_QUERY_KEY.ALL,
+    'music',
+    request,
+  ],
+  SEARCH_ARTIST_MUSIC: (request: ArtistMusicSearchRequest) => [
+    ...SETLIST_QUERY_KEY.ALL,
+    'artist-music',
     request,
   ],
   DETAIL: (setlistId: number) => [
@@ -29,6 +49,21 @@ export const SETLIST_QUERY_OPTION = {
       queryFn: () => getSetListPerformance(request),
       enabled,
     }),
+
+  SEARCH_MUSIC: (request: MusicSearchRequest, enabled: boolean) =>
+    queryOptions({
+      queryKey: SETLIST_QUERY_KEY.SEARCH_MUSIC(request),
+      queryFn: () => getMusicSearch(request),
+      enabled,
+    }),
+
+  SEARCH_ARTIST_MUSIC: (request: ArtistMusicSearchRequest, enabled: boolean) =>
+    queryOptions({
+      queryKey: SETLIST_QUERY_KEY.SEARCH_ARTIST_MUSIC(request),
+      queryFn: () => getArtistMusicSearch(request),
+      enabled,
+    }),
+
   DETAIL: (setlistId: number) =>
     queryOptions({
       queryKey: SETLIST_QUERY_KEY.DETAIL(setlistId),

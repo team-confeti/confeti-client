@@ -1,6 +1,11 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  AddMusicToSetListRequest,
+  ArtistMusicSearchRequest,
+  ArtistMusicSearchResponse,
+  MusicSearchRequest,
+  MusicSearchResponse,
   SetListDetail,
   SetListPerformance,
   SetListPerformanceRequest,
@@ -34,6 +39,30 @@ export const postAddPerformanceToSetList = async (
     items,
   );
 
+  return response.data;
+};
+
+export const getMusicSearch = async (
+  request: MusicSearchRequest,
+): Promise<MusicSearchResponse> => {
+  const response = await get<BaseResponse<MusicSearchResponse>>(
+    END_POINT.GET_MUSIC_SEARCH(request.term, request.offset, request.limit),
+  );
+
+  return response.data;
+};
+
+export const getArtistMusicSearch = async (
+  request: ArtistMusicSearchRequest,
+): Promise<ArtistMusicSearchResponse> => {
+  const response = await get<BaseResponse<ArtistMusicSearchResponse>>(
+    END_POINT.GET_ARTIST_MUSIC_SEARCH(
+      request.aid,
+      request.term,
+      request.offset,
+      request.limit,
+    ),
+  );
   return response.data;
 };
 
@@ -75,5 +104,15 @@ export const deleteCancelEditSetList = async (
 ): Promise<void> => {
   await del<BaseResponse<void>>(
     END_POINT.DELETE_CANCEL_EDIT_SETLIST(setlistId),
+  );
+};
+
+export const postAddMusicToSetList = async (
+  setlistId: number,
+  musics: AddMusicToSetListRequest[],
+) => {
+  await post<BaseResponse<void>>(
+    END_POINT.POST_ADD_MUSIC_TO_SETLIST(setlistId),
+    musics,
   );
 };

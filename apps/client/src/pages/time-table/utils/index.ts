@@ -17,6 +17,7 @@ export const parseTimeString = (timeString: string): string[] => {
   return [hour, min];
 };
 
+// TODO: 추후 수정 필요, 사용 안되고 있음
 export const calcPosition = (totalMin: number, minutesFromOpen: number) => {
   const top = (minutesFromOpen / 5) * TIME_SLOT_HEIGHT_5_MIN;
   const diff = (totalMin / 5) * TIME_SLOT_HEIGHT_5_MIN;

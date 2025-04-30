@@ -7,6 +7,7 @@ import GlobalLayout from './global-layout';
 import {
   AddFestivalPage,
   AddSetlistPage,
+  AddSongsPage,
   ConcertDetailPage,
   DeleteAccountPage,
   DeleteFestivalPage,
@@ -89,6 +90,10 @@ export default function Router() {
           <Route
             path={routePath.MY_HISTORY_ADD_SETLIST}
             element={createProtectedRoute(true, <AddSetlistPage />)}
+          />
+          <Route
+            path={routePath.MY_HISTORY_ADD_SONGS}
+            element={createProtectedRoute(true, <AddSongsPage />)}
           />
           <Route
             path={routePath.MY_HISTORY_SETLIST_DETAIL}

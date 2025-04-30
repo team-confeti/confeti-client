@@ -46,6 +46,39 @@ export interface SetListPerformanceRequest {
   term: string | null;
 }
 
+export interface MusicSearchRequest {
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface MusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
+}
+
+export interface MusicInfoResponse {
+  musicId: number;
+  title: string;
+  artistName: string;
+  artworkUrl: string;
+  previewUrl: string;
+}
+
+export interface ArtistMusicSearchRequest {
+  aid: string;
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface ArtistMusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
+}
+
 export interface SetListMusic {
   musicId: number;
   trackId: string;
@@ -67,4 +100,12 @@ export interface SetListDetail {
   startAt: string;
   endAt: string;
   musics: SetListMusic[];
+}
+
+export interface AddMusicToSetListRequest {
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
 }

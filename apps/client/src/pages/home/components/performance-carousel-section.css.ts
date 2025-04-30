@@ -7,4 +7,5 @@ export const performanceBannerContainer = style({
   paddingTop: '0.1rem',
   paddingBottom: '1rem',
   background: themeVars.color.confeti_lime_grad,
+  paddingBottom: '0.5rem',
 });

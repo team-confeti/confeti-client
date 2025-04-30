@@ -13,11 +13,11 @@ interface KeywordProps {
 }
 
 export const useSearchArtist = ({ keyword, enabled }: KeywordProps) => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
   });
 
-  return { data, isLoading };
+  return { data, isLoading, refetch };
 };
 
 export const usePerformanceTypeAnalysis = ({
