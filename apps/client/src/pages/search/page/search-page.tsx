@@ -37,7 +37,11 @@ const SearchPage = () => {
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword(paramsKeyword);
-  const { data: artistData, isLoading: isSearchLoading } = useSearchArtist({
+  const {
+    data: artistData,
+    isLoading: isSearchLoading,
+    refetch: refetchArtist,
+  } = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
