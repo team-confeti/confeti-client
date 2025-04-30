@@ -20,6 +20,7 @@ import { limitTextLength } from '@shared/utils/limit-text-length';
 import AddMusicButton from '../../components/setlist-detail/add-music-button';
 import { useDeleteMusicMutation } from '../../hooks/use-delete-music-mutation';
 import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
+import { usePreventScroll } from '../../hooks/use-prevent-scroll.ts';
 import { useCancelEditSetList } from '../../hooks/use-setlist-detail';
 
 import * as styles from './setlist-tracks.css';
@@ -52,6 +53,12 @@ const SetListTracks = ({
   const [localTracks, setLocalTracks] = useState<SetListTrack[]>(tracks);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState<SetListTrack | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  usePreventScroll(isDragging);
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
 
   const { mutate: deleteMusic } = useDeleteMusicMutation(setlistId);
   const { mutate: cancelEditSetlist } = useCancelEditSetList();
@@ -107,6 +114,7 @@ const SetListTracks = ({
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
+    setIsDragging(false);
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
@@ -127,6 +135,7 @@ const SetListTracks = ({
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
         <SortableContext
