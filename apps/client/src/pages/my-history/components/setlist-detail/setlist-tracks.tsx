@@ -42,7 +42,7 @@ interface SetListTracksProps {
   tracks: SetListTrack[];
   isEditMode: boolean;
   onClickAdd: () => void;
-  onCompleteEdit: () => void;
+  onCompleteEdit: (tracks: SetListTrack[]) => void;
 }
 
 const SetListTracks = ({
@@ -50,6 +50,7 @@ const SetListTracks = ({
   tracks,
   isEditMode,
   onClickAdd,
+  onCompleteEdit,
 }: SetListTracksProps) => {
   const [localTracks, setLocalTracks] = useState<SetListTrack[]>(tracks);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -75,7 +76,15 @@ const SetListTracks = ({
     }
   }, [isEditMode, setlistId, startEditSetlist]);
 
-  useEditCancelOnLeave(isEditMode, () => cancelEditSetlist(setlistId));
+  useEffect(() => {
+    if (!isEditMode) {
+      onCompleteEdit(localTracks);
+    }
+  }, [isEditMode, localTracks, onCompleteEdit]);
+
+  useEditCancelOnLeave(isEditMode, () => {
+    cancelEditSetlist(setlistId);
+  });
 
   const mappedTracks = useMemo(
     () =>

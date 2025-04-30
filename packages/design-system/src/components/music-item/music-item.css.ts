@@ -6,6 +6,7 @@ export const musicItemWrapper = style({
   ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
   padding: '1rem 0',
+  touchAction: 'none',
 });
 
 export const albumCoverWrapper = style({

@@ -20,7 +20,6 @@ const MusicList = ({
   variant = 'default',
   onClickPlayToggle,
   onClickDelete,
-  // getDragHandleProps,
 }: MusicListProps) => {
   return (
     <div>

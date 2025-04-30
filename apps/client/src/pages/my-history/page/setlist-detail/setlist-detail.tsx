@@ -9,6 +9,7 @@ import SetListEmpty from '../../components/setlist-detail/setlist-empty';
 import SetListTracks from '../../components/setlist-detail/setlist-tracks';
 import {
   useCompleteEditSetList,
+  useReorderSetList,
   useSetListDetail,
 } from '../../hooks/use-setlist-detail';
 
@@ -25,18 +26,32 @@ const SetListDetailPage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const { mutate: completeEditSetList } = useCompleteEditSetList();
+  const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
     console.log('곡 추가하기 버튼 클릭');
   };
 
-  const handleCompleteEdit = () => {
+  const handleCompleteEdit = (finalTracks: { trackId: string }[]) => {
     if (!setlistId) return;
-    completeEditSetList(Number(setlistId), {
-      onSuccess: () => {
-        setIsEditMode(false);
+
+    const reorderedTracks = finalTracks.map((track, index) => ({
+      trackId: track.trackId,
+      orders: index + 1,
+    }));
+
+    reorderSetList(
+      { setlistId: Number(setlistId), tracks: reorderedTracks },
+      {
+        onSuccess: () => {
+          completeEditSetList(Number(setlistId), {
+            onSuccess: () => {
+              setIsEditMode(false);
+            },
+          });
+        },
       },
-    });
+    );
   };
 
   return (
@@ -54,7 +69,7 @@ const SetListDetailPage = () => {
         showEditButton={!hasNoMusic}
         onClickToggleEdit={() => {
           if (isEditMode) {
-            handleCompleteEdit();
+            setIsEditMode(false);
           } else {
             setIsEditMode(true);
           }
@@ -69,7 +84,7 @@ const SetListDetailPage = () => {
           tracks={setlistDetail.musics}
           isEditMode={isEditMode}
           onClickAdd={handleClickAdd}
-          onCompleteEdit={() => setIsEditMode(false)}
+          onCompleteEdit={handleCompleteEdit}
         />
       )}
 
