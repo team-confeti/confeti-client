@@ -9,12 +9,14 @@ export const expandedSection = style({
 
 export const expandedArtists = style({
   overflow: 'hidden',
-  transition: 'height 0.5s ease-out, opacity 0s ease-out',
+  transition: 'max-height 0.5s ease-out, opacity 0.3s ease, padding 0.3s ease',
+  maxHeight: 0,
   opacity: 0,
   padding: '0 2rem',
 });
 
 export const expandedArtistsVisible = style({
+  maxHeight: '15rem',
   opacity: 1,
   padding: '2rem',
 });

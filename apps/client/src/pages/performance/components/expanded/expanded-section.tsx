@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import ArtistGrid from '@pages/performance/components/artist/artist-grid';
 import MoreButton from '@pages/performance/components/button/more-button';
 
@@ -22,27 +21,10 @@ const ExpandedSection = ({
   dayId,
   toggleExpand,
 }: ExpandedSectionProps) => {
-  const contentRef = useRef<HTMLDivElement | null>(null);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    const timer = requestAnimationFrame(() => {
-      if (contentRef.current) {
-        setHeight(isExpanded ? contentRef.current.scrollHeight : 0);
-      }
-    });
-
-    return () => cancelAnimationFrame(timer);
-  }, [isExpanded]);
-
   return (
     <section className={styles.expandedSection}>
       <div
-        ref={contentRef}
         className={`${styles.expandedArtists} ${isExpanded ? styles.expandedArtistsVisible : ''}`}
-        style={{
-          height: isExpanded ? `${height}px` : '0',
-        }}
       >
         <ArtistGrid
           artists={artists.slice(MAX_VISIBLE_ARTISTS)}
