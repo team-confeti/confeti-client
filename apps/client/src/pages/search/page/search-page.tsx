@@ -117,6 +117,7 @@ const SearchPage = () => {
             artistData={artistData?.artist ?? null}
             relatedPerformances={relatedPerformances ?? null}
             performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
+            refetchArtist={refetchArtist}
           />
         );
 

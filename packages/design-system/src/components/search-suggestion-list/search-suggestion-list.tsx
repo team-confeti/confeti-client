@@ -35,7 +35,7 @@ const SearchSuggestionList = ({
         <li
           key={keyword.id}
           className={styles.listContainer}
-          onMouseDown={() => handleClick(keyword.id, keyword.title)}
+          onPointerDown={() => handleClick(keyword.id, keyword.title)}
         >
           <div className={styles.listImageContainer}>
             {listType === 'performance' ? (
