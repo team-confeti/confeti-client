@@ -9,6 +9,13 @@ export const musicItemWrapper = style({
   touchAction: 'none',
 });
 
+export const contentWrapper = style({
+  ...themeVars.display.flexBetweenAlignCenter,
+  gap: '1.6rem',
+  flexGrow: 1,
+  cursor: 'pointer',
+});
+
 export const albumCoverWrapper = style({
   position: 'relative',
   width: '6.8rem',
