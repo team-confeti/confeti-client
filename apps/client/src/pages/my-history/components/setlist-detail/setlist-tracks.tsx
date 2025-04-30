@@ -20,14 +20,11 @@ import { limitTextLength } from '@shared/utils/limit-text-length';
 import AddMusicButton from '../../components/setlist-detail/add-music-button';
 import { useDeleteMusicMutation } from '../../hooks/use-delete-music-mutation';
 import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
-import {
-  useCancelEditSetList,
-  useStartEditSetList,
-} from '../../hooks/use-setlist-detail';
+import { useCancelEditSetList } from '../../hooks/use-setlist-detail';
 
 import * as styles from './setlist-tracks.css';
 
-interface SetListTrack {
+export interface SetListTrack {
   musicId: number;
   trackId: string;
   trackName: string;
@@ -42,7 +39,7 @@ interface SetListTracksProps {
   tracks: SetListTrack[];
   isEditMode: boolean;
   onClickAdd: () => void;
-  onCompleteEdit: (tracks: SetListTrack[]) => void;
+  onTracksChange: (tracks: SetListTrack[]) => void;
 }
 
 const SetListTracks = ({
@@ -50,20 +47,17 @@ const SetListTracks = ({
   tracks,
   isEditMode,
   onClickAdd,
-  onCompleteEdit,
+  onTracksChange,
 }: SetListTracksProps) => {
   const [localTracks, setLocalTracks] = useState<SetListTrack[]>(tracks);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState<SetListTrack | null>(null);
 
   const { mutate: deleteMusic } = useDeleteMusicMutation(setlistId);
-  const { mutate: startEditSetlist } = useStartEditSetList();
   const { mutate: cancelEditSetlist } = useCancelEditSetList();
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: { distance: 5 },
-    }),
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
   );
 
   useEffect(() => {
@@ -71,20 +65,10 @@ const SetListTracks = ({
   }, [tracks]);
 
   useEffect(() => {
-    if (isEditMode) {
-      startEditSetlist(setlistId);
-    }
-  }, [isEditMode, setlistId, startEditSetlist]);
+    onTracksChange(localTracks);
+  }, [localTracks, onTracksChange]);
 
-  useEffect(() => {
-    if (!isEditMode) {
-      onCompleteEdit(localTracks);
-    }
-  }, [isEditMode, localTracks, onCompleteEdit]);
-
-  useEditCancelOnLeave(isEditMode, () => {
-    cancelEditSetlist(setlistId);
-  });
+  useEditCancelOnLeave(isEditMode, () => cancelEditSetlist(setlistId));
 
   const mappedTracks = useMemo(
     () =>
@@ -127,10 +111,10 @@ const SetListTracks = ({
 
     setLocalTracks((prevTracks) => {
       const oldIndex = prevTracks.findIndex(
-        (track) => String(track.musicId) === active.id,
+        (t) => String(t.musicId) === active.id,
       );
       const newIndex = prevTracks.findIndex(
-        (track) => String(track.musicId) === over.id,
+        (t) => String(t.musicId) === over.id,
       );
       return arrayMove(prevTracks, oldIndex, newIndex);
     });
