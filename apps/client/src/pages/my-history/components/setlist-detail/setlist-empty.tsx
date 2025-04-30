@@ -9,7 +9,7 @@ const SetListEmpty = () => {
   const navigate = useNavigate();
 
   const handleClickAddMusic = () => {
-    navigate(routePath.MY_HISTORY_REQUIRE_LOGIN);
+    navigate(`${routePath.MY_HISTORY}/${routePath.MY_HISTORY_ADD_SONGS}`);
   };
 
   return (
