@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { BtnArrowLeft20 } from '@confeti/design-system/icons';
 
@@ -58,6 +60,7 @@ const ConfirmAddSection = ({
     ));
   };
 
+  useEffect(() => {}, [selectedSongs]);
   return (
     <div>
       <header className={styles.headerContainer}>
@@ -75,9 +78,9 @@ const ConfirmAddSection = ({
         {selectedSongs.map((song) => (
           <MusicItem
             key={song.musicId}
-            albumImage=""
-            title="test"
-            artist="test"
+            albumImage={song.artworkUrl}
+            title={song.title}
+            artist={song.artistName}
             variant="confirmDelete"
             onClickDelete={() =>
               handleOpenDeleteDialog({

@@ -6,6 +6,7 @@ import {
 } from '@pages/my-history/page/hooks/use-music-search';
 
 import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
+import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
@@ -82,7 +83,7 @@ const AddSongsPage = () => {
       setSelectedSongs([...selectedSongs, song]);
       toast({
         text: '(이)가 대기열에 추가되었습니다.',
-        highlightText: '곡이름',
+        highlightText: song.title,
         position: 'middleCenter',
       });
     } else {
@@ -91,7 +92,9 @@ const AddSongsPage = () => {
   };
 
   const handleRemoveSong = (songId: number) => {
-    setSelectedSongs(selectedSongs.filter((song) => song.musicId !== songId));
+    setSelectedSongs((prevSongs) =>
+      prevSongs.filter((song) => Number(song.musicId) !== Number(songId)),
+    );
   };
 
   const handleConfirmAddSection = () => {
