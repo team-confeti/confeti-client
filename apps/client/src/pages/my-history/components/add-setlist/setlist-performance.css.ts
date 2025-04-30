@@ -16,12 +16,21 @@ export const title = style({
 });
 
 export const performanceContainer = style({
-  flex: 1,
+  display: 'flex',
+  justifyContent: 'flex-start',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   overflowY: 'auto',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridColumnGap: '1.8rem',
-  gridRowGap: '3rem',
+  rowGap: '3rem',
+  columnGap: '1.8rem',
+  maxWidth: 'fit-content',
+  maxHeight: 'fit-content',
+});
+
+export const festivalCardWrapper = style({
+  width: 'calc((100% - 4rem ) / 3)',
+  flexShrink: 0,
+  flexGrow: 0,
 });
 
 export const buttonSection = style({
