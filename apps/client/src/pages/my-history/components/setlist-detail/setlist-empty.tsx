@@ -1,15 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
 
 import * as styles from './setlist-empty.css';
 
 const SetListEmpty = () => {
   const navigate = useNavigate();
-
+  const { setlistId } = useParams<{ setlistId: string }>();
   const handleClickAddMusic = () => {
-    navigate(routePath.MY_HISTORY_REQUIRE_LOGIN);
+    navigate(`/my-history/setlist/${setlistId}/add-songs`);
   };
 
   return (

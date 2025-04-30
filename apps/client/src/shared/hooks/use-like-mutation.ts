@@ -12,10 +12,12 @@ import {
 import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
 import { SEARCH_ARTIST_QUERY_KEY } from '@shared/apis/search/search-queries';
 
+type LikeType = 'ARTIST' | 'FESTIVAL' | 'CONCERT';
+
 interface Props {
   id: string | number;
   action: 'LIKE' | 'UNLIKE';
-  type: 'ARTIST' | 'FESTIVAL' | 'CONCERT';
+  type: LikeType;
 }
 
 interface LikeData {
@@ -23,10 +25,7 @@ interface LikeData {
   isLiked: boolean;
 }
 
-const getQueryKey = (
-  type: 'ARTIST' | 'FESTIVAL' | 'CONCERT',
-  id: string | number,
-) => {
+const getQueryKey = (type: LikeType, id: string | number) => {
   switch (type) {
     case 'ARTIST':
       return LIKE_QUERY_KEY.LIKE_ARTIST(String(id));
@@ -39,10 +38,7 @@ const getQueryKey = (
   }
 };
 
-const getInvalidateKey = (
-  type: 'ARTIST' | 'FESTIVAL' | 'CONCERT',
-  id: string | number,
-) => {
+const getInvalidateKey = (type: LikeType, id: string | number) => {
   switch (type) {
     case 'ARTIST':
       return SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST('');
@@ -59,7 +55,9 @@ export const useLikeMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, action, type }: Props) => {
+    mutationFn: async ({ id, action, type: originalType }: Props) => {
+      const type = originalType.toUpperCase() as LikeType;
+
       switch (type) {
         case 'ARTIST':
           if (action === 'LIKE') {
@@ -91,7 +89,8 @@ export const useLikeMutation = () => {
       return { id, type };
     },
 
-    onMutate: async ({ id, action, type }) => {
+    onMutate: async ({ id, action, type: originalType }) => {
+      const type = originalType.toUpperCase() as LikeType;
       const queryKey = getQueryKey(type, id);
       await queryClient.cancelQueries({ queryKey });
       const prevData = queryClient.getQueryData(queryKey);
@@ -120,7 +119,8 @@ export const useLikeMutation = () => {
       }
     },
 
-    onSettled: (_, __, { id, type }) => {
+    onSettled: (_, __, { id, type: originalType }) => {
+      const type = originalType.toUpperCase() as LikeType;
       const invalidateKey = getInvalidateKey(type, id);
       if (type === 'ARTIST') {
         queryClient.invalidateQueries({

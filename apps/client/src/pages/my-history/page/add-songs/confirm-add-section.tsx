@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutation';
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { BtnArrowLeft20 } from '@confeti/design-system/icons';
@@ -23,9 +25,11 @@ const ConfirmAddSection = ({
   selectedSongs,
   handleConfirmAddSection,
 }: Props) => {
+  const { setlistId } = useParams<{ setlistId: string }>();
   const totalNum = selectedSongs.length;
   const overlay = useOverlay();
-
+  const navigate = useNavigate();
+  const addMusicToSetListMutation = useAddSongsMutation(Number(setlistId));
   const handleOpenDeleteDialog = ({
     title,
     musicId,
@@ -59,8 +63,20 @@ const ConfirmAddSection = ({
       </Dialog>
     ));
   };
+  const handleAddMusicToSetList = () => {
+    const requestData = selectedSongs.map((song) => ({
+      trackId: String(song.musicId),
+      artistName: song.artistName,
+      trackName: song.title,
+      artworkUrl: song.artworkUrl,
+      previewUrl: '',
+    }));
 
-  useEffect(() => {}, [selectedSongs]);
+    // 변환된 데이터로 mutation 호출
+    addMusicToSetListMutation.mutate(requestData);
+    navigate(`/my-history/setlist-detail/${setlistId}`);
+  };
+
   return (
     <div>
       <header className={styles.headerContainer}>
@@ -95,6 +111,7 @@ const ConfirmAddSection = ({
         <Button
           text="셋리스트에 추가하기"
           disabled={selectedSongs.length === 0}
+          onClick={handleAddMusicToSetList}
         />
       </div>
     </div>

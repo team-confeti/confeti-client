@@ -30,19 +30,19 @@ export const Default: Story = {
   args: {
     relatedKeyword: [
       {
-        artistId: '1',
+        id: '1',
         profileUrl: 'https://i.imgur.com/i3lTe0K.jpeg',
-        name: '데이식스',
+        title: '데이식스',
       },
       {
-        artistId: '2',
+        id: '2',
         profileUrl: 'https://i.imgur.com/JEFuh4T.jpeg',
-        name: 'DAY6(Even of Day)',
+        title: 'DAY6(Even of Day)',
       },
       {
-        artistId: '3',
+        id: '3',
         profileUrl: '',
-        name: 'DAY6',
+        title: 'DAY6',
       },
     ],
   },
@@ -52,14 +52,14 @@ export const NoProfileImage: Story = {
   args: {
     relatedKeyword: [
       {
-        artistId: '1',
+        id: '1',
         profileUrl: '',
-        name: '아티스트 A',
+        title: '아티스트 A',
       },
       {
-        artistId: '2',
+        id: '2',
         profileUrl: '',
-        name: '아티스트 B',
+        title: '아티스트 B',
       },
     ],
   },
@@ -75,9 +75,9 @@ export const SingleItem: Story = {
   args: {
     relatedKeyword: [
       {
-        artistId: '1',
+        id: '1',
         profileUrl: 'https://i.imgur.com/i3lTe0K.jpeg',
-        name: '데이식스',
+        title: '데이식스',
       },
     ],
   },

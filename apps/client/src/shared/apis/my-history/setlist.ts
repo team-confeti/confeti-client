@@ -1,6 +1,7 @@
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  AddMusicToSetListRequest,
   ArtistMusicSearchRequest,
   ArtistMusicSearchResponse,
   MusicSearchRequest,
@@ -106,6 +107,7 @@ export const deleteCancelEditSetList = async (
   );
 };
 
+
 export const patchReorderSetList = async (
   setlistId: number,
   tracks: { trackId: string; orders: number }[],
@@ -113,5 +115,14 @@ export const patchReorderSetList = async (
   await patch<BaseResponse<void>>(
     END_POINT.PATCH_REORDER_SETLIST(setlistId),
     tracks,
+
+export const postAddMusicToSetList = async (
+  setlistId: number,
+  musics: AddMusicToSetListRequest[],
+) => {
+  await post<BaseResponse<void>>(
+    END_POINT.POST_ADD_MUSIC_TO_SETLIST(setlistId),
+    musics,
+
   );
 };

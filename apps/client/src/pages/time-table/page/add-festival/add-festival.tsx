@@ -39,20 +39,25 @@ const AddFestival = () => {
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
-            <FestivalCard
+            <div
               key={festival.festivalId}
-              typeId={festival.festivalId}
-              type="FESTIVAL"
-              title={festival.title}
-              imageSrc={festival.posterUrl}
-              selectable={true}
-              isSelected={isSelected}
-              onClick={() =>
-                handleFestivalClick(festival.festivalId, isSelected)
-              }
-            />
+              className={styles.festivalCardWrapper}
+            >
+              <FestivalCard
+                typeId={festival.festivalId}
+                type="FESTIVAL"
+                title={festival.title}
+                imageSrc={festival.posterUrl}
+                selectable={true}
+                isSelected={isSelected}
+                onClick={() =>
+                  handleFestivalClick(festival.festivalId, isSelected)
+                }
+              />
+            </div>
           );
         })}
+
         {hasNextPage && <div ref={observerRef} style={{ height: '2rem' }} />}
       </div>
       <div className={styles.buttonSection}>

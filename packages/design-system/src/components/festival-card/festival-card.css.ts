@@ -10,6 +10,7 @@ export const card = style({
   width: '100%',
   position: 'relative',
   cursor: 'pointer',
+  flexShrink: 0,
 });
 
 export const poster = recipe({

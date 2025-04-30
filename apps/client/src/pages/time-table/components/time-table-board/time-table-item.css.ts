@@ -20,7 +20,7 @@ export const itemsWrapper = recipe({
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
-    minWidth: '10.2rem',
+    minWidth: '10.3rem',
     boxSizing: 'border-box',
     margin: 0,
     padding: '0.5rem',
