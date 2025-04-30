@@ -54,6 +54,8 @@ export const textSection = style({
 
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
+  maxWidth: '21rem',
+  width: '100%',
   color: themeVars.color.gray800,
   overflow: 'hidden',
   whiteSpace: 'nowrap',
