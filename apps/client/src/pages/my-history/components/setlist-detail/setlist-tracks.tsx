@@ -81,6 +81,7 @@ const SetListTracks = ({
       })),
     [localTracks],
   );
+  console.log(mappedTracks);
 
   const { musicList, onClickPlayToggle, audioRef } =
     useMusicPlayer(mappedTracks);
