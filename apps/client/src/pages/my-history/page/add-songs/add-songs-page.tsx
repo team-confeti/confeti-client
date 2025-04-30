@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 import {
   useArtistMusicSearch,
@@ -7,6 +6,7 @@ import {
 } from '@pages/my-history/page/hooks/use-music-search';
 
 import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
+import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
 
@@ -21,15 +21,41 @@ const AddSongsPage = () => {
   const [keyword, setKeyword] = useState('');
   const [isConfirmAddSection, setIsConfirmAddSection] = useState(false);
   const [selectedSongs, setSelectedSongs] = useState<MusicItemType[]>([]);
+  const [artistId, setArtistId] = useState<string | null>(null);
+
+  const {
+    data: { relatedArtists },
+  } = useRelatedSearch({
+    keyword: keyword,
+    enabled: !!keyword.trim(),
+  });
+
   const { data: musicSearchData } = useMusicSearch(
     { term: keyword, offset: 0, limit: 5 },
-    true,
+    !!keyword,
   );
 
   const { data: artistMusicSearchData } = useArtistMusicSearch(
-    { aid: 'test', term: keyword, offset: 0, limit: 5 },
-    true,
+    { aid: artistId || '', term: keyword, offset: 0, limit: 5 },
+    !!(artistId && keyword),
   );
+
+  useEffect(() => {
+    if (relatedArtists?.artists) {
+      // 검색어와 일치하거나 포함하는 첫 번째 아티스트의 ID를 사용
+      const matchingArtist = relatedArtists.artists.find((artist) =>
+        artist.name.toLowerCase().includes(keyword.toLowerCase()),
+      );
+
+      if (matchingArtist) {
+        setArtistId(matchingArtist.artistId);
+      } else {
+        setArtistId(null);
+      }
+    } else {
+      setArtistId(null);
+    }
+  }, [relatedArtists, keyword]);
   const handleInputChangeWithReset = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -91,8 +117,8 @@ const AddSongsPage = () => {
             />
           </div>
           <div className={styles.renderContentContainer}>
-            {artistMusicSearchData &&
-              artistMusicSearchData.musics.map((song) => (
+            {musicSearchData &&
+              musicSearchData.musics.map((song) => (
                 <div
                   key={song.musicId}
                   className={styles.musicListContainer}
@@ -112,9 +138,8 @@ const AddSongsPage = () => {
                   />
                 </div>
               ))}
-
-            {musicSearchData &&
-              musicSearchData.musics.map((song) => (
+            {artistMusicSearchData &&
+              artistMusicSearchData.musics.map((song) => (
                 <div
                   key={song.musicId}
                   className={styles.musicListContainer}
@@ -147,7 +172,6 @@ const AddSongsPage = () => {
       )}
     </>
   );
-
 };
 
 export default AddSongsPage;

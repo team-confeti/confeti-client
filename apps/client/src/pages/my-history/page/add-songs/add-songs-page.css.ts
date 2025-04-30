@@ -18,6 +18,7 @@ export const searchBarContainer = style({
 
 export const renderContentContainer = style({
   flex: 1,
+  overflowY: 'auto',
 });
 
 export const buttonContainer = style({
