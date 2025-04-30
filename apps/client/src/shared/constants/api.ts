@@ -34,7 +34,6 @@ export const END_POINT = {
   POST_ADD_MUSIC_TO_SETLIST: (setlistId: number) =>
     `/my/setlists/${setlistId}/musics`,
 
-
   // 마이페이지
   GET_USER_PROFILE: '/user/info',
   GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
