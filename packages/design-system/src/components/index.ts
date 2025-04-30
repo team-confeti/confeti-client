@@ -20,6 +20,7 @@ export { default as Navigation } from './navigation/navigation';
 export { default as PerformanceCarousel } from './performance-carousel/performance-carousel';
 export { default as SearchBar } from './search-bar/search-bar';
 export { default as SearchSuggestionList } from './search-suggestion-list/search-suggestion-list';
+export { default as Skeleton } from './skeleton/skeleton';
 export { default as Spacing } from './spacing/spacing';
 export { default as ThemeProvider } from './themeProvider';
 export { default as ProgressBar } from './ticketing/progress-bar/progress-bar';
