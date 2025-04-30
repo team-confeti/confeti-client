@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Footer } from '@confeti/design-system';
 import Hero from '@shared/components/hero/hero';
@@ -14,7 +15,7 @@ import {
 
 const SetListDetailPage = () => {
   const { setlistId } = useParams<{ setlistId: string }>();
-
+  const navigate = useNavigate();
   if (!setlistId) {
     throw new Error('잘못된 접근입니다. (setlistId 없음)');
   }
@@ -27,7 +28,7 @@ const SetListDetailPage = () => {
   const { mutate: completeEditSetList } = useCompleteEditSetList();
 
   const handleClickAdd = () => {
-    console.log('곡 추가하기 버튼 클릭');
+    navigate(`/my-history/setlist/${setlistId}/add-songs`);
   };
 
   const handleGetDragHandleProps = (_musicId: string) => {

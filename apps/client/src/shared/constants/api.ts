@@ -29,6 +29,8 @@ export const END_POINT = {
     `/my/setlists/${setlistId}/musics/${orders}`,
   DELETE_CANCEL_EDIT_SETLIST: (setlistId: number) =>
     `/my/setlists/${setlistId}/edit/cancel`,
+  POST_ADD_MUSIC_TO_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/musics`,
 
   // 마이페이지
   GET_USER_PROFILE: '/user/info',

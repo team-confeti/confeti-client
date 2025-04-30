@@ -101,3 +101,11 @@ export interface SetListDetail {
   endAt: string;
   musics: SetListMusic[];
 }
+
+export interface AddMusicToSetListRequest {
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
+}

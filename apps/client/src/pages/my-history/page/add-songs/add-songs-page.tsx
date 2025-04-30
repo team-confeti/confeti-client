@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 import {
   useArtistMusicSearch,
   useMusicSearch,
-} from '@pages/my-history/page/hooks/use-music-search';
+} from '@pages/my-history/hooks/use-music-search';
+import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 
 import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
