@@ -107,6 +107,16 @@ export const deleteCancelEditSetList = async (
   );
 };
 
+export const patchReorderSetList = async (
+  setlistId: number,
+  tracks: { trackId: string; orders: number }[],
+): Promise<void> => {
+  await patch<BaseResponse<void>>(
+    END_POINT.PATCH_REORDER_SETLIST(setlistId),
+    tracks,
+  );
+};
+
 export const postAddMusicToSetList = async (
   setlistId: number,
   musics: AddMusicToSetListRequest[],

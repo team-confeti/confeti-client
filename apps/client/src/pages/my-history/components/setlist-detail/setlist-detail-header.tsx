@@ -1,15 +1,17 @@
 import * as styles from './setlist-detail-header.css';
 
 interface SetListHeaderProps {
-  isEditMode?: boolean;
-  showEditButton?: boolean;
-  onClickToggleEdit?: () => void;
+  isEditMode: boolean;
+  showEditButton: boolean;
+  onClickStartEdit: () => void;
+  onClickCompleteEdit: () => void;
 }
 
 const SetListHeader = ({
-  isEditMode = false,
-  showEditButton = false,
-  onClickToggleEdit,
+  isEditMode,
+  showEditButton,
+  onClickStartEdit,
+  onClickCompleteEdit,
 }: SetListHeaderProps) => {
   return (
     <header className={styles.header}>
@@ -17,7 +19,7 @@ const SetListHeader = ({
       {showEditButton && (
         <button
           className={`${styles.editButton} ${isEditMode ? styles.editButtonDone : ''}`}
-          onClick={onClickToggleEdit}
+          onClick={isEditMode ? onClickCompleteEdit : onClickStartEdit}
         >
           {isEditMode ? '완료' : '편집'}
         </button>

@@ -134,6 +134,7 @@ const AddSongsPage = () => {
                   }}
                 >
                   <MusicItem
+                    musicId={String(song.musicId)}
                     albumImage={song.artworkUrl}
                     title={song.title}
                     artist={song.artistName}
@@ -155,6 +156,7 @@ const AddSongsPage = () => {
                   }}
                 >
                   <MusicItem
+                    musicId={String(song.musicId)}
                     albumImage={song.artworkUrl}
                     title={song.title}
                     artist={song.artistName}

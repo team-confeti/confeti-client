@@ -13,7 +13,6 @@ interface MusicListProps {
   variant?: 'default' | 'editable' | 'confirmDelete';
   onClickPlayToggle?: (musicId: string) => void;
   onClickDelete?: (musicId: string) => void;
-  getDragHandleProps?: (musicId: string) => React.HTMLAttributes<HTMLElement>;
 }
 
 const MusicList = ({
@@ -21,13 +20,13 @@ const MusicList = ({
   variant = 'default',
   onClickPlayToggle,
   onClickDelete,
-  getDragHandleProps,
 }: MusicListProps) => {
   return (
     <div>
       {musics.map((music) => (
         <MusicItem
           key={music.musicId}
+          musicId={music.musicId}
           albumImage={music.artworkUrl}
           title={music.title}
           artist={music.artistName}
@@ -35,7 +34,6 @@ const MusicList = ({
           variant={variant}
           onClickPlayToggle={() => onClickPlayToggle?.(music.musicId)}
           onClickDelete={() => onClickDelete?.(music.musicId)}
-          dragHandleProps={getDragHandleProps?.(music.musicId)}
         />
       ))}
     </div>

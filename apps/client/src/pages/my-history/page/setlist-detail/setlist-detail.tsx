@@ -7,10 +7,14 @@ import Hero from '@shared/components/hero/hero';
 
 import SetListHeader from '../../components/setlist-detail/setlist-detail-header';
 import SetListEmpty from '../../components/setlist-detail/setlist-empty';
-import SetListTracks from '../../components/setlist-detail/setlist-tracks';
+import SetListTracks, {
+  SetListTrack,
+} from '../../components/setlist-detail/setlist-tracks';
 import {
   useCompleteEditSetList,
+  useReorderSetList,
   useSetListDetail,
+  useStartEditSetList,
 } from '../../hooks/use-setlist-detail';
 
 const SetListDetailPage = () => {
@@ -24,24 +28,40 @@ const SetListDetailPage = () => {
   const hasNoMusic = setlistDetail.musics.length === 0;
 
   const [isEditMode, setIsEditMode] = useState(false);
+  const [reorderedTracks, setReorderedTracks] = useState<SetListTrack[]>([]);
 
+  const { mutate: startEditSetlist } = useStartEditSetList();
   const { mutate: completeEditSetList } = useCompleteEditSetList();
+  const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
     navigate(`/my-history/setlist/${setlistId}/add-songs`);
   };
 
-  const handleGetDragHandleProps = (_musicId: string) => {
-    return {}; //TODO: 드래그앤드랍 구현
+  const handleStartEdit = () => {
+    startEditSetlist(Number(setlistId), {
+      onSuccess: () => setIsEditMode(true),
+    });
   };
 
   const handleCompleteEdit = () => {
-    if (!setlistId) return;
-    completeEditSetList(Number(setlistId), {
-      onSuccess: () => {
-        setIsEditMode(false);
+    if (!setlistId || reorderedTracks.length === 0) return;
+
+    const formatted = reorderedTracks.map((track, i) => ({
+      trackId: track.trackId,
+      orders: i + 1,
+    }));
+
+    reorderSetList(
+      { setlistId: Number(setlistId), tracks: formatted },
+      {
+        onSuccess: () => {
+          completeEditSetList(Number(setlistId), {
+            onSuccess: () => setIsEditMode(false),
+          });
+        },
       },
-    });
+    );
   };
 
   return (
@@ -57,13 +77,8 @@ const SetListDetailPage = () => {
       <SetListHeader
         isEditMode={isEditMode}
         showEditButton={!hasNoMusic}
-        onClickToggleEdit={() => {
-          if (isEditMode) {
-            handleCompleteEdit();
-          } else {
-            setIsEditMode(true);
-          }
-        }}
+        onClickStartEdit={handleStartEdit}
+        onClickCompleteEdit={handleCompleteEdit}
       />
 
       {hasNoMusic ? (
@@ -74,8 +89,7 @@ const SetListDetailPage = () => {
           tracks={setlistDetail.musics}
           isEditMode={isEditMode}
           onClickAdd={handleClickAdd}
-          getDragHandleProps={handleGetDragHandleProps}
-          onCompleteEdit={() => setIsEditMode(false)}
+          onTracksChange={(tracks) => setReorderedTracks(tracks)}
         />
       )}
 

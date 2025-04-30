@@ -94,6 +94,7 @@ const ConfirmAddSection = ({
         {selectedSongs.map((song) => (
           <MusicItem
             key={song.musicId}
+            musicId={String(song.musicId)}
             albumImage={song.artworkUrl}
             title={song.title}
             artist={song.artistName}
