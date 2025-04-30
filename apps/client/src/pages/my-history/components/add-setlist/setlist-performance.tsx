@@ -55,17 +55,21 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
           );
 
           return (
-            <FestivalCard
+            <div
               key={performance.performanceId}
-              typeId={performance.typeId}
-              title={performance.title}
-              imageSrc={performance.posterUrl}
-              selectable={true}
-              isSelected={isSelected}
-              onSelectChange={(_title, isSelected) =>
-                handleFestivalSelect(performance.typeId, isSelected)
-              }
-            />
+              className={styles.festivalCardWrapper}
+            >
+              <FestivalCard
+                typeId={performance.typeId}
+                title={performance.title}
+                imageSrc={performance.posterUrl}
+                selectable={true}
+                isSelected={isSelected}
+                onSelectChange={(_title, isSelected) =>
+                  handleFestivalSelect(performance.typeId, isSelected)
+                }
+              />
+            </div>
           );
         })}
       </section>
