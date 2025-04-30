@@ -8,7 +8,7 @@ const fadeInScale = keyframes({
 });
 
 export const onboardingContentSection = style({
-  height: '100dvh',
+  height: '100svh',
   padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
