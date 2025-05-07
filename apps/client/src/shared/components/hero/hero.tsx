@@ -4,25 +4,18 @@ import { formatDate } from '@shared/utils/format-date';
 import * as styles from './hero.css';
 
 interface HeroProps {
-  posterBgUrl: string;
   posterUrl: string;
   title: string;
   startAt: string;
   onClickBack?: () => void;
 }
 
-const Hero = ({
-  posterBgUrl,
-  posterUrl,
-  title,
-  startAt,
-  onClickBack,
-}: HeroProps) => {
+const Hero = ({ posterUrl, title, startAt, onClickBack }: HeroProps) => {
   const year = formatDate(startAt, 'koHalf').split('년')[0];
 
   return (
     <div className={styles.wrapper}>
-      <img src={posterBgUrl} className={styles.background} alt="배경 포스터" />
+      <img src={posterUrl} className={styles.background} alt="배경 포스터" />
       <div className={styles.backgroundOverlay} />
       <button className={styles.backButton} onClick={onClickBack}>
         <IcArrowLeftWhite20 width="2rem" height="2rem" />
