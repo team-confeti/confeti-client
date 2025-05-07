@@ -68,7 +68,6 @@ const SetListDetailPage = () => {
     <>
       <Hero
         posterUrl={setlistDetail.posterUrl}
-        posterBgUrl={setlistDetail.posterBgUrl}
         title={setlistDetail.title}
         startAt={setlistDetail.startAt}
         onClickBack={() => window.history.back()}
