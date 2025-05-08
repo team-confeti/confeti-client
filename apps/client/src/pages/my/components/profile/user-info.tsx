@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from '@confeti/design-system';
 import { IcArrowGray16, IcEdit16 } from '@confeti/design-system/icons';
-import { routePath } from '@shared/constants/path.ts';
+import { routePath } from '@shared/router/path';
 
 import * as styles from './user-info.css.ts';
 

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { postSocialLogin } from '@shared/apis/auth/auth';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { BaseResponse } from '@shared/types/api';
 import {
   AppleLogin,

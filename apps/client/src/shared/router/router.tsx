@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import EditProfile from '@pages/my/page/edit/edit-profile';
 
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 
 import GlobalLayout from './global-layout';
 import {
