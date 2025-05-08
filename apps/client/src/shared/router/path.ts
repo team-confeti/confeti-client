@@ -30,9 +30,8 @@ export const routePath = {
   SEARCH: '/search',
 
   // Detail
-  CONCERT: '/concert-detail/:typeId',
-  FESTIVAL: '/festival-detail/:typeId',
-  MYARTIST: '/my-artist',
+  CONCERT_DETAIL: '/concert-detail/:typeId',
+  FESTIVAL_DETAIL: '/festival-detail/:typeId',
 
   // TimeTable
   TIME_TABLE_OUTLET: '/timetable',
@@ -50,3 +49,5 @@ export const routePath = {
   // Onboarding
   ONBOARDING: '/onboarding',
 } as const;
+
+export type Routes = (typeof routePath)[keyof typeof routePath];
