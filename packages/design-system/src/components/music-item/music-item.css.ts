@@ -66,6 +66,8 @@ export const title = style({
 export const artist = style({
   ...themeVars.fontStyles.body4_m_13,
   color: themeVars.color.gray600,
+  width: '100%',
+  maxWidth: '21rem',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
