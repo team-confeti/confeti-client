@@ -11,15 +11,11 @@ export const useNavigateToDetail = () => {
 
     switch (upperType) {
       case 'CONCERT':
-        navigate(
-          buildPath(routePath.CONCERT_DETAIL, { typeId: String(typeId) }),
-        );
+        navigate(buildPath(routePath.CONCERT_DETAIL, { typeId }));
         break;
 
       case 'FESTIVAL':
-        navigate(
-          buildPath(routePath.FESTIVAL_DETAIL, { typeId: String(typeId) }),
-        );
+        navigate(buildPath(routePath.FESTIVAL_DETAIL, { typeId }));
         break;
 
       default:
