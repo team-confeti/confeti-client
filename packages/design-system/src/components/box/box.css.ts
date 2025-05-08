@@ -19,6 +19,7 @@ export const header = style({
 export const titleWrapper = style({
   display: 'flex',
   flexDirection: 'column',
+  gap: '0.4rem',
 });
 
 export const titleVariants = recipe({
