@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Footer } from '@confeti/design-system';
 import Hero from '@shared/components/hero/hero';
+import { routePath } from '@shared/router/path';
+import { buildPath } from '@shared/utils/build-path';
 
 import SetListHeader from '../../components/setlist-detail/setlist-detail-header';
 import SetListEmpty from '../../components/setlist-detail/setlist-empty';
@@ -35,7 +37,7 @@ const SetListDetailPage = () => {
   const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
-    navigate(`/my-history/setlist/${setlistId}/add-songs`);
+    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS, { setlistId }));
   };
 
   const handleStartEdit = () => {
