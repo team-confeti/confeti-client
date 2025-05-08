@@ -2,7 +2,7 @@ export interface Performances {
   index: number;
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'FESTIVAL' | 'CONCERT';
   title: string;
   subtitle: string;
   startAt: string;

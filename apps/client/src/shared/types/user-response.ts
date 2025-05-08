@@ -30,7 +30,7 @@ export type PerformancesFilterType = 'FESTIVAL' | 'CONCERT' | 'ALL';
 export interface Performance {
   index: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'FESTIVAL' | 'CONCERT';
   title: string;
   posterUrl: string;
 }
