@@ -6,7 +6,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const timeList = style({
   display: 'flex',
   alignItems: 'center',
-  paddingBottom: '3rem',
+  marginBottom: '3.65rem',
   zIndex: themeVars.zIndex.timeTable.row,
 });
 
@@ -14,7 +14,7 @@ export const timeP = recipe({
   base: {
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 0.4rem',
-    marginRight: '1.1rem',
+    marginRight: '1rem',
     backgroundColor: themeVars.color.white,
   },
   variants: {

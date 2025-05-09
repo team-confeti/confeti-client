@@ -15,9 +15,9 @@ export const container = style({
   },
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
-  paddingTop: '1.2rem',
+  paddingTop: '2.3rem',
   overflowY: 'visible',
-  marginBottom: '9rem',
+  marginBottom: '10rem',
 });
 
 export const wrapper = recipe({
@@ -37,9 +37,9 @@ export const wrapper = recipe({
 
 export const stagesContainer = style({
   display: 'flex',
-  width: 'calc(100% - 2.9rem)',
+  width: 'calc(100% - 3rem)',
   position: 'absolute',
-  left: '2.9rem',
+  left: '3rem',
   top: 0,
   bottom: 0,
   backgroundColor: themeVars.color.white,
@@ -47,7 +47,7 @@ export const stagesContainer = style({
 
 export const timeList = style({
   ...themeVars.display.flexAlignCenter,
-  marginBottom: '2.2rem',
+  marginBottom: '2.3rem',
   backgroundColor: themeVars.color.white,
 });
 
@@ -84,6 +84,7 @@ export const stageColumn = style({
   flex: 1,
   minWidth: '10.2rem',
   position: 'relative',
+  top: '5px',
 });
 
 export const stagesWrapper = style({
