@@ -14,7 +14,7 @@ export interface ArtistSearchResponse {
 export interface Performance {
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'FESTIVAL' | 'CONCERT';
   title: string;
   startAt: string;
   endAt: string;
@@ -55,7 +55,7 @@ export interface PerformanceTypeAnalysis {
 export interface IntendedPerformance {
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'FESTIVAL' | 'CONCERT';
   title: string;
   posterUrl: string;
   area: string;
@@ -88,7 +88,7 @@ export interface PopularSearchResponse {
 export interface RecentPerformanceView {
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT' | 'ARTIST';
+  type: 'FESTIVAL' | 'CONCERT';
   title: string;
   posterUrl: string;
 }

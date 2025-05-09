@@ -7,7 +7,7 @@ import {
   IcTimetableAddfestival,
   IcTimetableDeletefestival,
 } from '@confeti/design-system/icons';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import * as styles from './festival-selector.css';

@@ -9,7 +9,7 @@ import {
 } from '@pages/my-history/hooks/use-my-history';
 
 import { Footer, Spacing } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 
 import * as styles from './my-record.css';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Button } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { onboard } from '@shared/types/onboard-response';
 import { useFunnel } from '@shared/utils/use-funnel';
 
