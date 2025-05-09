@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   calcMinutesFromOpen,
-  calcTotalFestivalMinutes,
   calcTotalMinutes,
   parseTimeString,
 } from '@pages/time-table/utils';
