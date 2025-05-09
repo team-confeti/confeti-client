@@ -58,8 +58,6 @@ const TimeTableItem = ({
     openMin,
   );
 
-  const totalFestivalMinutes = calcTotalFestivalMinutes(openHour, openMin);
-
   const handleSetSelectedBlock = () => {
     if (isEditTimeTableMode) {
       setSelectBlock((prev) => !prev);
@@ -67,8 +65,10 @@ const TimeTableItem = ({
     onClick(userTimetableId, !selectBlock);
   };
 
-  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 98.6}% + 0.7rem)`;
-  const height = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
+  const pixelsPerMinute = 1.5;
+
+  const top = `${minutesFromOpen * pixelsPerMinute}px`;
+  const height = `${totalPerformMin * pixelsPerMinute}px`;
 
   const dynamicVars = assignInlineVars({
     [styles.top]: top,
@@ -88,7 +88,7 @@ const TimeTableItem = ({
         {artists.map((artist) => artist.artistName).join(', ')}
       </div>
       <div className={styles.durationP({ isSelected: selectBlock })}>
-        {`${startHour}:${startMin}-${endHour}:${endMin}`}
+        {`${startHour}:${startMin} -${endHour}:${endMin} `}
         {`(${totalPerformMin}min)`}
       </div>
     </div>
