@@ -2,10 +2,10 @@ import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  BtnAccountGray24,
+  BtnAccountGray28,
   BtnArrowLeft20,
-  BtnSearchG90024,
   BtnSettings24,
+  IcNewSearch28,
   LogoMain,
 } from '../../icons/src';
 
@@ -66,14 +66,14 @@ const Header = ({
           aria-label="검색"
           onClick={() => handleNavigation('/search')}
         >
-          <BtnSearchG90024 className={styles.icon} />
+          <IcNewSearch28 className={styles.icon} />
         </button>
         <button
           className={styles.button({ variant: 'default' })}
           aria-label="프로필"
           onClick={() => handleNavigation('/my')}
         >
-          <BtnAccountGray24 className={styles.icon} />
+          <BtnAccountGray28 className={styles.icon} />
         </button>
       </div>
     </header>
