@@ -15,7 +15,9 @@ import Router from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
-init(CONFIG.AMPLITUDE_API_KEY);
+init(CONFIG.AMPLITUDE_API_KEY, {
+  defaultTracking: false,
+});
 Sentry.init({
   dsn: CONFIG.SENTRY_DSN,
   tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
