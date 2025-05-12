@@ -5,7 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
+      rel="preload"
+      as="style"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <meta
       name="viewport"
@@ -31,6 +38,7 @@
       property="og:image"
       content="https://confeti.co.kr/images/thumbnail.jpeg"
     />
+
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"
