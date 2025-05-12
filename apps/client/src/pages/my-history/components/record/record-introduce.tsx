@@ -12,7 +12,12 @@ const RecordIntroduce = ({ name, profileUrl }: Props) => {
 
   return (
     <section className={styles.wrapper}>
-      <Avatar src={profileUrl} alt={`${name}의 프로필 이미지`} size="xl" />
+      <Avatar
+        src={profileUrl}
+        alt={`${name}의 프로필 이미지`}
+        size="xl"
+        isHandleClick={false}
+      />
 
       <div className={styles.info}>
         <div className={styles.sectionWrapper}>
