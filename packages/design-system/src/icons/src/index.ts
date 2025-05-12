@@ -30,7 +30,6 @@ export { default as CheckboxFestivalActive } from './CheckboxFestivalActive';
 export { default as CmpProfileNon } from './CmpProfileNon';
 export { default as CmpSearchArtistImg } from './CmpSearchArtistImg';
 export { default as CmpSearchImg } from './CmpSearchImg';
-export { default as Confeti3DLogo21 } from './Confeti3DLogo21';
 export { default as IcAdd } from './IcAdd';
 export { default as IcApple } from './IcApple';
 export { default as IcArrowDownGray16 } from './IcArrowDownGray16';

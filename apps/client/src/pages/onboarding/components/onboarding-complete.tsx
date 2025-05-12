@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import SvgConfeti3DLogo21 from 'node_modules/@confeti/design-system/src/icons/src/Confeti3DLogo21';
 
 import { Description } from '@confeti/design-system';
 import Loading from '@shared/pages/loading/loading';
@@ -102,7 +101,11 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <SvgConfeti3DLogo21 width={'18rem'} height={'18rem'} />
+                <img
+                  src="/images/confeti_3d_logo21.svg"
+                  className={styles.logoImage}
+                  alt="confeti logo"
+                />
               </motion.div>
 
               <motion.div

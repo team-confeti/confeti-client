@@ -2,7 +2,6 @@ import { Header } from '@confeti/design-system';
 import { Button } from '@confeti/design-system';
 import {
   BtnDeleteBlack20,
-  Confeti3DLogo21,
   IcApple,
   IcKakao,
   ImgTypelogoBig,
@@ -95,7 +94,11 @@ const Login = () => {
       />
       <section className={styles.container}>
         <div>
-          <Confeti3DLogo21 width={'18rem'} height={'18rem'} />
+          <img
+            src="/images/confeti_3d_logo21.svg"
+            className={styles.logoImage}
+            alt="confeti logo"
+          />
           <ImgTypelogoBig width={'17rem'} height={'4rem'} />
         </div>
         <div className={styles.bottomSection}>
