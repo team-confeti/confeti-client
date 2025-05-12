@@ -20,9 +20,9 @@ init(CONFIG.AMPLITUDE_API_KEY, {
 });
 Sentry.init({
   dsn: CONFIG.SENTRY_DSN,
-  tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
-  tracesSampleRate: 1.0,
-  normalizeDepth: 6,
+  tracePropagationTargets: [/^https:\/\/confeti\.co\.kr/],
+  tracesSampleRate: 0.1,
+  normalizeDepth: 4,
 });
 Sentry.addIntegration(Sentry.browserTracingIntegration());
 
