@@ -14,7 +14,7 @@ globalStyle(':root', {
 /* HTML & Body Styles */
 globalStyle('html, body', {
   ...themeVars.display.flexJustifyAlignCenter,
-  position: 'relative', //floating button 추가로 인한 position 지정
+  position: 'relative',
   width: '100%',
   margin: '0',
   padding: '0',
@@ -38,5 +38,5 @@ export const rootStyle = style({
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
   backgroundColor: themeVars.color.white,
-  ...themeVars.shadowStyles.shadow_gloabal,
+  ...themeVars.shadowStyles.shadow_global,
 });
