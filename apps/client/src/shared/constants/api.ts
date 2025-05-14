@@ -8,6 +8,7 @@ export const CONFIG = {
   APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,
   AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
+  IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
 } as const;
 
 export const END_POINT = {
