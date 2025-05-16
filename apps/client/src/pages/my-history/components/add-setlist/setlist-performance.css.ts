@@ -25,6 +25,7 @@ export const performanceContainer = style({
   columnGap: '1.8rem',
   maxWidth: 'fit-content',
   maxHeight: 'fit-content',
+  paddingBottom: '8rem',
 });
 
 export const festivalCardWrapper = style({
