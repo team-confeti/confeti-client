@@ -30,7 +30,6 @@ const Header = ({
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    window.location.reload();
   };
 
   if (variant === 'detail') {
