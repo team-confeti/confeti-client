@@ -44,17 +44,10 @@ const UserInfo = ({
       </div>
 
       <div className={styles.userInfo}>
-        <div className={styles.titleWrapper}>
+        <div className={styles.titleWrapper} onClick={handleClick}>
           <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
-          {showArrow && (
-            <IcArrowGray16
-              className={styles.arrowIcon}
-              onClick={handleClick}
-              width={'1.6rem'}
-              height={'1.6rem'}
-            />
-          )}
+          {showArrow && <IcArrowGray16 width={'1.6rem'} height={'1.6rem'} />}
         </div>
       </div>
     </div>

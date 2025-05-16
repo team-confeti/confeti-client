@@ -39,12 +39,9 @@ export const title = style({
 export const titleWrapper = style({
   ...themeVars.display.flexAlignCenter,
   gap: '0.2rem',
+  cursor: 'pointer',
 });
 
 export const titlePostfix = style({
   ...themeVars.fontStyles.body1_r_16,
-});
-
-export const arrowIcon = style({
-  cursor: 'pointer',
 });

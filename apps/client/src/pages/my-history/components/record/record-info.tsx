@@ -19,7 +19,7 @@ const RecordInfo = ({
       </div>
       <div className={styles.item}>
         <h4 className={styles.title}>나의 타임테이블</h4>
-        <p className={styles.count}>{totalTimeTable}명</p>
+        <p className={styles.count}>{totalTimeTable}개</p>
       </div>
       <div className={styles.item}>
         <h4 className={styles.title}>나의 셋리스트</h4>
