@@ -37,7 +37,7 @@ const SetListDetailPage = () => {
   const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
-    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS, { setlistId }));
+    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
   };
 
   const handleStartEdit = () => {

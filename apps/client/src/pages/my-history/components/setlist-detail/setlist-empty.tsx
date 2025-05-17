@@ -11,7 +11,7 @@ const SetListEmpty = () => {
   const { setlistId } = useParams<{ setlistId: string }>();
   const handleClickAddMusic = () => {
     navigate(
-      buildPath(routePath.MY_HISTORY_ADD_SONGS, {
+      buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, {
         setlistId: setlistId ?? '',
       }),
     );
