@@ -28,7 +28,7 @@ const FestivalCard = ({
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
   const navigate = useNavigate();
-  const detailRoutePath = `/${type}-detail/${typeId}`;
+  const detailRoutePath = `/${type?.toLowerCase()}-detail/${typeId}`;
 
   const handleClick = () => {
     if (selectable) {
