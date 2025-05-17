@@ -55,6 +55,10 @@ const PreviewSection = ({
     navigate(buildPath(routePath.MY_HISTORY_SETLIST_DETAIL, { setlistId }));
   };
 
+  const handleNavigateToTimeTable = () => {
+    navigate(routePath.TIME_TABLE_OUTLET);
+  };
+
   const renderPreviewList = () => {
     if (!previewData || previewData.length === 0) return null;
 
@@ -76,6 +80,7 @@ const PreviewSection = ({
         typeId={previewData.typeId}
         title={previewData.title}
         imageSrc={previewData.posterUrl}
+        onClick={handleNavigateToTimeTable}
       />
     ));
   };
