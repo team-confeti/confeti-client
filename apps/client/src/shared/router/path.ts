@@ -23,6 +23,7 @@ export const routePath = {
   MY_HISTORY_ADD_SETLIST: 'setlist/add-setlist',
   MY_HISTORY_ADD_SONGS: 'setlist/:setlistId/add-songs',
   MY_HISTORY_SETLIST_DETAIL: 'setlist-detail/:setlistId',
+  MY_HISTORY_SETLIST_DETAIL_ABSOLUTE: '/my-history/setlist-detail/:setlistId',
 
   // Search
   SEARCH: '/search',

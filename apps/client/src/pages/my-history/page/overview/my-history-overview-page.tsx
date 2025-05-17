@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import CountDisplay from '@pages/my-history/components/overview/count-display';
 import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 import {
@@ -13,6 +13,8 @@ import {
   SORT_OPTIONS,
   SortOption,
 } from '@shared/constants/sort-label';
+import { routePath } from '@shared/router/path';
+import { buildPath } from '@shared/utils/build-path';
 
 import * as styles from './my-history-overview-page.css';
 
@@ -22,6 +24,7 @@ const MyHistoryOverviewPage = () => {
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
   const isSetList = type === 'SET_LIST';
+  const navigate = useNavigate();
   const { data: setListOverviewData } = useMySetListOverView(
     sortOption,
     isSetList,
@@ -47,6 +50,16 @@ const MyHistoryOverviewPage = () => {
     );
   };
 
+  const handleNavigateToDetail = (setlistId: number) => {
+    navigate(
+      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, { setlistId }),
+    );
+  };
+
+  const handleNavigateToTimeTable = () => {
+    navigate(`${routePath.TIME_TABLE_OUTLET}`);
+  };
+
   return (
     <>
       <Header
@@ -62,14 +75,27 @@ const MyHistoryOverviewPage = () => {
           />
         </div>
         <div className={styles.gridContainer}>
-          {overviewData.data?.map((item) => (
-            <FestivalCard
-              key={item.typeId}
-              typeId={item.typeId}
-              imageSrc={item.posterUrl}
-              title={item.title}
-            />
-          ))}
+          {isSetList
+            ? setListOverviewData?.setlists?.map((item) => (
+                <FestivalCard
+                  key={item.typeId}
+                  type={item.type}
+                  typeId={item.typeId}
+                  imageSrc={item.posterUrl}
+                  title={item.title}
+                  onClick={() => handleNavigateToDetail(item.setlistId)}
+                />
+              ))
+            : timetableOverviewData?.timetables?.map((item) => (
+                <FestivalCard
+                  key={item.typeId}
+                  type={item.type}
+                  typeId={item.typeId}
+                  imageSrc={item.posterUrl}
+                  title={item.title}
+                  onClick={handleNavigateToTimeTable}
+                />
+              ))}
         </div>
       </section>
     </>
