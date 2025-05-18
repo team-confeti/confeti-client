@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useQuery, useSuspenseQueries } from '@tanstack/react-query';
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
