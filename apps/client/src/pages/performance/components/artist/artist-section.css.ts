@@ -9,7 +9,7 @@ export const concertArtistContainer = style({
   gap: '1rem',
 });
 
-export const concertContent = recipe({
+export const artistContent = recipe({
   base: {
     ...themeVars.display.flexColumn,
   },
