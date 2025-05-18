@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import EditProfile from '@pages/my/page/edit/edit-profile';
 
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 
 import GlobalLayout from './global-layout';
 import {
@@ -102,8 +102,14 @@ export default function Router() {
         </Route>
 
         <Route path={routePath.SEARCH} element={<SearchPage />} />
-        <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
-        <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+        <Route
+          path={routePath.CONCERT_DETAIL}
+          element={<ConcertDetailPage />}
+        />
+        <Route
+          path={routePath.FESTIVAL_DETAIL}
+          element={<FestivalDetailPage />}
+        />
 
         {/* TimeTable */}
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>

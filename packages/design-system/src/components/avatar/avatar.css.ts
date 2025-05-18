@@ -85,7 +85,16 @@ export const imgVariants = recipe({
     height: '100%',
     borderRadius: '100%',
     objectFit: 'cover',
-    cursor: 'pointer',
+  },
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+      },
+      false: {
+        cursor: 'default',
+      },
+    },
   },
 });
 

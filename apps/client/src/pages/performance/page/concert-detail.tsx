@@ -26,7 +26,6 @@ const ConcertDetailPage = () => {
   return (
     <>
       <Hero
-        posterBgUrl={concert.posterBgUrl}
         posterUrl={concert.posterUrl}
         title={concert.title}
         startAt={concert.startAt}

@@ -27,7 +27,6 @@ const FestivalDetailPage = () => {
     <>
       <FloatingButton isButtonHidden={isButtonHidden} />
       <Hero
-        posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
         title={festival.title}
         startAt={festival.startAt}

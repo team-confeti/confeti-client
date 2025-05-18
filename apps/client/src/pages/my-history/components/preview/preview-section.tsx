@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, FestivalCard } from '@confeti/design-system';
+import { routePath } from '@shared/router/path';
 import {
   MyHistorySetList,
   MyTimeTable,
 } from '@shared/types/my-history-response';
+import { buildPath } from '@shared/utils/build-path';
 
 import * as styles from './preview-section.css';
-
-const SETLIST_DETAIL_PATH = (setlistId: number) =>
-  `/my-history/setlist-detail/${setlistId}`;
 
 const routeMap = {
   SET_LIST: 'setlist/add-setlist',
@@ -52,6 +51,10 @@ const PreviewSection = ({
     navigate(routeMap[previewType]);
   };
 
+  const handleNavigateToDetail = (setlistId: number) => {
+    navigate(buildPath(routePath.MY_HISTORY_SETLIST_DETAIL, { setlistId }));
+  };
+
   const renderPreviewList = () => {
     if (!previewData || previewData.length === 0) return null;
 
@@ -62,7 +65,7 @@ const PreviewSection = ({
           typeId={previewData.typeId}
           title={previewData.title}
           imageSrc={previewData.posterUrl}
-          onClick={() => navigate(SETLIST_DETAIL_PATH(previewData.setlistId))}
+          onClick={() => handleNavigateToDetail(previewData.setlistId)}
         />
       ));
     }

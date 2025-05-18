@@ -4,7 +4,7 @@
       "mode": "auto"
     }
   ],
-  "cSpell.words": ["confeti"],
+  "cSpell.words": ["confeti", "setlist", "kakao"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"

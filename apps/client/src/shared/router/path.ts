@@ -21,18 +21,15 @@ export const routePath = {
   MY_HISTORY_REQUIRE_LOGIN: 'require-login',
   MY_HISTORY_OVERVIEW: 'overview',
   MY_HISTORY_ADD_SETLIST: 'setlist/add-setlist',
-
   MY_HISTORY_ADD_SONGS: 'setlist/:setlistId/add-songs',
-
   MY_HISTORY_SETLIST_DETAIL: 'setlist-detail/:setlistId',
 
   // Search
   SEARCH: '/search',
 
   // Detail
-  CONCERT: '/concert-detail/:typeId',
-  FESTIVAL: '/festival-detail/:typeId',
-  MYARTIST: '/my-artist',
+  CONCERT_DETAIL: '/concert-detail/:typeId',
+  FESTIVAL_DETAIL: '/festival-detail/:typeId',
 
   // TimeTable
   TIME_TABLE_OUTLET: '/timetable',
@@ -50,3 +47,5 @@ export const routePath = {
   // Onboarding
   ONBOARDING: '/onboarding',
 } as const;
+
+export type Routes = (typeof routePath)[keyof typeof routePath];

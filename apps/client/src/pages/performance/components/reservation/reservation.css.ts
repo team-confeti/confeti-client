@@ -42,6 +42,7 @@ export const logo = style({
   height: '100%',
   objectFit: 'cover',
   borderRadius: 'inherit',
+  transform: 'scale(1.03)',
 });
 
 export const name = style({

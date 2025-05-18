@@ -1,5 +1,6 @@
 export { default as BtnAccountBlack24 } from './BtnAccountBlack24';
 export { default as BtnAccountGray24 } from './BtnAccountGray24';
+export { default as BtnAccountGray28 } from './BtnAccountGray28';
 export { default as BtnAddGray24 } from './BtnAddGray24';
 export { default as BtnAppleActive } from './BtnAppleActive';
 export { default as BtnAppleDisabled } from './BtnAppleDisabled';
@@ -55,6 +56,7 @@ export { default as IcIndicatorDefault } from './IcIndicatorDefault';
 export { default as IcKakao } from './IcKakao';
 export { default as IcLoad } from './IcLoad';
 export { default as IcMusic } from './IcMusic';
+export { default as IcNewSearch28 } from './IcNewSearch28';
 export { default as IcNewSearchGray18 } from './IcNewSearchGray18';
 export { default as IcPause } from './IcPause';
 export { default as IcPlaceGray14 } from './IcPlaceGray14';

@@ -94,7 +94,6 @@ export interface SetListDetail {
   type: 'FESTIVAL' | 'CONCERT';
   typeId: number;
   posterUrl: string;
-  posterBgUrl: string;
   title: string;
   subTitle: string;
   startAt: string;

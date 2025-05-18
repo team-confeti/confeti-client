@@ -38,7 +38,9 @@ const Avatar = ({
   };
 
   const renderFallback = !src && !fallback && (
-    <CmpProfileNon className={styles.imgVariants()} />
+    <CmpProfileNon
+      className={styles.imgVariants({ isClickable: isHandleClick })}
+    />
   );
 
   return (
@@ -48,7 +50,11 @@ const Avatar = ({
       onClick={handleClick}
     >
       {src ? (
-        <img src={src} alt={alt} className={styles.imgVariants()} />
+        <img
+          src={src}
+          alt={alt}
+          className={styles.imgVariants({ isClickable: isHandleClick })}
+        />
       ) : (
         renderFallback || <span className={styles.fallback()}>{fallback}</span>
       )}

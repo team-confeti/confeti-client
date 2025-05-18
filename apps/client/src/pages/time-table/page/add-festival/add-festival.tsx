@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import { MAX_SELECTIONS } from '../../constants';

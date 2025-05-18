@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { postLogout } from '@shared/apis/auth/auth';
 import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { BaseResponse } from '@shared/types/api';
 import { authTokenHandler } from '@shared/utils/token-handler';
 

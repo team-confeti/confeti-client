@@ -8,7 +8,7 @@ import {
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
 import { CONFIG } from '@shared/constants/api';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
 
 import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';

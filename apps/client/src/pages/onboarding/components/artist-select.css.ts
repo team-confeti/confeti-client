@@ -29,6 +29,7 @@ export const avatarGridSection = style({
   columnGap: '4.7rem',
   alignItems: 'center',
   justifyItems: 'center',
+  paddingBottom: '3rem',
 });
 
 export const avatar = style({

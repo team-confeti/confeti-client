@@ -63,6 +63,7 @@ export const imgDiv = style({
   height: '100%',
   flexShrink: '0',
   padding: '0 0.5rem',
+  cursor: 'pointer',
 });
 
 export const infoOverlay = style({

@@ -10,15 +10,13 @@ export const boxVariants = recipe({
 });
 
 export const header = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  ...themeVars.display.flexBetweenAlignCenter,
   marginBottom: '1.6rem',
 });
 
 export const titleWrapper = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
+  gap: '0.4rem',
 });
 
 export const titleVariants = recipe({
@@ -39,9 +37,9 @@ export const titleVariants = recipe({
 
 export const subtitle = style({
   ...themeVars.display.flexAlignCenter,
-  gap: '0.4rem',
   ...themeVars.fontStyles.subtitle4_b_14,
   color: themeVars.color.confeti_lime3,
+  gap: '0.4rem',
 });
 
 export const buttonWrapper = style({
