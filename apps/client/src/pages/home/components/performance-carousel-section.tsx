@@ -20,7 +20,7 @@ const PerformanceCarouselSection = ({
     return {
       ...performance,
       performanceAt: formatDate(performance.startAt),
-      // posterUrl: `${CONFIG.IMAGE_CDN_URL}${cleanPath}?w=720&h=540&auto=format,enhance&q=75`,
+      posterUrl: `${CONFIG.IMAGE_CDN_URL}${cleanPath}?w=720&h=540&auto=format,enhance&q=75`,
     };
   });
 

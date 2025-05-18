@@ -40,10 +40,10 @@
     />
 
     <script
-      async
+      defer
       src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"
     ></script>
-    <script>
+    <script defer>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -52,9 +52,9 @@
       gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%');
     </script>
     <script
+      async
       type="text/javascript"
       src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"
-      async
     ></script>
   </head>
   <body>
