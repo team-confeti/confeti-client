@@ -29,21 +29,23 @@ export const ArtistTitle = style({
 });
 
 export const artistListContainer = style({
+  width: '100%',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '2.4rem',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gap: '1.6rem',
 });
 
 export const artistItem = style({
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   alignItems: 'center',
+  width: '100%',
   gap: '0.8rem',
 });
 
 export const artistName = style({
   ...themeVars.fontStyles.body4_m_13,
   color: themeVars.color.black,
+  width: '100%',
   overflow: 'hidden',
   textAlign: 'center',
   textOverflow: 'ellipsis',
