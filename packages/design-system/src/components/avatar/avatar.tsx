@@ -8,8 +8,8 @@ import * as styles from './avatar.css';
 
 interface Props {
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   fallback?: string;
   className?: string;
   isSelected?: boolean;
