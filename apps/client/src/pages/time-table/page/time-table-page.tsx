@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import Calender from '@pages/time-table/components/calender/calender';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
 import FestivalStage from '@pages/time-table/components/festival-stage/festival-stage';
@@ -14,9 +15,6 @@ import {
 } from '../hooks/use-festival-data';
 
 import * as styles from './time-table-page.css';
-const Calendar = lazy(
-  () => import('@pages/time-table/components/calender/calender'),
-);
 
 const TimeTablePage = () => {
   const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
@@ -46,7 +44,7 @@ const TimeTablePage = () => {
             selectedFestivalId={selectedFestivalInfo.festivalId}
             handleSelectFestival={handleSelectFestival}
           />
-          <Calendar
+          <Calender
             festivalDates={selectedFestivalInfo.festivalDates}
             onDateSelect={handleSelectDate}
           />

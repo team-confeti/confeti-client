@@ -1,7 +1,7 @@
 import { Box, FestivalCard } from '@confeti/design-system';
 import { IcHeart } from '@confeti/design-system/icons';
-import { CONFIG } from '@shared/constants/api';
 import { SuggestPerformance } from '@shared/types/home-response';
+import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 
 import * as styles from './suggest-performance-section.css';
 
@@ -12,13 +12,6 @@ const SuggestPerformanceSection = ({
   data: SuggestPerformance[];
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  const formattedPerformData = (posterUrl: string) => {
-    const posterPath = posterUrl.split(
-      'confeti-bucket.s3.ap-northeast-2.amazonaws.com/',
-    )[1];
-    const cleanPath = posterPath ? posterPath.split('?')[0] : '';
-    return `${CONFIG.IMAGE_CDN_URL}${cleanPath}?w=720&h=540&auto=format,enhance&q=75`;
-  };
   return (
     <Box
       title="이런 공연은 어떠세요?"
@@ -38,7 +31,10 @@ const SuggestPerformanceSection = ({
               typeId={performance.typeId}
               type={performance.type}
               title={performance.title}
-              imageSrc={formattedPerformData(performance.posterUrl)}
+              imageSrc={convertToCdnUrl(performance.posterUrl, {
+                width: 232,
+                height: 330,
+              })}
             />
           </div>
         ))}
