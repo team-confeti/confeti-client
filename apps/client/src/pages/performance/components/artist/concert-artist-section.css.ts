@@ -23,12 +23,7 @@ export const artistContent = recipe({
   },
 });
 
-export const ArtistTitle = style({
-  ...themeVars.fontStyles.title3_b_18,
-  color: themeVars.color.black,
-});
-
-export const artistListContainer = style({
+export const artistGridContainer = style({
   width: '100%',
   display: 'grid',
   gridTemplateColumns: 'repeat(4, 1fr)',

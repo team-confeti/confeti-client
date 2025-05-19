@@ -1,20 +1,20 @@
-import { PERFORMANCE_LABEL } from '@pages/performance/constant/performance';
-
 import { Avatar } from '@confeti/design-system';
 import { ConcertArtist } from '@shared/types/concert-response';
 
-import * as styles from './artist-section.css';
+import ArtistSectionTitle from './artist-section-title';
 
-interface ArtistSectionProps {
+import * as styles from './concert-artist-section.css';
+
+interface ConcertArtistSectionProps {
   artists: ConcertArtist[];
 }
 
-const ConcertArtistSection = ({ artists }: ArtistSectionProps) => {
+const ConcertArtistSection = ({ artists }: ConcertArtistSectionProps) => {
   return (
     <section className={styles.concertArtistContainer}>
       <div className={styles.artistContent({ variants: 'title' })}>
-        <h2 className={styles.ArtistTitle}>{PERFORMANCE_LABEL.ARTIST}</h2>
-        <div className={styles.artistListContainer}>
+        <ArtistSectionTitle />
+        <div className={styles.artistGridContainer}>
           {artists.map((artist) => (
             <div key={artist.artistId} className={styles.artistItem}>
               <Avatar
