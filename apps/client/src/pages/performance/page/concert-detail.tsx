@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ConcertArtistSection from '@pages/performance/components/artist/concert-artist-section';
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
