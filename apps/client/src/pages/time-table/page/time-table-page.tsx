@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import Calender from '@pages/time-table/components/calender/calender';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
