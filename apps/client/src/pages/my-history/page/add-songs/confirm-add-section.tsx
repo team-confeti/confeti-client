@@ -76,7 +76,7 @@ const ConfirmAddSection = ({
     addMusicToSetListMutation.mutate(requestData);
 
     navigate(
-      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL, {
+      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
         setlistId: setlistId ?? '',
       }),
     );
