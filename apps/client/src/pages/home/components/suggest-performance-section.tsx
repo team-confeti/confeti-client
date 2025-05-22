@@ -1,6 +1,7 @@
 import { Box, FestivalCard } from '@confeti/design-system';
 import { IcHeart } from '@confeti/design-system/icons';
 import { SuggestPerformance } from '@shared/types/home-response';
+import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 
 import * as styles from './suggest-performance-section.css';
 
@@ -30,7 +31,10 @@ const SuggestPerformanceSection = ({
               typeId={performance.typeId}
               type={performance.type}
               title={performance.title}
-              imageSrc={performance.posterUrl}
+              imageSrc={convertToCdnUrl(performance.posterUrl, {
+                width: 232,
+                height: 330,
+              })}
             />
           </div>
         ))}
@@ -38,5 +42,4 @@ const SuggestPerformanceSection = ({
     </Box>
   );
 };
-
 export default SuggestPerformanceSection;

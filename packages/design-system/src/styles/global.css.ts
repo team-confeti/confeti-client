@@ -18,7 +18,6 @@ globalStyle('html, body', {
   width: '100%',
   margin: '0',
   padding: '0',
-  fontFamily: '"Pretendard", sans-serif',
   fontSize: '62.5%',
   scrollbarWidth: 'none',
   scrollBehavior: 'smooth',

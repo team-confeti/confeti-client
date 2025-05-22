@@ -43,8 +43,8 @@ export const titleSub = style({
 
 export const card = style({
   position: 'relative',
-  width: '100%',
-  height: '100%',
+  width: '30rem',
+  height: '39.8rem',
   borderRadius: '1rem',
   boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
   outline: 'none !important',

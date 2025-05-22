@@ -1,24 +1,13 @@
 import { lazy } from 'react';
 
-// Shared
-export const ErrorPage = lazy(() => import('@shared/pages/error/error'));
-export const GlobalLayout = lazy(() => import('@shared/router/global-layout'));
-
 // Home
-export const HomePage = lazy(() => import('@pages/home/page/home-page'));
 export const LoginPage = lazy(() => import('@pages/login/page/login'));
-export const RequireLoginPage = lazy(
-  () => import('@pages/home/page/auth/require-login'),
-);
 
 // MyPage
-export const MyPage = lazy(() => import('@pages/my/page/my-page'));
 export const MyProfilePage = lazy(
   () => import('@pages/my/page/profile/my-profile'),
 );
-export const MyRequireLoginPage = lazy(
-  () => import('@pages/my/page/auth/require-login'),
-);
+
 export const MyConfetiPage = lazy(
   () => import('@pages/my/page/performance/performance-more'),
 );
@@ -31,15 +20,11 @@ export const DeleteAccountPage = lazy(
 );
 
 // MyHistory
-export const MyHistoryPage = lazy(
-  () => import('@pages/my-history/page/my-history'),
-);
+
 export const MyRecordPage = lazy(
   () => import('@pages/my-history/page/record/my-record'),
 );
-export const MyHistoryOverviewPage = lazy(
-  () => import('@pages/my-history/page/overview/my-history-overview-page'),
-);
+
 export const AddSetlistPage = lazy(
   () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
 );
@@ -69,12 +54,6 @@ export const DeleteFestivalPage = lazy(
 
 export const AddFestivalPage = lazy(
   () => import('@pages/time-table/page/add-festival/add-festival'),
-);
-export const TimeTablePage = lazy(
-  () => import('@pages/time-table/page/time-table-page'),
-);
-export const TimeTableLayout = lazy(
-  () => import('@pages/time-table/page/time-table-layout'),
 );
 
 // Onboarding

@@ -28,3 +28,8 @@ export const completeContentSection = recipe({
 export const confetiLogo = style({
   ...themeVars.display.flexJustifyAlignCenter,
 });
+
+export const logoImage = style({
+  width: '18rem',
+  height: '18rem',
+});
