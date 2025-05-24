@@ -41,7 +41,7 @@ export const description = style({
 });
 
 export const button = style({
-  margin: '2.4rem 0 -2.4rem',
+  margin: '2.4rem 0rem 0rem',
   height: '5rem',
   ...themeVars.fontStyles.title4_b_16,
 });
