@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import StepFive from '@pages/time-table/components/onboard/step-five';
 import StepFour from '@pages/time-table/components/onboard/step-four';
 import StepOne from '@pages/time-table/components/onboard/step-one';
 import StepThree from '@pages/time-table/components/onboard/step-three';
@@ -44,6 +45,12 @@ const TimeTableOnboard = () => {
       </Step>
       <Step name="4">
         <StepFour
+          handleNextStep={handleNextStep(1)}
+          handleNavigate={handleNavigate}
+        />
+      </Step>
+      <Step name="5">
+        <StepFive
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
