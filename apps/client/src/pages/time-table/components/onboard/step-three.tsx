@@ -6,7 +6,7 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-const StepTwo = () => {
+const StepThree = () => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -42,4 +42,4 @@ const StepTwo = () => {
   );
 };
 
-export default StepTwo;
+export default StepThree;

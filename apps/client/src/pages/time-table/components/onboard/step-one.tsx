@@ -2,7 +2,7 @@ import { Button, Description } from '@confeti/design-system';
 import { ImgOnboard1 } from '@confeti/design-system/icons';
 import { cn } from '@confeti/design-system/utils';
 
-import * as styles from './step-one.css';
+import * as styles from './step.css';
 interface StepOneProps {
   handleNextStep: VoidFunction;
   handleNavigate: VoidFunction;
