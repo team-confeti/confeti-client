@@ -13,7 +13,7 @@ const StepOne = ({ handleNextStep, handleNavigate }: StepOneProps) => {
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
         <div className={styles.timeTableImageContainer}>
-          <Description
+          <Description.Text
             descriptionText={
               '나만의 타임테이블을 만들고,\n이미지 저장까지 간편하게!'
             }
