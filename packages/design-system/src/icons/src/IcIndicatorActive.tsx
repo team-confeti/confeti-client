@@ -5,9 +5,10 @@ const SvgIcIndicatorActive = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
+    viewBox="0 0 25 6"
     {...props}
   >
-    <rect width={6} height={6} fill="#92C015" rx={3} />
+    <rect width={24} height={6} x={0.5} fill="#B5F602" rx={3} />
   </svg>
 );
 export default SvgIcIndicatorActive;
