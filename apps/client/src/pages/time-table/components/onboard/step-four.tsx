@@ -17,11 +17,13 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepFourProps) => {
       <div className={styles.timeTableOnboardContent}>
         <div className={styles.timeTableImageContainer}>
           <Description.Text fontSize={20} descriptionText={''}>
-            <Description.HighlightedText fontSize={20} highlightedText="블럭" />
-            <Description.Text fontSize={20} descriptionText={`을 클릭해서\n`} />
+            <Description.HighlightedText
+              fontSize={20}
+              highlightedText="타임테이블 편집하기"
+            />
             <Description.Text
               fontSize={20}
-              descriptionText={`보고싶은 공연을 표시해요.`}
+              descriptionText={`로\n테이블을 커스텀해요`}
             />
           </Description.Text>
           <ImgOnboard4 width={'100%'} height={'31rem'} />
