@@ -31,7 +31,7 @@ const ArtistSearch = ({
       <div className={styles.searchBarContainer}>
         <div className={styles.searchBarFrame}>
           <SearchBar
-            placeholder="아티스트 또는 공연을 검색해보세요!"
+            placeholder="아티스트를 검색해보세요!"
             value={keyword}
             onChange={handleInputChange}
           />

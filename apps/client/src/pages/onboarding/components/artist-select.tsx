@@ -47,7 +47,7 @@ const ArtistSelect = ({
         <div className={styles.searchBarSection}>
           <SearchBar
             showBackButton={false}
-            placeholder="아티스트를 검색해주세요"
+            placeholder="아티스트를 검색해주세요!"
             onFocus={handleSearchBarFocus}
           />
         </div>
