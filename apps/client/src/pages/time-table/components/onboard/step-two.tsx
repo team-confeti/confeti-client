@@ -30,8 +30,8 @@ const StepTwo = () => {
               descriptionText={'\n타임라인을 확인해요'}
             />
           </Description.Text>
-          <ImgOnboard2 width={'100%'} height={'31rem'} />
-          <ProgressBar totalIndex={5} currentIndex={1} />
+          <ImgOnboard2 width={'100%'} height={'31rem'} />{' '}
+          <ProgressBar totalIndex={5} currentIndex={0} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" />
