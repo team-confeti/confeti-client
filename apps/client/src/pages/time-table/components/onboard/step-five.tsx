@@ -25,7 +25,7 @@ const StepFive = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
             />
           </Description.Text>
           <ImgOnboard5 width={'100%'} height={'31rem'} />
-          <ProgressBar totalIndex={5} currentIndex={2} />
+          <ProgressBar totalIndex={5} currentIndex={3} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />
