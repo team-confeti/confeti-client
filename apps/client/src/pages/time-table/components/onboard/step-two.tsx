@@ -5,8 +5,12 @@ import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
+interface StepTwoProps {
+  handleNextStep: VoidFunction;
+  handleNavigate: VoidFunction;
+}
 
-const StepTwo = () => {
+const StepTwo = ({ handleNavigate, handleNextStep }: StepTwoProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -34,8 +38,8 @@ const StepTwo = () => {
           <ProgressBar totalIndex={5} currentIndex={0} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
-          <Button text="다음" variant="add" />
-          <SkipButton />
+          <Button text="다음" variant="add" onClick={handleNextStep} />
+          <SkipButton onClick={handleNavigate} />
         </div>
       </div>
     </section>

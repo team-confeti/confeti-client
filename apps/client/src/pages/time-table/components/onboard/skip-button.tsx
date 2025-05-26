@@ -1,6 +1,13 @@
 import * as styles from './skip-button.css';
-const SkipButton = () => {
-  return <a className={styles.skipButton}>SKIP</a>;
+interface SkipButtonProps {
+  onClick?: () => void;
+}
+const SkipButton = ({ onClick }: SkipButtonProps) => {
+  return (
+    <button className={styles.skipButton} onClick={onClick}>
+      SKIP
+    </button>
+  );
 };
 
 export default SkipButton;
