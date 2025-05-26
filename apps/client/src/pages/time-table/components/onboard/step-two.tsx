@@ -39,7 +39,7 @@ const StepTwo = ({ handleNavigate, handleNextStep }: StepTwoProps) => {
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />
-          <SkipButton onClick={handleNavigate} />
+          <SkipButton onClick={handleNavigate} text="SKIP" />
         </div>
       </div>
     </section>
