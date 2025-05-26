@@ -2,13 +2,12 @@ import { Header } from '@confeti/design-system';
 import { Button } from '@confeti/design-system';
 import {
   BtnDeleteBlack20,
-  Confeti3DLogo21,
   IcApple,
   IcKakao,
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
 import { CONFIG } from '@shared/constants/api';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
 
 import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
@@ -95,7 +94,11 @@ const Login = () => {
       />
       <section className={styles.container}>
         <div>
-          <Confeti3DLogo21 width={'18rem'} height={'18rem'} />
+          <img
+            src="/images/confeti_3d_logo21.svg"
+            className={styles.logoImage}
+            alt="confeti logo"
+          />
           <ImgTypelogoBig width={'17rem'} height={'4rem'} />
         </div>
         <div className={styles.bottomSection}>

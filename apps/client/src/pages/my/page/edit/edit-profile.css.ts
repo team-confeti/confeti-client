@@ -4,7 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const editProfileContainer = style({
   ...themeVars.display.flexColumn,
-  height: '100svh',
+  // height: '100svh',
 });
 
 export const userInfo = style({
@@ -16,6 +16,14 @@ export const userInfo = style({
 export const editProfileContent = style({
   ...themeVars.display.flexBetween,
   flexDirection: 'column',
-  height: '100svh',
+  padding: '2rem',
+});
+
+export const buttonWrapper = style({
+  position: 'fixed',
+  bottom: 0,
+  left: '50%',
+  width: 'min(100%, var(--max-width))',
+  transform: 'translateX(-50%)',
   padding: '2rem',
 });

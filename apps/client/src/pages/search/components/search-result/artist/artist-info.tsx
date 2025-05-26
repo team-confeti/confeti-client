@@ -10,6 +10,7 @@ interface ArtistInfoProps {
   name: string;
   releaseDate: string;
   isFavorite: boolean;
+  refetchArtist?: () => void;
 }
 
 const ArtistInfo = ({
@@ -18,11 +19,13 @@ const ArtistInfo = ({
   name,
   releaseDate,
   isFavorite,
+  refetchArtist,
 }: ArtistInfoProps) => {
   const { mutate } = useLikeMutation();
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type: 'ARTIST' });
+    refetchArtist?.();
   };
 
   return (

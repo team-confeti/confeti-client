@@ -8,7 +8,7 @@ const fadeInScale = keyframes({
 });
 
 export const onboardingContentSection = style({
-  height: '100vh',
+  height: '100svh',
   padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
@@ -29,6 +29,7 @@ export const avatarGridSection = style({
   columnGap: '4.7rem',
   alignItems: 'center',
   justifyItems: 'center',
+  paddingBottom: '3rem',
 });
 
 export const avatar = style({

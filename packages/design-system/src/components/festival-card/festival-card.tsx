@@ -28,22 +28,22 @@ const FestivalCard = ({
 }: FestivalCardProps) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
   const navigate = useNavigate();
-  const detailRoutePath = `/${type}-detail/${typeId}`;
+  const detailRoutePath = `/${type?.toLowerCase()}-detail/${typeId}`;
 
   const handleClick = () => {
-    if (!selectable) {
-      return navigate(detailRoutePath);
-    }
+    if (selectable) {
+      const toggledSelected = !internalSelected;
+      setInternalSelected(toggledSelected);
 
-    const toggledSelected = !internalSelected;
-    setInternalSelected(toggledSelected);
-
-    if (onSelectChange) {
-      onSelectChange(title, toggledSelected);
+      if (onSelectChange) {
+        onSelectChange(title, toggledSelected);
+      }
     }
 
     if (onClick) {
       onClick();
+    } else if (!selectable) {
+      navigate(detailRoutePath);
     }
   };
 

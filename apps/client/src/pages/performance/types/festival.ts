@@ -1,7 +1,6 @@
 export interface FestivalData {
   festivalId: number;
   posterUrl: string;
-  posterBgUrl: string;
   title: string;
   subtitle: string;
   startAt: string;

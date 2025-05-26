@@ -34,7 +34,7 @@ export const toastPositionStyle = recipe({
       middleCenter: {
         alignItems: 'center',
         left: 0,
-        bottom: '9.8rem',
+        bottom: '9rem',
       },
       topCenter: {
         alignItems: 'center',

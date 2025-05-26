@@ -4,7 +4,7 @@ import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
 import { useUserProfile } from '@pages/my/hooks/use-user-info';
 
-import { Button, Footer, Header, toast } from '@confeti/design-system';
+import { Button, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
 import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
 import { urlToFile } from '@shared/utils/url-to-file';
@@ -41,10 +41,11 @@ const EditProfile = () => {
     name: string,
     hasShownToast: boolean,
   ): boolean => {
-    if (name.length > 10 && !hasShownToast) {
+    if (name.length > 9 && !hasShownToast) {
       toast({
         text: '2~10자로 입력해 주세요',
         icon: <IcToastInfo16 width={'1.6rem'} height={'1.6rem'} />,
+        position: 'middleCenter',
       });
       return true;
     } else if (name.length <= 10 && hasShownToast) {
@@ -96,14 +97,14 @@ const EditProfile = () => {
           />
         </div>
         <div className={styles.editProfileContent}>
-          <div>
-            <EditNameInput
-              name={name}
-              onChange={handleInputChange}
-              isInvalid={isNameInvalid}
-            />
-            <LinkedAccount />
-          </div>
+          <EditNameInput
+            name={name}
+            onChange={handleInputChange}
+            isInvalid={isNameInvalid}
+          />
+          <LinkedAccount />
+        </div>
+        <div className={styles.buttonWrapper}>
           <Button
             variant="add"
             text="저장하기"
@@ -111,7 +112,6 @@ const EditProfile = () => {
             onClick={handleSave}
           />
         </div>
-        <Footer />
       </div>
     </>
   );

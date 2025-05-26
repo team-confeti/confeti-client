@@ -1,6 +1,9 @@
 import { Performances } from './performance-response';
 
-export type MyTimeTable = Pick<Performances, 'typeId' | 'posterUrl' | 'title'>;
+export type MyTimeTable = Pick<
+  Performances,
+  'typeId' | 'posterUrl' | 'title' | 'type'
+>;
 
 export interface MyHistoryTimetableResponse {
   timetableCount: number;
@@ -44,4 +47,67 @@ export interface SetListPerformanceRequest {
   pid: number | null;
   aid: string | null;
   term: string | null;
+}
+
+export interface MusicSearchRequest {
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface MusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
+}
+
+export interface MusicInfoResponse {
+  musicId: number;
+  title: string;
+  artistName: string;
+  artworkUrl: string;
+  previewUrl: string;
+}
+
+export interface ArtistMusicSearchRequest {
+  aid: string;
+  term: string;
+  offset: number;
+  limit: number;
+}
+
+export interface ArtistMusicSearchResponse {
+  nextOffset: number;
+  isLast: boolean;
+  musics: MusicInfoResponse[];
+}
+
+export interface SetListMusic {
+  musicId: number;
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
+  orders: number;
+}
+
+export interface SetListDetail {
+  setlistId: number;
+  type: 'FESTIVAL' | 'CONCERT';
+  typeId: number;
+  posterUrl: string;
+  title: string;
+  subTitle: string;
+  startAt: string;
+  endAt: string;
+  musics: SetListMusic[];
+}
+
+export interface AddMusicToSetListRequest {
+  trackId: string;
+  artistName: string;
+  trackName: string;
+  artworkUrl: string;
+  previewUrl: string;
 }

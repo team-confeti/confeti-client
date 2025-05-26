@@ -1,7 +1,6 @@
 export interface ConcertData {
   concertId: number;
   posterUrl: string;
-  posterBgUrl: string;
   title: string;
   subtitle: string;
   startAt: string;

@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
-import { routePath } from '@shared/constants/path';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
+import { routePath } from '@shared/router/path';
 import { MyUpcomingPerformance } from '@shared/types/user-response';
 import { formatDate } from '@shared/utils/format-date';
 

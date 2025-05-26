@@ -6,6 +6,14 @@ export const musicItemWrapper = style({
   ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
   padding: '1rem 0',
+  // touchAction: 'none',
+});
+
+export const contentWrapper = style({
+  ...themeVars.display.flexBetweenAlignCenter,
+  gap: '1.6rem',
+  flexGrow: 1,
+  cursor: 'pointer',
 });
 
 export const albumCoverWrapper = style({
@@ -46,6 +54,8 @@ export const textSection = style({
 
 export const title = style({
   ...themeVars.fontStyles.title4_b_16,
+  maxWidth: '21rem',
+  width: '100%',
   color: themeVars.color.gray800,
   overflow: 'hidden',
   whiteSpace: 'nowrap',
@@ -56,6 +66,8 @@ export const title = style({
 export const artist = style({
   ...themeVars.fontStyles.body4_m_13,
   color: themeVars.color.gray600,
+  width: '100%',
+  maxWidth: '21rem',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',

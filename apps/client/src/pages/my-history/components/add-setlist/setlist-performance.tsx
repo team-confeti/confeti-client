@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAddPerformanceMutation } from '@pages/my-history/hooks/use-add-performance-mutation';
 
 import { Button, FestivalCard } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
 
 import * as styles from './setlist-performance.css';
@@ -32,10 +32,14 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
     });
   };
 
-  const handleFestivalSelect = (typeId: number, isSelected: boolean) => {
+  const handleFestivalSelect = (
+    typeId: number,
+    isSelected: boolean,
+    type: 'FESTIVAL' | 'CONCERT',
+  ) => {
     setSelectedFestivals((prev) => {
       if (isSelected) {
-        return [...prev, { type: 'FESTIVAL', typeId }];
+        return [...prev, { type, typeId }];
       } else {
         return prev.filter((item) => item.typeId !== typeId);
       }
@@ -49,25 +53,26 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
       </section>
 
       <section className={styles.performanceContainer}>
-        {performances.map((performance) => {
-          const isSelected = selectedFestivals.some(
-            (item) => item.typeId === performance.performanceId,
-          );
-
-          return (
+        {performances.map((performance) => (
+          <div key={performance.typeId} className={styles.festivalCardWrapper}>
             <FestivalCard
-              key={performance.performanceId}
               typeId={performance.typeId}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}
-              isSelected={isSelected}
+              isSelected={selectedFestivals.some(
+                (item) => item.typeId === performance.typeId,
+              )}
               onSelectChange={(_title, isSelected) =>
-                handleFestivalSelect(performance.typeId, isSelected)
+                handleFestivalSelect(
+                  performance.typeId,
+                  isSelected,
+                  performance.type,
+                )
               }
             />
-          );
-        })}
+          </div>
+        ))}
       </section>
 
       <section className={styles.buttonSection}>

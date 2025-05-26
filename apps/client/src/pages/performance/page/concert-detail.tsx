@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ArtistSection from '@pages/performance/components/artist/artist-section';
-import ArtistTitle from '@pages/performance/components/artist/artist-title';
+import ConcertArtistSection from '@pages/performance/components/artist/concert-artist-section';
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
-import Hero from '@pages/performance/components/hero/hero';
 import Location from '@pages/performance/components/location/location';
 import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
 import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 import { addRecentViewItem } from '@shared/utils/recent-view';
 
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedConcertId = typeId ? Number(typeId) : 0;
-  const [isMoreButton, setIsMoreButton] = useState(false);
   const concertDetail = useConcertDetail(parsedConcertId);
   const { concert } = concertDetail;
   const { isButtonHidden } = useScrollPosition();
@@ -25,16 +22,9 @@ const ConcertDetailPage = () => {
     addRecentViewItem({ type: 'concert', typeId: concert.concertId });
   }
 
-  useEffect(() => {
-    if (concertDetail.concertArtists.length >= 4) {
-      setIsMoreButton(true);
-    }
-  }, [concertDetail.concertArtists.length]);
-
   return (
     <>
       <Hero
-        posterBgUrl={concert.posterBgUrl}
         posterUrl={concert.posterUrl}
         title={concert.title}
         startAt={concert.startAt}
@@ -61,12 +51,7 @@ const ConcertDetailPage = () => {
       <Spacing />
       <Location address={concert.address} />
       <Spacing />
-      <ArtistTitle />
-      <ArtistSection
-        type="concert"
-        artistData={concertDetail}
-        isMoreButton={isMoreButton}
-      />
+      <ConcertArtistSection artists={concertDetail.concertArtists} />
       <FloatingButton isButtonHidden={isButtonHidden} />
       <Footer />
     </>

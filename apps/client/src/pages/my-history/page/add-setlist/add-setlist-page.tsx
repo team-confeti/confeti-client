@@ -7,7 +7,7 @@ import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
 
-import { useSearchSetListPerformance } from '../hooks/use-performance-search';
+import { useSearchSetListPerformance } from '../../hooks/use-performance-search';
 
 import * as styles from './add-setlist-page.css';
 

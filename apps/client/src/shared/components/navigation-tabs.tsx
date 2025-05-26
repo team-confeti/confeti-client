@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { TAB_MENU } from '@pages/home/constants/menu';
 
 import { Navigation } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 
 interface Props {
   defaultActiveTab: TAB_MENU;

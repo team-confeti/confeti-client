@@ -28,7 +28,7 @@ const SearchPage = () => {
   const [isPerformanceAnalysisTriggered, setIsPerformanceAnalysisTriggered] =
     useState(false);
 
-  const { handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
+  const { barFocus, handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
   const { addSearchKeyword } = useRecentSearch();
 
@@ -37,7 +37,11 @@ const SearchPage = () => {
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword(paramsKeyword);
-  const { data: artistData, isLoading: isSearchLoading } = useSearchArtist({
+  const {
+    data: artistData,
+    isLoading: isSearchLoading,
+    refetch: refetchArtist,
+  } = useSearchArtist({
     keyword: paramsKeyword,
     enabled: !!paramsKeyword,
   });
@@ -75,7 +79,7 @@ const SearchPage = () => {
 
   const renderSearchContents = () => {
     const isLoadingState = isSearchLoading || isRelatedKeywordLoading;
-    const isSuggestionState = !!relatedArtists?.artists;
+    const isSuggestionState = !!relatedArtists?.artists && barFocus;
     const isResultState = !!artistData;
 
     switch (true) {
@@ -113,6 +117,7 @@ const SearchPage = () => {
             artistData={artistData?.artist ?? null}
             relatedPerformances={relatedPerformances ?? null}
             performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
+            refetchArtist={refetchArtist}
           />
         );
 

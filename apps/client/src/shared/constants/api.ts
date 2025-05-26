@@ -8,6 +8,7 @@ export const CONFIG = {
   APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,
   AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
+  IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
 } as const;
 
 export const END_POINT = {
@@ -20,6 +21,19 @@ export const END_POINT = {
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
   POST_ADD_PERFORMANCE_TO_SET_LIST: '/my/setlists',
+  GET_SET_LIST_DETAIL: (setlistId: number) => `/my/setlists/${setlistId}`,
+  POST_START_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/start`,
+  POST_COMPLETE_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/complete`,
+  DELETE_MUSIC_FROM_SETLIST: (setlistId: number, orders: number) =>
+    `/my/setlists/${setlistId}/musics/${orders}`,
+  DELETE_CANCEL_EDIT_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/cancel`,
+  PATCH_REORDER_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/musics/order`,
+  POST_ADD_MUSIC_TO_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/musics`,
 
   // 마이페이지
   GET_USER_PROFILE: '/user/info',
@@ -64,9 +78,18 @@ export const END_POINT = {
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
-    `/performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
-  GET_POPULAR_SEARCH: (limit: number) => `/search/terms/popular?limit=${limit}`,
-  GET_RECENT_VIEW: (items: string) => `/performances/expected?items=${items}`,
+    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+  GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
+  GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
+  GET_MUSIC_SEARCH: (keyword: string, offset: number, limit: number) =>
+    `my/setlists/search/musics?term=${keyword}&offset=${offset}&limit=${limit}`,
+  GET_ARTIST_MUSIC_SEARCH: (
+    aid: string,
+    keyword: string,
+    offset: number,
+    limit: number,
+  ) =>
+    `my/setlists/search/artist-musics?aid=${aid}&term=${keyword}&offset=${offset}&limit=${limit}`,
 
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: '/auth/login',

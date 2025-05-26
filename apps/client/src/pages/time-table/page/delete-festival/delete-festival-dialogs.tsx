@@ -19,9 +19,12 @@ export const ConfirmDialog = ({
   <Dialog open={isOpen} handleClose={onClose}>
     <Dialog.Content>
       <Dialog.Title>
-        <span className={cn(className)}>{numberToDelete + ' '}</span>개의 공연을
-        삭제할까요?
+        <span className={cn(className)} style={{ marginRight: '0.2rem' }}>
+          {numberToDelete}
+        </span>
+        개의 공연을 삭제할까요?
       </Dialog.Title>
+
       <Dialog.Description>
         <p>제작했던 타임테이블은</p>
         <p>&apos;내 공연&apos; 페이지에서 다시 볼 수 있어요.</p>

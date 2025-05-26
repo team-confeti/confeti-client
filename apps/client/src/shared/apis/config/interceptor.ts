@@ -3,11 +3,11 @@ import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
 import { CONFIG, END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
-import { routePath } from '@shared/constants/path';
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from '@shared/constants/user-constants';
+import { routePath } from '@shared/router/path';
 import { BaseResponse, ErrorResponse } from '@shared/types/api';
 import { TokenResponse } from '@shared/types/login-response';
 import { authTokenHandler } from '@shared/utils/token-handler';

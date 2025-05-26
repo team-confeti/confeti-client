@@ -4,14 +4,10 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   ...themeVars.display.flexColumnAlignTextCenter,
-  position: 'absolute',
-  top: '55%',
-  left: '50%',
-
+  justifyContent: 'center',
   width: '100%',
-  padding: '8rem 2rem',
-  gap: '3rem',
-  transform: 'translate(-50%, -50%)',
+  height: '90svh',
+  gap: '2rem',
 });
 
 export const content = style({

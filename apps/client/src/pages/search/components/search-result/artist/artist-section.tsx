@@ -6,9 +6,10 @@ import ArtistInfo from './artist-info';
 
 interface ArtistSectionProps {
   artist: ArtistSearch;
+  refetchArtist?: () => void;
 }
 
-const ArtistSection = ({ artist }: ArtistSectionProps) => {
+const ArtistSection = ({ artist, refetchArtist }: ArtistSectionProps) => {
   const formattedDate = formatDate(artist.latestReleaseAt);
   const artistCount = artist.artistId ? 1 : 0;
 
@@ -20,6 +21,7 @@ const ArtistSection = ({ artist }: ArtistSectionProps) => {
         name={artist.name}
         releaseDate={formattedDate}
         isFavorite={artist.isFavorite}
+        refetchArtist={refetchArtist}
       />
     </Box>
   );
