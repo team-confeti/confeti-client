@@ -1,5 +1,5 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard5, ImgOnboard6 } from '@confeti/design-system/icons';
+import { ImgOnboard6 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
@@ -7,11 +7,10 @@ import SkipButton from './skip-button';
 import * as styles from './step.css';
 
 interface StepSixProps {
-  handleNextStep: VoidFunction;
-  handleNavigate: VoidFunction;
+  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepSix = ({ handleNavigate, handleNextStep }: StepSixProps) => {
+const StepSix = ({ handleNavigate }: StepSixProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -34,9 +33,12 @@ const StepSix = ({ handleNavigate, handleNextStep }: StepSixProps) => {
           <Button
             text="타임테이블 시작하기"
             variant="add"
-            onClick={handleNextStep}
+            onClick={() => handleNavigate({ isReTry: false })}
           />
-          <SkipButton onClick={handleNavigate} text="다시보기" />
+          <SkipButton
+            onClick={() => handleNavigate({ isReTry: true })}
+            text="다시보기"
+          />
         </div>
       </div>
     </section>

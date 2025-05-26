@@ -8,7 +8,7 @@ import * as styles from './step.css';
 
 interface StepFourProps {
   handleNextStep: VoidFunction;
-  handleNavigate: VoidFunction;
+  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
 const StepThree = ({ handleNavigate, handleNextStep }: StepFourProps) => {
@@ -31,7 +31,10 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepFourProps) => {
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />
-          <SkipButton onClick={handleNavigate} text="SKIP" />
+          <SkipButton
+            onClick={() => handleNavigate({ isReTry: false })}
+            text="SKIP"
+          />
         </div>
       </div>
     </section>

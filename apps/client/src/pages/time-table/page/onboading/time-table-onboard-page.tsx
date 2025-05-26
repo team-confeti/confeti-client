@@ -20,8 +20,12 @@ const TimeTableOnboard = () => {
   const handleNextStep = (nextStep: number) => () => {
     setStep(nextStep);
   };
-  const handleNavigate = () => {
-    navigate(routePath.ADD_FESTIVAL);
+  const handleNavigate = ({ isReTry }: { isReTry: boolean }) => {
+    if (isReTry) {
+      setStep(1);
+    } else {
+      navigate(routePath.ADD_FESTIVAL);
+    }
   };
 
   return (
@@ -57,10 +61,7 @@ const TimeTableOnboard = () => {
         />
       </Step>
       <Step name="6">
-        <StepSix
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-        />
+        <StepSix handleNavigate={handleNavigate} />
       </Step>
     </Funnel>
   );
