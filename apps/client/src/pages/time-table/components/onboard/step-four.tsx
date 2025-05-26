@@ -1,5 +1,5 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard3, ImgOnboard4 } from '@confeti/design-system/icons';
+import { ImgOnboard4 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
