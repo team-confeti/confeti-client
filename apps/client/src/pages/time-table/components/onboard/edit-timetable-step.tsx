@@ -1,3 +1,9 @@
+import {
+  WithIndex,
+  WithNavigate,
+  WithNextStep,
+} from '@pages/time-table/types/time-table-onboard-type';
+
 import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
@@ -7,15 +13,14 @@ import * as styles from './step.css';
 
 import ImgOnboard4 from '/images/img_onboard_4.svg';
 
-interface StepFourProps {
-  handleNextStep: VoidFunction;
-  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
-}
+type EditTimeTableprops = WithNavigate & WithNextStep & WithIndex;
 
 const EditTimeTableStep = ({
   handleNavigate,
   handleNextStep,
-}: StepFourProps) => {
+  totalIndex,
+  currentIndex,
+}: EditTimeTableprops) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -31,7 +36,7 @@ const EditTimeTableStep = ({
             />
           </Description.Text>
           <img src={ImgOnboard4} />
-          <ProgressBar totalIndex={5} currentIndex={2} />
+          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />

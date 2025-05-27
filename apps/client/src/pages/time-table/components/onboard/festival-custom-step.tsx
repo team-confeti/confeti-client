@@ -1,3 +1,9 @@
+import {
+  WithIndex,
+  WithNavigate,
+  WithNextStep,
+} from '@pages/time-table/types/time-table-onboard-type';
+
 import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
@@ -7,15 +13,14 @@ import * as styles from './step.css';
 
 import ImgOnboard3 from '/images/img_onboard_3.svg';
 
-interface StepThreeProps {
-  handleNextStep: VoidFunction;
-  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
-}
+type FestivalCustomProps = WithNavigate & WithNextStep & WithIndex;
 
 const FestivalCustomStep = ({
   handleNavigate,
   handleNextStep,
-}: StepThreeProps) => {
+  totalIndex,
+  currentIndex,
+}: FestivalCustomProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -31,7 +36,7 @@ const FestivalCustomStep = ({
             />
           </Description.Text>
           <img src={ImgOnboard3} />
-          <ProgressBar totalIndex={5} currentIndex={1} />
+          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />

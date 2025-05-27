@@ -11,8 +11,8 @@ import { routePath } from '@shared/router/path';
 
 const TimeTableOnboard = () => {
   const navigate = useNavigate();
-
   const TOTAL_STEPS = 6;
+  const TOTAL_INDEX = 5;
   const { Funnel, Step, setStep } = useFunnel(
     TOTAL_STEPS,
     routePath.TIME_TABLE_OUTLET,
@@ -40,28 +40,40 @@ const TimeTableOnboard = () => {
         <FestivalSelectStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
+          totalIndex={TOTAL_INDEX}
+          currentIndex={0}
         />
       </Step>
       <Step name="3">
         <FestivalCustomStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
+          totalIndex={TOTAL_INDEX}
+          currentIndex={1}
         />
       </Step>
       <Step name="4">
         <EditTimeTableStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
+          totalIndex={TOTAL_INDEX}
+          currentIndex={2}
         />
       </Step>
       <Step name="5">
         <ClickBlockStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
+          totalIndex={TOTAL_INDEX}
+          currentIndex={3}
         />
       </Step>
       <Step name="6">
-        <SaveTimeTableStep handleNavigate={handleNavigate} />
+        <SaveTimeTableStep
+          handleNavigate={handleNavigate}
+          totalIndex={TOTAL_INDEX}
+          currentIndex={4}
+        />
       </Step>
     </Funnel>
   );

@@ -1,3 +1,9 @@
+import {
+  WithIndex,
+  WithNavigate,
+  WithNextStep,
+} from '@pages/time-table/types/time-table-onboard-type';
+
 import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
@@ -7,12 +13,14 @@ import * as styles from './step.css';
 
 import ImgOnboard5 from '/images/img_onboard_5.svg';
 
-interface StepFiveProps {
-  handleNextStep: VoidFunction;
-  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
-}
+type ClickBlockProps = WithNavigate & WithNextStep & WithIndex;
 
-const ClickBlockStep = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
+const ClickBlockStep = ({
+  handleNavigate,
+  handleNextStep,
+  totalIndex,
+  currentIndex,
+}: ClickBlockProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -26,7 +34,7 @@ const ClickBlockStep = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
             />
           </Description.Text>
           <img src={ImgOnboard5} />
-          <ProgressBar totalIndex={5} currentIndex={3} />
+          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button text="다음" variant="add" onClick={handleNextStep} />

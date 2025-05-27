@@ -1,3 +1,8 @@
+import {
+  WithIndex,
+  WithNavigate,
+} from '@pages/time-table/types/time-table-onboard-type';
+
 import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
@@ -7,11 +12,13 @@ import * as styles from './step.css';
 
 import ImgOnboard6 from '/images/img_onboard_6.svg';
 
-interface StepSixProps {
-  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
-}
+type SaveTimeTableProps = WithNavigate & WithIndex;
 
-const SaveTimeTableStep = ({ handleNavigate }: StepSixProps) => {
+const SaveTimeTableStep = ({
+  handleNavigate,
+  totalIndex,
+  currentIndex,
+}: SaveTimeTableProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -28,7 +35,7 @@ const SaveTimeTableStep = ({ handleNavigate }: StepSixProps) => {
             />
           </Description.Text>
           <img src={ImgOnboard6} />
-          <ProgressBar totalIndex={5} currentIndex={4} />
+          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button

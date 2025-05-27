@@ -1,15 +1,18 @@
+import {
+  WithNavigate,
+  WithNextStep,
+} from '@pages/time-table/types/time-table-onboard-type';
+
 import { Button, Description } from '@confeti/design-system';
 import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step.css';
 
 import ImgOnboard1 from '/images/img_onboard_1.svg';
-interface StepOneProps {
-  handleNextStep: VoidFunction;
-  handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
-}
 
-const StepOne = ({ handleNextStep, handleNavigate }: StepOneProps) => {
+type IntroProps = WithNavigate & WithNextStep;
+
+const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -40,4 +43,4 @@ const StepOne = ({ handleNextStep, handleNavigate }: StepOneProps) => {
   );
 };
 
-export default StepOne;
+export default ItroStep;
