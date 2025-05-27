@@ -6,8 +6,8 @@ import StepSix from '@pages/time-table/components/onboard/step-six';
 import StepThree from '@pages/time-table/components/onboard/step-three';
 import StepTwo from '@pages/time-table/components/onboard/step-two';
 
+import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
-import { useFunnel } from '@shared/utils/use-funnel';
 
 const TimeTableOnboard = () => {
   const navigate = useNavigate();
