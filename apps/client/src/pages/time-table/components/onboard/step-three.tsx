@@ -1,10 +1,11 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard3 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
+
+import ImgOnboard3 from '/images/img_onboard_3.svg';
 
 interface StepThreeProps {
   handleNextStep: VoidFunction;
@@ -26,7 +27,7 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepThreeProps) => {
               descriptionText={`로 \n원하는 타임테이블을 커스텀해요.`}
             />
           </Description.Text>
-          <ImgOnboard3 width={'100%'} height={'31rem'} />
+          <img src={ImgOnboard3} />
           <ProgressBar totalIndex={5} currentIndex={1} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

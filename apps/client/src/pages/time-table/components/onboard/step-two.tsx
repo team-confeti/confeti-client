@@ -1,10 +1,11 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard2 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
+
+import ImgOnboard2 from '/images/img_onboard_2.svg';
 interface StepTwoProps {
   handleNextStep: VoidFunction;
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
@@ -34,7 +35,7 @@ const StepTwo = ({ handleNavigate, handleNextStep }: StepTwoProps) => {
               descriptionText={'\n타임라인을 확인해요'}
             />
           </Description.Text>
-          <ImgOnboard2 width={'100%'} height={'31rem'} />{' '}
+          <img src={ImgOnboard2} />
           <ProgressBar totalIndex={5} currentIndex={0} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

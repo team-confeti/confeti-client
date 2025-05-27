@@ -1,10 +1,11 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard6 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
+
+import ImgOnboard6 from '/images/img_onboard_6.svg';
 
 interface StepSixProps {
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
@@ -26,7 +27,7 @@ const StepSix = ({ handleNavigate }: StepSixProps) => {
               descriptionText={`오프라인에서도 타임테이블 확인!`}
             />
           </Description.Text>
-          <ImgOnboard6 width={'100%'} height={'31rem'} />
+          <img src={ImgOnboard6} />
           <ProgressBar totalIndex={5} currentIndex={4} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

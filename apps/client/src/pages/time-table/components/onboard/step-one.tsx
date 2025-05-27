@@ -1,8 +1,9 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard1 } from '@confeti/design-system/icons';
 import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step.css';
+
+import ImgOnboard1 from '/images/img_onboard_1.svg';
 interface StepOneProps {
   handleNextStep: VoidFunction;
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
@@ -19,7 +20,7 @@ const StepOne = ({ handleNextStep, handleNavigate }: StepOneProps) => {
             }
             fontSize={20}
           />
-          <ImgOnboard1 width={'100%'} height={'31rem'} />
+          <img src={ImgOnboard1} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button

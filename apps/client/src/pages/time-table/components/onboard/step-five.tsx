@@ -1,10 +1,11 @@
 import { Button, Description } from '@confeti/design-system';
-import { ImgOnboard5 } from '@confeti/design-system/icons';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
+
+import ImgOnboard5 from '/images/img_onboard_5.svg';
 
 interface StepFiveProps {
   handleNextStep: VoidFunction;
@@ -24,7 +25,7 @@ const StepFive = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
               descriptionText={`보고싶은 공연을 표시해요.`}
             />
           </Description.Text>
-          <ImgOnboard5 width={'100%'} height={'31rem'} />
+          <img src={ImgOnboard5} />
           <ProgressBar totalIndex={5} currentIndex={3} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
