@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import StepFive from '@pages/time-table/components/onboard/step-five';
-import StepFour from '@pages/time-table/components/onboard/step-four';
-import StepOne from '@pages/time-table/components/onboard/step-one';
-import StepSix from '@pages/time-table/components/onboard/step-six';
-import StepThree from '@pages/time-table/components/onboard/step-three';
-import StepTwo from '@pages/time-table/components/onboard/step-two';
+import ClickBlockStep from '@pages/time-table/components/onboard/click-block-step';
+import EditTimeTableStep from '@pages/time-table/components/onboard/edit-timetable-step';
+import FestivalCustomStep from '@pages/time-table/components/onboard/festival-custom-step';
+import FestivalSelectStep from '@pages/time-table/components/onboard/festival-select-step';
+import IntroStep from '@pages/time-table/components/onboard/intro-step';
+import SaveTimeTableStep from '@pages/time-table/components/onboard/save-timetable-step';
 
 import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
@@ -31,37 +31,37 @@ const TimeTableOnboard = () => {
   return (
     <Funnel>
       <Step name="1">
-        <StepOne
+        <IntroStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
       </Step>
       <Step name="2">
-        <StepTwo
+        <FestivalSelectStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
       </Step>
       <Step name="3">
-        <StepThree
+        <FestivalCustomStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
       </Step>
       <Step name="4">
-        <StepFour
+        <EditTimeTableStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
       </Step>
       <Step name="5">
-        <StepFive
+        <ClickBlockStep
           handleNextStep={handleNextStep(1)}
           handleNavigate={handleNavigate}
         />
       </Step>
       <Step name="6">
-        <StepSix handleNavigate={handleNavigate} />
+        <SaveTimeTableStep handleNavigate={handleNavigate} />
       </Step>
     </Funnel>
   );

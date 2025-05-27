@@ -12,7 +12,7 @@ interface StepFiveProps {
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepFive = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
+const ClickBlockStep = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -40,4 +40,4 @@ const StepFive = ({ handleNavigate, handleNextStep }: StepFiveProps) => {
   );
 };
 
-export default StepFive;
+export default ClickBlockStep;

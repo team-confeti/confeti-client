@@ -11,7 +11,10 @@ interface StepTwoProps {
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepTwo = ({ handleNavigate, handleNextStep }: StepTwoProps) => {
+const FestivalSelectStep = ({
+  handleNavigate,
+  handleNextStep,
+}: StepTwoProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -50,4 +53,4 @@ const StepTwo = ({ handleNavigate, handleNextStep }: StepTwoProps) => {
   );
 };
 
-export default StepTwo;
+export default FestivalSelectStep;

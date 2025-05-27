@@ -5,13 +5,17 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard6 from '/images/img_onboard_6.svg';
+import ImgOnboard3 from '/images/img_onboard_3.svg';
 
-interface StepSixProps {
+interface StepThreeProps {
+  handleNextStep: VoidFunction;
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepSix = ({ handleNavigate }: StepSixProps) => {
+const FestivalCustomStep = ({
+  handleNavigate,
+  handleNextStep,
+}: StepThreeProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -19,26 +23,21 @@ const StepSix = ({ handleNavigate }: StepSixProps) => {
           <Description.Text fontSize={20} descriptionText={''}>
             <Description.HighlightedText
               fontSize={20}
-              highlightedText="이미지 저장"
+              highlightedText="페스티벌 추가/삭제"
             />
-            <Description.Text fontSize={20} descriptionText={`을 통해\n`} />
             <Description.Text
               fontSize={20}
-              descriptionText={`오프라인에서도 타임테이블 확인!`}
+              descriptionText={`로 \n원하는 타임테이블을 커스텀해요.`}
             />
           </Description.Text>
-          <img src={ImgOnboard6} />
-          <ProgressBar totalIndex={5} currentIndex={4} />
+          <img src={ImgOnboard3} />
+          <ProgressBar totalIndex={5} currentIndex={1} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
-          <Button
-            text="타임테이블 시작하기"
-            variant="add"
-            onClick={() => handleNavigate({ isReTry: false })}
-          />
+          <Button text="다음" variant="add" onClick={handleNextStep} />
           <SkipButton
-            onClick={() => handleNavigate({ isReTry: true })}
-            text="다시보기"
+            onClick={() => handleNavigate({ isReTry: false })}
+            text="SKIP"
           />
         </div>
       </div>
@@ -46,4 +45,4 @@ const StepSix = ({ handleNavigate }: StepSixProps) => {
   );
 };
 
-export default StepSix;
+export default FestivalCustomStep;

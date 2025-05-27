@@ -12,7 +12,10 @@ interface StepFourProps {
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepThree = ({ handleNavigate, handleNextStep }: StepFourProps) => {
+const EditTimeTableStep = ({
+  handleNavigate,
+  handleNextStep,
+}: StepFourProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -42,4 +45,4 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepFourProps) => {
   );
 };
 
-export default StepThree;
+export default EditTimeTableStep;

@@ -5,14 +5,13 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard3 from '/images/img_onboard_3.svg';
+import ImgOnboard6 from '/images/img_onboard_6.svg';
 
-interface StepThreeProps {
-  handleNextStep: VoidFunction;
+interface StepSixProps {
   handleNavigate: ({ isReTry }: { isReTry: boolean }) => void;
 }
 
-const StepThree = ({ handleNavigate, handleNextStep }: StepThreeProps) => {
+const SaveTimeTableStep = ({ handleNavigate }: StepSixProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -20,21 +19,26 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepThreeProps) => {
           <Description.Text fontSize={20} descriptionText={''}>
             <Description.HighlightedText
               fontSize={20}
-              highlightedText="페스티벌 추가/삭제"
+              highlightedText="이미지 저장"
             />
+            <Description.Text fontSize={20} descriptionText={`을 통해\n`} />
             <Description.Text
               fontSize={20}
-              descriptionText={`로 \n원하는 타임테이블을 커스텀해요.`}
+              descriptionText={`오프라인에서도 타임테이블 확인!`}
             />
           </Description.Text>
-          <img src={ImgOnboard3} />
-          <ProgressBar totalIndex={5} currentIndex={1} />
+          <img src={ImgOnboard6} />
+          <ProgressBar totalIndex={5} currentIndex={4} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
-          <Button text="다음" variant="add" onClick={handleNextStep} />
-          <SkipButton
+          <Button
+            text="타임테이블 시작하기"
+            variant="add"
             onClick={() => handleNavigate({ isReTry: false })}
-            text="SKIP"
+          />
+          <SkipButton
+            onClick={() => handleNavigate({ isReTry: true })}
+            text="다시보기"
           />
         </div>
       </div>
@@ -42,4 +46,4 @@ const StepThree = ({ handleNavigate, handleNextStep }: StepThreeProps) => {
   );
 };
 
-export default StepThree;
+export default SaveTimeTableStep;
