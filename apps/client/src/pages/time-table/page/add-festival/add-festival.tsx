@@ -24,6 +24,8 @@ const AddFestival = () => {
     navigate(routePath.TIME_TABLE_OUTLET);
   });
   const TOTAL_SELECTIONS = selectedFestivals.length + addedFestivals.length;
+  const isButtonDisabled =
+    selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS;
 
   useEffect(() => {
     if (TOTAL_SELECTIONS >= MAX_SELECTIONS) {
@@ -67,9 +69,7 @@ const AddFestival = () => {
         <Button
           variant="add"
           text={'추가하기'}
-          disabled={
-            selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS
-          }
+          disabled={isButtonDisabled}
           onClick={handleAddClick}
         />
       </div>
