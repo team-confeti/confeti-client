@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 
@@ -23,13 +24,17 @@ const AddFestival = () => {
     navigate(routePath.TIME_TABLE_OUTLET);
   });
   const TOTAL_SELECTIONS = selectedFestivals.length + addedFestivals.length;
+  const isButtonDisabled =
+    selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS;
+
+  useEffect(() => {
+    if (TOTAL_SELECTIONS >= MAX_SELECTIONS) {
+      showToast();
+    }
+  }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);
 
   const handleAddClick = () => {
-    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
-      showToast();
-    } else {
-      addFestival(selectedFestivals);
-    }
+    addFestival(selectedFestivals);
   };
 
   return (
@@ -64,7 +69,7 @@ const AddFestival = () => {
         <Button
           variant="add"
           text={'추가하기'}
-          disabled={selectedFestivals.length === 0}
+          disabled={isButtonDisabled}
           onClick={handleAddClick}
         />
       </div>
