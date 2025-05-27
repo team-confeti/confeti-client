@@ -1,4 +1,5 @@
 import * as styles from './skip-button.css';
+
 interface SkipButtonProps {
   onClick?: () => void;
   text: string;
