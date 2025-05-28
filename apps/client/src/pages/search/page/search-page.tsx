@@ -79,6 +79,47 @@ const SearchPage = () => {
     }
   };
 
+  const SuggestionContent = () => (
+    <>
+      <SearchSuggestionList
+        relatedKeyword={relatedArtists?.artists?.map((artist) => ({
+          id: artist.artistId,
+          title: artist.name,
+          profileUrl: artist.profileUrl,
+        }))}
+        onSelectKeyword={handleNavigateWithKeyword}
+      />
+      <SearchSuggestionList
+        relatedKeyword={relatedPerformances?.performances?.map(
+          (performance) => ({
+            id: performance.id,
+            title: performance.title,
+            profileUrl: performance.posterUrl,
+          }),
+        )}
+        onSelectKeyword={handleNavigateWithKeyword}
+        listType="performance"
+      />
+    </>
+  );
+
+  const ResultContent = () => (
+    <SearchResult
+      artistData={artistData?.artist ?? null}
+      relatedPerformances={relatedPerformances ?? null}
+      performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
+      refetchArtist={refetchArtist}
+    />
+  );
+
+  const DefaultContent = () => (
+    <main className={styles.resultSection}>
+      <RecentSearchSection />
+      <PopularSearchSection popularSearchData={popularSearchData} />
+      <RecentFestivalSection recentViewData={recentViewData ?? null} />
+    </main>
+  );
+
   const searchState =
     isSearchLoading || isRelatedKeywordLoading
       ? 'loading'
@@ -111,49 +152,10 @@ const SearchPage = () => {
             value={searchState}
             caseBy={{
               loading: () => <Loading />,
-              suggestion: () => (
-                <>
-                  <SearchSuggestionList
-                    relatedKeyword={relatedArtists?.artists?.map((artist) => ({
-                      id: artist.artistId,
-                      title: artist.name,
-                      profileUrl: artist.profileUrl,
-                    }))}
-                    onSelectKeyword={handleNavigateWithKeyword}
-                  />
-                  <SearchSuggestionList
-                    relatedKeyword={relatedPerformances?.performances?.map(
-                      (performance) => ({
-                        id: performance.id,
-                        title: performance.title,
-                        profileUrl: performance.posterUrl,
-                      }),
-                    )}
-                    onSelectKeyword={handleNavigateWithKeyword}
-                    listType="performance"
-                  />
-                </>
-              ),
-              result: () => (
-                <SearchResult
-                  artistData={artistData?.artist ?? null}
-                  relatedPerformances={relatedPerformances ?? null}
-                  performanceTypeAnalysisData={
-                    performanceTypeAnalysisData ?? null
-                  }
-                  refetchArtist={refetchArtist}
-                />
-              ),
+              suggestion: () => <SuggestionContent />,
+              result: () => <ResultContent />,
             }}
-            defaultComponent={() => (
-              <main className={styles.resultSection}>
-                <RecentSearchSection />
-                <PopularSearchSection popularSearchData={popularSearchData} />
-                <RecentFestivalSection
-                  recentViewData={recentViewData ?? null}
-                />
-              </main>
-            )}
+            defaultComponent={() => <DefaultContent />}
           />
         </>
       )}
