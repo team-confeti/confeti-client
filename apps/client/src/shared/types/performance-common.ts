@@ -1,6 +1,5 @@
 export interface PerformanceBase {
   posterUrl: string;
-  posterBgUrl: string;
   title: string;
   subtitle: string;
   startAt: string;

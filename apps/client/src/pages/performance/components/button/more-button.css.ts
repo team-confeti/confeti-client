@@ -6,9 +6,9 @@ import { themeVars } from '@confeti/design-system/styles';
 export const button = recipe({
   base: {
     ...themeVars.display.flexJustifyAlignCenter,
+    width: '100%',
     height: '4.4rem',
     padding: '1rem 2rem',
-    margin: '0 2rem 0.4rem 2rem',
     border: `1px solid ${themeVars.color.gray300}`,
     borderRadius: '10px',
     backgroundColor: themeVars.color.white,

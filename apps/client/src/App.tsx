@@ -1,6 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
-import { init } from '@amplitude/analytics-browser';
-import * as Sentry from '@sentry/react';
+import { init as amplitudeInit } from '@amplitude/analytics-browser';
+import {
+  addIntegration,
+  browserTracingIntegration,
+  init as sentryInit,
+} from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -15,14 +19,16 @@ import Router from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
-init(CONFIG.AMPLITUDE_API_KEY);
-Sentry.init({
-  dsn: CONFIG.SENTRY_DSN,
-  tracePropagationTargets: ['localhost', /^https:\/\/confeti\.co\.kr/],
-  tracesSampleRate: 1.0,
-  normalizeDepth: 6,
+amplitudeInit(CONFIG.AMPLITUDE_API_KEY, {
+  defaultTracking: false,
 });
-Sentry.addIntegration(Sentry.browserTracingIntegration());
+sentryInit({
+  dsn: CONFIG.SENTRY_DSN,
+  tracePropagationTargets: [/^https:\/\/confeti\.co\.kr/],
+  tracesSampleRate: 0.1,
+  normalizeDepth: 4,
+});
+addIntegration(browserTracingIntegration());
 
 function App() {
   return (

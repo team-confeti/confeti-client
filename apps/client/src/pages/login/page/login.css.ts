@@ -11,6 +11,11 @@ export const container = style({
   padding: '17% 6% 15% 6%',
 });
 
+export const logoImage = style({
+  width: '18rem',
+  height: '18rem',
+});
+
 export const bottomSection = style({
   ...themeVars.display.flexColumn,
   width: '100%',

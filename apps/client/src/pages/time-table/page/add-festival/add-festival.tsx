@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
 import { MAX_SELECTIONS } from '../../constants';
@@ -23,13 +24,17 @@ const AddFestival = () => {
     navigate(routePath.TIME_TABLE_OUTLET);
   });
   const TOTAL_SELECTIONS = selectedFestivals.length + addedFestivals.length;
+  const isButtonDisabled =
+    selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS;
+
+  useEffect(() => {
+    if (TOTAL_SELECTIONS >= MAX_SELECTIONS) {
+      showToast();
+    }
+  }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);
 
   const handleAddClick = () => {
-    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
-      showToast();
-    } else {
-      addFestival(selectedFestivals);
-    }
+    addFestival(selectedFestivals);
   };
 
   return (
@@ -39,27 +44,32 @@ const AddFestival = () => {
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
-            <FestivalCard
+            <div
               key={festival.festivalId}
-              typeId={festival.festivalId}
-              type="FESTIVAL"
-              title={festival.title}
-              imageSrc={festival.posterUrl}
-              selectable={true}
-              isSelected={isSelected}
-              onClick={() =>
-                handleFestivalClick(festival.festivalId, isSelected)
-              }
-            />
+              className={styles.festivalCardWrapper}
+            >
+              <FestivalCard
+                typeId={festival.festivalId}
+                type="FESTIVAL"
+                title={festival.title}
+                imageSrc={festival.posterUrl}
+                selectable={true}
+                isSelected={isSelected}
+                onClick={() =>
+                  handleFestivalClick(festival.festivalId, isSelected)
+                }
+              />
+            </div>
           );
         })}
+
         {hasNextPage && <div ref={observerRef} style={{ height: '2rem' }} />}
       </div>
       <div className={styles.buttonSection}>
         <Button
           variant="add"
           text={'추가하기'}
-          disabled={selectedFestivals.length === 0}
+          disabled={isButtonDisabled}
           onClick={handleAddClick}
         />
       </div>

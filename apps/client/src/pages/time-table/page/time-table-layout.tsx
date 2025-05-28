@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { TAB_MENU } from '@pages/home/constants/menu';
 
 import NavigationTabs from '@shared/components/navigation-tabs';
-import { routePath } from '@shared/constants/path';
+import { routePath } from '@shared/router/path';
 
 const TimeTableLayout = () => {
   const location = useLocation();

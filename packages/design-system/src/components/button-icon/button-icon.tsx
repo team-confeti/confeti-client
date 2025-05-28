@@ -1,7 +1,6 @@
-import { type ReactNode } from 'react';
-import IconButton from '@mui/material/IconButton';
+import { ButtonHTMLAttributes, type ReactNode } from 'react';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   ariaLabel: string;
   icon: ReactNode;
@@ -9,14 +8,9 @@ interface Props {
 
 const ButtonIcon = ({ onClick, ariaLabel, icon }: Props) => {
   return (
-    <IconButton
-      onClick={onClick}
-      aria-label={ariaLabel}
-      disableRipple
-      sx={{ padding: 0 }}
-    >
+    <button onClick={onClick} aria-label={ariaLabel}>
       {icon}
-    </IconButton>
+    </button>
   );
 };
 

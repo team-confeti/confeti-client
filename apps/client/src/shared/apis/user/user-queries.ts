@@ -29,6 +29,7 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.PROFILE(),
       queryFn: getUserProfile,
+      staleTime: 3 * 60 * 1000,
     }),
   MY_ARTISTS_PREVIEW: () =>
     queryOptions({

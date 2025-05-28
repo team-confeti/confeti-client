@@ -1,6 +1,9 @@
 import { Performances } from './performance-response';
 
-export type MyTimeTable = Pick<Performances, 'typeId' | 'posterUrl' | 'title'>;
+export type MyTimeTable = Pick<
+  Performances,
+  'typeId' | 'posterUrl' | 'title' | 'type'
+>;
 
 export interface MyHistoryTimetableResponse {
   timetableCount: number;
@@ -94,7 +97,6 @@ export interface SetListDetail {
   type: 'FESTIVAL' | 'CONCERT';
   typeId: number;
   posterUrl: string;
-  posterBgUrl: string;
   title: string;
   subTitle: string;
   startAt: string;

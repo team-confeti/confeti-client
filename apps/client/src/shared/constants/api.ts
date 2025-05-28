@@ -8,6 +8,7 @@ export const CONFIG = {
   APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,
   AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
+  IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
 } as const;
 
 export const END_POINT = {
@@ -29,6 +30,8 @@ export const END_POINT = {
     `/my/setlists/${setlistId}/musics/${orders}`,
   DELETE_CANCEL_EDIT_SETLIST: (setlistId: number) =>
     `/my/setlists/${setlistId}/edit/cancel`,
+  PATCH_REORDER_SETLIST: (setlistId: number) =>
+    `/my/setlists/${setlistId}/edit/musics/order`,
   POST_ADD_MUSIC_TO_SETLIST: (setlistId: number) =>
     `/my/setlists/${setlistId}/musics`,
 

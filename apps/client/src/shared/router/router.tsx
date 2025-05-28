@@ -1,7 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
+import RequireLoginPage from '@pages/home/page/auth/require-login';
+import HomePage from '@pages/home/page/home-page';
+import MyRequireLoginPage from '@pages/my/page/auth/require-login';
 import EditProfile from '@pages/my/page/edit/edit-profile';
+import MyPage from '@pages/my/page/my-page';
+import MyHistoryPage from '@pages/my-history/page/my-history';
+import MyHistoryOverviewPage from '@pages/my-history/page/overview/my-history-overview-page';
+import TimeTableLayout from '@pages/time-table/page/time-table-layout';
+import TimeTablePage from '@pages/time-table/page/time-table-page';
 
-import { routePath } from '@shared/constants/path';
+import ErrorPage from '@shared/pages/error/error';
+import { routePath } from '@shared/router/path';
 
 import GlobalLayout from './global-layout';
 import {
@@ -11,25 +20,16 @@ import {
   ConcertDetailPage,
   DeleteAccountPage,
   DeleteFestivalPage,
-  ErrorPage,
   FestivalDetailPage,
-  HomePage,
   LoginPage,
   MyArtistPage,
   MyConfetiPage,
-  MyHistoryOverviewPage,
-  MyHistoryPage,
-  MyPage,
   MyProfilePage,
   MyRecordPage,
-  MyRequireLoginPage,
   OnboardingPage,
-  RequireLoginPage,
   SearchPage,
   SetlistDetailPage,
   SettingPage,
-  TimeTableLayout,
-  TimeTablePage,
 } from './lazy';
 import { createProtectedRoute } from './protected-route';
 
@@ -102,8 +102,14 @@ export default function Router() {
         </Route>
 
         <Route path={routePath.SEARCH} element={<SearchPage />} />
-        <Route path={routePath.CONCERT} element={<ConcertDetailPage />} />
-        <Route path={routePath.FESTIVAL} element={<FestivalDetailPage />} />
+        <Route
+          path={routePath.CONCERT_DETAIL}
+          element={<ConcertDetailPage />}
+        />
+        <Route
+          path={routePath.FESTIVAL_DETAIL}
+          element={<FestivalDetailPage />}
+        />
 
         {/* TimeTable */}
         <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>

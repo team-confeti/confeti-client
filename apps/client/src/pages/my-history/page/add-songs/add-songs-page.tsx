@@ -5,7 +5,8 @@ import {
 } from '@pages/my-history/hooks/use-music-search';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 
-import { Button, MusicItem, SearchBar, toast } from '@confeti/design-system';
+import { Button, MusicList, SearchBar, toast } from '@confeti/design-system';
+import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
@@ -26,7 +27,7 @@ const AddSongsPage = () => {
   const {
     data: { relatedArtists },
   } = useRelatedSearch({
-    keyword: keyword,
+    keyword,
     enabled: !!keyword.trim(),
   });
 
@@ -40,72 +41,71 @@ const AddSongsPage = () => {
     !!(artistId && keyword),
   );
 
-  useEffect(() => {
-    if (relatedArtists?.artists) {
-      // 검색어와 일치하거나 포함하는 첫 번째 아티스트의 ID를 사용
-      const matchingArtist = relatedArtists.artists.find((artist) =>
-        artist.name.toLowerCase().includes(keyword.toLowerCase()),
-      );
+  const combinedMusics = [
+    ...(musicSearchData?.musics || []),
+    ...(artistMusicSearchData?.musics || []),
+  ];
 
-      if (matchingArtist) {
-        setArtistId(matchingArtist.artistId);
-      } else {
-        setArtistId(null);
-      }
-    } else {
-      setArtistId(null);
-    }
+  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
+    combinedMusics.map((music) => ({
+      ...music,
+      musicId: String(music.musicId),
+    })),
+  );
+
+  useEffect(() => {
+    const matchingArtist = relatedArtists?.artists.find((artist) =>
+      artist.name.toLowerCase().includes(keyword.toLowerCase()),
+    );
+    setArtistId(matchingArtist?.artistId || null);
   }, [relatedArtists, keyword]);
-  const handleInputChangeWithReset = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+
+  const handleInputChangeWithReset = (e: React.ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
-  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setKeyword('');
-    }
+    if (e.key === 'Enter') setKeyword('');
   };
 
-  const handleMoveToConfirmAddSection = () => {
-    setIsConfirmAddSection(true);
+  const handleMoveToConfirmAddSection = () => setIsConfirmAddSection(true);
+
+  const handleRemoveSong = (songId: number) => {
+    setSelectedSongs((prev) => prev.filter((song) => song.musicId !== songId));
   };
 
-  const handleAddSong = (song: MusicItemType) => {
-    // 이미 선택된 곡인지 확인
+  const handleConfirmAddSection = () => setIsConfirmAddSection(false);
+
+  const handleClickMusic = (musicId: string) => {
+    const song = musicList.find((m) => m.musicId === musicId);
+    if (!song) return;
+
     const isAlreadySelected = selectedSongs.some(
-      (selectedSong) => selectedSong.musicId === song.musicId,
+      (s) => s.musicId === Number(song.musicId),
     );
 
     if (!isAlreadySelected) {
-      setSelectedSongs([...selectedSongs, song]);
+      const newSong = {
+        musicId: Number(song.musicId),
+        title: song.title,
+        artistName: song.artistName,
+        artworkUrl: song.artworkUrl,
+      };
+
+      setSelectedSongs((prev) => [...prev, newSong]);
       toast({
         text: '(이)가 대기열에 추가되었습니다.',
         highlightText: song.title,
         position: 'middleCenter',
       });
-    } else {
-      return;
     }
-  };
-
-  const handleRemoveSong = (songId: number) => {
-    setSelectedSongs((prevSongs) =>
-      prevSongs.filter((song) => Number(song.musicId) !== Number(songId)),
-    );
-  };
-
-  const handleConfirmAddSection = () => {
-    setIsConfirmAddSection(false);
   };
 
   return (
     <>
       {isConfirmAddSection ? (
         <ConfirmAddSection
-          handleRemoveSong={handleRemoveSong}
           selectedSongs={selectedSongs}
+          handleRemoveSong={handleRemoveSong}
           handleConfirmAddSection={handleConfirmAddSection}
         />
       ) : (
@@ -118,49 +118,15 @@ const AddSongsPage = () => {
               onKeyDown={handleKeyDown}
             />
           </div>
+
           <div className={styles.renderContentContainer}>
-            {musicSearchData &&
-              musicSearchData.musics.map((song) => (
-                <div
-                  key={song.musicId}
-                  className={styles.musicListContainer}
-                  onClick={() => {
-                    handleAddSong({
-                      musicId: song.musicId,
-                      title: song.title,
-                      artistName: song.artistName,
-                      artworkUrl: song.artworkUrl,
-                    });
-                  }}
-                >
-                  <MusicItem
-                    albumImage={song.artworkUrl}
-                    title={song.title}
-                    artist={song.artistName}
-                  />
-                </div>
-              ))}
-            {artistMusicSearchData &&
-              artistMusicSearchData.musics.map((song) => (
-                <div
-                  key={song.musicId}
-                  className={styles.musicListContainer}
-                  onClick={() => {
-                    handleAddSong({
-                      musicId: song.musicId,
-                      title: song.title,
-                      artistName: song.artistName,
-                      artworkUrl: song.artworkUrl,
-                    });
-                  }}
-                >
-                  <MusicItem
-                    albumImage={song.artworkUrl}
-                    title={song.title}
-                    artist={song.artistName}
-                  />
-                </div>
-              ))}
+            <MusicList
+              musics={musicList}
+              onClickPlayToggle={onClickPlayToggle}
+              onClickAdd={handleClickMusic}
+              variant="default"
+            />
+            <audio ref={audioRef} />
           </div>
 
           <div className={styles.buttonContainer}>

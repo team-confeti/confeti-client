@@ -4,8 +4,10 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const ticketingBannerText = style({
   ...themeVars.fontStyles.subtitle1_m_18,
+  ...themeVars.display.flexColumn,
   color: themeVars.color.gray800,
   lineHeight: '1.3',
+  gap: '0.4rem',
 });
 
 export const highlightedText = style({

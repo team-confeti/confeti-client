@@ -1,6 +1,4 @@
 import { useParams } from 'react-router-dom';
-import ArtistSection from '@pages/performance/components/artist/artist-section';
-import ArtistTitle from '@pages/performance/components/artist/artist-title';
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
 import Location from '@pages/performance/components/location/location';
 import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
@@ -11,6 +9,8 @@ import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 import { addRecentViewItem } from '@shared/utils/recent-view';
+
+import FestivalArtistSection from '../components/artist/festival-artist-section';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
@@ -27,7 +27,6 @@ const FestivalDetailPage = () => {
     <>
       <FloatingButton isButtonHidden={isButtonHidden} />
       <Hero
-        posterBgUrl={festival.posterBgUrl}
         posterUrl={festival.posterUrl}
         title={festival.title}
         startAt={festival.startAt}
@@ -53,8 +52,7 @@ const FestivalDetailPage = () => {
       />
       <Location address={festival.address} />
       <Spacing />
-      <ArtistTitle />
-      <ArtistSection type="festival" artistData={festivalDetail} />
+      <FestivalArtistSection artists={festivalDetail.festivalDates} />
       <Footer />
     </>
   );

@@ -52,7 +52,6 @@ const HomePage = () => {
   return (
     <>
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-
       <PerformanceCarouselSection data={latestPerformances.performances} />
       <Spacing size="xl" color="white" />
 

@@ -4,6 +4,8 @@ import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutat
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { BtnArrowLeft20 } from '@confeti/design-system/icons';
+import { routePath } from '@shared/router/path';
+import { buildPath } from '@shared/utils/build-path';
 
 import * as styles from './confirm-add-section.css';
 
@@ -71,10 +73,13 @@ const ConfirmAddSection = ({
       artworkUrl: song.artworkUrl,
       previewUrl: '',
     }));
-
-    // 변환된 데이터로 mutation 호출
     addMusicToSetListMutation.mutate(requestData);
-    navigate(`/my-history/setlist-detail/${setlistId}`);
+
+    navigate(
+      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
+        setlistId: setlistId ?? '',
+      }),
+    );
   };
 
   return (
@@ -94,6 +99,7 @@ const ConfirmAddSection = ({
         {selectedSongs.map((song) => (
           <MusicItem
             key={song.musicId}
+            musicId={String(song.musicId)}
             albumImage={song.artworkUrl}
             title={song.title}
             artist={song.artistName}

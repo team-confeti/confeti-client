@@ -9,21 +9,32 @@ export const wrapper = style({
 });
 
 export const container = style({
-  flex: 1,
+  display: 'flex',
+  justifyContent: 'flex-start',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   overflowY: 'auto',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
   padding: '2.4rem 2rem',
-  gridColumnGap: '1.8rem',
-  gridRowGap: '3rem',
+  rowGap: '3rem',
+  columnGap: '1.8rem',
+  maxWidth: 'fit-content',
+  maxHeight: 'fit-content',
+});
+
+export const festivalCardWrapper = style({
+  width: 'calc((100% - 8rem ) / 3)',
+  flexShrink: 0,
+  flexGrow: 0,
 });
 
 export const buttonSection = style({
-  position: 'relative',
-  bottom: '0',
-  left: '0',
+  background: themeVars.color.white_grad,
+  position: 'fixed',
   padding: '2rem',
-  height: '9rem',
-  width: '100%',
-  backgroundColor: themeVars.color.white,
+  bottom: 0,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: 'min(100%, var(--max-width))',
+  maxWidth: '100%',
+  zIndex: themeVars.zIndex.timeTableActions.content,
 });
