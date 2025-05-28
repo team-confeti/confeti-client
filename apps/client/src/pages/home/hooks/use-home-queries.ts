@@ -30,9 +30,9 @@ export const useHomeQueries = () => {
 };
 
 export const useSuggestMusic = (performanceId: number, musicIds?: string[]) => {
-  const { data, refetch, isLoading } = useQuery({
+  const { data, refetch, isPending } = useQuery({
     ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(performanceId, musicIds),
   });
 
-  return { data, refetch, isLoading };
+  return { data, refetch, isPending };
 };
