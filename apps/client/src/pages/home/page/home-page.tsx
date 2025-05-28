@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
 
-import { Footer, Spacing } from '@confeti/design-system';
+import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
-import { useMoveScroll } from '@shared/hooks/use-scroll-position';
+import {
+  useMoveScroll,
+  useScrollPosition,
+} from '@shared/hooks/use-scroll-position';
 
 import CategoryTabs from '../components/category-tabs';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
@@ -40,6 +43,7 @@ const HomePage = () => {
     suggestPerformance: useMoveScroll(),
     suggestMusic: useMoveScroll(),
   };
+  const { isButtonHidden } = useScrollPosition();
 
   const {
     userName,
@@ -82,6 +86,7 @@ const HomePage = () => {
         data={suggestMusicPerformance}
       />
       <Spacing size="2xl" color="white" />
+      <FloatingButton isButtonHidden={isButtonHidden} />
 
       <Footer />
     </>
