@@ -14,16 +14,16 @@ import {
   ToastContainer,
 } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
-import { CONFIG } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import Router from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
-amplitudeInit(CONFIG.AMPLITUDE_API_KEY, {
+amplitudeInit(ENV_CONFIG.AMPLITUDE_API_KEY, {
   defaultTracking: false,
 });
 sentryInit({
-  dsn: CONFIG.SENTRY_DSN,
+  dsn: ENV_CONFIG.SENTRY_DSN,
   tracePropagationTargets: [/^https:\/\/confeti\.co\.kr/],
   tracesSampleRate: 0.1,
   normalizeDepth: 4,

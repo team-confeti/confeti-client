@@ -6,7 +6,7 @@ import {
   IcKakao,
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
-import { CONFIG } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
 import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
 
@@ -81,7 +81,7 @@ const Login = () => {
         ? 'http://localhost:5173/'
         : 'https://confeti.co.kr/';
 
-    window.location.href = `${CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
+    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
   };
 
   return (

@@ -2,7 +2,8 @@ import * as Sentry from '@sentry/react';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
-import { CONFIG, END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
+import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
@@ -81,7 +82,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
   try {
     const response = await fetch(
-      `${CONFIG.BASE_URL}${END_POINT.POST_REISSUE_TOKEN}`,
+      `${ENV_CONFIG.BASE_URL}${END_POINT.POST_REISSUE_TOKEN}`,
       {
         method: 'POST',
         headers: {
