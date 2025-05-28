@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Box, Button, MusicList } from '@confeti/design-system';
+import { Box, Button } from '@confeti/design-system';
 import { IcLoad, IcMusic } from '@confeti/design-system/icons';
+import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
 

@@ -1,4 +1,4 @@
-import MusicItem from '../music-item/music-item';
+import MusicItem from '../../../../../../packages/design-system/src/components/music-item/music-item';
 
 interface Music {
   musicId: string;
