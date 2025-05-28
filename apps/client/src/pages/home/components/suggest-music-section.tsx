@@ -24,7 +24,7 @@ const SuggestMusicSection = ({
   const {
     data: suggestMusic,
     refetch,
-    isLoading,
+    isPending,
   } = useSuggestMusic(data.performanceId, musicIdList);
 
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
@@ -45,11 +45,11 @@ const SuggestMusicSection = ({
       subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
     >
       <div ref={scrollRef}>
-        {isLoading ? (
-          <div className={styles.loading} />
-        ) : (
-          <MusicList musics={musicList} onClickPlayToggle={onClickPlayToggle} />
-        )}
+        <MusicList
+          musics={musicList}
+          onClickPlayToggle={onClickPlayToggle}
+          isPending={isPending}
+        />
         <audio ref={audioRef} />
       </div>
       <Button
