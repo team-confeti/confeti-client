@@ -80,7 +80,7 @@ const LoginPage = () => {
       <Header
         variant="detail"
         title="로그인"
-        icon={<BtnDeleteBlack20 width="2rem" height="2rem" />}
+        icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
         isBackToHome
       />
       <section className={styles.container}>
@@ -90,20 +90,20 @@ const LoginPage = () => {
             className={styles.logoImage}
             alt="confeti logo"
           />
-          <ImgTypelogoBig width="17rem" height="4rem" />
+          <ImgTypelogoBig width={'17rem'} height={'4rem'} />
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.loginButton}>
             <Button
               text="카카오로 계속하기"
               variant="kakao"
-              icon={<IcKakao width="2.4rem" height="2.4rem" />}
+              icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
               onClick={handleKakaoLogin}
             />
             <Button
               text="Apple로 계속하기"
               variant="apple"
-              icon={<IcApple width="2.4rem" height="2.4rem" />}
+              icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
               onClick={handleAppleLogin}
             />
           </div>
