@@ -67,13 +67,19 @@ const EditProfile = () => {
   };
 
   const handleSave = async () => {
-    const fileToSend = profileFile
-      ? profileFile
-      : await urlToFile(profileData.profileUrl, 'current-profile.jpg');
-    updateUserInfo({
-      name: name || profileData.name,
-      profileFile: fileToSend,
-    });
+    const newName = name || profileData.name;
+
+    if (profileFile) {
+      updateUserInfo({
+        name: newName,
+        profileFile: profileFile,
+      });
+    } else {
+      updateUserInfo({
+        name: newName,
+        profileUrl: profileData.profileUrl,
+      });
+    }
   };
 
   return (
