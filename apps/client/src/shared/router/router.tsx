@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import RedirectKakao from '@pages/auth/page/redirect-kakao';
 import RequireLoginPage from '@pages/auth/page/require-login';
 import HomePage from '@pages/home/page/home-page';
 import MyRequireLoginPage from '@pages/my/page/auth/require-login';
@@ -38,6 +39,7 @@ export default function Router() {
     <Routes>
       <Route path={routePath.ONBOARDING} element={<OnboardingPage />} />
       <Route path={routePath.LOGIN} element={<LoginPage />} />
+      <Route path={routePath.REDIRECT_KAKAO} element={<RedirectKakao />} />
       <Route path={routePath.LAYOUT} element={<GlobalLayout />}>
         <Route path={routePath.ROOT} element={<HomePage />} />
 

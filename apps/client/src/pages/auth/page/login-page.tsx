@@ -1,5 +1,4 @@
-import { Header } from '@confeti/design-system';
-import { Button } from '@confeti/design-system';
+import { Button, Header } from '@confeti/design-system';
 import {
   BtnDeleteBlack20,
   IcApple,
@@ -12,18 +11,15 @@ import { routePath } from '@shared/router/path';
 import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
 
-import * as styles from './login.css';
+import * as styles from './login-page.css';
 
 const DESCRIPTION_TEXT =
   '가입 시, confeti의\n[이용약관] 및 [개인정보처리방침]에 동의하게 돼요.';
-const LINK_MAP: LinkMap = {
+
+const LINK_MAP: Record<string, string> = {
   이용약관: routePath.PRIVACY_CONFETI,
   개인정보처리방침: routePath.PRIVACY_PERSONAL,
 };
-
-interface LinkMap {
-  [key: string]: string;
-}
 
 const parseLinkContent = (
   part: string,
@@ -53,17 +49,17 @@ const processLine = (
   lineIndex: number,
 ): (JSX.Element | string)[] => {
   if (!line) return [];
-
   const parts = line.split(/(\[.*?\])/);
-  const processedParts = parts.map((part, index) =>
-    parseLinkContent(part, lineIndex, index),
-  );
-
-  return processedParts;
+  return parts.map((part, index) => parseLinkContent(part, lineIndex, index));
 };
 
-const Login = () => {
+const LoginPage = () => {
   const { mutate: appleLoginMutate } = useAppleLoginMutation();
+
+  const REDIRECT_URI =
+    window.location.hostname === 'localhost'
+      ? 'http://localhost:5173/auth'
+      : 'https://confeti.co.kr/auth';
 
   const handleAppleLogin = async () => {
     try {
@@ -76,12 +72,7 @@ const Login = () => {
   };
 
   const handleKakaoLogin = () => {
-    const redirectUri =
-      window.location.hostname === 'localhost'
-        ? 'http://localhost:5173/'
-        : 'https://confeti.co.kr/';
-
-    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
+    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${REDIRECT_URI}`;
   };
 
   return (
@@ -89,8 +80,8 @@ const Login = () => {
       <Header
         variant="detail"
         title="로그인"
-        icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
-        isBackToHome={true}
+        icon={<BtnDeleteBlack20 width="2rem" height="2rem" />}
+        isBackToHome
       />
       <section className={styles.container}>
         <div>
@@ -99,20 +90,20 @@ const Login = () => {
             className={styles.logoImage}
             alt="confeti logo"
           />
-          <ImgTypelogoBig width={'17rem'} height={'4rem'} />
+          <ImgTypelogoBig width="17rem" height="4rem" />
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.loginButton}>
             <Button
               text="카카오로 계속하기"
               variant="kakao"
-              icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
+              icon={<IcKakao width="2.4rem" height="2.4rem" />}
               onClick={handleKakaoLogin}
             />
             <Button
               text="Apple로 계속하기"
               variant="apple"
-              icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
+              icon={<IcApple width="2.4rem" height="2.4rem" />}
               onClick={handleAppleLogin}
             />
           </div>
@@ -125,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

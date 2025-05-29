@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
-
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';
 import {
@@ -17,27 +14,6 @@ import { TAB_MENU } from '../constants/menu';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
-  const { mutate: login } = useSocialLoginMutation();
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  const isLocalhost = window.location.hostname === 'localhost';
-  const REDIRECT_URI = isLocalhost
-    ? 'http://localhost:5173/'
-    : window.location.protocol +
-      '//' +
-      window.location.hostname.replace(/^www\./, '') +
-      '/';
-
-  useEffect(() => {
-    if (code) {
-      login({
-        provider: 'KAKAO',
-        redirectUrl: REDIRECT_URI,
-        code,
-      });
-    }
-  }, [code]);
-
   const scrollRefs = {
     ticketing: useMoveScroll(),
     suggestPerformance: useMoveScroll(),
