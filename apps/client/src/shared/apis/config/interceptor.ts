@@ -4,10 +4,7 @@ import Cookies from 'js-cookie';
 
 import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
-import {
-  ACCESS_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-} from '@shared/constants/user-constants';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
 import { BaseResponse, ErrorResponse } from '@shared/types/api';
 import { TokenResponse } from '@shared/types/login-response';
