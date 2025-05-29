@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SwitchCase } from '@shared/components/switch-case';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
@@ -59,6 +60,7 @@ const SearchPage = () => {
     keyword: debouncedKeyword,
     enabled: !!debouncedKeyword.trim(),
   });
+
   const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
     keyword: searchKeyword,
     enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
@@ -77,60 +79,55 @@ const SearchPage = () => {
     }
   };
 
-  const renderSearchContents = () => {
-    const isLoadingState = isSearchLoading || isRelatedKeywordLoading;
-    const isSuggestionState = !!relatedArtists?.artists && barFocus;
-    const isResultState = !!artistData;
+  const SuggestionContent = () => (
+    <>
+      <SearchSuggestionList
+        relatedKeyword={relatedArtists?.artists?.map((artist) => ({
+          id: artist.artistId,
+          title: artist.name,
+          profileUrl: artist.profileUrl,
+        }))}
+        onSelectKeyword={handleNavigateWithKeyword}
+      />
+      <SearchSuggestionList
+        relatedKeyword={relatedPerformances?.performances?.map(
+          (performance) => ({
+            id: performance.id,
+            title: performance.title,
+            profileUrl: performance.posterUrl,
+          }),
+        )}
+        onSelectKeyword={handleNavigateWithKeyword}
+        listType="performance"
+      />
+    </>
+  );
 
-    switch (true) {
-      case isLoadingState:
-        return <Loading />;
+  const ResultContent = () => (
+    <SearchResult
+      artistData={artistData?.artist ?? null}
+      relatedPerformances={relatedPerformances ?? null}
+      performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
+      refetchArtist={refetchArtist}
+    />
+  );
 
-      case isSuggestionState:
-        return (
-          <>
-            <SearchSuggestionList
-              relatedKeyword={relatedArtists?.artists?.map((artist) => ({
-                id: artist.artistId,
-                title: artist.name,
-                profileUrl: artist.profileUrl,
-              }))}
-              onSelectKeyword={handleNavigateWithKeyword}
-            />
-            <SearchSuggestionList
-              relatedKeyword={relatedPerformances?.performances?.map(
-                (performance) => ({
-                  id: performance.id,
-                  title: performance.title,
-                  profileUrl: performance.posterUrl,
-                }),
-              )}
-              onSelectKeyword={handleNavigateWithKeyword}
-              listType="performance"
-            />
-          </>
-        );
+  const DefaultContent = () => (
+    <main className={styles.resultSection}>
+      <RecentSearchSection />
+      <PopularSearchSection popularSearchData={popularSearchData} />
+      <RecentFestivalSection recentViewData={recentViewData ?? null} />
+    </main>
+  );
 
-      case isResultState:
-        return (
-          <SearchResult
-            artistData={artistData?.artist ?? null}
-            relatedPerformances={relatedPerformances ?? null}
-            performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
-            refetchArtist={refetchArtist}
-          />
-        );
-
-      default:
-        return (
-          <main className={styles.resultSection}>
-            <RecentSearchSection />
-            <PopularSearchSection popularSearchData={popularSearchData} />
-            <RecentFestivalSection recentViewData={recentViewData ?? null} />
-          </main>
-        );
-    }
-  };
+  const searchState =
+    isSearchLoading || isRelatedKeywordLoading
+      ? 'loading'
+      : !!relatedArtists?.artists && barFocus
+        ? 'suggestion'
+        : artistData
+          ? 'result'
+          : 'default';
 
   return (
     <>
@@ -151,7 +148,15 @@ const SearchPage = () => {
             </div>
           </div>
 
-          {renderSearchContents()}
+          <SwitchCase
+            value={searchState}
+            caseBy={{
+              loading: () => <Loading />,
+              suggestion: () => <SuggestionContent />,
+              result: () => <ResultContent />,
+            }}
+            defaultComponent={() => <DefaultContent />}
+          />
         </>
       )}
     </>
