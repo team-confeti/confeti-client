@@ -8,9 +8,9 @@ import {
 } from '@confeti/design-system/icons';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
-import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
 
 import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
+import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
 
 import * as styles from './login.css';
 

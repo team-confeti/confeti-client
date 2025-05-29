@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSocialLoginMutation } from '@pages/login/hooks/use-social-login-mutation';
+import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 import NavigationTabs from '@shared/components/navigation-tabs';

@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import RequireLoginPage from '@pages/home/page/auth/require-login';
+import RequireLoginPage from '@pages/auth/page/require-login';
 import HomePage from '@pages/home/page/home-page';
 import MyRequireLoginPage from '@pages/my/page/auth/require-login';
 import EditProfile from '@pages/my/page/edit/edit-profile';

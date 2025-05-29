@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 // Home
-export const LoginPage = lazy(() => import('@pages/login/page/login'));
+export const LoginPage = lazy(() => import('@pages/auth/page/login'));
 
 // MyPage
 export const MyProfilePage = lazy(
