@@ -8,7 +8,7 @@ import {
 import { ENV_CONFIG } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
 
-import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
+import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
 
 import * as styles from './login-page.css';
@@ -54,12 +54,7 @@ const processLine = (
 };
 
 const LoginPage = () => {
-  const { mutate: appleLoginMutate } = useAppleLoginMutation();
-
-  const REDIRECT_URI =
-    window.location.hostname === 'localhost'
-      ? 'http://localhost:5173/auth'
-      : 'https://confeti.co.kr/auth';
+  const { mutate: appleLoginMutate } = useSocialLoginMutation();
 
   const handleAppleLogin = async () => {
     try {
@@ -72,6 +67,11 @@ const LoginPage = () => {
   };
 
   const handleKakaoLogin = () => {
+    const REDIRECT_URI =
+      window.location.hostname === 'localhost'
+        ? ENV_CONFIG.KAKAO_LOCAL_REDIRECT_URI
+        : ENV_CONFIG.KAKAO_REDIRECT_URI;
+
     window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${REDIRECT_URI}`;
   };
 
