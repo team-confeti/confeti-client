@@ -11,7 +11,3 @@ export const button = style({
   borderRadius: 5,
   gap: '0rem',
 });
-
-export const loading = style({
-  height: '26.4rem',
-});
