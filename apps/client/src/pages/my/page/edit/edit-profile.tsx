@@ -7,7 +7,6 @@ import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import { Button, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
 import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
-import { urlToFile } from '@shared/utils/url-to-file';
 
 import * as styles from './edit-profile.css';
 
