@@ -12,6 +12,7 @@ interface Props {
   showEditBtn?: boolean;
   showArrow?: boolean;
   onEditImage?: () => void;
+  disableClick?: boolean;
 }
 
 const USER_POSTFIX = '님' as const;
@@ -22,11 +23,14 @@ const UserInfo = ({
   showEditBtn,
   showArrow,
   onEditImage,
+  disableClick = false,
 }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(routePath.MY_EDIT_PROFILE);
+    if (!disableClick) {
+      navigate(routePath.MY_EDIT_PROFILE);
+    }
   };
 
   return (

@@ -87,6 +87,7 @@ const EditProfile = () => {
             showArrow={false}
             showEditBtn={true}
             onEditImage={triggerFileInput}
+            disableClick={true}
           />
           <input
             type="file"
