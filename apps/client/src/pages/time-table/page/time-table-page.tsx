@@ -18,10 +18,10 @@ const TimeTablePage = () => {
   const { selectedDateId } = useFestivalSelect(festivals);
   const { data: boardData } = useFestivalTimetableData(selectedDateId);
 
-  const timetableState = useMemo<'onboard' | 'empty' | 'loaded'>(() => {
+  const timetableState = useMemo<'onboard' | 'empty' | 'render'>(() => {
     if (!hasTimetableHistory) return 'onboard';
     if (festivals.length === 0) return 'empty';
-    if (festivals.length > 0 && boardData) return 'loaded';
+    if (festivals.length > 0 && boardData) return 'render';
     return 'empty';
   }, [hasTimetableHistory, festivals, boardData]);
 
@@ -31,7 +31,7 @@ const TimeTablePage = () => {
       caseBy={{
         onboard: () => <TimeTableOnboard />,
         empty: () => <EmptyFestivalSection />,
-        loaded: () => (
+        render: () => (
           <TimeTableLoaded festivals={festivals} boardData={boardData} />
         ),
       }}

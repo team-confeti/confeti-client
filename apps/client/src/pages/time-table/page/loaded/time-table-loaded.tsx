@@ -19,7 +19,7 @@ interface TimeTableLoadedProps {
   boardData?: FestivalTimetableExtended;
 }
 
-const TimeTableLoaded = ({ festivals, boardData }: TimeTableLoadedProps) => {
+const TimeTableContent = ({ festivals, boardData }: TimeTableLoadedProps) => {
   const { selectedFestivalInfo, handleSelectFestival, handleSelectDate } =
     useFestivalSelect(festivals);
   const { isEditTimeTableMode, toggleEditTimeTableMode } = useTimeTableEdit();
@@ -57,4 +57,4 @@ const TimeTableLoaded = ({ festivals, boardData }: TimeTableLoadedProps) => {
   );
 };
 
-export default TimeTableLoaded;
+export default TimeTableContent;
