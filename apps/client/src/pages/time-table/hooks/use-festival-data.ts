@@ -3,7 +3,7 @@ import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { FESTIVAL_BUTTON_QUERY_OPTIONS } from '@shared/apis/time-table/festival-button-queries';
 import {
   FESTIVAL_TIMETABLE_QUERY_OPTIONS,
-  TIME_TABLE_CREATION_HISTORY_QUERY_OPTION,
+  TIMETABLE_ONBOARDING_QUERY_KEY,
 } from '@shared/apis/time-table/festival-timetable-queries';
 
 export const useFestivalButtonData = () => {
@@ -28,7 +28,7 @@ export const useFestivalTimetableData = (festivalDateId?: number) => {
 
 export const useTimeTableCreationHistory = () => {
   const { data } = useSuspenseQuery(
-    TIME_TABLE_CREATION_HISTORY_QUERY_OPTION.TIME_TABLE_CREATION_HISTORY(),
+    TIMETABLE_ONBOARDING_QUERY_KEY.TIME_TABLE_CREATION_HISTORY(),
   );
   return data;
 };

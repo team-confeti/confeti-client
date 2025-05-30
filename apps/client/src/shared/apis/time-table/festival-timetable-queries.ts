@@ -30,7 +30,7 @@ export const TIME_TABLE_CREATION_HISTORY_QUERY_KEY = {
   ALL: ['timeTableCreationHistory'],
 } as const;
 
-export const TIME_TABLE_CREATION_HISTORY_QUERY_OPTION = {
+export const TIMETABLE_ONBOARDING_QUERY_KEY = {
   TIME_TABLE_CREATION_HISTORY: () =>
     queryOptions({
       queryKey: TIME_TABLE_CREATION_HISTORY_QUERY_KEY.ALL,
