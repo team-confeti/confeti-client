@@ -36,7 +36,7 @@ const DescriptionContent = () => (
     <section
       className={styles.completeContentSection({ phase: 'description' })}
     >
-      <Description
+      <Description.Text
         descriptionText={'공연의 설레는 시작과 끝을\n콘페티와 함께!'}
         fontSize={18}
       />
@@ -58,7 +58,7 @@ const CtaContent = ({ children }: { children: ReactNode }) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6 }}
       >
-        <Description
+        <Description.Text
           descriptionText={
             '멋진 취향이네요!\n선택하신 아티스트의 공연 소식을\n빠르게 알려드릴게요.'
           }
