@@ -27,11 +27,12 @@ const SuggestMusicSection = ({
     isPending,
   } = useSuggestMusic(data.performanceId, musicIdList);
 
-  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
+  const { musicList, onClickPlayToggle, audioRef, audioStop } = useMusicPlayer(
     suggestMusic?.musics ?? [],
   );
 
   const handleRefreshMusic = () => {
+    audioStop();
     const ids = musicList.map((music) => music.musicId);
     setMusicIdList(ids);
     refetch();
