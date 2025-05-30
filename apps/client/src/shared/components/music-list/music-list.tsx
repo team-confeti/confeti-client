@@ -33,11 +33,9 @@ const MusicList = ({
     <div className={styles.loading}>
       {isPending
         ? [0, 1, 2].map((index) => (
-            <>
-              <Deferred key={index}>
-                <SkeletonList />
-              </Deferred>
-            </>
+            <Deferred key={index}>
+              <SkeletonList />
+            </Deferred>
           ))
         : musics.map((music) => (
             <MusicItem
