@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Calender from '@pages/time-table/components/calender/calender';
 import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
@@ -7,6 +8,8 @@ import TimeTableBoard from '@pages/time-table/components/time-table-board/time-t
 import { useFestivalSelect } from '@pages/time-table/hooks/use-festival-select';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { useTimeTableEdit } from '@pages/time-table/hooks/use-time-table-edit';
+
+import { SwitchCase } from '@shared/components/switch-case';
 
 import {
   useFestivalButtonData,
@@ -35,41 +38,49 @@ const TimeTablePage = () => {
     fileName: `${selectedFestivalInfo.title}`,
   });
 
-  let content;
+  const timetableState = useMemo<'onboard' | 'empty' | 'loaded'>(() => {
+    if (!hasTimetableHistory) return 'onboard';
+    if (festivals.length === 0) return 'empty';
+    if (festivals.length > 0 && boardData) return 'loaded';
+    return 'empty';
+  }, [hasTimetableHistory, festivals, boardData]);
 
-  if (!hasTimetableHistory) {
-    content = <TimeTableOnboard />;
-  } else if (hasTimetableHistory && festivals.length === 0) {
-    content = <EmptyFestivalSection />;
-  } else if (festivals.length > 0 && boardData) {
-    content = (
-      <div className={styles.wrapper}>
-        <FestivalSelector
-          festivals={festivals}
-          selectedFestivalId={selectedFestivalInfo.festivalId}
-          handleSelectFestival={handleSelectFestival}
-        />
-        <Calender
-          festivalDates={selectedFestivalInfo.festivalDates}
-          onDateSelect={handleSelectDate}
-        />
-        <div className={styles.timeTableWrapper} ref={elementRef}>
-          <FestivalStage timeTableInfo={boardData} />
-          <TimeTableBoard
-            timeTableInfo={boardData}
-            isEditMode={isEditTimeTableMode}
-          />
-        </div>
-        <TimeTableActions
-          isEditMode={isEditTimeTableMode}
-          onToggleEditMode={toggleEditTimeTableMode}
-          onDownload={downloadImage}
-        />
-      </div>
-    );
-  }
-
-  return <>{content}</>;
+  return (
+    <SwitchCase
+      value={timetableState}
+      caseBy={{
+        onboard: () => <TimeTableOnboard />,
+        empty: () => <EmptyFestivalSection />,
+        loaded: () =>
+          boardData ? (
+            <div className={styles.wrapper}>
+              <FestivalSelector
+                festivals={festivals}
+                selectedFestivalId={selectedFestivalInfo.festivalId}
+                handleSelectFestival={handleSelectFestival}
+              />
+              <Calender
+                festivalDates={selectedFestivalInfo.festivalDates}
+                onDateSelect={handleSelectDate}
+              />
+              <div className={styles.timeTableWrapper} ref={elementRef}>
+                <FestivalStage timeTableInfo={boardData} />
+                <TimeTableBoard
+                  timeTableInfo={boardData}
+                  isEditMode={isEditTimeTableMode}
+                />
+              </div>
+              <TimeTableActions
+                isEditMode={isEditTimeTableMode}
+                onToggleEditMode={toggleEditTimeTableMode}
+                onDownload={downloadImage}
+              />
+            </div>
+          ) : null,
+      }}
+      defaultComponent={() => null}
+    />
+  );
 };
 
 export default TimeTablePage;
