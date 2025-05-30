@@ -15,24 +15,26 @@ interface Music {
 interface MusicListProps {
   musics: Music[];
   variant?: 'default' | 'editable' | 'confirmDelete';
+  isPending?: boolean;
+  skeletonCount?: number;
   onClickPlayToggle?: (musicId: string) => void;
   onClickDelete?: (musicId: string) => void;
   onClickAdd?: (musicId: string) => void;
-  isPending?: boolean;
 }
 
 const MusicList = ({
   musics,
   variant = 'default',
+  isPending,
+  skeletonCount,
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
-  isPending,
 }: MusicListProps) => {
   return (
     <div className={styles.loading}>
       {isPending
-        ? [0, 1, 2].map((index) => (
+        ? Array.from({ length: skeletonCount ?? 0 }).map((_, index) => (
             <Deferred key={index}>
               <SkeletonList />
             </Deferred>

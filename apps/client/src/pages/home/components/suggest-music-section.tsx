@@ -49,6 +49,7 @@ const SuggestMusicSection = ({
           musics={musicList}
           onClickPlayToggle={onClickPlayToggle}
           isPending={isPending}
+          skeletonCount={3}
         />
         <audio ref={audioRef} />
       </div>
