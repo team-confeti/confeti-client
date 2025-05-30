@@ -14,10 +14,7 @@ const Deferred = ({ children }: DeferredProps) => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!isDeferred) {
-    return null;
-  }
-  return <>{children}</>;
+  return isDeferred ? <>{children}</> : null;
 };
 
 export default Deferred;
