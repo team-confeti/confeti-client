@@ -40,7 +40,7 @@ const ArtistSelect = ({
   } else {
     return (
       <section className={styles.onboardingContentSection}>
-        <Description
+        <Description.Text
           descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
           fontSize={20}
         />

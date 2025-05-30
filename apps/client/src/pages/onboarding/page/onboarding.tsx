@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { Button } from '@confeti/design-system';
+import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
 import { onboard } from '@shared/types/onboard-response';
-import { useFunnel } from '@shared/utils/use-funnel';
 
 import ArtistSelect from '../components/artist-select';
 import OnBoardingComplete from '../components/onboarding-complete';

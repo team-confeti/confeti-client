@@ -1,6 +1,9 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getFestivalTimetable } from './festival-timetable';
+import {
+  getFestivalTimetable,
+  getTimeTableCreationHistory,
+} from './festival-timetable';
 
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   ALL: ['festivalTimetable'],
@@ -21,4 +24,16 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       enabled: !!festivalDateId,
     };
   },
+};
+
+export const TIME_TABLE_CREATION_HISTORY_QUERY_KEY = {
+  ALL: ['timeTableCreationHistory'],
+} as const;
+
+export const TIMETABLE_ONBOARDING_QUERY_KEY = {
+  TIME_TABLE_CREATION_HISTORY: () =>
+    queryOptions({
+      queryKey: TIME_TABLE_CREATION_HISTORY_QUERY_KEY.ALL,
+      queryFn: getTimeTableCreationHistory,
+    }),
 };

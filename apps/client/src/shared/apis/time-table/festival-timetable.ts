@@ -3,6 +3,7 @@ import { BaseResponse } from '@shared/types/api';
 import {
   FestivalTimetableResponse,
   FestivalTimetableResponseExtended,
+  TimeTableCreationHistory,
 } from '@shared/types/festival-timetable-response';
 import { UserTimetableResponse } from '@shared/types/timetable-response';
 
@@ -32,4 +33,11 @@ export const patchFestivalTimetable = async (
     END_POINT.GET_FESTIVAL_BUTTON,
     requestData,
   );
+};
+
+export const getTimeTableCreationHistory = async () => {
+  const response = await get<BaseResponse<TimeTableCreationHistory>>(
+    END_POINT.FETCH_TIMETABLE_CREATION_HISTORY,
+  );
+  return response.data;
 };
