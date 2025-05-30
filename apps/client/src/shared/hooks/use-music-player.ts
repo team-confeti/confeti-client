@@ -6,7 +6,7 @@ export const useMusicPlayer = (data: musics[]) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentPlayingId, setCurrentPlayingId] = useState<string | null>(null);
 
-  const audioStop = () => {
+  const stopAudio = () => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.pause();
@@ -21,7 +21,7 @@ export const useMusicPlayer = (data: musics[]) => {
     const audio = audioRef.current;
 
     if (currentPlayingId === musicId && !audio.paused) {
-      audioStop();
+      stopAudio();
       return;
     }
 
@@ -53,6 +53,6 @@ export const useMusicPlayer = (data: musics[]) => {
     musicList,
     audioRef,
     onClickPlayToggle,
-    audioStop,
+    stopAudio,
   };
 };
