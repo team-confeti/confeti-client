@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import Calender from '@pages/time-table/components/calender/calender';
-import EmptyFestivalSection from '@pages/time-table/components/empty/empty-festival-section';
 import FestivalSelector from '@pages/time-table/components/festival-selector/festival-selector';
 import FestivalStage from '@pages/time-table/components/festival-stage/festival-stage';
 import TimeTableActions from '@pages/time-table/components/time-table-actions/time-table-actions';
@@ -8,6 +7,7 @@ import TimeTableBoard from '@pages/time-table/components/time-table-board/time-t
 import { useFestivalSelect } from '@pages/time-table/hooks/use-festival-select';
 import { useImageDownload } from '@pages/time-table/hooks/use-image-download';
 import { useTimeTableEdit } from '@pages/time-table/hooks/use-time-table-edit';
+import EmptyFestivalSection from '@pages/time-table/page/empty/empty-festival-section';
 
 import { SwitchCase } from '@shared/components/switch-case';
 
