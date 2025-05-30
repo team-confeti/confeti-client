@@ -31,12 +31,10 @@ const TimeTablePage = () => {
       caseBy={{
         onboard: () => <TimeTableOnboard />,
         empty: () => <EmptyFestivalSection />,
-        loaded: () =>
-          boardData ? (
-            <TimeTableLoaded festivals={festivals} boardData={boardData} />
-          ) : null,
+        loaded: () => (
+          <TimeTableLoaded festivals={festivals} boardData={boardData} />
+        ),
       }}
-      defaultComponent={() => null}
     />
   );
 };

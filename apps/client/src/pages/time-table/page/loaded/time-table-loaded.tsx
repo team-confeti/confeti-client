@@ -16,7 +16,7 @@ import * as styles from './time-table-loaded.css';
 
 interface TimeTableLoadedProps {
   festivals: FestivalTimetable[];
-  boardData: FestivalTimetableExtended;
+  boardData?: FestivalTimetableExtended;
 }
 
 const TimeTableLoaded = ({ festivals, boardData }: TimeTableLoadedProps) => {
@@ -27,6 +27,8 @@ const TimeTableLoaded = ({ festivals, boardData }: TimeTableLoadedProps) => {
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
   });
+
+  if (!boardData) return null;
 
   return (
     <div className={styles.wrapper}>
