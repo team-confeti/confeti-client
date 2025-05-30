@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Box, Button, MusicList } from '@confeti/design-system';
+import { Box, Button } from '@confeti/design-system';
 import { IcLoad, IcMusic } from '@confeti/design-system/icons';
+import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
 
@@ -23,7 +24,7 @@ const SuggestMusicSection = ({
   const {
     data: suggestMusic,
     refetch,
-    isLoading,
+    isPending,
   } = useSuggestMusic(data.performanceId, musicIdList);
 
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
@@ -44,11 +45,12 @@ const SuggestMusicSection = ({
       subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
     >
       <div ref={scrollRef}>
-        {isLoading ? (
-          <div className={styles.loading} />
-        ) : (
-          <MusicList musics={musicList} onClickPlayToggle={onClickPlayToggle} />
-        )}
+        <MusicList
+          musics={musicList}
+          onClickPlayToggle={onClickPlayToggle}
+          isPending={isPending}
+          skeletonCount={3}
+        />
         <audio ref={audioRef} />
       </div>
       <Button

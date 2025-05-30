@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { Description } from '@confeti/design-system';
+import { SwitchCase } from '@shared/components/switch-case';
 import Loading from '@shared/pages/loading/loading';
 
 import * as styles from './onboarding-complete.css';
@@ -9,6 +10,85 @@ import * as styles from './onboarding-complete.css';
 interface OnBoardingCompleteProps {
   children: ReactNode;
 }
+
+type Phase = 'loading' | 'description' | 'cta';
+
+const LoadingContent = () => (
+  <motion.div
+    key="loading"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 1.2, delay: 0.3 }}
+  >
+    <Loading />
+  </motion.div>
+);
+
+const DescriptionContent = () => (
+  <motion.div
+    key="description"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  >
+    <section
+      className={styles.completeContentSection({ phase: 'description' })}
+    >
+      <Description
+        descriptionText={'공연의 설레는 시작과 끝을\n콘페티와 함께!'}
+        fontSize={18}
+      />
+    </section>
+  </motion.div>
+);
+
+const CtaContent = ({ children }: { children: ReactNode }) => (
+  <motion.div
+    key="cta"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.5, delay: 0.1 }}
+  >
+    <section className={styles.completeContentSection({ phase: 'cta' })}>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+      >
+        <Description
+          descriptionText={
+            '멋진 취향이네요!\n선택하신 아티스트의 공연 소식을\n빠르게 알려드릴게요.'
+          }
+          fontSize={20}
+        />
+      </motion.div>
+
+      <motion.div
+        className={styles.confetiLogo}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <img
+          src="/images/confeti_3d_logo21.svg"
+          className={styles.logoImage}
+          alt="confeti logo"
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        {children}
+      </motion.div>
+    </section>
+  </motion.div>
+);
 
 /**
  * @component DescriptionMotionSection
@@ -20,9 +100,7 @@ interface OnBoardingCompleteProps {
  * - `transition`: 애니메이션의 지속시간 및 지연 시간을 설정합니다.
  */
 const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
-  const [phase, setPhase] = useState<'loading' | 'description' | 'cta'>(
-    'loading',
-  );
+  const [phase, setPhase] = useState<Phase>('loading');
 
   useEffect(() => {
     const timers = [
@@ -32,99 +110,18 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  //TODO : motion.div 컴포넌트화 진행
-  const renderPhase = () => {
-    switch (phase) {
-      case 'loading':
-        return (
-          <motion.div
-            key="loading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-          >
-            <Loading />
-          </motion.div>
-        );
-
-      case 'description':
-        return (
-          <motion.div
-            key="description"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <section
-              className={styles.completeContentSection({
-                phase: 'description',
-              })}
-            >
-              <Description.Text
-                descriptionText={'공연의 설레는 시작과 끝을\n콘페티와 함께!'}
-                fontSize={18}
-              />
-            </section>
-          </motion.div>
-        );
-
-      case 'cta':
-        return (
-          <motion.div
-            key="cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <section
-              className={styles.completeContentSection({ phase: 'cta' })}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                <Description.Text
-                  descriptionText={
-                    '멋진 취향이네요!\n선택하신 아티스트의 공연 소식을\n빠르게 알려드릴게요.'
-                  }
-                  fontSize={20}
-                />
-              </motion.div>
-
-              <motion.div
-                className={styles.confetiLogo}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <img
-                  src="/images/confeti_3d_logo21.svg"
-                  className={styles.logoImage}
-                  alt="confeti logo"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                {children}
-              </motion.div>
-            </section>
-          </motion.div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  return <AnimatePresence mode="wait">{renderPhase()}</AnimatePresence>;
+  return (
+    <AnimatePresence mode="wait">
+      <SwitchCase
+        value={phase}
+        caseBy={{
+          loading: () => <LoadingContent />,
+          description: () => <DescriptionContent />,
+          cta: () => <CtaContent>{children}</CtaContent>,
+        }}
+      />
+    </AnimatePresence>
+  );
 };
 
 export default OnBoardingComplete;

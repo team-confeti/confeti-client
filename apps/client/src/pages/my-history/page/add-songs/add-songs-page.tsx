@@ -5,7 +5,8 @@ import {
 } from '@pages/my-history/hooks/use-music-search';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
 
-import { Button, MusicList, SearchBar, toast } from '@confeti/design-system';
+import { Button, SearchBar, toast } from '@confeti/design-system';
+import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
