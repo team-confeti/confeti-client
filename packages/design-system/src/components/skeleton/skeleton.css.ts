@@ -21,7 +21,7 @@ export const skeleton = recipe({
   variants: {
     variants: {
       default: {
-        borderRadius: '0.3rem',
+        borderRadius: '0.5rem',
       },
       rounded: {
         borderRadius: '4rem',
