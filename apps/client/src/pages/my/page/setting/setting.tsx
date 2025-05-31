@@ -2,22 +2,23 @@ import { Link } from 'react-router-dom';
 import SvgIcArrowGray16 from 'node_modules/@confeti/design-system/src/icons/src/IcArrowGray16';
 
 import { Footer, Header } from '@confeti/design-system';
+import { EXTERNAL_LINKS, LINK_LABELS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './setting.css';
 
 const externalLinks = [
   {
-    label: '공지사항',
-    path: 'https://wonderful-celestite-e3c.notion.site/1fb210e281b0805d86e4f96441eef765?pvs=4',
+    label: LINK_LABELS.NOTICE,
+    path: EXTERNAL_LINKS.NOTICE,
   },
   {
-    label: '개인정보처리방침',
-    path: 'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
+    label: LINK_LABELS.PRIVACY_POLICY,
+    path: EXTERNAL_LINKS.PRIVACY_POLICY,
   },
   {
-    label: '이용약관',
-    path: 'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
+    label: LINK_LABELS.TERMS_OF_SERVICE,
+    path: EXTERNAL_LINKS.TERMS_OF_SERVICE,
   },
 ];
 
@@ -38,7 +39,6 @@ const Setting = () => {
             <SvgIcArrowGray16 width={'1.6rem'} height={'1.6rem'} />
           </a>
         ))}
-
         <Link
           to={routePath.MY_DELETE_ACCOUNT}
           className={styles.navigationLink}
