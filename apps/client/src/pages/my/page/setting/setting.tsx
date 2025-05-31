@@ -6,7 +6,7 @@ import { routePath } from '@shared/router/path';
 
 import * as styles from './setting.css';
 
-const linkObject = [
+const externalLinks = [
   {
     label: '공지사항',
     path: 'https://wonderful-celestite-e3c.notion.site/1fb210e281b0805d86e4f96441eef765?pvs=4',
@@ -26,7 +26,7 @@ const Setting = () => {
     <>
       <Header variant="detail" title="설정"></Header>
       <section className={styles.contentsSection}>
-        {linkObject.map((item) => (
+        {externalLinks.map((item) => (
           <a
             key={item.path}
             className={styles.navigationLink}
