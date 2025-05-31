@@ -6,6 +6,13 @@ export const useMusicPlayer = (data: musics[]) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentPlayingId, setCurrentPlayingId] = useState<string | null>(null);
 
+  const stopAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    setCurrentPlayingId(null);
+  };
+
   const onClickPlayToggle = (musicId: string) => {
     const selectedMusic = data.find((music) => music.musicId === musicId);
     if (!selectedMusic || !selectedMusic.previewUrl || !audioRef.current)
@@ -14,8 +21,7 @@ export const useMusicPlayer = (data: musics[]) => {
     const audio = audioRef.current;
 
     if (currentPlayingId === musicId && !audio.paused) {
-      audio.pause();
-      setCurrentPlayingId(null);
+      stopAudio();
       return;
     }
 
@@ -47,5 +53,6 @@ export const useMusicPlayer = (data: musics[]) => {
     musicList,
     audioRef,
     onClickPlayToggle,
+    stopAudio,
   };
 };
