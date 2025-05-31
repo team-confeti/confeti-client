@@ -1,29 +1,25 @@
-import { Header } from '@confeti/design-system';
-import { Button } from '@confeti/design-system';
+import { Button, Header } from '@confeti/design-system';
 import {
   BtnDeleteBlack20,
   IcApple,
   IcKakao,
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
-import { CONFIG } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
-import { getAppleAuthData, initAppleAuth } from '@shared/utils/apple-login';
 
-import { useAppleLoginMutation } from '../hooks/use-social-login-mutation';
+import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
+import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
 
-import * as styles from './login.css';
+import * as styles from './login-page.css';
 
 const DESCRIPTION_TEXT =
   '가입 시, confeti의\n[이용약관] 및 [개인정보처리방침]에 동의하게 돼요.';
-const LINK_MAP: LinkMap = {
+
+const LINK_MAP: Record<string, string> = {
   이용약관: routePath.PRIVACY_CONFETI,
   개인정보처리방침: routePath.PRIVACY_PERSONAL,
 };
-
-interface LinkMap {
-  [key: string]: string;
-}
 
 const parseLinkContent = (
   part: string,
@@ -53,17 +49,12 @@ const processLine = (
   lineIndex: number,
 ): (JSX.Element | string)[] => {
   if (!line) return [];
-
   const parts = line.split(/(\[.*?\])/);
-  const processedParts = parts.map((part, index) =>
-    parseLinkContent(part, lineIndex, index),
-  );
-
-  return processedParts;
+  return parts.map((part, index) => parseLinkContent(part, lineIndex, index));
 };
 
-const Login = () => {
-  const { mutate: appleLoginMutate } = useAppleLoginMutation();
+const LoginPage = () => {
+  const { mutate: appleLoginMutate } = useSocialLoginMutation();
 
   const handleAppleLogin = async () => {
     try {
@@ -76,12 +67,12 @@ const Login = () => {
   };
 
   const handleKakaoLogin = () => {
-    const redirectUri =
+    const REDIRECT_URI =
       window.location.hostname === 'localhost'
-        ? 'http://localhost:5173/'
-        : 'https://confeti.co.kr/';
+        ? ENV_CONFIG.KAKAO_LOCAL_REDIRECT_URI
+        : ENV_CONFIG.KAKAO_REDIRECT_URI;
 
-    window.location.href = `${CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
+    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${REDIRECT_URI}`;
   };
 
   return (
@@ -90,7 +81,7 @@ const Login = () => {
         variant="detail"
         title="로그인"
         icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
-        isBackToHome={true}
+        isBackToHome
       />
       <section className={styles.container}>
         <div>
@@ -125,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

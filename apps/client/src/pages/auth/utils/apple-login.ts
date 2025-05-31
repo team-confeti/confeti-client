@@ -1,15 +1,15 @@
-import { CONFIG } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import { AppleLogin } from '@shared/types/login-response';
 
 export const initAppleAuth = () => {
   const isLocalhost = window.location.hostname === 'localhost';
 
   const redirectURI = isLocalhost
-    ? CONFIG.APPLE_REDIRECT_URI
+    ? ENV_CONFIG.APPLE_REDIRECT_URI
     : `${window.location.protocol}//${window.location.host}/callback/apple`;
 
   window.AppleID.auth.init({
-    clientId: CONFIG.APPLE_CLIENT_ID,
+    clientId: ENV_CONFIG.APPLE_CLIENT_ID,
     scope: 'name',
     redirectURI,
     state: crypto.randomUUID(),

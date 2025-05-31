@@ -1,4 +1,4 @@
-import { CONFIG } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 
 /**
  * S3 URL을 CDN URL로 변환하여 이미지 최적화 파라미터를 적용합니다.
@@ -34,5 +34,5 @@ export const convertToCdnUrl = (
   const posterPath = s3Url.split(S3_BUCKET_URL)[1];
   const cleanPath = posterPath ? posterPath.split('?')[0] : '';
 
-  return `${CONFIG.IMAGE_CDN_URL}${cleanPath}?w=${width}&h=${height}&auto=format,enhance&q=${quality}`;
+  return `${ENV_CONFIG.IMAGE_CDN_URL}${cleanPath}?w=${width}&h=${height}&auto=format,enhance&q=${quality}`;
 };

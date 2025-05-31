@@ -3,7 +3,7 @@ export const routePath = {
   LAYOUT: '/',
   ROOT: '/',
   LOGIN: '/login',
-
+  REDIRECT_KAKAO: '/auth',
   // Shared
   LOADING: '/loading',
 

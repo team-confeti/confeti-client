@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { CONFIG, END_POINT } from '@shared/constants/api';
+import { END_POINT } from '@shared/constants/api';
+import { ENV_CONFIG } from '@shared/constants/config';
 import { BaseResponse } from '@shared/types/api';
 import {
   AppleLogin,
@@ -11,7 +12,7 @@ import {
 import { del, post } from '../config/instance';
 
 const authInstance = axios.create({
-  baseURL: CONFIG.BASE_URL,
+  baseURL: ENV_CONFIG.BASE_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

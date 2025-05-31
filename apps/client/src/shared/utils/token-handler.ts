@@ -1,9 +1,6 @@
 import Cookies from 'js-cookie';
 
-import {
-  ACCESS_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-} from '@shared/constants/user-constants';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
 
 export const authTokenHandler = (
   action: 'set' | 'remove',
