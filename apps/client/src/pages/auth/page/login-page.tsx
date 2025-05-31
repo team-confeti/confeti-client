@@ -6,7 +6,6 @@ import {
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { routePath } from '@shared/router/path';
 
 import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
@@ -17,8 +16,10 @@ const DESCRIPTION_TEXT =
   '가입 시, confeti의\n[이용약관] 및 [개인정보처리방침]에 동의하게 돼요.';
 
 const LINK_MAP: Record<string, string> = {
-  이용약관: routePath.PRIVACY_CONFETI,
-  개인정보처리방침: routePath.PRIVACY_PERSONAL,
+  이용약관:
+    'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
+  개인정보처리방침:
+    'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
 };
 
 const parseLinkContent = (
