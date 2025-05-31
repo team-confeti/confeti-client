@@ -6,7 +6,7 @@ import {
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { LINK_MAP } from '@shared/constants/links';
+import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
@@ -22,7 +22,8 @@ const parseLinkContent = (
   index: number,
 ): JSX.Element | string => {
   const [, content] = part.match(/\[(.*?)\]/) || [];
-  const link = content && LINK_MAP[content];
+  const link =
+    content && EXTERNAL_LINKS.find((link) => link.label === content)?.url;
 
   return link ? (
     <a
