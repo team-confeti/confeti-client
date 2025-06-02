@@ -23,7 +23,7 @@ export const useSocialLoginMutation = () => {
       if (data?.data) {
         const { accessToken, refreshToken, isOnboarding } = data.data;
         authTokenHandler('set', accessToken, refreshToken);
-        await queryClient.invalidateQueries();
+        queryClient.clear();
 
         navigate(
           isOnboarding ? `${routePath.ONBOARDING}` : `${routePath.ROOT}`,

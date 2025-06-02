@@ -6,7 +6,7 @@ import {
   ImgTypelogoBig,
 } from '@confeti/design-system/icons';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { routePath } from '@shared/router/path';
+import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
@@ -16,18 +16,14 @@ import * as styles from './login-page.css';
 const DESCRIPTION_TEXT =
   '가입 시, confeti의\n[이용약관] 및 [개인정보처리방침]에 동의하게 돼요.';
 
-const LINK_MAP: Record<string, string> = {
-  이용약관: routePath.PRIVACY_CONFETI,
-  개인정보처리방침: routePath.PRIVACY_PERSONAL,
-};
-
 const parseLinkContent = (
   part: string,
   lineIndex: number,
   index: number,
 ): JSX.Element | string => {
   const [, content] = part.match(/\[(.*?)\]/) || [];
-  const link = content && LINK_MAP[content];
+  const link =
+    content && EXTERNAL_LINKS.find((link) => link.label === content)?.url;
 
   return link ? (
     <a
