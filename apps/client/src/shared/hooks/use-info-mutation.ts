@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
-import { patchUserInfo } from '@shared/apis/user/user';
+import { patchUserInfo } from '@shared/apis/user/user-queries';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { UserInfo } from '@shared/types/user-response';
 
