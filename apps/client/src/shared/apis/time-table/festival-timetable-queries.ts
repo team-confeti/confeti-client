@@ -28,8 +28,7 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
     }),
   FESTIVAL_TIMETABLE: (festivalId: number) =>
     queryOptions({
-      queryKey:
-        FESTIVAL_TIMETABLE_QUERY_KEY.DELETE_TIME_TABLE_FESTIVAL(festivalId),
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(festivalId),
       queryFn: () => getFestivalTimetable(festivalId),
       enabled: festivalId !== undefined,
     }),

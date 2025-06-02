@@ -37,7 +37,7 @@ export const HOME_QUERY_OPTIONS = {
     }),
   SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) =>
     queryOptions({
-      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId, musicIds),
+      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId),
       queryFn: () => getSuggestMusic(performanceId, musicIds),
     }),
 };
