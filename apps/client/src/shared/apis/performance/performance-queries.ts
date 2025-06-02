@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { get } from '@shared/apis/config/instance';
-import { END_POINT } from '@shared/constants/api';
+import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { PERFORMANCE_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import { ConcertDetailResponse } from '@shared/types/concert-response';
@@ -12,11 +12,13 @@ export const PERFORMANCE_QUERY_OPTIONS = {
     queryOptions({
       queryKey: PERFORMANCE_QUERY_KEY.CONCERT(concertId),
       queryFn: () => getConcertDetail(concertId),
+      staleTime: CACHE_TIME.LONG,
     }),
   FESTIVAL: (festivalId: number) =>
     queryOptions({
       queryKey: PERFORMANCE_QUERY_KEY.FESTIVAL(festivalId),
       queryFn: () => getFestivalDetail(festivalId),
+      staleTime: CACHE_TIME.LONG,
     }),
 };
 

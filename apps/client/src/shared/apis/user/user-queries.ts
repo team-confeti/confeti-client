@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { get, patch } from '@shared/apis/config/instance';
-import { END_POINT } from '@shared/constants/api';
+import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { BaseResponse } from '@shared/types/api';
@@ -23,7 +23,7 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.PROFILE(),
       queryFn: getUserProfile,
-      staleTime: 3 * 60 * 1000,
+      staleTime: CACHE_TIME.LONG,
     }),
   MY_ARTISTS_PREVIEW: () =>
     queryOptions({
@@ -34,11 +34,13 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_PERFORMANCES(),
       queryFn: getMyPerformancesPreview,
+      staleTime: CACHE_TIME.MEDIUM,
     }),
   MY_UPCOMING_PERFORMANCE: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
       queryFn: getMyUpcomingPerformance,
+      staleTime: CACHE_TIME.MEDIUM,
     }),
   MY_ARTISTS: (sortBy: SortOption) =>
     queryOptions({

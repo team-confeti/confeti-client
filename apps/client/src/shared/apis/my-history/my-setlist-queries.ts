@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { get } from '@shared/apis/config/instance';
-import { END_POINT } from '@shared/constants/api';
+import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { BaseResponse } from '@shared/types/api';
@@ -19,6 +19,7 @@ export const MY_SETLIST_QUERY_OPTION = {
     queryOptions({
       queryKey: SETLIST_QUERY_KEY.PREVIEW(),
       queryFn: getMySetListPreview,
+      staleTime: CACHE_TIME.SHORT,
     }),
   OVERVIEW: (sortBy: SortOption, enabled: boolean = true) =>
     queryOptions({

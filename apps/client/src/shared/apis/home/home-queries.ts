@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { END_POINT } from '@shared/constants/api';
+import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { HOME_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
@@ -19,16 +19,19 @@ export const HOME_QUERY_OPTIONS = {
     queryOptions({
       queryKey: HOME_QUERY_KEY.LATEST_PERFORMANCES(),
       queryFn: getLatestPerformances,
+      staleTime: CACHE_TIME.SHORT,
     }),
   TICKETING: () =>
     queryOptions({
       queryKey: HOME_QUERY_KEY.TICKETING(),
       queryFn: getTicketing,
+      staleTime: CACHE_TIME.SHORT,
     }),
   SUGGEST_PERFORMANCE: () =>
     queryOptions({
       queryKey: HOME_QUERY_KEY.SUGGEST_PERFORMANCE(),
       queryFn: getSuggestPerformance,
+      staleTime: CACHE_TIME.SHORT,
     }),
   SUGGEST_MUSIC_PERFORMANCE: () =>
     queryOptions({
