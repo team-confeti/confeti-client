@@ -3,7 +3,7 @@ import BoothOpenBox from '@pages/time-table/components/time-table-board/booth-op
 import TimeCell from '@pages/time-table/components/time-table-board/time-cell';
 import TimeTableItem from '@pages/time-table/components/time-table-board/time-table-item';
 import { END_HOUR, HALF_HOUR_TO_MINUTES } from '@pages/time-table/constants';
-import { usePatchTimeTableMutation } from '@pages/time-table/hooks/use-patch-time-table-mutation';
+import { usePatchTimetableMutation } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import { TimeTableInfo } from '@pages/time-table/types/time-table-info-type';
 import { generateTableRow, parseTimeString } from '@pages/time-table/utils';
 
@@ -24,7 +24,7 @@ const TimeTableBoard = ({ timeTableInfo, isEditMode }: Props) => {
   const cellNumber = generateTableRow(ticketOpenHour);
   const ref = useRef<HTMLDivElement>(null);
 
-  const patchTimeTableMutation = usePatchTimeTableMutation();
+  const patchTimeTableMutation = usePatchTimetableMutation();
 
   const handleTimeTableItemClick = (
     userTimetableId: number,
