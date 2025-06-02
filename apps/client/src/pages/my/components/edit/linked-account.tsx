@@ -1,11 +1,10 @@
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
-
 import {
   BtnAppleActive,
   BtnAppleDisabled,
   BtnKakaoActive,
   BtnKakaoDisabled,
 } from '@confeti/design-system/icons';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import * as styles from './linked-account.css';
 

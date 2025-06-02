@@ -7,8 +7,8 @@ import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-sect
 
 import { Button, SearchBar, toast } from '@confeti/design-system';
 import MusicList from '@shared/components/music-list/music-list';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
 

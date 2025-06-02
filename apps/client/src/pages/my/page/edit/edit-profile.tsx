@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutation';
 
 import { Button, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
-import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { urlToFile } from '@shared/utils/url-to-file';
 
 import * as styles from './edit-profile.css';

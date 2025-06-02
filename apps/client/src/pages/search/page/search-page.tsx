@@ -3,8 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { SwitchCase } from '@shared/components/switch-case';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
 import { getRecentViewItems } from '@shared/utils/recent-view';
 

@@ -1,5 +1,5 @@
 import { LikeButton } from '@confeti/design-system';
-import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 import * as styles from './artist-info.css';

@@ -4,8 +4,8 @@ import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 import { SwitchCase } from '@shared/components/switch-case';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
 
 import { useSearchSetListPerformance } from '../../hooks/use-performance-search';

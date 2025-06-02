@@ -1,16 +1,18 @@
 import { useMemo, useState } from 'react';
 import PerformanceList from '@pages/my/components/performance/performance-list';
-import { useMyPerformances } from '@pages/my/hooks/use-my-favorites';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Chip, Footer, Header } from '@confeti/design-system';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { PerformancesFilterType } from '@shared/types/user-response';
 
 import * as styles from './performance-more.css';
 
 const categories = ['전체', '콘서트', '페스티벌'] as const;
 
-const ConfetiMore = () => {
+const PerformanceMore = () => {
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  const filterType = useMemo(() => {
+  const filterType = useMemo<PerformancesFilterType>(() => {
     switch (selectedCategory) {
       case '콘서트':
         return 'CONCERT';
@@ -20,7 +22,10 @@ const ConfetiMore = () => {
         return 'ALL';
     }
   }, [selectedCategory]);
-  const { data } = useMyPerformances(filterType);
+
+  const { data } = useSuspenseQuery({
+    ...USER_QUERY_OPTIONS.MY_PERFORMANCES(filterType),
+  });
 
   return (
     <>
@@ -44,4 +49,4 @@ const ConfetiMore = () => {
   );
 };
 
-export default ConfetiMore;
+export default PerformanceMore;

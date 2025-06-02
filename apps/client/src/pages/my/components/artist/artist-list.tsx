@@ -1,5 +1,5 @@
 import { Avatar, LikeButton } from '@confeti/design-system';
-import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { MyArtists } from '@shared/types/user-response';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { getAddedDate } from '@shared/utils/format-date';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { track } from '@amplitude/analytics-browser';
-import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account';
+import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account-mutation';
 
 import {
   Button,

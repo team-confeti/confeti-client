@@ -1,4 +1,3 @@
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
 import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
@@ -9,6 +8,7 @@ import {
 } from '@pages/my-history/hooks/use-my-history';
 
 import { Footer, Spacing } from '@confeti/design-system';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './my-record.css';
