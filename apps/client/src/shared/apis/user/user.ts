@@ -70,9 +70,6 @@ export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
 
   if (userInfo.profileFile) {
     formData.append('profileFile', userInfo.profileFile);
-  } else {
-    const emptyFile = new Blob([], { type: 'image/jpeg' });
-    formData.append('profileFile', emptyFile, 'empty.jpg');
   }
 
   const response = await patch<BaseResponse<UserInfo>>(
