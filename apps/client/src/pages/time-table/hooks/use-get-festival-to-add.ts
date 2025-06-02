@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/confeti-detail/performance-queries';
+import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 
 export const useGetFestivalToAdd = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
