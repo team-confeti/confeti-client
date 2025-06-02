@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SEARCH_ARTIST_QUERY_OPTIONS } from '@shared/apis/search/search-artist-queries';
+import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
+import { SEARCH_PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/search/search-performance-queries';
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
@@ -12,12 +16,6 @@ import PopularSearchSection from '../components/search-home/popular-search-secti
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
 import { useRecentSearch } from '../hooks/use-recent-search';
-import {
-  usePerformanceTypeAnalysis,
-  usePopularSearch,
-  useRecentView,
-  useSearchArtist,
-} from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
 
@@ -42,16 +40,23 @@ const SearchPage = () => {
     data: artistData,
     isLoading: isSearchLoading,
     refetch: refetchArtist,
-  } = useSearchArtist({
-    keyword: paramsKeyword,
-    enabled: !!paramsKeyword,
+  } = useQuery({
+    ...SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_ARTIST(
+      paramsKeyword,
+      !!paramsKeyword,
+    ),
   });
-  const { data: popularSearchData } = usePopularSearch();
+
+  const { data: popularSearchData } = useSuspenseQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
+  });
   const recentViewItems = getRecentViewItems();
   const items = recentViewItems
     .map((item) => `${item.type}:${item.typeId}`)
     .join(',');
-  const { data: recentViewData } = useRecentView(items, items.length > 0);
+  const { data: recentViewData } = useQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
+  });
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -61,9 +66,11 @@ const SearchPage = () => {
     enabled: !!debouncedKeyword.trim(),
   });
 
-  const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
-    keyword: searchKeyword,
-    enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
+  const { data: performanceTypeAnalysisData } = useQuery({
+    ...SEARCH_PERFORMANCE_QUERY_OPTIONS.SEARCH_PERFORMANCE_TYPE_ANALYSIS(
+      searchKeyword,
+      !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
+    ),
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
