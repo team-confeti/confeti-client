@@ -37,20 +37,20 @@ export const PERFORMANCE_QUERY_KEY = {
 
 export const HOME_QUERY_KEY = {
   ALL: ['home'],
-  LATEST_PERFORMANCES: () => [...HOME_QUERY_KEY.ALL, 'latestPerformances'],
+  LATEST_PERFORMANCES: () => [...HOME_QUERY_KEY.ALL, 'latest-performances'],
   TICKETING: () => [...HOME_QUERY_KEY.ALL, 'ticketing'],
-  SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestPerformance'],
-  SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestMusic'],
+  SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggest-performance'],
+  SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggest-music'],
   SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) => [
     ...HOME_QUERY_KEY.ALL,
-    'suggestMusic',
+    'suggest-music',
     performanceId,
     musicIds,
   ],
 } as const;
 
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {
-  ALL: ['festivalTimeTable'],
+  ALL: ['festival-timetable'],
   ONBOARDING: () => [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL, 'onboarding'],
   DELETE_TIME_TABLE_FESTIVAL: (festivalId: number) => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
@@ -118,11 +118,11 @@ export const ARTIST_RELATED_QUERY_KEY = {
   ],
 } as const;
 
-export const MY_TIME_TABLE_QUERY_KEY = {
-  ALL: ['myTimeTable'],
-  PREVIEW: () => [...MY_TIME_TABLE_QUERY_KEY.ALL, 'preview'],
+export const MY_TIMETABLE_QUERY_KEY = {
+  ALL: ['myTimetable'],
+  PREVIEW: () => [...MY_TIMETABLE_QUERY_KEY.ALL, 'preview'],
   OVERVIEW: (sortBy: SortOption) => [
-    ...MY_TIME_TABLE_QUERY_KEY.ALL,
+    ...MY_TIMETABLE_QUERY_KEY.ALL,
     'overview',
     sortBy,
   ],
@@ -172,17 +172,17 @@ export const TOP_100_ARTIST_QUERY_KEY = {
 } as const;
 
 export const FESTIVAL_BUTTON_QUERY_KEY = {
-  ALL: ['festivalButton'],
+  ALL: ['festival-button'],
 } as const;
 
 export const MY_HISTORY_QUERY_KEY = {
   ALL: ['my-history'],
-  TIME_TABLE: {
-    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'time-table'],
-    PREVIEW: () => [...MY_HISTORY_QUERY_KEY.ALL, 'time-table', 'preview'],
+  TIMETABLE: {
+    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'timetable'],
+    PREVIEW: () => [...MY_HISTORY_QUERY_KEY.ALL, 'timetable', 'preview'],
     OVERVIEW: (sortBy: SortOption) => [
       ...MY_HISTORY_QUERY_KEY.ALL,
-      'time-table',
+      'timetable',
       'overview',
       sortBy,
     ],
