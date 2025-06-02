@@ -121,6 +121,16 @@ export const ARTIST_RELATED_QUERY_KEY = {
   ],
 } as const;
 
+export const MY_TIME_TABLE_QUERY_KEY = {
+  ALL: ['time-table'],
+  PREVIEW: () => [...MY_TIME_TABLE_QUERY_KEY.ALL, 'preview'],
+  OVERVIEW: (sortBy: SortOption) => [
+    ...MY_TIME_TABLE_QUERY_KEY.ALL,
+    'overview',
+    sortBy,
+  ],
+} as const;
+
 export const SETLIST_QUERY_KEY = {
   ALL: ['setlist'],
   SEARCH_PERFORMANCE: (request: SetListPerformanceRequest) => [
@@ -143,6 +153,16 @@ export const SETLIST_QUERY_KEY = {
     'detail',
     setlistId,
   ],
+  PREVIEW: () => [...SETLIST_QUERY_KEY.ALL, 'preview'],
+  OVERVIEW: (sortBy: SortOption) => [
+    ...SETLIST_QUERY_KEY.ALL,
+    'overview',
+    sortBy,
+  ],
+} as const;
+
+export const RECORD_QUERY_KEY = {
+  ALL: ['record'],
 } as const;
 
 export const TOP_100_ARTIST_QUERY_KEY = {

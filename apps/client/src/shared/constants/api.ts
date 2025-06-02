@@ -6,6 +6,8 @@ export const END_POINT = {
   GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
+
+  // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
