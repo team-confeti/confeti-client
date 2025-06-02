@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { addFestivalTimeTable } from '@shared/apis/time-table/festival-button';
-import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-timetable';
+import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-time-table-queries';
 import {
   FESTIVAL_BUTTON_QUERY_KEY,
   FESTIVAL_TIMETABLE_QUERY_KEY,

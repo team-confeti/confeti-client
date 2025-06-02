@@ -50,15 +50,12 @@ export const HOME_QUERY_KEY = {
 } as const;
 
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {
-  ALL: ['festivalTimetable'],
+  ALL: ['festivalTimeTable'],
+  ONBOARDING: () => [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL, 'onboarding'],
   DELETE_TIME_TABLE_FESTIVAL: (festivalId: number) => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     festivalId,
   ],
-} as const;
-
-export const TIME_TABLE_CREATION_HISTORY_QUERY_KEY = {
-  ALL: ['timeTableCreationHistory'],
 } as const;
 
 export const SEARCH_PAGE_QUERY_KEY = {
@@ -122,7 +119,7 @@ export const ARTIST_RELATED_QUERY_KEY = {
 } as const;
 
 export const MY_TIME_TABLE_QUERY_KEY = {
-  ALL: ['time-table'],
+  ALL: ['myTimeTable'],
   PREVIEW: () => [...MY_TIME_TABLE_QUERY_KEY.ALL, 'preview'],
   OVERVIEW: (sortBy: SortOption) => [
     ...MY_TIME_TABLE_QUERY_KEY.ALL,
