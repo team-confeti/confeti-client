@@ -1,13 +1,12 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 
+import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { PERFORMANCE_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import { ConcertDetailResponse } from '@shared/types/concert-response';
 import { FestivalDetailResponse } from '@shared/types/festival-response';
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
-
-import { get } from '../config/instance';
 
 export const PERFORMANCE_QUERY_OPTIONS = {
   CONCERT: (concertId: number) =>

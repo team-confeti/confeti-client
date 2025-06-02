@@ -4,10 +4,8 @@ import {
   ARTIST_RELATED_QUERY_OPTIONS,
   getArtistRelatedArtist,
 } from '@shared/apis/onboard/artist-related-queries';
-import {
-  postAuthOnboarding,
-  TOP_ARTIST_QUERY_OPTIONS,
-} from '@shared/apis/onboard/top-artist-queries';
+import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
+import { TOP_ARTIST_QUERY_OPTIONS } from '@shared/apis/onboard/top-artist-queries';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
 

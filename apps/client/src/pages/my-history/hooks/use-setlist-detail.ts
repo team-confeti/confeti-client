@@ -5,8 +5,8 @@ import {
   patchCompleteEditSetList,
   patchReorderSetList,
   postStartEditSetList,
-  SETLIST_QUERY_OPTION,
-} from '@shared/apis/my-history/setlist-queries';
+} from '@shared/apis/my-history/setlist-mutation';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 
 export const useSetListDetail = (setlistId: number) => {
   const { data } = useSuspenseQuery(SETLIST_QUERY_OPTION.DETAIL(setlistId));

@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { get, post } from '@shared/apis/config/instance';
+import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { TOP_100_ARTIST_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
@@ -21,13 +21,4 @@ export const getTopArtist = async (limit: number): Promise<onboardResponse> => {
   );
 
   return response.data;
-};
-
-export const postAuthOnboarding = async (
-  favoriteArtists: string[],
-): Promise<void> => {
-  const requestBody = {
-    favoriteArtists: favoriteArtists.map((id) => ({ artistId: id })),
-  };
-  await post<BaseResponse<null>>(END_POINT.POST_AUTH_ONBOARD, requestBody);
 };

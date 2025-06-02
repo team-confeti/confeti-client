@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   deleteFestivalTimetables,
   postAddFestivalTimeTable,
-} from '@shared/apis/time-table/festival-timetable-queries';
+} from '@shared/apis/time-table/festival-timetable-mutation';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 
 export const useDeleteTimeTableFestival = () => {

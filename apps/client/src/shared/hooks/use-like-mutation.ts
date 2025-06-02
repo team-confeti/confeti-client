@@ -7,7 +7,7 @@ import {
   postLikeArtist,
   postLikeConcert,
   postLikeFestival,
-} from '@shared/apis/like/like';
+} from '@shared/apis/like/like-mutation';
 import {
   LIKE_QUERY_KEY,
   PERFORMANCE_QUERY_KEY,
