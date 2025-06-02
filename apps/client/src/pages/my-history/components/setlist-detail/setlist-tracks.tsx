@@ -22,7 +22,7 @@ import AddMusicButton from '../../components/setlist-detail/add-music-button';
 import { useDeleteMusicMutation } from '../../hooks/use-delete-music-mutation';
 import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
 import { usePreventScroll } from '../../hooks/use-prevent-scroll.ts';
-import { useCancelEditSetList } from '../../hooks/use-setlist-detail';
+import { useCancelEditSetList } from '../../hooks/use-setlist-detail-mutation.ts';
 
 import * as styles from './setlist-tracks.css';
 

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Footer } from '@confeti/design-system';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import Hero from '@shared/components/hero/hero';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
@@ -15,9 +17,8 @@ import SetListTracks, {
 import {
   useCompleteEditSetList,
   useReorderSetList,
-  useSetListDetail,
   useStartEditSetList,
-} from '../../hooks/use-setlist-detail';
+} from '../../hooks/use-setlist-detail-mutation';
 
 const SetListDetailPage = () => {
   const { setlistId } = useParams<{ setlistId: string }>();
@@ -26,9 +27,11 @@ const SetListDetailPage = () => {
     throw new Error('잘못된 접근입니다. (setlistId 없음)');
   }
 
-  const { data: setlistDetail } = useSetListDetail(Number(setlistId));
-  const hasNoMusic = setlistDetail.musics.length === 0;
+  const { data: setlistDetail } = useSuspenseQuery(
+    SETLIST_QUERY_OPTION.DETAIL(Number(setlistId)),
+  );
 
+  const hasNoMusic = setlistDetail.musics.length === 0;
   const [isEditMode, setIsEditMode] = useState(false);
   const [reorderedTracks, setReorderedTracks] = useState<SetListTrack[]>([]);
 

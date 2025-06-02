@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
+import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import Loading from '@shared/pages/loading/loading';
-
-import { useSearchSetListPerformance } from '../../hooks/use-performance-search';
 
 import * as styles from './add-setlist-page.css';
 
@@ -35,14 +35,16 @@ const AddSetlistPage = () => {
   });
 
   const { data: setListPerformance, isLoading: isSetListPerformanceLoading } =
-    useSearchSetListPerformance(
-      {
-        aid: selectedType === 'artist' ? selectedId : null,
-        pid: selectedType === 'performance' ? Number(selectedId) : null,
-        term: selectedKeyword,
-      },
-      !!selectedKeyword,
-    );
+    useQuery({
+      ...SETLIST_QUERY_OPTION.SEARCH_PERFORMANCE(
+        {
+          aid: selectedType === 'artist' ? selectedId : null,
+          pid: selectedType === 'performance' ? Number(selectedId) : null,
+          term: selectedKeyword,
+        },
+        !!selectedKeyword,
+      ),
+    });
 
   useEffect(() => {
     setSelectedKeyword(paramsKeyword);
