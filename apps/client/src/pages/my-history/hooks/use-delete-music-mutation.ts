@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteMusicFromSetList } from '@shared/apis/my-history/setlist';
+import { deleteMusicFromSetList } from '@shared/apis/my-history/setlist-queries';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 
 export const useDeleteMusicMutation = (setlistId: number) => {
