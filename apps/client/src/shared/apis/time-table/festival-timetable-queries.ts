@@ -1,4 +1,4 @@
-import { queryOptions } from '@tanstack/react-query';
+import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
@@ -9,6 +9,7 @@ import {
   FestivalTimetableResponseExtended,
   TimeTableCreationHistory,
 } from '@shared/types/festival-timetable-response';
+import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 
 export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
   ALL: () =>
@@ -32,6 +33,13 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getFestivalTimetable(festivalId),
       enabled: festivalId !== undefined,
     }),
+  ADDABLE_FESTIVALS: () =>
+    infiniteQueryOptions<GetFestivalToAddResponse, Error>({
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.ADDABLE_FESTIVALS(),
+      queryFn: ({ pageParam }) => getFestivalToAdd(pageParam as number),
+      initialPageParam: undefined,
+      getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
+    }),
 };
 
 export const getAvailableFestivals =
@@ -54,6 +62,15 @@ export const getFestivalTimetable = async (
 export const getTimeTableCreationHistory = async () => {
   const response = await get<BaseResponse<TimeTableCreationHistory>>(
     END_POINT.FETCH_TIMETABLE_CREATION_HISTORY,
+  );
+  return response.data;
+};
+
+export const getFestivalToAdd = async (
+  cursor?: number,
+): Promise<GetFestivalToAddResponse> => {
+  const response = await get<BaseResponse<GetFestivalToAddResponse>>(
+    END_POINT.GET_FESTIVAL_TO_ADD(cursor),
   );
   return response.data;
 };

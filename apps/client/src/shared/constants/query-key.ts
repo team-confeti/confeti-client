@@ -29,10 +29,6 @@ export const PERFORMANCE_QUERY_KEY = {
     'festival',
     festivalId,
   ],
-  GET_FESTIVAL_TO_ADD: {
-    ALL: ['getFestivalToAdd'],
-    LIST: () => [...PERFORMANCE_QUERY_KEY.GET_FESTIVAL_TO_ADD.ALL, 'list'],
-  },
 } as const;
 
 export const HOME_QUERY_KEY = {
@@ -59,6 +55,10 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   AVAILABLE_FESTIVALS: () => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'available-festivals',
+  ],
+  ADDABLE_FESTIVALS: () => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'get-festival-to-add-list',
   ],
 } as const;
 
@@ -101,11 +101,6 @@ export const SEARCH_PERFORMANCE_QUERY_KEY = {
     request.ptitle,
     request.ptype,
   ],
-} as const;
-
-export const GET_FESTIVAL_TO_ADD_QUERY_KEY = {
-  ALL: ['getFestivalToAdd'],
-  LIST: () => [...GET_FESTIVAL_TO_ADD_QUERY_KEY.ALL, 'list'],
 } as const;
 
 export const ARTIST_RELATED_QUERY_KEY = {
