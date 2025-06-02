@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { postAddPerformanceToSetList } from '@shared/apis/my-history/setlist';
-import { SETLIST_QUERY_KEY } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { SetListPerformance } from '@shared/types/my-history-response';
 
 export const useAddPerformanceMutation = () => {

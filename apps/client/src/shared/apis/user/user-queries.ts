@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 
 import { PerformancesFilterType } from './../../types/user-response';
@@ -11,17 +12,6 @@ import {
   getMyUpcomingPerformance,
   getUserProfile,
 } from './user';
-
-export const USER_QUERY_KEY = {
-  ALL: ['users'],
-  PROFILE: () => [...USER_QUERY_KEY.ALL, 'profile'],
-  MY_ARTISTS: () => [...USER_QUERY_KEY.ALL, 'artists'],
-  MY_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
-  MY_UPCOMING_PERFORMANCE: () => [
-    ...USER_QUERY_KEY.ALL,
-    'upcoming-performance',
-  ],
-} as const;
 
 export const USER_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: USER_QUERY_KEY.ALL }),

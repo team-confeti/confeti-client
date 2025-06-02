@@ -1,15 +1,8 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getTopArtist } from './top-artist';
+import { TOP_100_ARTIST_QUERY_KEY } from '@shared/constants/query-key';
 
-export const TOP_100_ARTIST_QUERY_KEY = {
-  ALL: ['top-artist'],
-  TOP_ARTIST: (limit: number) => [
-    ...TOP_100_ARTIST_QUERY_KEY.ALL,
-    'top-artist',
-    limit,
-  ],
-} as const;
+import { getTopArtist } from './top-artist';
 
 export const TOP_ARTIST_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: TOP_100_ARTIST_QUERY_KEY.ALL }),

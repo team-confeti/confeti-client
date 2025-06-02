@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { PERFORMANCE_QUERY_KEY } from '@shared/apis/confeti-detail/performance-queries';
 import {
   deleteLikeArtist,
   deleteLikeConcert,
@@ -9,8 +8,11 @@ import {
   postLikeConcert,
   postLikeFestival,
 } from '@shared/apis/like/like';
-import { LIKE_QUERY_KEY } from '@shared/apis/like/like-queries';
-import { SEARCH_ARTIST_QUERY_KEY } from '@shared/apis/search/search-queries';
+import {
+  LIKE_QUERY_KEY,
+  PERFORMANCE_QUERY_KEY,
+  SEARCH_ARTIST_QUERY_KEY,
+} from '@shared/constants/query-key';
 
 type LikeType = 'ARTIST' | 'FESTIVAL' | 'CONCERT';
 

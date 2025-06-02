@@ -1,5 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { HOME_QUERY_KEY } from '@shared/constants/query-key';
+
 import {
   getLatestPerformances,
   getSuggestMusic,
@@ -7,20 +9,6 @@ import {
   getSuggestPerformance,
   getTicketing,
 } from './home';
-
-export const HOME_QUERY_KEY = {
-  ALL: ['home'],
-  LATEST_PERFORMANCES: () => [...HOME_QUERY_KEY.ALL, 'latestPerformances'],
-  TICKETING: () => [...HOME_QUERY_KEY.ALL, 'ticketing'],
-  SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestPerformance'],
-  SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggestMusic'],
-  SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) => [
-    ...HOME_QUERY_KEY.ALL,
-    'suggestMusic',
-    performanceId,
-    musicIds,
-  ],
-} as const;
 
 export const HOME_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: HOME_QUERY_KEY.ALL }),

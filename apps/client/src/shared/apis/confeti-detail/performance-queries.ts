@@ -1,27 +1,13 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 
+import { END_POINT } from '@shared/constants/api';
+import { PERFORMANCE_QUERY_KEY } from '@shared/constants/query-key';
+import { BaseResponse } from '@shared/types/api';
+import { ConcertDetailResponse } from '@shared/types/concert-response';
+import { FestivalDetailResponse } from '@shared/types/festival-response';
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 
-import { getFestivalToAdd } from './get-festival-to-add';
-import { getConcertDetail, getFestivalDetail } from './performance';
-
-export const PERFORMANCE_QUERY_KEY = {
-  ALL: ['performances'],
-  CONCERT: (concertId: number) => [
-    ...PERFORMANCE_QUERY_KEY.ALL,
-    'concert',
-    concertId,
-  ],
-  FESTIVAL: (festivalId: number) => [
-    ...PERFORMANCE_QUERY_KEY.ALL,
-    'festival',
-    festivalId,
-  ],
-  GET_FESTIVAL_TO_ADD: {
-    ALL: ['getFestivalToAdd'],
-    LIST: () => [...PERFORMANCE_QUERY_KEY.GET_FESTIVAL_TO_ADD.ALL, 'list'],
-  },
-} as const;
+import { get } from '../config/instance';
 
 export const PERFORMANCE_QUERY_OPTIONS = {
   CONCERT: (concertId: number) =>
@@ -41,4 +27,31 @@ export const PERFORMANCE_QUERY_OPTIONS = {
       initialPageParam: undefined,
       getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
     }),
+};
+
+export const getConcertDetail = async (
+  concertId: number,
+): Promise<ConcertDetailResponse> => {
+  const response = await get<BaseResponse<ConcertDetailResponse>>(
+    `${END_POINT.GET_CONCERT_DETAIL}/${concertId}`,
+  );
+  return response.data;
+};
+
+export const getFestivalDetail = async (
+  festivalId: number,
+): Promise<FestivalDetailResponse> => {
+  const response = await get<BaseResponse<FestivalDetailResponse>>(
+    `${END_POINT.GET_FESTIVAL_DETAIL}/${festivalId}`,
+  );
+  return response.data;
+};
+
+export const getFestivalToAdd = async (
+  cursor?: number,
+): Promise<GetFestivalToAddResponse> => {
+  const response = await get<BaseResponse<GetFestivalToAddResponse>>(
+    END_POINT.GET_FESTIVAL_TO_ADD(cursor),
+  );
+  return response.data;
 };

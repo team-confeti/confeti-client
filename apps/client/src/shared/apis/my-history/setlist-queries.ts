@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import {
   ArtistMusicSearchRequest,
   MusicSearchRequest,
@@ -12,31 +13,6 @@ import {
   getSetListDetail,
   getSetListPerformance,
 } from './setlist';
-
-export const SETLIST_QUERY_KEY = {
-  ALL: ['setlist'],
-  SEARCH_PERFORMANCE: (request: SetListPerformanceRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'performance',
-    request,
-  ],
-
-  SEARCH_MUSIC: (request: MusicSearchRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'music',
-    request,
-  ],
-  SEARCH_ARTIST_MUSIC: (request: ArtistMusicSearchRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'artist-music',
-    request,
-  ],
-  DETAIL: (setlistId: number) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'detail',
-    setlistId,
-  ],
-};
 
 export const SETLIST_QUERY_OPTION = {
   ALL: () =>

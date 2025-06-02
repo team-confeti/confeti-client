@@ -1,23 +1,11 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { ARTIST_RELATED_QUERY_KEY } from '@shared/constants/query-key';
+
 import {
   getArtistRelatedArtist,
   getArtistRelatedKeyword,
 } from './artist-related';
-
-export const ARTIST_RELATED_QUERY_KEY = {
-  ALL: ['related'],
-  RELATED_ARTIST: (artistId: string) => [
-    ...ARTIST_RELATED_QUERY_KEY.ALL,
-    'artist',
-    artistId,
-  ],
-  RELATED_KEYWORD: (keyword: string) => [
-    ...ARTIST_RELATED_QUERY_KEY.ALL,
-    'keyword',
-    keyword,
-  ],
-} as const;
 
 export const ARTIST_RELATED_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: ARTIST_RELATED_QUERY_KEY.ALL }),

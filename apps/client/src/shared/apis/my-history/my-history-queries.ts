@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { MY_HISTORY_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 
 import {
@@ -9,33 +10,6 @@ import {
   getMyTimeTableOverView,
   getMyTimeTablePreview,
 } from './my-history';
-
-export const MY_HISTORY_QUERY_KEY = {
-  ALL: ['my-history'],
-  TIME_TABLE: {
-    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'time-table'],
-    PREVIEW: () => [...MY_HISTORY_QUERY_KEY.ALL, 'time-table', 'preview'],
-    OVERVIEW: (sortBy: SortOption) => [
-      ...MY_HISTORY_QUERY_KEY.ALL,
-      'time-table',
-      'overview',
-      sortBy,
-    ],
-  },
-  SETLIST: {
-    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'setlist'],
-    PREVIEW: () => [...MY_HISTORY_QUERY_KEY.ALL, 'setlist', 'preview'],
-    OVERVIEW: (sortBy: SortOption) => [
-      ...MY_HISTORY_QUERY_KEY.ALL,
-      'setlist',
-      'overview',
-      sortBy,
-    ],
-  },
-  RECORD: {
-    ALL: () => [...MY_HISTORY_QUERY_KEY.ALL, 'record'],
-  },
-} as const;
 
 export const MY_HISTORY_QUERY_OPTION = {
   TIME_TABLE: {

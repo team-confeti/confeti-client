@@ -1,5 +1,10 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import {
+  SEARCH_ARTIST_QUERY_KEY,
+  SEARCH_PAGE_QUERY_KEY,
+  SEARCH_PERFORMANCE_QUERY_KEY,
+} from '@shared/constants/query-key';
 import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
 import {
@@ -11,16 +16,6 @@ import {
   getPopularSearch,
   getRecentView,
 } from './search';
-
-export const SEARCH_PAGE_QUERY_KEY = {
-  ALL: ['search'],
-  SEARCH_POPULAR_SEARCH: () => [...SEARCH_PAGE_QUERY_KEY.ALL, 'popular'],
-  RECENT_VIEW: (items: string) => [
-    ...SEARCH_PAGE_QUERY_KEY.ALL,
-    'recent',
-    items,
-  ],
-} as const;
 
 export const SEARCH_PAGE_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_PAGE_QUERY_KEY.ALL }),
@@ -36,15 +31,6 @@ export const SEARCH_PAGE_QUERY_OPTION = {
   }),
 };
 
-export const SEARCH_ARTIST_QUERY_KEY = {
-  ALL: ['artist'],
-  SEARCH_ARTIST: (keyword: string) => [
-    ...SEARCH_ARTIST_QUERY_KEY.ALL,
-    'search',
-    keyword,
-  ],
-} as const;
-
 export const SEARCH_ARTIST_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_QUERY_KEY.ALL }),
   SEARCH_ARTIST: (keyword: string, enabled: boolean) => ({
@@ -58,28 +44,6 @@ export const SEARCH_ARTIST_QUERY_OPTION = {
     enabled,
   }),
 };
-
-export const SEARCH_PERFORMANCE_QUERY_KEY = {
-  ALL: ['performances'],
-  SEARCH_PERFORMANCES: (keyword: string) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
-    'search',
-    keyword,
-  ],
-  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
-    'type-analysis',
-    keyword,
-  ],
-  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
-    'intended',
-    request.pid,
-    request.aid,
-    request.ptitle,
-    request.ptype,
-  ],
-} as const;
 
 export const SEARCH_PERFORMANCE_QUERY_OPTION = {
   ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCE_QUERY_KEY.ALL }),
