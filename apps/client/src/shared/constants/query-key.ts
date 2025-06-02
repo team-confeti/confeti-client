@@ -56,6 +56,10 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     festivalId,
   ],
+  AVAILABLE_FESTIVALS: () => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'available-festivals',
+  ],
 } as const;
 
 export const SEARCH_PAGE_QUERY_KEY = {
@@ -169,10 +173,6 @@ export const TOP_100_ARTIST_QUERY_KEY = {
     'top-artist',
     limit,
   ],
-} as const;
-
-export const FESTIVAL_BUTTON_QUERY_KEY = {
-  ALL: ['festival-button'],
 } as const;
 
 export const MY_HISTORY_QUERY_KEY = {

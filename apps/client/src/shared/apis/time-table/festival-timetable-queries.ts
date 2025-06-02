@@ -1,10 +1,11 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { del, get, patch } from '@shared/apis/config/instance';
+import { del, get, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
+  FestivalIds,
   FestivalTimetableResponse,
   FestivalTimetableResponseExtended,
   TimeTableCreationHistory,
@@ -21,6 +22,11 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.ONBOARDING(),
       queryFn: getTimeTableCreationHistory,
     }),
+  AVAILABLE_FESTIVALS: () =>
+    queryOptions({
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.AVAILABLE_FESTIVALS(),
+      queryFn: getAvailableFestivals,
+    }),
   FESTIVAL_TIMETABLE: (festivalId: number) =>
     queryOptions({
       queryKey:
@@ -28,6 +34,14 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getFestivalTimetable(festivalId),
     }),
 };
+
+export const getAvailableFestivals =
+  async (): Promise<FestivalTimetableResponse> => {
+    const response = await get<BaseResponse<FestivalTimetableResponse>>(
+      END_POINT.GET_AVAILABLE_FESTIVALS,
+    );
+    return response.data;
+  };
 
 export const getFestivalTimetable = async (
   festivalDateId: number,
@@ -57,7 +71,19 @@ export const patchFestivalTimetable = async (
   requestData: UserTimetableResponse,
 ): Promise<void> => {
   await patch<BaseResponse<FestivalTimetableResponse>>(
-    END_POINT.GET_FESTIVAL_BUTTON,
+    END_POINT.GET_AVAILABLE_FESTIVALS,
     requestData,
   );
+};
+
+export const postAddFestivalTimeTable = async (
+  selectedFestivals: number[],
+): Promise<void> => {
+  const festivals = selectedFestivals.map((festivalId) => ({
+    festivalId,
+  }));
+
+  await post<BaseResponse<FestivalIds>>(END_POINT.POST_FESTIVAL_TIMETABLE, {
+    festivals,
+  });
 };

@@ -52,7 +52,7 @@ export const END_POINT = {
   GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
 
   //타임 테이블
-  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
