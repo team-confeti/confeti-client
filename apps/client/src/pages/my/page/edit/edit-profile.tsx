@@ -68,17 +68,11 @@ const EditProfile = () => {
   const handleSave = async () => {
     const newName = name || profileData.name;
 
-    if (profileFile) {
-      updateUserInfo({
-        name: newName,
-        profileFile: profileFile,
-      });
-    } else {
-      updateUserInfo({
-        name: newName,
-        profileUrl: profileData.profileUrl,
-      });
-    }
+    const payload = profileFile
+      ? { name: newName, profileFile }
+      : { name: newName, profileUrl: profileData.profileUrl };
+
+    updateUserInfo(payload);
   };
 
   return (
