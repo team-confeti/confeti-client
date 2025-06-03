@@ -106,3 +106,9 @@ export const HTTP_STATUS_CODE = {
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
 };
+
+export const CACHE_TIME = {
+  SHORT: 1000 * 60 * 3,
+  MEDIUM: 1000 * 60 * 5,
+  LONG: 1000 * 60 * 10,
+};

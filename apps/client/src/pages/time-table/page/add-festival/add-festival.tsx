@@ -4,7 +4,6 @@ import { useAddTimeTableFestival } from '@pages/time-table/hooks/use-timetable-f
 import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button, FestivalCard, Header } from '@confeti/design-system';
-import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/time-table/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
@@ -22,7 +21,7 @@ const AddFestival = () => {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    ...PERFORMANCE_QUERY_OPTIONS.GET_FESTIVAL_TO_ADD_LIST(),
+    ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.ADDABLE_FESTIVALS(),
     getNextPageParam: (lastPage) => {
       return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
     },
