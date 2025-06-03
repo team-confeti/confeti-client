@@ -105,10 +105,10 @@ export const HTTP_STATUS_CODE = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
-};
+} as const;
 
 export const CACHE_TIME = {
   SHORT: 1000 * 60 * 3,
   MEDIUM: 1000 * 60 * 5,
   LONG: 1000 * 60 * 10,
-};
+} as const;
