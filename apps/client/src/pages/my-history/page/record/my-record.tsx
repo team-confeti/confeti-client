@@ -1,23 +1,28 @@
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
 import PreviewSection from '@pages/my-history/components/preview/preview-section';
 import RecordInfo from '@pages/my-history/components/record/record-info';
 import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
-import {
-  useMyHistoryRecord,
-  useMySetListPreview,
-  useMyTimeTablePreview,
-} from '@pages/my-history/hooks/use-my-history';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Footer, Spacing } from '@confeti/design-system';
+import { MY_RECORD_QUERY_OPTION } from '@shared/apis/my-history/my-record-queries';
+import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
+import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './my-record.css';
 
 const MyRecord = () => {
   const { data: profileData } = useUserProfile();
-  const { data: timetablePreviewData } = useMyTimeTablePreview();
-  const { data: setListPreviewData } = useMySetListPreview();
-  const { data: RecordCountData } = useMyHistoryRecord();
+  const { data: timetablePreviewData } = useSuspenseQuery(
+    MY_TIMETABLE_QUERY_OPTION.PREVIEW(),
+  );
+  const { data: setListPreviewData } = useSuspenseQuery(
+    MY_SETLIST_QUERY_OPTION.PREVIEW(),
+  );
+  const { data: RecordCountData } = useSuspenseQuery(
+    MY_RECORD_QUERY_OPTION.ALL(),
+  );
 
   if (!profileData) {
     return null;

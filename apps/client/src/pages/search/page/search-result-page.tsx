@@ -1,4 +1,7 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { Footer, Spacing } from '@confeti/design-system';
+import { SEARCH_PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/search/search-performance-queries';
 import {
   ArtistSearch,
   PerformanceTypeAnalysis,
@@ -9,7 +12,6 @@ import ArtistNotFound from '../components/search-result/artist/artist-not-found'
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
-import { useIntendedPerformance } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
@@ -26,13 +28,13 @@ const SearchResult = ({
   performanceTypeAnalysisData,
   refetchArtist,
 }: Props) => {
-  const { data: intendedPerformanceData } = useIntendedPerformance({
-    request: {
+  const { data: intendedPerformanceData } = useSuspenseQuery({
+    ...SEARCH_PERFORMANCE_QUERY_OPTIONS.SEARCH_INTENDED_PERFORMANCE({
       pid: Number(relatedPerformances?.performances?.[0]?.id) || null,
       aid: artistData?.artistId || null,
       ptitle: performanceTypeAnalysisData?.processedTerm || null,
       ptype: performanceTypeAnalysisData?.performanceType || null,
-    },
+    }),
   });
 
   return (

@@ -30,6 +30,7 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryKey:
         FESTIVAL_TIMETABLE_QUERY_KEY.DELETE_TIME_TABLE_FESTIVAL(festivalId),
       queryFn: () => getFestivalTimetable(festivalId),
+      enabled: festivalId !== undefined,
     }),
 };
 
