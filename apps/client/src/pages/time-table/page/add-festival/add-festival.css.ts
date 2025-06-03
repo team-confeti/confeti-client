@@ -5,7 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const wrapper = style({
   ...themeVars.display.flexColumn,
   width: '100%',
-  height: 'calc(100dvh - 5rem)',
+  flex: '1',
 });
 
 export const container = style({

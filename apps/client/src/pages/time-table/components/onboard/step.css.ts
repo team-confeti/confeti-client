@@ -5,7 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const timeTableOnboardContainer = style({
   display: 'flex',
   width: '100%',
-  height: '90vh',
+  flex: '1',
   padding: '3rem 2rem',
   boxSizing: 'border-box',
 });
