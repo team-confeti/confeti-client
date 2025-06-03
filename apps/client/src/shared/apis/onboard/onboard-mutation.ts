@@ -1,7 +1,6 @@
+import { post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
-
-import { post } from '../config/instance';
 
 export const postAuthOnboarding = async (
   favoriteArtists: string[],

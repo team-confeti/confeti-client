@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteAccount } from '@shared/apis/auth/auth';
+import { deleteAccount } from '@shared/apis/auth/auth-mutation';
 import { routePath } from '@shared/router/path';
 import { authTokenHandler } from '@shared/utils/token-handler';
 

@@ -1,33 +1,33 @@
+import { queryOptions } from '@tanstack/react-query';
+
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
+import { SEARCH_PERFORMANCE_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
-  ArtistSearchResponse,
   IntendedPerformanceRequest,
   IntendedPerformanceResponse,
   PerformanceTypeAnalysis,
-  PopularSearchResponse,
-  RecentPerformanceViewResponse,
-  RelatedArtistResponse,
   RelatedPerformanceResponse,
 } from '@shared/types/search-reponse';
 
-export const getArtistSearch = async (
-  keyword: string,
-): Promise<ArtistSearchResponse> => {
-  const response = await get<BaseResponse<ArtistSearchResponse>>(
-    `${END_POINT.GET_ARTISTS_SEARCH}${encodeURIComponent(keyword)}`,
-  );
-  return response.data;
-};
-
-export const getArtistRelatedKeyword = async (
-  keyword: string,
-): Promise<RelatedArtistResponse> => {
-  const response = await get<BaseResponse<RelatedArtistResponse>>(
-    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, 3)}`,
-  );
-  return response.data;
+export const SEARCH_PERFORMANCE_QUERY_OPTIONS = {
+  ALL: () => queryOptions({ queryKey: SEARCH_PERFORMANCE_QUERY_KEY.ALL }),
+  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
+    queryFn: () => getPerformanceRelatedKeyword(keyword),
+    enabled,
+  }),
+  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string, enabled: boolean) => ({
+    queryKey:
+      SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_PERFORMANCE_TYPE_ANALYSIS(keyword),
+    queryFn: () => getPerformanceTypeAnalysis(keyword),
+    enabled,
+  }),
+  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => ({
+    queryKey: SEARCH_PERFORMANCE_QUERY_KEY.SEARCH_INTENDED_PERFORMANCE(request),
+    queryFn: () => getIntendedPerformance(request),
+  }),
 };
 
 export const getPerformanceRelatedKeyword = async (
@@ -63,24 +63,5 @@ export const getIntendedPerformance = async (
   const url = `performances/search?${query.toString()}`;
 
   const response = await get<BaseResponse<IntendedPerformanceResponse>>(url);
-  return response.data;
-};
-
-export const getPopularSearch = async (
-  limit: number,
-): Promise<PopularSearchResponse> => {
-  const response = await get<BaseResponse<PopularSearchResponse>>(
-    `${END_POINT.GET_POPULAR_SEARCH(limit)}`,
-  );
-
-  return response.data;
-};
-
-export const getRecentView = async (
-  items: string,
-): Promise<RecentPerformanceViewResponse> => {
-  const response = await get<BaseResponse<RecentPerformanceViewResponse>>(
-    `${END_POINT.GET_RECENT_VIEW(items)}`,
-  );
   return response.data;
 };

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { patchFestivalTimetable } from '@shared/apis/time-table/festival-timetable';
-import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/apis/time-table/festival-timetable-queries';
+import { patchFestivalTimetable } from '@shared/apis/time-table/festival-timetable-mutation';
+import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { UserTimetable } from '@shared/types/timetable-response';
 
 export const usePatchTimeTableMutation = () => {

@@ -6,6 +6,8 @@ export const END_POINT = {
   GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
+
+  // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
@@ -50,7 +52,7 @@ export const END_POINT = {
   GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
 
   //타임 테이블
-  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',

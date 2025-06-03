@@ -5,7 +5,7 @@ import {
   patchCompleteEditSetList,
   patchReorderSetList,
   postStartEditSetList,
-} from '@shared/apis/my-history/setlist';
+} from '@shared/apis/my-history/setlist-mutation';
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 
 export const useSetListDetail = (setlistId: number) => {

@@ -35,8 +35,6 @@ const SearchResult = ({
     },
   });
 
-  // console.log(artistData);
-
   return (
     <>
       <main className={styles.resultSection}>

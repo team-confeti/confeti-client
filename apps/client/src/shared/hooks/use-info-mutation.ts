@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
-import { patchUserInfo } from '@shared/apis/user/user';
-import { USER_QUERY_KEY } from '@shared/apis/user/user-queries';
+import { patchUserInfo } from '@shared/apis/user/user-queries';
+import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { UserInfo } from '@shared/types/user-response';
 
 export const useUserProfileMutation = () => {

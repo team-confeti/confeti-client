@@ -1,22 +1,11 @@
+import { del, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { BaseResponse } from '@shared/types/api';
 import {
+  FestivalIds,
   FestivalTimetableResponse,
-  FestivalTimetableResponseExtended,
-  TimeTableCreationHistory,
 } from '@shared/types/festival-timetable-response';
 import { UserTimetableResponse } from '@shared/types/timetable-response';
-
-import { del, get, patch } from '../config/instance';
-
-export const getFestivalTimetable = async (
-  festivalDateId: number,
-): Promise<FestivalTimetableResponseExtended> => {
-  const response = await get<BaseResponse<FestivalTimetableResponseExtended>>(
-    END_POINT.GET_FESTIVAL_TIMETABLE(festivalDateId),
-  );
-  return response.data;
-};
 
 export const deleteFestivalTimetables = async (
   festivalId: number,
@@ -30,14 +19,19 @@ export const patchFestivalTimetable = async (
   requestData: UserTimetableResponse,
 ): Promise<void> => {
   await patch<BaseResponse<FestivalTimetableResponse>>(
-    END_POINT.GET_FESTIVAL_BUTTON,
+    END_POINT.GET_AVAILABLE_FESTIVALS,
     requestData,
   );
 };
 
-export const getTimeTableCreationHistory = async () => {
-  const response = await get<BaseResponse<TimeTableCreationHistory>>(
-    END_POINT.FETCH_TIMETABLE_CREATION_HISTORY,
-  );
-  return response.data;
+export const postAddFestivalTimeTable = async (
+  selectedFestivals: number[],
+): Promise<void> => {
+  const festivals = selectedFestivals.map((festivalId) => ({
+    festivalId,
+  }));
+
+  await post<BaseResponse<FestivalIds>>(END_POINT.POST_FESTIVAL_TIMETABLE, {
+    festivals,
+  });
 };
