@@ -69,17 +69,13 @@ export const SEARCH_QUERY_KEY = {
   ],
   SEARCH_POPULAR_SEARCH: () => [...SEARCH_QUERY_KEY.ALL, 'popular'],
   RECENT_VIEW: (items: string) => [...SEARCH_QUERY_KEY.ALL, items],
-} as const;
-
-export const SEARCH_ARTIST_QUERY_KEY = {
-  ALL: ['search-artist'],
   SEARCH_ARTIST: (keyword: string) => [
-    ...SEARCH_ARTIST_QUERY_KEY.ALL,
+    ...SEARCH_QUERY_KEY.ALL,
     'artists',
     keyword,
   ],
   SEARCH_PERFORMANCES: (keyword: string) => [
-    ...SEARCH_ARTIST_QUERY_KEY.ALL,
+    ...SEARCH_QUERY_KEY.ALL,
     'performances',
     keyword,
   ],

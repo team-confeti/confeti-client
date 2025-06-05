@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { SEARCH_ARTIST_QUERY_OPTIONS } from '@shared/apis/search/search-artist-queries';
+import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
 
 interface KeywordProps {
   keyword: string;
@@ -10,8 +10,8 @@ interface KeywordProps {
 export const useRelatedSearch = ({ keyword, enabled }: KeywordProps) => {
   return useQueries({
     queries: [
-      SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_RELATED_KEYWORD(keyword, enabled),
-      SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_RELATED_PERFORMANCES(keyword, enabled),
+      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_ARTISTS(keyword, enabled),
+      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_PERFORMANCES(keyword, enabled),
     ],
     combine: (results) => ({
       data: {

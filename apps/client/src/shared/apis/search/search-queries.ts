@@ -2,10 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
-import {
-  SEARCH_ARTIST_QUERY_KEY,
-  SEARCH_QUERY_KEY,
-} from '@shared/constants/query-key';
+import { SEARCH_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
   ArtistSearchResponse,
@@ -14,28 +11,31 @@ import {
   SearchAllResponse,
 } from '@shared/types/search-reponse';
 
-export const SEARCH_ARTIST_QUERY_OPTIONS = {
-  ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_QUERY_KEY.ALL }),
-  SEARCH_RELATED_KEYWORD: (keyword: string, enabled: boolean) => ({
-    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
-    queryFn: () => getArtistRelatedKeyword(keyword),
-    enabled,
-  }),
-  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) => ({
-    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
-    queryFn: () => getPerformanceRelatedKeyword(keyword),
-    enabled,
-  }),
+export const SEARCH_QUERY_OPTIONS = {
+  ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),
+  SEARCH_RELATED_ARTISTS: (keyword: string, enabled: boolean) =>
+    queryOptions({
+      queryKey: SEARCH_QUERY_KEY.SEARCH_ARTIST(keyword),
+      queryFn: () => getArtistRelatedKeyword(keyword),
+      enabled,
+    }),
+  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) =>
+    queryOptions({
+      queryKey: SEARCH_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
+      queryFn: () => getPerformanceRelatedKeyword(keyword),
+      enabled,
+    }),
   SEARCH_ALL: (
     aid: string | null,
     pid: string | null,
     term: string | null,
     enabled: boolean,
-  ) => ({
-    queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(aid, pid, term),
-    queryFn: () => getSearchAll(aid, pid, term),
-    enabled,
-  }),
+  ) =>
+    queryOptions({
+      queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(aid, pid, term),
+      queryFn: () => getSearchAll(aid, pid, term),
+      enabled,
+    }),
 };
 
 export const getSearchAll = async (

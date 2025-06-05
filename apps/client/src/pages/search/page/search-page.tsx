@@ -3,8 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
-import { SEARCH_ARTIST_QUERY_OPTIONS } from '@shared/apis/search/search-artist-queries';
 import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
+import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
@@ -79,7 +79,7 @@ const SearchPage = () => {
     isLoading: isSearchLoading,
     refetch: refetchArtist,
   } = useQuery({
-    ...SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_ALL(
+    ...SEARCH_QUERY_OPTIONS.SEARCH_ALL(
       selectedArtistId,
       selectedPerformanceId,
       paramsKeyword,

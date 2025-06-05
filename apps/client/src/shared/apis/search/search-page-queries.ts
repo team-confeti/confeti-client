@@ -11,16 +11,18 @@ import {
 
 export const SEARCH_PAGE_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),
-  SEARCH_POPULAR_SEARCH: () => ({
-    queryKey: SEARCH_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
-    // TODO: limit 상수 처리
-    queryFn: () => getPopularSearch(10),
-  }),
-  RECENT_VIEW: (items: string, enabled: boolean) => ({
-    queryKey: SEARCH_QUERY_KEY.RECENT_VIEW(items),
-    queryFn: () => getRecentView(items),
-    enabled,
-  }),
+  SEARCH_POPULAR_SEARCH: () =>
+    queryOptions({
+      queryKey: SEARCH_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
+      // TODO: limit 상수 처리
+      queryFn: () => getPopularSearch(10),
+    }),
+  RECENT_VIEW: (items: string, enabled: boolean) =>
+    queryOptions({
+      queryKey: SEARCH_QUERY_KEY.RECENT_VIEW(items),
+      queryFn: () => getRecentView(items),
+      enabled,
+    }),
 };
 
 export const getPopularSearch = async (
