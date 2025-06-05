@@ -28,7 +28,7 @@ export const SEARCH_ARTIST_QUERY_OPTIONS = {
   }),
   SEARCH_ALL: (
     aid: string | null,
-    pid: number | null,
+    pid: string | null,
     term: string | null,
     enabled: boolean,
   ) => ({
@@ -40,7 +40,7 @@ export const SEARCH_ARTIST_QUERY_OPTIONS = {
 
 export const getSearchAll = async (
   aid: string | null,
-  pid: number | null,
+  pid: string | null,
   term: string | null,
 ): Promise<SearchAllResponse> => {
   const response = await get<BaseResponse<SearchAllResponse>>(

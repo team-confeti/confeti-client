@@ -12,7 +12,7 @@ export interface ArtistSearchResponse {
 }
 
 export interface Performance {
-  performanceId: number;
+  id: number;
   typeId: number;
   type: 'FESTIVAL' | 'CONCERT';
   title: string;

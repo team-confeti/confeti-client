@@ -25,8 +25,8 @@ const PerformanceSection = ({ performanceCount, performances }: Props) => {
     <Box title={`예정된 공연 (${performanceCount})`}>
       {performances.map((performance) => (
         <PerformanceInfo
-          key={performance.performanceId}
-          performanceId={performance.performanceId}
+          key={performance.id}
+          id={performance.id}
           typeId={performance.typeId}
           type={performance.type}
           title={performance.title}
