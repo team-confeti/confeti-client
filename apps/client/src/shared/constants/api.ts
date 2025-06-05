@@ -64,7 +64,6 @@ export const END_POINT = {
 
   //검색
   GET_SEARCH_ALL: '/search',
-  GET_ARTISTS_SEARCH: '/artists/search?term=',
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>

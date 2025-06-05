@@ -53,18 +53,9 @@ export const getSearchAll = async (
       params: {
         aid,
         pid,
-        term: term ? encodeURIComponent(term) : null,
+        term,
       },
     },
-  );
-  return response.data;
-};
-
-export const getArtistSearch = async (
-  keyword: string,
-): Promise<ArtistSearchResponse> => {
-  const response = await get<BaseResponse<ArtistSearchResponse>>(
-    `${END_POINT.GET_ARTISTS_SEARCH}${encodeURIComponent(keyword)}`,
   );
   return response.data;
 };
