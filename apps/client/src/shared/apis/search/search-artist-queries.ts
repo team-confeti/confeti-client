@@ -16,11 +16,6 @@ import {
 
 export const SEARCH_ARTIST_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_ARTIST_QUERY_KEY.ALL }),
-  SEARCH_ARTIST: (keyword: string, enabled: boolean) => ({
-    queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
-    queryFn: () => getArtistSearch(keyword),
-    enabled,
-  }),
   SEARCH_RELATED_KEYWORD: (keyword: string, enabled: boolean) => ({
     queryKey: SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST(keyword),
     queryFn: () => getArtistRelatedKeyword(keyword),
