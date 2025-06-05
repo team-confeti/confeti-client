@@ -170,31 +170,35 @@ const SearchPage = () => {
 
   return (
     <>
-      {isSearchLoading && <Loading />}
-
-      <div className={styles.searchBarContainer}>
-        <div className={styles.searchBarFrame}>
-          <SearchBar
-            value={searchKeyword}
-            onChange={handleInputChange}
-            onFocus={handleOnFocus}
-            onBlur={handleOnBlur}
-            onClear={handleClear}
-            placeholder="아티스트 또는 공연을 검색해보세요!"
-            {...keyboardProps}
+      {isSearchLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.searchBarContainer}>
+            <div className={styles.searchBarFrame}>
+              <SearchBar
+                value={searchKeyword}
+                onChange={handleInputChange}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+                onClear={handleClear}
+                placeholder="아티스트 또는 공연을 검색해보세요!"
+                {...keyboardProps}
+              />
+            </div>
+          </div>
+          <SwitchCase
+            value={searchState()}
+            caseBy={{
+              loading: () => <Loading />,
+              notFound: () => <ArtistNotFound />,
+              suggestion: () => SuggestionContent,
+              result: () => ResultContent,
+            }}
+            defaultComponent={() => DefaultContent}
           />
-        </div>
-      </div>
-      <SwitchCase
-        value={searchState()}
-        caseBy={{
-          loading: () => <Loading />,
-          notFound: () => <ArtistNotFound />,
-          suggestion: () => SuggestionContent,
-          result: () => ResultContent,
-        }}
-        defaultComponent={() => DefaultContent}
-      />
+        </>
+      )}
     </>
   );
 };
