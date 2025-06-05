@@ -1,5 +1,4 @@
-import { useCallback, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
@@ -23,16 +22,16 @@ import SearchResult from './search-result-page';
 import * as styles from './search-page.css';
 
 const SearchPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const paramsKeyword = searchParams.get('q') || '';
-  const selectedArtistId = searchParams.get('aid');
-  const selectedPerformanceId = searchParams.get('pid');
   const {
+    paramsKeyword,
+    selectedArtistId,
+    selectedPerformanceId,
     barFocus,
     handleOnFocus,
     handleOnBlur,
     handleClear,
     handleNavigateWithKeyword,
+    handleSelectKeyword,
   } = useSearchLogic();
 
   const recentViewItems = getRecentViewItems();
@@ -42,33 +41,15 @@ const SearchPage = () => {
   const { data: recentViewData } = useQuery({
     ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
   });
-
-  const handleSelectKeyword = useCallback(
-    (keyword: string, id: string | number, type: 'artist' | 'performance') => {
-      const newParams = new URLSearchParams(searchParams);
-      newParams.set('q', keyword);
-
-      if (type === 'artist') {
-        newParams.set('aid', String(id));
-        newParams.delete('pid');
-      } else if (type === 'performance') {
-        newParams.set('pid', String(id));
-        newParams.delete('aid');
-      }
-      setSearchParams(newParams);
-    },
-    [searchParams, setSearchParams],
-  );
+  const { data: popularSearchData } = useSuspenseQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
+  });
 
   const {
     keyword: searchKeyword,
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword(paramsKeyword);
-
-  const { data: popularSearchData } = useSuspenseQuery({
-    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
-  });
 
   const {
     data: { relatedArtists, relatedPerformances },
