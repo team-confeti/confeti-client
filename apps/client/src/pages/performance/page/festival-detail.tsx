@@ -48,7 +48,7 @@ const FestivalDetailPage = () => {
       <Reservation reservations={festival.reservations} />
       <Spacing />
       <DetailInfo
-        title={festival.title}
+        title={festival.subtitle}
         time={festival.time}
         ageRating={festival.ageRating}
         price={festival.price}
