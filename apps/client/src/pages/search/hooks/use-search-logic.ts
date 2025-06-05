@@ -13,6 +13,7 @@ export const useSearchLogic = () => {
     if (!keyword.trim()) return;
     addSearchKeyword(keyword);
     navigate(`/search?q=${encodeURIComponent(keyword)}`);
+    setBarFocus(false);
   };
 
   const handleOnFocus = () => setBarFocus(true);

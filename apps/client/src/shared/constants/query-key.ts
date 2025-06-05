@@ -73,9 +73,14 @@ export const SEARCH_QUERY_KEY = {
 
 export const SEARCH_ARTIST_QUERY_KEY = {
   ALL: ['search-artist'],
-  SEARCH_ARTIST: (keyword: string) => [...SEARCH_ARTIST_QUERY_KEY.ALL, keyword],
+  SEARCH_ARTIST: (keyword: string) => [
+    ...SEARCH_ARTIST_QUERY_KEY.ALL,
+    'artists',
+    keyword,
+  ],
   SEARCH_PERFORMANCES: (keyword: string) => [
     ...SEARCH_ARTIST_QUERY_KEY.ALL,
+    'performances',
     keyword,
   ],
 } as const;
