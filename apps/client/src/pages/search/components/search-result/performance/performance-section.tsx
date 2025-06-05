@@ -1,5 +1,5 @@
 import { Box } from '@confeti/design-system';
-import { IntendedPerformance } from '@shared/types/search-reponse';
+import { Performance } from '@shared/types/search-reponse';
 
 import PerformanceInfo from './performance-info';
 
@@ -7,7 +7,7 @@ import * as styles from './performance-section.css';
 
 interface Props {
   performanceCount: number;
-  performances: IntendedPerformance[];
+  performances: Performance[];
 }
 
 const PerformanceSection = ({ performanceCount, performances }: Props) => {

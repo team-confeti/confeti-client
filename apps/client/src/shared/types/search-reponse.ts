@@ -47,35 +47,6 @@ export interface RelatedPerformanceResponse {
   performances: RelatedPerformance[];
 }
 
-export interface PerformanceTypeAnalysis {
-  processedTerm: string;
-  performanceType: 'CONCERT' | 'FESTIVAL' | 'PERFORMANCE';
-}
-
-export interface IntendedPerformance {
-  performanceId: number;
-  typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
-  title: string;
-  posterUrl: string;
-  area: string;
-  startAt: string;
-  endAt: string;
-  isFavorite: boolean;
-}
-
-export interface IntendedPerformanceResponse {
-  performanceCount: number;
-  performances: IntendedPerformance[];
-}
-
-export interface IntendedPerformanceRequest {
-  pid: number | null;
-  aid: string | null;
-  ptitle: string | null;
-  ptype: 'FESTIVAL' | 'CONCERT' | 'PERFORMANCE' | null;
-}
-
 export interface PopularSearch {
   rank: number;
   popularTerm: string;
@@ -95,4 +66,11 @@ export interface RecentPerformanceView {
 
 export interface RecentPerformanceViewResponse {
   performances: RecentPerformanceView[];
+}
+
+export interface SearchAllResponse {
+  // TODO: ArtistSearch 내부 타입 수정 필요
+  artist: ArtistSearch;
+  performanceCount: number;
+  performances: Performance[];
 }
