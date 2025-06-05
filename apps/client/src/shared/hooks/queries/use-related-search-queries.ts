@@ -7,11 +7,24 @@ interface KeywordProps {
   enabled: boolean;
 }
 
+const LIMIT = {
+  ARTIST: 5,
+  PERFORMANCE: 4,
+} as const;
+
 export const useRelatedSearch = ({ keyword, enabled }: KeywordProps) => {
   return useQueries({
     queries: [
-      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_ARTISTS(keyword, enabled),
-      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_PERFORMANCES(keyword, enabled),
+      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_ARTISTS(
+        keyword,
+        LIMIT.ARTIST,
+        enabled,
+      ),
+      SEARCH_QUERY_OPTIONS.SEARCH_RELATED_PERFORMANCES(
+        keyword,
+        LIMIT.PERFORMANCE,
+        enabled,
+      ),
     ],
     combine: (results) => ({
       data: {

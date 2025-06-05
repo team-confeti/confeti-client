@@ -13,16 +13,20 @@ import {
 
 export const SEARCH_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),
-  SEARCH_RELATED_ARTISTS: (keyword: string, enabled: boolean) =>
+  SEARCH_RELATED_ARTISTS: (keyword: string, limit: number, enabled: boolean) =>
     queryOptions({
       queryKey: SEARCH_QUERY_KEY.SEARCH_ARTIST(keyword),
-      queryFn: () => getArtistRelatedKeyword(keyword),
+      queryFn: () => getArtistRelatedKeyword(keyword, limit),
       enabled,
     }),
-  SEARCH_RELATED_PERFORMANCES: (keyword: string, enabled: boolean) =>
+  SEARCH_RELATED_PERFORMANCES: (
+    keyword: string,
+    limit: number,
+    enabled: boolean,
+  ) =>
     queryOptions({
       queryKey: SEARCH_QUERY_KEY.SEARCH_PERFORMANCES(keyword),
-      queryFn: () => getPerformanceRelatedKeyword(keyword),
+      queryFn: () => getPerformanceRelatedKeyword(keyword, limit),
       enabled,
     }),
   SEARCH_ALL: (
@@ -45,11 +49,12 @@ export const getSearchAll = async (
 ): Promise<SearchAllResponse> => {
   const response = await get<BaseResponse<SearchAllResponse>>(
     `${END_POINT.GET_SEARCH_ALL}`,
+
     {
       params: {
         aid,
         pid,
-        term,
+        term: term ? encodeURIComponent(term) : null,
       },
     },
   );
@@ -67,18 +72,20 @@ export const getArtistSearch = async (
 
 export const getArtistRelatedKeyword = async (
   keyword: string,
+  limit: number,
 ): Promise<RelatedArtistResponse> => {
   const response = await get<BaseResponse<RelatedArtistResponse>>(
-    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, 3)}`,
+    `${END_POINT.GET_ARTISTS_SEARCH_RELATED_KEYWORD(keyword, limit)}`,
   );
   return response.data;
 };
 
 export const getPerformanceRelatedKeyword = async (
   keyword: string,
+  limit: number,
 ): Promise<RelatedPerformanceResponse> => {
   const response = await get<BaseResponse<RelatedPerformanceResponse>>(
-    `${END_POINT.GET_PERFORMANCES_SEARCH_RELATED_KEYWORD(keyword, 3)}`,
+    `${END_POINT.GET_PERFORMANCES_SEARCH_RELATED_KEYWORD(keyword, limit)}`,
   );
   return response.data;
 };
