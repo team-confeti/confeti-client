@@ -61,12 +61,7 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
 
 export const SEARCH_QUERY_KEY = {
   ALL: ['search'],
-  SEARCH_ALL: (aid: string | null, pid: string | null, term: string | null) => [
-    ...SEARCH_QUERY_KEY.ALL,
-    aid,
-    pid,
-    term,
-  ],
+  SEARCH_ALL: (term: string | null) => [...SEARCH_QUERY_KEY.ALL, term],
   SEARCH_POPULAR_SEARCH: () => [...SEARCH_QUERY_KEY.ALL, 'popular'],
   RECENT_VIEW: (items: string) => [...SEARCH_QUERY_KEY.ALL, items],
   SEARCH_ARTIST: (keyword: string) => [

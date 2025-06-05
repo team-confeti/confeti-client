@@ -5,7 +5,6 @@ import { END_POINT } from '@shared/constants/api';
 import { SEARCH_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
-  ArtistSearchResponse,
   RelatedArtistResponse,
   RelatedPerformanceResponse,
   SearchAllResponse,
@@ -36,7 +35,7 @@ export const SEARCH_QUERY_OPTIONS = {
     enabled: boolean,
   ) =>
     queryOptions({
-      queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(aid, pid, term),
+      queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(term),
       queryFn: () => getSearchAll(aid, pid, term),
       enabled,
     }),

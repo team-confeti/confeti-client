@@ -155,20 +155,23 @@ const SearchPage = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
-    if (paramsKeyword && searchAllData && !barFocus) {
-      return 'result';
-    }
-    if (barFocus && relatedArtists?.artists?.length) {
+    if (barFocus && relatedArtists?.artists) {
       return 'suggestion';
+    }
+    if (paramsKeyword || (searchAllData && !barFocus)) {
+      return 'result';
     }
     if (searchAllData === null) {
       return 'notFound';
+    } else {
+      return 'default';
     }
   };
 
   return (
     <>
-      {isSearchLoading ?? <Loading />}
+      {isSearchLoading && <Loading />}
+
       <div className={styles.searchBarContainer}>
         <div className={styles.searchBarFrame}>
           <SearchBar

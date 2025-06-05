@@ -30,7 +30,7 @@ const ArtistInfo = ({
 
   return (
     <div className={styles.wrapper}>
-      <Avatar src={image} alt={name} size="xl" />
+      <Avatar src={image} alt={name} size="xl" isHandleClick={false} />
       <div className={styles.textSection}>
         <p className={styles.name}>{name}</p>
         <div className={styles.releaseWrapper}>
