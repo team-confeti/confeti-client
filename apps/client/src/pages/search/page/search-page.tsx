@@ -8,6 +8,7 @@ import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queri
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
 import { getRecentViewItems } from '@shared/utils/recent-view';
 
@@ -30,6 +31,7 @@ const SearchPage = () => {
   const { barFocus, handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
     useSearchLogic();
   const { addSearchKeyword } = useRecentSearch();
+
   const handleSelectKeyword = useCallback(
     (keyword: string, id: string | number, type: 'artist' | 'performance') => {
       const newParams = new URLSearchParams(searchParams);
@@ -79,22 +81,28 @@ const SearchPage = () => {
   } = useQuery({
     ...SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_ALL(
       selectedArtistId,
-      selectedPerformanceId ? Number(selectedPerformanceId) : null,
+      selectedPerformanceId,
       paramsKeyword,
       !!paramsKeyword.trim() || !!selectedArtistId || !!selectedPerformanceId,
     ),
   });
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      e.key === 'Enter' &&
-      !e.nativeEvent.isComposing &&
-      searchKeyword.trim()
-    ) {
-      handleNavigateWithKeyword(searchKeyword);
-      (e.target as HTMLInputElement).blur();
-    }
-  };
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (
+        e.key === 'Enter' &&
+        !e.nativeEvent.isComposing &&
+        searchKeyword.trim()
+      ) {
+        handleNavigateWithKeyword(searchKeyword);
+        addSearchKeyword(searchKeyword);
+        (e.target as HTMLInputElement).blur();
+      }
+      if (e.key === 'Escape') {
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+  });
 
   const handleClear = () => {
     setSearchParams(new URLSearchParams());
@@ -189,7 +197,7 @@ const SearchPage = () => {
           <SearchBar
             value={searchKeyword}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
+            {...keyboardProps}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onClear={handleClear}
