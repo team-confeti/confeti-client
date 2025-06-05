@@ -1,12 +1,5 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-
 import { Footer, Spacing } from '@confeti/design-system';
-import { SEARCH_PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/search/search-performance-queries';
-import {
-  ArtistSearch,
-  PerformanceTypeAnalysis,
-  RelatedPerformanceResponse,
-} from '@shared/types/search-reponse';
+import { ArtistSearch, Performance } from '@shared/types/search-reponse';
 
 import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
@@ -17,26 +10,17 @@ import * as styles from './search-result-page.css';
 
 interface Props {
   artistData: ArtistSearch | null;
-  relatedPerformances: RelatedPerformanceResponse | null;
-  performanceTypeAnalysisData: PerformanceTypeAnalysis | null;
+  performanceData: Performance[] | null;
+  performanceCount: number;
   refetchArtist?: () => void;
 }
 
 const SearchResult = ({
   artistData,
-  relatedPerformances,
-  performanceTypeAnalysisData,
+  performanceData,
+  performanceCount,
   refetchArtist,
 }: Props) => {
-  const { data: intendedPerformanceData } = useSuspenseQuery({
-    ...SEARCH_PERFORMANCE_QUERY_OPTIONS.SEARCH_INTENDED_PERFORMANCE({
-      pid: Number(relatedPerformances?.performances?.[0]?.id) || null,
-      aid: artistData?.artistId || null,
-      ptitle: performanceTypeAnalysisData?.processedTerm || null,
-      ptype: performanceTypeAnalysisData?.performanceType || null,
-    }),
-  });
-
   return (
     <>
       <main className={styles.resultSection}>
@@ -46,8 +30,8 @@ const SearchResult = ({
             <ArtistSection artist={artistData} refetchArtist={refetchArtist} />
             <Spacing />
             <PerformanceSection
-              performanceCount={intendedPerformanceData?.performanceCount ?? 0}
-              performances={intendedPerformanceData?.performances ?? []}
+              performanceCount={performanceCount}
+              performances={performanceData ?? []}
             />
           </>
         ) : (
