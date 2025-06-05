@@ -1,8 +1,6 @@
-import { KeyboardEvent } from 'react';
-
 interface KeyboardEvents {
-  onKeyDown?: (e: KeyboardEvent) => void;
-  onKeyUp?: (e: KeyboardEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 interface KeyboardProps extends KeyboardEvents {

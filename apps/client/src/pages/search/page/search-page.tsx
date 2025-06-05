@@ -89,6 +89,11 @@ const SearchPage = () => {
 
   const { keyboardProps } = useKeyboard({
     onKeyDown: (e) => {
+      if (e.key === 'Escape') {
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+    onKeyUp: (e) => {
       if (
         e.key === 'Enter' &&
         !e.nativeEvent.isComposing &&
@@ -96,9 +101,6 @@ const SearchPage = () => {
       ) {
         handleNavigateWithKeyword(searchKeyword);
         addSearchKeyword(searchKeyword);
-        (e.target as HTMLInputElement).blur();
-      }
-      if (e.key === 'Escape') {
         (e.target as HTMLInputElement).blur();
       }
     },
@@ -197,11 +199,11 @@ const SearchPage = () => {
           <SearchBar
             value={searchKeyword}
             onChange={handleInputChange}
-            {...keyboardProps}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onClear={handleClear}
             placeholder="아티스트 또는 공연을 검색해보세요!"
+            {...keyboardProps}
           />
         </div>
       </div>
