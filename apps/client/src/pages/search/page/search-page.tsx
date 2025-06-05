@@ -27,10 +27,21 @@ const SearchPage = () => {
   const paramsKeyword = searchParams.get('q') || '';
   const selectedArtistId = searchParams.get('aid');
   const selectedPerformanceId = searchParams.get('pid');
+  const {
+    barFocus,
+    handleOnFocus,
+    handleOnBlur,
+    handleClear,
+    handleNavigateWithKeyword,
+  } = useSearchLogic();
 
-  const { barFocus, handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
-    useSearchLogic();
-  const { addSearchKeyword } = useRecentSearch();
+  const recentViewItems = getRecentViewItems();
+  const items = recentViewItems
+    .map((item) => `${item.type}:${item.typeId}`)
+    .join(',');
+  const { data: recentViewData } = useQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
+  });
 
   const handleSelectKeyword = useCallback(
     (keyword: string, id: string | number, type: 'artist' | 'performance') => {
@@ -58,13 +69,6 @@ const SearchPage = () => {
   const { data: popularSearchData } = useSuspenseQuery({
     ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
   });
-  const recentViewItems = getRecentViewItems();
-  const items = recentViewItems
-    .map((item) => `${item.type}:${item.typeId}`)
-    .join(',');
-  const { data: recentViewData } = useQuery({
-    ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
-  });
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -87,6 +91,7 @@ const SearchPage = () => {
     ),
   });
 
+  const { addSearchKeyword } = useRecentSearch();
   const { keyboardProps } = useKeyboard({
     onKeyDown: (e) => {
       if (e.key === 'Escape') {
@@ -105,10 +110,6 @@ const SearchPage = () => {
       }
     },
   });
-
-  const handleClear = () => {
-    setSearchParams(new URLSearchParams());
-  };
 
   const SuggestionContent = useMemo(
     () => (
@@ -169,7 +170,7 @@ const SearchPage = () => {
     [popularSearchData, recentViewData],
   );
 
-  const searchState = useMemo(() => {
+  const searchState = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
@@ -182,15 +183,7 @@ const SearchPage = () => {
     if (searchAllData === null) {
       return 'notFound';
     }
-    return 'default';
-  }, [
-    isSearchLoading,
-    isRelatedKeywordLoading,
-    paramsKeyword,
-    searchAllData,
-    barFocus,
-    relatedArtists?.artists,
-  ]);
+  };
 
   return (
     <>
@@ -209,12 +202,12 @@ const SearchPage = () => {
         </div>
       </div>
       <SwitchCase
-        value={searchState}
+        value={searchState()}
         caseBy={{
           loading: () => <Loading />,
+          notFound: () => <ArtistNotFound />,
           suggestion: () => SuggestionContent,
           result: () => ResultContent,
-          notFound: () => <ArtistNotFound />,
         }}
         defaultComponent={() => DefaultContent}
       />

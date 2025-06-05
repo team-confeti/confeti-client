@@ -7,7 +7,7 @@ interface Props {
   recentViewData: RecentPerformanceViewResponse | null;
 }
 
-export default function RecentFestivalSection({ recentViewData }: Props) {
+const RecentFestivalSection = ({ recentViewData }: Props) => {
   const performances = recentViewData?.performances ?? [];
   const hasRecentlyViewed = performances.length > 0;
 
@@ -34,4 +34,6 @@ export default function RecentFestivalSection({ recentViewData }: Props) {
       )}
     </section>
   );
-}
+};
+
+export default RecentFestivalSection;
