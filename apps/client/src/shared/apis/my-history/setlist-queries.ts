@@ -1,42 +1,18 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { get } from '@shared/apis/config/instance';
+import { END_POINT } from '@shared/constants/api';
+import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
+import { BaseResponse } from '@shared/types/api';
 import {
   ArtistMusicSearchRequest,
+  ArtistMusicSearchResponse,
   MusicSearchRequest,
+  MusicSearchResponse,
+  SetListDetail,
   SetListPerformanceRequest,
+  SetListPerformanceResponse,
 } from '@shared/types/my-history-response';
-
-import {
-  getArtistMusicSearch,
-  getMusicSearch,
-  getSetListDetail,
-  getSetListPerformance,
-} from './setlist';
-
-export const SETLIST_QUERY_KEY = {
-  ALL: ['setlist'],
-  SEARCH_PERFORMANCE: (request: SetListPerformanceRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'performance',
-    request,
-  ],
-
-  SEARCH_MUSIC: (request: MusicSearchRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'music',
-    request,
-  ],
-  SEARCH_ARTIST_MUSIC: (request: ArtistMusicSearchRequest) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'artist-music',
-    request,
-  ],
-  DETAIL: (setlistId: number) => [
-    ...SETLIST_QUERY_KEY.ALL,
-    'detail',
-    setlistId,
-  ],
-};
 
 export const SETLIST_QUERY_OPTION = {
   ALL: () =>
@@ -69,4 +45,54 @@ export const SETLIST_QUERY_OPTION = {
       queryKey: SETLIST_QUERY_KEY.DETAIL(setlistId),
       queryFn: () => getSetListDetail(setlistId),
     }),
+};
+
+export const getSetListPerformance = async (
+  request: SetListPerformanceRequest,
+): Promise<SetListPerformanceResponse> => {
+  const { pid, aid, term } = request;
+
+  const query = new URLSearchParams();
+
+  if (pid !== null) query.append('pid', String(pid));
+  if (aid !== null) query.append('aid', aid);
+  if (term !== null) query.append('term', term);
+
+  const url = `my/setlists/search/performances?${query.toString()}`;
+
+  const response = await get<BaseResponse<SetListPerformanceResponse>>(url);
+  return response.data;
+};
+
+export const getMusicSearch = async (
+  request: MusicSearchRequest,
+): Promise<MusicSearchResponse> => {
+  const response = await get<BaseResponse<MusicSearchResponse>>(
+    END_POINT.GET_MUSIC_SEARCH(request.term, request.offset, request.limit),
+  );
+
+  return response.data;
+};
+
+export const getArtistMusicSearch = async (
+  request: ArtistMusicSearchRequest,
+): Promise<ArtistMusicSearchResponse> => {
+  const response = await get<BaseResponse<ArtistMusicSearchResponse>>(
+    END_POINT.GET_ARTIST_MUSIC_SEARCH(
+      request.aid,
+      request.term,
+      request.offset,
+      request.limit,
+    ),
+  );
+  return response.data;
+};
+
+export const getSetListDetail = async (
+  setlistId: number,
+): Promise<SetListDetail> => {
+  const response = await get<BaseResponse<SetListDetail>>(
+    END_POINT.GET_SET_LIST_DETAIL(setlistId),
+  );
+  return response.data;
 };

@@ -7,22 +7,31 @@ import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
 import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
-import {
-  useMyArtistPreview,
-  useMyPerformancePreview,
-  useMyUpcomingPerformance,
-} from '@pages/my/hooks/use-my-favorites';
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { useQuery } from '@tanstack/react-query';
 
 import { Box, Footer, Header } from '@confeti/design-system';
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 const MyProfile = () => {
   const navigate = useNavigate();
+  const isNotLoggedIn = checkIsNotLoggedIn();
+
   const { data: profileData } = useUserProfile();
-  const { data: upcomingPerformanceData } = useMyUpcomingPerformance();
-  const { data: artistData } = useMyArtistPreview();
-  const { data: performanceData } = useMyPerformancePreview();
+  const { data: upcomingPerformanceData } = useQuery({
+    ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
+    enabled: !isNotLoggedIn,
+  });
+  const { data: artistData } = useQuery({
+    ...USER_QUERY_OPTIONS.MY_ARTISTS_PREVIEW(),
+    enabled: !isNotLoggedIn,
+  });
+  const { data: performanceData } = useQuery({
+    ...USER_QUERY_OPTIONS.MY_PERFORMANCES_PREVIEW(),
+    enabled: !isNotLoggedIn,
+  });
 
   if (!profileData || !artistData || !performanceData) {
     return null;

@@ -13,7 +13,8 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import { Button, Dialog, MusicList } from '@confeti/design-system';
+import { Button, Dialog } from '@confeti/design-system';
+import MusicList from '@shared/components/music-list/music-list.tsx';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
@@ -21,7 +22,7 @@ import AddMusicButton from '../../components/setlist-detail/add-music-button';
 import { useDeleteMusicMutation } from '../../hooks/use-delete-music-mutation';
 import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
 import { usePreventScroll } from '../../hooks/use-prevent-scroll.ts';
-import { useCancelEditSetList } from '../../hooks/use-setlist-detail';
+import { useCancelEditSetList } from '../../hooks/use-setlist-detail-mutation.ts';
 
 import * as styles from './setlist-tracks.css';
 

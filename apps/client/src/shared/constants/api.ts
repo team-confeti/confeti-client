@@ -1,22 +1,13 @@
 import { SortOption } from './sort-label';
 
-export const CONFIG = {
-  BASE_URL: import.meta.env.VITE_BASE_URL as string,
-  KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
-  KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
-  APPLE_CLIENT_ID: import.meta.env.VITE_APPLE_CLIENT_ID as string,
-  APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,
-  AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
-  SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
-  IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
-} as const;
-
 export const END_POINT = {
   //내 공연
   GET_MY_RECORD: '/performances/record',
   GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
+
+  // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
@@ -61,7 +52,7 @@ export const END_POINT = {
   GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
 
   //타임 테이블
-  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
@@ -69,6 +60,7 @@ export const END_POINT = {
     `/user/timetables/festivals/${festivalId}`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
+  FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
 
   //검색
   GET_ARTISTS_SEARCH: '/artists/search?term=',
@@ -113,4 +105,10 @@ export const HTTP_STATUS_CODE = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
+};
+
+export const CACHE_TIME = {
+  SHORT: 1000 * 60 * 3,
+  MEDIUM: 1000 * 60 * 5,
+  LONG: 1000 * 60 * 10,
 };

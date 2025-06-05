@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseQueries } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
@@ -27,12 +27,4 @@ export const useHomeQueries = () => {
     suggestPerformance: suggestPerformanceResult.data,
     suggestMusicPerformance: suggestMusicPerformanceResult.data,
   };
-};
-
-export const useSuggestMusic = (performanceId: number, musicIds?: string[]) => {
-  const { data, refetch, isLoading } = useQuery({
-    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(performanceId, musicIds),
-  });
-
-  return { data, refetch, isLoading };
 };

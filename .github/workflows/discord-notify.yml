@@ -25,13 +25,13 @@ jobs:
           if [[ "$PR_ACTION" == "opened" ]]; then
             curl -X POST -H "Content-Type: application/json" \
               -d '{
-                "content": "**트랄랄레로 트랄랄라🦈**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+                "content": "리뷰좀 해주십사...😥\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
               }' $DISCORD_WEBHOOK_URL
 
           # PR 머지 알림
           elif [[ "$PR_ACTION" == "closed" && "$PR_MERGED" == "true" ]]; then
             curl -X POST -H "Content-Type: application/json" \
               -d '{
-                "content": "**퉁퉁퉁퉁퉁퉁퉁퉁퉁 사후르🏏**\n🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+                "content": "$PR_AUTOR 성장 + 10🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
               }' $DISCORD_WEBHOOK_URL
           fi

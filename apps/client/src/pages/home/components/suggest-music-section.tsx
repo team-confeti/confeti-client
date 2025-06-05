@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { Box, Button, MusicList } from '@confeti/design-system';
+import { Box, Button } from '@confeti/design-system';
 import { IcLoad, IcMusic } from '@confeti/design-system/icons';
+import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
+import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
-
-import { useSuggestMusic } from '../hooks/use-home-queries';
 
 import * as styles from './suggest-music-section.css';
 
@@ -23,14 +24,17 @@ const SuggestMusicSection = ({
   const {
     data: suggestMusic,
     refetch,
-    isLoading,
-  } = useSuggestMusic(data.performanceId, musicIdList);
+    isPending,
+  } = useQuery({
+    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
+  });
 
-  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
+  const { musicList, onClickPlayToggle, audioRef, stopAudio } = useMusicPlayer(
     suggestMusic?.musics ?? [],
   );
 
   const handleRefreshMusic = () => {
+    stopAudio();
     const ids = musicList.map((music) => music.musicId);
     setMusicIdList(ids);
     refetch();
@@ -44,11 +48,12 @@ const SuggestMusicSection = ({
       subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
     >
       <div ref={scrollRef}>
-        {isLoading ? (
-          <div className={styles.loading} />
-        ) : (
-          <MusicList musics={musicList} onClickPlayToggle={onClickPlayToggle} />
-        )}
+        <MusicList
+          musics={musicList}
+          onClickPlayToggle={onClickPlayToggle}
+          isPending={isPending}
+          skeletonCount={3}
+        />
         <audio ref={audioRef} />
       </div>
       <Button

@@ -1,25 +1,36 @@
+import { Link } from 'react-router-dom';
+import SvgIcArrowGray16 from 'node_modules/@confeti/design-system/src/icons/src/IcArrowGray16';
+
 import { Footer, Header } from '@confeti/design-system';
+import { EXTERNAL_LINKS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 
-import Link from '../../components/navigation/link';
-
 import * as styles from './setting.css';
-
-const linkObject = [
-  { label: '공지사항', path: '/notice' },
-  { label: '개인정보처리방침', path: routePath.PRIVACY_PERSONAL },
-  { label: '이용약관', path: routePath.PRIVACY_CONFETI },
-  { label: '회원탈퇴', path: routePath.MY_DELETE_ACCOUNT },
-];
 
 const Setting = () => {
   return (
     <>
       <Header variant="detail" title="설정"></Header>
       <section className={styles.contentsSection}>
-        {linkObject.map((item) => (
-          <Link key={item.path} label={item.label} path={item.path} />
+        {EXTERNAL_LINKS.map((item) => (
+          <a
+            key={item.url}
+            className={styles.navigationLink}
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.linkText}>{item.label}</p>
+            <SvgIcArrowGray16 width={'1.6rem'} height={'1.6rem'} />
+          </a>
         ))}
+        <Link
+          to={routePath.MY_DELETE_ACCOUNT}
+          className={styles.navigationLink}
+        >
+          <p className={styles.linkText}>회원탈퇴</p>
+          <SvgIcArrowGray16 width={'1.6rem'} height={'1.6rem'} />
+        </Link>
       </section>
       <Footer />
     </>

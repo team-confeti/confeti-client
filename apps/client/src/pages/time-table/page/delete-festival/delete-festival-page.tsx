@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFestivalButtonData } from '@pages/time-table/hooks/use-festival-data';
 import { useDeleteTimeTableFestival } from '@pages/time-table/hooks/use-timetable-festival-mutation';
 import {
   ConfirmDialog,
   SuccessDialog,
 } from '@pages/time-table/page/delete-festival/delete-festival-dialogs';
 import DeleteFestivalSelector from '@pages/time-table/page/delete-festival/delete-festival-selector';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button, Header, useOverlay } from '@confeti/design-system';
+import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/time-table/festival-timetable-queries';
 
 import * as styles from './delete-festival-page.css';
 
 const DeleteFestivalPage = () => {
   const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
-  const { festivals } = useFestivalButtonData();
+  const { data: festivalsData } = useSuspenseQuery(
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
+  );
 
   const deleteFestival = useDeleteTimeTableFestival();
   const overlay = useOverlay();
@@ -61,7 +64,7 @@ const DeleteFestivalPage = () => {
       <Header variant="detail" title="페스티벌 삭제하기" />
       <main className={styles.festivalSelectorWrapper}>
         <DeleteFestivalSelector
-          festivals={festivals}
+          festivals={festivalsData.festivals}
           festivalsToDelete={festivalsToDelete}
           handleToggleFestival={handleToggleFestival}
         />

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
+import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import { SwitchCase } from '@shared/components/switch-case';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
 import Loading from '@shared/pages/loading/loading';
-
-import { useSearchSetListPerformance } from '../../hooks/use-performance-search';
 
 import * as styles from './add-setlist-page.css';
 
@@ -34,14 +35,16 @@ const AddSetlistPage = () => {
   });
 
   const { data: setListPerformance, isLoading: isSetListPerformanceLoading } =
-    useSearchSetListPerformance(
-      {
-        aid: selectedType === 'artist' ? selectedId : null,
-        pid: selectedType === 'performance' ? Number(selectedId) : null,
-        term: selectedKeyword,
-      },
-      !!selectedKeyword,
-    );
+    useQuery({
+      ...SETLIST_QUERY_OPTION.SEARCH_PERFORMANCE(
+        {
+          aid: selectedType === 'artist' ? selectedId : null,
+          pid: selectedType === 'performance' ? Number(selectedId) : null,
+          term: selectedKeyword,
+        },
+        !!selectedKeyword,
+      ),
+    });
 
   useEffect(() => {
     setSelectedKeyword(paramsKeyword);
@@ -71,63 +74,54 @@ const AddSetlistPage = () => {
     setSelectedKeyword(null);
   };
 
-  const hasSearchResults =
+  const SuggestionContent = () => (
+    <>
+      <SearchSuggestionList
+        relatedKeyword={relatedArtists?.artists?.map((artist) => ({
+          id: artist.artistId,
+          title: artist.name,
+          profileUrl: artist.profileUrl,
+        }))}
+        onSelectKeyword={(keyword, id) =>
+          handleSelectItem(keyword, 'artist', id.toString())
+        }
+        listType="artist"
+      />
+      <SearchSuggestionList
+        relatedKeyword={relatedPerformances?.performances?.map(
+          (performance) => ({
+            id: performance.id,
+            title: performance.title,
+            profileUrl: performance.posterUrl,
+          }),
+        )}
+        onSelectKeyword={(keyword, id) =>
+          handleSelectItem(keyword, 'performance', id.toString())
+        }
+        listType="performance"
+      />
+    </>
+  );
+
+  const ResultContent = () => (
+    <SetlistPerformance
+      performanceCount={setListPerformance?.performanceCount ?? 0}
+      performances={setListPerformance?.performances ?? []}
+    />
+  );
+
+  const hasSuggestions =
     (relatedArtists?.artists?.length ?? 0) > 0 ||
     (relatedPerformances?.performances?.length ?? 0) > 0;
 
-  const renderSearchContent = () => {
-    const isLoadingState =
-      isSetListPerformanceLoading || isRelatedSearchLoading;
-    const isResultState = !!selectedKeyword;
-    const isSuggestionState = !selectedKeyword && hasSearchResults;
-
-    switch (true) {
-      case isLoadingState:
-        return <Loading />;
-
-      case isResultState:
-        return (
-          <SetlistPerformance
-            performanceCount={setListPerformance?.performanceCount ?? 0}
-            performances={setListPerformance?.performances ?? []}
-          />
-        );
-
-      case isSuggestionState:
-        return (
-          <>
-            <SearchSuggestionList
-              relatedKeyword={relatedArtists?.artists?.map((artist) => ({
-                id: artist.artistId,
-                title: artist.name,
-                profileUrl: artist.profileUrl,
-              }))}
-              onSelectKeyword={(keyword, id) =>
-                handleSelectItem(keyword, 'artist', id.toString())
-              }
-              listType="artist"
-            />
-            <SearchSuggestionList
-              relatedKeyword={relatedPerformances?.performances?.map(
-                (performance) => ({
-                  id: performance.id,
-                  title: performance.title,
-                  profileUrl: performance.posterUrl,
-                }),
-              )}
-              onSelectKeyword={(keyword, id) =>
-                handleSelectItem(keyword, 'performance', id.toString())
-              }
-              listType="performance"
-            />
-          </>
-        );
-
-      // TODO: default 처리
-      default:
-        return null;
-    }
-  };
+  const searchState =
+    isSetListPerformanceLoading || isRelatedSearchLoading
+      ? 'loading'
+      : selectedKeyword
+        ? 'result'
+        : hasSuggestions
+          ? 'suggestion'
+          : 'default';
 
   return (
     <div className={styles.container}>
@@ -140,7 +134,15 @@ const AddSetlistPage = () => {
         />
       </div>
 
-      {renderSearchContent()}
+      <SwitchCase
+        value={searchState}
+        caseBy={{
+          loading: () => <Loading />,
+          result: () => <ResultContent />,
+          suggestion: () => <SuggestionContent />,
+        }}
+        defaultComponent={() => null}
+      />
     </div>
   );
 };

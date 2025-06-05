@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import {
-  useArtistMusicSearch,
-  useMusicSearch,
-} from '@pages/my-history/hooks/use-music-search';
 import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
+import { useQuery } from '@tanstack/react-query';
 
-import { Button, MusicList, SearchBar, toast } from '@confeti/design-system';
+import { Button, SearchBar, toast } from '@confeti/design-system';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import MusicList from '@shared/components/music-list/music-list';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
 
 import * as styles from './add-songs-page.css';
 
@@ -30,16 +29,18 @@ const AddSongsPage = () => {
     keyword,
     enabled: !!keyword.trim(),
   });
-
-  const { data: musicSearchData } = useMusicSearch(
-    { term: keyword, offset: 0, limit: 5 },
-    !!keyword,
-  );
-
-  const { data: artistMusicSearchData } = useArtistMusicSearch(
-    { aid: artistId || '', term: keyword, offset: 0, limit: 5 },
-    !!(artistId && keyword),
-  );
+  const { data: musicSearchData } = useQuery({
+    ...SETLIST_QUERY_OPTION.SEARCH_MUSIC(
+      { term: keyword, offset: 0, limit: 5 },
+      !!keyword,
+    ),
+  });
+  const { data: artistMusicSearchData } = useQuery({
+    ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
+      { aid: artistId || '', term: keyword, offset: 0, limit: 5 },
+      !!keyword,
+    ),
+  });
 
   const combinedMusics = [
     ...(musicSearchData?.musics || []),

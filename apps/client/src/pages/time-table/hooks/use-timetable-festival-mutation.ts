@@ -1,9 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { addFestivalTimeTable } from '@shared/apis/time-table/festival-button';
-import { FESTIVAL_BUTTON_QUERY_KEY } from '@shared/apis/time-table/festival-button-queries';
-import { deleteFestivalTimetables } from '@shared/apis/time-table/festival-timetable';
-import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/apis/time-table/festival-timetable-queries';
+import {
+  deleteFestivalTimetables,
+  patchFestivalTimetable,
+  postAddFestivalTimeTable,
+} from '@shared/apis/time-table/festival-timetable-mutation';
+import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
+import { UserTimetable } from '@shared/types/timetable-response';
 
 export const useDeleteTimeTableFestival = () => {
   const queryClient = useQueryClient();
@@ -12,10 +15,7 @@ export const useDeleteTimeTableFestival = () => {
     mutationFn: (festivalId: number) => deleteFestivalTimetables(festivalId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [
-          ...FESTIVAL_BUTTON_QUERY_KEY.ALL,
-          ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
-        ],
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
       });
     },
   });
@@ -26,14 +26,29 @@ export const useAddTimeTableFestival = (onSuccessCallback?: () => void) => {
 
   return useMutation({
     mutationFn: (selectedFestivals: number[]) =>
-      addFestivalTimeTable(selectedFestivals),
+      postAddFestivalTimeTable(selectedFestivals),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [...FESTIVAL_BUTTON_QUERY_KEY.ALL],
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
       });
       if (onSuccessCallback) {
         onSuccessCallback();
       }
+    },
+  });
+};
+
+export const usePatchTimetableMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, Error, UserTimetable[]>({
+    mutationFn: (userTimetables) => {
+      return patchFestivalTimetable({ userTimetables });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
+      });
     },
   });
 };

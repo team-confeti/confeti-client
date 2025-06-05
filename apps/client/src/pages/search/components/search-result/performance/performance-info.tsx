@@ -1,6 +1,6 @@
 import { LikeButton } from '@confeti/design-system';
 import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
-import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/search-reponse';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';

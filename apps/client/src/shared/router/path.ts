@@ -3,7 +3,7 @@ export const routePath = {
   LAYOUT: '/',
   ROOT: '/',
   LOGIN: '/login',
-
+  REDIRECT_KAKAO: '/auth',
   // Shared
   LOADING: '/loading',
 
@@ -13,7 +13,7 @@ export const routePath = {
   MY_CONFETI: 'confeti',
   MY_REQUIRE_LOGIN: 'require-login',
   MY_SETTING: 'setting',
-  MY_DELETE_ACCOUNT: 'delete-account',
+  MY_DELETE_ACCOUNT: '/my/delete-account',
   MY_EDIT_PROFILE: 'edit-profile',
 
   // MyHistory
@@ -39,12 +39,6 @@ export const routePath = {
   TIME_TABLE_REQUIRE_LOGIN: 'require-login',
   ADD_FESTIVAL: 'add-festival',
   DELETE_FESTIVAL: 'delete-festival',
-
-  // Privacy
-  PRIVACY_CONFETI:
-    'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
-  PRIVACY_PERSONAL:
-    'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
 
   // Onboarding
   ONBOARDING: '/onboarding',

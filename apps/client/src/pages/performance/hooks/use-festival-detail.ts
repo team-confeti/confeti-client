@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/confeti-detail/performance-queries';
+import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import { Festival, FestivalDate } from '@shared/types/festival-response';
 
 interface UseFestivalDetailReturn {

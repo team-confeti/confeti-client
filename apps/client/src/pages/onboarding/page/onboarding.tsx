@@ -1,23 +1,27 @@
 import { useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button } from '@confeti/design-system';
+import { TOP_ARTIST_QUERY_OPTIONS } from '@shared/apis/onboard/top-artist-queries';
+import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
 import { onboard } from '@shared/types/onboard-response';
-import { useFunnel } from '@shared/utils/use-funnel';
 
 import ArtistSelect from '../components/artist-select';
 import OnBoardingComplete from '../components/onboarding-complete';
 import { ONBOARD_LIMIT } from '../constants/limit';
 import {
   useArtistRelatedArtist,
-  useGetTopArtist,
   usePostAuthOnboarding,
-} from '../hooks/use-onboard';
+} from '../hooks/use-onboard-mutation';
 
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
-  const { data: topArtistData } = useGetTopArtist(ONBOARD_LIMIT.TOP_ARTIST);
+  const { data: topArtistData } = useSuspenseQuery({
+    ...TOP_ARTIST_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
+  });
+
   const [artists, setArtists] = useState(topArtistData?.artists || []);
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
   const { mutateAsync } = useArtistRelatedArtist();
