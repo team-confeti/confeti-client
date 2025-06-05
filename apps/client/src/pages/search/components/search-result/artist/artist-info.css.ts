@@ -8,17 +8,10 @@ export const wrapper = style({
   ...themeVars.display.flexAlignCenter,
 });
 
-export const image = style({
-  width: '8rem',
-  height: '8rem',
-  borderRadius: '4rem',
-  objectFit: 'cover',
-  marginRight: '2rem',
-});
-
 export const textSection = style({
   ...themeVars.display.flexColumn,
   justifyContent: 'center',
+  marginLeft: '1.5rem',
   textAlign: 'left',
   flex: 1,
   gap: '1.05rem',

@@ -1,4 +1,4 @@
-import { LikeButton } from '@confeti/design-system';
+import { Avatar, LikeButton } from '@confeti/design-system';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
@@ -30,7 +30,7 @@ const ArtistInfo = ({
 
   return (
     <div className={styles.wrapper}>
-      <img src={image} alt={name} className={styles.image} />
+      <Avatar src={image} alt={name} size="xl" />
       <div className={styles.textSection}>
         <p className={styles.name}>{name}</p>
         <div className={styles.releaseWrapper}>
