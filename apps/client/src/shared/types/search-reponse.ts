@@ -2,7 +2,7 @@ export interface ArtistSearch {
   artistId: string | null;
   name: string;
   profileUrl: string;
-  latestReleaseAt: string;
+  recentAlbumName: string;
   isFavorite: boolean;
   isMultipleArtists: boolean;
 }

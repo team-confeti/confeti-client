@@ -1,6 +1,5 @@
 import { Box } from '@confeti/design-system';
 import { ArtistSearch } from '@shared/types/search-reponse';
-import { formatDate } from '@shared/utils/format-date';
 
 import ArtistInfo from './artist-info';
 
@@ -10,7 +9,6 @@ interface ArtistSectionProps {
 }
 
 const ArtistSection = ({ artist, refetchArtist }: ArtistSectionProps) => {
-  const formattedDate = formatDate(artist.latestReleaseAt);
   const artistCount = artist.artistId ? 1 : 0;
 
   return (
@@ -19,7 +17,7 @@ const ArtistSection = ({ artist, refetchArtist }: ArtistSectionProps) => {
         id={artist.artistId || ''}
         image={artist.profileUrl}
         name={artist.name}
-        releaseDate={formattedDate}
+        recentAlbumName={artist.recentAlbumName}
         isFavorite={artist.isFavorite}
         refetchArtist={refetchArtist}
       />

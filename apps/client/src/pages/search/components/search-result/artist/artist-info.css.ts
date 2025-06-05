@@ -36,16 +36,8 @@ export const likeButton = style({
 });
 
 export const releaseWrapper = style({
-  ...themeVars.display.flexAlignCenter,
-  gap: '0.8rem',
-});
-
-export const releaseLabel = style({
-  ...themeVars.fontStyles.body3_m_14,
-  color: themeVars.color.gray600,
-});
-
-export const releaseDate = style({
-  ...themeVars.fontStyles.body3_r_14,
-  color: themeVars.color.gray600,
+  display: 'flex',
+  alignItems: 'flex-start',
+  ...themeVars.fontStyles.body5_m_12,
+  color: themeVars.color.gray500,
 });
