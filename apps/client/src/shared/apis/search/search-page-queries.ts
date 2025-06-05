@@ -11,11 +11,10 @@ import {
 
 export const SEARCH_PAGE_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),
-  SEARCH_POPULAR_SEARCH: () =>
+  SEARCH_POPULAR_SEARCH: (limit: number) =>
     queryOptions({
       queryKey: SEARCH_QUERY_KEY.SEARCH_POPULAR_SEARCH(),
-      // TODO: limit 상수 처리
-      queryFn: () => getPopularSearch(10),
+      queryFn: () => getPopularSearch(limit),
     }),
   RECENT_VIEW: (items: string, enabled: boolean) =>
     queryOptions({

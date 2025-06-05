@@ -42,7 +42,7 @@ const SearchPage = () => {
     ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
   });
   const { data: popularSearchData } = useSuspenseQuery({
-    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
+    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(10),
   });
 
   const {
