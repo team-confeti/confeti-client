@@ -194,6 +194,7 @@ const SearchPage = () => {
 
   return (
     <>
+      {isSearchLoading ?? <Loading />}
       <div className={styles.searchBarContainer}>
         <div className={styles.searchBarFrame}>
           <SearchBar
@@ -207,19 +208,16 @@ const SearchPage = () => {
           />
         </div>
       </div>
-
-      <div className={styles.resultSection}>
-        <SwitchCase
-          value={searchState}
-          caseBy={{
-            loading: () => <Loading />,
-            suggestion: () => SuggestionContent,
-            result: () => ResultContent,
-            notFound: () => <ArtistNotFound />,
-          }}
-          defaultComponent={() => DefaultContent}
-        />
-      </div>
+      <SwitchCase
+        value={searchState}
+        caseBy={{
+          loading: () => <Loading />,
+          suggestion: () => SuggestionContent,
+          result: () => ResultContent,
+          notFound: () => <ArtistNotFound />,
+        }}
+        defaultComponent={() => DefaultContent}
+      />
     </>
   );
 };
