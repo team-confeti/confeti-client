@@ -14,6 +14,7 @@ import { getRecentViewItems } from '@shared/utils/recent-view';
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
+import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import { useRecentSearch } from '../hooks/use-recent-search';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
@@ -140,9 +141,7 @@ const SearchPage = () => {
   const ResultContent = useMemo(
     () => (
       <SearchResult
-        artistData={searchAllData?.artist ?? null}
-        performanceData={searchAllData?.performances ?? null}
-        performanceCount={searchAllData?.performanceCount ?? 0}
+        searchData={searchAllData ?? null}
         refetchArtist={refetchArtist}
       />
     ),
@@ -169,6 +168,9 @@ const SearchPage = () => {
     }
     if (barFocus && relatedArtists?.artists?.length) {
       return 'suggestion';
+    }
+    if (searchAllData === null) {
+      return 'notFound';
     }
     return 'default';
   }, [
@@ -203,6 +205,7 @@ const SearchPage = () => {
             loading: () => <Loading />,
             suggestion: () => SuggestionContent,
             result: () => ResultContent,
+            notFound: () => <ArtistNotFound />,
           }}
           defaultComponent={() => DefaultContent}
         />

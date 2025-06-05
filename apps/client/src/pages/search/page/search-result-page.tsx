@@ -1,7 +1,6 @@
 import { Footer, Spacing } from '@confeti/design-system';
-import { ArtistSearch, Performance } from '@shared/types/search-reponse';
+import { SearchAllResponse } from '@shared/types/search-reponse';
 
-import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
@@ -9,34 +8,29 @@ import PerformanceSection from '../components/search-result/performance/performa
 import * as styles from './search-result-page.css';
 
 interface Props {
-  artistData: ArtistSearch | null;
-  performanceData: Performance[] | null;
-  performanceCount: number;
+  searchData: SearchAllResponse | null;
   refetchArtist?: () => void;
 }
 
-const SearchResult = ({
-  artistData,
-  performanceData,
-  performanceCount,
-  refetchArtist,
-}: Props) => {
+const SearchResult = ({ searchData, refetchArtist }: Props) => {
+  const artistData = searchData?.artist ?? null;
+  const performanceData = searchData?.performances ?? [];
+  const performanceCount = searchData?.performanceCount ?? 0;
+
   return (
     <>
       <main className={styles.resultSection}>
-        {artistData?.artistId ? (
+        {artistData && (
           <>
-            <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
+            <NoticeSection isMultipleArtists={artistData?.isMultipleArtists} />
             <ArtistSection artist={artistData} refetchArtist={refetchArtist} />
             <Spacing />
-            <PerformanceSection
-              performanceCount={performanceCount}
-              performances={performanceData ?? []}
-            />
           </>
-        ) : (
-          <ArtistNotFound />
         )}
+        <PerformanceSection
+          performanceCount={performanceCount}
+          performances={performanceData}
+        />
       </main>
       <Footer />
     </>

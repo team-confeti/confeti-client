@@ -9,16 +9,16 @@ interface ArtistSectionProps {
 }
 
 const ArtistSection = ({ artist, refetchArtist }: ArtistSectionProps) => {
-  const artistCount = artist.artistId ? 1 : 0;
+  const artistCount = artist?.artistId ? 1 : 0;
 
   return (
     <Box title={`아티스트 (${artistCount})`}>
       <ArtistInfo
-        id={artist.artistId || ''}
-        image={artist.profileUrl}
-        name={artist.name}
-        recentAlbumName={artist.recentAlbumName}
-        isFavorite={artist.isFavorite}
+        id={artist?.artistId || ''}
+        image={artist?.profileUrl}
+        name={artist?.name}
+        recentAlbumName={artist?.recentAlbumName}
+        isFavorite={artist?.isFavorite}
         refetchArtist={refetchArtist}
       />
     </Box>
