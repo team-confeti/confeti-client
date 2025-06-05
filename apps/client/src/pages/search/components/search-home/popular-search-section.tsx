@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { PopularSearchResponse } from '@shared/types/search-reponse';
+import { PopularSearchResponse } from '@shared/types/search-response';
 
 import * as styles from './popular-search-section.css';
 

@@ -1,5 +1,5 @@
 import { Box } from '@confeti/design-system';
-import { Performance } from '@shared/types/search-reponse';
+import { Performance } from '@shared/types/search-response';
 
 import PerformanceInfo from './performance-info';
 

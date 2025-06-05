@@ -1,5 +1,5 @@
 import { Box } from '@confeti/design-system';
-import { ArtistSearch } from '@shared/types/search-reponse';
+import { ArtistSearch } from '@shared/types/search-response';
 
 import ArtistInfo from './artist-info';
 

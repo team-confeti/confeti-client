@@ -7,7 +7,7 @@ import { BaseResponse } from '@shared/types/api';
 import {
   PopularSearchResponse,
   RecentPerformanceViewResponse,
-} from '@shared/types/search-reponse';
+} from '@shared/types/search-response';
 
 export const SEARCH_PAGE_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),

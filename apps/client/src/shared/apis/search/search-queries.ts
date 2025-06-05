@@ -9,7 +9,7 @@ import {
   RelatedArtistResponse,
   RelatedPerformanceResponse,
   SearchAllResponse,
-} from '@shared/types/search-reponse';
+} from '@shared/types/search-response';
 
 export const SEARCH_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: SEARCH_QUERY_KEY.ALL }),
@@ -49,7 +49,6 @@ export const getSearchAll = async (
 ): Promise<SearchAllResponse> => {
   const response = await get<BaseResponse<SearchAllResponse>>(
     `${END_POINT.GET_SEARCH_ALL}`,
-
     {
       params: {
         aid,

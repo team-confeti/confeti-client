@@ -1,5 +1,5 @@
 import { FestivalCard } from '@confeti/design-system';
-import { RecentPerformanceViewResponse } from '@shared/types/search-reponse';
+import { RecentPerformanceViewResponse } from '@shared/types/search-response';
 
 import * as styles from './recent-festivals-section.css';
 
