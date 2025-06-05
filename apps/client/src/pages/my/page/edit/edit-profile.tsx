@@ -7,7 +7,6 @@ import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutatio
 import { Button, Header, toast } from '@confeti/design-system';
 import { IcToastInfo16 } from '@confeti/design-system/icons';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
-import { urlToFile } from '@shared/utils/url-to-file';
 
 import * as styles from './edit-profile.css';
 
@@ -67,13 +66,13 @@ const EditProfile = () => {
   };
 
   const handleSave = async () => {
-    const fileToSend = profileFile
-      ? profileFile
-      : await urlToFile(profileData.profileUrl, 'current-profile.jpg');
-    updateUserInfo({
-      name: name || profileData.name,
-      profileFile: fileToSend,
-    });
+    const newName = name || profileData.name;
+
+    const payload = profileFile
+      ? { name: newName, profileFile }
+      : { name: newName, profileUrl: profileData.profileUrl };
+
+    updateUserInfo(payload);
   };
 
   return (
@@ -87,6 +86,7 @@ const EditProfile = () => {
             showArrow={false}
             showEditBtn={true}
             onEditImage={triggerFileInput}
+            disableClick={true}
           />
           <input
             type="file"
