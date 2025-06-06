@@ -62,8 +62,8 @@ export interface MusicSearchResponse {
 }
 
 export interface MusicInfoResponse {
-  musicId: number;
-  title: string;
+  musicId: string;
+  trackName: string;
   artistName: string;
   artworkUrl: string;
   previewUrl: string;

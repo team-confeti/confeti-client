@@ -27,10 +27,10 @@ const ConfirmAddSection = ({
   const navigate = useNavigate();
   const addMusicToSetListMutation = useAddSongsMutation(Number(setlistId));
   const handleOpenDeleteDialog = ({
-    title,
+    trackName,
     musicId,
   }: {
-    title: string;
+    trackName: string;
     musicId: string;
   }) => {
     overlay.open(({ isOpen, close }) => (
@@ -38,7 +38,7 @@ const ConfirmAddSection = ({
         <Dialog.Content>
           <Dialog.Title>
             <div className={styles.dialogTitleContainer}>
-              <p className={styles.dialogHighlightText}>{title}</p>
+              <p className={styles.dialogHighlightText}>{trackName}</p>
             </div>
             <span>을(를) 삭제할까요?</span>
           </Dialog.Title>
@@ -93,7 +93,7 @@ const ConfirmAddSection = ({
             variant="confirmDelete"
             onClickDelete={() =>
               handleOpenDeleteDialog({
-                title: song.trackName,
+                trackName: song.trackName,
                 musicId: song.musicId,
               })
             }
