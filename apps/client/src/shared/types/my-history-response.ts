@@ -105,7 +105,7 @@ export interface SetListDetail {
 }
 
 export interface AddMusicToSetListRequest {
-  trackId: string;
+  musicId: string;
   artistName: string;
   trackName: string;
   artworkUrl: string;

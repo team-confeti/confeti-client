@@ -5,20 +5,14 @@ import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutat
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { BtnArrowLeft20 } from '@confeti/design-system/icons';
 import { routePath } from '@shared/router/path';
+import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
 import { buildPath } from '@shared/utils/build-path';
 
 import * as styles from './confirm-add-section.css';
 
-interface MusicItemType {
-  musicId: number;
-  title: string;
-  artistName: string;
-  artworkUrl: string;
-}
-
 interface Props {
-  handleRemoveSong: (songId: number) => void;
-  selectedSongs: MusicItemType[];
+  handleRemoveSong: (musicId: string) => void;
+  selectedSongs: AddMusicToSetListRequest[];
   handleConfirmAddSection: () => void;
 }
 
@@ -37,7 +31,7 @@ const ConfirmAddSection = ({
     musicId,
   }: {
     title: string;
-    musicId: number;
+    musicId: string;
   }) => {
     overlay.open(({ isOpen, close }) => (
       <Dialog open={isOpen} handleClose={close}>
@@ -66,14 +60,7 @@ const ConfirmAddSection = ({
     ));
   };
   const handleAddMusicToSetList = () => {
-    const requestData = selectedSongs.map((song) => ({
-      trackId: String(song.musicId),
-      artistName: song.artistName,
-      trackName: song.title,
-      artworkUrl: song.artworkUrl,
-      previewUrl: '',
-    }));
-    addMusicToSetListMutation.mutate(requestData);
+    addMusicToSetListMutation.mutate(selectedSongs);
 
     navigate(
       buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
@@ -99,15 +86,15 @@ const ConfirmAddSection = ({
         {selectedSongs.map((song) => (
           <MusicItem
             key={song.musicId}
-            musicId={String(song.musicId)}
+            musicId={song.musicId}
             albumImage={song.artworkUrl}
-            title={song.title}
+            title={song.trackName}
             artist={song.artistName}
             variant="confirmDelete"
             onClickDelete={() =>
               handleOpenDeleteDialog({
-                title: song.title,
-                musicId: Number(song.musicId),
+                title: song.trackName,
+                musicId: song.musicId,
               })
             }
           />

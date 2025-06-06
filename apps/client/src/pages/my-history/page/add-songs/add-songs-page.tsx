@@ -15,6 +15,7 @@ interface MusicItemType {
   title: string;
   artistName: string;
   artworkUrl: string;
+  previewUrl: string;
 }
 
 const AddSongsPage = () => {
@@ -35,7 +36,7 @@ const AddSongsPage = () => {
       !!keyword,
     ),
   });
-  const { data: artistMusicSearchData } = useQuery({
+  const { data: artistSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
       { aid: artistId || '', term: keyword, offset: 0, limit: 5 },
       !!keyword,
@@ -44,7 +45,7 @@ const AddSongsPage = () => {
 
   const combinedMusics = [
     ...(musicSearchData?.musics || []),
-    ...(artistMusicSearchData?.musics || []),
+    ...(artistSearchData?.musics || []),
   ];
 
   const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
@@ -70,8 +71,10 @@ const AddSongsPage = () => {
 
   const handleMoveToConfirmAddSection = () => setIsConfirmAddSection(true);
 
-  const handleRemoveSong = (songId: number) => {
-    setSelectedSongs((prev) => prev.filter((song) => song.musicId !== songId));
+  const handleRemoveSong = (musicId: string) => {
+    setSelectedSongs((prev) =>
+      prev.filter((song) => song.setlistMusicId !== musicId),
+    );
   };
 
   const handleConfirmAddSection = () => setIsConfirmAddSection(false);
@@ -81,15 +84,16 @@ const AddSongsPage = () => {
     if (!song) return;
 
     const isAlreadySelected = selectedSongs.some(
-      (s) => s.musicId === Number(song.musicId),
+      (s) => s.setlistMusicId === Number(song.musicId),
     );
 
     if (!isAlreadySelected) {
       const newSong = {
-        musicId: Number(song.musicId),
+        setlistMusicId: Number(song.musicId),
         title: song.title,
         artistName: song.artistName,
         artworkUrl: song.artworkUrl,
+        previewUrl: song.previewUrl,
       };
 
       setSelectedSongs((prev) => [...prev, newSong]);
