@@ -62,9 +62,15 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-router:
+        specifier: ^7.6.2
+        version: 7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       vite-plugin:
         specifier: link:@@vanilla-extract/vite-plugin
         version: link:@@vanilla-extract/vite-plugin
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@20.16.5)(jiti@1.21.6)(yaml@2.5.1))
     devDependencies:
       '@confeti/eslint':
         specifier: workspace:*
@@ -7404,6 +7410,19 @@ packages:
       react-dom:
         optional: true
 
+  react-router@7.6.2:
+    resolution:
+      {
+        integrity: sha512-U7Nv3y+bMimgWjhlT5CRdzHPu2/KVmqPwKUCChW8en5P3znxUqwlYFlbmyj8Rgp1SF6zs5X4+77kBVknkg6a0w==,
+      }
+    engines: { node: '>=20.0.0' }
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-slick@0.30.3:
     resolution:
       {
@@ -13877,6 +13896,14 @@ snapshots:
     optionalDependencies:
       react-dom: 19.0.0(react@19.0.0)
 
+  react-router@7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      cookie: 1.0.2
+      react: 19.1.0
+      set-cookie-parser: 2.7.1
+    optionalDependencies:
+      react-dom: 19.1.0(react@19.1.0)
+
   react-slick@0.30.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       classnames: 2.5.1
@@ -14533,6 +14560,10 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.2
 
+  tsconfck@3.1.4(typescript@5.8.3):
+    optionalDependencies:
+      typescript: 5.8.3
+
   tsconfig-paths@3.15.0:
     dependencies:
       '@types/json5': 0.0.29
@@ -14789,6 +14820,17 @@ snapshots:
       tsconfck: 3.1.4(typescript@5.6.2)
     optionalDependencies:
       vite: 5.4.11(@types/node@20.16.5)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@20.16.5)(jiti@1.21.6)(yaml@2.5.1)):
+    dependencies:
+      debug: 4.4.0
+      globrex: 0.1.2
+      tsconfck: 3.1.4(typescript@5.8.3)
+    optionalDependencies:
+      vite: 6.3.5(@types/node@20.16.5)(jiti@1.21.6)(yaml@2.5.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
