@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
+import { useDeleteTimetableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import {
   ConfirmDialog,
   SuccessDialog,
@@ -19,7 +19,7 @@ const DeleteFestivalPage = () => {
     FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
   );
 
-  const deleteFestival = useDeleteTimeTableFestival();
+  const deleteFestival = useDeleteTimetableFestival();
   const overlay = useOverlay();
   const navigate = useNavigate();
   const numberToDelete = festivalsToDelete.length;

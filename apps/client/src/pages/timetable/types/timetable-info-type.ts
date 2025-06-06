@@ -24,5 +24,5 @@ export interface TimetableInfo {
 }
 
 export interface TimetableInfoType {
-  timeTableInfo: TimetableInfo;
+  timetableInfo: TimetableInfo;
 }

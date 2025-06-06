@@ -3,7 +3,7 @@ import {
   EDIT_BUTTON,
 } from '@pages/timetable/constants/edit-floating-text';
 import useDisableScroll from '@pages/timetable/hooks/use-disabled-scroll';
-import { useDeleteTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
+import { useDeleteTimetableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 
 import {
   IcFloatDelete24,
@@ -50,7 +50,7 @@ const EditFloatingButton = ({
   handleFestivalClick,
   selectedFestivalId,
 }: EditFloatingButtonProps) => {
-  const deleteFestival = useDeleteTimeTableFestival();
+  const deleteFestival = useDeleteTimetableFestival();
   const isAtBottom = useScrollAtBottom();
   const adjustedAtBottom =
     isEditTimeTableMode || isFestivalDeleteMode ? false : isAtBottom;
