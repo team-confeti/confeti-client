@@ -1,4 +1,4 @@
-import { RouterProvider } from 'react-router';
+import { RouterProvider } from 'react-router-dom';
 
 import { ThemeProvider } from '@confeti/design-system';
 import router from '@shared/router/router';
