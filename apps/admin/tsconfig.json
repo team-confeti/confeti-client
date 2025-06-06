@@ -1,0 +1,9 @@
+{
+  "extends": "@confeti/typescript/react.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "plugins": [{ "name": "react" }]
+  },
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules"]
+}
