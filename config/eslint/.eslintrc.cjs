@@ -2,11 +2,12 @@
 module.exports = {
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['simple-import-sort'],
+  plugins: ['react', 'simple-import-sort'],
   parser: '@typescript-eslint/parser',
   settings: {
     react: {
@@ -20,7 +21,8 @@ module.exports = {
       'warn',
       { argsIgnorePattern: '^_|^args$' },
     ],
-
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
     'simple-import-sort/imports': [
       'error',
       {

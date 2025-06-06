@@ -12,8 +12,8 @@
   "dependencies": {
     "@confeti/design-system": "workspace:*",
     "@vitejs/plugin-react": "^4.3.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-router": "^7.6.2",
     "vite-plugin": "link:@@vanilla-extract/vite-plugin",
     "vite-tsconfig-paths": "^5.1.4"
@@ -28,7 +28,7 @@
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "globals": "^16.0.0",
-    "typescript": "~5.8.3",
+    "typescript": "5.4.5",
     "vite": "^6.3.5"
   }
 }
