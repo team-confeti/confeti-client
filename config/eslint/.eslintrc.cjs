@@ -1,3 +1,4 @@
+/* global module */
 module.exports = {
   extends: [
     'eslint:recommended',
@@ -15,7 +16,10 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_|^args$' },
+    ],
 
     'simple-import-sort/imports': [
       'error',
