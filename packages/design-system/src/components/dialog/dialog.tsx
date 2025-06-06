@@ -19,8 +19,8 @@ interface ChildrenProps {
   children: ReactNode;
 }
 
-type DialogRootComponent = (props: RootProps) => JSX.Element | null;
-type DialogChildComponent = (props: ChildrenProps) => JSX.Element;
+type DialogRootComponent = (props: RootProps) => React.JSX.Element | null;
+type DialogChildComponent = (props: ChildrenProps) => React.JSX.Element;
 
 interface DialogComposite extends DialogRootComponent {
   Content: DialogChildComponent;
