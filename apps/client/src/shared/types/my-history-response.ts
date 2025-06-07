@@ -83,8 +83,8 @@ export interface ArtistMusicSearchResponse {
 }
 
 export interface SetListMusic {
-  musicId: number;
-  trackId: string;
+  musicId: string;
+  setlistId: string;
   artistName: string;
   trackName: string;
   artworkUrl: string;

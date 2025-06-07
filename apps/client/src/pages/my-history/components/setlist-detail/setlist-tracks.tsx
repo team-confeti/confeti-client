@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   closestCenter,
   DndContext,
@@ -16,6 +16,7 @@ import {
 import { Button, Dialog } from '@confeti/design-system';
 import MusicList from '@shared/components/music-list/music-list.tsx';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
+import { SetListMusic } from '@shared/types/my-history-response.ts';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
 import AddMusicButton from '../../components/setlist-detail/add-music-button';
@@ -27,8 +28,7 @@ import { useCancelEditSetList } from '../../hooks/use-setlist-detail-mutation.ts
 import * as styles from './setlist-tracks.css';
 
 export interface SetListTrack {
-  musicId: number;
-  trackId: string;
+  musicId: string;
   trackName: string;
   artistName: string;
   artworkUrl: string;
@@ -78,22 +78,10 @@ const SetListTracks = ({
 
   useEditCancelOnLeave(isEditMode, () => cancelEditSetlist(setlistId));
 
-  const mappedTracks = useMemo(
-    () =>
-      localTracks.map((track) => ({
-        musicId: String(track.musicId),
-        artworkUrl: track.artworkUrl,
-        title: track.trackName,
-        artistName: track.artistName,
-        previewUrl: track.previewUrl,
-      })),
-    [localTracks],
-  );
-
   const { musicList, onClickPlayToggle, audioRef } =
-    useMusicPlayer(mappedTracks);
+    useMusicPlayer(localTracks);
 
-  const removeTrackFromLocal = (musicId: number) => {
+  const removeTrackFromLocal = (musicId: string) => {
     setLocalTracks((prev) => prev.filter((track) => track.musicId !== musicId));
   };
 
