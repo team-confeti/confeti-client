@@ -26,7 +26,7 @@ const FestivalButton = ({
       <button className={styles.festivalButton({ isSelected })} {...props}>
         <img src={imgUrl} alt={title} />
       </button>
-      <span className={styles.text}>{title}</span>
+      <p className={styles.text}>{title}</p>
     </label>
   );
 };

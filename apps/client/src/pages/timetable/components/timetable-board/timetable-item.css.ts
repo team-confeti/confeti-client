@@ -20,10 +20,10 @@ export const itemsWrapper = recipe({
     zIndex: themeVars.zIndex.timeTable.content,
     cursor: 'pointer',
     transition: 'background-color 0.18s ease-out',
-    minWidth: '10.3rem',
+    minWidth: '103px',
     boxSizing: 'border-box',
     margin: 0,
-    padding: '0.5rem',
+    padding: '5px',
   },
   variants: {
     isSelected: {
@@ -54,7 +54,7 @@ export const artistName = recipe({
     whiteSpace: 'nowrap',
     backgroundColor: 'inherit',
     boxSizing: 'border-box',
-    padding: '0 0.2rem',
+    padding: '0 2px',
   },
   variants: {
     isSelected: {
