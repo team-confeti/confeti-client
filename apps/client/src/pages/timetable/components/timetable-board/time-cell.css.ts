@@ -6,7 +6,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const timeList = style({
   display: 'flex',
   alignItems: 'center',
-  paddingBottom: '46px',
+  paddingBottom: '31px',
   zIndex: themeVars.zIndex.timeTable.row,
 });
 
