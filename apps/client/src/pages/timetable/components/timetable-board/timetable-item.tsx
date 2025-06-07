@@ -65,7 +65,7 @@ const TimetableItem = ({
     onClick(userTimetableId, !selectBlock);
   };
 
-  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 98.6}% + 0.7rem)`;
+  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 100}% + 0.75px)`;
   const height = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
 
   const dynamicVars = assignInlineVars({
