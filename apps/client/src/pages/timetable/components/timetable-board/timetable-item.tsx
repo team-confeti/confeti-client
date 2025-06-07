@@ -63,8 +63,8 @@ const TimetableItem = ({
     onClick(userTimetableId, !selectBlock);
   };
 
-  const MARGIN_TOP_PX = '7px';
-  const top = `calc(${minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN}px + ${MARGIN_TOP_PX} )`;
+  const MARGIN_TOP_PX = 7;
+  const top = `calc(${minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN + MARGIN_TOP_PX}px )`;
   const height = `calc((${totalPerformMin * TIME_SLOT_HEIGHT_1_MIN}px)`;
 
   const dynamicVars = assignInlineVars({
