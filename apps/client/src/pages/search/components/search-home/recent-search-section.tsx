@@ -7,7 +7,7 @@ import { limitTextLength } from '@shared/utils/limit-text-length';
 
 import * as styles from './recent-search-section.css';
 
-export default function RecentSearchSection() {
+const RecentSearchSection = () => {
   const navigate = useNavigate();
   const { recentSearches, removeSearchKeyword, clearSearchKeywords } =
     useRecentSearch();
@@ -48,4 +48,6 @@ export default function RecentSearchSection() {
       )}
     </section>
   );
-}
+};
+
+export default RecentSearchSection;

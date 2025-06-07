@@ -8,17 +8,10 @@ export const wrapper = style({
   ...themeVars.display.flexAlignCenter,
 });
 
-export const image = style({
-  width: '8rem',
-  height: '8rem',
-  borderRadius: '4rem',
-  objectFit: 'cover',
-  marginRight: '2rem',
-});
-
 export const textSection = style({
   ...themeVars.display.flexColumn,
   justifyContent: 'center',
+  marginLeft: '1.5rem',
   textAlign: 'left',
   flex: 1,
   gap: '1.05rem',
@@ -36,16 +29,8 @@ export const likeButton = style({
 });
 
 export const releaseWrapper = style({
-  ...themeVars.display.flexAlignCenter,
-  gap: '0.8rem',
-});
-
-export const releaseLabel = style({
-  ...themeVars.fontStyles.body3_m_14,
-  color: themeVars.color.gray600,
-});
-
-export const releaseDate = style({
-  ...themeVars.fontStyles.body3_r_14,
-  color: themeVars.color.gray600,
+  display: 'flex',
+  alignItems: 'flex-start',
+  ...themeVars.fontStyles.body5_m_12,
+  color: themeVars.color.gray500,
 });

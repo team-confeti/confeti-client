@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { PopularSearchResponse } from '@shared/types/search-reponse';
+import { PopularSearchResponse } from '@shared/types/search-response';
 
 import * as styles from './popular-search-section.css';
 
@@ -8,7 +8,7 @@ interface Props {
   popularSearchData: PopularSearchResponse;
 }
 
-export default function PopularSearchSection({ popularSearchData }: Props) {
+const PopularSearchSection = ({ popularSearchData }: Props) => {
   const navigate = useNavigate();
 
   const left = popularSearchData.popularTerms.slice(0, 5);
@@ -62,4 +62,6 @@ export default function PopularSearchSection({ popularSearchData }: Props) {
       </div>
     </section>
   );
-}
+};
+
+export default PopularSearchSection;

@@ -8,6 +8,7 @@ import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
 
 import * as styles from './add-setlist-page.css';
@@ -61,11 +62,13 @@ const AddSetlistPage = () => {
     navigate(`/my-history/setlist/add-setlist?q=${keyword}`);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing && keyword.trim()) {
-      (e.target as HTMLInputElement).blur();
-    }
-  };
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === 'Enter' && !e.nativeEvent.isComposing && keyword.trim()) {
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+  });
 
   const handleInputChangeWithReset = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -130,7 +133,7 @@ const AddSetlistPage = () => {
           placeholder="공연명 또는 아티스트를 검색해주세요."
           value={keyword}
           onChange={handleInputChangeWithReset}
-          onKeyDown={handleKeyDown}
+          {...keyboardProps}
         />
       </div>
 

@@ -11,8 +11,10 @@ interface SearchBarProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  onClear?: () => void;
   showBackButton?: boolean;
   placeholder?: string;
 }
@@ -21,8 +23,10 @@ export const SearchBar = ({
   value,
   onChange,
   onKeyDown,
+  onKeyUp,
   onFocus,
   onBlur,
+  onClear,
   showBackButton = true,
   placeholder,
 }: SearchBarProps) => {
@@ -46,6 +50,7 @@ export const SearchBar = ({
           target: { value: '' },
         } as React.ChangeEvent<HTMLInputElement>);
       }
+      onClear?.();
     }
   };
 
@@ -101,6 +106,7 @@ export const SearchBar = ({
           value={value}
           onChange={handleInputChange}
           onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

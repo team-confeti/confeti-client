@@ -11,7 +11,7 @@ import {
 import {
   LIKE_QUERY_KEY,
   PERFORMANCE_QUERY_KEY,
-  SEARCH_ARTIST_QUERY_KEY,
+  SEARCH_QUERY_KEY,
 } from '@shared/constants/query-key';
 
 type LikeType = 'ARTIST' | 'FESTIVAL' | 'CONCERT';
@@ -43,7 +43,7 @@ const getQueryKey = (type: LikeType, id: string | number) => {
 const getInvalidateKey = (type: LikeType, id: string | number) => {
   switch (type) {
     case 'ARTIST':
-      return SEARCH_ARTIST_QUERY_KEY.SEARCH_ARTIST('');
+      return SEARCH_QUERY_KEY.SEARCH_ARTIST('');
     case 'FESTIVAL':
       return PERFORMANCE_QUERY_KEY.FESTIVAL(Number(id));
     case 'CONCERT':
@@ -126,7 +126,7 @@ export const useLikeMutation = () => {
       const invalidateKey = getInvalidateKey(type, id);
       if (type === 'ARTIST') {
         queryClient.invalidateQueries({
-          queryKey: SEARCH_ARTIST_QUERY_KEY.ALL,
+          queryKey: SEARCH_QUERY_KEY.SEARCH_ARTIST(''),
           exact: false,
         });
       } else {
