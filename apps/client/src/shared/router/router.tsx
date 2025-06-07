@@ -7,6 +7,7 @@ import EditProfile from '@pages/my/page/edit/edit-profile';
 import MyPage from '@pages/my/page/my-page';
 import MyHistoryPage from '@pages/my-history/page/my-history';
 import MyHistoryOverviewPage from '@pages/my-history/page/overview/my-history-overview-page';
+import NoUpcomingFestival from '@pages/timetable/page/no-upcoming-festival/no-upcoming-festival';
 import TimetableLayout from '@pages/timetable/page/timetable-layout';
 import TimetablePage from '@pages/timetable/page/timetable-page';
 
@@ -130,6 +131,10 @@ export default function Router() {
           <Route
             path={routePath.DELETE_FESTIVAL}
             element={createProtectedRoute(true, <DeleteFestivalPage />)}
+          />
+          <Route
+            path={routePath.NO_UPCOMING_FESTIVAL}
+            element={createProtectedRoute(true, <NoUpcomingFestival />)}
           />
         </Route>
 
