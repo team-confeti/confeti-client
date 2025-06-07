@@ -32,7 +32,7 @@ export const useReorderSetList = () => {
       tracks,
     }: {
       setlistId: number;
-      tracks: { trackId: string; orders: number }[];
+      tracks: { musicId: string; orders: number }[];
     }) => patchReorderSetList(setlistId, tracks),
   });
 };

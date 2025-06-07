@@ -7,20 +7,14 @@ import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import MusicList from '@shared/components/music-list/music-list';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
+import { MusicInfoResponse } from '@shared/types/my-history-response';
 
 import * as styles from './add-songs-page.css';
-
-interface MusicItemType {
-  musicId: number;
-  title: string;
-  artistName: string;
-  artworkUrl: string;
-}
 
 const AddSongsPage = () => {
   const [keyword, setKeyword] = useState('');
   const [isConfirmAddSection, setIsConfirmAddSection] = useState(false);
-  const [selectedSongs, setSelectedSongs] = useState<MusicItemType[]>([]);
+  const [selectedSongs, setSelectedSongs] = useState<MusicInfoResponse[]>([]);
   const [artistId, setArtistId] = useState<string | null>(null);
 
   const {
@@ -35,7 +29,7 @@ const AddSongsPage = () => {
       !!keyword,
     ),
   });
-  const { data: artistMusicSearchData } = useQuery({
+  const { data: artistSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
       { aid: artistId || '', term: keyword, offset: 0, limit: 5 },
       !!keyword,
@@ -44,15 +38,11 @@ const AddSongsPage = () => {
 
   const combinedMusics = [
     ...(musicSearchData?.musics || []),
-    ...(artistMusicSearchData?.musics || []),
+    ...(artistSearchData?.musics || []),
   ];
 
-  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
-    combinedMusics.map((music) => ({
-      ...music,
-      musicId: String(music.musicId),
-    })),
-  );
+  const { musicList, onClickPlayToggle, audioRef } =
+    useMusicPlayer(combinedMusics);
 
   useEffect(() => {
     const matchingArtist = relatedArtists?.artists.find((artist) =>
@@ -70,8 +60,8 @@ const AddSongsPage = () => {
 
   const handleMoveToConfirmAddSection = () => setIsConfirmAddSection(true);
 
-  const handleRemoveSong = (songId: number) => {
-    setSelectedSongs((prev) => prev.filter((song) => song.musicId !== songId));
+  const handleRemoveSong = (musicId: string) => {
+    setSelectedSongs((prev) => prev.filter((song) => song.musicId !== musicId));
   };
 
   const handleConfirmAddSection = () => setIsConfirmAddSection(false);
@@ -81,21 +71,22 @@ const AddSongsPage = () => {
     if (!song) return;
 
     const isAlreadySelected = selectedSongs.some(
-      (s) => s.musicId === Number(song.musicId),
+      (s) => s.musicId === song.musicId,
     );
 
     if (!isAlreadySelected) {
       const newSong = {
-        musicId: Number(song.musicId),
-        title: song.title,
+        musicId: song.musicId,
+        trackName: song.trackName,
         artistName: song.artistName,
         artworkUrl: song.artworkUrl,
+        previewUrl: song.previewUrl,
       };
 
       setSelectedSongs((prev) => [...prev, newSong]);
       toast({
         text: '(이)가 대기열에 추가되었습니다.',
-        highlightText: song.title,
+        highlightText: song.trackName,
         position: 'middleCenter',
       });
     }

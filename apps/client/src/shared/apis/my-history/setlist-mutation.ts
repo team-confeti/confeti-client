@@ -43,7 +43,7 @@ export const patchCompleteEditSetList = async (
 
 export const patchReorderSetList = async (
   setlistId: number,
-  tracks: { trackId: string; orders: number }[],
+  tracks: { musicId: string; orders: number }[],
 ): Promise<void> => {
   await patch<BaseResponse<void>>(
     END_POINT.PATCH_REORDER_SETLIST(setlistId),

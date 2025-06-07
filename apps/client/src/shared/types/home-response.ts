@@ -30,7 +30,7 @@ export type SuggestPerformance = Pick<
 export type musics = {
   musicId: string;
   artistName: string;
-  title: string;
+  trackName: string;
   artworkUrl: string;
   previewUrl: string;
 };

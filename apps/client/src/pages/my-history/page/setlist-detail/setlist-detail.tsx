@@ -53,7 +53,7 @@ const SetListDetailPage = () => {
     if (!setlistId || reorderedTracks.length === 0) return;
 
     const formatted = reorderedTracks.map((track, i) => ({
-      trackId: track.trackId,
+      musicId: track.musicId,
       orders: i + 1,
     }));
 
