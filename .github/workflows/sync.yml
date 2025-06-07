@@ -20,9 +20,9 @@ jobs:
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https://daahyunk:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/daahyunk/35-APPJAM-WEB-CONFETI
-          git config user.name daahyunk
-          git config user.email ekgusdl0408@naver.com
+          git remote add forked-repo https://m2na7:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/m2na7/confeti-client
+          git config user.name m2na7
+          git config user.email ${{ secrets.EMAIL }}
 
       - name: Push changes to forked-repo
         run: |

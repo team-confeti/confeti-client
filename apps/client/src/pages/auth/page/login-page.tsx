@@ -20,7 +20,7 @@ const parseLinkContent = (
   part: string,
   lineIndex: number,
   index: number,
-): JSX.Element | string => {
+): React.JSX.Element | string => {
   const [, content] = part.match(/\[(.*?)\]/) || [];
   const link =
     content && EXTERNAL_LINKS.find((link) => link.label === content)?.url;
@@ -43,7 +43,7 @@ const parseLinkContent = (
 const processLine = (
   line: string,
   lineIndex: number,
-): (JSX.Element | string)[] => {
+): (React.JSX.Element | string)[] => {
   if (!line) return [];
   const parts = line.split(/(\[.*?\])/);
   return parts.map((part, index) => parseLinkContent(part, lineIndex, index));

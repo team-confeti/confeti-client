@@ -39,5 +39,4 @@ export const zIndex = {
   heroBackground: '0',
   heroOverlay: '1',
   heroContent: '2',
-
 } as const;
