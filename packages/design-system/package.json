@@ -38,7 +38,8 @@
     "storybook": "8.5.0-beta.7",
     "svgo": "^3.3.2",
     "typescript": "^5.3.3",
-    "vite": "^5.4.8"
+    "vite": "^5.4.8",
+    "vite-plugin-svg-sprite": "^0.6.2"
   },
   "dependencies": {
     "@dnd-kit/sortable": "^10.0.0",
