@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 import { IcFestivalGray } from '@confeti/design-system/icons';
+import { getFestivalToAdd } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './empty-festival-section.css';
@@ -9,8 +10,15 @@ import * as styles from './empty-festival-section.css';
 const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
-  const handleAddFestivalClick = () => {
-    navigate(`${routePath.ADD_FESTIVAL}`);
+  const handleAddFestivalClick = async () => {
+    const response = await getFestivalToAdd();
+    const isEmpty = response.festivals.length === 0;
+
+    if (isEmpty) {
+      navigate(routePath.NO_UPCOMING_FESTIVAL);
+    } else {
+      navigate(routePath.ADD_FESTIVAL);
+    }
   };
 
   return (
