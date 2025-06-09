@@ -63,13 +63,12 @@ export const END_POINT = {
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
 
   //검색
-  GET_ARTISTS_SEARCH: '/artists/search?term=',
+  GET_SEARCH_ALL: '/search',
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
-  GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
-    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+
   GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
   GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
   GET_MUSIC_SEARCH: (keyword: string, offset: number, limit: number) =>
@@ -105,10 +104,10 @@ export const HTTP_STATUS_CODE = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
-};
+} as const;
 
 export const CACHE_TIME = {
   SHORT: 1000 * 60 * 3,
   MEDIUM: 1000 * 60 * 5,
   LONG: 1000 * 60 * 10,
-};
+} as const;

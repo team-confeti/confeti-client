@@ -3,7 +3,6 @@ import {
   MusicSearchRequest,
   SetListPerformanceRequest,
 } from '../types/my-history-response';
-import { IntendedPerformanceRequest } from '../types/search-reponse';
 import { SortOption } from './sort-label';
 
 export const USER_QUERY_KEY = {
@@ -60,31 +59,20 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   ],
 } as const;
 
-export const SEARCH_PAGE_QUERY_KEY = {
+export const SEARCH_QUERY_KEY = {
   ALL: ['search'],
-  SEARCH_POPULAR_SEARCH: () => [...SEARCH_PAGE_QUERY_KEY.ALL, 'popular'],
-  RECENT_VIEW: (items: string) => [...SEARCH_PAGE_QUERY_KEY.ALL, items],
-} as const;
-
-export const SEARCH_ARTIST_QUERY_KEY = {
-  ALL: ['search-artist'],
-  SEARCH_ARTIST: (keyword: string) => [...SEARCH_ARTIST_QUERY_KEY.ALL, keyword],
-} as const;
-
-export const SEARCH_PERFORMANCE_QUERY_KEY = {
-  ALL: ['search-performance'],
+  SEARCH_ALL: (term: string | null) => [...SEARCH_QUERY_KEY.ALL, term],
+  SEARCH_POPULAR_SEARCH: () => [...SEARCH_QUERY_KEY.ALL, 'popular'],
+  RECENT_VIEW: (items: string) => [...SEARCH_QUERY_KEY.ALL, items],
+  SEARCH_ARTIST: (keyword: string) => [
+    ...SEARCH_QUERY_KEY.ALL,
+    'artists',
+    keyword,
+  ],
   SEARCH_PERFORMANCES: (keyword: string) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
+    ...SEARCH_QUERY_KEY.ALL,
+    'performances',
     keyword,
-  ],
-  SEARCH_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
-    keyword,
-  ],
-  SEARCH_INTENDED_PERFORMANCE: (request: IntendedPerformanceRequest) => [
-    ...SEARCH_PERFORMANCE_QUERY_KEY.ALL,
-    request.pid,
-    request.aid,
   ],
 } as const;
 
