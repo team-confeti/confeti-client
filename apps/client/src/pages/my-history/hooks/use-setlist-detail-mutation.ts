@@ -7,19 +7,32 @@ import {
   postStartEditSetList,
 } from '@shared/apis/my-history/setlist-mutation';
 
-export const useStartEditSetList = (onSuccessCallback?: () => void) => {
+export const useStartEditSetList = (options?: {
+  onSuccess?: () => void;
+  onError?: () => void;
+}) => {
   return useMutation({
     mutationFn: (setlistId: number) => postStartEditSetList(setlistId),
-    onSuccess: () => {
-      onSuccessCallback?.();
+    onMutate: async () => {
+      options?.onSuccess?.();
+    },
+    onError: () => {
+      options?.onError?.();
     },
   });
 };
-export const useCompleteEditSetList = (onSuccessCallback?: () => void) => {
+
+export const useCompleteEditSetList = (options?: {
+  onSuccess?: () => void;
+  onError?: () => void;
+}) => {
   return useMutation({
     mutationFn: (setlistId: number) => patchCompleteEditSetList(setlistId),
-    onSuccess: () => {
-      onSuccessCallback?.();
+    onMutate: async () => {
+      options?.onSuccess?.();
+    },
+    onError: () => {
+      options?.onError?.();
     },
   });
 };
