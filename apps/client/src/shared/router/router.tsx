@@ -7,8 +7,8 @@ import EditProfile from '@pages/my/page/edit/edit-profile';
 import MyPage from '@pages/my/page/my-page';
 import MyHistoryPage from '@pages/my-history/page/my-history';
 import MyHistoryOverviewPage from '@pages/my-history/page/overview/my-history-overview-page';
-import TimeTableLayout from '@pages/time-table/page/time-table-layout';
-import TimeTablePage from '@pages/time-table/page/time-table-page';
+import TimetableLayout from '@pages/timetable/page/timetable-layout';
+import TimetablePage from '@pages/timetable/page/timetable-page';
 
 import ErrorPage from '@shared/pages/error/error';
 import { routePath } from '@shared/router/path';
@@ -114,10 +114,10 @@ export default function Router() {
         />
 
         {/* TimeTable */}
-        <Route path={routePath.TIME_TABLE_OUTLET} element={<TimeTableLayout />}>
+        <Route path={routePath.TIME_TABLE_OUTLET} element={<TimetableLayout />}>
           <Route
             path=""
-            element={createProtectedRoute(true, <TimeTablePage />)}
+            element={createProtectedRoute(true, <TimetablePage />)}
           />
           <Route
             path={routePath.TIME_TABLE_REQUIRE_LOGIN}

@@ -1,10 +1,8 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-import { SEARCH_ARTIST_QUERY_OPTION } from '@shared/apis/search/search-queries';
-import {
-  SEARCH_PAGE_QUERY_OPTION,
-  SEARCH_PERFORMANCE_QUERY_OPTION,
-} from '@shared/apis/search/search-queries';
+import { SEARCH_ARTIST_QUERY_OPTIONS } from '@shared/apis/search/search-artist-queries';
+import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
+import { SEARCH_PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/search/search-performance-queries';
 import { IntendedPerformanceRequest } from '@shared/types/search-reponse';
 
 interface KeywordProps {
@@ -14,7 +12,7 @@ interface KeywordProps {
 
 export const useSearchArtist = ({ keyword, enabled }: KeywordProps) => {
   const { data, isLoading, refetch } = useQuery({
-    ...SEARCH_ARTIST_QUERY_OPTION.SEARCH_ARTIST(keyword, enabled),
+    ...SEARCH_ARTIST_QUERY_OPTIONS.SEARCH_ARTIST(keyword, enabled),
   });
 
   return { data, isLoading, refetch };
@@ -25,7 +23,7 @@ export const usePerformanceTypeAnalysis = ({
   enabled,
 }: KeywordProps) => {
   const { data, isLoading } = useQuery({
-    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_PERFORMANCE_TYPE_ANALYSIS(
+    ...SEARCH_PERFORMANCE_QUERY_OPTIONS.SEARCH_PERFORMANCE_TYPE_ANALYSIS(
       keyword,
       enabled,
     ),
@@ -42,7 +40,7 @@ export const useIntendedPerformance = ({
   request,
 }: UseIntendedPerformanceProps) => {
   const { data } = useSuspenseQuery({
-    ...SEARCH_PERFORMANCE_QUERY_OPTION.SEARCH_INTENDED_PERFORMANCE(request),
+    ...SEARCH_PERFORMANCE_QUERY_OPTIONS.SEARCH_INTENDED_PERFORMANCE(request),
   });
 
   return { data };
@@ -50,7 +48,7 @@ export const useIntendedPerformance = ({
 
 export const usePopularSearch = () => {
   const { data } = useSuspenseQuery({
-    ...SEARCH_PAGE_QUERY_OPTION.SEARCH_POPULAR_SEARCH(),
+    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(),
   });
 
   return { data };
@@ -58,7 +56,7 @@ export const usePopularSearch = () => {
 
 export const useRecentView = (items: string, enabled: boolean) => {
   const { data } = useQuery({
-    ...SEARCH_PAGE_QUERY_OPTION.RECENT_VIEW(items, enabled),
+    ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, enabled),
   });
 
   return { data };

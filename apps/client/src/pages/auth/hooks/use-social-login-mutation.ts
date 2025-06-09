@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { postSocialLogin } from '@shared/apis/auth/auth';
+import { postSocialLogin } from '@shared/apis/auth/auth-mutation';
 import { routePath } from '@shared/router/path';
 import { BaseResponse } from '@shared/types/api';
 import {

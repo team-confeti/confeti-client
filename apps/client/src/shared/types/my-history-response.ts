@@ -62,8 +62,8 @@ export interface MusicSearchResponse {
 }
 
 export interface MusicInfoResponse {
-  musicId: number;
-  title: string;
+  musicId: string;
+  trackName: string;
   artistName: string;
   artworkUrl: string;
   previewUrl: string;
@@ -83,8 +83,8 @@ export interface ArtistMusicSearchResponse {
 }
 
 export interface SetListMusic {
-  musicId: number;
-  trackId: string;
+  musicId: string;
+  setlistId: string;
   artistName: string;
   trackName: string;
   artworkUrl: string;
@@ -105,7 +105,7 @@ export interface SetListDetail {
 }
 
 export interface AddMusicToSetListRequest {
-  trackId: string;
+  musicId: string;
   artistName: string;
   trackName: string;
   artworkUrl: string;

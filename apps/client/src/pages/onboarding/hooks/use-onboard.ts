@@ -1,9 +1,11 @@
 import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related';
-import { ARTIST_RELATED_QUERY_OPTION } from '@shared/apis/onboard/artist-related-queries';
-import { postAuthOnboarding } from '@shared/apis/onboard/auth-onboard';
-import { TOP_ARTIST_QUERY_OPTION } from '@shared/apis/onboard/top-artist-queries';
+import {
+  ARTIST_RELATED_QUERY_OPTIONS,
+  getArtistRelatedArtist,
+} from '@shared/apis/onboard/artist-related-queries';
+import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
+import { TOP_ARTIST_QUERY_OPTIONS } from '@shared/apis/onboard/top-artist-queries';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
 
@@ -15,7 +17,7 @@ interface UseArtistRelatedKeywordProps {
 
 export const useGetTopArtist = (limit: number) => {
   const { data } = useSuspenseQuery({
-    ...TOP_ARTIST_QUERY_OPTION.TOP_ARTIST(limit),
+    ...TOP_ARTIST_QUERY_OPTIONS.TOP_ARTIST(limit),
   });
 
   return { data };
@@ -27,7 +29,7 @@ export const useArtistRelatedKeyword = ({
   limit,
 }: UseArtistRelatedKeywordProps) => {
   const { data } = useQuery({
-    ...ARTIST_RELATED_QUERY_OPTION.KEYWORD(keyword, limit),
+    ...ARTIST_RELATED_QUERY_OPTIONS.KEYWORD(keyword, limit),
     enabled,
   });
 

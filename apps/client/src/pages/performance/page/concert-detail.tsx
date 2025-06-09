@@ -4,9 +4,10 @@ import DetailInfo from '@pages/performance/components/detail-info/detail-info';
 import Location from '@pages/performance/components/location/location';
 import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
-import { useConcertDetail } from '@pages/performance/hooks/use-concert-detail';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 import { addRecentViewItem } from '@shared/utils/recent-view';
@@ -14,7 +15,9 @@ import { addRecentViewItem } from '@shared/utils/recent-view';
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedConcertId = typeId ? Number(typeId) : 0;
-  const concertDetail = useConcertDetail(parsedConcertId);
+  const { data: concertDetail } = useSuspenseQuery(
+    PERFORMANCE_QUERY_OPTIONS.CONCERT(parsedConcertId),
+  );
   const { concert } = concertDetail;
   const { isButtonHidden } = useScrollPosition();
 
