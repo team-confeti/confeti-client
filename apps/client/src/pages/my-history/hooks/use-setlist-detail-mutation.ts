@@ -8,13 +8,13 @@ import {
 } from '@shared/apis/my-history/setlist-mutation';
 
 export const useStartEditSetList = (options?: {
-  onSuccess?: () => void;
+  onMutate?: () => void;
   onError?: () => void;
 }) => {
   return useMutation({
     mutationFn: (setlistId: number) => postStartEditSetList(setlistId),
     onMutate: async () => {
-      options?.onSuccess?.();
+      options?.onMutate?.();
     },
     onError: () => {
       options?.onError?.();
@@ -23,13 +23,13 @@ export const useStartEditSetList = (options?: {
 };
 
 export const useCompleteEditSetList = (options?: {
-  onSuccess?: () => void;
+  onMutate?: () => void;
   onError?: () => void;
 }) => {
   return useMutation({
     mutationFn: (setlistId: number) => patchCompleteEditSetList(setlistId),
     onMutate: async () => {
-      options?.onSuccess?.();
+      options?.onMutate?.();
     },
     onError: () => {
       options?.onError?.();

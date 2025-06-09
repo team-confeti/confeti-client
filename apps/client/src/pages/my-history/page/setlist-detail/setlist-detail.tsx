@@ -60,12 +60,12 @@ const SetListDetailPage = () => {
   };
 
   const { mutate: startEditSetlist } = useStartEditSetList({
-    onSuccess: () => dispatchEditMode('START'),
+    onMutate: () => dispatchEditMode('START'),
     onError: () => dispatchEditMode('COMPLETE'),
   });
 
   const { mutate: completeEditSetList } = useCompleteEditSetList({
-    onSuccess: () => dispatchEditMode('COMPLETE'),
+    onMutate: () => dispatchEditMode('COMPLETE'),
     onError: () => dispatchEditMode('START'),
   });
 
