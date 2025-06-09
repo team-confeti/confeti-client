@@ -20,24 +20,23 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
     "@confeti/typescript": "workspace:*",
-    "@storybook/addon-a11y": "^8.4.7",
-    "@storybook/addon-essentials": "8.5.0-beta.7",
-    "@storybook/addon-interactions": "8.5.0-beta.7",
-    "@storybook/addon-onboarding": "8.5.0-beta.7",
-    "@storybook/blocks": "8.5.0-beta.7",
-    "@storybook/react": "8.5.0-beta.7",
-    "@storybook/react-vite": "8.5.0-beta.7",
-    "@storybook/test": "8.5.0-beta.7",
+    "@storybook/addon-a11y": "8.6.14",
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/addon-interactions": "8.6.14",
+    "@storybook/addon-onboarding": "8.6.14",
+    "@storybook/addon-highlight": "8.6.14",
+    "@storybook/blocks": "8.6.14",
+    "@storybook/react": "8.6.14",
+    "@storybook/react-vite": "8.6.14",
+    "@storybook/test": "8.6.14",
     "@svgr/cli": "^8.1.0",
     "@turbo/gen": "^1.13.4",
     "@types/node": "^20.11.24",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.1",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "chromatic": "^11.22.0",
-    "storybook": "8.5.0-beta.7",
+    "storybook": "8.6.14",
     "svgo": "^3.3.2",
-    "typescript": "^5.3.3",
+    "typescript": "5.4.5",
     "vite": "^5.4.8"
   },
   "dependencies": {
@@ -52,6 +51,8 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
   }
 }
