@@ -30,3 +30,27 @@ export const concertSchema = z.object({
     }),
   ),
 });
+
+type ConcertFormValues = z.infer<typeof concertSchema>;
+
+export const concertDefaultValues: ConcertFormValues = {
+  title: '',
+  subTitle: '',
+  startDate: '',
+  endDate: '',
+  location: '',
+  reservationDate: '',
+  ageLimit: '',
+  concertTime: '',
+  concertPrice: '',
+  concertAddress: '',
+  posterImage: new File([], ''),
+  reservationLinks: [
+    {
+      reservationUrl: '',
+      reservationSiteName: '',
+      reservationSiteLogo: new File([], ''),
+    },
+  ],
+  artistIds: [{ value: '' }],
+};

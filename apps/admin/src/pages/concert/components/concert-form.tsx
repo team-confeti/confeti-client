@@ -12,7 +12,7 @@ import FormInput from '@shared/components/form/form-input';
 import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { useZodForm } from '@shared/hooks/use-zod-form';
 
-import { concertSchema } from '../schemas/concert-schema';
+import { concertDefaultValues, concertSchema } from '../schemas/concert-schema';
 
 import * as styles from './concert-form.css';
 
@@ -260,27 +260,7 @@ const ConcertForm = () => {
     formState: { errors, isValid },
   } = useZodForm({
     schema: concertSchema,
-    defaultValues: {
-      title: '',
-      subTitle: '',
-      startDate: '',
-      endDate: '',
-      location: '',
-      reservationDate: '',
-      ageLimit: '',
-      concertTime: '',
-      concertPrice: '',
-      concertAddress: '',
-      posterImage: new File([], ''),
-      reservationLinks: [
-        {
-          reservationUrl: '',
-          reservationSiteName: '',
-          reservationSiteLogo: new File([], ''),
-        },
-      ],
-      artistIds: [{ value: '' }],
-    },
+    defaultValues: concertDefaultValues,
   });
 
   // TODO: 저장 로직 추가
