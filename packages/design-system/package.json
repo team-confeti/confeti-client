@@ -5,21 +5,23 @@
   "exports": {
     ".": "./src/components/index.ts",
     "./styles": "./src/styles/index.ts",
-    "./icons": "./src/icons/src/index.ts",
-    "./utils": "./src/utils/index.ts"
+    "./utils": "./src/utils/index.ts",
+    "./icons": "./src/icons/index.ts"
   },
   "scripts": {
     "lint": "eslint --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "svgr": "svgr --out-dir src/icons/src src/icons/assets --typescript --icon --jsx-runtime automatic",
     "optimize-svg": "pnpm exec svgo -f src/icons/assets -o src/icons/assets",
-    "build": "npm run",
+    "build": "vite build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate:icons": "tsx src/icons/generate-icon-list.ts"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
     "@confeti/typescript": "workspace:*",
+    "@pivanov/vite-plugin-svg-sprite": "^3.0.0",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "8.5.0-beta.7",
     "@storybook/addon-interactions": "8.5.0-beta.7",
@@ -34,12 +36,13 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.1",
     "@vanilla-extract/vite-plugin": "^4.0.19",
+    "@vitejs/plugin-react": "^4.3.2",
     "chromatic": "^11.22.0",
     "storybook": "8.5.0-beta.7",
     "svgo": "^3.3.2",
+    "tsx": "^4.19.4",
     "typescript": "^5.3.3",
-    "vite": "^5.4.8",
-    "vite-plugin-svg-sprite": "^0.6.2"
+    "vite": "^5.4.8"
   },
   "dependencies": {
     "@dnd-kit/sortable": "^10.0.0",
