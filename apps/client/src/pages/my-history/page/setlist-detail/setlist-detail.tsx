@@ -35,18 +35,22 @@ const SetListDetailPage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [reorderedTracks, setReorderedTracks] = useState<SetListTrack[]>([]);
 
-  const { mutate: startEditSetlist } = useStartEditSetList();
+  const handleStartEdit = () => {
+    startEditSetlist(Number(setlistId));
+  };
+
+  const handleStartEditSuccess = () => {
+    setIsEditMode(true);
+  };
+
+  const { mutate: startEditSetlist } = useStartEditSetList(
+    handleStartEditSuccess,
+  );
   const { mutate: completeEditSetList } = useCompleteEditSetList();
   const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
     navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
-  };
-
-  const handleStartEdit = () => {
-    startEditSetlist(Number(setlistId), {
-      onSuccess: () => setIsEditMode(true),
-    });
   };
 
   const handleCompleteEdit = () => {
