@@ -1,3 +1,4 @@
+import { type DefaultValues } from 'react-hook-form';
 import { z } from 'zod';
 
 // TODO: 명세서 바탕으로 추후 수정 필요
@@ -31,9 +32,9 @@ export const concertSchema = z.object({
   ),
 });
 
-type ConcertFormValues = z.infer<typeof concertSchema>;
-
-export const concertDefaultValues: ConcertFormValues = {
+export const concertDefaultValues: DefaultValues<
+  z.infer<typeof concertSchema>
+> = {
   title: '',
   subTitle: '',
   startDate: '',
