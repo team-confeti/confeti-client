@@ -26,7 +26,6 @@ const SetListDetailPage = () => {
   if (!setlistId) {
     throw new Error('잘못된 접근입니다. (setlistId 없음)');
   }
-
   const { data: setlistDetail } = useSuspenseQuery(
     SETLIST_QUERY_OPTION.DETAIL(Number(setlistId)),
   );
@@ -35,6 +34,13 @@ const SetListDetailPage = () => {
   const [reorderedTracks, setReorderedTracks] = useState<SetListTrack[]>([]);
   const hasNoMusic = setlistDetail.musics.length === 0;
   const hasNoReorderedTracks = reorderedTracks.length === 0;
+
+  const formatTracksWithOrder = (tracks: SetListTrack[]) => {
+    return tracks.map((track, index) => ({
+      musicId: track.musicId,
+      orders: index + 1,
+    }));
+  };
 
   const handleStartEdit = () => {
     startEditSetlist(Number(setlistId));
@@ -47,6 +53,15 @@ const SetListDetailPage = () => {
   const handleCompleteEditSuccess = () => {
     setIsEditMode(false);
   };
+  const handleCompleteEdit = () => {
+    if (hasNoReorderedTracks) return;
+    const formatted = formatTracksWithOrder(reorderedTracks);
+    reorderSetList({ setlistId: Number(setlistId), tracks: formatted });
+    completeEditSetList(Number(setlistId));
+  };
+  const handleClickAdd = () => {
+    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
+  };
 
   const { mutate: startEditSetlist } = useStartEditSetList(
     handleStartEditSuccess,
@@ -55,21 +70,6 @@ const SetListDetailPage = () => {
     handleCompleteEditSuccess,
   );
   const { mutate: reorderSetList } = useReorderSetList();
-
-  const handleClickAdd = () => {
-    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
-  };
-
-  const handleCompleteEdit = () => {
-    if (hasNoReorderedTracks) return;
-
-    const formatted = reorderedTracks.map((track, i) => ({
-      musicId: track.musicId,
-      orders: i + 1,
-    }));
-    reorderSetList({ setlistId: Number(setlistId), tracks: formatted });
-    completeEditSetList(Number(setlistId));
-  };
 
   return (
     <>
