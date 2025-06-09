@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { IconName } from './icon-list'; // 자동 생성된 타입 import
+import type { IconName } from '../icon-list'; // 자동 생성된 타입 import
 
 type IconProps = {
   name: IconName; // string → IconName (오타 방지!)

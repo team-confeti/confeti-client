@@ -6,7 +6,7 @@
     ".": "./src/components/index.ts",
     "./styles": "./src/styles/index.ts",
     "./utils": "./src/utils/index.ts",
-    "./icons": "./src/icons/index.ts"
+    "./icons": "./src/icons/src/index.ts"
   },
   "scripts": {
     "lint": "eslint --max-warnings 0",
@@ -16,7 +16,7 @@
     "build": "vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate:icons": "tsx src/icons/generate-icon-list.ts"
+    "generate:icons": "tsx src/icons/scripts/generate-icon-list.ts"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
