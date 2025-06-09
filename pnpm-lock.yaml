@@ -28,6 +28,9 @@ importers:
       '@confeti/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
+      '@hookform/resolvers':
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.57.0(react@19.1.0))
       '@types/react':
         specifier: ^19.0.0
         version: 19.0.0
@@ -43,6 +46,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.57.0
+        version: 7.57.0(react@19.1.0)
       react-router-dom:
         specifier: ^7.1.1
         version: 7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -52,6 +58,9 @@ importers:
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.4.5)(vite@6.3.5(@types/node@20.19.0)(yaml@2.8.0))
+      zod:
+        specifier: ^3.25.56
+        version: 3.25.56
     devDependencies:
       '@confeti/eslint':
         specifier: workspace:*
@@ -1128,6 +1137,14 @@ packages:
       }
     engines: { node: ^12.22.0 || ^14.17.0 || >=16.0.0 }
 
+  '@hookform/resolvers@5.1.1':
+    resolution:
+      {
+        integrity: sha512-J/NVING3LMAEvexJkyTLjruSm7aOFx7QX21pzkiJfMoNG0wl5aFEjLTl7ay7IQb9EWY6AkrBy7tHL2Alijpdcg==,
+      }
+    peerDependencies:
+      react-hook-form: ^7.55.0
+
   '@humanwhocodes/config-array@0.13.0':
     resolution:
       {
@@ -1649,6 +1666,12 @@ packages:
         integrity: sha512-jUnpTdpicG8wefamw7eNo2uO+Q3KCbOAiF76xH4gfNHSW6TN2hBfOtmLu7J+ive4c0Al3+NEHz19bIPR0lkwWg==,
       }
     engines: { node: '>= 14' }
+
+  '@standard-schema/utils@0.3.0':
+    resolution:
+      {
+        integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==,
+      }
 
   '@storybook/addon-a11y@8.6.14':
     resolution:
@@ -6541,6 +6564,15 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
 
+  react-hook-form@7.57.0:
+    resolution:
+      {
+        integrity: sha512-RbEks3+cbvTP84l/VXGUZ+JMrKOS8ykQCRYdm5aYsxnDquL0vspsyNhGRO7pcH6hsZqWlPOjLye7rJqdtdAmlg==,
+      }
+    engines: { node: '>=18.0.0' }
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-is@16.13.1:
     resolution:
       {
@@ -7963,6 +7995,12 @@ packages:
       }
     engines: { node: '>=10' }
 
+  zod@3.25.56:
+    resolution:
+      {
+        integrity: sha512-rd6eEF3BTNvQnR2e2wwolfTmUTnp70aUTqr0oaGbHifzC3BKJsoV+Gat8vxUMR1hwOKBs6El+qWehrHbCpW6SQ==,
+      }
+
 snapshots:
   '@adobe/css-tools@4.4.3': {}
 
@@ -8384,6 +8422,11 @@ snapshots:
 
   '@eslint/js@8.57.1': {}
 
+  '@hookform/resolvers@5.1.1(react-hook-form@7.57.0(react@19.1.0))':
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.57.0(react@19.1.0)
+
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -8674,6 +8717,8 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@storybook/addon-a11y@8.6.14(storybook@8.6.14(prettier@3.5.3))':
     dependencies:
@@ -12017,6 +12062,10 @@ snapshots:
       '@babel/runtime': 7.27.6
       react: 19.1.0
 
+  react-hook-form@7.57.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
   react-is@16.13.1: {}
 
   react-is@17.0.2: {}
@@ -12953,3 +13002,5 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.25.56: {}
