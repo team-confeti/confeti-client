@@ -46,7 +46,7 @@ const ConcertDetailPage = () => {
       <Reservation reservations={concert.reservations} />
       <Spacing />
       <DetailInfo
-        title={concert.title}
+        title={concert.subtitle}
         time={concert.time}
         ageRating={concert.ageRating}
         price={concert.price}

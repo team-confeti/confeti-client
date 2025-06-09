@@ -6,6 +6,7 @@ import { Button, SearchBar, toast } from '@confeti/design-system';
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import MusicList from '@shared/components/music-list/music-list';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
+import { useKeyboard } from '@shared/hooks/use-keyboard';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { MusicInfoResponse } from '@shared/types/my-history-response';
 
@@ -44,6 +45,12 @@ const AddSongsPage = () => {
   const { musicList, onClickPlayToggle, audioRef } =
     useMusicPlayer(combinedMusics);
 
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === 'Enter') setKeyword('');
+    },
+  });
+
   useEffect(() => {
     const matchingArtist = relatedArtists?.artists.find((artist) =>
       artist.name.toLowerCase().includes(keyword.toLowerCase()),
@@ -53,10 +60,6 @@ const AddSongsPage = () => {
 
   const handleInputChangeWithReset = (e: React.ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') setKeyword('');
-  };
 
   const handleMoveToConfirmAddSection = () => setIsConfirmAddSection(true);
 
@@ -107,7 +110,7 @@ const AddSongsPage = () => {
               placeholder="노래 제목 또는 아티스트를 검색해주세요."
               value={keyword}
               onChange={handleInputChangeWithReset}
-              onKeyDown={handleKeyDown}
+              {...keyboardProps}
             />
           </div>
 

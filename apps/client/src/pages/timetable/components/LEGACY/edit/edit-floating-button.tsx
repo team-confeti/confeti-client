@@ -114,7 +114,7 @@ const EditFloatingButton = ({
 
   interface RenderActionButtonProps {
     variant: 'close' | 'edit' | 'complete';
-    icon: JSX.Element;
+    icon: React.JSX.Element;
     text: string | null;
     onClick: () => void;
   }
