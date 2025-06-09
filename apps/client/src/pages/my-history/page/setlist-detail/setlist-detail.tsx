@@ -31,9 +31,10 @@ const SetListDetailPage = () => {
     SETLIST_QUERY_OPTION.DETAIL(Number(setlistId)),
   );
 
-  const hasNoMusic = setlistDetail.musics.length === 0;
   const [isEditMode, setIsEditMode] = useState(false);
   const [reorderedTracks, setReorderedTracks] = useState<SetListTrack[]>([]);
+  const hasNoMusic = setlistDetail.musics.length === 0;
+  const hasNoReorderedTracks = reorderedTracks.length === 0;
 
   const handleStartEdit = () => {
     startEditSetlist(Number(setlistId));
@@ -43,10 +44,16 @@ const SetListDetailPage = () => {
     setIsEditMode(true);
   };
 
+  const handleCompleteEditSuccess = () => {
+    setIsEditMode(false);
+  };
+
   const { mutate: startEditSetlist } = useStartEditSetList(
     handleStartEditSuccess,
   );
-  const { mutate: completeEditSetList } = useCompleteEditSetList();
+  const { mutate: completeEditSetList } = useCompleteEditSetList(
+    handleCompleteEditSuccess,
+  );
   const { mutate: reorderSetList } = useReorderSetList();
 
   const handleClickAdd = () => {
@@ -54,23 +61,14 @@ const SetListDetailPage = () => {
   };
 
   const handleCompleteEdit = () => {
-    if (!setlistId || reorderedTracks.length === 0) return;
+    if (hasNoReorderedTracks) return;
 
     const formatted = reorderedTracks.map((track, i) => ({
       musicId: track.musicId,
       orders: i + 1,
     }));
-
-    reorderSetList(
-      { setlistId: Number(setlistId), tracks: formatted },
-      {
-        onSuccess: () => {
-          completeEditSetList(Number(setlistId), {
-            onSuccess: () => setIsEditMode(false),
-          });
-        },
-      },
-    );
+    reorderSetList({ setlistId: Number(setlistId), tracks: formatted });
+    completeEditSetList(Number(setlistId));
   };
 
   return (

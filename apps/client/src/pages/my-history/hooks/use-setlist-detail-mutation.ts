@@ -15,9 +15,12 @@ export const useStartEditSetList = (onSuccessCallback?: () => void) => {
     },
   });
 };
-export const useCompleteEditSetList = () => {
+export const useCompleteEditSetList = (onSuccessCallback?: () => void) => {
   return useMutation({
     mutationFn: (setlistId: number) => patchCompleteEditSetList(setlistId),
+    onSuccess: () => {
+      onSuccessCallback?.();
+    },
   });
 };
 
