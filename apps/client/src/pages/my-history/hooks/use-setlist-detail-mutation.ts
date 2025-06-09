@@ -13,7 +13,7 @@ export const useStartEditSetList = (options?: {
 }) => {
   return useMutation({
     mutationFn: (setlistId: number) => postStartEditSetList(setlistId),
-    onMutate: async () => {
+    onMutate: () => {
       options?.onMutate?.();
     },
     onError: () => {
@@ -28,7 +28,7 @@ export const useCompleteEditSetList = (options?: {
 }) => {
   return useMutation({
     mutationFn: (setlistId: number) => patchCompleteEditSetList(setlistId),
-    onMutate: async () => {
+    onMutate: () => {
       options?.onMutate?.();
     },
     onError: () => {
