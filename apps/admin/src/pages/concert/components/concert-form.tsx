@@ -9,6 +9,7 @@ import {
 import type { z } from 'zod';
 
 import FormInput from '@shared/components/form/form-input';
+import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { useZodForm } from '@shared/hooks/use-zod-form';
 
 import { concertSchema } from '../schemas/concert-schema';
@@ -22,22 +23,8 @@ interface Props {
 }
 
 function ConcertBasicFormField({ register, errors, control }: Props) {
-  const [posterPreview, setPosterPreview] = useState<string | null>(null);
-
-  const handlePosterImageChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    onChange: (file: File | undefined) => void,
-  ) => {
-    const file = e.target.files?.[0];
-    onChange(file);
-
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setPosterPreview(previewUrl);
-    } else {
-      setPosterPreview(null);
-    }
-  };
+  const [posterFile, setPosterFile] = useState<File | null>(null);
+  const posterPreview = useImagePreview(posterFile);
 
   return (
     <div className={styles.fieldSection}>
@@ -130,7 +117,11 @@ function ConcertBasicFormField({ register, errors, control }: Props) {
             <FormInput
               type="file"
               label="포스터 이미지"
-              onChange={(e) => handlePosterImageChange(e, field.onChange)}
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                setPosterFile(file);
+                field.onChange(file);
+              }}
               error={errors.posterImage?.message}
             />
             {posterPreview && (

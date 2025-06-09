@@ -58,7 +58,7 @@ export const submitButton = style({
 });
 
 export const addButton = style({
-  padding: '1rem 2rem',
+  padding: '1rem 1.5rem',
   fontSize: themeVars.fontSize.body2,
   borderRadius: '8px',
   border: 'none',
