@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to={PATH.CONCERT} replace />,
+        element: <Navigate to={PATH.DASHBOARD} replace />,
       },
       {
         path: PATH.CONCERT,
