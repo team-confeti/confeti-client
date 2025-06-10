@@ -87,7 +87,7 @@ function ConcertBasicFormField({ register, errors, control }: Props) {
         />
         <FormInput
           {...register('concertTime')}
-          type="text"
+          type="time"
           label="콘서트 시간"
           placeholder="콘서트 시간을 입력해주세요."
           error={errors.concertTime?.message}

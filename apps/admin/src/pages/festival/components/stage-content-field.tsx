@@ -66,7 +66,7 @@ function StageContentField({
           render={({ field }) => (
             <FormInput
               {...field}
-              type="text"
+              type="time"
               label={'공연 시작 시간'}
               placeholder="공연 시작 시간을 입력해주세요."
               error={
@@ -82,7 +82,7 @@ function StageContentField({
           render={({ field }) => (
             <FormInput
               {...field}
-              type="text"
+              type="time"
               label={'공연 종료 시간'}
               placeholder="공연 종료 시간을 입력해주세요."
               error={

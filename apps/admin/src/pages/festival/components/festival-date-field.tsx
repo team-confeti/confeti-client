@@ -56,7 +56,7 @@ function FestivalDateField({
         />
         <FormInput
           {...register(`festivalDates.${dateIndex}.ticketOpenTime`)}
-          type="text"
+          type="time"
           label="티켓 오픈 시간"
           placeholder="티켓 오픈 시간을 입력해주세요."
           error={errors.festivalDates?.[dateIndex]?.ticketOpenTime?.message}
