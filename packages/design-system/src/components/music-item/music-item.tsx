@@ -69,7 +69,7 @@ const MusicItem = ({
         {variant === 'editable' && (
           <div className={styles.albumOverlay}>
             <button className={styles.minusBtn} onClick={onClickDelete}>
-              <Icon name="remove" size="3.6rem" />
+              <Icon name="remove" size="2.4rem" />
             </button>
           </div>
         )}
