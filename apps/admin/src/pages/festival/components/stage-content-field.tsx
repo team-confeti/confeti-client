@@ -9,7 +9,7 @@ import { z } from 'zod';
 
 import FormInput from '@shared/components/form/form-input';
 
-import { festivalSchema } from '../schemas/festival-schema';
+import { festivalSchema } from '../../../shared/schemas/festival-schema';
 
 import * as styles from './festival-form.css';
 

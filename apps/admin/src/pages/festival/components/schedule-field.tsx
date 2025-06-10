@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { z } from 'zod';
 
-import { festivalSchema } from '../schemas/festival-schema';
+import { festivalSchema } from '../../../shared/schemas/festival-schema';
 import StageContentField from './stage-content-field';
 
 import * as styles from './festival-form.css';
