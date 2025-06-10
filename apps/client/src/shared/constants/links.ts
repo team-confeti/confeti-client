@@ -11,4 +11,8 @@ export const EXTERNAL_LINKS = [
     label: '이용약관',
     url: 'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
   },
+  {
+    label: '희망 페스티벌 폼',
+    url: 'https://forms.gle/2KWbobPLze5jKQJbA',
+  },
 ] as const;

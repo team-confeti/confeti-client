@@ -5,8 +5,8 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   backgroundColor: themeVars.color.white,
-  padding: '0rem 2rem 2rem 2rem',
-  maxWidth: '47.7rem',
+  padding: '0 20px 20px 20px',
+  maxWidth: '477px',
   width: '100%',
   overflowX: 'auto',
   position: 'relative',
@@ -15,7 +15,7 @@ export const container = style({
   },
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
-  paddingTop: '1.2rem',
+  paddingTop: '12px',
   overflowY: 'visible',
   marginBottom: '9rem',
 });
@@ -28,8 +28,8 @@ export const wrapper = recipe({
   variants: {
     stageCount: {
       4: {
-        width: '43.7rem',
-        minWidth: '43.7rem',
+        width: '437px',
+        minWidth: '437px',
       },
     },
   },
@@ -37,9 +37,9 @@ export const wrapper = recipe({
 
 export const stagesContainer = style({
   display: 'flex',
-  width: 'calc(100% - 2.9rem)',
+  width: 'calc(100% - 29px)',
   position: 'absolute',
-  left: '2.9rem',
+  left: '29px',
   top: 0,
   bottom: 0,
   backgroundColor: themeVars.color.white,
@@ -47,26 +47,26 @@ export const stagesContainer = style({
 
 export const timeList = style({
   ...themeVars.display.flexAlignCenter,
-  marginBottom: '2.2rem',
+  marginBottom: '22px',
   backgroundColor: themeVars.color.white,
 });
 
 export const minutesP = style({
   ...themeVars.fontStyles.body5_r_12,
-  padding: '0 0.4rem',
-  marginRight: '0.7rem',
+  padding: '0 4px',
+  marginRight: '7px',
   color: themeVars.color.gray400,
 });
 
 export const timeP = style({
   ...themeVars.fontStyles.body5_r_12,
-  padding: '0 0.4rem',
-  marginRight: '0.7rem',
+  padding: '0 4px',
+  marginRight: '7px',
   color: themeVars.color.gray600,
 });
 
 export const timeBar = style({
-  height: '0.1rem',
+  height: '1px',
   width: '100%',
   color: themeVars.color.gray300,
   zIndex: themeVars.zIndex.timeTable.row,
@@ -77,12 +77,12 @@ export const saveButton = style({
 });
 
 export const saveButtonWrapper = style({
-  paddingTop: '3.2rem',
+  paddingTop: '32px',
 });
 
 export const stageColumn = style({
   flex: 1,
-  minWidth: '10.2rem',
+  minWidth: '102px',
   position: 'relative',
 });
 

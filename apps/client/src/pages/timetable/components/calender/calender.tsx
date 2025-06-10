@@ -1,7 +1,6 @@
 import {
   checkFestivalDateStatus,
   createFestivalDateMap,
-  useDayNumSelection,
   useFormattedWeek,
 } from '@pages/timetable/hooks/use-data-formatted';
 
@@ -13,19 +12,21 @@ import * as styles from './calender.css';
 interface CalenderProps {
   festivalDates: { festivalDateId: number; festivalAt: string }[];
   onDateSelect: (dateId: number) => void;
+  selectedDateId: number;
 }
 
-const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
+const Calender = ({
+  festivalDates,
+  onDateSelect,
+  selectedDateId,
+}: CalenderProps) => {
   const firstDate = festivalDates?.[0]?.festivalAt || '';
   const { weekDays } = useFormattedWeek(firstDate);
   const festivalDateMap = createFestivalDateMap(festivalDates || []);
-  const { selectedDayNumId, handleDayNumClick } = useDayNumSelection(
-    festivalDates || [],
-  );
+
   const formattedYear = formatDate(firstDate, 'koHalf');
 
   const handleDateClick = (festivalDateId: number) => {
-    handleDayNumClick(festivalDateId);
     onDateSelect(festivalDateId);
   };
 
@@ -42,7 +43,7 @@ const Calender = ({ festivalDates, onDateSelect }: CalenderProps) => {
 
   const dateDetails = weekDays.map((day, id) => ({
     ...day,
-    ...checkFestivalDateStatus(festivalDateMap, id, selectedDayNumId),
+    ...checkFestivalDateStatus(festivalDateMap, id, selectedDateId),
   }));
 
   return (

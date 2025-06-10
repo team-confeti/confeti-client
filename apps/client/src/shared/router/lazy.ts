@@ -56,6 +56,11 @@ export const AddFestivalPage = lazy(
   () => import('@pages/timetable/page/add-festival/add-festival'),
 );
 
+export const NoUpcomingFestival = lazy(
+  () =>
+    import('@pages/timetable/page/no-upcoming-festival/no-upcoming-festival'),
+);
+
 // Onboarding
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/page/onboarding'),

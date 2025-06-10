@@ -104,7 +104,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase('description'), 3000),
+      setTimeout(() => setPhase('description'), 4700),
       setTimeout(() => setPhase('cta'), 5500),
     ];
     return () => timers.forEach(clearTimeout);
