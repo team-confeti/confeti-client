@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 
+import EditConcertForm from '../components/edit-concert-form';
+
 import * as styles from './edit-concert-page.css';
 
 const EditConcertPage = () => {
@@ -7,8 +9,10 @@ const EditConcertPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>콘서트 수정</h1>
-      <p>콘서트 ID: {id}</p>
+      <h1 className={styles.title}>콘서트 수정하기</h1>
+      <section className={styles.section}>
+        <EditConcertForm id={id ?? ''} />
+      </section>
     </div>
   );
 };
