@@ -13,5 +13,5 @@ export const title = style({
 
 export const section = style({
   padding: '2rem 0',
-  borderRadius: '1rem',
+  borderRadius: '8px',
 });

@@ -14,7 +14,7 @@ const ConcertDashboard = () => {
   };
 
   return (
-    <div className={styles.tableContainer}>
+    <div className={styles.tableWrapper}>
       <table className={styles.table}>
         <thead className={styles.tableHead}>
           <tr>
