@@ -189,7 +189,7 @@ export const FestivalStageFormField = ({
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>스테이지 설정</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <FormInput
             {...register(`festivalStages.${index}.stageTitle`)}
             type="text"
@@ -239,7 +239,7 @@ export const FestivalReservationFormField = ({
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>예매 링크</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <div className={styles.inputContainer}>
             <FormInput
               {...register(`reservationLinks.${index}.reservationUrl`)}
