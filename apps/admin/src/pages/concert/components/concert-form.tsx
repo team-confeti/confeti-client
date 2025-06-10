@@ -18,7 +18,7 @@ const ConcertForm = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useZodForm({
     schema: concertSchema,
     defaultValues: concertDefaultValues,
@@ -46,7 +46,7 @@ const ConcertForm = () => {
         errors={errors}
         control={control}
       />
-      <button type="submit" disabled={!isValid} className={styles.submitButton}>
+      <button type="submit" className={styles.submitButton}>
         저장하기
       </button>
     </form>
