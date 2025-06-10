@@ -295,15 +295,157 @@ function FestivalReservationFormField({ register, errors, control }: Props) {
   );
 }
 
-const FestivalDateFormField = () => {
+interface ScheduleFieldProps {
+  scheduleIndex: number;
+  register: UseFormRegister<z.infer<typeof festivalSchema>>;
+  errors: FieldErrors<z.infer<typeof festivalSchema>>;
+  control: Control<z.infer<typeof festivalSchema>>;
+  onRemove: (index: number) => void;
+}
+
+const ScheduleField = ({
+  scheduleIndex,
+  register,
+  errors,
+  control,
+  onRemove,
+}: ScheduleFieldProps) => {
+  const {
+    fields: artistFields,
+    append: appendArtist,
+    remove: removeArtist,
+  } = useFieldArray({
+    control,
+    name: `schedules.${scheduleIndex}.artistIds`,
+  });
+
   return (
     <div className={styles.fieldSection}>
-      <h2 className={styles.title}>페스티벌 날짜 (타임테이블)</h2>
+      <h3 className={styles.subTitle}>스테이지 {scheduleIndex + 1}</h3>
+      <div className={styles.inputContainer}>
+        <FormInput
+          {...register(`schedules.${scheduleIndex}.startTime`)}
+          type="text"
+          label="공연 시작 시간"
+          placeholder="공연 시작 시간을 입력해주세요."
+          error={errors.schedules?.[scheduleIndex]?.startTime?.message}
+        />
+        <FormInput
+          {...register(`schedules.${scheduleIndex}.endTime`)}
+          type="text"
+          label="공연 종료 시간"
+          placeholder="공연 종료 시간을 입력해주세요."
+          error={errors.schedules?.[scheduleIndex]?.endTime?.message}
+        />
+      </div>
+
+      {artistFields.map((artist, artistIndex) => (
+        <div key={artist.id} className={styles.artistInputContainer}>
+          <FormInput
+            {...register(
+              `schedules.${scheduleIndex}.artistIds.${artistIndex}.value`,
+            )}
+            type="text"
+            label={`아티스트 ID ${artistIndex + 1}`}
+            placeholder="아티스트 ID를 입력해주세요."
+            error={
+              errors.schedules?.[scheduleIndex]?.artistIds?.[artistIndex]?.value
+                ?.message
+            }
+          />
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={() => removeArtist(artistIndex)}
+          >
+            삭제
+          </button>
+        </div>
+      ))}
+
+      <button
+        type="button"
+        className={styles.addButton}
+        onClick={() => appendArtist({ value: '' })}
+      >
+        아티스트 추가
+      </button>
+
+      <button
+        type="button"
+        className={styles.deleteButton}
+        onClick={() => onRemove(scheduleIndex)}
+      >
+        공연 시간 삭제
+      </button>
     </div>
   );
 };
 
+const FestivalDateFormField = ({ register, errors, control }: Props) => {
+  const {
+    fields: scheduleFields,
+    append: appendSchedule,
+    remove: removeSchedule,
+  } = useFieldArray({
+    control,
+    name: 'schedules',
+  });
+
+  return (
+    <div className={styles.fieldSection}>
+      <h2 className={styles.title}>페스티벌 날짜 (타임테이블)</h2>
+
+      <div className={styles.inputContainer}>
+        <FormInput
+          {...register('festivalDate')}
+          type="text"
+          label="페스티벌 날짜"
+          placeholder="페스티벌 날짜를 입력해주세요."
+          error={errors.festivalDate?.message}
+        />
+        <FormInput
+          {...register('ticketOpenTime')}
+          type="text"
+          label="티켓 오픈 시간"
+          placeholder="티켓 오픈 시간을 입력해주세요."
+          error={errors.ticketOpenTime?.message}
+        />
+      </div>
+
+      {scheduleFields.map((schedule, index) => (
+        <ScheduleField
+          key={schedule.id}
+          scheduleIndex={index}
+          register={register}
+          errors={errors}
+          control={control}
+          onRemove={removeSchedule}
+        />
+      ))}
+
+      <button
+        type="button"
+        onClick={() =>
+          appendSchedule({
+            startTime: '',
+            endTime: '',
+            artistIds: [],
+          })
+        }
+        className={styles.addButton}
+      >
+        공연 시간 추가
+      </button>
+    </div>
+  );
+};
+
+type Tab = 'basic' | 'date';
+
 const FestivalForm = () => {
+  const [tab, setTab] = useState<Tab>('basic');
+
   const {
     register,
     handleSubmit,
@@ -320,25 +462,54 @@ const FestivalForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
-      <FestivalBasicFormField
-        register={register}
-        errors={errors}
-        control={control}
-      />
-      <FestivalStageFormField
-        register={register}
-        errors={errors}
-        control={control}
-      />
-      <FestivalReservationFormField
-        register={register}
-        errors={errors}
-        control={control}
-      />
+      <div className={styles.tabWrapper}>
+        <button
+          type="button"
+          className={tab === 'basic' ? styles.activeTab : styles.tab}
+          onClick={() => setTab('basic')}
+        >
+          기본 정보
+        </button>
+        <button
+          type="button"
+          className={tab === 'date' ? styles.activeTab : styles.tab}
+          onClick={() => setTab('date')}
+        >
+          페스티벌 날짜
+        </button>
+      </div>
+
+      {tab === 'basic' && (
+        <>
+          <FestivalBasicFormField
+            register={register}
+            errors={errors}
+            control={control}
+          />
+          <FestivalStageFormField
+            register={register}
+            errors={errors}
+            control={control}
+          />
+          <FestivalReservationFormField
+            register={register}
+            errors={errors}
+            control={control}
+          />
+        </>
+      )}
+
+      {tab === 'date' && (
+        <FestivalDateFormField
+          register={register}
+          errors={errors}
+          control={control}
+        />
+      )}
+
       <button type="submit" className={styles.submitButton}>
         저장하기
       </button>
-      <FestivalDateFormField />
     </form>
   );
 };
