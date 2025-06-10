@@ -6,9 +6,9 @@ import {
   useFieldArray,
 } from 'react-hook-form';
 import { UseFormRegister } from 'react-hook-form';
-import FestivalDateField from '@pages/festival/components/festival-date-field';
 import { z } from 'zod';
 
+import { FestivalDateField } from '@shared/components/form/festival-date-form-fields';
 import FormInput from '@shared/components/form/form-input';
 import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { festivalSchema } from '@shared/schemas/festival-schema';
