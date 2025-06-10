@@ -1,6 +1,7 @@
 import { type DefaultValues } from 'react-hook-form';
 import { z } from 'zod';
 
+// TODO: 스키마 수정 필요
 export const festivalSchema = z.object({
   title: z.string().min(1, '제목을 입력해주세요'),
   subTitle: z.string().min(1, '부제목을 입력해주세요'),

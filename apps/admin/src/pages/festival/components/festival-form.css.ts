@@ -129,6 +129,10 @@ export const submitButton = style({
     backgroundColor: themeVars.color.gray300,
     cursor: 'not-allowed',
   },
+  ':hover': {
+    backgroundColor: '#6366F1',
+    transition: 'background-color 0.3s ease',
+  },
 });
 
 export const addButton = style({
@@ -140,6 +144,10 @@ export const addButton = style({
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-start',
+  ':hover': {
+    backgroundColor: '#6366F1',
+    transition: 'background-color 0.3s ease',
+  },
 });
 
 export const deleteButton = style({
@@ -150,6 +158,24 @@ export const deleteButton = style({
   backgroundColor: themeVars.color.confeti_red,
   color: themeVars.color.white,
   alignSelf: 'flex-end',
+  ':hover': {
+    backgroundColor: '#F56565',
+    transition: 'background-color 0.3s ease',
+  },
+});
+
+export const deleteSmallButton = style({
+  padding: '1rem 1.5rem',
+  fontSize: themeVars.fontSize.body2,
+  borderRadius: '8px',
+  border: 'none',
+  backgroundColor: themeVars.color.confeti_red,
+  color: themeVars.color.white,
+  alignSelf: 'flex-end',
+  ':hover': {
+    backgroundColor: '#F56565',
+    transition: 'background-color 0.3s ease',
+  },
 });
 
 export const dateSection = style({
@@ -168,7 +194,7 @@ export const dateHeader = style({
 
 export const stageTabs = style({
   display: 'flex',
-  gap: '1rem',
+  gap: '1.5rem',
   marginBottom: '1rem',
   borderBottom: `1px solid ${themeVars.color.gray300}`,
 });

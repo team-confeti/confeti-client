@@ -17,7 +17,13 @@ interface Props {
   onRemove: (index: number) => void;
 }
 
-function DateField({ dateIndex, register, errors, control, onRemove }: Props) {
+function FestivalDateField({
+  dateIndex,
+  register,
+  errors,
+  control,
+  onRemove,
+}: Props) {
   const {
     fields: scheduleFields,
     append: appendSchedule,
@@ -88,4 +94,4 @@ function DateField({ dateIndex, register, errors, control, onRemove }: Props) {
   );
 }
 
-export default DateField;
+export default FestivalDateField;

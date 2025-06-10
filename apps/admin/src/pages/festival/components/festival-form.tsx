@@ -16,7 +16,7 @@ import {
   festivalDefaultValues,
   festivalSchema,
 } from '../schemas/festival-schema';
-import DateField from './date-field';
+import FestivalDateField from './festival-date-field';
 
 import * as styles from './festival-form.css';
 
@@ -93,9 +93,9 @@ function FestivalBasicFormField({ register, errors, control }: Props) {
         />
         <FormInput
           {...register('festivalTime')}
-          type="text"
-          label="콘서트 시간"
-          placeholder="콘서트 시간을 입력해주세요."
+          type="time"
+          label="페스티벌 시간"
+          placeholder="페스티벌 시간을 입력해주세요."
           error={errors.festivalTime?.message}
         />
       </div>
@@ -103,15 +103,15 @@ function FestivalBasicFormField({ register, errors, control }: Props) {
         <FormInput
           {...register('festivalPrice')}
           type="text"
-          label="콘서트 가격"
-          placeholder="콘서트 가격을 입력해주세요."
+          label="페스티벌 가격"
+          placeholder="페스티벌 가격을 입력해주세요."
           error={errors.festivalPrice?.message}
         />
         <FormInput
           {...register('festivalAddress')}
           type="text"
-          label="콘서트 주소"
-          placeholder="콘서트 주소를 입력해주세요."
+          label="페스티벌 주소"
+          placeholder="페스티벌 주소를 입력해주세요."
           error={errors.festivalAddress?.message}
         />
       </div>
@@ -311,7 +311,7 @@ function FestivalDateFormField({ register, errors, control }: Props) {
       <h2 className={styles.title}>페스티벌 날짜 (타임테이블)</h2>
 
       {dateFields.map((date, dateIndex) => (
-        <DateField
+        <FestivalDateField
           key={date.id}
           dateIndex={dateIndex}
           register={register}
@@ -361,6 +361,7 @@ const FestivalForm = () => {
     defaultValues: festivalDefaultValues,
   });
 
+  // TODO: 저장 로직 추가
   const onSubmit = (data: z.infer<typeof festivalSchema>) => {
     console.log(data);
   };

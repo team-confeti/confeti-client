@@ -110,7 +110,7 @@ function StageContentField({
           />
           <button
             type="button"
-            className={styles.deleteButton}
+            className={styles.deleteSmallButton}
             onClick={() => stageFields.remove(artistIndex)}
           >
             삭제
