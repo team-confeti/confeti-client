@@ -19,11 +19,6 @@ export const title = style({
   marginBottom: '1rem',
 });
 
-export const formWrapper = style({
-  ...themeVars.display.flexColumn,
-  gap: '2rem',
-});
-
 export const inputContainer = style({
   display: 'flex',
   gap: '2rem',
@@ -40,21 +35,6 @@ export const posterPreview = style({
   maxWidth: '100%',
   maxHeight: '20rem',
   objectFit: 'contain',
-});
-
-export const submitButton = style({
-  padding: '1rem 2rem',
-  fontSize: themeVars.fontSize.body2,
-  borderRadius: '8px',
-  border: 'none',
-  backgroundColor: '#4F46E5',
-  color: themeVars.color.white,
-  cursor: 'pointer',
-  alignSelf: 'flex-end',
-  ':disabled': {
-    backgroundColor: themeVars.color.gray300,
-    cursor: 'not-allowed',
-  },
 });
 
 export const addButton = style({
