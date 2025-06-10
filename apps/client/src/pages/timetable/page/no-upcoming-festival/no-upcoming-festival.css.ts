@@ -6,7 +6,7 @@ export const wrapper = style({
   ...themeVars.display.flexJustifyAlignCenter,
   flexDirection: 'column',
   gap: '5rem',
-  height: 'calc(100dvh - 18.8rem)',
+  flex: '1',
   padding: '0 2rem',
 });
 
@@ -43,8 +43,5 @@ export const buttonText = style({
 });
 
 export const buttonSection = style({
-  position: 'sticky',
-  bottom: '0',
   padding: '2rem',
-  width: '100%',
 });

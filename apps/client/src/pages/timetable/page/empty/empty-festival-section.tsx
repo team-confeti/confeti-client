@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
@@ -10,16 +11,13 @@ import * as styles from './empty-festival-section.css';
 const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
-  const handleAddFestivalClick = async () => {
-    const response = await getFestivalToAdd();
-    const isEmpty = response.festivals.length === 0;
-
-    if (isEmpty) {
-      navigate(routePath.NO_UPCOMING_FESTIVAL);
-    } else {
-      navigate(routePath.ADD_FESTIVAL);
-    }
-  };
+  const [isEmpty, setIsEmpty] = useState<boolean | null>(null);
+  useEffect(() => {
+    (async () => {
+      const response = await getFestivalToAdd();
+      setIsEmpty(response.festivals.length === 0);
+    })();
+  }, []);
 
   return (
     <section className={styles.container}>
@@ -35,7 +33,10 @@ const EmptyFestivalSection = () => {
         className={styles.button}
         text="페스티벌 추가하기"
         onClick={() => {
-          handleAddFestivalClick();
+          if (isEmpty === null) return;
+          navigate(
+            isEmpty ? routePath.NO_UPCOMING_FESTIVAL : routePath.ADD_FESTIVAL,
+          );
         }}
       />
     </section>
