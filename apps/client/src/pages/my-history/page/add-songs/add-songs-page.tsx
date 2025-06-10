@@ -5,7 +5,6 @@ import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-sect
 import RelatedArtistList from '@pages/my-history/page/add-songs/related-artist-list';
 import { useQuery } from '@tanstack/react-query';
 
-import { SearchSuggestionList } from '@confeti/design-system';
 import { Button, SearchBar, toast } from '@confeti/design-system';
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import MusicList from '@shared/components/music-list/music-list';
@@ -152,15 +151,11 @@ const AddSongsPage = () => {
 
   const SuggestionContent = () => {
     return (
-      <SearchSuggestionList
-        relatedKeyword={relatedArtists?.artists?.map((artist) => ({
-          id: artist.artistId,
-          title: artist.name,
-          profileUrl: artist.profileUrl,
-        }))}
-        onSelectKeyword={handleSelectArtist}
-        listType="artist"
-      />
+      <div className={styles.suggestionContainer}>
+        {relatedArtists?.artists.map((artist) => (
+          <RelatedArtistList key={artist.artistId} artist={artist} />
+        ))}
+      </div>
     );
   };
 
