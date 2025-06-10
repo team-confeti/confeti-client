@@ -6,26 +6,32 @@ import TimeTableBoard from '@pages/timetable/components/timetable-board/timetabl
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
+import { useQuery } from '@tanstack/react-query';
 
-import {
-  FestivalTimetable,
-  FestivalTimetableExtended,
-} from '@shared/types/festival-timetable-response';
+import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import * as styles from './timetable-content.css';
 
 interface TimetableContentProps {
   festivals: FestivalTimetable[];
-  boardData?: FestivalTimetableExtended;
 }
 
-const TimetableContent = ({ festivals, boardData }: TimetableContentProps) => {
-  const { selectedFestivalInfo, handleSelectFestival, handleSelectDate } =
-    useFestivalSelect(festivals);
+const TimetableContent = ({ festivals }: TimetableContentProps) => {
+  const {
+    selectedFestivalInfo,
+    selectedDateId,
+    handleSelectFestival,
+    handleSelectDate,
+  } = useFestivalSelect(festivals);
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
 
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
+  });
+  const { data: boardData } = useQuery({
+    ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(selectedDateId ?? 0),
+    enabled: selectedDateId !== undefined,
   });
 
   if (!boardData) return null;
