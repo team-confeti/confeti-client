@@ -33,7 +33,7 @@ export const backgroundOverlay = style({
 export const backButton = style({
   position: 'absolute',
   top: '1.2rem',
-  left: '2rem',
+  left: '1.4rem',
   background: 'none',
   border: 'none',
   color: themeVars.color.white,

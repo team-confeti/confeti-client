@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
-import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { routePath } from '@shared/router/path';
 import { MyUpcomingPerformance } from '@shared/types/user-response';
@@ -43,7 +43,7 @@ const UpcomingPerformanceSection = ({ performance }: Props) => {
 
           <div>
             <div className={styles.description}>
-              <IcTimeGray14 width={'1.4rem'} height={'1.4rem'} />
+              <Icon name="time" size="1.4rem" />
               <p>
                 {formatDate(
                   '',
@@ -55,7 +55,7 @@ const UpcomingPerformanceSection = ({ performance }: Props) => {
             </div>
 
             <div className={styles.description}>
-              <IcPlaceGray14 width={'1.4rem'} height={'1.4rem'} />
+              <Icon name="place" size="1.4rem" />
               <p>{performance.area}</p>
             </div>
           </div>

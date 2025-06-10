@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import SvgBtnClose from 'node_modules/@confeti/design-system/src/icons/src/BtnClose';
 
+import { Icon } from '@confeti/design-system/icon';
 import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './edit-name-input.css';
@@ -49,12 +49,13 @@ const EditNameInput = ({ name, onChange, isInvalid }: EditNameInputProps) => {
           )}
         />
         {isFocused && (
-          <SvgBtnClose
+          <Icon
+            name="clear"
             className={styles.closeBtn}
             onClick={handleClear}
             onMouseDown={handleClearMouseDown}
-            width={'1.8rem'}
-            height={'1.8rem'}
+            size="1.8rem"
+            color="gray400"
           />
         )}
       </div>

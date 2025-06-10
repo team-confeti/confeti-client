@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
-import { IcError404 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './error.css';
 
@@ -20,10 +20,12 @@ const Error = () => {
     navigate('/');
     window.location.reload();
   };
+
   return (
     <>
       <div className={styles.container}>
-        <IcError404 width={'11.3rem'} height={'4rem'} />
+        <Icon name="404" width="11.4rem" height="4.3rem" color="gray400" />
+
         <h1 className={styles.title}>{ERROR_MESSAGES.title}</h1>
         <div className={styles.description}>
           {ERROR_MESSAGES.description.map((line, index) => (

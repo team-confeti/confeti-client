@@ -1,18 +1,22 @@
 import React from 'react';
 
+import { themeVars } from '@confeti/design-system/styles';
+
 import type { IconName } from '../icon-list';
 
 import { sprIcon } from './icon.css';
+
+type IconColor = keyof typeof themeVars.color;
 
 type IconProps = {
   name: IconName;
   size?: number | string;
   width?: number | string;
   height?: number | string;
-  color?: string;
+  color?: IconColor;
   className?: string;
   rotate?: 90 | 180 | 270;
-};
+} & React.SVGProps<SVGSVGElement>;
 
 export const Icon = ({
   name,
@@ -22,6 +26,7 @@ export const Icon = ({
   color,
   className,
   rotate,
+  ...rest
 }: IconProps) => {
   const computedWidth = width ?? size ?? 24;
   const computedHeight = height ?? size ?? 24;
@@ -50,8 +55,9 @@ export const Icon = ({
           : computedHeight
       }
       className={combinedClass}
-      style={color ? { color } : undefined}
+      style={color ? { color: themeVars.color[color] } : undefined}
       aria-hidden="true"
+      {...rest}
     >
       <use href={`#icon-${name}`} />
     </svg>
