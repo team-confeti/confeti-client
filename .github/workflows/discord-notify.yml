@@ -32,6 +32,6 @@ jobs:
           elif [[ "$PR_ACTION" == "closed" && "$PR_MERGED" == "true" ]]; then
             curl -X POST -H "Content-Type: application/json" \
               -d '{
-                "content": "$PR_AUTOR 성장 + 10🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
+                "content": "$PR_AUTHOR 성장 + 10🔗 PR: '"$PR_URL"'\n📄 Title: '"$PR_TITLE"'\n👤 Author: '"$PR_AUTHOR"'"
               }' $DISCORD_WEBHOOK_URL
           fi
