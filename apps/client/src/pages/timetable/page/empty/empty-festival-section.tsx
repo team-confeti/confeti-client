@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { Button } from '@confeti/design-system';
 import { IcFestivalGray } from '@confeti/design-system/icons';
+import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './empty-festival-section.css';
@@ -9,8 +11,14 @@ import * as styles from './empty-festival-section.css';
 const EmptyFestivalSection = () => {
   const navigate = useNavigate();
 
+  const { data } = useSuspenseInfiniteQuery(
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.ADDABLE_FESTIVALS(),
+  );
+
+  const isEmpty = data.pages[0]?.festivals.length === 0;
+
   const handleAddFestivalClick = () => {
-    navigate(`${routePath.ADD_FESTIVAL}`);
+    navigate(isEmpty ? routePath.NO_UPCOMING_FESTIVAL : routePath.ADD_FESTIVAL);
   };
 
   return (
@@ -26,9 +34,7 @@ const EmptyFestivalSection = () => {
       <Button
         className={styles.button}
         text="페스티벌 추가하기"
-        onClick={() => {
-          handleAddFestivalClick();
-        }}
+        onClick={handleAddFestivalClick}
       />
     </section>
   );
