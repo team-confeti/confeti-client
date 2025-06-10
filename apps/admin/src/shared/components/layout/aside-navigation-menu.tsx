@@ -5,9 +5,9 @@ import { PATH } from '@shared/constants/path';
 import * as styles from './aside-navigation-menu.css';
 
 const MENU_ITEMS = [
+  { name: '공연 관리', path: PATH.DASHBOARD },
   { name: '콘서트', path: PATH.CONCERT },
   { name: '페스티벌', path: PATH.FESTIVAL },
-  { name: '공연 관리', path: PATH.DASHBOARD },
 ];
 
 const AsideNavigationMenu = () => {

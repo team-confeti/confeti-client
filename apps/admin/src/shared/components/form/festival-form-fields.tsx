@@ -39,14 +39,14 @@ export const FestivalBasicFormField = ({
           {...register('title')}
           type="text"
           label="페스티벌 제목"
-          placeholder="페스티벌 제목을 입력해주세요."
+          placeholder="페스티벌 제목을 입력해주세요"
           error={errors.title?.message}
         />
         <FormInput
           {...register('subTitle')}
           type="text"
           label="페스티벌 부제목"
-          placeholder="페스티벌 부제목을 입력해주세요."
+          placeholder="페스티벌 부제목을 입력해주세요"
           error={errors.subTitle?.message}
         />
       </div>
@@ -55,14 +55,12 @@ export const FestivalBasicFormField = ({
           {...register('startDate')}
           type="date"
           label="페스티벌 시작일"
-          placeholder="페스티벌 시작일을 입력해주세요."
           error={errors.startDate?.message}
         />
         <FormInput
           {...register('endDate')}
           type="date"
           label="페스티벌 종료일"
-          placeholder="페스티벌 종료일을 입력해주세요."
           error={errors.endDate?.message}
         />
       </div>
@@ -71,14 +69,13 @@ export const FestivalBasicFormField = ({
           {...register('location')}
           type="text"
           label="페스티벌 장소"
-          placeholder="페스티벌 장소를 입력해주세요."
+          placeholder="ex) 올림픽공원 SK 핸드볼경기장"
           error={errors.location?.message}
         />
         <FormInput
           {...register('reservationDate')}
           type="date"
-          label="예매 날짜"
-          placeholder="예매 날짜를 입력해주세요."
+          label="예매 시작일"
           error={errors.reservationDate?.message}
         />
       </div>
@@ -87,14 +84,13 @@ export const FestivalBasicFormField = ({
           {...register('ageLimit')}
           type="text"
           label="연령 제한"
-          placeholder="연령 제한을 입력해주세요."
+          placeholder="ex) 만 19세 이상"
           error={errors.ageLimit?.message}
         />
         <FormInput
           {...register('festivalTime')}
           type="time"
           label="페스티벌 시간"
-          placeholder="페스티벌 시간을 입력해주세요."
           error={errors.festivalTime?.message}
         />
       </div>
@@ -103,14 +99,14 @@ export const FestivalBasicFormField = ({
           {...register('festivalPrice')}
           type="text"
           label="페스티벌 가격"
-          placeholder="페스티벌 가격을 입력해주세요."
+          placeholder="ex) 150,000원"
           error={errors.festivalPrice?.message}
         />
         <FormInput
           {...register('festivalAddress')}
           type="text"
           label="페스티벌 주소"
-          placeholder="페스티벌 주소를 입력해주세요."
+          placeholder="ex) 서울특별시 송파구 올림픽로 424"
           error={errors.festivalAddress?.message}
         />
       </div>
@@ -189,12 +185,12 @@ export const FestivalStageFormField = ({
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>스테이지 설정</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <FormInput
             {...register(`festivalStages.${index}.stageTitle`)}
             type="text"
             label="스테이지 이름"
-            placeholder="스테이지 이름을 입력해주세요."
+            placeholder="ex) 메인 스테이지"
             error={errors.festivalStages?.[index]?.stageTitle?.message}
           />
           <FormInput
@@ -239,7 +235,7 @@ export const FestivalReservationFormField = ({
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>예매 링크</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <div className={styles.inputContainer}>
             <FormInput
               {...register(`reservationLinks.${index}.reservationUrl`)}

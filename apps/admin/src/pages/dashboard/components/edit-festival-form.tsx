@@ -14,9 +14,13 @@ import {
   festivalSchema,
 } from '@shared/schemas/festival-schema';
 
-import * as styles from './festival-form.css';
+import * as styles from './edit-festival-form.css';
 
-const FestivalForm = () => {
+interface Props {
+  id: string;
+}
+
+const EditFestivalForm = ({ id }: Props) => {
   const [tab, setTab] = useState<FESTIVAL_TAB>(FESTIVAL_TAB.BASIC);
 
   const {
@@ -31,7 +35,7 @@ const FestivalForm = () => {
 
   // TODO: 저장 로직 추가
   const onSubmit = (data: z.infer<typeof festivalSchema>) => {
-    console.log(data);
+    console.log(data, id);
   };
 
   return (
@@ -82,10 +86,10 @@ const FestivalForm = () => {
       )}
 
       <button type="submit" className={styles.submitButton}>
-        저장하기
+        수정하기
       </button>
     </form>
   );
 };
 
-export default FestivalForm;
+export default EditFestivalForm;

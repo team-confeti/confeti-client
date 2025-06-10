@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import { z } from 'zod';
 
 import {
   ConcertArtistFormField,
@@ -11,9 +11,13 @@ import {
   concertSchema,
 } from '@shared/schemas/concert-schema';
 
-import * as styles from './concert-form.css';
+import * as styles from './edit-concert-form.css';
 
-const ConcertForm = () => {
+interface Props {
+  id: string;
+}
+
+const EditConcertForm = ({ id }: Props) => {
   const {
     register,
     handleSubmit,
@@ -24,9 +28,9 @@ const ConcertForm = () => {
     defaultValues: concertDefaultValues,
   });
 
-  // TODO: 저장 로직 추가
+  // TODO: id에 따른 저장 로직 추가
   const onSubmit = (data: z.infer<typeof concertSchema>) => {
-    console.log('Form Data:', data);
+    console.log('Form Data:', data, id);
   };
 
   return (
@@ -47,10 +51,10 @@ const ConcertForm = () => {
         control={control}
       />
       <button type="submit" className={styles.submitButton}>
-        저장하기
+        수정하기
       </button>
     </form>
   );
 };
 
-export default ConcertForm;
+export default EditConcertForm;
