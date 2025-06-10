@@ -27,26 +27,31 @@ export const festivalSchema = z.object({
       }),
     }),
   ),
-  artistIds: z.array(
-    z.object({
-      value: z.string().min(1, '아티스트 ID를 입력해주세요'),
-    }),
-  ),
   festivalStages: z.array(
     z.object({
       stageTitle: z.string().min(1, '스테이지 이름을 입력해주세요'),
       stageOrder: z.string().min(1, '스테이지 순서를 입력해주세요'),
     }),
   ),
-  festivalDate: z.string().min(1, '페스티벌 날짜를 입력해주세요'),
-  ticketOpenTime: z.string().min(1, '티켓 오픈 시간을 입력해주세요'),
-  schedules: z.array(
+  festivalDates: z.array(
     z.object({
-      startTime: z.string().min(1, '공연 시작 시간을 입력해주세요'),
-      endTime: z.string().min(1, '공연 종료 시간을 입력해주세요'),
-      artistIds: z.array(
+      date: z.string().min(1, '페스티벌 날짜를 입력해주세요'),
+      ticketOpenTime: z.string().min(1, '티켓 오픈 시간을 입력해주세요'),
+      schedules: z.array(
         z.object({
-          value: z.string().min(1, '아티스트 ID를 입력해주세요'),
+          stages: z
+            .array(
+              z.object({
+                startTime: z.string().min(1, '공연 시작 시간을 입력해주세요'),
+                endTime: z.string().min(1, '공연 종료 시간을 입력해주세요'),
+                artistIds: z.array(
+                  z.object({
+                    value: z.string().min(1, '아티스트 ID를 입력해주세요'),
+                  }),
+                ),
+              }),
+            )
+            .length(3),
         }),
       ),
     }),
@@ -81,5 +86,19 @@ export const festivalDefaultValues: DefaultValues<
       reservationSiteLogo: new File([], ''),
     },
   ],
-  schedules: [{ startTime: '', endTime: '', artistIds: [{ value: '' }] }],
+  festivalDates: [
+    {
+      date: '',
+      ticketOpenTime: '',
+      schedules: [
+        {
+          stages: [
+            { startTime: '', endTime: '', artistIds: [{ value: '' }] },
+            { startTime: '', endTime: '', artistIds: [{ value: '' }] },
+            { startTime: '', endTime: '', artistIds: [{ value: '' }] },
+          ],
+        },
+      ],
+    },
+  ],
 };

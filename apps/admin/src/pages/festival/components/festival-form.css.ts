@@ -57,6 +57,17 @@ export const fieldSection = style({
   borderRadius: '8px',
 });
 
+export const subSection = style({
+  ...themeVars.display.flexColumn,
+  gap: '1rem',
+  padding: '2rem',
+  marginBottom: '2rem',
+  border: `1px solid ${themeVars.color.gray400}`,
+  backgroundColor: themeVars.color.gray200,
+  boxShadow: `0 0 0 2px ${themeVars.color.gray100}`,
+  borderRadius: '8px',
+});
+
 export const title = style({
   fontSize: themeVars.fontSize.title2,
   fontWeight: themeVars.fontWeight.bold,
@@ -139,4 +150,37 @@ export const deleteButton = style({
   backgroundColor: themeVars.color.confeti_red,
   color: themeVars.color.white,
   alignSelf: 'flex-end',
+});
+
+export const dateSection = style({
+  marginBottom: '2rem',
+  padding: '1rem',
+  border: '1px solid #e2e8f0',
+  borderRadius: '0.5rem',
+});
+
+export const dateHeader = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: '1rem',
+});
+
+export const stageTabs = style({
+  display: 'flex',
+  gap: '1rem',
+  marginBottom: '1rem',
+  borderBottom: `1px solid ${themeVars.color.gray300}`,
+});
+
+export const stageContent = style({
+  ...themeVars.display.flexColumn,
+  gap: '1rem',
+});
+
+export const stageHeader = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: '1rem',
 });
