@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { TIME_SLOT_HEIGHT_1_MIN } from '@pages/timetable/constants';
 import {
   calcMinutesFromOpen,
-  calcTotalFestivalMinutes,
   calcTotalMinutes,
   parseTimeString,
 } from '@pages/timetable/utils';
@@ -56,8 +56,6 @@ const TimetableItem = ({
     openMin,
   );
 
-  const totalFestivalMinutes = calcTotalFestivalMinutes(openHour, openMin);
-
   const handleSetSelectedBlock = () => {
     if (isEditTimetableMode) {
       setSelectBlock((prev) => !prev);
@@ -65,8 +63,9 @@ const TimetableItem = ({
     onClick(userTimetableId, !selectBlock);
   };
 
-  const top = `calc(${(minutesFromOpen / totalFestivalMinutes) * 98.6}% + 0.7rem)`;
-  const height = `calc((${totalPerformMin} / ${totalFestivalMinutes}) * 100%)`;
+  const MARGIN_TOP_PX = 7;
+  const top = `${minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN + MARGIN_TOP_PX}px`;
+  const height = `${totalPerformMin * TIME_SLOT_HEIGHT_1_MIN}px`;
 
   const dynamicVars = assignInlineVars({
     [styles.top]: top,
