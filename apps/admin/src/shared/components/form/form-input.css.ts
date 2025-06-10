@@ -10,20 +10,20 @@ export const container = style({
 });
 
 export const label = style({
-  fontSize: themeVars.fontSize.body1,
-  color: themeVars.color.gray900,
+  fontSize: themeVars.fontSize.body3,
+  color: themeVars.color.gray800,
 });
 
 export const input = style({
   width: '100%',
-  padding: '1rem',
+  padding: '0.5rem 0.75rem',
   border: `1px solid ${themeVars.color.gray300}`,
-  borderRadius: '1rem',
-  fontSize: themeVars.fontSize.body2,
+  borderRadius: '6px',
+  fontSize: themeVars.fontSize.body3,
   color: themeVars.color.gray900,
 });
 
 export const error = style({
-  fontSize: themeVars.fontSize.body3,
+  fontSize: themeVars.fontSize.body5,
   color: themeVars.color.confeti_red,
 });
