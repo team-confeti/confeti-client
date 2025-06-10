@@ -20,4 +20,8 @@ export const submitButton = style({
     backgroundColor: themeVars.color.gray300,
     cursor: 'not-allowed',
   },
+  ':hover': {
+    backgroundColor: '#6366F1',
+    transition: 'background-color 0.3s ease',
+  },
 });
