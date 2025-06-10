@@ -7,6 +7,7 @@ import {
   FestivalReservationFormField,
   FestivalStageFormField,
 } from '@shared/components/form/festival-form-fields';
+import { FESTIVAL_TAB } from '@shared/constants/tab';
 import { useZodForm } from '@shared/hooks/use-zod-form';
 import {
   festivalDefaultValues,
@@ -15,10 +16,8 @@ import {
 
 import * as styles from './festival-form.css';
 
-type Tab = 'basic' | 'date';
-
 const FestivalForm = () => {
-  const [tab, setTab] = useState<Tab>('basic');
+  const [tab, setTab] = useState<FESTIVAL_TAB>(FESTIVAL_TAB.BASIC);
 
   const {
     register,
@@ -40,21 +39,21 @@ const FestivalForm = () => {
       <div className={styles.tabWrapper}>
         <button
           type="button"
-          className={tab === 'basic' ? styles.activeTab : styles.tab}
-          onClick={() => setTab('basic')}
+          className={tab === FESTIVAL_TAB.BASIC ? styles.activeTab : styles.tab}
+          onClick={() => setTab(FESTIVAL_TAB.BASIC)}
         >
           기본 정보
         </button>
         <button
           type="button"
-          className={tab === 'date' ? styles.activeTab : styles.tab}
-          onClick={() => setTab('date')}
+          className={tab === FESTIVAL_TAB.DATE ? styles.activeTab : styles.tab}
+          onClick={() => setTab(FESTIVAL_TAB.DATE)}
         >
           페스티벌 날짜
         </button>
       </div>
 
-      {tab === 'basic' && (
+      {tab === FESTIVAL_TAB.BASIC && (
         <>
           <FestivalBasicFormField
             register={register}
@@ -74,7 +73,7 @@ const FestivalForm = () => {
         </>
       )}
 
-      {tab === 'date' && (
+      {tab === FESTIVAL_TAB.DATE && (
         <FestivalDateFormField
           register={register}
           errors={errors}
