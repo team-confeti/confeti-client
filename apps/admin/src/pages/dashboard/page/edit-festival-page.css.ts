@@ -10,3 +10,8 @@ export const title = style({
   fontSize: themeVars.fontSize.title1,
   fontWeight: themeVars.fontWeight.bold,
 });
+
+export const section = style({
+  padding: '2rem 0',
+  borderRadius: '1rem',
+});
