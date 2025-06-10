@@ -30,6 +30,16 @@ const config: StorybookConfig = {
         identifiers: ({ hash }) => `_${hash}`,
       }),
     );
+    const { default: svgSpritePlugin } = await import(
+      '@pivanov/vite-plugin-svg-sprite'
+    );
+    config.plugins.push(
+      svgSpritePlugin({
+        iconDirs: ['src/icons/assets/sprites'],
+        symbolId: 'icon-[name]',
+        inject: 'body-last',
+      }),
+    );
     return config;
   },
 };
