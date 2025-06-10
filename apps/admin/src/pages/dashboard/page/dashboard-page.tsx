@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { TAB } from '@shared/constants/tab';
 
-import ConcertDashboard from './components/concert-dashboard';
-import FestivalDashboard from './components/festival-dashboard';
+import ConcertDashboard from '../components/concert-dashboard';
+import FestivalDashboard from '../components/festival-dashboard';
 
 import * as styles from './dashboard-page.css';
 
