@@ -8,6 +8,7 @@ export const iconNames = [
   'arrow-back',
   'arrow-horizontal',
   'arrow-vertical',
+  'artist-avatar',
   'check',
   'checkbox-active',
   'checkbox-default',

@@ -1,4 +1,4 @@
-import { CmpSearchArtistImg, CmpSearchImg } from '../../icons/src';
+import { Icon } from '../../icons';
 
 import * as styles from './search-suggestion-list.css';
 
@@ -39,7 +39,7 @@ const SearchSuggestionList = ({
         >
           <div className={styles.listImageContainer}>
             {listType === 'performance' ? (
-              <CmpSearchImg className={styles.fallbackImage} />
+              <Icon name="search-avatar" className={styles.fallbackImage} />
             ) : keyword.profileUrl ? (
               <img
                 className={styles.listImage}
@@ -47,7 +47,7 @@ const SearchSuggestionList = ({
                 alt={keyword.title}
               />
             ) : (
-              <CmpSearchArtistImg className={styles.fallbackImage} />
+              <Icon name="artist-avatar" className={styles.fallbackImage} />
             )}
           </div>
           <p className={styles.listText}>{keyword.title}</p>
