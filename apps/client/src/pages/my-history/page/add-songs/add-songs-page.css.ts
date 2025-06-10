@@ -31,3 +31,37 @@ export const musicListContainer = style({
   padding: '1rem 2rem 1rem 2rem',
   cursor: 'pointer',
 });
+
+export const listContainer = style({
+  marginBottom: '1rem',
+});
+export const selectedComment = style({
+  ...themeVars.fontStyles.body3_m_14,
+  color: themeVars.color.gray600,
+  padding: '0.8rem 2rem',
+  marginBottom: '0.4rem',
+});
+
+export const relatedArtistContainer = style({
+  display: 'flex',
+  padding: '0 2rem',
+  alignItems: 'center',
+});
+
+export const relatedArtistImg = style({
+  width: '3rem',
+  height: '3rem',
+  borderRadius: '30px',
+  marginRight: '1.5rem',
+});
+
+export const relatedArtistName = style({
+  ...themeVars.fontStyles.body2_r_15,
+  color: themeVars.color.black,
+  marginRight: '1rem',
+});
+
+export const artistText = style({
+  ...themeVars.fontStyles.body6_m_11,
+  color: themeVars.color.gray500,
+});
