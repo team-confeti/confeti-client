@@ -32,28 +32,6 @@ export const useFormattedWeek = (date: string | null) => {
   }, [date]);
 };
 
-export const useDayNumSelection = (
-  festivalDates: { festivalDateId: number; festivalAt: string }[],
-) => {
-  const [selectedDayNumId, setSelectedDateId] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (festivalDates && festivalDates.length > 0) {
-      setSelectedDateId(festivalDates[0].festivalDateId);
-    }
-  }, [festivalDates]);
-
-  const handleDayNumClick = (festivalDateId: number) => {
-    setSelectedDateId(festivalDateId);
-  };
-
-  return {
-    selectedDayNumId,
-    handleDayNumClick,
-    setSelectedDateId,
-  };
-};
-
 // festivalDateMap 생성 함수
 export const createFestivalDateMap = (
   festivalDates: { festivalDateId: number }[],

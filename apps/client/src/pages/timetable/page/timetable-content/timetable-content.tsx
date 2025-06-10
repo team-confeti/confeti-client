@@ -34,7 +34,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
     enabled: selectedDateId !== undefined,
   });
 
-  if (!boardData) return null;
+  if (!boardData || !selectedDateId) return null;
 
   return (
     <div className={styles.wrapper}>
@@ -46,6 +46,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
       <Calender
         festivalDates={selectedFestivalInfo.festivalDates}
         onDateSelect={handleSelectDate}
+        selectedDateId={selectedDateId}
       />
       <div className={styles.timeTableWrapper} ref={elementRef}>
         <FestivalStage timetableInfo={boardData} />
