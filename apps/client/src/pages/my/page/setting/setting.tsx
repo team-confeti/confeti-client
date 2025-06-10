@@ -10,7 +10,7 @@ import * as styles from './setting.css';
 const Setting = () => {
   return (
     <>
-      <Header variant="detail" title="설정"></Header>
+      <Header variant="detail" title="설정" />
       <section className={styles.contentsSection}>
         {EXTERNAL_LINKS.map((item) => (
           <a
