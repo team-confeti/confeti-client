@@ -4,12 +4,14 @@ interface Props {
   artist: {
     profileUrl: string;
     name: string;
+    artistId: string;
   };
+  onSelect?: () => void;
 }
 
-const RelatedArtistList = ({ artist }: Props) => {
+const RelatedArtistList = ({ artist, onSelect }: Props) => {
   return (
-    <div className={styles.relatedArtistContainer}>
+    <div onClick={onSelect} className={styles.relatedArtistContainer}>
       <img
         className={styles.relatedArtistImg}
         src={artist.profileUrl}

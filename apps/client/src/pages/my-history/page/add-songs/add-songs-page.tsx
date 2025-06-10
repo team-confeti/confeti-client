@@ -41,11 +41,13 @@ const AddSongsPage = () => {
     enabled: !!debouncedKeyword.trim(),
   });
 
+  const isArtistKeywordClick = !!selectedArtistId && isArtistSearch;
+  const isTypedSearch = !!debouncedKeyword.trim() && !isArtistSearch;
   // 일반 검색: 곡 검색 API
   const { data: musicSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_MUSIC(
       { term: debouncedKeyword, offset: 0, limit: 5 },
-      !!debouncedKeyword && !isArtistSearch,
+      isTypedSearch,
     ),
   });
 
@@ -53,19 +55,18 @@ const AddSongsPage = () => {
   const { data: artistSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
       {
-        aid: selectedArtistId || '',
-        term: isArtistSearch ? '' : debouncedKeyword,
+        aid: isArtistKeywordClick ? selectedArtistId! : '',
+        term: isTypedSearch ? debouncedKeyword : '',
         offset: 0,
         limit: 5,
       },
-      !!debouncedKeyword && (isArtistSearch ? !!selectedArtistId : true),
+      isArtistKeywordClick || isTypedSearch,
     ),
   });
 
-  const combinedMusics = isArtistSearch
+  const combinedMusics = isArtistKeywordClick
     ? artistSearchData?.musics || []
     : [...(musicSearchData?.musics || []), ...(artistSearchData?.musics || [])];
-
   const { musicList, onClickPlayToggle, audioRef } =
     useMusicPlayer(combinedMusics);
 
@@ -153,7 +154,11 @@ const AddSongsPage = () => {
     return (
       <div className={styles.suggestionContainer}>
         {relatedArtists?.artists.map((artist) => (
-          <RelatedArtistList key={artist.artistId} artist={artist} />
+          <RelatedArtistList
+            onSelect={() => handleSelectArtist(artist.name)}
+            key={artist.artistId}
+            artist={artist}
+          />
         ))}
       </div>
     );

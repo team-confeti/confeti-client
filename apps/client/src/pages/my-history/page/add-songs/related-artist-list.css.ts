@@ -6,6 +6,7 @@ export const relatedArtistContainer = style({
   display: 'flex',
   padding: '0 2rem',
   alignItems: 'center',
+  cursor: 'pointer',
 });
 
 export const relatedArtistImg = style({

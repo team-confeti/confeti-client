@@ -45,6 +45,6 @@ export const selectedComment = style({
 export const suggestionContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '2rem',
+  paddingTop: '2rem',
   gap: '2rem',
 });
