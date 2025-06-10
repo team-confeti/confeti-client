@@ -14,7 +14,7 @@ export const timeP = recipe({
   base: {
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 4px',
-    marginRight: '7px',
+    marginRight: '8px',
     backgroundColor: themeVars.color.white,
   },
   variants: {
@@ -35,7 +35,7 @@ export const timeP = recipe({
 export const timeBar = recipe({
   base: {
     height: '1px',
-    width: 'calc(100% - 30px)',
+    width: 'calc(100%)',
     margin: '0',
     color: themeVars.color.gray300,
     zIndex: themeVars.zIndex.timeTable.row,
