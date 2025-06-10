@@ -15,4 +15,4 @@ export type IconName = typeof iconNames[number];
 `;
 
 writeFileSync(OUTPUT_PATH, content);
-console.log(`🏴‍☠️ icon-list.ts 생성 완료 (${iconNames.length}개 아이콘)`);
+console.log(`icon-list.ts 생성 완료 (${iconNames.length}개 아이콘)`);

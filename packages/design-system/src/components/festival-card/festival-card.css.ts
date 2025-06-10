@@ -36,11 +36,6 @@ export const image = style({
 
 export const overlay = style(themeVars.overlay.default);
 
-export const icon = style({
-  width: '2.8rem',
-  height: '2.8rem',
-});
-
 export const title = style([
   themeVars.fontStyles.body4_m_13,
   {

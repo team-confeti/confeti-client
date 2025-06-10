@@ -109,8 +109,3 @@ export const fallback = recipe({
 });
 
 export const overlay = style(themeVars.overlay.default);
-
-export const icon = style({
-  width: '2.8rem',
-  height: '2.8rem',
-});

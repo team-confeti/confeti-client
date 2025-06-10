@@ -17,7 +17,7 @@ const SuggestPerformanceSection = ({
       title="이런 공연은 어떠세요?"
       titleSize="lg"
       subtitle="confeti's pick!"
-      subtitleIcon={<Icon name="heart" size="1.4rem" />}
+      subtitleIcon={<Icon name="heart-filled" size="1.4rem" />}
       className={styles.boxWrapper}
     >
       <div className={styles.container} ref={ref}>

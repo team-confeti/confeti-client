@@ -12,11 +12,6 @@ export const container = style({
   backgroundColor: themeVars.color.gray200,
 });
 
-export const logo = style({
-  width: '6.8rem',
-  height: '2.1rem',
-});
-
 export const logoSection = style({});
 
 export const textSection = style({

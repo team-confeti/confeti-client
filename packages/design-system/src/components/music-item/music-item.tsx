@@ -1,13 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import {
-  BtnDelete,
-  BtnDeleteBlack,
-  IcHamburger,
-  IcPause,
-  IcPlay,
-} from '../../icons/src/index';
+import { Icon } from '../../icons';
 
 import * as styles from './music-item.css';
 
@@ -45,22 +39,22 @@ const MusicItem = ({
         return (
           <button onClick={onClickPlayToggle}>
             {isPlaying ? (
-              <IcPause width={24} height={24} />
+              <Icon name="pause" size="2.4rem" color="confeti_lime" />
             ) : (
-              <IcPlay width={24} height={24} />
+              <Icon name="play" size="2.4rem" color="confeti_lime" />
             )}
           </button>
         );
       case 'editable':
         return (
           <button {...listeners}>
-            <IcHamburger width={24} height={24} />
+            <Icon name="hamburger" size="2.4rem" color="gray600" />
           </button>
         );
       case 'confirmDelete':
         return (
           <button onClick={onClickDelete}>
-            <BtnDeleteBlack width={24} height={24} />
+            <Icon name="close" size="2.4rem" />
           </button>
         );
       default:
@@ -75,7 +69,7 @@ const MusicItem = ({
         {variant === 'editable' && (
           <div className={styles.albumOverlay}>
             <button className={styles.minusBtn} onClick={onClickDelete}>
-              <BtnDelete width={36} height={36} />
+              <Icon name="remove" size="3.6rem" />
             </button>
           </div>
         )}

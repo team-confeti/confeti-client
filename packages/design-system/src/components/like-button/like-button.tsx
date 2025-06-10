@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 import { toast } from '@confeti/design-system';
-import { BtnHeart } from '@confeti/design-system/icons';
 
+import { Icon } from '../../icons';
 import { cn } from '../../utils';
 
 import { likeButtonVariants } from './like-button.css';
 
-interface props {
+interface Props {
   isFavorite: boolean;
   onLikeToggle: (action: 'LIKE' | 'UNLIKE') => void;
   className?: string;
@@ -19,7 +19,7 @@ const LikeButton = ({
   onLikeToggle,
   className,
   isLoggedIn = true,
-}: props) => {
+}: Props) => {
   const [liked, setLiked] = useState(isFavorite);
   const [animate, setAnimate] = useState(false);
 
@@ -44,9 +44,10 @@ const LikeButton = ({
   };
 
   return (
-    <BtnHeart
-      isFavorite={liked}
-      className={cn(likeButtonVariants({ liked, animate }), className)}
+    <Icon
+      name={liked ? 'heart-filled' : 'heart-outline'}
+      color={liked ? 'confeti_red' : 'gray500'}
+      className={cn(likeButtonVariants({ animate }), className)}
       onClick={handleClick}
       onAnimationEnd={handleAnimationEnd}
     />

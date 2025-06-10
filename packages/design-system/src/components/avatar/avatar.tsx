@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { Icon } from '../../icons';
 import { CmpProfileNon } from '../../icons/src';
-import { IcSelect } from '../../icons/src';
 import { cn } from '../../utils';
 
 import * as styles from './avatar.css';
@@ -60,7 +60,7 @@ const Avatar = ({
       )}
       {internalSelected && isHandleClick && (
         <div className={styles.overlay}>
-          <IcSelect className={styles.icon} />
+          <Icon name="select" size="2.8rem" color="confeti_lime" />
         </div>
       )}
     </div>
