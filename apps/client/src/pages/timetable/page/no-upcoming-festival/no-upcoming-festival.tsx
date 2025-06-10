@@ -1,9 +1,14 @@
 import { Button, Header } from '@confeti/design-system';
 import { IcWarning60 } from '@confeti/design-system/icons';
+import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import * as styles from './no-upcoming-festival.css';
 
 const NoUpcomingFestival = () => {
+  const googleFormLink = EXTERNAL_LINKS.find(
+    (link) => link.label === '희망 페스티벌 폼',
+  )?.url;
+
   return (
     <>
       <Header variant="detail" title="페스티벌 추가하기" />
@@ -17,7 +22,14 @@ const NoUpcomingFestival = () => {
             </p>
           </div>
         </div>
-        <p className={styles.buttonText}>원하는 페스티벌이 있나요?</p>
+        <a
+          href={googleFormLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.buttonText}
+        >
+          원하는 페스티벌이 있나요?
+        </a>
       </div>
       <div className={styles.buttonSection}>
         <Button variant="add" text={'추가하기'} disabled={true} />
