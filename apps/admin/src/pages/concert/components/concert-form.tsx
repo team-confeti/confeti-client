@@ -87,7 +87,7 @@ function ConcertBasicFormField({ register, errors, control }: Props) {
         />
         <FormInput
           {...register('concertTime')}
-          type="text"
+          type="time"
           label="콘서트 시간"
           placeholder="콘서트 시간을 입력해주세요."
           error={errors.concertTime?.message}
@@ -257,7 +257,7 @@ const ConcertForm = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useZodForm({
     schema: concertSchema,
     defaultValues: concertDefaultValues,
@@ -285,7 +285,7 @@ const ConcertForm = () => {
         errors={errors}
         control={control}
       />
-      <button type="submit" disabled={!isValid} className={styles.submitButton}>
+      <button type="submit" className={styles.submitButton}>
         저장하기
       </button>
     </form>
