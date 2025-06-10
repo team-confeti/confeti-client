@@ -64,8 +64,8 @@ const TimetableItem = ({
   };
 
   const MARGIN_TOP_PX = 7;
-  const top = `${Math.round(minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN + MARGIN_TOP_PX)}px`;
-  const height = `${Math.round(totalPerformMin * TIME_SLOT_HEIGHT_1_MIN)}px`;
+  const top = `${minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN + MARGIN_TOP_PX}px`;
+  const height = `${totalPerformMin * TIME_SLOT_HEIGHT_1_MIN}px`;
 
   const dynamicVars = assignInlineVars({
     [styles.top]: top,
