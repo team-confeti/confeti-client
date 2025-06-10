@@ -40,7 +40,11 @@ function FestivalDateField({
         <button
           type="button"
           className={styles.deleteButton}
-          onClick={() => onRemove(dateIndex)}
+          onClick={() => {
+            if (window.confirm('정말로 이 날짜를 삭제하시겠습니까?')) {
+              onRemove(dateIndex);
+            }
+          }}
         >
           날짜 삭제
         </button>
