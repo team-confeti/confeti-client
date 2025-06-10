@@ -1,9 +1,5 @@
-import { Button, ButtonIcon, toast } from '@confeti/design-system';
-import {
-  BtnDownload,
-  IcCheck,
-  IcEditGreen24,
-} from '@confeti/design-system/icons';
+import { Button, toast } from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './timetable-actions.css';
 
@@ -21,7 +17,7 @@ const TimetableActions = ({
   return (
     <div className={styles.actionsWrapper}>
       {!isEditMode && (
-        <ButtonIcon
+        <button
           onClick={() => {
             onDownload();
             toast({
@@ -29,9 +25,11 @@ const TimetableActions = ({
               position: 'middleCenter',
             });
           }}
-          ariaLabel="이미지 저장"
-          icon={<BtnDownload width={'5rem'} height={'5rem'} />}
-        />
+          className={styles.downloadButton}
+          aria-label="이미지 저장"
+        >
+          <Icon name="download" size="5rem" color="gray500" />
+        </button>
       )}
       <Button
         className={styles.editButton}
@@ -39,9 +37,9 @@ const TimetableActions = ({
         text={isEditMode ? '완료하기' : '타임테이블 편집하기'}
         icon={
           isEditMode ? (
-            <IcCheck width={'2.4rem'} height={'2.4rem'} />
+            <Icon name="check" size="2.4rem" />
           ) : (
-            <IcEditGreen24 width={'2.4rem'} height={'2.4rem'} />
+            <Icon name="edit" size="2rem" color="confeti_lime2" />
           )
         }
       />
