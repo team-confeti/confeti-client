@@ -52,6 +52,28 @@ export const activeTab = style([
   },
 ]);
 
+export const stageSection = style({
+  ...themeVars.display.flexColumn,
+  gap: '1.5rem',
+  padding: '2rem',
+  marginBottom: '1rem',
+  border: `1px solid ${themeVars.color.gray300}`,
+  backgroundColor: themeVars.color.white,
+  borderRadius: '8px',
+});
+
+export const fieldGroup = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '1.5rem',
+  backgroundColor: themeVars.color.gray100,
+  borderRadius: '12px',
+  border: `1px solid ${themeVars.color.gray200}`,
+  position: 'relative',
+  transition: 'all 0.2s ease-in-out',
+});
+
 export const subSection = style({
   ...themeVars.display.flexColumn,
   gap: '1rem',
@@ -141,6 +163,7 @@ export const deleteButton = style({
   border: 'none',
   backgroundColor: themeVars.color.confeti_red,
   color: themeVars.color.white,
+  alignSelf: 'flex-end',
 
   ':hover': {
     backgroundColor: '#F56565',
@@ -166,7 +189,7 @@ export const deleteSmallButton = style({
 export const dateSection = style({
   marginBottom: '2rem',
   padding: '2rem',
-  border: `1px solid ${themeVars.color.gray200}`,
+  border: `1px solid ${themeVars.color.gray300}`,
   borderRadius: '8px',
 });
 

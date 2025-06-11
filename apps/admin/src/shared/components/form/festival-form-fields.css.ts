@@ -240,7 +240,6 @@ export const deleteButton = style({
   border: 'none',
   backgroundColor: themeVars.color.confeti_red,
   color: themeVars.color.white,
-  cursor: 'pointer',
   alignSelf: 'flex-end',
 
   ':hover': {

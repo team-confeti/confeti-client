@@ -13,6 +13,65 @@ import { festivalSchema } from '@shared/schemas/festival-schema';
 
 import * as styles from './festival-date-form-fields.css';
 
+interface FestivalStageFormFieldProps {
+  register: UseFormRegister<z.infer<typeof festivalSchema>>;
+  errors: FieldErrors<z.infer<typeof festivalSchema>>;
+  control: Control<z.infer<typeof festivalSchema>>;
+}
+
+export const FestivalStageFormField = ({
+  register,
+  errors,
+  control,
+}: FestivalStageFormFieldProps) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'dates.0.stages',
+  });
+
+  return (
+    <div className={styles.stageSection}>
+      <h2 className={styles.subTitle}>스테이지 설정</h2>
+      {fields.map((field, index) => (
+        <div key={field.id} className={styles.fieldGroup}>
+          <div className={styles.inputContainer}>
+            <FormInput
+              {...register(`dates.0.stages.${index}.name`)}
+              type="text"
+              label="스테이지 이름"
+              placeholder="ex) 메인 스테이지"
+              error={errors.dates?.[0]?.stages?.[index]?.name?.message}
+            />
+            <FormInput
+              {...register(`dates.0.stages.${index}.order`)}
+              type="text"
+              label="스테이지 순서"
+              placeholder="스테이지 순서를 입력해주세요."
+              error={errors.dates?.[0]?.stages?.[index]?.order?.message}
+            />
+          </div>
+
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={() => remove(index)}
+          >
+            삭제
+          </button>
+        </div>
+      ))}
+
+      <button
+        type="button"
+        className={styles.addButton}
+        onClick={() => append({ name: '', order: '', times: [] })}
+      >
+        + 스테이지 추가
+      </button>
+    </div>
+  );
+};
+
 interface FestivalDateFieldProps {
   dateIndex: number;
   register: UseFormRegister<z.infer<typeof festivalSchema>>;

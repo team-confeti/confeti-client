@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { z } from 'zod';
 
+import { FestivalStageFormField } from '@shared/components/form/festival-date-form-fields';
 import {
   FestivalBasicFormField,
   FestivalDateFormField,
   FestivalReservationFormField,
-  FestivalStageFormField,
 } from '@shared/components/form/festival-form-fields';
 import { FESTIVAL_TAB } from '@shared/constants/tab';
 import { useImagePreview } from '@shared/hooks/use-image-preview';
@@ -77,11 +77,6 @@ const EditFestivalForm = ({ id }: Props) => {
             onPosterChange={handlePosterChange}
             onLogoChange={handleLogoChange}
           />
-          <FestivalStageFormField
-            register={register}
-            errors={errors}
-            control={control}
-          />
           <FestivalReservationFormField
             register={register}
             errors={errors}
@@ -93,11 +88,18 @@ const EditFestivalForm = ({ id }: Props) => {
       )}
 
       {tab === FESTIVAL_TAB.DATE && (
-        <FestivalDateFormField
-          register={register}
-          errors={errors}
-          control={control}
-        />
+        <>
+          <FestivalDateFormField
+            register={register}
+            errors={errors}
+            control={control}
+          />
+          <FestivalStageFormField
+            register={register}
+            errors={errors}
+            control={control}
+          />
+        </>
       )}
 
       <button type="submit" className={styles.submitButton}>

@@ -7,7 +7,10 @@ import {
 import { UseFormRegister } from 'react-hook-form';
 import { z } from 'zod';
 
-import { FestivalDateField } from '@shared/components/form/festival-date-form-fields';
+import {
+  FestivalDateField,
+  FestivalStageFormField,
+} from '@shared/components/form/festival-date-form-fields';
 import FormInput from '@shared/components/form/form-input';
 import { festivalSchema } from '@shared/schemas/festival-schema';
 
@@ -174,56 +177,6 @@ export const FestivalBasicFormField = ({
   );
 };
 
-export const FestivalStageFormField = ({
-  register,
-  errors,
-  control,
-}: Props) => {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'dates.0.stages',
-  });
-
-  return (
-    <div className={styles.fieldSection}>
-      <h2 className={styles.title}>스테이지 설정</h2>
-      {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldGroup}>
-          <FormInput
-            {...register(`dates.0.stages.${index}.name`)}
-            type="text"
-            label="스테이지 이름"
-            placeholder="ex) 메인 스테이지"
-            error={errors.dates?.[0]?.stages?.[index]?.name?.message}
-          />
-          <FormInput
-            {...register(`dates.0.stages.${index}.order`)}
-            type="text"
-            label="스테이지 순서"
-            placeholder="스테이지 순서를 입력해주세요."
-            error={errors.dates?.[0]?.stages?.[index]?.order?.message}
-          />
-          <button
-            type="button"
-            className={styles.deleteButton}
-            onClick={() => remove(index)}
-          >
-            삭제
-          </button>
-        </div>
-      ))}
-
-      <button
-        type="button"
-        className={styles.addButton}
-        onClick={() => append({ name: '', order: '', times: [] })}
-      >
-        + 스테이지 추가
-      </button>
-    </div>
-  );
-};
-
 export const FestivalReservationFormField = ({
   register,
   errors,
@@ -325,6 +278,12 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
   return (
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>페스티벌 날짜 (타임테이블)</h2>
+
+      <FestivalStageFormField
+        register={register}
+        errors={errors}
+        control={control}
+      />
 
       {dateFields.map((date, dateIndex) => (
         <FestivalDateField

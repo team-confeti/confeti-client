@@ -5,7 +5,6 @@ import {
   FestivalBasicFormField,
   FestivalDateFormField,
   FestivalReservationFormField,
-  FestivalStageFormField,
 } from '@shared/components/form/festival-form-fields';
 import { FESTIVAL_TAB } from '@shared/constants/tab';
 import { useImagePreview } from '@shared/hooks/use-image-preview';
@@ -72,11 +71,6 @@ const FestivalForm = () => {
             logoPreview={logoPreview}
             onPosterChange={handlePosterChange}
             onLogoChange={handleLogoChange}
-          />
-          <FestivalStageFormField
-            register={register}
-            errors={errors}
-            control={control}
           />
           <FestivalReservationFormField
             register={register}
