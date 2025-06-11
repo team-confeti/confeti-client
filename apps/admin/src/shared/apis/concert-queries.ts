@@ -43,23 +43,7 @@ export const getConcertList = async (): Promise<ConcertListItem[]> => {
 };
 
 export const postConcert = async (concert: Concert): Promise<Concert> => {
-  const formData = new FormData();
-  const dto = toConcertCreateDTO(concert);
-
-  formData.append('posterImg', dto.posterImg);
-  dto.reservationUrls.forEach((url, index) => {
-    formData.append(`reservationUrls[${index}].logoImg`, url.logoImg);
-  });
-
-  const jsonData = {
-    ...dto,
-    posterImg: undefined,
-    reservationUrls: dto.reservationUrls.map((url) => ({
-      ...url,
-      logoImg: undefined,
-    })),
-  };
-  formData.append('data', JSON.stringify(jsonData));
+  const formData = createFormData(concert);
 
   const response = await post<BaseResponse<ConcertDetailDTO>>(
     END_POINT.CONCERT,
@@ -77,6 +61,21 @@ export const patchConcert = async (
   concertId: number,
   concert: Concert,
 ): Promise<Concert> => {
+  const formData = createFormData(concert);
+
+  const response = await patch<BaseResponse<ConcertDetailDTO>>(
+    END_POINT.CONCERT_DETAIL(concertId),
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return toConcert(response.data);
+};
+
+const createFormData = (concert: Concert): FormData => {
   const formData = new FormData();
   const dto = toConcertCreateDTO(concert);
 
@@ -95,14 +94,5 @@ export const patchConcert = async (
   };
   formData.append('data', JSON.stringify(jsonData));
 
-  const response = await patch<BaseResponse<ConcertDetailDTO>>(
-    END_POINT.CONCERT_DETAIL(concertId),
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
-  );
-  return toConcert(response.data);
+  return formData;
 };

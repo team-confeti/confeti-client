@@ -5,11 +5,11 @@ import {
   ReservationUrlRequestDTO,
 } from '../types/api';
 
-export type Artist = {
+type Artist = {
   artistId: string;
 };
 
-export type ReservationUrl = {
+type ReservationUrl = {
   reservationUrl: string;
   name: string;
   logoUrl: string;
