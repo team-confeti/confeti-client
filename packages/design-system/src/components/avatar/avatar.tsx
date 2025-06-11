@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { Icon } from '../../icons';
-import { CmpProfileNon } from '../../icons/src';
 import { cn } from '../../utils';
 
 import * as styles from './avatar.css';
@@ -38,8 +37,15 @@ const Avatar = ({
   };
 
   const renderFallback = !src && !fallback && (
-    <CmpProfileNon
+    <Icon
+      name="logo-thumbnail"
       className={styles.imgVariants({ isClickable: isHandleClick })}
+      style={
+        {
+          '--icon-bg': '#FFFFFF',
+          '--icon-fg': '#EFF0F4',
+        } as React.CSSProperties
+      }
     />
   );
 

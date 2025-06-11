@@ -14,7 +14,9 @@ const ArtistCard = ({ title, imageSrc, size = 'lg' }: ArtistCardProps) => {
     <div className={styles.artistCardVariants()}>
       <div className={styles.imageAndHeartWrapper}>
         <img className={styles.artistImg()} src={imageSrc} alt={title} />
-        {size === 'md' && <Icon name="heart" className={styles.heartImg} />}
+        {size === 'md' && (
+          <Icon name="heart-filled" className={styles.heartImg} />
+        )}
       </div>
       <p className={styles.artistName({ size })}>{title}</p>
     </div>
