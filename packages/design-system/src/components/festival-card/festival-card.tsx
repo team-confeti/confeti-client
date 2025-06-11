@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IcSelect } from '../../icons/src';
+import { Icon } from '../../icons';
 
 import * as styles from './festival-card.css';
 
@@ -57,7 +57,7 @@ const FestivalCard = ({
         <img src={imageSrc} alt={title} className={styles.image} />
         {internalSelected && (
           <div className={styles.overlay}>
-            <IcSelect className={styles.icon} />
+            <Icon name="select" size="2.8rem" color="confeti_lime" />
           </div>
         )}
       </div>

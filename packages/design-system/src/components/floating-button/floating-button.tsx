@@ -1,4 +1,4 @@
-import SvgIcArrowUpBlack30 from '../../icons/src/IcArrowUpBlack30';
+import { Icon } from '../../icons';
 import { cn } from '../../utils';
 
 import { floatingButtonVariants } from './floating-button.css';
@@ -17,7 +17,7 @@ const FloatingButton = ({ isButtonHidden }: FloatingButtonProps) => {
       className={cn(floatingButtonVariants({ isButtonHidden }))}
       onClick={handleScrollToTop}
     >
-      <SvgIcArrowUpBlack30 width={'3rem'} height={'3rem'} />
+      <Icon name="arrow-vertical" size="3rem" color="confeti_lime2" />
     </button>
   );
 };

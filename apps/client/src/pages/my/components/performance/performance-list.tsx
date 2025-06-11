@@ -1,4 +1,4 @@
-import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { MyPerformancesResponse } from '@shared/types/user-response';
 import { formatDate } from '@shared/utils/format-date';
@@ -24,12 +24,12 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
 
               <div>
                 <div className={styles.description}>
-                  <IcTimeGray14 width={'1.4rem'} height={'1.4rem'} />
+                  <Icon name="time" width="1.4rem" height="1.4rem" />
                   <p>{formatDate('', 'startEndFull', startAt, endAt)}</p>
                 </div>
 
                 <div className={styles.description}>
-                  <IcPlaceGray14 width={'1.4rem'} height={'1.4rem'} />
+                  <Icon name="place" width="1.4rem" height="1.4rem" />
                   <p>{area}</p>
                 </div>
               </div>

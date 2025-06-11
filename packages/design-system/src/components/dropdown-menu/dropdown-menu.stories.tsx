@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  BtnMeatball,
-  IcTimetableAddfestival,
-  IcTimetableDeletefestival,
-} from '../../icons/src';
+import { Icon } from '../../icons/index';
 import DropdownMenu from './dropdown-menu';
 
 const meta: Meta<typeof DropdownMenu> = {
@@ -35,15 +31,17 @@ export const Default: Story = {
     <div style={{ height: '20rem' }}>
       <DropdownMenu>
         <DropdownMenu.Trigger>
-          <BtnMeatball width={'2.4rem'} height={'2.4rem'} />
+          <button type="button">
+            <Icon name="meatball" size="2.4rem" color="confeti_lime3" />
+          </button>
         </DropdownMenu.Trigger>
+
         <DropdownMenu.Content>
           <DropdownMenu.Item label="페스티벌 추가하기">
-            <IcTimetableAddfestival width={'2rem'} height={'2rem'} />
+            <Icon name="add-timetable" size="2rem" />
           </DropdownMenu.Item>
-
           <DropdownMenu.Item label="페스티벌 삭제하기">
-            <IcTimetableDeletefestival width={'2rem'} height={'2rem'} />
+            <Icon name="remove" size="2rem" />
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu>

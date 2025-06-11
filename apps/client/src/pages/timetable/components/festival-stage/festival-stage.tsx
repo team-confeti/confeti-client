@@ -1,6 +1,6 @@
 import { TimetableInfoType } from '@pages/timetable/types/timetable-info-type';
 
-import { Stroke } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './festival-stage.css';
 
@@ -10,7 +10,7 @@ const FestivalStage = ({ timetableInfo }: TimetableInfoType) => {
       {timetableInfo.stages.map((info) => (
         <div key={info.stageOrder} className={styles.stageBoxWrapper}>
           <div className={styles.stageBox}>{info.stageName}</div>
-          <Stroke width="2px" height="16px" />
+          <Icon name="timetable-stroke" width="0.2rem" height="1.6rem" />
         </div>
       ))}
     </div>

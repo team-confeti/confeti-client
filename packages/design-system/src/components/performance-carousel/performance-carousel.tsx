@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Settings as SlickSettings } from 'react-slick';
 import Slider from 'react-slick';
 
-import { InfoOverlay, SlideOverlayOp } from '../../icons/src';
+import { Icon } from '../../icons';
 
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
@@ -167,18 +167,19 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <InfoOverlay
+              <Icon
+                name="overlay-info"
                 className={styles.infoOverlay}
-                width="96.5%"
-                height="50%"
+                style={{ width: '96.5%', height: '100%' }}
               />
+
               {children}
             </>
           ) : (
-            <SlideOverlayOp
+            <Icon
+              name="overlay-slide"
               className={styles.slideOverlay}
-              width="96.5%"
-              height="100%"
+              style={{ width: '96.5%', height: '100%' }}
             />
           )}
         </div>

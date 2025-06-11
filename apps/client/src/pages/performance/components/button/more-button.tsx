@@ -1,7 +1,4 @@
-import {
-  IcArrowDownGray16,
-  IcArrowUpGray16,
-} from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './more-button.css';
 
@@ -42,9 +39,9 @@ const MoreButton = ({
     >
       <span className={styles.text}>{buttonText}</span>
       {isExpanded ? (
-        <IcArrowUpGray16 className={styles.icon} />
+        <Icon name="arrow-vertical" size="1.6rem" />
       ) : (
-        <IcArrowDownGray16 className={styles.icon} />
+        <Icon name="arrow-vertical" size="1.6rem" rotate={180} />
       )}
     </button>
   );

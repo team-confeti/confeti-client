@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutation';
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
-import { BtnArrowLeft20 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { routePath } from '@shared/router/path';
 import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
 import { buildPath } from '@shared/utils/build-path';
@@ -73,7 +73,7 @@ const ConfirmAddSection = ({
     <div>
       <header className={styles.headerContainer}>
         <button aria-label="뒤로가기" onClick={handleConfirmAddSection}>
-          <BtnArrowLeft20 width={'2rem'} height={'2rem'} />
+          <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
         </button>
       </header>
       <div className={styles.textContainer}>

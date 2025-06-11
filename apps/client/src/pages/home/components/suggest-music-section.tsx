@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Box, Button } from '@confeti/design-system';
-import { IcLoad, IcMusic } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
@@ -45,7 +45,7 @@ const SuggestMusicSection = ({
       title="미리 음악을 한 번 들어볼까요?"
       titleSize="lg"
       subtitle={data.title}
-      subtitleIcon={<IcMusic width="1.4rem" height="1.4rem" />}
+      subtitleIcon={<Icon name="music" size="1.4rem" />}
     >
       <div ref={scrollRef}>
         <MusicList
@@ -58,7 +58,7 @@ const SuggestMusicSection = ({
       </div>
       <Button
         text="다른 노래 더보기"
-        icon={<IcLoad width="2.8rem" height="2.8rem" />}
+        icon={<Icon name="load" size="2.8rem" />}
         className={styles.button}
         onClick={handleRefreshMusic}
       />

@@ -8,6 +8,8 @@ export const floatingButtonVariants = recipe({
     width: '4rem',
     height: '4rem',
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: '0.5rem',
     borderRadius: '2rem',
     backgroundColor: themeVars.color.gray800,

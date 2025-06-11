@@ -8,7 +8,7 @@ export const headerContainer = style({
   position: 'sticky',
   top: '5rem',
   height: '4.5rem',
-  padding: '1.2rem 2rem 1.2rem 2rem',
+  padding: '1.2rem 2rem 1.2rem 1.4rem',
   backgroundColor: themeVars.color.white,
   borderBottom: `0px`,
   zIndex: themeVars.zIndex.header.content,
