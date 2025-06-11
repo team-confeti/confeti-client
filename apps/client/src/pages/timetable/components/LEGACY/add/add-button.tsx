@@ -1,5 +1,4 @@
-import SvgBtnAddGray24 from 'node_modules/@confeti/design-system/src/icons/src/BtnAddGray24';
-
+import { Icon } from '@confeti/design-system/icon';
 import { cn } from '@confeti/design-system/utils';
 
 import { addButtonVariants } from './add-button.css';
@@ -23,7 +22,7 @@ const AddButton = ({
       {...props}
       onClick={onClick}
     >
-      <SvgBtnAddGray24 width={'2rem'} height={'2rem'} />
+      <Icon name="add" size="2rem" color="gray400" />
     </button>
   );
 };
