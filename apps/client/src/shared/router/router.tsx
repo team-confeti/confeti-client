@@ -19,10 +19,10 @@ export const router = createBrowserRouter([
     children: [
       ...globalRoutes,
       ...authRoutes,
-      ...fallbackRoutes,
       ...myPageRoutes,
       ...myRecordRoutes,
       ...timetableRoutes,
+      ...fallbackRoutes,
     ],
   },
 ]);
