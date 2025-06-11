@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { init as amplitudeInit } from '@amplitude/analytics-browser';
 import {
   addIntegration,
@@ -15,7 +15,7 @@ import {
 } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
 import { ENV_CONFIG } from '@shared/constants/config';
-import Router from '@shared/router/router';
+import { router } from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
@@ -33,16 +33,14 @@ addIntegration(browserTracingIntegration());
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider>
-          <div className={rootStyle}>
-            <OverlayProvider>
-              <Router />
-              <ToastContainer />
-            </OverlayProvider>
-          </div>
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider>
+        <div className={rootStyle}>
+          <OverlayProvider>
+            <RouterProvider router={router} />
+            <ToastContainer />
+          </OverlayProvider>
+        </div>
+      </ThemeProvider>
       <div style={{ fontSize: '16px' }}>
         <ReactQueryDevtools initialIsOpen={false} />
       </div>
