@@ -47,72 +47,72 @@ export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
 
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('startDate')}
+          {...register('startAt')}
           type="date"
           label="콘서트 시작일"
-          error={errors.startDate?.message}
+          error={errors.startAt?.message}
         />
         <FormInput
-          {...register('endDate')}
+          {...register('endAt')}
           type="date"
           label="콘서트 종료일"
-          error={errors.endDate?.message}
+          error={errors.endAt?.message}
         />
       </div>
 
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('location')}
+          {...register('area')}
           type="text"
           label="콘서트 장소"
           placeholder="ex) 올림픽공원 SK 핸드볼경기장"
-          error={errors.location?.message}
+          error={errors.area?.message}
         />
         <FormInput
-          {...register('reservationDate')}
+          {...register('reserveAt')}
           type="date"
           label="예매 시작일"
-          error={errors.reservationDate?.message}
+          error={errors.reserveAt?.message}
         />
       </div>
 
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('ageLimit')}
+          {...register('ageRating')}
           type="text"
           label="연령 제한"
           placeholder="ex) 만 18세 이상"
-          error={errors.ageLimit?.message}
+          error={errors.ageRating?.message}
         />
         <FormInput
-          {...register('concertTime')}
+          {...register('time')}
           type="time"
           label="공연 시간"
-          error={errors.concertTime?.message}
+          error={errors.time?.message}
         />
       </div>
 
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('concertPrice')}
+          {...register('price')}
           type="text"
           label="티켓 가격"
           placeholder="ex) VIP 150,000원 / R석 120,000원"
-          error={errors.concertPrice?.message}
+          error={errors.price?.message}
         />
         <FormInput
-          {...register('concertAddress')}
+          {...register('address')}
           type="text"
           label="상세 주소"
           placeholder="서울시 송파구 올림픽로 424"
-          error={errors.concertAddress?.message}
+          error={errors.address?.message}
         />
       </div>
 
       <div className={styles.singleInputContainer}>
         <Controller
           control={control}
-          name="posterImage"
+          name="posterImg"
           render={({ field }) => (
             <>
               <FormInput
@@ -124,7 +124,7 @@ export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
                   setPosterFile(file);
                   field.onChange(file);
                 }}
-                error={errors.posterImage?.message}
+                error={errors.posterImg?.message}
               />
 
               {posterPreview && (
@@ -151,7 +151,7 @@ export const ConcertReservationFormField = ({
 }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'reservationLinks',
+    name: 'reservationUrls',
   });
 
   return (
@@ -177,35 +177,31 @@ export const ConcertReservationFormField = ({
 
           <div className={styles.inputContainer}>
             <FormInput
-              {...register(`reservationLinks.${index}.reservationUrl`)}
+              {...register(`reservationUrls.${index}.reservationUrl`)}
               type="url"
               label="예매 URL"
               placeholder="https://ticket.example.com"
-              error={errors.reservationLinks?.[index]?.reservationUrl?.message}
+              error={errors.reservationUrls?.[index]?.reservationUrl?.message}
             />
             <FormInput
-              {...register(`reservationLinks.${index}.reservationSiteName`)}
+              {...register(`reservationUrls.${index}.name`)}
               type="text"
               label="예매 사이트명"
               placeholder="ex) 인터파크 티켓"
-              error={
-                errors.reservationLinks?.[index]?.reservationSiteName?.message
-              }
+              error={errors.reservationUrls?.[index]?.name?.message}
             />
           </div>
 
           <Controller
             control={control}
-            name={`reservationLinks.${index}.reservationSiteLogo`}
+            name={`reservationUrls.${index}.logoImg`}
             render={({ field }) => (
               <FormInput
                 type="file"
                 label="사이트 로고"
                 accept="image/*"
                 placeholder="로고 이미지를 선택해주세요"
-                error={
-                  errors.reservationLinks?.[index]?.reservationSiteLogo?.message
-                }
+                error={errors.reservationUrls?.[index]?.logoImg?.message}
                 onChange={(e) => {
                   const file = e.target.files?.[0];
                   field.onChange(file);
@@ -222,8 +218,8 @@ export const ConcertReservationFormField = ({
           onClick={() =>
             append({
               reservationUrl: '',
-              reservationSiteName: '',
-              reservationSiteLogo: new File([], ''),
+              name: '',
+              logoImg: new File([], ''),
             })
           }
           className={styles.addButton}
@@ -267,11 +263,11 @@ export const ConcertArtistFormField = ({
           </div>
 
           <FormInput
-            {...register(`artistIds.${index}.value`)}
+            {...register(`artistIds.${index}.artistId`)}
             type="text"
             label="아티스트 ID"
             placeholder="아티스트 고유 ID를 입력해주세요"
-            error={errors.artistIds?.[index]?.value?.message}
+            error={errors.artistIds?.[index]?.artistId?.message}
           />
         </div>
       ))}
@@ -279,7 +275,7 @@ export const ConcertArtistFormField = ({
       <div className={styles.buttonContainer}>
         <button
           type="button"
-          onClick={() => append({ value: '' })}
+          onClick={() => append({ artistId: '' })}
           className={styles.addButton}
         >
           + 아티스트 추가
