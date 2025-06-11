@@ -27,6 +27,10 @@ const EditFestivalForm = ({ id }: Props) => {
     useImagePreview();
   const { preview: logoPreview, handleFileChange: handleLogoChange } =
     useImagePreview();
+  const {
+    preview: reservationLogoPreview,
+    handleFileChange: handleReservationLogoChange,
+  } = useImagePreview();
 
   const {
     register,
@@ -82,6 +86,8 @@ const EditFestivalForm = ({ id }: Props) => {
             register={register}
             errors={errors}
             control={control}
+            reservationLogoPreview={reservationLogoPreview}
+            onReservationLogoChange={handleReservationLogoChange}
           />
         </>
       )}

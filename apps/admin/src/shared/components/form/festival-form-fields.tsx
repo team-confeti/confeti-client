@@ -21,6 +21,8 @@ interface Props {
   logoPreview?: string | null;
   onPosterChange?: (file: File | null) => void;
   onLogoChange?: (file: File | null) => void;
+  reservationLogoPreview?: string | null;
+  onReservationLogoChange?: (file: File | null) => void;
 }
 
 export const FestivalBasicFormField = ({
@@ -216,7 +218,7 @@ export const FestivalStageFormField = ({
         className={styles.addButton}
         onClick={() => append({ name: '', order: '', times: [] })}
       >
-        스테이지 추가
+        + 스테이지 추가
       </button>
     </div>
   );
@@ -226,6 +228,8 @@ export const FestivalReservationFormField = ({
   register,
   errors,
   control,
+  reservationLogoPreview,
+  onReservationLogoChange,
 }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -258,16 +262,28 @@ export const FestivalReservationFormField = ({
             control={control}
             name={`reservationUrls.${index}.logoImg`}
             render={({ field }) => (
-              <FormInput
-                type="file"
-                label="사이트 로고"
-                placeholder="사이트 로고를 입력해주세요."
-                error={errors.reservationUrls?.[index]?.logoImg?.message}
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  field.onChange(file);
-                }}
-              />
+              <>
+                <FormInput
+                  type="file"
+                  label="사이트 로고"
+                  placeholder="사이트 로고를 입력해주세요."
+                  error={errors.reservationUrls?.[index]?.logoImg?.message}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] ?? null;
+                    onReservationLogoChange?.(file);
+                    field.onChange(file);
+                  }}
+                />
+                {reservationLogoPreview && (
+                  <div className={styles.posterPreviewContainer}>
+                    <img
+                      src={reservationLogoPreview}
+                      alt="사이트 로고 미리보기"
+                      className={styles.posterPreview}
+                    />
+                  </div>
+                )}
+              </>
             )}
           />
           <button
@@ -290,7 +306,7 @@ export const FestivalReservationFormField = ({
         }
         className={styles.addButton}
       >
-        예매 링크 추가
+        + 예매 링크 추가
       </button>
     </div>
   );
@@ -340,7 +356,7 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
         }
         className={styles.addButton}
       >
-        페스티벌 날짜 추가
+        + 페스티벌 날짜 추가
       </button>
     </div>
   );

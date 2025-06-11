@@ -92,7 +92,7 @@ export const FestivalDateField = ({
         }
         className={styles.addButton}
       >
-        공연 시간 추가
+        + 공연 시간 추가
       </button>
     </div>
   );
@@ -270,7 +270,7 @@ export const StageContentField = ({
         className={styles.addButton}
         onClick={() => stageFields.append({ artistId: '' })}
       >
-        아티스트 추가
+        + 아티스트 추가
       </button>
     </div>
   );
