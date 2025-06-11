@@ -23,6 +23,8 @@ export type FestivalListItem = {
 export type Festival = {
   title: string;
   subtitle: string;
+  posterImg?: File;
+  logoImg?: File;
   posterUrl: string;
   startAt: Date;
   endAt: Date;

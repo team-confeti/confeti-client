@@ -16,6 +16,7 @@ import {
   FestivalListDTO,
   FestivalUpdateDTO,
 } from '@shared/types/api';
+import { createFestivalFormData } from '@shared/utils/form-data';
 
 export const FESTIVAL_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: FESTIVAL_QUERY_KEY.ALL }),
@@ -44,50 +45,17 @@ export const getFestivalList = async (): Promise<FestivalListItem[]> => {
   return response.data.festivals.map(toFestivalListItem);
 };
 
-const createFormData = (
-  festival: FestivalCreateDTO | FestivalUpdateDTO,
-): FormData => {
-  const formData = new FormData();
-
-  if (festival.posterImg) {
-    formData.append('posterImg', festival.posterImg);
-  }
-  if (festival.logoImg) {
-    formData.append('logoImg', festival.logoImg);
-  }
-  if (festival.reservationUrls) {
-    festival.reservationUrls.forEach((url, index) => {
-      if (url.logoImg) {
-        formData.append(`reservationUrls[${index}].logoImg`, url.logoImg);
-      }
-    });
-  }
-
-  const jsonData = {
-    ...festival,
-    posterImg: undefined,
-    logoImg: undefined,
-    reservationUrls: festival.reservationUrls?.map((url) => ({
-      ...url,
-      logoImg: undefined,
-    })),
-  };
-  formData.append('data', JSON.stringify(jsonData));
-
-  return formData;
-};
-
 export const postFestival = async (
-  festival: FestivalCreateDTO,
+  festival: FestivalCreateDTO | FestivalUpdateDTO,
 ): Promise<void> => {
-  const formData = createFormData(festival);
+  const formData = createFestivalFormData(festival);
   await post(END_POINT.FESTIVAL, formData);
 };
 
 export const patchFestival = async (
   festivalId: number,
-  festival: FestivalUpdateDTO,
+  festival: FestivalCreateDTO | FestivalUpdateDTO,
 ): Promise<void> => {
-  const formData = createFormData(festival);
+  const formData = createFestivalFormData(festival);
   await patch(END_POINT.FESTIVAL_DETAIL(festivalId), formData);
 };

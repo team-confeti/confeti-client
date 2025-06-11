@@ -7,7 +7,6 @@ import {
   Concert,
   ConcertListItem,
   toConcert,
-  toConcertCreateDTO,
   toConcertListItem,
 } from '@shared/models/concert';
 import {
@@ -15,6 +14,7 @@ import {
   ConcertDetailDTO,
   ConcertListDTO,
 } from '@shared/types/api';
+import { createConcertFormData } from '@shared/utils/form-data';
 
 export const CONCERT_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: CONCERT_QUERY_KEY.ALL }),
@@ -43,7 +43,7 @@ export const getConcertList = async (): Promise<ConcertListItem[]> => {
 };
 
 export const postConcert = async (concert: Concert): Promise<Concert> => {
-  const formData = createFormData(concert);
+  const formData = createConcertFormData(concert);
 
   const response = await post<BaseResponse<ConcertDetailDTO>>(
     END_POINT.CONCERT,
@@ -61,7 +61,7 @@ export const patchConcert = async (
   concertId: number,
   concert: Concert,
 ): Promise<Concert> => {
-  const formData = createFormData(concert);
+  const formData = createConcertFormData(concert);
 
   const response = await patch<BaseResponse<ConcertDetailDTO>>(
     END_POINT.CONCERT_DETAIL(concertId),
@@ -73,26 +73,4 @@ export const patchConcert = async (
     },
   );
   return toConcert(response.data);
-};
-
-const createFormData = (concert: Concert): FormData => {
-  const formData = new FormData();
-  const dto = toConcertCreateDTO(concert);
-
-  formData.append('posterImg', dto.posterImg);
-  dto.reservationUrls.forEach((url, index) => {
-    formData.append(`reservationUrls[${index}].logoImg`, url.logoImg);
-  });
-
-  const jsonData = {
-    ...dto,
-    posterImg: undefined,
-    reservationUrls: dto.reservationUrls.map((url) => ({
-      ...url,
-      logoImg: undefined,
-    })),
-  };
-  formData.append('data', JSON.stringify(jsonData));
-
-  return formData;
 };
