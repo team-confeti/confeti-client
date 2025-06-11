@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import CountDisplay from '@pages/my-history/components/overview/count-display';
 import OrderByButton from '@pages/my-history/components/overview/order-by-button';
-import {
-  useMySetListOverView,
-  useMyTimeTableOverView,
-} from '@pages/my-history/hooks/use-my-history';
+import { useQuery } from '@tanstack/react-query';
 
 import { FestivalCard, Header } from '@confeti/design-system';
+import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
+import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
 import {
   SORT_LABELS,
   SORT_OPTIONS,
@@ -25,13 +24,12 @@ const MyHistoryOverviewPage = () => {
   const type = searchParams.get('type');
   const isSetList = type === 'SET_LIST';
   const navigate = useNavigate();
-  const { data: setListOverviewData } = useMySetListOverView(
-    sortOption,
-    isSetList,
+
+  const { data: setListOverviewData } = useQuery(
+    MY_SETLIST_QUERY_OPTION.OVERVIEW(sortOption, isSetList),
   );
-  const { data: timetableOverviewData } = useMyTimeTableOverView(
-    sortOption,
-    !isSetList,
+  const { data: timetableOverviewData } = useQuery(
+    MY_TIMETABLE_QUERY_OPTION.OVERVIEW(sortOption, !isSetList),
   );
 
   const overviewData = isSetList

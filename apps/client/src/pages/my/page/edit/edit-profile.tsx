@@ -2,12 +2,11 @@ import React, { useRef, useState } from 'react';
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useUserProfile } from '@pages/my/hooks/use-user-info';
+import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutation';
 
 import { Button, Header, toast } from '@confeti/design-system';
-import { IcToastInfo16 } from '@confeti/design-system/icons';
-import { useUserProfileMutation } from '@shared/hooks/use-info-mutation';
-import { urlToFile } from '@shared/utils/url-to-file';
+import { Icon } from '@confeti/design-system/icon';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import * as styles from './edit-profile.css';
 
@@ -44,7 +43,7 @@ const EditProfile = () => {
     if (name.length > 9 && !hasShownToast) {
       toast({
         text: '2~10자로 입력해 주세요',
-        icon: <IcToastInfo16 width={'1.6rem'} height={'1.6rem'} />,
+        icon: <Icon name="toast-info" size="1.6rem" color="confeti_red" />,
         position: 'middleCenter',
       });
       return true;
@@ -67,13 +66,13 @@ const EditProfile = () => {
   };
 
   const handleSave = async () => {
-    const fileToSend = profileFile
-      ? profileFile
-      : await urlToFile(profileData.profileUrl, 'current-profile.jpg');
-    updateUserInfo({
-      name: name || profileData.name,
-      profileFile: fileToSend,
-    });
+    const newName = name || profileData.name;
+
+    const payload = profileFile
+      ? { name: newName, profileFile }
+      : { name: newName, profileUrl: profileData.profileUrl };
+
+    updateUserInfo(payload);
   };
 
   return (
@@ -87,6 +86,7 @@ const EditProfile = () => {
             showArrow={false}
             showEditBtn={true}
             onEditImage={triggerFileInput}
+            disableClick={true}
           />
           <input
             type="file"

@@ -1,9 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
-import SvgBtnClose from '../../icons/src/BtnClose';
-import SvgIcNewSearchGray18 from '../../icons/src/IcNewSearchGray18';
+import { Icon } from '../../icons';
 
 import * as styles from './search-bar.css';
 
@@ -11,8 +9,10 @@ interface SearchBarProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  onClear?: () => void;
   showBackButton?: boolean;
   placeholder?: string;
 }
@@ -21,8 +21,10 @@ export const SearchBar = ({
   value,
   onChange,
   onKeyDown,
+  onKeyUp,
   onFocus,
   onBlur,
+  onClear,
   showBackButton = true,
   placeholder,
 }: SearchBarProps) => {
@@ -46,6 +48,7 @@ export const SearchBar = ({
           target: { value: '' },
         } as React.ChangeEvent<HTMLInputElement>);
       }
+      onClear?.();
     }
   };
 
@@ -80,18 +83,20 @@ export const SearchBar = ({
   return (
     <>
       {showBackButton && (
-        <SvgBtnArrowLeft20
-          width={20}
-          height={20}
+        <Icon
+          name="arrow-back"
+          size="2.2rem"
           onClick={handleBackClick}
           className={styles.arrowButton}
         />
       )}
       <div className={styles.searchBar({ type: 'default' })}>
-        <SvgIcNewSearchGray18
+        <Icon
+          name="search"
+          size="1.8rem"
+          color="gray500"
+          onClick={handleBackClick}
           className={styles.searchIcon}
-          width={18}
-          height={18}
         />
         <input
           className={styles.textSection}
@@ -101,16 +106,16 @@ export const SearchBar = ({
           value={value}
           onChange={handleInputChange}
           onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
         {showClearBtn && (
-          <SvgBtnClose
-            className={styles.closeBtn}
+          <Icon
+            name="clear"
+            size="1.8rem"
+            color="gray400"
             onClick={handleClear}
-            width={18}
-            height={18}
-            style={{ display: 'flex' }}
           />
         )}
       </div>

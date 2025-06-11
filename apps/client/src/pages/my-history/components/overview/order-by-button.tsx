@@ -1,4 +1,4 @@
-import SvgIcSwitch from 'node_modules/@confeti/design-system/src/icons/src/IcSwitch';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './order-by-button.css';
 
@@ -11,7 +11,7 @@ const OrderByButton = ({ orderByText, onClick }: OrderByButtonProps) => {
   return (
     <div className={styles.orderByButtonContainer} onClick={onClick}>
       <p className={styles.orderByText}>{orderByText}</p>
-      <SvgIcSwitch width="1.6rem" height="1.6rem" />
+      <Icon name="switch" size="1.6rem" />
     </div>
   );
 };

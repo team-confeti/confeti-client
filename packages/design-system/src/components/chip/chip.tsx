@@ -1,4 +1,4 @@
-import { BtnSearchDelete } from '@confeti/design-system/icons';
+import { Icon } from '../../icons';
 
 import { chipVariants } from './chip.css';
 
@@ -23,10 +23,11 @@ const Chip = ({
     <button className={chipVariants({ variant })} {...props}>
       {label}
       {variant === 'withDelete' && (
-        <BtnSearchDelete
+        <Icon
+          name="close"
+          size="1.3rem"
+          color="gray500"
           onClick={handleDeleteClick}
-          width="1.6rem"
-          height="1.6rem"
         />
       )}
     </button>

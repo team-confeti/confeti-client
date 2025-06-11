@@ -1,8 +1,7 @@
 import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IcArrowGray16 } from '@confeti/design-system/icons';
-
+import { Icon } from '../../icons';
 import { cn } from '../../utils';
 
 import * as styles from './box.css';
@@ -56,7 +55,7 @@ const Box = ({
             <button onClick={handleShowMore} className={styles.button}>
               {showMoreText}
             </button>
-            <IcArrowGray16 width="1.2rem" height="1.2rem" />
+            <Icon name="arrow-horizontal" size="1.2rem" color="gray500" />
           </div>
         )}
       </div>

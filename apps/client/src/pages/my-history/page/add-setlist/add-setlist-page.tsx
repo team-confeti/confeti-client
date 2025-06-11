@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
+import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import { SwitchCase } from '@shared/components/switch-case';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
+import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
-
-import { useSearchSetListPerformance } from '../../hooks/use-performance-search';
 
 import * as styles from './add-setlist-page.css';
 
@@ -35,14 +36,16 @@ const AddSetlistPage = () => {
   });
 
   const { data: setListPerformance, isLoading: isSetListPerformanceLoading } =
-    useSearchSetListPerformance(
-      {
-        aid: selectedType === 'artist' ? selectedId : null,
-        pid: selectedType === 'performance' ? Number(selectedId) : null,
-        term: selectedKeyword,
-      },
-      !!selectedKeyword,
-    );
+    useQuery({
+      ...SETLIST_QUERY_OPTION.SEARCH_PERFORMANCE(
+        {
+          aid: selectedType === 'artist' ? selectedId : null,
+          pid: selectedType === 'performance' ? Number(selectedId) : null,
+          term: selectedKeyword,
+        },
+        !!selectedKeyword,
+      ),
+    });
 
   useEffect(() => {
     setSelectedKeyword(paramsKeyword);
@@ -59,11 +62,13 @@ const AddSetlistPage = () => {
     navigate(`/my-history/setlist/add-setlist?q=${keyword}`);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing && keyword.trim()) {
-      (e.target as HTMLInputElement).blur();
-    }
-  };
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === 'Enter' && !e.nativeEvent.isComposing && keyword.trim()) {
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+  });
 
   const handleInputChangeWithReset = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -128,7 +133,7 @@ const AddSetlistPage = () => {
           placeholder="공연명 또는 아티스트를 검색해주세요."
           value={keyword}
           onChange={handleInputChangeWithReset}
-          onKeyDown={handleKeyDown}
+          {...keyboardProps}
         />
       </div>
 

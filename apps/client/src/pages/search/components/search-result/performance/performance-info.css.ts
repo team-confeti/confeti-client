@@ -42,12 +42,6 @@ export const infoRow = style({
   gap: '1rem',
 });
 
-export const infoIcon = style({
-  flexShrink: 0,
-  width: '1.4rem',
-  height: 'auto',
-});
-
 export const infoText = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.gray600,

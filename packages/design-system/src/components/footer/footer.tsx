@@ -1,4 +1,4 @@
-import { LogoFooter } from '../../icons/src';
+import { Icon } from '../../icons';
 
 import * as styles from './footer.css';
 
@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.logoSection}>
-        <LogoFooter className={styles.logo} />
+        <Icon name="logo-footer" width="7.8rem" height="2.1rem" />
       </div>
 
       <div className={styles.textSection}>

@@ -34,6 +34,7 @@ export const heartImg = style({
   bottom: 0,
   width: '31%',
   height: 'auto',
+  color: themeVars.color.confeti_red,
 });
 
 export const artistName = recipe({

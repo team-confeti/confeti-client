@@ -3,22 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutation';
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
-import { BtnArrowLeft20 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { routePath } from '@shared/router/path';
+import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
 import { buildPath } from '@shared/utils/build-path';
 
 import * as styles from './confirm-add-section.css';
 
-interface MusicItemType {
-  musicId: number;
-  title: string;
-  artistName: string;
-  artworkUrl: string;
-}
-
 interface Props {
-  handleRemoveSong: (songId: number) => void;
-  selectedSongs: MusicItemType[];
+  handleRemoveSong: (musicId: string) => void;
+  selectedSongs: AddMusicToSetListRequest[];
   handleConfirmAddSection: () => void;
 }
 
@@ -33,18 +27,18 @@ const ConfirmAddSection = ({
   const navigate = useNavigate();
   const addMusicToSetListMutation = useAddSongsMutation(Number(setlistId));
   const handleOpenDeleteDialog = ({
-    title,
+    trackName,
     musicId,
   }: {
-    title: string;
-    musicId: number;
+    trackName: string;
+    musicId: string;
   }) => {
     overlay.open(({ isOpen, close }) => (
       <Dialog open={isOpen} handleClose={close}>
         <Dialog.Content>
           <Dialog.Title>
             <div className={styles.dialogTitleContainer}>
-              <p className={styles.dialogHighlightText}>{title}</p>
+              <p className={styles.dialogHighlightText}>{trackName}</p>
             </div>
             <span>을(를) 삭제할까요?</span>
           </Dialog.Title>
@@ -66,14 +60,7 @@ const ConfirmAddSection = ({
     ));
   };
   const handleAddMusicToSetList = () => {
-    const requestData = selectedSongs.map((song) => ({
-      trackId: String(song.musicId),
-      artistName: song.artistName,
-      trackName: song.title,
-      artworkUrl: song.artworkUrl,
-      previewUrl: '',
-    }));
-    addMusicToSetListMutation.mutate(requestData);
+    addMusicToSetListMutation.mutate(selectedSongs);
 
     navigate(
       buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
@@ -86,7 +73,7 @@ const ConfirmAddSection = ({
     <div>
       <header className={styles.headerContainer}>
         <button aria-label="뒤로가기" onClick={handleConfirmAddSection}>
-          <BtnArrowLeft20 width={'2rem'} height={'2rem'} />
+          <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
         </button>
       </header>
       <div className={styles.textContainer}>
@@ -99,15 +86,15 @@ const ConfirmAddSection = ({
         {selectedSongs.map((song) => (
           <MusicItem
             key={song.musicId}
-            musicId={String(song.musicId)}
+            musicId={song.musicId}
             albumImage={song.artworkUrl}
-            title={song.title}
+            title={song.trackName}
             artist={song.artistName}
             variant="confirmDelete"
             onClickDelete={() =>
               handleOpenDeleteDialog({
-                title: song.title,
-                musicId: Number(song.musicId),
+                trackName: song.trackName,
+                musicId: song.musicId,
               })
             }
           />

@@ -13,7 +13,7 @@ export const searchBar = recipe({
     alignItems: 'center',
     width: '100%',
     height: '3.8rem',
-    padding: '1rem 1.4rem',
+    padding: '1rem 1.2rem',
     backgroundColor: themeVars.color.gray200,
     borderRadius: '2.1rem',
   },

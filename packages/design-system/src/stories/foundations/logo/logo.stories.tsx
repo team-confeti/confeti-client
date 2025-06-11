@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LogoFooter, LogoMain, LogoSymbol } from '../../../icons/src';
+import { Icon } from '../../../icons';
 
 import * as styles from './logo.css';
 
@@ -18,7 +18,6 @@ interface DefaultArgs {
   width?: number;
   height?: number;
   backgroundColor?: string;
-  color?: string;
 }
 
 export const Logo: Story = {
@@ -29,18 +28,18 @@ export const Logo: Story = {
   render: (args: DefaultArgs) => (
     <div className={styles.container}>
       <div>
-        <p className={styles.logoText}>LogoMain</p>
-        <LogoMain {...args} />
+        <p className={styles.logoText}>LogoSymbol</p>
+        <Icon name="logo-symbol" {...args} />
       </div>
 
       <div>
         <p className={styles.logoText}>LogoFooter</p>
-        <LogoFooter {...args} />
+        <Icon name="logo-footer" {...args} />
       </div>
 
       <div>
-        <p className={styles.logoText}>LogoSymbol</p>
-        <LogoSymbol {...args} />
+        <p className={styles.logoText}>Logo</p>
+        <Icon name="logo-big" {...args} />
       </div>
     </div>
   ),

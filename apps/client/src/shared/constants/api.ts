@@ -6,6 +6,8 @@ export const END_POINT = {
   GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
+
+  // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
   GET_MY_SET_LIST_OVERVIEW: (sortBy: SortOption) =>
     `/my/setlists/all?sortBy=${sortBy}`,
@@ -50,7 +52,7 @@ export const END_POINT = {
   GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
 
   //타임 테이블
-  GET_FESTIVAL_BUTTON: '/user/timetables/festivals',
+  GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
@@ -61,13 +63,12 @@ export const END_POINT = {
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
 
   //검색
-  GET_ARTISTS_SEARCH: '/artists/search?term=',
+  GET_SEARCH_ALL: '/search',
   GET_ARTISTS_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/artists/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_PERFORMANCES_SEARCH_RELATED_KEYWORD: (keyword: string, limit: number) =>
     `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
-  GET_PERFORMANCE_TYPE_ANALYSIS: (keyword: string) =>
-    `performances/search/type-analysis?term=${encodeURIComponent(keyword)}`,
+
   GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
   GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
   GET_MUSIC_SEARCH: (keyword: string, offset: number, limit: number) =>
@@ -103,4 +104,10 @@ export const HTTP_STATUS_CODE = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
-};
+} as const;
+
+export const CACHE_TIME = {
+  SHORT: 1000 * 60 * 3,
+  MEDIUM: 1000 * 60 * 5,
+  LONG: 1000 * 60 * 10,
+} as const;

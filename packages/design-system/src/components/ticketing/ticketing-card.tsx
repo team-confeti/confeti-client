@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import SvgIcArrowWhite12 from '../../icons/src/IcArrowWhite12';
+import { Icon } from '../../icons';
 
 import * as styles from './ticketing-card.css';
 interface TicketingImageProps {
@@ -53,7 +53,7 @@ const PerformanceInfo = ({ onClick, title }: TicketingPerformanceInfoProps) => {
   return (
     <button onClick={onClick} className={styles.performanceInfoButton}>
       {title}
-      <SvgIcArrowWhite12 width={'1.2rem'} height={'1.2rem'} />
+      <Icon name="arrow-horizontal" size="1.3rem" color="white" />
     </button>
   );
 };

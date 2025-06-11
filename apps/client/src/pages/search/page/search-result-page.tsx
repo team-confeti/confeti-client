@@ -1,58 +1,36 @@
 import { Footer, Spacing } from '@confeti/design-system';
-import {
-  ArtistSearch,
-  PerformanceTypeAnalysis,
-  RelatedPerformanceResponse,
-} from '@shared/types/search-reponse';
+import { SearchAllResponse } from '@shared/types/search-response';
 
-import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import ArtistSection from '../components/search-result/artist/artist-section';
 import NoticeSection from '../components/search-result/notice-section';
 import PerformanceSection from '../components/search-result/performance/performance-section';
-import { useIntendedPerformance } from '../hooks/use-search-data';
 
 import * as styles from './search-result-page.css';
 
 interface Props {
-  artistData: ArtistSearch | null;
-  relatedPerformances: RelatedPerformanceResponse | null;
-  performanceTypeAnalysisData: PerformanceTypeAnalysis | null;
+  searchData: SearchAllResponse | null;
   refetchArtist?: () => void;
 }
 
-const SearchResult = ({
-  artistData,
-  relatedPerformances,
-  performanceTypeAnalysisData,
-  refetchArtist,
-}: Props) => {
-  const { data: intendedPerformanceData } = useIntendedPerformance({
-    request: {
-      pid: Number(relatedPerformances?.performances?.[0]?.id) || null,
-      aid: artistData?.artistId || null,
-      ptitle: performanceTypeAnalysisData?.processedTerm || null,
-      ptype: performanceTypeAnalysisData?.performanceType || null,
-    },
-  });
-
-  // console.log(artistData);
+const SearchResult = ({ searchData, refetchArtist }: Props) => {
+  const artistData = searchData?.artist ?? null;
+  const performanceData = searchData?.performances ?? [];
+  const performanceCount = searchData?.performanceCount ?? 0;
 
   return (
     <>
       <main className={styles.resultSection}>
-        {artistData?.artistId ? (
+        {artistData && (
           <>
-            <NoticeSection isMultipleArtists={artistData.isMultipleArtists} />
+            <NoticeSection isMultipleArtists={artistData?.isMultipleArtists} />
             <ArtistSection artist={artistData} refetchArtist={refetchArtist} />
             <Spacing />
-            <PerformanceSection
-              performanceCount={intendedPerformanceData?.performanceCount ?? 0}
-              performances={intendedPerformanceData?.performances ?? []}
-            />
           </>
-        ) : (
-          <ArtistNotFound />
         )}
+        <PerformanceSection
+          performanceCount={performanceCount}
+          performances={performanceData}
+        />
       </main>
       <Footer />
     </>

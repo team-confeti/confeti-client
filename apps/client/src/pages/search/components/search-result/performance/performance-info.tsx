@@ -1,8 +1,8 @@
 import { LikeButton } from '@confeti/design-system';
-import { IcPlaceGray14, IcTimeGray14 } from '@confeti/design-system/icons';
-import { useLikeMutation } from '@shared/hooks/use-like-mutation';
+import { Icon } from '@confeti/design-system/icon';
+import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
-import { Performance } from '@shared/types/search-reponse';
+import { Performance } from '@shared/types/search-response';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { formatDate } from '@shared/utils/format-date';
 
@@ -44,12 +44,12 @@ const PerformanceInfo = ({
         </p>
 
         <div className={styles.infoRow}>
-          <IcTimeGray14 className={styles.infoIcon} />
+          <Icon name="time" size="1.4rem" color="gray600" />
           <p className={styles.infoText}>{formattedDate}</p>
         </div>
 
         <div className={styles.infoRow}>
-          <IcPlaceGray14 className={styles.infoIcon} />
+          <Icon name="place" size="1.4rem" color="gray600" />
           <p className={styles.infoText}>{area}</p>
         </div>
       </div>

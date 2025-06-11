@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from '@confeti/design-system';
-import { IcArrowGray16, IcEdit16 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './user-info.css.ts';
@@ -12,6 +12,7 @@ interface Props {
   showEditBtn?: boolean;
   showArrow?: boolean;
   onEditImage?: () => void;
+  disableClick?: boolean;
 }
 
 const USER_POSTFIX = '님' as const;
@@ -22,11 +23,14 @@ const UserInfo = ({
   showEditBtn,
   showArrow,
   onEditImage,
+  disableClick = false,
 }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(routePath.MY_EDIT_PROFILE);
+    if (!disableClick) {
+      navigate(routePath.MY_EDIT_PROFILE);
+    }
   };
 
   return (
@@ -39,7 +43,12 @@ const UserInfo = ({
           isHandleClick={false}
         />
         {showEditBtn && (
-          <IcEdit16 className={styles.editIcon} onClick={onEditImage} />
+          <Icon
+            name="edit"
+            className={styles.editIcon}
+            onClick={onEditImage}
+            size="1.6rem"
+          />
         )}
       </div>
 
@@ -47,7 +56,9 @@ const UserInfo = ({
         <div className={styles.titleWrapper} onClick={handleClick}>
           <h2 className={styles.title}>{name}</h2>
           <p className={styles.titlePostfix}>{USER_POSTFIX}</p>
-          {showArrow && <IcArrowGray16 width={'1.6rem'} height={'1.6rem'} />}
+          {showArrow && (
+            <Icon name="arrow-horizontal" size="1.6rem" color="gray500" />
+          )}
         </div>
       </div>
     </div>

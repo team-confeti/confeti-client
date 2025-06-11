@@ -49,11 +49,16 @@ export const FestivalDetailPage = lazy(
 
 // TimeTable
 export const DeleteFestivalPage = lazy(
-  () => import('@pages/time-table/page/delete-festival/delete-festival-page'),
+  () => import('@pages/timetable/page/delete-festival/delete-festival-page'),
 );
 
 export const AddFestivalPage = lazy(
-  () => import('@pages/time-table/page/add-festival/add-festival'),
+  () => import('@pages/timetable/page/add-festival/add-festival'),
+);
+
+export const NoUpcomingFestival = lazy(
+  () =>
+    import('@pages/timetable/page/no-upcoming-festival/no-upcoming-festival'),
 );
 
 // Onboarding

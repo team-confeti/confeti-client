@@ -1,57 +1,55 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
+import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
 import { SwitchCase } from '@shared/components/switch-case';
+import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
-import { useRelatedSearch } from '@shared/hooks/use-related-search';
+import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
 import { getRecentViewItems } from '@shared/utils/recent-view';
 
 import PopularSearchSection from '../components/search-home/popular-search-section';
 import RecentFestivalSection from '../components/search-home/recent-festivals-section';
 import RecentSearchSection from '../components/search-home/recent-search-section';
+import ArtistNotFound from '../components/search-result/artist/artist-not-found';
 import { useRecentSearch } from '../hooks/use-recent-search';
-import {
-  usePerformanceTypeAnalysis,
-  usePopularSearch,
-  useRecentView,
-  useSearchArtist,
-} from '../hooks/use-search-data';
 import { useSearchLogic } from '../hooks/use-search-logic';
 import SearchResult from './search-result-page';
 
 import * as styles from './search-page.css';
 
 const SearchPage = () => {
-  const [searchParams] = useSearchParams();
-  const paramsKeyword = searchParams.get('q') || '';
-  const [isPerformanceAnalysisTriggered, setIsPerformanceAnalysisTriggered] =
-    useState(false);
+  const {
+    paramsKeyword,
+    selectedArtistId,
+    selectedPerformanceId,
+    barFocus,
+    handleOnFocus,
+    handleOnBlur,
+    handleClear,
+    handleNavigateWithKeyword,
+    handleSelectKeyword,
+  } = useSearchLogic();
 
-  const { barFocus, handleOnFocus, handleOnBlur, handleNavigateWithKeyword } =
-    useSearchLogic();
-  const { addSearchKeyword } = useRecentSearch();
+  const recentViewItems = getRecentViewItems();
+  const items = recentViewItems
+    .map((item) => `${item.type}:${item.typeId}`)
+    .join(',');
+  const { data: recentViewData } = useQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.RECENT_VIEW(items, items.length > 0),
+  });
+  const { data: popularSearchData } = useSuspenseQuery({
+    ...SEARCH_PAGE_QUERY_OPTIONS.SEARCH_POPULAR_SEARCH(10),
+  });
 
   const {
     keyword: searchKeyword,
     debouncedKeyword,
     handleInputChange,
   } = useDebouncedKeyword(paramsKeyword);
-  const {
-    data: artistData,
-    isLoading: isSearchLoading,
-    refetch: refetchArtist,
-  } = useSearchArtist({
-    keyword: paramsKeyword,
-    enabled: !!paramsKeyword,
-  });
-  const { data: popularSearchData } = usePopularSearch();
-  const recentViewItems = getRecentViewItems();
-  const items = recentViewItems
-    .map((item) => `${item.type}:${item.typeId}`)
-    .join(',');
-  const { data: recentViewData } = useRecentView(items, items.length > 0);
 
   const {
     data: { relatedArtists, relatedPerformances },
@@ -61,73 +59,114 @@ const SearchPage = () => {
     enabled: !!debouncedKeyword.trim(),
   });
 
-  const { data: performanceTypeAnalysisData } = usePerformanceTypeAnalysis({
-    keyword: searchKeyword,
-    enabled: !!searchKeyword.trim() && isPerformanceAnalysisTriggered,
+  const {
+    data: searchAllData,
+    isLoading: isSearchLoading,
+    refetch: refetchArtist,
+  } = useQuery({
+    ...SEARCH_QUERY_OPTIONS.SEARCH_ALL(
+      selectedArtistId,
+      selectedPerformanceId,
+      paramsKeyword,
+      !!paramsKeyword.trim() || !!selectedArtistId || !!selectedPerformanceId,
+    ),
   });
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      e.key === 'Enter' &&
-      !e.nativeEvent.isComposing &&
-      searchKeyword.trim()
-    ) {
-      setIsPerformanceAnalysisTriggered(true);
-      addSearchKeyword(searchKeyword);
-      handleNavigateWithKeyword(searchKeyword);
-      (e.target as HTMLInputElement).blur();
+  const { addSearchKeyword } = useRecentSearch();
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === 'Escape') {
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+    onKeyUp: (e) => {
+      if (
+        e.key === 'Enter' &&
+        !e.nativeEvent.isComposing &&
+        searchKeyword.trim()
+      ) {
+        handleNavigateWithKeyword(searchKeyword);
+        addSearchKeyword(searchKeyword);
+        (e.target as HTMLInputElement).blur();
+      }
+    },
+  });
+
+  const SuggestionContent = useMemo(
+    () => (
+      <>
+        <SearchSuggestionList
+          relatedKeyword={relatedArtists?.artists?.map((artist) => ({
+            id: artist.artistId,
+            title: artist.name,
+            profileUrl: artist.profileUrl,
+          }))}
+          onSelectKeyword={(keyword, id) => {
+            handleSelectKeyword(keyword, id, 'artist');
+            addSearchKeyword(keyword);
+          }}
+        />
+        <SearchSuggestionList
+          relatedKeyword={relatedPerformances?.performances?.map(
+            (performance) => ({
+              id: performance.id,
+              title: performance.title,
+              profileUrl: performance.posterUrl,
+            }),
+          )}
+          onSelectKeyword={(keyword, id) => {
+            handleSelectKeyword(keyword, id, 'performance');
+            addSearchKeyword(keyword);
+          }}
+          listType="performance"
+        />
+      </>
+    ),
+    [
+      relatedArtists?.artists,
+      relatedPerformances?.performances,
+      handleSelectKeyword,
+      addSearchKeyword,
+    ],
+  );
+
+  const ResultContent = useMemo(
+    () => (
+      <SearchResult
+        searchData={searchAllData ?? null}
+        refetchArtist={refetchArtist}
+      />
+    ),
+    [searchAllData, refetchArtist],
+  );
+
+  const DefaultContent = useMemo(
+    () => (
+      <main className={styles.resultSection}>
+        <RecentSearchSection />
+        <PopularSearchSection popularSearchData={popularSearchData} />
+        <RecentFestivalSection recentViewData={recentViewData ?? null} />
+      </main>
+    ),
+    [popularSearchData, recentViewData],
+  );
+
+  const searchState = () => {
+    if (isSearchLoading || isRelatedKeywordLoading) {
+      return 'loading';
+    }
+    if (barFocus && relatedArtists?.artists) {
+      return 'suggestion';
+    }
+    if (paramsKeyword || (searchAllData && !barFocus)) {
+      return 'result';
+    }
+    if (searchAllData === null) {
+      return 'notFound';
+    } else {
+      return 'default';
     }
   };
-
-  const SuggestionContent = () => (
-    <>
-      <SearchSuggestionList
-        relatedKeyword={relatedArtists?.artists?.map((artist) => ({
-          id: artist.artistId,
-          title: artist.name,
-          profileUrl: artist.profileUrl,
-        }))}
-        onSelectKeyword={handleNavigateWithKeyword}
-      />
-      <SearchSuggestionList
-        relatedKeyword={relatedPerformances?.performances?.map(
-          (performance) => ({
-            id: performance.id,
-            title: performance.title,
-            profileUrl: performance.posterUrl,
-          }),
-        )}
-        onSelectKeyword={handleNavigateWithKeyword}
-        listType="performance"
-      />
-    </>
-  );
-
-  const ResultContent = () => (
-    <SearchResult
-      artistData={artistData?.artist ?? null}
-      relatedPerformances={relatedPerformances ?? null}
-      performanceTypeAnalysisData={performanceTypeAnalysisData ?? null}
-      refetchArtist={refetchArtist}
-    />
-  );
-
-  const DefaultContent = () => (
-    <main className={styles.resultSection}>
-      <RecentSearchSection />
-      <PopularSearchSection popularSearchData={popularSearchData} />
-      <RecentFestivalSection recentViewData={recentViewData ?? null} />
-    </main>
-  );
-
-  const searchState =
-    isSearchLoading || isRelatedKeywordLoading
-      ? 'loading'
-      : !!relatedArtists?.artists && barFocus
-        ? 'suggestion'
-        : artistData
-          ? 'result'
-          : 'default';
 
   return (
     <>
@@ -140,22 +179,23 @@ const SearchPage = () => {
               <SearchBar
                 value={searchKeyword}
                 onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
                 onFocus={handleOnFocus}
                 onBlur={handleOnBlur}
+                onClear={handleClear}
                 placeholder="아티스트 또는 공연을 검색해보세요!"
+                {...keyboardProps}
               />
             </div>
           </div>
-
           <SwitchCase
-            value={searchState}
+            value={searchState()}
             caseBy={{
               loading: () => <Loading />,
-              suggestion: () => <SuggestionContent />,
-              result: () => <ResultContent />,
+              notFound: () => <ArtistNotFound />,
+              suggestion: () => SuggestionContent,
+              result: () => ResultContent,
             }}
-            defaultComponent={() => <DefaultContent />}
+            defaultComponent={() => DefaultContent}
           />
         </>
       )}

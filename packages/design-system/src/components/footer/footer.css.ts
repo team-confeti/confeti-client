@@ -5,16 +5,10 @@ import { themeVars } from '../../styles';
 export const container = style({
   display: 'grid',
   gridTemplateRows: '1fr 1fr',
-  marginTop: 'auto',
   height: '13.5rem',
   padding: '2rem',
 
   backgroundColor: themeVars.color.gray200,
-});
-
-export const logo = style({
-  width: '6.8rem',
-  height: '2.1rem',
 });
 
 export const logoSection = style({});
