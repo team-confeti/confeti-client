@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Control,
   Controller,
@@ -10,7 +9,6 @@ import { z } from 'zod';
 
 import { FestivalDateField } from '@shared/components/form/festival-date-form-fields';
 import FormInput from '@shared/components/form/form-input';
-import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { festivalSchema } from '@shared/schemas/festival-schema';
 
 import * as styles from './festival-form-fields.css';
@@ -19,18 +17,21 @@ interface Props {
   register: UseFormRegister<z.infer<typeof festivalSchema>>;
   errors: FieldErrors<z.infer<typeof festivalSchema>>;
   control: Control<z.infer<typeof festivalSchema>>;
+  posterPreview?: string | null;
+  logoPreview?: string | null;
+  onPosterChange?: (file: File | null) => void;
+  onLogoChange?: (file: File | null) => void;
 }
 
 export const FestivalBasicFormField = ({
   register,
   errors,
   control,
+  posterPreview,
+  logoPreview,
+  onPosterChange,
+  onLogoChange,
 }: Props) => {
-  const [posterFile, setPosterFile] = useState<File | null>(null);
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const posterPreview = useImagePreview(posterFile);
-  const logoPreview = useImagePreview(logoFile);
-
   return (
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>기본 정보</h2>
@@ -121,7 +122,7 @@ export const FestivalBasicFormField = ({
                 label="포스터 이미지"
                 onChange={(e) => {
                   const file = e.target.files?.[0] ?? null;
-                  setPosterFile(file);
+                  onPosterChange?.(file);
                   field.onChange(file);
                 }}
                 error={errors.posterImg?.message}
@@ -150,7 +151,7 @@ export const FestivalBasicFormField = ({
                 error={errors.logoImg?.message}
                 onChange={(e) => {
                   const file = e.target.files?.[0] ?? null;
-                  setLogoFile(file);
+                  onLogoChange?.(file);
                   field.onChange(file);
                 }}
               />
@@ -178,7 +179,7 @@ export const FestivalStageFormField = ({
 }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'stages',
+    name: 'dates.0.stages',
   });
 
   return (
@@ -187,18 +188,18 @@ export const FestivalStageFormField = ({
       {fields.map((field, index) => (
         <div key={field.id} className={styles.fieldGroup}>
           <FormInput
-            {...register(`stages.${index}.name`)}
+            {...register(`dates.0.stages.${index}.name`)}
             type="text"
             label="스테이지 이름"
             placeholder="ex) 메인 스테이지"
-            error={errors.stages?.[index]?.name?.message}
+            error={errors.dates?.[0]?.stages?.[index]?.name?.message}
           />
           <FormInput
-            {...register(`stages.${index}.order`)}
+            {...register(`dates.0.stages.${index}.order`)}
             type="text"
             label="스테이지 순서"
             placeholder="스테이지 순서를 입력해주세요."
-            error={errors.stages?.[index]?.order?.message}
+            error={errors.dates?.[0]?.stages?.[index]?.order?.message}
           />
           <button
             type="button"
@@ -213,7 +214,7 @@ export const FestivalStageFormField = ({
       <button
         type="button"
         className={styles.addButton}
-        onClick={() => append({ name: '', order: '' })}
+        onClick={() => append({ name: '', order: '', times: [] })}
       >
         스테이지 추가
       </button>
@@ -328,10 +329,10 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
             openAt: '',
             stages: [
               {
-                stages: [
-                  { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-                  { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-                  { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
+                name: '',
+                order: '',
+                times: [
+                  { startAt: '', endAt: '', artists: [{ artistId: '' }] },
                 ],
               },
             ],

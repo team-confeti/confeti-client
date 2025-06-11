@@ -85,11 +85,9 @@ export const FestivalDateField = ({
         type="button"
         onClick={() =>
           appendSchedule({
-            stages: [
-              { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-              { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-              { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-            ],
+            name: '',
+            order: '',
+            times: [{ startAt: '', endAt: '', artists: [{ artistId: '' }] }],
           })
         }
         className={styles.addButton}
@@ -180,13 +178,13 @@ export const StageContentField = ({
 }: StageContentFieldProps) => {
   const stageFields = useFieldArray({
     control,
-    name: `dates.${dateIndex}.stages.${scheduleIndex}.stages.${stageIndex}.artistIds`,
+    name: `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.artists`,
   });
 
   const startTimeFieldName =
-    `dates.${dateIndex}.stages.${scheduleIndex}.stages.${stageIndex}.startTime` as const;
+    `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.startAt` as const;
   const endTimeFieldName =
-    `dates.${dateIndex}.stages.${scheduleIndex}.stages.${stageIndex}.endTime` as const;
+    `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.endAt` as const;
 
   return (
     <div className={styles.stageContent}>
@@ -207,6 +205,7 @@ export const StageContentField = ({
         <Controller
           control={control}
           name={startTimeFieldName}
+          defaultValue=""
           render={({ field }) => (
             <FormInput
               {...field}
@@ -214,9 +213,9 @@ export const StageContentField = ({
               label={'공연 시작 시간'}
               placeholder="공연 시작 시간을 입력해주세요."
               error={
-                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.stages?.[
+                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
                   stageIndex
-                ]?.startTime?.message
+                ]?.startAt?.message
               }
             />
           )}
@@ -224,6 +223,7 @@ export const StageContentField = ({
         <Controller
           control={control}
           name={endTimeFieldName}
+          defaultValue=""
           render={({ field }) => (
             <FormInput
               {...field}
@@ -231,9 +231,9 @@ export const StageContentField = ({
               label={'공연 종료 시간'}
               placeholder="공연 종료 시간을 입력해주세요."
               error={
-                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.stages?.[
+                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
                   stageIndex
-                ]?.endTime?.message
+                ]?.endAt?.message
               }
             />
           )}
@@ -244,15 +244,15 @@ export const StageContentField = ({
         <div key={artist.id} className={styles.artistInputContainer}>
           <FormInput
             {...register(
-              `dates.${dateIndex}.stages.${scheduleIndex}.stages.${stageIndex}.artistIds.${artistIndex}.artistId`,
+              `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.artists.${artistIndex}.artistId`,
             )}
             type="text"
             label={`아티스트 ID ${artistIndex + 1}`}
             placeholder="아티스트 ID를 입력해주세요."
             error={
-              errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.stages?.[
+              errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
                 stageIndex
-              ]?.artistIds?.[artistIndex]?.artistId?.message
+              ]?.artists?.[artistIndex]?.artistId?.message
             }
           />
           <button

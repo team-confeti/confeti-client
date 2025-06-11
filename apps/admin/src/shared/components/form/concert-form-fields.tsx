@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Control,
   Controller,
@@ -21,8 +20,8 @@ interface Props {
 }
 
 export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
-  const [posterFile, setPosterFile] = useState<File | null>(null);
-  const posterPreview = useImagePreview(posterFile);
+  const { preview: posterPreview, handleFileChange: handlePosterChange } =
+    useImagePreview();
 
   return (
     <div className={styles.fieldSection}>
@@ -121,7 +120,7 @@ export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files?.[0] ?? null;
-                  setPosterFile(file);
+                  handlePosterChange(file);
                   field.onChange(file);
                 }}
                 error={errors.posterImg?.message}

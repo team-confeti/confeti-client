@@ -8,6 +8,7 @@ import {
   FestivalStageFormField,
 } from '@shared/components/form/festival-form-fields';
 import { FESTIVAL_TAB } from '@shared/constants/tab';
+import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { useZodForm } from '@shared/hooks/use-zod-form';
 import {
   festivalDefaultValues,
@@ -22,6 +23,10 @@ interface Props {
 
 const EditFestivalForm = ({ id }: Props) => {
   const [tab, setTab] = useState<FESTIVAL_TAB>(FESTIVAL_TAB.BASIC);
+  const { preview: posterPreview, handleFileChange: handlePosterChange } =
+    useImagePreview();
+  const { preview: logoPreview, handleFileChange: handleLogoChange } =
+    useImagePreview();
 
   const {
     register,
@@ -63,6 +68,10 @@ const EditFestivalForm = ({ id }: Props) => {
             register={register}
             errors={errors}
             control={control}
+            posterPreview={posterPreview}
+            logoPreview={logoPreview}
+            onPosterChange={handlePosterChange}
+            onLogoChange={handleLogoChange}
           />
           <FestivalStageFormField
             register={register}

@@ -28,31 +28,26 @@ export const festivalSchema = z.object({
       }),
     }),
   ),
-  stages: z.array(
-    z.object({
-      name: z.string().min(1, '스테이지 이름을 입력해주세요'),
-      order: z.string().min(1, '스테이지 순서를 입력해주세요'),
-    }),
-  ),
+
   dates: z.array(
     z.object({
       festivalAt: z.string().min(1, '페스티벌 날짜를 입력해주세요'),
       openAt: z.string().min(1, '티켓 오픈 시간을 입력해주세요'),
       stages: z.array(
         z.object({
-          stages: z
-            .array(
-              z.object({
-                startTime: z.string().min(1, '공연 시작 시간을 입력해주세요'),
-                endTime: z.string().min(1, '공연 종료 시간을 입력해주세요'),
-                artistIds: z.array(
-                  z.object({
-                    artistId: z.string().min(1, '아티스트 ID를 입력해주세요'),
-                  }),
-                ),
-              }),
-            )
-            .length(3),
+          name: z.string().min(1, '스테이지 이름을 입력해주세요'),
+          order: z.string().min(1, '스테이지 순서를 입력해주세요'),
+          times: z.array(
+            z.object({
+              startAt: z.string().min(1, '공연 시작 시간을 입력해주세요'),
+              endAt: z.string().min(1, '공연 종료 시간을 입력해주세요'),
+              artists: z.array(
+                z.object({
+                  artistId: z.string().min(1, '아티스트 ID를 입력해주세요'),
+                }),
+              ),
+            }),
+          ),
         }),
       ),
     }),
@@ -74,12 +69,6 @@ export const festivalDefaultValues: DefaultValues<
   address: '',
   posterImg: new File([], ''),
   logoImg: new File([], ''),
-  stages: [
-    {
-      name: '',
-      order: '',
-    },
-  ],
   reservationUrls: [
     {
       reservationUrl: '',
@@ -93,11 +82,9 @@ export const festivalDefaultValues: DefaultValues<
       openAt: '',
       stages: [
         {
-          stages: [
-            { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-            { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-            { startTime: '', endTime: '', artistIds: [{ artistId: '' }] },
-          ],
+          name: '',
+          order: '',
+          times: [{ startAt: '', endAt: '', artists: [{ artistId: '' }] }],
         },
       ],
     },
