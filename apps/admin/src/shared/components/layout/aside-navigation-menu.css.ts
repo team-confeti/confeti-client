@@ -10,6 +10,11 @@ export const container = style({
   padding: '2rem',
 });
 
+export const logo = style({
+  display: 'flex',
+  margin: '-1rem 0 -1rem 0.5rem',
+});
+
 export const nav = style({
   ...themeVars.display.flexColumn,
   gap: '1rem',
