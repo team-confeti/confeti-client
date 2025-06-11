@@ -12,9 +12,11 @@
   "dependencies": {
     "@confeti/design-system": "workspace:*",
     "@hookform/resolvers": "^5.1.1",
+    "@tanstack/react-query": "^5.62.16",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.2",
+    "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",

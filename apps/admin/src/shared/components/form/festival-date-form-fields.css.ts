@@ -20,7 +20,7 @@ export const tab = style({
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
-  fontSize: themeVars.fontSize.body2,
+  fontSize: themeVars.fontSize.body3,
   fontWeight: themeVars.fontWeight.medium,
   color: themeVars.color.gray600,
   position: 'relative',
@@ -55,7 +55,7 @@ export const activeTab = style([
 export const subSection = style({
   ...themeVars.display.flexColumn,
   gap: '1rem',
-  padding: '2rem',
+  padding: '1rem 2rem 2rem 2rem',
   marginBottom: '2rem',
   backgroundColor: themeVars.color.gray100,
   borderRadius: '12px',
