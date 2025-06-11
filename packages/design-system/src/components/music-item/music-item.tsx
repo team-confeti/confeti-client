@@ -41,9 +41,23 @@ const MusicItem = ({
 
   const renderControlButton = () => {
     const handleInteractionStart = (e: React.TouchEvent | React.MouseEvent) => {
+      const target = e.currentTarget as HTMLElement;
+
       if ('vibrate' in navigator) {
         navigator.vibrate([25]);
       }
+
+      target.animate(
+        [
+          { transform: 'scale(1)' },
+          { transform: 'scale(0.9)' },
+          { transform: 'scale(1)' },
+        ],
+        {
+          duration: 150,
+          easing: 'ease-out',
+        },
+      );
     };
 
     switch (variant) {
