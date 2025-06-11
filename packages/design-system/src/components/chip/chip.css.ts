@@ -8,7 +8,7 @@ const baseChipStyle = {
 };
 
 const withDeleteChipStyle = {
-  padding: '0.6rem 1.2rem',
+  padding: '0.6rem 1.4rem',
   borderRadius: '1.6rem',
 };
 

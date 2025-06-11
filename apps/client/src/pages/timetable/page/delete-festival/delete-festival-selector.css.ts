@@ -18,6 +18,5 @@ export const checkboxBase = style({
   position: 'absolute',
   top: '1rem',
   right: '0',
-  width: '2.2rem',
-  height: '2.2rem',
+  cursor: 'pointer',
 });

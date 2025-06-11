@@ -1,4 +1,4 @@
-import { IcWarning60 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import { SEARCH_NOT_FOUND_MESSAGE } from '../../../constants/notice-message';
 
@@ -7,7 +7,7 @@ import * as styles from './artist-not-found.css';
 const ArtistNotFound = () => {
   return (
     <div className={styles.container}>
-      <IcWarning60 width="6rem" height="6rem" />
+      <Icon name="warning" size="6rem" color="gray400" />
       <p className={styles.title}>
         {SEARCH_NOT_FOUND_MESSAGE.ARTIST_NOT_FOUND_TITLE}
       </p>

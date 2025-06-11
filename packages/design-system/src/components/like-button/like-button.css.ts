@@ -14,14 +14,6 @@ export const likeButtonVariants = recipe({
     cursor: 'pointer',
   },
   variants: {
-    liked: {
-      true: {
-        fill: '#FB0D0D',
-      },
-      false: {
-        fill: '#93959D',
-      },
-    },
     animate: {
       true: {
         animation: `${heartAnimation} 0.3s ease-in-out`,

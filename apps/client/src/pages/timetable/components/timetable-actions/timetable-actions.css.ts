@@ -23,3 +23,15 @@ export const editButton = style({
   height: '5rem',
   transition: 'all 0.18s ease-out',
 });
+
+export const downloadButton = style({
+  display: 'flex',
+  width: '5rem',
+  height: '5rem',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '1rem',
+  border: `1px solid ${themeVars.color.gray300}`,
+  background: themeVars.color.white,
+  cursor: 'pointer',
+});

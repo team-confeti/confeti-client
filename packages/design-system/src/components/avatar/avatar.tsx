@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { CmpProfileNon } from '../../icons/src';
-import { IcSelect } from '../../icons/src';
+import { Icon } from '../../icons';
 import { cn } from '../../utils';
 
 import * as styles from './avatar.css';
@@ -38,8 +37,15 @@ const Avatar = ({
   };
 
   const renderFallback = !src && !fallback && (
-    <CmpProfileNon
+    <Icon
+      name="logo-thumbnail"
       className={styles.imgVariants({ isClickable: isHandleClick })}
+      style={
+        {
+          '--icon-bg': '#FFFFFF',
+          '--icon-fg': '#EFF0F4',
+        } as React.CSSProperties
+      }
     />
   );
 
@@ -60,7 +66,7 @@ const Avatar = ({
       )}
       {internalSelected && isHandleClick && (
         <div className={styles.overlay}>
-          <IcSelect className={styles.icon} />
+          <Icon name="select" size="2.8rem" color="confeti_lime" />
         </div>
       )}
     </div>

@@ -15,11 +15,6 @@ export const iconDescriptionWrapper = style({
   gap: '2rem',
 });
 
-export const icon = style({
-  width: '5rem',
-  height: '5rem',
-});
-
 export const description = style({
   ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.gray500,

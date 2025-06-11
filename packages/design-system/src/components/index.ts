@@ -4,7 +4,6 @@ export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';
 export { default as Box } from './box/box';
 export { default as Button } from './button/button';
-export { default as ButtonIcon } from './button-icon/button-icon';
 export { default as Chip } from './chip/chip';
 export { default as Description } from './description/description';
 export { default as Dialog } from './dialog/dialog';
