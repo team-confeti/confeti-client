@@ -69,7 +69,7 @@ export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
         />
         <FormInput
           {...register('reserveAt')}
-          type="date"
+          type="datetime-local"
           label="예매 시작일"
           error={errors.reserveAt?.message}
         />
