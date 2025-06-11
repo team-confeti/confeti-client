@@ -2,11 +2,26 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '../../styles';
 
+export const dragHandle = style({
+  cursor: 'grab',
+
+  ':active': {
+    cursor: 'grabbing',
+  },
+});
+
 export const musicItemWrapper = style({
   ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
   padding: '1rem 0',
-  // touchAction: 'none',
+  userSelect: 'none',
+  selectors: {
+    '&': {
+      WebkitUserSelect: 'none',
+      MozUserSelect: 'none',
+      msUserSelect: 'none',
+    },
+  },
 });
 
 export const contentWrapper = style({
@@ -61,6 +76,14 @@ export const title = style({
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
   marginBottom: '0.4rem',
+  userSelect: 'none',
+  selectors: {
+    '&': {
+      WebkitUserSelect: 'none',
+      MozUserSelect: 'none',
+      msUserSelect: 'none',
+    },
+  },
 });
 
 export const artist = style({
@@ -72,6 +95,14 @@ export const artist = style({
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
   lineHeight: '1.5rem',
+  userSelect: 'none',
+  selectors: {
+    '&': {
+      WebkitUserSelect: 'none',
+      MozUserSelect: 'none',
+      msUserSelect: 'none',
+    },
+  },
 });
 
 export const rightIcon = style({

@@ -40,6 +40,12 @@ const MusicItem = ({
     });
 
   const renderControlButton = () => {
+    const handleInteractionStart = (e: React.TouchEvent | React.MouseEvent) => {
+      if ('vibrate' in navigator) {
+        navigator.vibrate([25]);
+      }
+    };
+
     switch (variant) {
       case 'default':
         return (
@@ -53,7 +59,12 @@ const MusicItem = ({
         );
       case 'editable':
         return (
-          <button {...listeners}>
+          <button
+            {...listeners}
+            className={styles.dragHandle}
+            onTouchStart={handleInteractionStart}
+            onMouseDown={handleInteractionStart}
+          >
             <IcHamburger width={24} height={24} />
           </button>
         );
