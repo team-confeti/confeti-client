@@ -19,7 +19,12 @@ const ProgressBar = ({ totalIndex, currentIndex }: ProgressBarProps) => {
             key={index}
           />
         ) : (
-          <Icon name="indicator-default" key={index} />
+          <Icon
+            name="indicator-default"
+            key={index}
+            size="0.6rem"
+            color="gray300"
+          />
         ),
       )}
     </div>
