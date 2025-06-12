@@ -38,6 +38,7 @@ const ArtistSearch = ({
             placeholder="아티스트를 검색해보세요!"
             value={keyword}
             onChange={handleInputChange}
+            autoFocus={true}
           />
         </div>
       </div>

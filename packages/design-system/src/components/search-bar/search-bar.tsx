@@ -15,6 +15,7 @@ interface SearchBarProps {
   onClear?: () => void;
   showBackButton?: boolean;
   placeholder?: string;
+  autoFocus?: boolean;
 }
 
 export const SearchBar = ({
@@ -27,6 +28,7 @@ export const SearchBar = ({
   onClear,
   showBackButton = true,
   placeholder,
+  autoFocus = false,
 }: SearchBarProps) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
@@ -109,6 +111,7 @@ export const SearchBar = ({
           onKeyUp={onKeyUp}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoFocus={autoFocus}
         />
         {showClearBtn && (
           <Icon
