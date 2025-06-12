@@ -47,12 +47,12 @@ const FestivalSelector = ({
         <DropdownMenu>
           <DropdownMenu.Trigger>
             {({ open }: { open: boolean }) => (
-              <button
-                type="button"
+              <Icon
                 className={styles.meatballButton({ isOpen: open })}
-              >
-                <Icon name="meatball" size="2.4rem" color="confeti_lime3" />
-              </button>
+                name="meatball"
+                size="2.4rem"
+                color="confeti_lime3"
+              />
             )}
           </DropdownMenu.Trigger>
 
