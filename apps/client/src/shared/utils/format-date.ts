@@ -5,7 +5,6 @@ import { WEEKDAYS } from '@shared/constants/day';
  * @param {string} date - 날짜 문자열 (예: "2025-04-09")
  * @returns {{year: string, month: string, day: string}} - 연, 월(2자리), 일(2자리)
  */
-
 const getDateParts = (date: string) => {
   const parsedDate = new Date(date);
   const year = parsedDate.getFullYear();
@@ -22,7 +21,6 @@ const getDateParts = (date: string) => {
  * @param {boolean} isPerformanceDetail - true이면 연도를 포함한 날짜 형식 사용
  * @returns {string} - 포맷된 날짜 문자열 (예: "2025.04.09 - 10.03" 또는 "2025.04.09 - 2025.10.03")
  */
-
 const getStartAtEndAt = (
   startAt: string,
   endAt: string,
@@ -35,6 +33,10 @@ const getStartAtEndAt = (
   } = getDateParts(startAt);
   const { year: endYear, month: endMonth, day: endDay } = getDateParts(endAt);
 
+  if (startAt === endAt) {
+    return `${startYear}.${startMonth}.${startDay}`;
+  }
+
   return `${startYear}.${startMonth}.${startDay} - ${isPerformanceDetail ? `${endYear}.${endMonth}.${endDay}` : `${endMonth}.${endDay}`}`;
 };
 
@@ -43,7 +45,6 @@ const getStartAtEndAt = (
  * @param {string} reserveAt - 예약 날짜 문자열 (예: "2025-03-10T15:00:00Z")
  * @returns {string} - 포맷된 날짜 문자열 (예: "2025년 3월 10일 (월) 오후 3시")
  */
-
 const getReserveDate = (reserveAt: string): string => {
   const parsedDate = new Date(reserveAt);
 

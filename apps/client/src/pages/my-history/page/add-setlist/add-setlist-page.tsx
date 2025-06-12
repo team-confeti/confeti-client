@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
 import { useQuery } from '@tanstack/react-query';
@@ -46,10 +46,6 @@ const AddSetlistPage = () => {
         !!selectedKeyword,
       ),
     });
-
-  useEffect(() => {
-    setSelectedKeyword(paramsKeyword);
-  }, [paramsKeyword]);
 
   const handleSelectItem = (
     keyword: string,
