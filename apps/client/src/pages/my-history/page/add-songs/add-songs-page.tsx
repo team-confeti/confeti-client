@@ -107,7 +107,7 @@ const AddSongsPage = () => {
         <div className={styles.container}>
           <div className={styles.searchBarContainer}>
             <SearchBar
-              placeholder="노래 제목 또는 아티스트를 검색해주세요."
+              placeholder="아티스트 또는 노래 제목을 검색해주세요."
               value={keyword}
               onChange={handleInputChangeWithReset}
               {...keyboardProps}
