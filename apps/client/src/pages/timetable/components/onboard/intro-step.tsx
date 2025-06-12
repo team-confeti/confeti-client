@@ -27,12 +27,12 @@ const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button
-            text="타임 테이블 사용법 알아보기"
+            text="타임테이블 사용법 알아보기"
             variant="add"
             onClick={handleNextStep}
           />
           <Button
-            text="타임 테이블 바로 시작하기"
+            text="타임테이블 바로 시작하기"
             variant="add"
             className={cn(styles.customAddButton)}
             onClick={() => handleNavigate({ isReTry: false })}
