@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
@@ -18,8 +17,6 @@ const ArtistSearch = ({
   onArtistSelect,
   handleSearchParams,
 }: ArtistSearchProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
 
@@ -33,9 +30,6 @@ const ArtistSearch = ({
 
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
   return (
     <>
       <div className={styles.searchBarContainer}>
