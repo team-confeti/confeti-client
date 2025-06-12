@@ -44,7 +44,7 @@ const AddSongsPage = () => {
 
   const isArtistKeywordClick = !!selectedArtistId && isArtistSearch;
   const isTypedSearch = !!debouncedKeyword.trim() && !isArtistSearch;
-  // 일반 검색: 곡 검색 API
+
   const { data: musicSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_MUSIC(
       { term: debouncedKeyword, offset: 0, limit: 5 },
@@ -52,7 +52,6 @@ const AddSongsPage = () => {
     ),
   });
 
-  // 아티스트 검색: 아티스트 곡 검색 API
   const { data: artistSearchData } = useQuery({
     ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
       {
@@ -68,6 +67,7 @@ const AddSongsPage = () => {
   const combinedMusics = isArtistKeywordClick
     ? artistSearchData?.musics || []
     : [...(musicSearchData?.musics || []), ...(artistSearchData?.musics || [])];
+
   const { musicList, onClickPlayToggle, audioRef } =
     useMusicPlayer(combinedMusics);
 
@@ -82,7 +82,6 @@ const AddSongsPage = () => {
     },
   });
 
-  // 검색어 변경 시 상태 초기화
   useEffect(() => {
     if (!debouncedKeyword.trim()) {
       setSelectedArtistId(null);
@@ -100,17 +99,16 @@ const AddSongsPage = () => {
     setSelectedSongs((prev) => prev.filter((song) => song.musicId !== musicId));
   };
 
-  const selectedArtist = relatedArtists?.artists.find(
-    (artist: RelatedArtist) => artist.name === paramsKeyword,
-  );
   const handleConfirmAddSection = () => setIsConfirmAddSection(false);
 
   const handleSelectArtist = (artistKeyword: string) => {
-    // 연관 검색어에서 선택된 아티스트 정보 찾기
-
-    if (selectedArtist) {
-      setSelectedArtistId(selectedArtist.artistId);
+    const matched = relatedArtists?.artists.find(
+      (artist: RelatedArtist) => artist.name === artistKeyword,
+    );
+    if (matched) {
+      setSelectedArtistId(matched.artistId);
       setIsArtistSearch(true);
+      setShouldShowResult(true);
     }
     navigate(`/my-history/setlist/${setlistId}/add-songs?q=${artistKeyword}`);
   };
@@ -144,8 +142,11 @@ const AddSongsPage = () => {
   useEffect(() => {
     if (!paramsKeyword.trim()) return;
 
-    if (selectedArtist) {
-      setSelectedArtistId(selectedArtist.artistId);
+    const selected = relatedArtists?.artists.find(
+      (artist: RelatedArtist) => artist.name === paramsKeyword,
+    );
+    if (selected) {
+      setSelectedArtistId(selected.artistId);
       setIsArtistSearch(true);
       setShouldShowResult(true);
     }
@@ -165,37 +166,38 @@ const AddSongsPage = () => {
     );
   };
 
-  const GeneralResult = () => {
-    return (
-      <>
-        <div className={styles.renderContentContainer}>
-          <MusicList
-            musics={musicList}
-            onClickPlayToggle={onClickPlayToggle}
-            onClickAdd={handleClickMusic}
-            variant="default"
-          />
-          <audio ref={audioRef} />
-        </div>
-        <div className={styles.buttonContainer}>
-          <Button
-            text="선택 완료"
-            disabled={selectedSongs.length === 0}
-            onClick={handleMoveToConfirmAddSection}
-          />
-        </div>
-      </>
-    );
-  };
+  const GeneralResult = () => (
+    <>
+      <div className={styles.renderContentContainer}>
+        <MusicList
+          musics={musicList}
+          onClickPlayToggle={onClickPlayToggle}
+          onClickAdd={handleClickMusic}
+          variant="default"
+        />
+        <audio ref={audioRef} />
+      </div>
+      <div className={styles.buttonContainer}>
+        <Button
+          text="선택 완료"
+          disabled={selectedSongs.length === 0}
+          onClick={handleMoveToConfirmAddSection}
+        />
+      </div>
+    </>
+  );
 
   const RelatedResult = () => {
+    const artist = relatedArtists?.artists.find(
+      (a: RelatedArtist) => a.artistId === selectedArtistId,
+    );
     return (
       <>
         <p className={styles.selectedComment}>
           현재 선택된 아티스트의 곡이에요.
         </p>
         <div className={styles.listContainer}>
-          {selectedArtist && <RelatedArtistList artist={selectedArtist} />}
+          {artist && <RelatedArtistList artist={artist} />}
         </div>
         <div className={styles.renderContentContainer}>
           <MusicList
@@ -217,14 +219,12 @@ const AddSongsPage = () => {
     );
   };
 
-  // 검색 결과 컴포넌트 분기
-  const ResultContent = () => {
-    return isArtistSearch ? <RelatedResult /> : <GeneralResult />;
-  };
+  const ResultContent = () =>
+    isArtistSearch ? <RelatedResult /> : <GeneralResult />;
 
   const hasSuggestions = (relatedArtists?.artists?.length ?? 0) > 0;
   const hasKeyword = !!keyword.trim();
-  // 검색 상태 로직 개선
+
   const searchState = isRelatedSearchLoading
     ? 'loading'
     : shouldShowResult
