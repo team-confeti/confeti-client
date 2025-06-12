@@ -37,11 +37,13 @@ export const item = style({
 export const highlightedTitle = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.confeti_lime3,
+  whiteSpace: 'nowrap',
 });
 
 export const title = style({
   ...themeVars.fontStyles.subtitle5_sb_12,
   color: themeVars.color.gray600,
+  whiteSpace: 'nowrap',
 });
 
 export const count = style({
