@@ -1,6 +1,7 @@
 import {
   createContext,
   type ReactNode,
+  SVGProps,
   useContext,
   useEffect,
   useRef,
@@ -11,6 +12,7 @@ import type { Settings as SlickSettings } from 'react-slick';
 import Slider from 'react-slick';
 
 import { Icon } from '../../icons';
+import { border } from '../../styles/tokens/border';
 
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
@@ -39,6 +41,47 @@ interface CarouselContextType {
   performData: PerformData[];
   handleContainerClick: (type: string, typeId: number) => void;
 }
+
+const SvgInfoOverlay = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="url(#Info_overlay_svg__a)"
+      fillOpacity={0.8}
+      d="M0 0h300v200H0z"
+    />
+    <defs>
+      <linearGradient
+        id="Info_overlay_svg__a"
+        x1={150}
+        x2={150}
+        y1={0}
+        y2={200}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopOpacity={0} />
+        <stop offset={1} />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const SvgSlideOverlayOp = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 156 208"
+    preserveAspectRatio="none"
+    {...props}
+  >
+    <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
+  </svg>
+);
 
 // Context 생성
 const CarouselContext = createContext<CarouselContextType | null>(null);
@@ -167,17 +210,14 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <Icon
-                name="overlay-info"
+              <SvgInfoOverlay
                 className={styles.infoOverlay}
                 style={{ width: '96.5%', height: '100%' }}
               />
-
               {children}
             </>
           ) : (
-            <Icon
-              name="overlay-slide"
+            <SvgSlideOverlayOp
               className={styles.slideOverlay}
               style={{ width: '96.5%', height: '100%' }}
             />
