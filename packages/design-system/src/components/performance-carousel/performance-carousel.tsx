@@ -11,9 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import type { Settings as SlickSettings } from 'react-slick';
 import Slider from 'react-slick';
 
-import { Icon } from '../../icons';
-import { border } from '../../styles/tokens/border';
-
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import './dots.css';
@@ -45,23 +42,19 @@ interface CarouselContextType {
 const SvgInfoOverlay = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
+    width={300}
+    height={398}
     fill="none"
     {...props}
   >
-    <path
-      fill="url(#Info_overlay_svg__a)"
-      fillOpacity={0.8}
-      d="M0 0h300v200H0z"
-    />
+    <path fill="url(#a)" fillOpacity={0.8} d="M0 0h300v398H0z" />
     <defs>
       <linearGradient
-        id="Info_overlay_svg__a"
+        id="a"
         x1={150}
         x2={150}
-        y1={0}
-        y2={200}
+        y1={216.304}
+        y2={398}
         gradientUnits="userSpaceOnUse"
       >
         <stop stopOpacity={0} />
