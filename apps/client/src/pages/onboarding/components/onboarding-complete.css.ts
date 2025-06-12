@@ -7,7 +7,7 @@ export const completeContentSection = recipe({
   base: {
     ...themeVars.display.flexColumn,
     width: '100%',
-    height: '100vh',
+    height: 'calc(100dvh - 5.4rem)',
   },
   variants: {
     phase: {
