@@ -33,7 +33,7 @@ globalStyle('html, :host', {
   WebkitTextSizeAdjust: '100%' /*2 */,
   MozTabSize: '4' /*3 */,
   tabSize: '4' /*3 */,
-  fontFamily: 'system-ui, sans-serif' /*4 */,
+  fontFamily: 'Pretendard, system-ui, sans-serif' /*4 */,
   fontFeatureSettings: 'normal' /*5 */,
   fontVariationSettings: 'normal' /*6 */,
   WebkitTapHighlightColor: 'transparent' /*7 */,
