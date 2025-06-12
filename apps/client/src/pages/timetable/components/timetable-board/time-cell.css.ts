@@ -16,6 +16,7 @@ export const timeP = recipe({
     ...themeVars.fontStyles.body5_r_12,
     padding: '0 4px',
     width: '22px',
+    lineHeight: '14px',
     marginRight: '7px',
     backgroundColor: themeVars.color.white,
   },
