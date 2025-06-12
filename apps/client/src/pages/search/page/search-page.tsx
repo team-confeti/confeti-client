@@ -27,6 +27,7 @@ const SearchPage = () => {
     selectedArtistId,
     selectedPerformanceId,
     barFocus,
+    isSelecting,
     handleOnFocus,
     handleOnBlur,
     handleClear,
@@ -155,6 +156,9 @@ const SearchPage = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
+    if (isSelecting) {
+      return 'suggestion';
+    }
     if (barFocus && relatedArtists?.artists) {
       return 'suggestion';
     }
@@ -167,6 +171,8 @@ const SearchPage = () => {
       return 'default';
     }
   };
+
+  console.log(searchState());
 
   return (
     <>
