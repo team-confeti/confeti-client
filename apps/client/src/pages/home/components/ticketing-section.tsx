@@ -42,7 +42,7 @@ const TicketingSection = ({
             textContent={
               <>
                 <TicketingCard.Dday reserveAt={DdayList[index]?.reserveAt} />
-                <TicketingCard.SubTitle subtitle={performance.subtitle} />
+                <TicketingCard.SubTitle subtitle={performance.title} />
               </>
             }
             performanceInfoContent={
