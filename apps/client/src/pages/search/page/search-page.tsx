@@ -156,6 +156,9 @@ const SearchPage = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
+    if (isSelecting) {
+      return 'suggestion';
+    }
     if (
       searchAllData?.artist === null &&
       searchAllData?.performanceCount === 0
