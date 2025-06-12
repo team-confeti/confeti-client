@@ -156,8 +156,11 @@ const SearchPage = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
-    if (isSelecting) {
-      return 'suggestion';
+    if (
+      searchAllData?.artist === null &&
+      searchAllData?.performanceCount === 0
+    ) {
+      return 'notFound';
     }
     if (barFocus && relatedArtists?.artists) {
       return 'suggestion';
@@ -165,14 +168,8 @@ const SearchPage = () => {
     if (paramsKeyword || (searchAllData && !barFocus)) {
       return 'result';
     }
-    if (searchAllData === null) {
-      return 'notFound';
-    } else {
-      return 'default';
-    }
+    return 'default';
   };
-
-  console.log(searchState());
 
   return (
     <>
