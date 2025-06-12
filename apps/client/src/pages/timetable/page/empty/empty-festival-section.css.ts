@@ -23,4 +23,5 @@ export const description = style({
 
 export const button = style({
   width: '17.6rem',
+  whiteSpace: 'nowrap',
 });
