@@ -4,8 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   flex: '1',
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
 });
 
 export const searchBarContainer = style({

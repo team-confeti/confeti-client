@@ -15,6 +15,7 @@ import { useKeyboard } from '@shared/hooks/use-keyboard';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import Loading from '@shared/pages/loading/loading';
 import { MusicInfoResponse } from '@shared/types/my-history-response';
+import { RelatedArtist } from '@shared/types/search-response';
 
 import * as styles from './add-songs-page.css';
 
@@ -100,7 +101,7 @@ const AddSongsPage = () => {
   };
 
   const selectedArtist = relatedArtists?.artists.find(
-    (artist) => artist.name === paramsKeyword,
+    (artist: RelatedArtist) => artist.name === paramsKeyword,
   );
   const handleConfirmAddSection = () => setIsConfirmAddSection(false);
 
@@ -153,7 +154,7 @@ const AddSongsPage = () => {
   const SuggestionContent = () => {
     return (
       <div className={styles.suggestionContainer}>
-        {relatedArtists?.artists.map((artist) => (
+        {relatedArtists?.artists.map((artist: RelatedArtist) => (
           <RelatedArtistList
             onSelect={() => handleSelectArtist(artist.name)}
             key={artist.artistId}
