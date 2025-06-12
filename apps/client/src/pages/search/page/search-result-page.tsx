@@ -18,7 +18,7 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
   const performanceCount = searchData?.performanceCount ?? 0;
 
   return (
-    <>
+    <div className={styles.pageWrapper}>
       <main className={styles.resultSection}>
         {artistData && (
           <>
@@ -33,7 +33,7 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
         />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

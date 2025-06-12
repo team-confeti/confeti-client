@@ -35,7 +35,7 @@ export const SEARCH_QUERY_OPTIONS = {
     enabled: boolean,
   ) =>
     queryOptions({
-      queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(term),
+      queryKey: SEARCH_QUERY_KEY.SEARCH_ALL(term, aid, pid),
       queryFn: () => getSearchAll(aid, pid, term),
       enabled,
     }),

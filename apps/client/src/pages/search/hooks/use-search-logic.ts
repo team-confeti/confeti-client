@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const useSearchLogic = () => {
   const [barFocus, setBarFocus] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const paramsKeyword = searchParams.get('q') || '';
@@ -18,6 +20,8 @@ export const useSearchLogic = () => {
 
   const handleSelectKeyword = useCallback(
     (keyword: string, id: string | number, type: 'artist' | 'performance') => {
+      setIsSelecting(true);
+
       const newParams = new URLSearchParams(searchParams);
       newParams.set('q', keyword);
 
@@ -28,7 +32,13 @@ export const useSearchLogic = () => {
         newParams.set('pid', String(id));
         newParams.delete('aid');
       }
+
       setSearchParams(newParams);
+      setBarFocus(false);
+
+      setTimeout(() => {
+        setIsSelecting(false);
+      }, 100);
     },
     [searchParams, setSearchParams],
   );
@@ -43,6 +53,7 @@ export const useSearchLogic = () => {
     selectedArtistId,
     selectedPerformanceId,
     barFocus,
+    isSelecting,
     handleNavigateWithKeyword,
     handleSelectKeyword,
     handleOnFocus,
