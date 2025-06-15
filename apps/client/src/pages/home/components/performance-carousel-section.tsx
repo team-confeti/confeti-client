@@ -1,4 +1,5 @@
 import { PerformanceCarousel } from '@confeti/design-system';
+
 import { CarouselPerformances } from '@shared/types/home-response';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';

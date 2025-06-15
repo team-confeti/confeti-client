@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Description, SearchBar } from '@confeti/design-system';
+
 import { onboard } from '@shared/types/onboard-response';
 
 import ArtistSearch from './artist-search';

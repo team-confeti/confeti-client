@@ -6,6 +6,7 @@ import RelatedArtistList from '@pages/my-history/page/add-songs/related-artist-l
 import { useQuery } from '@tanstack/react-query';
 
 import { Button, SearchBar, toast } from '@confeti/design-system';
+
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import MusicList from '@shared/components/music-list/music-list';
 import { SwitchCase } from '@shared/components/switch-case';

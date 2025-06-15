@@ -6,6 +6,7 @@ import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutatio
 
 import { Button, Header, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import * as styles from './edit-profile.css';

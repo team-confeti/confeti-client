@@ -1,5 +1,6 @@
 import { LikeButton } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/search-response';

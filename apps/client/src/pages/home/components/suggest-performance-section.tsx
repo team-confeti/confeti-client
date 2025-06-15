@@ -1,5 +1,6 @@
 import { Box, FestivalCard } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { SuggestPerformance } from '@shared/types/home-response';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 

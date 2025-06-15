@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { Description } from '@confeti/design-system';
+
 import { SwitchCase } from '@shared/components/switch-case';
 import Loading from '@shared/pages/loading/loading';
 

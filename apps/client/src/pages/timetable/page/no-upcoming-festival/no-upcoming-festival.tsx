@@ -1,5 +1,6 @@
 import { Button, Header } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import * as styles from './no-upcoming-festival.css';

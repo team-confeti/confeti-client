@@ -8,6 +8,7 @@ import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 import { generateTableRow, parseTimeString } from '@pages/timetable/utils';
 
 import { toast } from '@confeti/design-system';
+
 import { UserTimetable } from '@shared/types/timetable-response';
 
 import * as styles from './timetable-board.css';
