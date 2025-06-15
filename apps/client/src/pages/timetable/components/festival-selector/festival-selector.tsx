@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import FestivalButton from '@pages/timetable/components/festival-selector/festival-button';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { DropdownMenu } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
@@ -21,8 +23,14 @@ const FestivalSelector = ({
 }: Props) => {
   const navigate = useNavigate();
 
+  const { data } = useSuspenseInfiniteQuery(
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.ADDABLE_FESTIVALS(),
+  );
+
+  const isEmpty = data.pages[0]?.festivals.length === 0;
+
   const handleAddFestival = () => {
-    navigate(`${routePath.ADD_FESTIVAL}`);
+    navigate(isEmpty ? routePath.NO_UPCOMING_FESTIVAL : routePath.ADD_FESTIVAL);
   };
 
   const handleDeleteFestival = () => {
