@@ -1,10 +1,10 @@
+import { Button, Description } from '@confeti/design-system';
+import { cn } from '@confeti/design-system/utils';
+
 import {
   WithNavigate,
   WithNextStep,
 } from '@pages/timetable/types/timetable-onboard-type';
-
-import { Button, Description } from '@confeti/design-system';
-import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './step.css';
 

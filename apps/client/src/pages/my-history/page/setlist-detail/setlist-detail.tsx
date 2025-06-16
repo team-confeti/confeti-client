@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Footer } from '@confeti/design-system';
 

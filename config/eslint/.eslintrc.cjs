@@ -28,9 +28,10 @@ module.exports = {
       {
         groups: [
           ['^node:'],
-          ['^react', '^@?\\w'],
+          ['^react$', '^@?\\w'],
           ['^@confeti/'],
           ['^@shared/'],
+          ['^@pages/'],
           ['^\\u0000'],
           ['^\\.'],
           ['^.+\\.css$'],

@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
-import EditNameInput from '@pages/my/components/edit/edit-name-input';
-import LinkedAccount from '@pages/my/components/edit/linked-account';
-import UserInfo from '@pages/my/components/profile/user-info';
-import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutation';
 
 import { Button, Header, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
+
+import EditNameInput from '@pages/my/components/edit/edit-name-input';
+import LinkedAccount from '@pages/my/components/edit/linked-account';
+import UserInfo from '@pages/my/components/profile/user-info';
+import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutation';
 
 import * as styles from './edit-profile.css';
 

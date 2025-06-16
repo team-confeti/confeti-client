@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
@@ -11,6 +10,8 @@ import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queri
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
+
+import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
 
 import * as styles from './add-setlist-page.css';
 

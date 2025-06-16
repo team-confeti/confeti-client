@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard, Header } from '@confeti/design-system';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
+
+import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 
 import { MAX_SELECTIONS } from '../../constants';
 import useFestivalAdd from '../../hooks/use-festival-add';

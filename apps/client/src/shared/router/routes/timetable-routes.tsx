@@ -2,7 +2,11 @@ import RequireLoginPage from '@pages/auth/page/require-login';
 import TimetableLayout from '@pages/timetable/page/timetable-layout';
 import TimeTablePage from '@pages/timetable/page/timetable-page';
 
-import { AddFestivalPage, DeleteFestivalPage } from '../lazy';
+import {
+  AddFestivalPage,
+  DeleteFestivalPage,
+  NoUpcomingFestival,
+} from '../lazy';
 import { routePath } from '../path';
 import { createProtectedRoute } from '../protected-route';
 
@@ -26,6 +30,10 @@ export const timetableRoutes = [
       {
         path: routePath.DELETE_FESTIVAL,
         element: createProtectedRoute(true, <DeleteFestivalPage />),
+      },
+      {
+        path: routePath.NO_UPCOMING_FESTIVAL,
+        element: createProtectedRoute(true, <NoUpcomingFestival />),
       },
     ],
   },

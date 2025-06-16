@@ -1,4 +1,3 @@
-import { RouterProvider } from 'react-router-dom';
 import { init as amplitudeInit } from '@amplitude/analytics-browser';
 import {
   addIntegration,
@@ -7,6 +6,7 @@ import {
 } from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RouterProvider } from 'react-router-dom';
 
 import {
   OverlayProvider,

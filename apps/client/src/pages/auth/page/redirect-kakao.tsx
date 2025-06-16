@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
 
 import Loading from '@shared/pages/loading/loading';
+
+import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
 
 const RedirectKakao = () => {
   const location = useLocation();

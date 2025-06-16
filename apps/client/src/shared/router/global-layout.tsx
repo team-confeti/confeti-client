@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
+import { Outlet } from 'react-router-dom';
 
 import { Header } from '@confeti/design-system';
 

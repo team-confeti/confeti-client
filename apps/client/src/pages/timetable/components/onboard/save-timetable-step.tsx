@@ -1,9 +1,9 @@
+import { Button, Description } from '@confeti/design-system';
+
 import {
   WithIndex,
   WithNavigate,
 } from '@pages/timetable/types/timetable-onboard-type';
-
-import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';

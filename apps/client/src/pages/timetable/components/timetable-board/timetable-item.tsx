@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
+import { cn } from '@confeti/design-system/utils';
+
 import { TIME_SLOT_HEIGHT_1_MIN } from '@pages/timetable/constants';
 import {
   calcMinutesFromOpen,
   calcTotalMinutes,
   parseTimeString,
 } from '@pages/timetable/utils';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
-import { cn } from '@confeti/design-system/utils';
 
 import * as styles from './timetable-item.css';
 
