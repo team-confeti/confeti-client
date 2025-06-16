@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
-import RelatedArtistList from '@pages/my-history/page/add-songs/related-artist-list';
-import { useQuery } from '@tanstack/react-query';
 
 import { Button, SearchBar, toast } from '@confeti/design-system';
 
@@ -17,6 +15,9 @@ import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import Loading from '@shared/pages/loading/loading';
 import { MusicInfoResponse } from '@shared/types/my-history-response';
 import { RelatedArtist } from '@shared/types/search-response';
+
+import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
+import RelatedArtistList from '@pages/my-history/page/add-songs/related-artist-list';
 
 import * as styles from './add-songs-page.css';
 

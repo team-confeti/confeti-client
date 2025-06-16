@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import CountDisplay from '@pages/my-history/components/overview/count-display';
-import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FestivalCard, Header } from '@confeti/design-system';
 
@@ -15,6 +13,9 @@ import {
 } from '@shared/constants/sort-label';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
+
+import CountDisplay from '@pages/my-history/components/overview/count-display';
+import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 
 import * as styles from './my-history-overview-page.css';
 

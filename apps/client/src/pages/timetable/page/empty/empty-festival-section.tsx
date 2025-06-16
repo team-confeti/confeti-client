@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';

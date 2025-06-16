@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+
+import { useFunnel } from '@shared/hooks/use-funnel';
+import { routePath } from '@shared/router/path';
+
 import ClickBlockStep from '@pages/timetable/components/onboard/click-block-step';
 import EditTimetableStep from '@pages/timetable/components/onboard/edit-timetable-step';
 import FestivalCustomStep from '@pages/timetable/components/onboard/festival-custom-step';
 import FestivalSelectStep from '@pages/timetable/components/onboard/festival-select-step';
 import IntroStep from '@pages/timetable/components/onboard/intro-step';
 import SaveTimetableStep from '@pages/timetable/components/onboard/save-timetable-step';
-
-import { useFunnel } from '@shared/hooks/use-funnel';
-import { routePath } from '@shared/router/path';
 
 const TimetableOnboard = () => {
   const navigate = useNavigate();

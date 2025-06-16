@@ -1,9 +1,9 @@
-import FestivalButton from '@pages/timetable/components/festival-selector/festival-button';
-
 import { Icon } from '@confeti/design-system/icon';
 import { cn } from '@confeti/design-system/utils';
 
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
+
+import FestivalButton from '@pages/timetable/components/festival-selector/festival-button';
 
 import * as styles from './delete-festival-selector.css';
 

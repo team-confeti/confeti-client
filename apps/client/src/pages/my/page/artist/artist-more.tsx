@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ArtistList from '@pages/my/components/artist/artist-list';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Header } from '@confeti/design-system';
@@ -11,6 +10,8 @@ import {
   SORT_OPTIONS,
   SortOption,
 } from '@shared/constants/sort-label';
+
+import ArtistList from '@pages/my/components/artist/artist-list';
 
 import * as styles from './artist-more.css';
 

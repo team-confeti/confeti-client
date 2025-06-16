@@ -1,4 +1,9 @@
 import { useRef } from 'react';
+
+import { toast } from '@confeti/design-system';
+
+import { UserTimetable } from '@shared/types/timetable-response';
+
 import BoothOpenBox from '@pages/timetable/components/timetable-board/booth-open-box';
 import TimeCell from '@pages/timetable/components/timetable-board/time-cell';
 import TimetableItem from '@pages/timetable/components/timetable-board/timetable-item';
@@ -6,10 +11,6 @@ import { END_HOUR, HALF_HOUR_TO_MINUTES } from '@pages/timetable/constants';
 import { usePatchTimetableMutation } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 import { generateTableRow, parseTimeString } from '@pages/timetable/utils';
-
-import { toast } from '@confeti/design-system';
-
-import { UserTimetable } from '@shared/types/timetable-response';
 
 import * as styles from './timetable-board.css';
 

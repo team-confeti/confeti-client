@@ -1,9 +1,5 @@
-import { useParams } from 'react-router-dom';
-import DetailInfo from '@pages/performance/components/detail-info/detail-info';
-import Location from '@pages/performance/components/location/location';
-import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
-import Reservation from '@pages/performance/components/reservation/reservation';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
 
@@ -11,6 +7,11 @@ import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-
 import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 import { addRecentViewItem } from '@shared/utils/recent-view';
+
+import DetailInfo from '@pages/performance/components/detail-info/detail-info';
+import Location from '@pages/performance/components/location/location';
+import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
+import Reservation from '@pages/performance/components/reservation/reservation';
 
 import FestivalArtistSection from '../components/artist/festival-artist-section';
 

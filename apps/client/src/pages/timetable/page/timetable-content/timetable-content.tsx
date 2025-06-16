@@ -1,3 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
+
+import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import { FestivalTimetable } from '@shared/types/festival-timetable-response';
+
 import Calender from '@pages/timetable/components/calender/calender';
 import FestivalSelector from '@pages/timetable/components/festival-selector/festival-selector';
 import FestivalStage from '@pages/timetable/components/festival-stage/festival-stage';
@@ -6,10 +11,6 @@ import TimeTableBoard from '@pages/timetable/components/timetable-board/timetabl
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
-import { useQuery } from '@tanstack/react-query';
-
-import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import * as styles from './timetable-content.css';
 

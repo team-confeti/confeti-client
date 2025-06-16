@@ -1,6 +1,6 @@
-import { TimetableInfoType } from '@pages/timetable/types/timetable-info-type';
-
 import { Icon } from '@confeti/design-system/icon';
+
+import { TimetableInfoType } from '@pages/timetable/types/timetable-info-type';
 
 import * as styles from './festival-stage.css';
 
