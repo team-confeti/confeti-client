@@ -1,4 +1,5 @@
 import { Icon } from '@confeti/design-system/icon';
+
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { MyPerformancesResponse } from '@shared/types/user-response';
 import { formatDate } from '@shared/utils/format-date';

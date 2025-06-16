@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Footer } from '@confeti/design-system';
+
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import Hero from '@shared/components/hero/hero';
 import { routePath } from '@shared/router/path';

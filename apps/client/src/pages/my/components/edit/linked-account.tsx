@@ -1,4 +1,5 @@
 import { Icon } from '@confeti/design-system/icon';
+
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import * as styles from './linked-account.css';

@@ -1,4 +1,5 @@
 import { TicketingCard } from '@confeti/design-system';
+
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { TicketingPerformances } from '@shared/types/home-response';
 import { formatDate } from '@shared/utils/format-date';

@@ -4,6 +4,7 @@ import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist
 import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
 import { SwitchCase } from '@shared/components/switch-case';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';

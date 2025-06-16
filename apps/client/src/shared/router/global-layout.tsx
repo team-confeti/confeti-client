@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
 
 import { Header } from '@confeti/design-system';
+
 import ErrorFallback from '@shared/pages/error/error';
 import Loading from '@shared/pages/loading/loading';
 

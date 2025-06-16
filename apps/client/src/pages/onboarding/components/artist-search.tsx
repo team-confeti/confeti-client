@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+
 import { ARTIST_RELATED_QUERY_OPTIONS } from '@shared/apis/onboard/artist-related-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 

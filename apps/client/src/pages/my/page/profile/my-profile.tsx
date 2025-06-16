@@ -10,6 +10,7 @@ import UpcomingPerformanceSection from '@pages/my/components/upcoming-performanc
 import { useQuery } from '@tanstack/react-query';
 
 import { Box, Footer, Header } from '@confeti/design-system';
+
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';

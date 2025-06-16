@@ -4,6 +4,7 @@ import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-fe
 import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button, FestivalCard, Header } from '@confeti/design-system';
+
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
