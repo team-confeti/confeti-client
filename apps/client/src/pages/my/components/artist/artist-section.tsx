@@ -1,4 +1,5 @@
 import { ArtistCard } from '@confeti/design-system';
+
 import { Artists } from '@shared/types/user-response';
 
 import * as styles from './artist-section.css';

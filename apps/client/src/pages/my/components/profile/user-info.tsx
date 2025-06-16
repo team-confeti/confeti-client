@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { routePath } from '@shared/router/path';
 
 import * as styles from './user-info.css.ts';

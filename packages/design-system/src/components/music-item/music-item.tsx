@@ -67,7 +67,7 @@ const MusicItem = ({
         );
       case 'editable':
         return (
-         <button
+          <button
             {...listeners}
             className={styles.dragHandle}
             onTouchStart={handleInteractionStart}

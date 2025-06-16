@@ -14,6 +14,7 @@ import {
   ToastContainer,
 } from '@confeti/design-system';
 import { rootStyle } from '@confeti/design-system/styles';
+
 import { ENV_CONFIG } from '@shared/constants/config';
 import { router } from '@shared/router/router';
 

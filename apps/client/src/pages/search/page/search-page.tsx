@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+
 import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
 import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
 import { SwitchCase } from '@shared/components/switch-case';

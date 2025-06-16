@@ -1,4 +1,5 @@
 import { Avatar } from '@confeti/design-system';
+
 import { ConcertArtist } from '@shared/types/concert-response';
 
 import ArtistSectionTitle from './artist-section-title';

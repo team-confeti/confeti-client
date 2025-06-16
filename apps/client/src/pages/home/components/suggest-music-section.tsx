@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { Box, Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import MusicList from '@shared/components/music-list/music-list';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';

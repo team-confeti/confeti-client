@@ -29,7 +29,8 @@ module.exports = {
         groups: [
           ['^node:'],
           ['^react', '^@?\\w'],
-          ['^@confeti/', '^@shared/'],
+          ['^@confeti/'],
+          ['^@shared/'],
           ['^\\u0000'],
           ['^\\.'],
           ['^.+\\.css$'],

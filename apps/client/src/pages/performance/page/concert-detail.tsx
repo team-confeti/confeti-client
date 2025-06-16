@@ -7,6 +7,7 @@ import Reservation from '@pages/performance/components/reservation/reservation';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import Hero from '@shared/components/hero/hero';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';

@@ -1,5 +1,7 @@
 import { PerformanceCarousel } from '@confeti/design-system';
+
 import { CarouselPerformances } from '@shared/types/home-response';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 import { formatDate } from '@shared/utils/format-date';
 
@@ -11,7 +13,6 @@ const PerformanceCarouselSection = ({
   data: CarouselPerformances[];
 }) => {
   const displayPerformances = data.length > 7 ? data.slice(0, 7) : data;
-
   const formattedPerformData = displayPerformances.map((performance) => {
     return {
       ...performance,
@@ -19,8 +20,10 @@ const PerformanceCarouselSection = ({
       posterUrl: convertToCdnUrl(performance.posterUrl),
     };
   });
-
   const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
+  const badgeText = checkIsNotLoggedIn()
+    ? '다가오는 공연'
+    : '선호하는 아티스트';
 
   return (
     <section className={styles.performanceBannerContainer}>
@@ -29,7 +32,7 @@ const PerformanceCarouselSection = ({
         initialSlideIndex={initialSlideIndex}
       >
         <PerformanceCarousel.ImageSlider>
-          <PerformanceCarousel.Badge text="선호하는 아티스트" />
+          <PerformanceCarousel.Badge text={badgeText} />
           <PerformanceCarousel.Info />
         </PerformanceCarousel.ImageSlider>
       </PerformanceCarousel>

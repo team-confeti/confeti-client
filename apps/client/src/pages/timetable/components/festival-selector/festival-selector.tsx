@@ -3,6 +3,7 @@ import FestivalButton from '@pages/timetable/components/festival-selector/festiv
 
 import { DropdownMenu } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
 import { routePath } from '@shared/router/path';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
