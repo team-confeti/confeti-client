@@ -55,6 +55,7 @@ export const slideOverlay = style({
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
+  backgroundColor: themeVars.color.white_op_20,
 });
 
 export const imgDiv = style({
@@ -70,6 +71,7 @@ export const infoOverlay = style({
   position: 'absolute',
   bottom: '0rem',
   borderRadius: '1rem',
+  backgroundImage: themeVars.color.black_grad,
 });
 
 export const dots = style({

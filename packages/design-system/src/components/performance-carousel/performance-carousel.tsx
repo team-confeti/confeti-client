@@ -203,14 +203,14 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <SvgInfoOverlay
+              <div
                 className={styles.infoOverlay}
                 style={{ width: '96.5%', height: '100%' }}
               />
               {children}
             </>
           ) : (
-            <SvgSlideOverlayOp
+            <div
               className={styles.slideOverlay}
               style={{ width: '96.5%', height: '100%' }}
             />
