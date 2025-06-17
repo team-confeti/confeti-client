@@ -7,18 +7,20 @@ import { color } from './tokens/color';
 import { display } from './tokens/display';
 import { fontStyles } from './tokens/font-styles';
 import { overlay } from './tokens/overlay';
+import { size } from './tokens/size';
 import { typography } from './tokens/typography';
 import { zIndex } from './tokens/z-index';
 
 const tokens = {
   color: color,
   fontStyles: fontStyles,
-  zIndex: zIndex,
   display: display,
   border: border,
   overlay: overlay,
-  ...typography,
+  size: size,
+  zIndex: zIndex,
   shadowStyles,
+  ...typography,
 };
 
 const properties = defineProperties({

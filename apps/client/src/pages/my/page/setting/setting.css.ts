@@ -5,7 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const pageWrapper = style({
   display: 'flex',
   flexDirection: 'column',
-  minHeight: 'calc(100vh - 5.4rem)',
+  minHeight: `calc(100vh - ${themeVars.size.height.header})`,
 });
 
 export const contentsSection = style({
