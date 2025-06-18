@@ -165,17 +165,11 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <div
-                className={styles.infoOverlay}
-                style={{ width: '96.5%', height: '100%' }}
-              />
+              <div className={styles.infoOverlay} />
               {children}
             </>
           ) : (
-            <div
-              className={styles.slideOverlay}
-              style={{ width: '96.5%', height: '100%' }}
-            />
+            <div className={styles.slideOverlay} />
           )}
         </div>
       ))}
