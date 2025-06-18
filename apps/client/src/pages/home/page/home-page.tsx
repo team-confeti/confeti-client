@@ -11,7 +11,8 @@ import PerformanceCarouselSection from '../components/performance-carousel-secti
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
-import { TAB_MENU } from '../constants/menu';
+import { TAB_MENU } from '../constants/tab';
+import { useActiveSection } from '../hooks/use-active-section';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
@@ -20,6 +21,7 @@ const HomePage = () => {
     suggestPerformance: useMoveScroll(),
     suggestMusic: useMoveScroll(),
   };
+  const { currentCategory, handleCategoryClick } = useActiveSection(scrollRefs);
   const { isButtonHidden } = useScrollPosition();
 
   const {
@@ -37,11 +39,8 @@ const HomePage = () => {
       <Spacing size="xl" color="white" />
 
       <CategoryTabs
-        scrollHandlers={{
-          ticketing: scrollRefs.ticketing.onMoveToElement,
-          suggestPerformance: scrollRefs.suggestPerformance.onMoveToElement,
-          suggestMusic: scrollRefs.suggestMusic.onMoveToElement,
-        }}
+        selectedCategory={currentCategory}
+        onCategoryClick={handleCategoryClick}
       />
       <Spacing size="lg" color="white" />
 
@@ -50,6 +49,7 @@ const HomePage = () => {
         data={ticketing.performances}
         userName={userName}
       />
+
       <Spacing size="2xl" color="white" />
 
       <SuggestPerformanceSection
@@ -63,8 +63,8 @@ const HomePage = () => {
         data={suggestMusicPerformance}
       />
       <Spacing size="2xl" color="white" />
-      <FloatingButton isButtonHidden={isButtonHidden} />
 
+      <FloatingButton isButtonHidden={isButtonHidden} />
       <Footer />
     </>
   );

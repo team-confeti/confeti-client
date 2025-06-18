@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import NavigationTabs from '@shared/components/navigation-tabs';
 import { routePath } from '@shared/router/path';
 
-import { TAB_MENU } from '@pages/home/constants/menu';
+import { TAB_MENU } from '@pages/home/constants/tab';
 
 const MyHistoryPage = () => {
   const location = useLocation();

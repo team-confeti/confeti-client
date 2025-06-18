@@ -12,7 +12,7 @@ export const container = recipe({
   variants: {
     variant: {
       default: {
-        height: '5.4rem',
+        height: themeVars.size.height.header,
         position: 'sticky',
         left: 0,
         top: 0,
