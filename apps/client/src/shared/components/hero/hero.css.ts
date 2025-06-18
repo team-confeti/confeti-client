@@ -26,7 +26,7 @@ export const backgroundOverlay = style({
   width: '100%',
   height: '100%',
   zIndex: themeVars.zIndex.heroOverlay,
-  background: 'linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 100%)',
+  background: themeVars.color.black_grad,
   backdropFilter: 'blur(2px)',
 });
 
