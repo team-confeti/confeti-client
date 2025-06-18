@@ -27,20 +27,19 @@ export const useActiveSection = (scrollRefs: ScrollRefs) => {
     if (isScrollingByClick) return;
 
     const onScroll = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollY = window.scrollY;
 
       const suggestPerformanceTop =
         scrollRefs.suggestPerformance.element.current?.offsetTop || 0;
       const suggestMusicTop =
         scrollRefs.suggestMusic.element.current?.offsetTop || 0;
-
-      console.log(suggestPerformanceTop, suggestMusicTop, scrollY);
+      const viewportMiddle = window.innerHeight / 2;
 
       switch (true) {
-        case scrollY >= suggestMusicTop - 450:
+        case scrollY >= suggestMusicTop - viewportMiddle:
           setCurrentCategory(HOME_CATEGORY_TAB.PLAYLIST);
           break;
-        case scrollY >= suggestPerformanceTop - 400:
+        case scrollY >= suggestPerformanceTop - viewportMiddle:
           setCurrentCategory(HOME_CATEGORY_TAB.SUGGEST_PERFORMANCE);
           break;
         default:
