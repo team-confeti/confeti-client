@@ -2,7 +2,7 @@ import { ONE_HOUR_TO_MINUTES } from '@pages/timetable/constants';
 
 export const generateTableRow = (startTime: string) => {
   const startHour = Number(startTime);
-  return Array.from({ length: 24 - startHour }, (_, idx) => startHour + idx);
+  return Array.from({ length: 25 - startHour }, (_, idx) => startHour + idx);
 };
 
 export const parseTimeString = (timeString: string): string[] => {

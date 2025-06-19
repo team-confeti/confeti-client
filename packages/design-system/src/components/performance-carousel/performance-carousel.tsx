@@ -1,7 +1,6 @@
 import {
   createContext,
   type ReactNode,
-  SVGProps,
   useContext,
   useEffect,
   useRef,
@@ -38,43 +37,6 @@ interface CarouselContextType {
   performData: PerformData[];
   handleContainerClick: (type: string, typeId: number) => void;
 }
-
-const SvgInfoOverlay = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={300}
-    height={398}
-    fill="none"
-    {...props}
-  >
-    <path fill="url(#a)" fillOpacity={0.8} d="M0 0h300v398H0z" />
-    <defs>
-      <linearGradient
-        id="a"
-        x1={150}
-        x2={150}
-        y1={216.304}
-        y2={398}
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopOpacity={0} />
-        <stop offset={1} />
-      </linearGradient>
-    </defs>
-  </svg>
-);
-
-const SvgSlideOverlayOp = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 156 208"
-    preserveAspectRatio="none"
-    {...props}
-  >
-    <path fill="#fff" fillOpacity={0.3} d="M0 0h156v208H0z" />
-  </svg>
-);
 
 // Context 생성
 const CarouselContext = createContext<CarouselContextType | null>(null);
@@ -203,17 +165,11 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <SvgInfoOverlay
-                className={styles.infoOverlay}
-                style={{ width: '96.5%', height: '100%' }}
-              />
+              <div className={styles.infoOverlay} />
               {children}
             </>
           ) : (
-            <SvgSlideOverlayOp
-              className={styles.slideOverlay}
-              style={{ width: '96.5%', height: '100%' }}
-            />
+            <div className={styles.slideOverlay} />
           )}
         </div>
       ))}

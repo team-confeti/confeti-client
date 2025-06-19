@@ -55,11 +55,15 @@ export const slideOverlay = style({
   position: 'absolute',
   top: '0',
   borderRadius: '1rem',
+  backgroundColor: themeVars.color.white_op_20,
+  width: '29rem',
+  height: '100%',
+  overflow: 'hidden',
 });
 
 export const imgDiv = style({
   position: 'relative',
-  width: '30rem',
+  width: '29rem',
   height: '100%',
   flexShrink: '0',
   padding: '0 0.5rem',
@@ -70,6 +74,10 @@ export const infoOverlay = style({
   position: 'absolute',
   bottom: '0rem',
   borderRadius: '1rem',
+  backgroundImage: themeVars.color.black_grad,
+  width: '29rem',
+  height: '100%',
+  overflow: 'hidden',
 });
 
 export const dots = style({
