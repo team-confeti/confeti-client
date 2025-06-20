@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import type { Settings as SlickSettings } from 'react-slick';
 import Slider from 'react-slick';
 
@@ -28,6 +27,7 @@ type PerformanceCarouselType = {
   children: ReactNode;
   initialSlideIndex?: number;
   performData: PerformData[];
+  handleContainerClick: (type: string, typeId: number) => void;
 };
 
 interface CarouselContextType {
@@ -56,9 +56,9 @@ const PerformanceCarousel = ({
   children,
   initialSlideIndex = 0,
   performData,
+  handleContainerClick,
 }: PerformanceCarouselType) => {
   const sliderRef = useRef<Slider | null>(null);
-  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(initialSlideIndex);
 
   useEffect(() => {
@@ -70,10 +70,6 @@ const PerformanceCarousel = ({
 
     return () => clearInterval(interval);
   }, [activeIndex]);
-
-  const handleContainerClick = (type: string, typeId: number) => {
-    navigate(`/${type}-detail/${typeId}`);
-  };
 
   // 슬라이더 설정
   const settings = {
