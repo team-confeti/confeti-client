@@ -55,15 +55,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.80.10
         version: 5.80.10(react@19.1.0)
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: 'catalog:'
-        version: 19.1.6(@types/react@19.1.8)
-      '@vitejs/plugin-react':
-        specifier: ^4.5.2
-        version: 4.5.2(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
       axios:
         specifier: ^1.10.0
         version: 1.10.0
@@ -79,12 +70,6 @@ importers:
       react-router-dom:
         specifier: ^7.6.2
         version: 7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      vite-plugin:
-        specifier: link:@@vanilla-extract/vite-plugin
-        version: link:@@vanilla-extract/vite-plugin
-      vite-tsconfig-paths:
-        specifier: ^5.1.4
-        version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
       zod:
         specifier: ^3.25.67
         version: 3.25.67
@@ -95,12 +80,21 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.1.6(@types/react@19.1.8)
       '@vanilla-extract/css':
         specifier: ^1.17.4
         version: 1.17.4(babel-plugin-macros@3.1.0)
       '@vanilla-extract/vite-plugin':
         specifier: ^5.0.6
         version: 5.0.6(@types/node@24.0.3)(babel-plugin-macros@3.1.0)(jiti@1.21.6)(tsx@4.20.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))(yaml@2.8.0)
+      '@vitejs/plugin-react':
+        specifier: ^4.5.2
+        version: 4.5.2(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
       '@vitejs/plugin-react-swc':
         specifier: ^3.10.2
         version: 3.10.2(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
@@ -116,6 +110,12 @@ importers:
       vite:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
+      vite-plugin:
+        specifier: link:@@vanilla-extract/vite-plugin
+        version: link:@@vanilla-extract/vite-plugin
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
 
   apps/client:
     dependencies:
@@ -134,18 +134,18 @@ importers:
       '@dnd-kit/sortable':
         specifier: ^10.0.0
         version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@sentry/react':
+        specifier: ^9.30.0
+        version: 9.30.0(react@19.1.0)
+      '@sentry/tracing':
+        specifier: ^7.120.3
+        version: 7.120.3
       '@tanstack/react-query':
         specifier: ^5.80.10
         version: 5.80.10(react@19.1.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.80.10
         version: 5.80.10(@tanstack/react-query@5.80.10(react@19.1.0))(react@19.1.0)
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: 'catalog:'
-        version: 19.1.6(@types/react@19.1.8)
       '@vanilla-extract/css':
         specifier: ^1.17.4
         version: 1.17.4(babel-plugin-macros@3.1.0)
@@ -195,12 +195,6 @@ importers:
       '@pivanov/vite-plugin-svg-sprite':
         specifier: ^3.0.0
         version: 3.0.0(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
-      '@sentry/react':
-        specifier: ^9.30.0
-        version: 9.30.0(react@19.1.0)
-      '@sentry/tracing':
-        specifier: ^7.120.3
-        version: 7.120.3
       '@sentry/vite-plugin':
         specifier: ^3.5.0
         version: 3.5.0
@@ -216,6 +210,12 @@ importers:
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.1.6(@types/react@19.1.8)
       '@vanilla-extract/vite-plugin':
         specifier: ^5.0.6
         version: 5.0.6(@types/node@24.0.3)(babel-plugin-macros@3.1.0)(jiti@1.21.6)(tsx@4.20.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))(yaml@2.8.0)
@@ -223,7 +223,7 @@ importers:
         specifier: ^4.5.2
         version: 4.5.2(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
       eslint:
-        specifier: ^8.57.1
+        specifier: 'catalog:'
         version: 8.57.1
       globals:
         specifier: ^16.2.0
@@ -290,15 +290,6 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.1.0)
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: 'catalog:'
-        version: 19.1.6(@types/react@19.1.8)
-      '@types/react-slick':
-        specifier: ^0.23.13
-        version: 0.23.13
       '@vanilla-extract/css':
         specifier: ^1.17.4
         version: 1.17.4(babel-plugin-macros@3.1.0)
@@ -369,6 +360,15 @@ importers:
       '@types/node':
         specifier: ^20.19.1
         version: 20.19.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.1.6(@types/react@19.1.8)
+      '@types/react-slick':
+        specifier: ^0.23.13
+        version: 0.23.13
       '@vanilla-extract/vite-plugin':
         specifier: ^5.0.6
         version: 5.0.6(@types/node@20.19.1)(babel-plugin-macros@3.1.0)(jiti@1.21.6)(tsx@4.20.3)(vite@6.3.5(@types/node@20.19.1)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))(yaml@2.8.0)
