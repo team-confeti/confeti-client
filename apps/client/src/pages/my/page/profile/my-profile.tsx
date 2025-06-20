@@ -63,8 +63,11 @@ const MyProfile = () => {
 
       <Box
         title="My Artist"
-        path={routePath.MY_ARTIST}
-        showMore={artistData.artists.length > 3}
+        onShowMore={
+          artistData.artists.length > 3
+            ? () => navigate(routePath.MY_ARTIST)
+            : undefined
+        }
         showMoreText="더보기"
       >
         {artistData.artists.length > 0 ? (
@@ -76,8 +79,11 @@ const MyProfile = () => {
 
       <Box
         title="My Confeti"
-        path={routePath.MY_CONFETI}
-        showMore={performanceData.performances.length > 3}
+        onShowMore={
+          performanceData.performances.length > 3
+            ? () => navigate(routePath.MY_CONFETI)
+            : undefined
+        }
         showMoreText="더보기"
       >
         {performanceData.performances.length > 0 ? (

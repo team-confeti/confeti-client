@@ -18,7 +18,6 @@ const routeMap = {
 
 interface BaseProps {
   title: string;
-  showMore?: boolean;
   buttonLabel?: string;
   emptyMessage: string;
   ctaText: string;
@@ -38,7 +37,6 @@ const isSetListPreviewData = (
 const PreviewSection = ({
   previewType,
   title,
-  showMore = true,
   buttonLabel = '전체보기',
   previewData,
   emptyMessage,
@@ -47,6 +45,12 @@ const PreviewSection = ({
 }: PreviewSectionProps) => {
   const hasContent = previewData && previewData.length > 0;
   const navigate = useNavigate();
+
+  const handleShowMore = () => {
+    if (navigatePath) {
+      navigate(navigatePath);
+    }
+  };
 
   const handleButtonClick = () => {
     navigate(routeMap[previewType]);
@@ -87,12 +91,7 @@ const PreviewSection = ({
   };
 
   return (
-    <Box
-      title={title}
-      showMore={showMore}
-      showMoreText={buttonLabel}
-      path={navigatePath}
-    >
+    <Box title={title} showMoreText={buttonLabel} onShowMore={handleShowMore}>
       {hasContent ? (
         <div className={styles.container}>{renderPreviewList()}</div>
       ) : (
