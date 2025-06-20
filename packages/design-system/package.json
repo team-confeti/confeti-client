@@ -20,12 +20,8 @@
   "dependencies": {
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "@vanilla-extract/css": "^1.17.4",
     "@vanilla-extract/recipes": "^0.5.7",
-    "@vanilla-extract/sprinkles": "^1.6.5",
     "clsx": "^2.1.1",
-    "react": "catalog:",
-    "react-dom": "catalog:",
     "react-router-dom": "^7.6.2",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
@@ -56,5 +52,11 @@
     "tsx": "^4.20.3",
     "typescript": "catalog:",
     "vite": "^6.3.5"
+  },
+  "peerDependencies": {
+    "@vanilla-extract/css": "^1.17.4",
+    "@vanilla-extract/sprinkles": "^1.6.5",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }
