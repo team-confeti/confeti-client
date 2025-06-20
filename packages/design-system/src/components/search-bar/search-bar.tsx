@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Icon } from '../../icons';
 
@@ -33,7 +32,6 @@ export const SearchBar = ({
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const navigate = useNavigate();
 
   const updateFocusState = (focused: boolean, showClear: boolean) => {
     setIsFocused(focused);
@@ -61,10 +59,6 @@ export const SearchBar = ({
     }
   };
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
   const handleFocus = () => {
     updateFocusState(true, true);
     if (onFocus) {
@@ -88,7 +82,7 @@ export const SearchBar = ({
         <Icon
           name="arrow-back"
           size="2.2rem"
-          onClick={handleBackClick}
+          onClick={() => window.history.back()}
           className={styles.arrowButton}
         />
       )}
@@ -97,7 +91,6 @@ export const SearchBar = ({
           name="search"
           size="1.8rem"
           color="gray500"
-          onClick={handleBackClick}
           className={styles.searchIcon}
         />
         <input
