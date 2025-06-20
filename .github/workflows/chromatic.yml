@@ -54,10 +54,10 @@ jobs:
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_KEY}}
         with:
-          comment_tag: ${{github.event.number}}-storybook
+          comment-tag: ${{github.event.number}}-storybook
           message: '🏴‍☠️ Storybook 확인: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
-          edit_mode: update
+          mode: update
