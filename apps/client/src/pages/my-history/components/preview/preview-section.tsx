@@ -71,7 +71,6 @@ const PreviewSection = ({
       return previewData.map((previewData) => (
         <FestivalCard
           key={previewData.typeId}
-          typeId={previewData.typeId}
           title={previewData.title}
           imageSrc={previewData.posterUrl}
           onClick={() => handleNavigateToDetail(previewData.setlistId)}
@@ -82,7 +81,6 @@ const PreviewSection = ({
     return previewData.map((previewData) => (
       <FestivalCard
         key={previewData.typeId}
-        typeId={previewData.typeId}
         title={previewData.title}
         imageSrc={previewData.posterUrl}
         onClick={handleNavigateToTimeTable}

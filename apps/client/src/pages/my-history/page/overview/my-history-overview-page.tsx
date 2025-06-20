@@ -79,8 +79,6 @@ const MyHistoryOverviewPage = () => {
             ? setListOverviewData?.setlists?.map((item) => (
                 <FestivalCard
                   key={item.typeId}
-                  type={item.type}
-                  typeId={item.typeId}
                   imageSrc={item.posterUrl}
                   title={item.title}
                   onClick={() => handleNavigateToDetail(item.setlistId)}
@@ -89,8 +87,6 @@ const MyHistoryOverviewPage = () => {
             : timetableOverviewData?.timetables?.map((item) => (
                 <FestivalCard
                   key={item.typeId}
-                  type={item.type}
-                  typeId={item.typeId}
                   imageSrc={item.posterUrl}
                   title={item.title}
                   onClick={handleNavigateToTimeTable}

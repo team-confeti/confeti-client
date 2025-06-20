@@ -66,15 +66,13 @@ const AddFestival = () => {
               className={styles.festivalCardWrapper}
             >
               <FestivalCard
-                typeId={festival.festivalId}
-                type="FESTIVAL"
                 title={festival.title}
                 imageSrc={festival.posterUrl}
                 selectable={true}
                 isSelected={isSelected}
-                onClick={() =>
-                  handleFestivalClick(festival.festivalId, isSelected)
-                }
+                onClick={() => {
+                  handleFestivalClick(festival.festivalId, isSelected);
+                }}
               />
             </div>
           );
