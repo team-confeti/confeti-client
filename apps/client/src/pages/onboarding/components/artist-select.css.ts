@@ -20,13 +20,12 @@ export const searchBarSection = style({
 });
 
 export const avatarGridSection = style({
-  flex: 1,
+  width: '100%',
   overflowY: 'scroll',
-  overflowX: 'hidden',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   rowGap: '2.6rem',
-  columnGap: '4.7rem',
+  columnGap: '4rem',
   alignItems: 'center',
   justifyItems: 'center',
   paddingBottom: '3rem',
