@@ -1,4 +1,4 @@
-import Header from '@shared/components/layout/header';
+import { Header } from '@shared/components';
 import RequireLoginSection from '@shared/pages/auth/require-login-section';
 
 const RequireLogin = () => {

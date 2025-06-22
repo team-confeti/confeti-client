@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { Icon } from '@confeti/design-system/icon';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import Header from '@shared/components/layout/header';
+import { Header } from '@shared/components';
 import {
   SORT_LABELS,
   SORT_OPTIONS,

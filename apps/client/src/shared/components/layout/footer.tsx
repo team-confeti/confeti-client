@@ -1,4 +1,4 @@
-import { Icon } from '../../icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './footer.css';
 

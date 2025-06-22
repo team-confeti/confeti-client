@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { track } from '@amplitude/analytics-browser';
 
-import { Button, Dialog, Footer, useOverlay } from '@confeti/design-system';
+import { Button, Dialog, useOverlay } from '@confeti/design-system';
 
-import Header from '@shared/components/layout/header';
+import { Footer, Header } from '@shared/components';
 
 import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account-mutation';
 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, FestivalCard } from '@confeti/design-system';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import Header from '@shared/components/layout/header';
+import { Header } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 

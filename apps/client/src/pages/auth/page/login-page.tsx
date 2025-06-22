@@ -1,7 +1,7 @@
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import Header from '@shared/components/layout/header';
+import { Header } from '@shared/components';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
