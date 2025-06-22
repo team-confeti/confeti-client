@@ -18,9 +18,7 @@ export const button = style({
   cursor: 'pointer',
 });
 
-export const settingsIcon = style({
-  width: '2.4rem',
-  height: '2.4rem',
+export const rightIcon = style({
   position: 'absolute',
   right: '2rem',
 });

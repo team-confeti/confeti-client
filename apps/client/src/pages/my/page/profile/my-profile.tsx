@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Box } from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { DetailHeader, Footer } from '@shared/components';
@@ -44,9 +45,11 @@ const MyProfile = () => {
     <>
       <DetailHeader
         title="마이페이지"
-        handleNavigateToSettings={() => {
-          navigate(routePath.MY_SETTING);
-        }}
+        rightIcon={
+          <button onClick={() => navigate(routePath.MY_SETTING)}>
+            <Icon name="setting" size="2.4rem" />
+          </button>
+        }
       />
       <UserInfo
         name={profileData.name}

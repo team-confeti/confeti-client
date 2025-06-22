@@ -9,14 +9,14 @@ interface Props {
   title?: string;
   icon?: ReactNode;
   isBackToHome?: boolean;
-  handleNavigateToSettings?: () => void;
+  rightIcon?: ReactNode;
 }
 
 const DetailHeader = ({
   title = '',
   icon,
   isBackToHome = false,
-  handleNavigateToSettings,
+  rightIcon,
 }: Props) => {
   const navigate = useNavigate();
 
@@ -31,14 +31,7 @@ const DetailHeader = ({
       </button>
       <h1 className={styles.title}>{title}</h1>
 
-      {handleNavigateToSettings && (
-        <button
-          className={styles.settingsIcon}
-          onClick={handleNavigateToSettings}
-        >
-          <Icon name="setting" size="2.4rem" />
-        </button>
-      )}
+      {rightIcon && <div className={styles.rightIcon}>{rightIcon}</div>}
     </header>
   );
 };
