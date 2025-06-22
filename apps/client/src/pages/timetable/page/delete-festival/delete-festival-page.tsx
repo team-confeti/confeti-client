@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, useOverlay } from '@confeti/design-system';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import { Header } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 
 import { useDeleteTimetableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import {
@@ -64,7 +64,7 @@ const DeleteFestivalPage = () => {
 
   return (
     <div className={styles.container}>
-      <Header variant="detail" title="페스티벌 삭제하기" />
+      <DetailHeader title="페스티벌 삭제하기" />
       <main className={styles.festivalSelectorWrapper}>
         <DeleteFestivalSelector
           festivals={festivalsData.festivals}

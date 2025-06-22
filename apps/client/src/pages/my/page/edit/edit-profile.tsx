@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Button, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import { Header } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
@@ -80,7 +80,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <Header variant="detail" title="프로필 편집" />
+      <DetailHeader title="프로필 편집" />
       <div className={styles.editProfileContainer}>
         <div className={styles.userInfo}>
           <UserInfo

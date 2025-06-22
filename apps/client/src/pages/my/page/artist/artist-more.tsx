@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { Icon } from '@confeti/design-system/icon';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { Header } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
   SORT_OPTIONS,
@@ -31,7 +31,7 @@ const ArtistMore = () => {
 
   return (
     <>
-      <Header variant="detail" title="My Artist" />
+      <DetailHeader title="My Artist" />
       <div className={styles.header}>
         <p>전체 {data.artistCount}</p>
         <button className={styles.sort} onClick={toggleSort}>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from '@confeti/design-system';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { Footer, Header } from '@shared/components';
+import { DetailHeader, Footer } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
@@ -42,8 +42,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <Header
-        variant="detail"
+      <DetailHeader
         title="마이페이지"
         handleNavigateToSettings={() => {
           navigate(routePath.MY_SETTING);

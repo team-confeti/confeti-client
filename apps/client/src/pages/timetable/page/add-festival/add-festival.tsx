@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, FestivalCard } from '@confeti/design-system';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import { Header } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 
@@ -57,7 +57,7 @@ const AddFestival = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header variant="detail" title="페스티벌 추가하기" />
+      <DetailHeader title="페스티벌 추가하기" />
       <div className={styles.container}>
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Icon } from '@confeti/design-system/icon';
 
-import { Footer, Header } from '@shared/components';
+import { DetailHeader, Footer } from '@shared/components';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 
@@ -11,7 +11,7 @@ import * as styles from './setting.css';
 const Setting = () => {
   return (
     <div className={styles.pageWrapper}>
-      <Header variant="detail" title="설정" />
+      <DetailHeader title="설정" />
       <section className={styles.contentsSection}>
         {EXTERNAL_LINKS.map((item) => (
           <a

@@ -6,7 +6,7 @@ import { FestivalCard } from '@confeti/design-system';
 
 import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
 import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
-import { Header } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
   SORT_OPTIONS,
@@ -63,10 +63,7 @@ const MyHistoryOverviewPage = () => {
 
   return (
     <>
-      <Header
-        variant="detail"
-        title={isSetList ? 'My 셋리스트' : 'My 타임테이블'}
-      />
+      <DetailHeader title={isSetList ? 'My 셋리스트' : 'My 타임테이블'} />
       <section className={styles.overviewContainer}>
         <div className={styles.filterContainer}>
           <CountDisplay count={overviewData.count || 0} />
