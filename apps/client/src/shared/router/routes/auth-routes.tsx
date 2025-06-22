@@ -1,13 +1,9 @@
 import RedirectKakao from '@pages/auth/page/redirect-kakao';
 
-import { LoginPage, OnboardingPage } from '../lazy';
+import { LoginPage } from '../lazy';
 import { routePath } from '../path';
 
 export const authRoutes = [
-  {
-    path: routePath.ONBOARDING,
-    element: <OnboardingPage />,
-  },
   {
     path: routePath.LOGIN,
     element: <LoginPage />,
