@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { FestivalCard, Header } from '@confeti/design-system';
+import { FestivalCard } from '@confeti/design-system';
 
 import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
 import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
+import Header from '@shared/components/layout/header';
 import {
   SORT_LABELS,
   SORT_OPTIONS,

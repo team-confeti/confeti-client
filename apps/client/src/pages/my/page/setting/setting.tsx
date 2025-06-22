@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { Footer, Header } from '@confeti/design-system';
+import { Footer } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import Header from '@shared/components/layout/header';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 

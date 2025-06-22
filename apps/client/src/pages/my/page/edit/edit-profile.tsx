@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
 
-import { Button, Header, toast } from '@confeti/design-system';
+import { Button, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import Header from '@shared/components/layout/header';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import EditNameInput from '@pages/my/components/edit/edit-name-input';

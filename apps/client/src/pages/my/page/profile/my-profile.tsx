@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { Box, Footer, Header } from '@confeti/design-system';
+import { Box, Footer } from '@confeti/design-system';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import Header from '@shared/components/layout/header';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
 import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';

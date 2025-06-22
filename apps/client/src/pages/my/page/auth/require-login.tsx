@@ -1,5 +1,4 @@
-import { Header } from '@confeti/design-system';
-
+import Header from '@shared/components/layout/header';
 import RequireLoginSection from '@shared/pages/auth/require-login-section';
 
 const RequireLogin = () => {

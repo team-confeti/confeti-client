@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, FestivalCard, Header } from '@confeti/design-system';
+import { Button, FestivalCard } from '@confeti/design-system';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import Header from '@shared/components/layout/header';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
 

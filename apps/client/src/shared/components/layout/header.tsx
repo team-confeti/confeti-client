@@ -1,11 +1,11 @@
 import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Icon } from '../../icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './header.css';
 
-interface HeaderProps {
+interface Props {
   variant?: 'default' | 'detail';
   title?: string;
   icon?: ReactNode;
@@ -19,7 +19,7 @@ const Header = ({
   icon,
   isBackToHome = false,
   handleNavigateToSettings,
-}: HeaderProps) => {
+}: Props) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
