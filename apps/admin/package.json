@@ -12,28 +12,28 @@
   "dependencies": {
     "@confeti/design-system": "workspace:*",
     "@hookform/resolvers": "^5.1.1",
-    "@tanstack/react-query": "^5.62.16",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.2",
-    "axios": "^1.7.9",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.57.0",
-    "react-router-dom": "^7.1.1",
-    "vite-plugin": "link:@@vanilla-extract/vite-plugin",
-    "vite-tsconfig-paths": "^5.1.4",
-    "zod": "^3.25.56"
+    "@tanstack/react-query": "^5.80.10",
+    "axios": "^1.10.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "^7.58.1",
+    "react-router-dom": "^7.6.2",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@confeti/eslint": "workspace:*",
     "@confeti/typescript": "workspace:*",
-    "@vanilla-extract/css": "^1.17.0",
-    "@vanilla-extract/vite-plugin": "^4.0.19",
-    "@vitejs/plugin-react-swc": "^3.9.0",
-    "eslint": "^8",
-    "globals": "^16.0.0",
-    "typescript": "5.4.5",
-    "vite": "^6.3.5"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vanilla-extract/css": "^1.17.4",
+    "@vanilla-extract/vite-plugin": "^5.0.6",
+    "@vitejs/plugin-react": "^4.5.2",
+    "@vitejs/plugin-react-swc": "^3.10.2",
+    "eslint": "catalog:",
+    "globals": "^16.2.0",
+    "typescript": "catalog:",
+    "vite": "^6.3.5",
+    "vite-plugin": "link:@@vanilla-extract/vite-plugin",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }
