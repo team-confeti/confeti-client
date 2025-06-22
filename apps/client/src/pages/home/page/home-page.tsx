@@ -1,7 +1,6 @@
 import { FloatingButton, Spacing } from '@confeti/design-system';
 
-import { Footer } from '@shared/components';
-import NavigationTabs from '@shared/components/navigation-tabs';
+import { Footer, NavigationTabs } from '@shared/components';
 import {
   useMoveScroll,
   useScrollPosition,
