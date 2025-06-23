@@ -159,6 +159,9 @@ importers:
       axios:
         specifier: ^1.10.0
         version: 1.10.0
+      dom-to-image:
+        specifier: ^2.6.0
+        version: 2.6.0
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -2367,6 +2370,12 @@ packages:
 
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
+
+  dom-to-image@2.6.0:
+    resolution:
+      {
+        integrity: sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA==,
+      }
 
   domelementtype@2.3.0:
     resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
@@ -4779,6 +4788,27 @@ catalogs:
       specifier: ^5
       version: 5.8.3
 
+catalogs:
+  default:
+    '@types/react':
+      specifier: ^19
+      version: 19.1.8
+    '@types/react-dom':
+      specifier: ^19
+      version: 19.1.6
+    eslint:
+      specifier: 8.57.1
+      version: 8.57.1
+    react:
+      specifier: ^19
+      version: 19.1.0
+    react-dom:
+      specifier: ^19
+      version: 19.1.0
+    typescript:
+      specifier: ^5
+      version: 5.8.3
+
 snapshots:
 
   '@adobe/css-tools@4.4.3': {}
@@ -7015,6 +7045,8 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
       entities: 4.5.0
+
+  dom-to-image@2.6.0: {}
 
   domelementtype@2.3.0: {}
 
