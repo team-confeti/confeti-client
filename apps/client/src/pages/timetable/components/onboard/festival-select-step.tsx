@@ -11,7 +11,7 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard2 from '/images/img_onboard_2.svg';
+import ImgOnboard2 from '/images/img_onboard_2.webp';
 
 type FestivalSelectProps = WithNavigate & WithNextStep & WithIndex;
 

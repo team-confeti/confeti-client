@@ -10,7 +10,7 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard6 from '/images/img_onboard_6.svg';
+import ImgOnboard6 from '/images/img_onboard_6.webp';
 
 type SaveTimetableProps = WithNavigate & WithIndex;
 

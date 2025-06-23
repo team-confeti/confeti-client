@@ -11,7 +11,7 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard5 from '/images/img_onboard_5.svg';
+import ImgOnboard5 from '/images/img_onboard_5.webp';
 
 type ClickBlockProps = WithNavigate & WithNextStep & WithIndex;
 

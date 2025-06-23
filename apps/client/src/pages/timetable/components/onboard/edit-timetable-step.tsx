@@ -11,7 +11,7 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard4 from '/images/img_onboard_4.svg';
+import ImgOnboard4 from '/images/img_onboard_4.webp';
 
 type EditTimeTableprops = WithNavigate & WithNextStep & WithIndex;
 

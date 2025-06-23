@@ -8,7 +8,7 @@ import {
 
 import * as styles from './step.css';
 
-import ImgOnboard1 from '/images/img_onboard_1.svg';
+import ImgOnboard1 from '/images/img_onboard_1.webp';
 
 type IntroProps = WithNavigate & WithNextStep;
 
