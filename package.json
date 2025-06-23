@@ -18,13 +18,13 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "prettier": "^3.2.5",
-    "turbo": "^2.1.3",
-    "typescript": "^5.4.5"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4",
+    "typescript": "catalog:"
   },
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@10.12.0",
   "engines": {
     "node": ">=20"
   }
