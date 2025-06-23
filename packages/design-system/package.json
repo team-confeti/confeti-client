@@ -22,7 +22,6 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@vanilla-extract/recipes": "^0.5.7",
     "clsx": "^2.1.1",
-    "react-router-dom": "^7.6.2",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
   },

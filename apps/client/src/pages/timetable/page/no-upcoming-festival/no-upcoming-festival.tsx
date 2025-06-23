@@ -1,6 +1,7 @@
-import { Button, Header } from '@confeti/design-system';
+import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { DetailHeader } from '@shared/components';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import * as styles from './no-upcoming-festival.css';
@@ -12,7 +13,7 @@ const NoUpcomingFestival = () => {
 
   return (
     <>
-      <Header variant="detail" title="페스티벌 추가하기" />
+      <DetailHeader title="페스티벌 추가하기" />
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <Icon name="warning" size="6rem" color="gray200" />

@@ -16,6 +16,8 @@ import {
   usePostAuthOnboarding,
 } from '../hooks/use-onboard-mutation';
 
+import * as styles from './onboarding.css';
+
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
@@ -67,6 +69,7 @@ const Onboarding = () => {
               setStep(1);
             }}
             disabled={selectedArtistIds.length < 1}
+            className={styles.button}
           />
         </ArtistSelect>
       </Step>
@@ -76,6 +79,7 @@ const Onboarding = () => {
             text={'시작하기'}
             variant={'add'}
             onClick={() => setStep(2)}
+            className={styles.button}
           />
         </OnBoardingComplete>
       </Step>

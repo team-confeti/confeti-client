@@ -87,7 +87,10 @@ export const Default = () => {
         background: themeVars.color.confeti_lime_grad,
       }}
     >
-      <PerformanceCarousel performData={MOCK_PERFORM_DATA}>
+      <PerformanceCarousel
+        performData={MOCK_PERFORM_DATA}
+        handleContainerClick={() => {}}
+      >
         <PerformanceCarousel.ImageSlider>
           <PerformanceCarousel.Badge text="선호하는 아티스트" />
           <PerformanceCarousel.Info />

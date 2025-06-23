@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { PerformanceCarousel } from '@confeti/design-system';
 
 import { CarouselPerformances } from '@shared/types/home-response';
@@ -25,11 +27,18 @@ const PerformanceCarouselSection = ({
     ? '다가오는 공연'
     : '선호하는 아티스트';
 
+  const navigate = useNavigate();
+
+  const handleContainerClick = (type: string, typeId: number) => {
+    navigate(`/${type}-detail/${typeId}`);
+  };
+
   return (
     <section className={styles.performanceBannerContainer}>
       <PerformanceCarousel
         performData={formattedPerformData}
         initialSlideIndex={initialSlideIndex}
+        handleContainerClick={handleContainerClick}
       >
         <PerformanceCarousel.ImageSlider>
           <PerformanceCarousel.Badge text={badgeText} />

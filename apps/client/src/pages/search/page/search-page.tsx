@@ -5,7 +5,7 @@ import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
 import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
 import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
-import { SwitchCase } from '@shared/components/switch-case';
+import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';
