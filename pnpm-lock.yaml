@@ -4,27 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    '@types/react':
-      specifier: ^19
-      version: 19.1.8
-    '@types/react-dom':
-      specifier: ^19
-      version: 19.1.6
-    eslint:
-      specifier: 8.57.1
-      version: 8.57.1
-    react:
-      specifier: ^19
-      version: 19.1.0
-    react-dom:
-      specifier: ^19
-      version: 19.1.0
-    typescript:
-      specifier: ^5
-      version: 5.8.3
-
 importers:
   .:
     devDependencies:
@@ -158,6 +137,9 @@ importers:
       axios:
         specifier: ^1.10.0
         version: 1.10.0
+      dom-to-image:
+        specifier: ^2.6.0
+        version: 2.6.0
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -3684,6 +3666,12 @@ packages:
     resolution:
       {
         integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==,
+      }
+
+  dom-to-image@2.6.0:
+    resolution:
+      {
+        integrity: sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA==,
       }
 
   domelementtype@2.3.0:
@@ -7789,6 +7777,27 @@ packages:
         integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==,
       }
 
+catalogs:
+  default:
+    '@types/react':
+      specifier: ^19
+      version: 19.1.8
+    '@types/react-dom':
+      specifier: ^19
+      version: 19.1.6
+    eslint:
+      specifier: 8.57.1
+      version: 8.57.1
+    react:
+      specifier: ^19
+      version: 19.1.0
+    react-dom:
+      specifier: ^19
+      version: 19.1.0
+    typescript:
+      specifier: ^5
+      version: 5.8.3
+
 snapshots:
   '@adobe/css-tools@4.4.3': {}
 
@@ -9355,7 +9364,7 @@ snapshots:
       '@typescript-eslint/eslint-plugin': 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
       '@typescript-eslint/parser': 7.18.0(eslint@8.57.1)(typescript@5.8.3)
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1))
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.31.0)(eslint@8.57.1)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -10025,6 +10034,8 @@ snapshots:
       domhandler: 5.0.3
       entities: 4.5.0
 
+  dom-to-image@2.6.0: {}
+
   domelementtype@2.3.0: {}
 
   domhandler@5.0.3:
@@ -10240,7 +10251,7 @@ snapshots:
       eslint-plugin-turbo: 2.5.4(eslint@8.57.1)(turbo@2.5.4)
       turbo: 2.5.4
 
-  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0):
+  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)):
     dependencies:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
 
