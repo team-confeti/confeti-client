@@ -49,6 +49,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
         onDateSelect={handleSelectDate}
         selectedDateId={selectedDateId}
       />
+
       <div className={styles.timeTableWrapper} ref={elementRef}>
         <FestivalStage timetableInfo={boardData} />
         <TimeTableBoard
@@ -56,6 +57,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
           isEditMode={isEditTimetableMode}
         />
       </div>
+
       <TimeTableActions
         isEditMode={isEditTimetableMode}
         onToggleEditMode={toggleEditTimetableMode}
