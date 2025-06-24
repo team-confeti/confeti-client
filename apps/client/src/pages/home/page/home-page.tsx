@@ -7,13 +7,12 @@ import {
 } from '@shared/components';
 import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 
-import CategoryTabs from '../components/category-tabs';
+import CategoryTabsContainer from '../components/category-tabs-container';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
 import { TAB_MENU } from '../constants/tab';
-import { useActiveSection } from '../hooks/use-active-section';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
@@ -22,7 +21,6 @@ const HomePage = () => {
     suggestPerformance: useMoveScroll(),
     suggestMusic: useMoveScroll(),
   };
-  const { currentCategory, handleCategoryClick } = useActiveSection(scrollRefs);
 
   const {
     userName,
@@ -38,10 +36,7 @@ const HomePage = () => {
       <PerformanceCarouselSection data={latestPerformances.performances} />
       <Spacing size="xl" color="white" />
 
-      <CategoryTabs
-        selectedCategory={currentCategory}
-        onCategoryClick={handleCategoryClick}
-      />
+      <CategoryTabsContainer scrollRefs={scrollRefs} />
       <Spacing size="lg" color="white" />
 
       <TicketingSection
