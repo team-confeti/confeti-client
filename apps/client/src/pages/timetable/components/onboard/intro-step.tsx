@@ -8,11 +8,15 @@ import {
 
 import * as styles from './step.css';
 
-import ImgOnboard1 from '/images/img_onboard_1.svg';
+interface IntroProps extends WithNextStep, WithNavigate {
+  onboardImage?: string;
+}
 
-type IntroProps = WithNavigate & WithNextStep;
-
-const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
+const ItroStep = ({
+  handleNextStep,
+  handleNavigate,
+  onboardImage,
+}: IntroProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -23,7 +27,7 @@ const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
             }
             fontSize={20}
           />
-          <img src={ImgOnboard1} />
+          <img src={onboardImage} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button

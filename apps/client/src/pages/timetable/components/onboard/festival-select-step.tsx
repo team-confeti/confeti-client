@@ -11,15 +11,18 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard2 from '/images/img_onboard_2.svg';
-
-type FestivalSelectProps = WithNavigate & WithNextStep & WithIndex;
+interface FestivalSelectProps extends WithNextStep, WithNavigate, WithIndex {
+  totalIndex: number;
+  currentIndex: number;
+  onboardImage?: string;
+}
 
 const FestivalSelectStep = ({
   handleNavigate,
   handleNextStep,
   totalIndex,
   currentIndex,
+  onboardImage,
 }: FestivalSelectProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
@@ -44,7 +47,7 @@ const FestivalSelectStep = ({
               descriptionText={'\n타임라인을 확인해요'}
             />
           </Description.Text>
-          <img src={ImgOnboard2} />
+          <img src={onboardImage} />
           <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
