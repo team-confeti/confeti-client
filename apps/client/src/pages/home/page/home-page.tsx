@@ -1,10 +1,11 @@
-import { FloatingButton, Spacing } from '@confeti/design-system';
+import { Spacing } from '@confeti/design-system';
 
-import { Footer, NavigationTabs } from '@shared/components';
 import {
-  useMoveScroll,
-  useScrollPosition,
-} from '@shared/hooks/use-scroll-position';
+  FloatingButtonContainer,
+  Footer,
+  NavigationTabs,
+} from '@shared/components';
+import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 
 import CategoryTabs from '../components/category-tabs';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
@@ -22,7 +23,6 @@ const HomePage = () => {
     suggestMusic: useMoveScroll(),
   };
   const { currentCategory, handleCategoryClick } = useActiveSection(scrollRefs);
-  const { isButtonHidden } = useScrollPosition();
 
   const {
     userName,
@@ -49,7 +49,6 @@ const HomePage = () => {
         data={ticketing.performances}
         userName={userName}
       />
-
       <Spacing size="2xl" color="white" />
 
       <SuggestPerformanceSection
@@ -64,7 +63,7 @@ const HomePage = () => {
       />
       <Spacing size="2xl" color="white" />
 
-      <FloatingButton isButtonHidden={isButtonHidden} />
+      <FloatingButtonContainer />
       <Footer />
     </>
   );
