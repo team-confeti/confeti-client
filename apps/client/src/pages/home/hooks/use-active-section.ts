@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { HOME_CATEGORY_TAB } from '../constants/tab';
 
@@ -21,41 +21,48 @@ export const useActiveSection = (scrollRefs: ScrollRefs) => {
   const [currentCategory, setCurrentCategory] = useState<HOME_CATEGORY_TAB>(
     HOME_CATEGORY_TAB.TICKETING,
   );
-  const [isScrollingByClick, setIsScrollingByClick] = useState(false);
+  const isScrollingByClick = useRef(false);
 
   useEffect(() => {
-    if (isScrollingByClick) return;
-
     const onScroll = () => {
+      if (isScrollingByClick.current) return;
       const scrollY = window.scrollY;
-
-      const suggestPerformanceTop =
-        scrollRefs.suggestPerformance.element.current?.offsetTop || 0;
-      const suggestMusicTop =
-        scrollRefs.suggestMusic.element.current?.offsetTop || 0;
       const viewportMiddle = window.innerHeight / 2;
 
-      switch (true) {
-        case scrollY >= suggestMusicTop - viewportMiddle:
-          setCurrentCategory(HOME_CATEGORY_TAB.PLAYLIST);
-          break;
-        case scrollY >= suggestPerformanceTop - viewportMiddle:
-          setCurrentCategory(HOME_CATEGORY_TAB.SUGGEST_PERFORMANCE);
-          break;
-        default:
-          setCurrentCategory(HOME_CATEGORY_TAB.TICKETING);
-          break;
+      const suggestPerformanceTop =
+        scrollRefs.suggestPerformance.element.current?.offsetTop ?? 0;
+      const suggestMusicTop =
+        scrollRefs.suggestMusic.element.current?.offsetTop ?? 0;
+
+      if (scrollY >= suggestMusicTop - viewportMiddle) {
+        setCurrentCategory((prev) =>
+          prev !== HOME_CATEGORY_TAB.PLAYLIST
+            ? HOME_CATEGORY_TAB.PLAYLIST
+            : prev,
+        );
+      } else if (scrollY >= suggestPerformanceTop - viewportMiddle) {
+        setCurrentCategory((prev) =>
+          prev !== HOME_CATEGORY_TAB.SUGGEST_PERFORMANCE
+            ? HOME_CATEGORY_TAB.SUGGEST_PERFORMANCE
+            : prev,
+        );
+      } else {
+        setCurrentCategory((prev) =>
+          prev !== HOME_CATEGORY_TAB.TICKETING
+            ? HOME_CATEGORY_TAB.TICKETING
+            : prev,
+        );
       }
     };
 
     window.addEventListener('scroll', onScroll);
-
     return () => window.removeEventListener('scroll', onScroll);
-  }, [scrollRefs, isScrollingByClick]);
+  }, [scrollRefs]);
 
   const handleCategoryClick = (category: HOME_CATEGORY_TAB) => {
+    if (currentCategory === category) return;
     setCurrentCategory(category);
-    setIsScrollingByClick(true);
+    isScrollingByClick.current = true;
 
     switch (category) {
       case HOME_CATEGORY_TAB.TICKETING:
@@ -67,13 +74,10 @@ export const useActiveSection = (scrollRefs: ScrollRefs) => {
       case HOME_CATEGORY_TAB.PLAYLIST:
         scrollRefs.suggestMusic.onMoveToElement();
         break;
-      default:
-        scrollRefs.ticketing.onMoveToElement();
-        break;
     }
 
     setTimeout(() => {
-      setIsScrollingByClick(false);
+      isScrollingByClick.current = false;
     }, 500);
   };
 
