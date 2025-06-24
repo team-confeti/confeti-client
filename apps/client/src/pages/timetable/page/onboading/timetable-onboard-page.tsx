@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useFunnel } from '@shared/hooks/use-funnel';
