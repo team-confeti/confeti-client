@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Box, FestivalCard } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { SuggestPerformance } from '@shared/types/home-response';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 
@@ -15,7 +14,7 @@ const SuggestPerformanceSection = ({
   data: SuggestPerformance[];
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  const navigate = useNavigate();
+  const navigateToDetail = useNavigateToDetail();
 
   return (
     <Box
@@ -37,9 +36,9 @@ const SuggestPerformanceSection = ({
                 width: 232,
                 height: 330,
               })}
-              onClick={() => {
-                navigate(`/${performance.type}-detail/${performance.typeId}`);
-              }}
+              onClick={() =>
+                navigateToDetail(performance.type, performance.typeId)
+              }
             />
           </div>
         ))}

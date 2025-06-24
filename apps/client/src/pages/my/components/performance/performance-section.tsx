@@ -1,7 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-
 import { FestivalCard } from '@confeti/design-system';
 
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/user-response';
 
 import * as styles from './performance-section.css';
@@ -11,7 +10,7 @@ interface ConfetiSectionProps {
 }
 
 const ConfetiSection = ({ performances }: ConfetiSectionProps) => {
-  const navigate = useNavigate();
+  const navigateToDetail = useNavigateToDetail();
 
   return (
     <div className={styles.container}>
@@ -20,9 +19,7 @@ const ConfetiSection = ({ performances }: ConfetiSectionProps) => {
           key={performance.index}
           title={performance.title}
           imageSrc={performance.posterUrl}
-          onClick={() =>
-            navigate(`/${performance.type}-detail/${performance.typeId}`)
-          }
+          onClick={() => navigateToDetail(performance.type, performance.typeId)}
         />
       ))}
     </div>

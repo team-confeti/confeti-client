@@ -1,7 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-
 import { FestivalCard } from '@confeti/design-system';
 
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { RecentPerformanceViewResponse } from '@shared/types/search-response';
 
 import * as styles from './recent-festivals-section.css';
@@ -11,7 +10,7 @@ interface Props {
 }
 
 const RecentFestivalSection = ({ recentViewData }: Props) => {
-  const navigate = useNavigate();
+  const navigateToDetail = useNavigateToDetail();
   const performances = recentViewData?.performances ?? [];
   const hasRecentlyViewed = performances.length > 0;
 
@@ -25,9 +24,7 @@ const RecentFestivalSection = ({ recentViewData }: Props) => {
               <FestivalCard
                 title={festival.title}
                 imageSrc={festival.posterUrl}
-                onClick={() =>
-                  navigate(`/${festival.type}-detail/${festival.typeId}`)
-                }
+                onClick={() => navigateToDetail(festival.type, festival.typeId)}
               />
             </li>
           ))}
