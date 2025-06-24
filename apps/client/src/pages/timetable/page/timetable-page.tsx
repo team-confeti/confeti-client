@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import { SwitchCase } from '@shared/components/switch-case';
+import { SwitchCase } from '@shared/components';
 
 import EmptyFestivalSection from '@pages/timetable/page/empty/empty-festival-section';
 import TimetableContent from '@pages/timetable/page/timetable-content/timetable-content';

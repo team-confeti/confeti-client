@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { themeVars } from '../../styles';
+import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   display: 'grid',

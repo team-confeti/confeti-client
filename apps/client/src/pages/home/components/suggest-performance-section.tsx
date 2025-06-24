@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Box, FestivalCard } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
@@ -13,6 +15,8 @@ const SuggestPerformanceSection = ({
   data: SuggestPerformance[];
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       title="이런 공연은 어떠세요?"
@@ -23,19 +27,19 @@ const SuggestPerformanceSection = ({
     >
       <div className={styles.container} ref={ref}>
         {data.map((performance) => (
-          // TODO: response body에 고유한 id 값 추가 요청
           <div
             key={`${performance.typeId}-${performance.title}`}
             className={styles.cardWrapper}
           >
             <FestivalCard
-              typeId={performance.typeId}
-              type={performance.type}
               title={performance.title}
               imageSrc={convertToCdnUrl(performance.posterUrl, {
                 width: 232,
                 height: 330,
               })}
+              onClick={() => {
+                navigate(`/${performance.type}-detail/${performance.typeId}`);
+              }}
             />
           </div>
         ))}

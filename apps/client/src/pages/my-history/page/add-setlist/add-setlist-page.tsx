@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
-import { SwitchCase } from '@shared/components/switch-case';
+import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';

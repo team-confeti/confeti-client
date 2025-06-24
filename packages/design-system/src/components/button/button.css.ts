@@ -9,7 +9,6 @@ export const buttonVariants = recipe({
     gap: '0.8rem',
     borderRadius: '1rem',
     color: themeVars.color.gray800,
-    flexShrink: 0,
   },
   variants: {
     variant: {

@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
+import { FloatingButton, Spacing } from '@confeti/design-system';
 
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
-import Hero from '@shared/components/hero/hero';
+import { Footer, Hero } from '@shared/components';
 import { useScrollPosition } from '@shared/hooks/use-scroll-position';
 import { addRecentViewItem } from '@shared/utils/recent-view';
 

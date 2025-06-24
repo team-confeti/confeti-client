@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { Chip, Footer, Header } from '@confeti/design-system';
+import { Chip } from '@confeti/design-system';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { DetailHeader, Footer } from '@shared/components';
 import { PerformancesFilterType } from '@shared/types/user-response';
 
 import PerformanceList from '@pages/my/components/performance/performance-list';
@@ -31,7 +32,7 @@ const PerformanceMore = () => {
 
   return (
     <>
-      <Header variant="detail" title="My Confeti" />
+      <DetailHeader title="My Confeti" />
       <nav>
         <ul className={styles.chipList}>
           {categories.map((category) => (

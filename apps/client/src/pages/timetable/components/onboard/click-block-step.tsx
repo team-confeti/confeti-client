@@ -11,15 +11,18 @@ import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard5 from '/images/img_onboard_5.svg';
-
-type ClickBlockProps = WithNavigate & WithNextStep & WithIndex;
+interface ClickBlockProps extends WithNextStep, WithNavigate, WithIndex {
+  totalIndex: number;
+  currentIndex: number;
+  onboardImage?: string;
+}
 
 const ClickBlockStep = ({
   handleNavigate,
   handleNextStep,
   totalIndex,
   currentIndex,
+  onboardImage,
 }: ClickBlockProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
@@ -33,7 +36,7 @@ const ClickBlockStep = ({
               descriptionText={`보고싶은 공연을 표시해요.`}
             />
           </Description.Text>
-          <img src={ImgOnboard5} />
+          <img src={onboardImage} />
           <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

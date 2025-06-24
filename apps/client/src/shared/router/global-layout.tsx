@@ -2,8 +2,7 @@ import { Suspense } from 'react';
 import * as Sentry from '@sentry/react';
 import { Outlet } from 'react-router-dom';
 
-import { Header } from '@confeti/design-system';
-
+import { Header } from '@shared/components';
 import ErrorFallback from '@shared/pages/error/error';
 import Loading from '@shared/pages/loading/loading';
 

@@ -1,5 +1,6 @@
-import { Footer } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
+import { Footer } from '@shared/components';
 
 import { SEARCH_NOT_FOUND_MESSAGE } from '../../../constants/notice-message';
 

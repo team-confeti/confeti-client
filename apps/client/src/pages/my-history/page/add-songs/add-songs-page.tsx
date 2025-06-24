@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, SearchBar, toast } from '@confeti/design-system';
 
 import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
-import MusicList from '@shared/components/music-list/music-list';
-import { SwitchCase } from '@shared/components/switch-case';
+import { MusicList, SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';

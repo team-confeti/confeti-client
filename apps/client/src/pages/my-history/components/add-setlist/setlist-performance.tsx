@@ -58,7 +58,6 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
         {performances.map((performance) => (
           <div key={performance.typeId} className={styles.festivalCardWrapper}>
             <FestivalCard
-              typeId={performance.typeId}
               title={performance.title}
               imageSrc={performance.posterUrl}
               selectable={true}

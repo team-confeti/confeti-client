@@ -1,4 +1,6 @@
-import { Icon } from '../../icons';
+import { Icon } from '@confeti/design-system/icon';
+
+import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import * as styles from './footer.css';
 
@@ -8,16 +10,9 @@ const Footer = () => {
       { label: '대표', value: '김가연' },
       { label: '이메일', value: 'weareconfeti@gmail.com' },
     ],
-    legalInfo: [
-      {
-        label: '개인정보처리방침',
-        href: 'https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a',
-      },
-      {
-        label: '이용약관',
-        href: 'https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9',
-      },
-    ],
+    legalInfo: EXTERNAL_LINKS.filter((link) =>
+      ['개인정보처리방침', '이용약관'].includes(link.label),
+    ),
   } as const;
 
   return (
@@ -38,7 +33,7 @@ const Footer = () => {
         <ul className={styles.right}>
           {list.legalInfo.map((item, index) => (
             <li key={index}>
-              <a href={item.href} target="_blank" rel="noopener noreferrer">
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
                 {item.label}
               </a>
             </li>

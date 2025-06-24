@@ -1,5 +1,6 @@
-import { Footer, Spacing } from '@confeti/design-system';
+import { Spacing } from '@confeti/design-system';
 
+import { Footer } from '@shared/components';
 import { SearchAllResponse } from '@shared/types/search-response';
 
 import ArtistSection from '../components/search-result/artist/artist-section';
