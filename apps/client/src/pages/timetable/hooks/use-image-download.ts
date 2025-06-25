@@ -39,9 +39,9 @@ export const useImageDownload = <T extends HTMLElement>({
 
     try {
       const blob = await htmlToImage.toBlob(element, {
-        filter: (node) => {
-          const el = node as HTMLElement;
-          return !excludeTags.includes(el.tagName);
+        filter: (node: Node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          return !excludeTags.includes(node.tagName);
         },
       });
 

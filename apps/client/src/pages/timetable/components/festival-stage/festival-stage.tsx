@@ -6,7 +6,7 @@ import * as styles from './festival-stage.css';
 
 const FestivalStage = ({ timetableInfo }: TimetableInfoType) => {
   return (
-    <div className={styles.stageWrapper} data-role="sticky-stage">
+    <div className={styles.stageWrapper}>
       {timetableInfo.stages.map((info) => (
         <div key={info.stageOrder} className={styles.stageBoxWrapper}>
           <div className={styles.stageBox}>{info.stageName}</div>
