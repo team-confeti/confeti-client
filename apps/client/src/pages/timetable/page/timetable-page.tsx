@@ -29,7 +29,7 @@ const TimeTablePage = () => {
       value={timetableState}
       caseBy={{
         onboard: () => <TimetableOnboard />,
-        empty: () => <TimetableContent festivals={festivalsData.festivals} />,
+        empty: () => <EmptyFestivalSection />,
         render: () => <TimetableContent festivals={festivalsData.festivals} />,
       }}
     />
