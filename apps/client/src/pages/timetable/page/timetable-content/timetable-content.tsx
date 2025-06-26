@@ -6,8 +6,8 @@ import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 import Calender from '@pages/timetable/components/calender/calender';
 import FestivalSelector from '@pages/timetable/components/festival-selector/festival-selector';
 import FestivalStage from '@pages/timetable/components/festival-stage/festival-stage';
-import TimeTableActions from '@pages/timetable/components/timetable-actions/timetable-actions';
-import TimeTableBoard from '@pages/timetable/components/timetable-board/timetable-board';
+import TimetableActions from '@pages/timetable/components/timetable-actions/timetable-actions';
+import TimetableBoard from '@pages/timetable/components/timetable-board/timetable-board';
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
@@ -49,14 +49,16 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
         onDateSelect={handleSelectDate}
         selectedDateId={selectedDateId}
       />
+
       <div className={styles.timeTableWrapper} ref={elementRef}>
         <FestivalStage timetableInfo={boardData} />
-        <TimeTableBoard
+        <TimetableBoard
           timetableInfo={boardData}
           isEditMode={isEditTimetableMode}
         />
       </div>
-      <TimeTableActions
+
+      <TimetableActions
         isEditMode={isEditTimetableMode}
         onToggleEditMode={toggleEditTimetableMode}
         onDownload={downloadImage}
