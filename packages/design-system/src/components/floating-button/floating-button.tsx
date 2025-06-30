@@ -5,17 +5,14 @@ import { floatingButtonVariants } from './floating-button.css';
 
 interface FloatingButtonProps {
   isButtonHidden?: boolean;
+  onClick: () => void;
 }
 
-const handleScrollToTop = () => {
-  window.scrollTo({ top: 0 });
-};
-
-const FloatingButton = ({ isButtonHidden }: FloatingButtonProps) => {
+const FloatingButton = ({ isButtonHidden, onClick }: FloatingButtonProps) => {
   return (
     <button
       className={cn(floatingButtonVariants({ isButtonHidden }))}
-      onClick={handleScrollToTop}
+      onClick={onClick}
     >
       <Icon name="arrow-vertical" size="3rem" color="confeti_lime2" />
     </button>

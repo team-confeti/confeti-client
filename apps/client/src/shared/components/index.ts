@@ -1,3 +1,4 @@
+export { default as FloatingButtonContainer } from './containers/floating-button-container';
 export { default as Hero } from './hero/hero';
 export { default as DetailHeader } from './layout/detail-header';
 export { default as Footer } from './layout/footer';

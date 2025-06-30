@@ -1,11 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import { FloatingButton, Spacing } from '@confeti/design-system';
+import { Spacing } from '@confeti/design-system';
 
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
-import { Footer, Hero } from '@shared/components';
-import { useScrollPosition } from '@shared/hooks/use-scroll-position';
+import { FloatingButtonContainer, Footer, Hero } from '@shared/components';
 import { addRecentViewItem } from '@shared/utils/recent-view';
 
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
@@ -22,7 +21,6 @@ const FestivalDetailPage = () => {
     PERFORMANCE_QUERY_OPTIONS.FESTIVAL(parsedFestivalId),
   );
   const { festival } = festivalDetail;
-  const { isButtonHidden } = useScrollPosition();
 
   if (festival.festivalId) {
     addRecentViewItem({ type: 'festival', typeId: festival.festivalId });
@@ -30,7 +28,6 @@ const FestivalDetailPage = () => {
 
   return (
     <>
-      <FloatingButton isButtonHidden={isButtonHidden} />
       <Hero
         posterUrl={festival.posterUrl}
         title={festival.title}
@@ -47,8 +44,10 @@ const FestivalDetailPage = () => {
         type="FESTIVAL"
       />
       <Spacing />
+
       <Reservation reservations={festival.reservations} />
       <Spacing />
+
       <DetailInfo
         title={festival.subtitle}
         time={festival.time}
@@ -57,7 +56,9 @@ const FestivalDetailPage = () => {
       />
       <Location address={festival.address} />
       <Spacing />
+
       <FestivalArtistSection artists={festivalDetail.festivalDates} />
+      <FloatingButtonContainer />
       <Footer />
     </>
   );
