@@ -28,6 +28,9 @@ catalogs:
 importers:
   .:
     devDependencies:
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.1
       husky:
         specifier: ^9.1.7
         version: 9.1.7
