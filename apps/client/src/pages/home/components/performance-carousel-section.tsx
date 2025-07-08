@@ -1,24 +1,26 @@
 import { PerformanceCarousel } from '@confeti/design-system';
 
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
-import { CarouselPerformances } from '@shared/types/home-response';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+import { CarouselPerformancesResponse } from '@shared/types/home-response';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
 import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './performance-carousel-section.css';
 
 const PerformanceCarouselSection = ({
-  data,
+  latestPerformances,
 }: {
-  data: CarouselPerformances[];
+  latestPerformances: CarouselPerformancesResponse;
 }) => {
   const navigateToDetail = useNavigateToDetail();
-  const badgeText = checkIsNotLoggedIn()
-    ? '다가오는 공연'
-    : '선호하는 아티스트';
 
-  const displayPerformances = data.length > 7 ? data.slice(0, 7) : data;
+  const badgeText = latestPerformances.isPersonalized
+    ? '선호하는 아티스트'
+    : '다가오는 공연';
+  const displayPerformances =
+    latestPerformances.performances.length > 7
+      ? latestPerformances.performances.slice(0, 7)
+      : latestPerformances.performances;
   const formattedPerformData = displayPerformances.map((performance) => {
     return {
       ...performance,
