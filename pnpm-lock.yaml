@@ -394,6 +394,18 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@20.19.1)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
 
+  packages/utils:
+    devDependencies:
+      '@confeti/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
+
 packages:
   '@adobe/css-tools@4.4.3':
     resolution:
