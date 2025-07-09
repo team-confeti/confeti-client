@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { toast } from '@confeti/design-system';
+import { cn } from '@confeti/utils';
 
 import { Icon } from '../../icons';
-import { cn } from '../../utils';
 
 import { likeButtonVariants } from './like-button.css';
 

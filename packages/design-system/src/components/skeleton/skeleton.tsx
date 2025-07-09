@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
 
 import * as styles from './skeleton.css';
 

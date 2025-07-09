@@ -83,6 +83,9 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@confeti/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@types/react':
         specifier: 'catalog:'
         version: 19.1.8
@@ -114,8 +117,8 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
       vite-plugin:
-        specifier: link:@@vanilla-extract/vite-plugin
-        version: link:@@vanilla-extract/vite-plugin
+        specifier: link:@vanilla-extract/vite-plugin
+        version: link:@vanilla-extract/vite-plugin
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
@@ -195,6 +198,9 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@confeti/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@pivanov/vite-plugin-svg-sprite':
         specifier: ^3.0.0
         version: 3.0.0(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
@@ -302,9 +308,6 @@ importers:
       '@vanilla-extract/sprinkles':
         specifier: ^1.6.5
         version: 1.6.5(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0))
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -324,6 +327,9 @@ importers:
       '@confeti/typescript':
         specifier: workspace:*
         version: link:../../config/typescript
+      '@confeti/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@pivanov/vite-plugin-svg-sprite':
         specifier: ^3.0.0
         version: 3.0.0(vite@6.3.5(@types/node@20.19.1)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
@@ -378,6 +384,9 @@ importers:
       chromatic:
         specifier: ^13.0.1
         version: 13.0.1
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.1
       storybook:
         specifier: 8.6.14
         version: 8.6.14(prettier@3.5.3)
@@ -395,6 +404,10 @@ importers:
         version: 6.3.5(@types/node@20.19.1)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
 
   packages/utils:
+    dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
     devDependencies:
       '@confeti/typescript':
         specifier: workspace:*

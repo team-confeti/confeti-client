@@ -1,5 +1,6 @@
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
-import { cn } from '../../utils';
 import { useToast } from './hooks/use-toast';
 import { ToastProps } from './types';
 import { TOAST_DEFAULT_POSITION } from './utils/constants';

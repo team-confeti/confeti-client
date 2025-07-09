@@ -5,7 +5,9 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
     "typescript": "catalog:",

@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import * as styles from './festival-button.css';
 

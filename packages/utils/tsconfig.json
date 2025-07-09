@@ -2,8 +2,8 @@
   "extends": "@confeti/typescript/base.json",
   "compilerOptions": {
     "typeRoots": ["node_modules/@types"],
-    "rootDir": "src",
-    "outDir": "dist"
+    "module": "ESNext",
+    "moduleResolution": "bundler"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

@@ -1,5 +1,6 @@
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
-import { cn } from '../../utils';
 
 import { floatingButtonVariants } from './floating-button.css';
 

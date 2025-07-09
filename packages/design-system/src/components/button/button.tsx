@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
 
 import { buttonVariants } from './button.css';
 

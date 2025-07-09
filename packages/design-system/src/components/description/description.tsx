@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
 
 import * as styles from './description.css';
 
