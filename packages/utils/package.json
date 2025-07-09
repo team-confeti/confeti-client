@@ -5,13 +5,15 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest --coverage"
   },
   "dependencies": {
     "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
+    "@vitest/coverage-v8": "3.2.4",
     "typescript": "catalog:",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
