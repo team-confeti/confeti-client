@@ -4,13 +4,16 @@
   "private": true,
   "type": "module",
   "main": "src/index.ts",
-  "scripts": {},
+  "scripts": {
+    "test": "vitest"
+  },
   "dependencies": {
     "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
     "typescript": "catalog:",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
   }
 }

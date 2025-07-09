@@ -1,7 +1,7 @@
 {
   "extends": "@confeti/typescript/base.json",
   "compilerOptions": {
-    "typeRoots": ["node_modules/@types"],
+    "types": ["vitest/globals"],
     "module": "ESNext",
     "moduleResolution": "bundler"
   },
