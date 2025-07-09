@@ -8,19 +8,14 @@ import { formatDate } from '@shared/utils/format-date';
 import * as styles from './performance-carousel-section.css';
 
 const PerformanceCarouselSection = ({
-  latestPerformances,
+  data,
 }: {
-  latestPerformances: CarouselPerformancesResponse;
+  data: CarouselPerformancesResponse;
 }) => {
   const navigateToDetail = useNavigateToDetail();
 
-  const badgeText = latestPerformances.isPersonalized
-    ? '선호하는 아티스트'
-    : '다가오는 공연';
-  const displayPerformances =
-    latestPerformances.performances.length > 7
-      ? latestPerformances.performances.slice(0, 7)
-      : latestPerformances.performances;
+  const badgeText = data.isPersonalized ? '선호하는 아티스트' : '다가오는 공연';
+  const displayPerformances = data.performances.slice(0, 7);
   const formattedPerformData = displayPerformances.map((performance) => {
     return {
       ...performance,
