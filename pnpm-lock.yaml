@@ -4,9 +4,33 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/react':
+      specifier: ^19
+      version: 19.1.8
+    '@types/react-dom':
+      specifier: ^19
+      version: 19.1.6
+    eslint:
+      specifier: 8.57.1
+      version: 8.57.1
+    react:
+      specifier: ^19
+      version: 19.1.0
+    react-dom:
+      specifier: ^19
+      version: 19.1.0
+    typescript:
+      specifier: ^5
+      version: 5.8.3
+
 importers:
   .:
     devDependencies:
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.1
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -7765,27 +7789,6 @@ packages:
         integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==,
       }
 
-catalogs:
-  default:
-    '@types/react':
-      specifier: ^19
-      version: 19.1.8
-    '@types/react-dom':
-      specifier: ^19
-      version: 19.1.6
-    eslint:
-      specifier: 8.57.1
-      version: 8.57.1
-    react:
-      specifier: ^19
-      version: 19.1.0
-    react-dom:
-      specifier: ^19
-      version: 19.1.0
-    typescript:
-      specifier: ^5
-      version: 5.8.3
-
 snapshots:
   '@adobe/css-tools@4.4.3': {}
 
@@ -9352,7 +9355,7 @@ snapshots:
       '@typescript-eslint/eslint-plugin': 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
       '@typescript-eslint/parser': 7.18.0(eslint@8.57.1)(typescript@5.8.3)
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1))
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.31.0)(eslint@8.57.1)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -10237,7 +10240,7 @@ snapshots:
       eslint-plugin-turbo: 2.5.4(eslint@8.57.1)(turbo@2.5.4)
       turbo: 2.5.4
 
-  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)):
+  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0):
     dependencies:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
 

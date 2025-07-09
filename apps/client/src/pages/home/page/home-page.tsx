@@ -33,7 +33,7 @@ const HomePage = () => {
   return (
     <>
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-      <PerformanceCarouselSection data={latestPerformances.performances} />
+      <PerformanceCarouselSection data={latestPerformances} />
       <Spacing size="xl" color="white" />
 
       <CategoryTabsContainer scrollRefs={scrollRefs} />
