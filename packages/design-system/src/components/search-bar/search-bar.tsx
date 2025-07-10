@@ -4,7 +4,7 @@ import { Icon } from '../../icons';
 
 import * as styles from './search-bar.css';
 
-interface SearchBarProps {
+interface Props {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -28,7 +28,7 @@ export const SearchBar = ({
   showBackButton = true,
   placeholder,
   autoFocus = false,
-}: SearchBarProps) => {
+}: Props) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);

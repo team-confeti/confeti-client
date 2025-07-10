@@ -5,7 +5,7 @@ import { Icon } from '../../icons';
 
 import * as styles from './music-item.css';
 
-interface MusicItemProps {
+interface Props {
   musicId: string;
   variant?: 'default' | 'editable' | 'confirmDelete';
   albumImage: string;
@@ -27,7 +27,7 @@ const MusicItem = ({
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
-}: MusicItemProps) => {
+}: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: musicId,

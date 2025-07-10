@@ -4,12 +4,12 @@ import { Icon } from '../../icons';
 
 import { floatingButtonVariants } from './floating-button.css';
 
-interface FloatingButtonProps {
+interface Props {
   isButtonHidden?: boolean;
   onClick: () => void;
 }
 
-const FloatingButton = ({ isButtonHidden, onClick }: FloatingButtonProps) => {
+const FloatingButton = ({ isButtonHidden, onClick }: Props) => {
   return (
     <button
       className={cn(floatingButtonVariants({ isButtonHidden }))}

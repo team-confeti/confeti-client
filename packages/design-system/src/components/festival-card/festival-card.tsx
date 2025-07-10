@@ -4,7 +4,7 @@ import { Icon } from '../../icons';
 
 import * as styles from './festival-card.css';
 
-interface FestivalCardProps {
+interface Props {
   title: string;
   imageSrc?: string;
   isSelected?: boolean;
@@ -20,7 +20,7 @@ const FestivalCard = ({
   selectable = false,
   onSelectChange,
   onClick,
-}: FestivalCardProps) => {
+}: Props) => {
   const [internalSelected, setInternalSelected] = useState(isSelected);
 
   const handleClick = () => {

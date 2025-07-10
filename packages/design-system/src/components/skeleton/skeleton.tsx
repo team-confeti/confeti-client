@@ -4,7 +4,7 @@ import { cn } from '@confeti/utils';
 
 import * as styles from './skeleton.css';
 
-export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement> {
+export interface Props extends HTMLAttributes<HTMLSpanElement> {
   variants?: 'default' | 'rounded' | 'rectangular';
   width?: string;
   height?: string;
@@ -16,7 +16,7 @@ const Skeleton = ({
   variants = 'default',
   style,
   ...rest
-}: SkeletonProps) => {
+}: Props) => {
   return (
     <span
       className={cn(styles.skeleton({ variants }))}

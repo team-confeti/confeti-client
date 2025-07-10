@@ -4,7 +4,7 @@ import { cn } from '@confeti/utils';
 
 import { buttonVariants } from './button.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   variant?: 'default' | 'add' | 'link' | 'logout' | 'kakao' | 'apple' | 'back';
   disabled?: boolean;
@@ -19,7 +19,7 @@ const Button = ({
   className,
   icon,
   ...props
-}: ButtonProps) => {
+}: Props) => {
   return (
     <button
       className={cn(buttonVariants({ variant: variant, disabled }), className)}

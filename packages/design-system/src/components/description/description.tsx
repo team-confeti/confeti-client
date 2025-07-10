@@ -4,22 +4,13 @@ import { cn } from '@confeti/utils';
 
 import * as styles from './description.css';
 
-interface DescriptionTextProps {
+interface TextProps {
   descriptionText: string;
   fontSize: 18 | 20;
   children?: ReactNode;
 }
 
-interface HighlightedTextProps {
-  highlightedText: string;
-  fontSize: 18 | 20;
-}
-
-const Text = ({
-  descriptionText,
-  fontSize,
-  children,
-}: DescriptionTextProps) => {
+const Text = ({ descriptionText, fontSize, children }: TextProps) => {
   return (
     <span className={cn(styles.descriptionTextVariants({ fontSize }))}>
       {descriptionText}
@@ -27,6 +18,11 @@ const Text = ({
     </span>
   );
 };
+
+interface HighlightedTextProps {
+  highlightedText: string;
+  fontSize: 18 | 20;
+}
 
 const HighlightedText = ({
   highlightedText,
