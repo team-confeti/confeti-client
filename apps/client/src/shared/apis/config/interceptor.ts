@@ -17,15 +17,8 @@ import {
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { routePath } from '@shared/router/path';
 
 import { instance } from './instance';
-
-const redirectToHome = () => {
-  authTokenHandler('remove');
-  window.location.replace(routePath.ROOT);
-  throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
-};
 
 export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
   if (!error.response) {
@@ -82,7 +75,11 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
   const refreshToken = getRefreshToken();
   if (!refreshToken) {
-    return redirectToHome();
+    authTokenHandler('remove');
+    throw new HTTPError(
+      HTTP_STATUS_CODE.UNAUTHORIZED,
+      '리프레시 토큰이 없습니다. 다시 로그인해주세요.',
+    );
   }
 
   try {
@@ -110,7 +107,11 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
     return instance(originalConfig);
   } catch (error) {
-    return redirectToHome();
+    authTokenHandler('remove');
+    throw new HTTPError(
+      HTTP_STATUS_CODE.UNAUTHORIZED,
+      '토큰 재발급에 실패했습니다.',
+    );
   }
 };
 
