@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "src/index.ts",
+  "exports": {
+    "./http": "./src/http/index.ts"
+  },
   "scripts": {},
   "dependencies": {
     "axios": "^1.10.0"
