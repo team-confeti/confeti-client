@@ -1,8 +1,8 @@
+import { getAccessToken } from '@confeti/core/auth';
 import { Avatar, LikeButton } from '@confeti/design-system';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { MyArtists } from '@shared/types/user-response';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { getAddedDate } from '@shared/utils/format-date';
 
 import * as styles from './artist-list.css';
@@ -34,7 +34,7 @@ const ArtistList = ({ artists }: Props) => {
             className={styles.likeButton}
             isFavorite={artist.isFavorite}
             onLikeToggle={(action) => handleLike(artist.artistId, action)}
-            isLoggedIn={!checkIsNotLoggedIn()}
+            isLoggedIn={!!getAccessToken()}
           />
         </li>
       ))}

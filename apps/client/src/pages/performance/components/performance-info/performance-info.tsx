@@ -1,7 +1,7 @@
+import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 import { formatDate } from '@shared/utils/format-date';
 
 import { PERFORMANCE_LABEL } from '../../constant/performance';
@@ -46,7 +46,7 @@ const PerformanceInfo = ({
             className={styles.likeButton}
             isFavorite={isFavorite}
             onLikeToggle={handleLike}
-            isLoggedIn={!checkIsNotLoggedIn()}
+            isLoggedIn={!!getAccessToken()}
           />
         </div>
 

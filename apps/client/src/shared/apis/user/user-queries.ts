@@ -1,5 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { getAccessToken } from '@confeti/core/auth';
+
 import { get, patch } from '@shared/apis/config/instance';
 import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
@@ -15,7 +17,6 @@ import {
   UserInfo,
   UserProfile,
 } from '@shared/types/user-response';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 export const USER_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: USER_QUERY_KEY.ALL }),
@@ -55,7 +56,7 @@ export const USER_QUERY_OPTIONS = {
 };
 
 export const getUserProfile = async (): Promise<UserProfile | null> => {
-  if (checkIsNotLoggedIn()) return null;
+  if (!getAccessToken()) return null;
   const response = await get<BaseResponse<UserProfile>>(
     END_POINT.GET_USER_PROFILE,
   );
