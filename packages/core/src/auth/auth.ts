@@ -2,6 +2,14 @@ import Cookies from 'js-cookie';
 
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './constants';
 
+export function getAccessToken() {
+  return Cookies.get(ACCESS_TOKEN_KEY);
+}
+
+export function getRefreshToken() {
+  return localStorage.getItem(REFRESH_TOKEN_KEY);
+}
+
 export function authTokenHandler(
   action: 'set' | 'remove',
   accessToken?: string,

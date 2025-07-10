@@ -1,10 +1,9 @@
 import * as Sentry from '@sentry/react';
-import Cookies from 'js-cookie';
 
 import {
-  ACCESS_TOKEN_KEY,
   authTokenHandler,
-  REFRESH_TOKEN_KEY,
+  getAccessToken,
+  getRefreshToken,
 } from '@confeti/core/auth';
 import {
   AxiosError,
@@ -80,7 +79,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
     throw new Error('요청 정보를 확인할 수 없습니다.');
   }
 
-  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+  const refreshToken = getRefreshToken();
   if (!refreshToken) {
     return redirectToHome();
   }
@@ -115,7 +114,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
-  const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
+  const accessToken = getAccessToken();
 
   if (accessToken && config.headers) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
