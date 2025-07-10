@@ -1,4 +1,4 @@
-name: Build
+name: CI
 
 env:
   HUSKY: 0
@@ -41,8 +41,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5. 빌드 실행
+      # 5. 테스트 실행
+      - name: Run tests
+        run: pnpm test
+
+      # 6. 빌드 실행
       - name: Build project
         run: |
-          cd apps/client
           pnpm build

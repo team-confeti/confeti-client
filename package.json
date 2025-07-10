@@ -5,6 +5,8 @@
     "preinstall": "npx only-allow pnpm",
     "build": "turbo build",
     "dev": "turbo dev",
+    "test": "turbo run test",
+    "coverage": "turbo run coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache --fix",
     "lint:staged": "lint-staged",
     "prepare": "husky",
