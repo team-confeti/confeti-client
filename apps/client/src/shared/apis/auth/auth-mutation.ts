@@ -1,8 +1,8 @@
 import { createInstance } from '@confeti/core/http';
+import { BaseResponse } from '@confeti/core/http';
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { BaseResponse } from '@shared/types/api';
 import {
   AppleLogin,
   KakaoLogin,

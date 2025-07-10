@@ -7,6 +7,8 @@ import {
 } from '@confeti/core/auth';
 import {
   AxiosError,
+  BaseResponse,
+  ErrorResponse,
   HTTP_STATUS_CODE,
   HTTPError,
   InternalAxiosRequestConfig,
@@ -15,7 +17,6 @@ import {
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
-import { BaseResponse, ErrorResponse } from '@shared/types/api';
 import { TokenResponse } from '@shared/types/login-response';
 
 import { instance } from './instance';

@@ -1,5 +1,6 @@
+import { BaseResponseWithoutData } from '@confeti/core/http';
+
 import { END_POINT } from '@shared/constants/api';
-import { BaseResponseWithoutData } from '@shared/types/api';
 
 import { del, post } from '../config/instance';
 

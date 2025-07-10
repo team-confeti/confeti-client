@@ -1,8 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { BaseResponse } from '@confeti/core/http';
+
 import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related-queries';
 import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
-import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
 
 export const useArtistRelatedArtist = () => {

@@ -1,12 +1,12 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { getAccessToken } from '@confeti/core/auth';
+import { BaseResponse } from '@confeti/core/http';
 
 import { get, patch } from '@shared/apis/config/instance';
 import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
-import { BaseResponse } from '@shared/types/api';
 import {
   FavoriteArtistsResponses,
   MyArtistsResponse,

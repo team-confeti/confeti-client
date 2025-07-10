@@ -1,5 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { BaseResponse } from '@confeti/core/http';
+
 import { get, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { FESTIVAL_QUERY_KEY } from '@shared/constants/query-key';
@@ -10,7 +12,6 @@ import {
   toFestivalListItem,
 } from '@shared/models/festival';
 import {
-  BaseResponse,
   FestivalCreateDTO,
   FestivalDetailDTO,
   FestivalListDTO,

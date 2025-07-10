@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { authTokenHandler } from '@confeti/core/auth';
+import { BaseResponse } from '@confeti/core/http';
 
 import { postSocialLogin } from '@shared/apis/auth/auth-mutation';
 import { routePath } from '@shared/router/path';
-import { BaseResponse } from '@shared/types/api';
 import {
   AppleLogin,
   KakaoLogin,

@@ -1,5 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { BaseResponse } from '@confeti/core/http';
+
 import { get, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { CONCERT_QUERY_KEY } from '@shared/constants/query-key';
@@ -9,11 +11,7 @@ import {
   toConcert,
   toConcertListItem,
 } from '@shared/models/concert';
-import {
-  BaseResponse,
-  ConcertDetailDTO,
-  ConcertListDTO,
-} from '@shared/types/api';
+import { ConcertDetailDTO, ConcertListDTO } from '@shared/types/api';
 import { createConcertFormData } from '@shared/utils/form-data';
 
 export const CONCERT_QUERY_OPTIONS = {
