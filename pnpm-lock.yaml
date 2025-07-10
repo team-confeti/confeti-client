@@ -297,9 +297,18 @@ importers:
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0)
 
   packages/design-system:
     dependencies:
