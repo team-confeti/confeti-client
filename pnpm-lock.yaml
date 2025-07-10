@@ -58,9 +58,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.80.10
         version: 5.80.10(react@19.1.0)
-      axios:
-        specifier: ^1.10.0
-        version: 1.10.0
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -77,6 +74,9 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
     devDependencies:
+      '@confeti/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@confeti/eslint':
         specifier: workspace:*
         version: link:../../config/eslint
