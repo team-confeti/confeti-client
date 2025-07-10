@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./http": "./src/http/index.ts"
+    "./http": "./src/http/index.ts",
+    "./auth": "./src/auth/index.ts"
   },
   "scripts": {},
   "dependencies": {
-    "axios": "^1.10.0"
+    "axios": "^1.10.0",
+    "js-cookie": "^3.0.5"
   },
   "devDependencies": {
     "@confeti/typescript": "workspace:*",
