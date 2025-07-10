@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { createInstance } from '@confeti/core/http';
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
@@ -11,29 +11,19 @@ import {
 
 import { del, post } from '../config/instance';
 
-const authInstance = axios.create({
-  baseURL: ENV_CONFIG.BASE_URL,
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const { post: authPost } = createInstance(ENV_CONFIG.BASE_URL);
 
 export const postSocialLogin = async (
   socialLoginData: KakaoLogin | AppleLogin,
 ): Promise<BaseResponse<SocialLoginResponse>> => {
   try {
-    const response = await authInstance.post<BaseResponse<SocialLoginResponse>>(
+    const response = await authPost<BaseResponse<SocialLoginResponse>>(
       END_POINT.POST_SOCIAL_LOGIN,
       socialLoginData,
     );
 
-    return response.data;
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error) && error.response) {
-      const { status, data } = error.response;
-      throw new Error(`Error: ${status} - ${data.message}`);
-    }
+    return response;
+  } catch {
     throw new Error('Unexpected error occurred');
   }
 };

@@ -1,8 +1,14 @@
 import * as Sentry from '@sentry/react';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
-import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
+import {
+  AxiosError,
+  HTTP_STATUS_CODE,
+  HTTPError,
+  InternalAxiosRequestConfig,
+} from '@confeti/core/http';
+
+import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
@@ -10,8 +16,7 @@ import { BaseResponse, ErrorResponse } from '@shared/types/api';
 import { TokenResponse } from '@shared/types/login-response';
 import { authTokenHandler } from '@shared/utils/token-handler';
 
-import { HTTPError } from './http-error';
-import { axiosInstance } from './instance';
+import { instance } from './instance';
 
 const redirectToHome = () => {
   authTokenHandler('remove');
@@ -100,7 +105,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
     const originalConfig = error.config;
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
-    return axiosInstance(originalConfig);
+    return instance(originalConfig);
   } catch (error) {
     return redirectToHome();
   }
