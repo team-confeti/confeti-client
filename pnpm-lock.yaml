@@ -291,6 +291,19 @@ importers:
 
   config/typescript: {}
 
+  packages/core:
+    dependencies:
+      axios:
+        specifier: ^1.10.0
+        version: 1.10.0
+    devDependencies:
+      '@confeti/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
   packages/design-system:
     dependencies:
       '@dnd-kit/sortable':
