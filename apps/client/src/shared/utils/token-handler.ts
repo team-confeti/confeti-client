@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@confeti/core/auth';
 
 export const authTokenHandler = (
   action: 'set' | 'remove',

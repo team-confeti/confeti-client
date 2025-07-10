@@ -293,6 +293,9 @@ importers:
       axios:
         specifier: ^1.10.0
         version: 1.10.0
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
     devDependencies:
       '@confeti/typescript':
         specifier: workspace:*

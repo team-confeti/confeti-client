@@ -10,6 +10,3 @@ export const ENV_CONFIG = {
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
   IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
 } as const;
-
-export const ACCESS_TOKEN_KEY = 'accessToken' as const;
-export const REFRESH_TOKEN_KEY = 'refreshToken' as const;

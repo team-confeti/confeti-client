@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react';
 import Cookies from 'js-cookie';
 
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@confeti/core/auth';
 import {
   AxiosError,
   HTTP_STATUS_CODE,
@@ -10,7 +11,6 @@ import {
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
 import { routePath } from '@shared/router/path';
 import { BaseResponse, ErrorResponse } from '@shared/types/api';
 import { TokenResponse } from '@shared/types/login-response';
