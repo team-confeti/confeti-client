@@ -68,24 +68,40 @@ export const getSuggestPerformance =
   };
 
 export const getSuggestMusicPerformance =
-  async (): Promise<SuggestMusicPerformanceResponse> => {
-    const response = await get<BaseResponse<SuggestMusicPerformanceResponse>>(
-      END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE,
-    );
-    return response.data;
+  async (): Promise<SuggestMusicPerformanceResponse | null> => {
+    try {
+      const response = await get<BaseResponse<SuggestMusicPerformanceResponse>>(
+        END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE,
+      );
+
+      if (!response.data) {
+        return null;
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   };
 
 export const getSuggestMusic = async (
   performanceId: number,
   musicIds?: string[],
 ): Promise<SuggestMusicResponse> => {
-  const query = new URLSearchParams();
+  try {
+    const query = new URLSearchParams();
 
-  query.append('performanceId', String(performanceId));
-  musicIds?.forEach((id) => query.append('musicId', id));
+    query.append('performanceId', String(performanceId));
+    musicIds?.forEach((id) => query.append('musicId', id));
 
-  const url = `performances/recommend/musics?${query.toString()}`;
+    const url = `performances/recommend/musics?${query.toString()}`;
 
-  const response = await get<BaseResponse<SuggestMusicResponse>>(url);
-  return response.data;
+    const response = await get<BaseResponse<SuggestMusicResponse>>(url);
+
+    return response.data || { musics: [] };
+  } catch (error) {
+    console.error(error);
+    return { musics: [] };
+  }
 };

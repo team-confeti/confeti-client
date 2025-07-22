@@ -52,10 +52,12 @@ const HomePage = () => {
       />
       <Spacing size="lg" color="white" />
 
-      <SuggestMusicSection
-        ref={scrollRefs.suggestMusic.element}
-        data={suggestMusicPerformance}
-      />
+      {suggestMusicPerformance && (
+        <SuggestMusicSection
+          ref={scrollRefs.suggestMusic.element}
+          data={suggestMusicPerformance}
+        />
+      )}
       <Spacing size="2xl" color="white" />
 
       <FloatingButtonContainer />
