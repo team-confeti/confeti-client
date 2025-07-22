@@ -1,14 +1,15 @@
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
-import { cn } from '../../utils';
 
 import { floatingButtonVariants } from './floating-button.css';
 
-interface FloatingButtonProps {
+interface Props {
   isButtonHidden?: boolean;
   onClick: () => void;
 }
 
-const FloatingButton = ({ isButtonHidden, onClick }: FloatingButtonProps) => {
+const FloatingButton = ({ isButtonHidden, onClick }: Props) => {
   return (
     <button
       className={cn(floatingButtonVariants({ isButtonHidden }))}

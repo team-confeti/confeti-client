@@ -14,11 +14,6 @@ interface NavContextProps {
 
 const NavContext = createContext<NavContextProps | undefined>(undefined);
 
-interface NavProps {
-  children: ReactNode;
-  defaultActiveTab?: number;
-}
-
 const useTabContext = (): NavContextProps => {
   const context = useContext(NavContext);
   if (!context) {
@@ -28,6 +23,11 @@ const useTabContext = (): NavContextProps => {
   }
   return context;
 };
+
+interface NavProps {
+  children: ReactNode;
+  defaultActiveTab?: number;
+}
 
 const NavRoot = ({ children, defaultActiveTab = 0 }: NavProps) => {
   const [activeTab, setActiveTab] = useState(defaultActiveTab);

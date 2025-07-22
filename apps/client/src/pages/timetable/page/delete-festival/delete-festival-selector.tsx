@@ -1,5 +1,5 @@
 import { Icon } from '@confeti/design-system/icon';
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 

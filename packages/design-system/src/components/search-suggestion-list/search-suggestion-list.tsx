@@ -8,7 +8,7 @@ interface KeywordProps {
   profileUrl: string;
 }
 
-interface SearchSuggestionListProps {
+interface Props {
   relatedKeyword: KeywordProps[] | undefined;
   onSelectArtistId?: (id: string) => void;
   onSelectKeyword?: (keyword: string, id: string | number) => void;
@@ -22,7 +22,7 @@ const SearchSuggestionList = ({
   onSelectKeyword,
   handleSearchParams,
   listType,
-}: SearchSuggestionListProps) => {
+}: Props) => {
   const handleClick = (id: string | number, title: string) => {
     handleSearchParams?.();
     onSelectArtistId?.(id.toString());

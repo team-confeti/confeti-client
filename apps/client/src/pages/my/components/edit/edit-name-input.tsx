@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 import { Icon } from '@confeti/design-system/icon';
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import * as styles from './edit-name-input.css';
 

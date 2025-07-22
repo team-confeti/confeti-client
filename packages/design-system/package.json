@@ -21,13 +21,13 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@vanilla-extract/recipes": "^0.5.7",
-    "clsx": "^2.1.1",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
     "@confeti/typescript": "workspace:*",
+    "@confeti/utils": "workspace:*",
     "@pivanov/vite-plugin-svg-sprite": "^3.0.0",
     "@storybook/addon-a11y": "8.6.14",
     "@storybook/addon-essentials": "8.6.14",
@@ -46,6 +46,7 @@
     "@vanilla-extract/vite-plugin": "^5.0.6",
     "@vitejs/plugin-react": "^4.5.2",
     "chromatic": "^13.0.1",
+    "eslint": "catalog:",
     "storybook": "8.6.14",
     "svgo": "^3.3.2",
     "tsx": "^4.20.3",

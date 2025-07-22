@@ -2,18 +2,13 @@ import { Icon } from '../../icons';
 
 import { chipVariants } from './chip.css';
 
-interface ChipProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   variant?: 'default' | 'active' | 'withDelete';
   onDelete?: () => void;
 }
 
-const Chip = ({
-  label,
-  variant = 'default',
-  onDelete,
-  ...props
-}: ChipProps) => {
+const Chip = ({ label, variant = 'default', onDelete, ...props }: Props) => {
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.();

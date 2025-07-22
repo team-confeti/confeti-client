@@ -1,4 +1,4 @@
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import { formatDate } from '@shared/utils/format-date';
 

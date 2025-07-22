@@ -1,5 +1,5 @@
 import { Button, Description } from '@confeti/design-system';
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import {
   WithNavigate,

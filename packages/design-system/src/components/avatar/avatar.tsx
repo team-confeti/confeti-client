@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
-import { cn } from '../../utils';
 
 import * as styles from './avatar.css';
 

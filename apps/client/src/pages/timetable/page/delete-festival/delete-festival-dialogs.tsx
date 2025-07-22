@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Button, Dialog } from '@confeti/design-system';
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 export const ConfirmDialog = ({
   isOpen,

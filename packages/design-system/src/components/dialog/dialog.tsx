@@ -1,9 +1,10 @@
 import { type ReactNode, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
+import { cn } from '@confeti/utils';
+
 import useClickOutside from '../../hooks/use-click-outside';
 import { themeClass } from '../../styles';
-import { cn } from '../../utils';
 
 import * as styles from './dialog.css';
 

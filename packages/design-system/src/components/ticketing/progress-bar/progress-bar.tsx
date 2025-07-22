@@ -1,4 +1,4 @@
-import { cn } from '../../../utils';
+import { cn } from '@confeti/utils';
 
 import { progressBarVariants } from './progress-bar.css';
 

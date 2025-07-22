@@ -1,0 +1,7 @@
+comment:
+  layout: 'diff, flags, files' # PR 리포트에 diff, flags, files 섹션 포함
+  behavior: default # 기본적인 PR 리포트 생성
+  require_changes: false # 커버리지 변화가 없어도 리포트 생성
+  require_base: false # base 리포트 없이도 PR 리포트 생성
+  require_head: true # head 리포트(현재 커밋의 커버리지)가 있어야 PR 리포트 생성
+  hide_project_coverage: false # 전체 프로젝트 커버리지도 PR 리포트에 포함

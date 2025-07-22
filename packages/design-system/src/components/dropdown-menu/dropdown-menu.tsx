@@ -7,8 +7,9 @@ import {
   useState,
 } from 'react';
 
+import { cn } from '@confeti/utils';
+
 import useClickOutside from '../../hooks/use-click-outside';
-import { cn } from '../../utils';
 
 import * as styles from './dropdown-menu.css';
 

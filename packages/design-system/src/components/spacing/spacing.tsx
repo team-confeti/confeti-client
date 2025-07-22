@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react';
 
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
 
 import { spacingVariants } from './spacing.css';
 

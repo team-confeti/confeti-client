@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { cn } from '@confeti/design-system/utils';
+import { cn } from '@confeti/utils';
 
 import { TIME_SLOT_HEIGHT_1_MIN } from '@pages/timetable/constants';
 import {
