@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button } from '@confeti/design-system';
 
-import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
 import { TOP_ARTIST_QUERY_OPTIONS } from '@shared/apis/onboard/top-artist-queries';
 import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
@@ -24,9 +23,6 @@ const Onboarding = () => {
   const { Funnel, Step, setStep } = useFunnel(TOTAL_STEPS, routePath.ROOT);
   const { data: topArtistData } = useSuspenseQuery({
     ...TOP_ARTIST_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
-  });
-  const { data: onboardingStatus } = useQuery({
-    ...ONBOARD_QUERY_OPTIONS.STATUS(),
   });
 
   const [artists, setArtists] = useState(topArtistData?.artists || []);
