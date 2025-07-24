@@ -46,7 +46,7 @@ const getTopArtist = async (limit: number): Promise<onboardResponse> => {
   return response.data;
 };
 
-const getArtistRelatedArtist = async (
+export const getArtistRelatedArtist = async (
   artistId: string,
   limit: number,
 ): Promise<BaseResponse<onboardResponse>> => {
