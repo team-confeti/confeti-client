@@ -2,19 +2,19 @@ import { queryOptions } from '@tanstack/react-query';
 
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
-import { ARTIST_RELATED_QUERY_KEY } from '@shared/constants/query-key';
+import { ONBOARD_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
 
 export const ARTIST_RELATED_QUERY_OPTIONS = {
-  ALL: () => queryOptions({ queryKey: ARTIST_RELATED_QUERY_KEY.ALL }),
+  ALL: () => queryOptions({ queryKey: ONBOARD_QUERY_KEY.ALL }),
   ARTIST: (artistId: string, limit: number) => ({
-    queryKey: ARTIST_RELATED_QUERY_KEY.RELATED_ARTIST(artistId),
+    queryKey: ONBOARD_QUERY_KEY.ARTIST_RELATED_ARTIST(artistId),
     queryFn: () => getArtistRelatedArtist(artistId, limit),
   }),
 
   KEYWORD: (keyword: string, limit: number) => ({
-    queryKey: ARTIST_RELATED_QUERY_KEY.RELATED_KEYWORD(keyword),
+    queryKey: ONBOARD_QUERY_KEY.ARTIST_RELATED_KEYWORDS(keyword),
     queryFn: () => getArtistRelatedKeyword(keyword, limit),
   }),
 };
