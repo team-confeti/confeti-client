@@ -1,25 +1,27 @@
+import { Button, Description } from '@confeti/design-system';
+
 import {
   WithIndex,
   WithNavigate,
   WithNextStep,
 } from '@pages/timetable/types/timetable-onboard-type';
 
-import { Button, Description } from '@confeti/design-system';
-
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard4 from '/images/img_onboard_4.svg';
-
-type EditTimeTableprops = WithNavigate & WithNextStep & WithIndex;
-
+interface EditTimeTableprops extends WithNextStep, WithNavigate, WithIndex {
+  totalIndex: number;
+  currentIndex: number;
+  onboardImage?: string;
+}
 const EditTimetableStep = ({
   handleNavigate,
   handleNextStep,
   totalIndex,
   currentIndex,
+  onboardImage,
 }: EditTimeTableprops) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
@@ -35,7 +37,7 @@ const EditTimetableStep = ({
               descriptionText={`로\n테이블을 커스텀해요`}
             />
           </Description.Text>
-          <img src={ImgOnboard4} />
+          <img src={onboardImage} />
           <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

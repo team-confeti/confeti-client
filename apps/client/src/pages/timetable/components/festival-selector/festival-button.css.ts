@@ -36,15 +36,13 @@ export const festivalButton = recipe({
         transition: 'background-image 0.4s ease, border-color 0.4s ease',
       },
     },
-    // isFestivalDeleteMode: {
-    //   true: {},
-    // },
   },
 });
 
 export const text = style({
   display: '-webkit-box',
   width: '7.4rem',
+  height: '3rem',
   WebkitBoxOrient: 'vertical',
   WebkitLineClamp: '2',
   overflow: 'hidden',

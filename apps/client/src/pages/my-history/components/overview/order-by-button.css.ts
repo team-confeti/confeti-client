@@ -13,4 +13,5 @@ export const orderByButtonContainer = style({
 export const orderByText = style({
   ...themeVars.fontStyles.body5_m_12,
   color: themeVars.color.black,
+  whiteSpace: 'nowrap',
 });

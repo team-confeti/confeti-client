@@ -1,0 +1,18 @@
+import { type ReactNode } from 'react';
+
+import { cn } from '@confeti/utils';
+
+import { {{camelCase name}}Variants } from './{{kebabCase name}}.css';
+
+interface Props {
+  children: ReactNode;
+  className?: string;
+}
+
+const {{pascalCase name}} = ({ className, children, ...props }: Props) => (
+  <div className={cn({{camelCase name}}Variants(), className)} {...props}>
+    {children}
+  </div>
+);
+
+export default {{pascalCase name}};

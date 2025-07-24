@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
-import { IcFestivalGray } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
+
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { routePath } from '@shared/router/path';
 
@@ -24,7 +25,7 @@ const EmptyFestivalSection = () => {
   return (
     <section className={styles.container}>
       <div className={styles.iconDescriptionWrapper}>
-        <IcFestivalGray className={styles.icon} />
+        <Icon name="fesetival" size="5rem" color="gray300" />
         <h1 className={styles.description}>
           페스티벌을 추가해
           <br />

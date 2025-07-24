@@ -1,4 +1,4 @@
-import { CmpSearchArtistImg, CmpSearchImg } from '../../icons/src';
+import { Icon } from '../../icons';
 
 import * as styles from './search-suggestion-list.css';
 
@@ -8,7 +8,7 @@ interface KeywordProps {
   profileUrl: string;
 }
 
-interface SearchSuggestionListProps {
+interface Props {
   relatedKeyword: KeywordProps[] | undefined;
   onSelectArtistId?: (id: string) => void;
   onSelectKeyword?: (keyword: string, id: string | number) => void;
@@ -22,7 +22,7 @@ const SearchSuggestionList = ({
   onSelectKeyword,
   handleSearchParams,
   listType,
-}: SearchSuggestionListProps) => {
+}: Props) => {
   const handleClick = (id: string | number, title: string) => {
     handleSearchParams?.();
     onSelectArtistId?.(id.toString());
@@ -39,7 +39,7 @@ const SearchSuggestionList = ({
         >
           <div className={styles.listImageContainer}>
             {listType === 'performance' ? (
-              <CmpSearchImg className={styles.fallbackImage} />
+              <Icon name="search-thumbnail" className={styles.fallbackImage} />
             ) : keyword.profileUrl ? (
               <img
                 className={styles.listImage}
@@ -47,7 +47,16 @@ const SearchSuggestionList = ({
                 alt={keyword.title}
               />
             ) : (
-              <CmpSearchArtistImg className={styles.fallbackImage} />
+              <Icon
+                name="logo-thumbnail"
+                className={styles.fallbackImage}
+                style={
+                  {
+                    '--icon-bg': '#FFFFFF',
+                    '--icon-fg': '#EFF0F4',
+                  } as React.CSSProperties
+                }
+              />
             )}
           </div>
           <p className={styles.listText}>{keyword.title}</p>

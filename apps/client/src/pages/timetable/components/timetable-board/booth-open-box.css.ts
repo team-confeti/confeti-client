@@ -8,10 +8,10 @@ export const wrapper = style({
   position: 'absolute',
   top: '0',
   right: '0',
-  height: '4.5rem',
-  width: 'calc(100% - 2.9rem)',
+  height: '45px',
+  width: 'calc(100% - 29px)',
   color: themeVars.color.gray600,
   background: themeVars.color.gray200,
   zIndex: themeVars.zIndex.timeTable.row,
-  marginTop: '0.7rem',
+  marginTop: '7px',
 });

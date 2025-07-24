@@ -1,4 +1,5 @@
-import { IcArrowLeftWhite20 } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
+
 import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './hero.css';
@@ -18,7 +19,7 @@ const Hero = ({ posterUrl, title, startAt, onClickBack }: HeroProps) => {
       <img src={posterUrl} className={styles.background} alt="배경 포스터" />
       <div className={styles.backgroundOverlay} />
       <button className={styles.backButton} onClick={onClickBack}>
-        <IcArrowLeftWhite20 width="2rem" height="2rem" />
+        <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
       </button>
       <div className={styles.textWrapper}>
         <p className={styles.year}>{year}</p>

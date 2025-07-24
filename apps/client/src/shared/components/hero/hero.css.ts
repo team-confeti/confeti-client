@@ -26,14 +26,14 @@ export const backgroundOverlay = style({
   width: '100%',
   height: '100%',
   zIndex: themeVars.zIndex.heroOverlay,
-  background: 'linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 100%)',
+  background: themeVars.color.black_grad,
   backdropFilter: 'blur(2px)',
 });
 
 export const backButton = style({
   position: 'absolute',
   top: '1.2rem',
-  left: '2rem',
+  left: '1.4rem',
   background: 'none',
   border: 'none',
   color: themeVars.color.white,

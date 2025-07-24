@@ -182,7 +182,7 @@ export const dateSection = style({
   marginBottom: '2rem',
   padding: '1rem',
   border: '1px solid #e2e8f0',
-  borderRadius: '0.5rem',
+  borderRadius: '6px',
 });
 
 export const dateHeader = style({

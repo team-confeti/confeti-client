@@ -1,7 +1,4 @@
-import {
-  IcIndicatorActive,
-  IcIndicatorDefault,
-} from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './progressbar.css';
 
@@ -15,9 +12,19 @@ const ProgressBar = ({ totalIndex, currentIndex }: ProgressBarProps) => {
     <div className={styles.progressBarContainer}>
       {Array.from({ length: totalIndex }).map((_, index) =>
         index === currentIndex ? (
-          <IcIndicatorActive width={'2.4rem'} height={'0.6rem'} key={index} />
+          <Icon
+            name="indicator-active"
+            width="2.4rem"
+            height="0.6rem"
+            key={index}
+          />
         ) : (
-          <IcIndicatorDefault key={index} />
+          <Icon
+            name="indicator-default"
+            key={index}
+            size="0.6rem"
+            color="gray300"
+          />
         ),
       )}
     </div>

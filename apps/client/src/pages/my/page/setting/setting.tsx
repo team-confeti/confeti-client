@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import SvgIcArrowGray16 from 'node_modules/@confeti/design-system/src/icons/src/IcArrowGray16';
 
-import { Footer, Header } from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
+
+import { DetailHeader, Footer } from '@shared/components';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 
@@ -9,8 +10,8 @@ import * as styles from './setting.css';
 
 const Setting = () => {
   return (
-    <>
-      <Header variant="detail" title="설정" />
+    <div className={styles.pageWrapper}>
+      <DetailHeader title="설정" />
       <section className={styles.contentsSection}>
         {EXTERNAL_LINKS.map((item) => (
           <a
@@ -21,7 +22,7 @@ const Setting = () => {
             rel="noopener noreferrer"
           >
             <p className={styles.linkText}>{item.label}</p>
-            <SvgIcArrowGray16 width={'1.6rem'} height={'1.6rem'} />
+            <Icon name="arrow-horizontal" size="1.6rem" color="gray500" />
           </a>
         ))}
         <Link
@@ -29,11 +30,11 @@ const Setting = () => {
           className={styles.navigationLink}
         >
           <p className={styles.linkText}>회원탈퇴</p>
-          <SvgIcArrowGray16 width={'1.6rem'} height={'1.6rem'} />
+          <Icon name="arrow-horizontal" size="1.6rem" color="gray500" />
         </Link>
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 

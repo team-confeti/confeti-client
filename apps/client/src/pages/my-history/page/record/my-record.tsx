@@ -1,14 +1,17 @@
-import PreviewSection from '@pages/my-history/components/preview/preview-section';
-import RecordInfo from '@pages/my-history/components/record/record-info';
-import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { Footer, Spacing } from '@confeti/design-system';
+import { Spacing } from '@confeti/design-system';
+
 import { MY_RECORD_QUERY_OPTION } from '@shared/apis/my-history/my-record-queries';
 import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
 import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
+import { Footer } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
+
+import PreviewSection from '@pages/my-history/components/preview/preview-section';
+import RecordInfo from '@pages/my-history/components/record/record-info';
+import RecordIntroduce from '@pages/my-history/components/record/record-introduce';
 
 import * as styles from './my-record.css';
 

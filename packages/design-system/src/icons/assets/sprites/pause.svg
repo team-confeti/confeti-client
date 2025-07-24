@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <g clip-path="url(#ic_pause_svg__a)">
+    <path fill="currentColor" d="M6 19h4V5H6zm8-14v14h4V5z" />
+  </g>
+  <defs>
+    <clipPath id="ic_pause_svg__a">
+      <path fill="#fff" d="M0 0h24v24H0z" />
+    </clipPath>
+  </defs>
+</svg>

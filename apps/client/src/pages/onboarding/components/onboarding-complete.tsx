@@ -2,7 +2,8 @@ import { ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { Description } from '@confeti/design-system';
-import { SwitchCase } from '@shared/components/switch-case';
+
+import { SwitchCase } from '@shared/components';
 import Loading from '@shared/pages/loading/loading';
 
 import * as styles from './onboarding-complete.css';

@@ -28,8 +28,10 @@ module.exports = {
       {
         groups: [
           ['^node:'],
-          ['^react', '^@?\\w'],
-          ['^@confeti/', '^@shared/'],
+          ['^react$', '^@?\\w'],
+          ['^@confeti/'],
+          ['^@shared/'],
+          ['^@pages/'],
           ['^\\u0000'],
           ['^\\.'],
           ['^.+\\.css$'],

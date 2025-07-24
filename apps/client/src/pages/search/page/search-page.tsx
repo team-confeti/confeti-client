@@ -2,9 +2,10 @@ import { useMemo } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
+
 import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
 import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
-import { SwitchCase } from '@shared/components/switch-case';
+import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';
@@ -27,6 +28,7 @@ const SearchPage = () => {
     selectedArtistId,
     selectedPerformanceId,
     barFocus,
+    isSelecting,
     handleOnFocus,
     handleOnBlur,
     handleClear,
@@ -155,17 +157,22 @@ const SearchPage = () => {
     if (isSearchLoading || isRelatedKeywordLoading) {
       return 'loading';
     }
+    if (isSelecting) {
+      return 'suggestion';
+    }
+    if (
+      searchAllData?.artist === null &&
+      searchAllData?.performanceCount === 0
+    ) {
+      return 'notFound';
+    }
     if (barFocus && relatedArtists?.artists) {
       return 'suggestion';
     }
     if (paramsKeyword || (searchAllData && !barFocus)) {
       return 'result';
     }
-    if (searchAllData === null) {
-      return 'notFound';
-    } else {
-      return 'default';
-    }
+    return 'default';
   };
 
   return (

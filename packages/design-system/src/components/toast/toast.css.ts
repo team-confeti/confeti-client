@@ -32,7 +32,7 @@ export const text = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'pre-line',
-  maxWidth: '28rem',
+  maxWidth: '30rem',
 });
 
 export const highlightText = style({
@@ -41,7 +41,7 @@ export const highlightText = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  maxWidth: '33vw',
+  maxWidth: '12rem',
   verticalAlign: 'bottom',
 });
 

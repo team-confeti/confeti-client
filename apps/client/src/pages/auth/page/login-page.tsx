@@ -1,10 +1,7 @@
-import { Button, Header } from '@confeti/design-system';
-import {
-  BtnDeleteBlack20,
-  IcApple,
-  IcKakao,
-  ImgTypelogoBig,
-} from '@confeti/design-system/icons';
+import { Button } from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
+
+import { DetailHeader } from '@shared/components';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
@@ -73,34 +70,26 @@ const LoginPage = () => {
 
   return (
     <>
-      <Header
-        variant="detail"
-        title="로그인"
-        icon={<BtnDeleteBlack20 width={'2rem'} height={'2rem'} />}
-        isBackToHome
-      />
+      <DetailHeader title="로그인" />
       <section className={styles.container}>
         <div>
-          <img
-            src="/images/confeti_3d_logo21.svg"
-            className={styles.logoImage}
-            alt="confeti logo"
-          />
-          <ImgTypelogoBig width={'17rem'} height={'4rem'} />
+          <Icon name="logo-big" size="18rem" />
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.loginButton}>
             <Button
               text="카카오로 계속하기"
               variant="kakao"
-              icon={<IcKakao width={'2.4rem'} height={'2.4rem'} />}
+              icon={<Icon name="kakao" size="3rem" />}
               onClick={handleKakaoLogin}
+              className={styles.button}
             />
             <Button
               text="Apple로 계속하기"
               variant="apple"
-              icon={<IcApple width={'2.4rem'} height={'2.4rem'} />}
+              icon={<Icon name="apple" size="3rem" />}
               onClick={handleAppleLogin}
+              className={styles.button}
             />
           </div>
           <footer className={styles.description}>

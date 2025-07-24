@@ -1,23 +1,26 @@
+import { Button, Description } from '@confeti/design-system';
+
 import {
   WithIndex,
   WithNavigate,
 } from '@pages/timetable/types/timetable-onboard-type';
-
-import { Button, Description } from '@confeti/design-system';
 
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard6 from '/images/img_onboard_6.svg';
-
-type SaveTimetableProps = WithNavigate & WithIndex;
+interface SaveTimetableProps extends WithNavigate, WithIndex {
+  totalIndex: number;
+  currentIndex: number;
+  onboardImage?: string;
+}
 
 const SaveTimetableStep = ({
   handleNavigate,
   totalIndex,
   currentIndex,
+  onboardImage,
 }: SaveTimetableProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
@@ -34,7 +37,7 @@ const SaveTimetableStep = ({
               descriptionText={`오프라인에서도 타임테이블 확인!`}
             />
           </Description.Text>
-          <img src={ImgOnboard6} />
+          <img src={onboardImage} />
           <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

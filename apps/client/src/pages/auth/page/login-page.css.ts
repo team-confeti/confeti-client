@@ -8,12 +8,7 @@ export const container = style({
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '17% 6% 15% 6%',
-});
-
-export const logoImage = style({
-  width: '18rem',
-  height: '18rem',
+  padding: '28% 6% 15% 6%',
 });
 
 export const bottomSection = style({
@@ -29,6 +24,10 @@ export const loginButton = style({
   width: '100%',
   alignItems: 'flex-start',
   gap: '1.2rem',
+});
+
+export const button = style({
+  gap: '0.4rem',
 });
 
 export const description = style({

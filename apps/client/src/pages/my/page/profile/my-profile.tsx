@@ -1,4 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+
+import { Box } from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
+
+import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { DetailHeader, Footer } from '@shared/components';
+import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
+import { routePath } from '@shared/router/path';
+import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
 import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
@@ -7,13 +18,6 @@ import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserInfo from '@pages/my/components/profile/user-info';
 import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
 import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
-import { useQuery } from '@tanstack/react-query';
-
-import { Box, Footer, Header } from '@confeti/design-system';
-import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
-import { routePath } from '@shared/router/path';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -39,12 +43,13 @@ const MyProfile = () => {
 
   return (
     <>
-      <Header
-        variant="detail"
+      <DetailHeader
         title="마이페이지"
-        handleNavigateToSettings={() => {
-          navigate(routePath.MY_SETTING);
-        }}
+        rightIcon={
+          <button onClick={() => navigate(routePath.MY_SETTING)}>
+            <Icon name="setting" size="2.4rem" />
+          </button>
+        }
       />
       <UserInfo
         name={profileData.name}
@@ -61,8 +66,11 @@ const MyProfile = () => {
 
       <Box
         title="My Artist"
-        path={routePath.MY_ARTIST}
-        showMore={artistData.artists.length > 3}
+        onShowMore={
+          artistData.artists.length > 3
+            ? () => navigate(routePath.MY_ARTIST)
+            : undefined
+        }
         showMoreText="더보기"
       >
         {artistData.artists.length > 0 ? (
@@ -74,8 +82,11 @@ const MyProfile = () => {
 
       <Box
         title="My Confeti"
-        path={routePath.MY_CONFETI}
-        showMore={performanceData.performances.length > 3}
+        onShowMore={
+          performanceData.performances.length > 3
+            ? () => navigate(routePath.MY_CONFETI)
+            : undefined
+        }
         showMoreText="더보기"
       >
         {performanceData.performances.length > 0 ? (

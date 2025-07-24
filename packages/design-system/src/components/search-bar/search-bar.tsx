@@ -1,13 +1,10 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import SvgBtnArrowLeft20 from '../../icons/src/BtnArrowLeft20';
-import SvgBtnClose from '../../icons/src/BtnClose';
-import SvgIcNewSearchGray18 from '../../icons/src/IcNewSearchGray18';
+import { Icon } from '../../icons';
 
 import * as styles from './search-bar.css';
 
-interface SearchBarProps {
+interface Props {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -17,6 +14,7 @@ interface SearchBarProps {
   onClear?: () => void;
   showBackButton?: boolean;
   placeholder?: string;
+  autoFocus?: boolean;
 }
 
 export const SearchBar = ({
@@ -29,11 +27,11 @@ export const SearchBar = ({
   onClear,
   showBackButton = true,
   placeholder,
-}: SearchBarProps) => {
+  autoFocus = false,
+}: Props) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const navigate = useNavigate();
 
   const updateFocusState = (focused: boolean, showClear: boolean) => {
     setIsFocused(focused);
@@ -61,10 +59,6 @@ export const SearchBar = ({
     }
   };
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
   const handleFocus = () => {
     updateFocusState(true, true);
     if (onFocus) {
@@ -85,18 +79,19 @@ export const SearchBar = ({
   return (
     <>
       {showBackButton && (
-        <SvgBtnArrowLeft20
-          width={20}
-          height={20}
-          onClick={handleBackClick}
+        <Icon
+          name="arrow-back"
+          size="2.2rem"
+          onClick={() => window.history.back()}
           className={styles.arrowButton}
         />
       )}
       <div className={styles.searchBar({ type: 'default' })}>
-        <SvgIcNewSearchGray18
+        <Icon
+          name="search"
+          size="1.8rem"
+          color="gray500"
           className={styles.searchIcon}
-          width={18}
-          height={18}
         />
         <input
           className={styles.textSection}
@@ -109,14 +104,14 @@ export const SearchBar = ({
           onKeyUp={onKeyUp}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoFocus={autoFocus}
         />
         {showClearBtn && (
-          <SvgBtnClose
-            className={styles.closeBtn}
+          <Icon
+            name="clear"
+            size="1.8rem"
+            color="gray400"
             onClick={handleClear}
-            width={18}
-            height={18}
-            style={{ display: 'flex' }}
           />
         )}
       </div>

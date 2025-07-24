@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import ArtistList from '@pages/my/components/artist/artist-list';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { Header } from '@confeti/design-system';
-import { IcSwitch } from '@confeti/design-system/icons';
+import { Icon } from '@confeti/design-system/icon';
+
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
+import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
   SORT_OPTIONS,
   SortOption,
 } from '@shared/constants/sort-label';
+
+import ArtistList from '@pages/my/components/artist/artist-list';
 
 import * as styles from './artist-more.css';
 
@@ -29,12 +31,12 @@ const ArtistMore = () => {
 
   return (
     <>
-      <Header variant="detail" title="My Artist" />
+      <DetailHeader title="My Artist" />
       <div className={styles.header}>
         <p>전체 {data.artistCount}</p>
         <button className={styles.sort} onClick={toggleSort}>
           <p>{SORT_LABELS[sortOption]}</p>
-          <IcSwitch width={'1.6rem'} height={'1.6rem'} />
+          <Icon name="switch" size="1.6rem" />
         </button>
       </div>
 

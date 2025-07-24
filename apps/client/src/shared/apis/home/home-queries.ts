@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { CACHE_TIME, END_POINT } from '@shared/constants/api';
+import { END_POINT } from '@shared/constants/api';
 import { HOME_QUERY_KEY } from '@shared/constants/query-key';
 import { BaseResponse } from '@shared/types/api';
 import {
@@ -19,19 +19,16 @@ export const HOME_QUERY_OPTIONS = {
     queryOptions({
       queryKey: HOME_QUERY_KEY.LATEST_PERFORMANCES(),
       queryFn: getLatestPerformances,
-      staleTime: CACHE_TIME.SHORT,
     }),
   TICKETING: () =>
     queryOptions({
       queryKey: HOME_QUERY_KEY.TICKETING(),
       queryFn: getTicketing,
-      staleTime: CACHE_TIME.SHORT,
     }),
   SUGGEST_PERFORMANCE: () =>
     queryOptions({
       queryKey: HOME_QUERY_KEY.SUGGEST_PERFORMANCE(),
       queryFn: getSuggestPerformance,
-      staleTime: CACHE_TIME.SHORT,
     }),
   SUGGEST_MUSIC_PERFORMANCE: () =>
     queryOptions({
@@ -70,24 +67,40 @@ export const getSuggestPerformance =
   };
 
 export const getSuggestMusicPerformance =
-  async (): Promise<SuggestMusicPerformanceResponse> => {
-    const response = await get<BaseResponse<SuggestMusicPerformanceResponse>>(
-      END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE,
-    );
-    return response.data;
+  async (): Promise<SuggestMusicPerformanceResponse | null> => {
+    try {
+      const response = await get<BaseResponse<SuggestMusicPerformanceResponse>>(
+        END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE,
+      );
+
+      if (!response.data) {
+        return null;
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   };
 
 export const getSuggestMusic = async (
   performanceId: number,
   musicIds?: string[],
 ): Promise<SuggestMusicResponse> => {
-  const query = new URLSearchParams();
+  try {
+    const query = new URLSearchParams();
 
-  query.append('performanceId', String(performanceId));
-  musicIds?.forEach((id) => query.append('musicId', id));
+    query.append('performanceId', String(performanceId));
+    musicIds?.forEach((id) => query.append('musicId', id));
 
-  const url = `performances/recommend/musics?${query.toString()}`;
+    const url = `performances/recommend/musics?${query.toString()}`;
 
-  const response = await get<BaseResponse<SuggestMusicResponse>>(url);
-  return response.data;
+    const response = await get<BaseResponse<SuggestMusicResponse>>(url);
+
+    return response.data || { musics: [] };
+  } catch (error) {
+    console.error(error);
+    return { musics: [] };
+  }
 };

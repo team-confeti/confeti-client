@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 
-export const useImagePreview = (file?: File | null) => {
+interface UseImagePreviewReturn {
+  file: File | null;
+  preview: string | null;
+  setFile: (file: File | null) => void;
+  handleFileChange: (file: File | null) => void;
+}
+
+export const useImagePreview = (
+  initialFile?: File | null,
+): UseImagePreviewReturn => {
+  const [file, setFile] = useState<File | null>(initialFile ?? null);
   const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
@@ -15,5 +25,14 @@ export const useImagePreview = (file?: File | null) => {
     return () => URL.revokeObjectURL(url);
   }, [file]);
 
-  return preview;
+  const handleFileChange = (newFile: File | null) => {
+    setFile(newFile);
+  };
+
+  return {
+    file,
+    preview,
+    setFile,
+    handleFileChange,
+  };
 };

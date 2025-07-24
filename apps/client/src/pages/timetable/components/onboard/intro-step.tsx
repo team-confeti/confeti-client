@@ -1,18 +1,22 @@
+import { Button, Description } from '@confeti/design-system';
+import { cn } from '@confeti/utils';
+
 import {
   WithNavigate,
   WithNextStep,
 } from '@pages/timetable/types/timetable-onboard-type';
 
-import { Button, Description } from '@confeti/design-system';
-import { cn } from '@confeti/design-system/utils';
-
 import * as styles from './step.css';
 
-import ImgOnboard1 from '/images/img_onboard_1.svg';
+interface IntroProps extends WithNextStep, WithNavigate {
+  onboardImage?: string;
+}
 
-type IntroProps = WithNavigate & WithNextStep;
-
-const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
+const ItroStep = ({
+  handleNextStep,
+  handleNavigate,
+  onboardImage,
+}: IntroProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -23,16 +27,16 @@ const ItroStep = ({ handleNextStep, handleNavigate }: IntroProps) => {
             }
             fontSize={20}
           />
-          <img src={ImgOnboard1} />
+          <img src={onboardImage} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
           <Button
-            text="타임 테이블 사용법 알아보기"
+            text="타임테이블 사용법 알아보기"
             variant="add"
             onClick={handleNextStep}
           />
           <Button
-            text="타임 테이블 바로 시작하기"
+            text="타임테이블 바로 시작하기"
             variant="add"
             className={cn(styles.customAddButton)}
             onClick={() => handleNavigate({ isReTry: false })}

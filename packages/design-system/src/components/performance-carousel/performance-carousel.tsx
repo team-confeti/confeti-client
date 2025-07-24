@@ -6,11 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import type { Settings as SlickSettings } from 'react-slick';
 import Slider from 'react-slick';
-
-import { InfoOverlay, SlideOverlayOp } from '../../icons/src';
 
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
@@ -30,6 +27,7 @@ type PerformanceCarouselType = {
   children: ReactNode;
   initialSlideIndex?: number;
   performData: PerformData[];
+  handleContainerClick: (type: string, typeId: number) => void;
 };
 
 interface CarouselContextType {
@@ -58,9 +56,9 @@ const PerformanceCarousel = ({
   children,
   initialSlideIndex = 0,
   performData,
+  handleContainerClick,
 }: PerformanceCarouselType) => {
   const sliderRef = useRef<Slider | null>(null);
-  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(initialSlideIndex);
 
   useEffect(() => {
@@ -72,10 +70,6 @@ const PerformanceCarousel = ({
 
     return () => clearInterval(interval);
   }, [activeIndex]);
-
-  const handleContainerClick = (type: string, typeId: number) => {
-    navigate(`/${type}-detail/${typeId}`);
-  };
 
   // 슬라이더 설정
   const settings = {
@@ -167,19 +161,11 @@ const ImageSlider = ({ children }: { children: ReactNode }) => {
 
           {index === activeIndex ? (
             <>
-              <InfoOverlay
-                className={styles.infoOverlay}
-                width="96.5%"
-                height="50%"
-              />
+              <div className={styles.infoOverlay} />
               {children}
             </>
           ) : (
-            <SlideOverlayOp
-              className={styles.slideOverlay}
-              width="96.5%"
-              height="100%"
-            />
+            <div className={styles.slideOverlay} />
           )}
         </div>
       ))}

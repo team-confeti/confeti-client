@@ -1,25 +1,28 @@
+import { Button, Description } from '@confeti/design-system';
+
 import {
   WithIndex,
   WithNavigate,
   WithNextStep,
 } from '@pages/timetable/types/timetable-onboard-type';
 
-import { Button, Description } from '@confeti/design-system';
-
 import ProgressBar from './progressbar';
 import SkipButton from './skip-button';
 
 import * as styles from './step.css';
 
-import ImgOnboard3 from '/images/img_onboard_3.svg';
-
-type FestivalCustomProps = WithNavigate & WithNextStep & WithIndex;
+interface FestivalCustomProps extends WithNextStep, WithNavigate, WithIndex {
+  totalIndex: number;
+  currentIndex: number;
+  onboardImage?: string;
+}
 
 const FestivalCustomStep = ({
   handleNavigate,
   handleNextStep,
   totalIndex,
   currentIndex,
+  onboardImage,
 }: FestivalCustomProps) => {
   return (
     <section className={styles.timeTableOnboardContainer}>
@@ -35,7 +38,7 @@ const FestivalCustomStep = ({
               descriptionText={`로 \n원하는 타임테이블을 커스텀해요.`}
             />
           </Description.Text>
-          <img src={ImgOnboard3} />
+          <img src={onboardImage} />
           <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>

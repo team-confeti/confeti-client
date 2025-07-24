@@ -1,16 +1,18 @@
-import { FloatingButton, Footer, Spacing } from '@confeti/design-system';
-import NavigationTabs from '@shared/components/navigation-tabs';
-import {
-  useMoveScroll,
-  useScrollPosition,
-} from '@shared/hooks/use-scroll-position';
+import { Spacing } from '@confeti/design-system';
 
-import CategoryTabs from '../components/category-tabs';
+import {
+  FloatingButtonContainer,
+  Footer,
+  NavigationTabs,
+} from '@shared/components';
+import { useMoveScroll } from '@shared/hooks/use-scroll-position';
+
+import CategoryTabsContainer from '../components/category-tabs-container';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketingSection from '../components/ticketing-section';
-import { TAB_MENU } from '../constants/menu';
+import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
@@ -19,7 +21,6 @@ const HomePage = () => {
     suggestPerformance: useMoveScroll(),
     suggestMusic: useMoveScroll(),
   };
-  const { isButtonHidden } = useScrollPosition();
 
   const {
     userName,
@@ -32,16 +33,10 @@ const HomePage = () => {
   return (
     <>
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-      <PerformanceCarouselSection data={latestPerformances.performances} />
+      <PerformanceCarouselSection data={latestPerformances} />
       <Spacing size="xl" color="white" />
 
-      <CategoryTabs
-        scrollHandlers={{
-          ticketing: scrollRefs.ticketing.onMoveToElement,
-          suggestPerformance: scrollRefs.suggestPerformance.onMoveToElement,
-          suggestMusic: scrollRefs.suggestMusic.onMoveToElement,
-        }}
-      />
+      <CategoryTabsContainer scrollRefs={scrollRefs} />
       <Spacing size="lg" color="white" />
 
       <TicketingSection
@@ -57,13 +52,15 @@ const HomePage = () => {
       />
       <Spacing size="lg" color="white" />
 
-      <SuggestMusicSection
-        ref={scrollRefs.suggestMusic.element}
-        data={suggestMusicPerformance}
-      />
+      {suggestMusicPerformance && (
+        <SuggestMusicSection
+          ref={scrollRefs.suggestMusic.element}
+          data={suggestMusicPerformance}
+        />
+      )}
       <Spacing size="2xl" color="white" />
-      <FloatingButton isButtonHidden={isButtonHidden} />
 
+      <FloatingButtonContainer />
       <Footer />
     </>
   );

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import CountDisplay from '@pages/my-history/components/overview/count-display';
-import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { FestivalCard, Header } from '@confeti/design-system';
+import { FestivalCard } from '@confeti/design-system';
+
 import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
 import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
+import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
   SORT_OPTIONS,
@@ -14,6 +14,9 @@ import {
 } from '@shared/constants/sort-label';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
+
+import CountDisplay from '@pages/my-history/components/overview/count-display';
+import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 
 import * as styles from './my-history-overview-page.css';
 
@@ -60,10 +63,7 @@ const MyHistoryOverviewPage = () => {
 
   return (
     <>
-      <Header
-        variant="detail"
-        title={isSetList ? 'My 셋리스트' : 'My 타임테이블'}
-      />
+      <DetailHeader title={isSetList ? 'My 셋리스트' : 'My 타임테이블'} />
       <section className={styles.overviewContainer}>
         <div className={styles.filterContainer}>
           <CountDisplay count={overviewData.count || 0} />
@@ -77,8 +77,6 @@ const MyHistoryOverviewPage = () => {
             ? setListOverviewData?.setlists?.map((item) => (
                 <FestivalCard
                   key={item.typeId}
-                  type={item.type}
-                  typeId={item.typeId}
                   imageSrc={item.posterUrl}
                   title={item.title}
                   onClick={() => handleNavigateToDetail(item.setlistId)}
@@ -87,8 +85,6 @@ const MyHistoryOverviewPage = () => {
             : timetableOverviewData?.timetables?.map((item) => (
                 <FestivalCard
                   key={item.typeId}
-                  type={item.type}
-                  typeId={item.typeId}
                   imageSrc={item.posterUrl}
                   title={item.title}
                   onClick={handleNavigateToTimeTable}

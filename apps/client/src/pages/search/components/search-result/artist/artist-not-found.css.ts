@@ -2,14 +2,17 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+export const pageWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: 'calc(100vh - 10.8rem)',
+});
+
 export const container = style({
+  flex: 1,
   ...themeVars.display.flexColumnAlignTextCenter,
-  position: 'absolute',
-  top: '48%',
-  left: '50%',
-  width: '100%',
-  transform: 'translate(-50%, -50%)',
   color: themeVars.color.gray600,
+  padding: '13rem 0 13rem 0',
 });
 
 export const title = style({

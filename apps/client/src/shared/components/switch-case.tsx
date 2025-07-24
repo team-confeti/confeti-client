@@ -38,11 +38,13 @@ type Props<Case> = {
  *   );
  * }
  */
-export function SwitchCase<Case>({
+const SwitchCase = <Case,>({
   value,
   caseBy,
   defaultComponent = () => null,
-}: Props<Case>): ReactElement | null {
+}: Props<Case>): ReactElement | null => {
   const stringifiedValue = String(value) as StringifiedValue<Case>;
   return (caseBy[stringifiedValue] ?? defaultComponent)();
-}
+};
+
+export default SwitchCase;

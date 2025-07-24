@@ -1,20 +1,18 @@
 import { type ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { IcArrowGray16 } from '@confeti/design-system/icons';
+import { cn } from '@confeti/utils';
 
-import { cn } from '../../utils';
+import { Icon } from '../../icons';
 
 import * as styles from './box.css';
 
 interface Props {
   title: string;
+  titleSize?: 'md' | 'lg';
   subtitle?: string;
   subtitleIcon?: ReactNode;
-  titleSize?: 'md' | 'lg';
-  path?: string;
-  showMore?: boolean;
   showMoreText?: string;
+  onShowMore?: () => void;
   children: ReactNode;
   className?: string;
 }
@@ -24,21 +22,12 @@ const Box = ({
   titleSize = 'md',
   subtitle,
   subtitleIcon,
-  path,
-  showMore,
   showMoreText,
-  className,
+  onShowMore,
   children,
+  className,
   ...props
 }: Props) => {
-  const navigate = useNavigate();
-
-  const handleShowMore = () => {
-    if (path) {
-      navigate(path);
-    }
-  };
-
   return (
     <section className={cn(styles.boxVariants(), className)} {...props}>
       <div className={styles.header}>
@@ -51,12 +40,12 @@ const Box = ({
           )}
           <h3 className={styles.titleVariants({ titleSize })}>{title}</h3>
         </div>
-        {showMore && (
+        {onShowMore && (
           <div className={styles.buttonWrapper}>
-            <button onClick={handleShowMore} className={styles.button}>
+            <button onClick={onShowMore} className={styles.button}>
               {showMoreText}
             </button>
-            <IcArrowGray16 width="1.2rem" height="1.2rem" />
+            <Icon name="arrow-horizontal" size="1.2rem" color="gray500" />
           </div>
         )}
       </div>

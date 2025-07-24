@@ -1,11 +1,9 @@
-import FestivalButton from '@pages/timetable/components/festival-selector/festival-button';
+import { Icon } from '@confeti/design-system/icon';
+import { cn } from '@confeti/utils';
 
-import {
-  CheckboxFestival,
-  CheckboxFestivalActive,
-} from '@confeti/design-system/icons';
-import { cn } from '@confeti/design-system/utils';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
+
+import FestivalButton from '@pages/timetable/components/festival-selector/festival-button';
 
 import * as styles from './delete-festival-selector.css';
 
@@ -40,15 +38,17 @@ const DeleteFestivalSelector = ({
             />
             {/* 체크 상태에 따라 active 또는 inactive 컴포넌트 렌더링 */}
             {festivalsToDelete.includes(festivalId) ? (
-              <CheckboxFestivalActive
-                width={'2.2rem'}
-                height={'2.2rem'}
+              <Icon
+                name="checkbox-active"
+                width="2.2rem"
+                height="2.2rem"
                 className={styles.checkboxBase}
               />
             ) : (
-              <CheckboxFestival
-                width={'2.2rem'}
-                height={'2.2rem'}
+              <Icon
+                name="checkbox-default"
+                width="2.2rem"
+                height="2.2rem"
                 className={styles.checkboxBase}
               />
             )}

@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecentSearch } from '@pages/search/hooks/use-recent-search';
 
 import { Chip } from '@confeti/design-system';
+
 import { routePath } from '@shared/router/path';
 import { limitTextLength } from '@shared/utils/limit-text-length';
+
+import { useRecentSearch } from '@pages/search/hooks/use-recent-search';
 
 import * as styles from './recent-search-section.css';
 

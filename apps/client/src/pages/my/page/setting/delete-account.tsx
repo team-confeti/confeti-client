@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { track } from '@amplitude/analytics-browser';
-import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account-mutation';
 
-import {
-  Button,
-  Dialog,
-  Footer,
-  Header,
-  useOverlay,
-} from '@confeti/design-system';
+import { Button, Dialog, useOverlay } from '@confeti/design-system';
+
+import { DetailHeader, Footer } from '@shared/components';
+
+import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account-mutation';
 
 import * as styles from './delete-account.css';
 
@@ -60,7 +57,7 @@ const DeleteAccount = () => {
 
   return (
     <>
-      <Header variant="detail" title="회원탈퇴" />
+      <DetailHeader title="회원탈퇴" />
       <main className={styles.selectSection}>
         <div className={styles.textStyle}>
           탈퇴하시려는 이유를 선택해주세요.

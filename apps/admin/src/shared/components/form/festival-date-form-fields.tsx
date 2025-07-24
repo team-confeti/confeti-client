@@ -34,7 +34,7 @@ export const FestivalDateField = ({
     remove: removeSchedule,
   } = useFieldArray({
     control,
-    name: `festivalDates.${dateIndex}.schedules`,
+    name: `dates.${dateIndex}.stages`,
   });
 
   return (
@@ -56,18 +56,16 @@ export const FestivalDateField = ({
 
       <div className={styles.inputContainer}>
         <FormInput
-          {...register(`festivalDates.${dateIndex}.date`)}
+          {...register(`dates.${dateIndex}.festivalAt`)}
           type="date"
           label="페스티벌 날짜"
-          placeholder="페스티벌 날짜를 입력해주세요."
-          error={errors.festivalDates?.[dateIndex]?.date?.message}
+          error={errors.dates?.[dateIndex]?.festivalAt?.message}
         />
         <FormInput
-          {...register(`festivalDates.${dateIndex}.ticketOpenTime`)}
+          {...register(`dates.${dateIndex}.openAt`)}
           type="time"
           label="티켓 오픈 시간"
-          placeholder="티켓 오픈 시간을 입력해주세요."
-          error={errors.festivalDates?.[dateIndex]?.ticketOpenTime?.message}
+          error={errors.dates?.[dateIndex]?.openAt?.message}
         />
       </div>
 
@@ -87,16 +85,14 @@ export const FestivalDateField = ({
         type="button"
         onClick={() =>
           appendSchedule({
-            stages: [
-              { startTime: '', endTime: '', artistIds: [{ value: '' }] },
-              { startTime: '', endTime: '', artistIds: [{ value: '' }] },
-              { startTime: '', endTime: '', artistIds: [{ value: '' }] },
-            ],
+            name: '',
+            order: '',
+            times: [{ startAt: '', endAt: '', artists: [{ artistId: '' }] }],
           })
         }
         className={styles.addButton}
       >
-        공연 시간 추가
+        + 공연 시간 추가
       </button>
     </div>
   );
@@ -182,13 +178,13 @@ export const StageContentField = ({
 }: StageContentFieldProps) => {
   const stageFields = useFieldArray({
     control,
-    name: `festivalDates.${dateIndex}.schedules.${scheduleIndex}.stages.${stageIndex}.artistIds`,
+    name: `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.artists`,
   });
 
   const startTimeFieldName =
-    `festivalDates.${dateIndex}.schedules.${scheduleIndex}.stages.${stageIndex}.startTime` as const;
+    `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.startAt` as const;
   const endTimeFieldName =
-    `festivalDates.${dateIndex}.schedules.${scheduleIndex}.stages.${stageIndex}.endTime` as const;
+    `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.endAt` as const;
 
   return (
     <div className={styles.stageContent}>
@@ -209,6 +205,7 @@ export const StageContentField = ({
         <Controller
           control={control}
           name={startTimeFieldName}
+          defaultValue=""
           render={({ field }) => (
             <FormInput
               {...field}
@@ -216,8 +213,9 @@ export const StageContentField = ({
               label={'공연 시작 시간'}
               placeholder="공연 시작 시간을 입력해주세요."
               error={
-                errors.festivalDates?.[dateIndex]?.schedules?.[scheduleIndex]
-                  ?.stages?.[stageIndex]?.startTime?.message
+                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
+                  stageIndex
+                ]?.startAt?.message
               }
             />
           )}
@@ -225,6 +223,7 @@ export const StageContentField = ({
         <Controller
           control={control}
           name={endTimeFieldName}
+          defaultValue=""
           render={({ field }) => (
             <FormInput
               {...field}
@@ -232,8 +231,9 @@ export const StageContentField = ({
               label={'공연 종료 시간'}
               placeholder="공연 종료 시간을 입력해주세요."
               error={
-                errors.festivalDates?.[dateIndex]?.schedules?.[scheduleIndex]
-                  ?.stages?.[stageIndex]?.endTime?.message
+                errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
+                  stageIndex
+                ]?.endAt?.message
               }
             />
           )}
@@ -244,14 +244,15 @@ export const StageContentField = ({
         <div key={artist.id} className={styles.artistInputContainer}>
           <FormInput
             {...register(
-              `festivalDates.${dateIndex}.schedules.${scheduleIndex}.stages.${stageIndex}.artistIds.${artistIndex}.value`,
+              `dates.${dateIndex}.stages.${scheduleIndex}.times.${stageIndex}.artists.${artistIndex}.artistId`,
             )}
             type="text"
             label={`아티스트 ID ${artistIndex + 1}`}
             placeholder="아티스트 ID를 입력해주세요."
             error={
-              errors.festivalDates?.[dateIndex]?.schedules?.[scheduleIndex]
-                ?.stages?.[stageIndex]?.artistIds?.[artistIndex]?.value?.message
+              errors.dates?.[dateIndex]?.stages?.[scheduleIndex]?.times?.[
+                stageIndex
+              ]?.artists?.[artistIndex]?.artistId?.message
             }
           />
           <button
@@ -267,9 +268,9 @@ export const StageContentField = ({
       <button
         type="button"
         className={styles.addButton}
-        onClick={() => stageFields.append({ value: '' })}
+        onClick={() => stageFields.append({ artistId: '' })}
       >
-        아티스트 추가
+        + 아티스트 추가
       </button>
     </div>
   );

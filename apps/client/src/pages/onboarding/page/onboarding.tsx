@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button } from '@confeti/design-system';
+
 import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
 import { TOP_ARTIST_QUERY_OPTIONS } from '@shared/apis/onboard/top-artist-queries';
 import { useFunnel } from '@shared/hooks/use-funnel';
@@ -15,6 +16,8 @@ import {
   useArtistRelatedArtist,
   usePostAuthOnboarding,
 } from '../hooks/use-onboard-mutation';
+
+import * as styles from './onboarding.css';
 
 const Onboarding = () => {
   const TOTAL_STEPS = 2;
@@ -70,6 +73,7 @@ const Onboarding = () => {
               setStep(1);
             }}
             disabled={selectedArtistIds.length < 1}
+            className={styles.button}
           />
         </ArtistSelect>
       </Step>
@@ -79,6 +83,7 @@ const Onboarding = () => {
             text={'시작하기'}
             variant={'add'}
             onClick={() => setStep(2)}
+            className={styles.button}
           />
         </OnBoardingComplete>
       </Step>

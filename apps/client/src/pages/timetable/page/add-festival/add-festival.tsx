@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { Button, FestivalCard, Header } from '@confeti/design-system';
+import { Button, FestivalCard } from '@confeti/design-system';
+
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import { DetailHeader } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
+
+import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 
 import { MAX_SELECTIONS } from '../../constants';
 import useFestivalAdd from '../../hooks/use-festival-add';
@@ -54,7 +57,7 @@ const AddFestival = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header variant="detail" title="페스티벌 추가하기" />
+      <DetailHeader title="페스티벌 추가하기" />
       <div className={styles.container}>
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
@@ -64,15 +67,13 @@ const AddFestival = () => {
               className={styles.festivalCardWrapper}
             >
               <FestivalCard
-                typeId={festival.festivalId}
-                type="FESTIVAL"
                 title={festival.title}
                 imageSrc={festival.posterUrl}
                 selectable={true}
                 isSelected={isSelected}
-                onClick={() =>
-                  handleFestivalClick(festival.festivalId, isSelected)
-                }
+                onClick={() => {
+                  handleFestivalClick(festival.festivalId, isSelected);
+                }}
               />
             </div>
           );

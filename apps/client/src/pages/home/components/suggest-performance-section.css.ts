@@ -16,4 +16,9 @@ export const container = style({
 export const cardWrapper = style({
   flexShrink: 0,
   width: '11.6rem',
+  selectors: {
+    '&:last-child': {
+      marginRight: '2rem',
+    },
+  },
 });

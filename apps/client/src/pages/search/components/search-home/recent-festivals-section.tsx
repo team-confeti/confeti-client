@@ -1,4 +1,6 @@
 import { FestivalCard } from '@confeti/design-system';
+
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { RecentPerformanceViewResponse } from '@shared/types/search-response';
 
 import * as styles from './recent-festivals-section.css';
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const RecentFestivalSection = ({ recentViewData }: Props) => {
+  const navigateToDetail = useNavigateToDetail();
   const performances = recentViewData?.performances ?? [];
   const hasRecentlyViewed = performances.length > 0;
 
@@ -19,10 +22,9 @@ const RecentFestivalSection = ({ recentViewData }: Props) => {
           {performances.map((festival) => (
             <li key={festival.performanceId} className={styles.item}>
               <FestivalCard
-                typeId={festival.typeId}
                 title={festival.title}
                 imageSrc={festival.posterUrl}
-                type={festival.type}
+                onClick={() => navigateToDetail(festival.type, festival.typeId)}
               />
             </li>
           ))}

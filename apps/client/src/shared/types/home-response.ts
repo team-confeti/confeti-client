@@ -14,7 +14,7 @@ export interface Performances {
 
 export type TicketingPerformances = Pick<
   Performances,
-  'index' | 'typeId' | 'type' | 'subtitle' | 'reserveAt'
+  'index' | 'typeId' | 'type' | 'title' | 'reserveAt'
 >;
 
 export type CarouselPerformances = Pick<

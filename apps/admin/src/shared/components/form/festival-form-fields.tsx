@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Control,
   Controller,
@@ -10,7 +9,6 @@ import { z } from 'zod';
 
 import { FestivalDateField } from '@shared/components/form/festival-date-form-fields';
 import FormInput from '@shared/components/form/form-input';
-import { useImagePreview } from '@shared/hooks/use-image-preview';
 import { festivalSchema } from '@shared/schemas/festival-schema';
 
 import * as styles from './festival-form-fields.css';
@@ -19,18 +17,23 @@ interface Props {
   register: UseFormRegister<z.infer<typeof festivalSchema>>;
   errors: FieldErrors<z.infer<typeof festivalSchema>>;
   control: Control<z.infer<typeof festivalSchema>>;
+  posterPreview?: string | null;
+  logoPreview?: string | null;
+  onPosterChange?: (file: File | null) => void;
+  onLogoChange?: (file: File | null) => void;
+  reservationLogoPreview?: string | null;
+  onReservationLogoChange?: (file: File | null) => void;
 }
 
 export const FestivalBasicFormField = ({
   register,
   errors,
   control,
+  posterPreview,
+  logoPreview,
+  onPosterChange,
+  onLogoChange,
 }: Props) => {
-  const [posterFile, setPosterFile] = useState<File | null>(null);
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const posterPreview = useImagePreview(posterFile);
-  const logoPreview = useImagePreview(logoFile);
-
   return (
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>기본 정보</h2>
@@ -39,85 +42,81 @@ export const FestivalBasicFormField = ({
           {...register('title')}
           type="text"
           label="페스티벌 제목"
-          placeholder="페스티벌 제목을 입력해주세요."
+          placeholder="페스티벌 제목을 입력해주세요"
           error={errors.title?.message}
         />
         <FormInput
           {...register('subTitle')}
           type="text"
           label="페스티벌 부제목"
-          placeholder="페스티벌 부제목을 입력해주세요."
+          placeholder="페스티벌 부제목을 입력해주세요"
           error={errors.subTitle?.message}
         />
       </div>
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('startDate')}
+          {...register('startAt')}
           type="date"
           label="페스티벌 시작일"
-          placeholder="페스티벌 시작일을 입력해주세요."
-          error={errors.startDate?.message}
+          error={errors.startAt?.message}
         />
         <FormInput
-          {...register('endDate')}
+          {...register('endAt')}
           type="date"
           label="페스티벌 종료일"
-          placeholder="페스티벌 종료일을 입력해주세요."
-          error={errors.endDate?.message}
+          error={errors.endAt?.message}
         />
       </div>
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('location')}
+          {...register('area')}
           type="text"
           label="페스티벌 장소"
-          placeholder="페스티벌 장소를 입력해주세요."
-          error={errors.location?.message}
+          placeholder="ex) 올림픽공원 SK 핸드볼경기장"
+          error={errors.area?.message}
         />
         <FormInput
-          {...register('reservationDate')}
-          type="date"
-          label="예매 날짜"
-          placeholder="예매 날짜를 입력해주세요."
-          error={errors.reservationDate?.message}
+          {...register('reserveAt')}
+          type="datetime-local"
+          label="예매 시작일"
+          error={errors.reserveAt?.message}
         />
       </div>
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('ageLimit')}
+          {...register('ageRating')}
           type="text"
           label="연령 제한"
-          placeholder="연령 제한을 입력해주세요."
-          error={errors.ageLimit?.message}
+          placeholder="ex) 만 19세 이상"
+          error={errors.ageRating?.message}
         />
         <FormInput
-          {...register('festivalTime')}
+          {...register('time')}
           type="time"
           label="페스티벌 시간"
-          placeholder="페스티벌 시간을 입력해주세요."
-          error={errors.festivalTime?.message}
+          error={errors.time?.message}
         />
       </div>
       <div className={styles.inputContainer}>
         <FormInput
-          {...register('festivalPrice')}
+          {...register('price')}
           type="text"
           label="페스티벌 가격"
-          placeholder="페스티벌 가격을 입력해주세요."
-          error={errors.festivalPrice?.message}
+          placeholder="ex) 150,000원"
+          error={errors.price?.message}
         />
         <FormInput
-          {...register('festivalAddress')}
+          {...register('address')}
           type="text"
           label="페스티벌 주소"
-          placeholder="페스티벌 주소를 입력해주세요."
-          error={errors.festivalAddress?.message}
+          placeholder="ex) 서울특별시 송파구 올림픽로 424"
+          error={errors.address?.message}
         />
       </div>
       <div className={styles.inputContainer}>
         <Controller
           control={control}
-          name="posterImage"
+          name="posterImg"
           render={({ field }) => (
             <div className={styles.imageInputContainer}>
               <FormInput
@@ -125,10 +124,10 @@ export const FestivalBasicFormField = ({
                 label="포스터 이미지"
                 onChange={(e) => {
                   const file = e.target.files?.[0] ?? null;
-                  setPosterFile(file);
+                  onPosterChange?.(file);
                   field.onChange(file);
                 }}
-                error={errors.posterImage?.message}
+                error={errors.posterImg?.message}
               />
               {posterPreview && (
                 <div className={styles.posterPreviewContainer}>
@@ -144,17 +143,17 @@ export const FestivalBasicFormField = ({
         />
         <Controller
           control={control}
-          name="festivalLogo"
+          name="logoImg"
           render={({ field }) => (
             <div className={styles.imageInputContainer}>
               <FormInput
                 type="file"
                 label="로고 이미지"
                 placeholder="로고 이미지를 업로드해주세요."
-                error={errors.festivalLogo?.message}
+                error={errors.logoImg?.message}
                 onChange={(e) => {
                   const file = e.target.files?.[0] ?? null;
-                  setLogoFile(file);
+                  onLogoChange?.(file);
                   field.onChange(file);
                 }}
               />
@@ -182,27 +181,27 @@ export const FestivalStageFormField = ({
 }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'festivalStages',
+    name: 'dates.0.stages',
   });
 
   return (
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>스테이지 설정</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <FormInput
-            {...register(`festivalStages.${index}.stageTitle`)}
+            {...register(`dates.0.stages.${index}.name`)}
             type="text"
             label="스테이지 이름"
-            placeholder="스테이지 이름을 입력해주세요."
-            error={errors.festivalStages?.[index]?.stageTitle?.message}
+            placeholder="ex) 메인 스테이지"
+            error={errors.dates?.[0]?.stages?.[index]?.name?.message}
           />
           <FormInput
-            {...register(`festivalStages.${index}.stageOrder`)}
+            {...register(`dates.0.stages.${index}.order`)}
             type="text"
             label="스테이지 순서"
             placeholder="스테이지 순서를 입력해주세요."
-            error={errors.festivalStages?.[index]?.stageOrder?.message}
+            error={errors.dates?.[0]?.stages?.[index]?.order?.message}
           />
           <button
             type="button"
@@ -217,9 +216,9 @@ export const FestivalStageFormField = ({
       <button
         type="button"
         className={styles.addButton}
-        onClick={() => append({ stageTitle: '', stageOrder: '' })}
+        onClick={() => append({ name: '', order: '', times: [] })}
       >
-        스테이지 추가
+        + 스테이지 추가
       </button>
     </div>
   );
@@ -229,52 +228,62 @@ export const FestivalReservationFormField = ({
   register,
   errors,
   control,
+  reservationLogoPreview,
+  onReservationLogoChange,
 }: Props) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'reservationLinks',
+    name: 'reservationUrls',
   });
 
   return (
     <div className={styles.fieldSection}>
       <h2 className={styles.title}>예매 링크</h2>
       {fields.map((field, index) => (
-        <div key={field.id} className={styles.fieldSection}>
+        <div key={field.id} className={styles.fieldGroup}>
           <div className={styles.inputContainer}>
             <FormInput
-              {...register(`reservationLinks.${index}.reservationUrl`)}
+              {...register(`reservationUrls.${index}.reservationUrl`)}
               type="text"
               label="예매 URL"
               placeholder="예매 URL을 입력해주세요."
-              error={errors.reservationLinks?.[index]?.reservationUrl?.message}
+              error={errors.reservationUrls?.[index]?.reservationUrl?.message}
             />
             <FormInput
-              {...register(`reservationLinks.${index}.reservationSiteName`)}
+              {...register(`reservationUrls.${index}.name`)}
               type="text"
               label="예매 사이트명"
               placeholder="예매 사이트명을 입력해주세요."
-              error={
-                errors.reservationLinks?.[index]?.reservationSiteName?.message
-              }
+              error={errors.reservationUrls?.[index]?.name?.message}
             />
           </div>
 
           <Controller
             control={control}
-            name={`reservationLinks.${index}.reservationSiteLogo`}
+            name={`reservationUrls.${index}.logoImg`}
             render={({ field }) => (
-              <FormInput
-                type="file"
-                label="사이트 로고"
-                placeholder="사이트 로고를 입력해주세요."
-                error={
-                  errors.reservationLinks?.[index]?.reservationSiteLogo?.message
-                }
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  field.onChange(file);
-                }}
-              />
+              <>
+                <FormInput
+                  type="file"
+                  label="사이트 로고"
+                  placeholder="사이트 로고를 입력해주세요."
+                  error={errors.reservationUrls?.[index]?.logoImg?.message}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] ?? null;
+                    onReservationLogoChange?.(file);
+                    field.onChange(file);
+                  }}
+                />
+                {reservationLogoPreview && (
+                  <div className={styles.posterPreviewContainer}>
+                    <img
+                      src={reservationLogoPreview}
+                      alt="사이트 로고 미리보기"
+                      className={styles.posterPreview}
+                    />
+                  </div>
+                )}
+              </>
             )}
           />
           <button
@@ -291,13 +300,13 @@ export const FestivalReservationFormField = ({
         onClick={() =>
           append({
             reservationUrl: '',
-            reservationSiteName: '',
-            reservationSiteLogo: new File([], ''),
+            name: '',
+            logoImg: new File([], ''),
           })
         }
         className={styles.addButton}
       >
-        예매 링크 추가
+        + 예매 링크 추가
       </button>
     </div>
   );
@@ -310,7 +319,7 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
     remove: removeDate,
   } = useFieldArray({
     control,
-    name: 'festivalDates',
+    name: 'dates',
   });
 
   return (
@@ -332,14 +341,14 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
         type="button"
         onClick={() =>
           appendDate({
-            date: '',
-            ticketOpenTime: '',
-            schedules: [
+            festivalAt: '',
+            openAt: '',
+            stages: [
               {
-                stages: [
-                  { startTime: '', endTime: '', artistIds: [{ value: '' }] },
-                  { startTime: '', endTime: '', artistIds: [{ value: '' }] },
-                  { startTime: '', endTime: '', artistIds: [{ value: '' }] },
+                name: '',
+                order: '',
+                times: [
+                  { startAt: '', endAt: '', artists: [{ artistId: '' }] },
                 ],
               },
             ],
@@ -347,7 +356,7 @@ export const FestivalDateFormField = ({ register, errors, control }: Props) => {
         }
         className={styles.addButton}
       >
-        페스티벌 날짜 추가
+        + 페스티벌 날짜 추가
       </button>
     </div>
   );

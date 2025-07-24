@@ -1,23 +1,21 @@
-import SvgIcArrowUpBlack30 from '../../icons/src/IcArrowUpBlack30';
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
+
+import { Icon } from '../../icons';
 
 import { floatingButtonVariants } from './floating-button.css';
 
-interface FloatingButtonProps {
+interface Props {
   isButtonHidden?: boolean;
+  onClick: () => void;
 }
 
-const handleScrollToTop = () => {
-  window.scrollTo({ top: 0 });
-};
-
-const FloatingButton = ({ isButtonHidden }: FloatingButtonProps) => {
+const FloatingButton = ({ isButtonHidden, onClick }: Props) => {
   return (
     <button
       className={cn(floatingButtonVariants({ isButtonHidden }))}
-      onClick={handleScrollToTop}
+      onClick={onClick}
     >
-      <SvgIcArrowUpBlack30 width={'3rem'} height={'3rem'} />
+      <Icon name="arrow-vertical" size="3rem" color="confeti_lime2" />
     </button>
   );
 };

@@ -1,7 +1,7 @@
-import { useLogoutMutation } from '@pages/my/hooks/use-logout-mutation';
-
 import { Button, Dialog } from '@confeti/design-system';
 import { useOverlay } from '@confeti/design-system';
+
+import { useLogoutMutation } from '@pages/my/hooks/use-logout-mutation';
 
 import * as styles from './logout-section.css';
 

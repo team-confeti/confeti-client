@@ -1,5 +1,6 @@
-import { IcToastInfo24 } from '../../icons/src';
-import { cn } from '../../utils';
+import { cn } from '@confeti/utils';
+
+import { Icon } from '../../icons';
 import { useToast } from './hooks/use-toast';
 import { ToastProps } from './types';
 import { TOAST_DEFAULT_POSITION } from './utils/constants';
@@ -27,7 +28,7 @@ const Toast = ({
   const renderIcon = () => {
     switch (icon) {
       case 'default':
-        return <IcToastInfo24 width={'2rem'} height={'2rem'} />;
+        return <Icon name="toast-info" size="2rem" color="confeti_lime2" />;
       case undefined:
         return null;
       default:

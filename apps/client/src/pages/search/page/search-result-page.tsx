@@ -1,4 +1,6 @@
-import { Footer, Spacing } from '@confeti/design-system';
+import { Spacing } from '@confeti/design-system';
+
+import { Footer } from '@shared/components';
 import { SearchAllResponse } from '@shared/types/search-response';
 
 import ArtistSection from '../components/search-result/artist/artist-section';
@@ -18,7 +20,7 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
   const performanceCount = searchData?.performanceCount ?? 0;
 
   return (
-    <>
+    <div className={styles.pageWrapper}>
       <main className={styles.resultSection}>
         {artistData && (
           <>
@@ -33,7 +35,7 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
         />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
