@@ -13,7 +13,6 @@ export const contentsSection = style({
   flex: 1,
   padding: '1rem 2rem',
   gap: '2rem',
-  flex: 1,
 });
 
 export const navigationLink = style({
