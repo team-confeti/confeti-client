@@ -32,36 +32,21 @@ export const ONBOARD_QUERY_OPTIONS = {
   }),
 };
 
-/**
- * 온보딩 상태를 가져옵니다.
- * @returns {Promise<onboardStatusResponse>} 온보딩 상태 (isOnboarded: boolean)
- */
-export const getOnboardStatus = async (): Promise<onboardStatusResponse> => {
+const getOnboardStatus = async (): Promise<onboardStatusResponse> => {
   const response = await get<BaseResponse<onboardStatusResponse>>(
     END_POINT.GET_ONBOARDING_STATUS,
   );
   return response.data;
 };
 
-/**
- * Top 아티스트 데이터를 가져옵니다.
- * @param {number} limit 가져올 아티스트 수 제한
- * @returns {Promise<onboardResponse>} 아티스트 목록 데이터
- */
-export const getTopArtist = async (limit: number): Promise<onboardResponse> => {
+const getTopArtist = async (limit: number): Promise<onboardResponse> => {
   const response = await get<BaseResponse<onboardResponse>>(
     END_POINT.GET_TOP100_ARTIST(limit),
   );
   return response.data;
 };
 
-/**
- * 특정 아티스트의 연관 아티스트 데이터를 가져옵니다.
- * @param {string} artistId 기준 아티스트 ID
- * @param {number} limit 가져올 연관 아티스트 수 제한
- * @returns {Promise<BaseResponse<onboardResponse>>} 연관 아티스트 데이터
- */
-export const getArtistRelatedArtist = async (
+const getArtistRelatedArtist = async (
   artistId: string,
   limit: number,
 ): Promise<BaseResponse<onboardResponse>> => {
@@ -71,13 +56,7 @@ export const getArtistRelatedArtist = async (
   return response;
 };
 
-/**
- * 키워드를 기반으로 연관 아티스트 데이터를 가져옵니다.
- * @param {string} keyword 검색 키워드
- * @param {number} limit 가져올 결과 수 제한
- * @returns {Promise<onboardResponse>} 연관 아티스트 데이터
- */
-export const getArtistRelatedKeyword = async (
+const getArtistRelatedKeyword = async (
   keyword: string,
   limit: number,
 ): Promise<onboardResponse> => {
