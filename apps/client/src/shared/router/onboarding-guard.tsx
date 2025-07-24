@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
@@ -11,7 +11,7 @@ interface OnboardingGuardProps {
 }
 
 export const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
-  const { data: onboardingStatus } = useQuery({
+  const { data: onboardingStatus } = useSuspenseQuery({
     ...ONBOARD_QUERY_OPTIONS.STATUS(),
   });
 
