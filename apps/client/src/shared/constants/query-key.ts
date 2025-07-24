@@ -93,7 +93,7 @@ export const ONBOARD_QUERY_KEY = {
     'artist-related-artist',
     artistId,
   ],
-  ONBOARDING_STATUS: () => [...ONBOARD_QUERY_KEY.ALL, 'status'],
+  STATUS: () => [...ONBOARD_QUERY_KEY.ALL, 'status'],
 } as const;
 
 export const MY_TIMETABLE_QUERY_KEY = {
