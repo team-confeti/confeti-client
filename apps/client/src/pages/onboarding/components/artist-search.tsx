@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { ARTIST_RELATED_QUERY_OPTIONS } from '@shared/apis/onboard/artist-related-queries';
+import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 
 import { ONBOARD_LIMIT } from '../constants/limit';
@@ -22,7 +22,7 @@ const ArtistSearch = ({
     useDebouncedKeyword();
 
   const { data: relatedKeywordsData } = useQuery({
-    ...ARTIST_RELATED_QUERY_OPTIONS.KEYWORD(
+    ...ONBOARD_QUERY_OPTIONS.ARTIST_RELATED_KEYWORDS(
       debouncedKeyword,
       ONBOARD_LIMIT.RELATED_KEYWORD,
     ),

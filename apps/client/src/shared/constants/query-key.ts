@@ -81,16 +81,24 @@ export const SEARCH_QUERY_KEY = {
   ],
 } as const;
 
-export const ARTIST_RELATED_QUERY_KEY = {
-  ALL: ['related'],
-  RELATED_ARTIST: (artistId: string) => [
-    ...ARTIST_RELATED_QUERY_KEY.ALL,
-    artistId,
+export const ONBOARD_QUERY_KEY = {
+  ALL: ['onboard'],
+  TOP_ARTIST: (limit: number) => [
+    ...ONBOARD_QUERY_KEY.ALL,
+    'top-artist',
+    limit,
   ],
-  RELATED_KEYWORD: (keyword: string) => [
-    ...ARTIST_RELATED_QUERY_KEY.ALL,
+  ARTIST_RELATED_KEYWORDS: (keyword: string) => [
+    ...ONBOARD_QUERY_KEY.ALL,
+    'artist-related-keywords',
     keyword,
   ],
+  ARTIST_RELATED_ARTIST: (artistId: string) => [
+    ...ONBOARD_QUERY_KEY.ALL,
+    'artist-related-artist',
+    artistId,
+  ],
+  STATUS: () => [...ONBOARD_QUERY_KEY.ALL, 'status'],
 } as const;
 
 export const MY_TIMETABLE_QUERY_KEY = {
@@ -121,11 +129,6 @@ export const SETLIST_QUERY_KEY = {
 
 export const RECORD_QUERY_KEY = {
   ALL: ['record'],
-} as const;
-
-export const TOP_100_ARTIST_QUERY_KEY = {
-  ALL: ['top-artist'],
-  TOP_ARTIST: (limit: number) => [...TOP_100_ARTIST_QUERY_KEY.ALL, limit],
 } as const;
 
 export const LIKE_QUERY_KEY = {

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { getArtistRelatedArtist } from '@shared/apis/onboard/artist-related-queries';
 import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
+import { getArtistRelatedArtist } from '@shared/apis/onboard/queries';
 import { BaseResponse } from '@shared/types/api';
 import { onboardResponse } from '@shared/types/onboard-response';
 
