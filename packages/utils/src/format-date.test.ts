@@ -15,12 +15,12 @@ describe('formatDate', () => {
   it('koFull 형식으로 포맷되어야 한다', () => {
     const result = formatDate(reserveAt, 'koFull');
     expect(result).toContain('2025년 4월 9일');
-    expect(result).toMatch(/\((일|월|화|수|목|금|토)\)/); // 요일 확인
+    expect(result).toMatch(/\((일|월|화|수|목|금|토)\)/);
   });
 
   it('Dday가 D-0 이하면 D-DAY를 반환해야 한다', () => {
     const today = new Date();
-    const isoToday = today.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+    const isoToday = today.toISOString().split('T')[0];
     expect(formatDate(isoToday, 'Dday')).toBe('D-DAY');
   });
 
