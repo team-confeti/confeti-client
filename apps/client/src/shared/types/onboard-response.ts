@@ -7,3 +7,7 @@ export interface onboard {
 export interface onboardResponse {
   artists: onboard[];
 }
+
+export interface onboardStatusResponse {
+  isOnboarding: boolean;
+}
