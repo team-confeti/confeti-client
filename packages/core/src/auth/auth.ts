@@ -1,12 +1,20 @@
 import Cookies from 'js-cookie';
 
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './constants';
 
-export const authTokenHandler = (
+export function getAccessToken() {
+  return Cookies.get(ACCESS_TOKEN_KEY);
+}
+
+export function getRefreshToken() {
+  return localStorage.getItem(REFRESH_TOKEN_KEY);
+}
+
+export function authTokenHandler(
   action: 'set' | 'remove',
   accessToken?: string,
   refreshToken?: string,
-) => {
+) {
   switch (action) {
     case 'set':
       if (accessToken)
@@ -20,4 +28,4 @@ export const authTokenHandler = (
     default:
       throw new Error('유효한 action 값을 입력해주세요');
   }
-};
+}

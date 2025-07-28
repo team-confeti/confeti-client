@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
+import { getAccessToken } from '@confeti/core/auth';
 import { Box } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
@@ -8,7 +9,6 @@ import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { DetailHeader, Footer } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
 
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
@@ -21,7 +21,7 @@ import UpcomingPerformanceSection from '@pages/my/components/upcoming-performanc
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const isNotLoggedIn = checkIsNotLoggedIn();
+  const isNotLoggedIn = !getAccessToken();
 
   const { data: profileData } = useUserProfile();
   const { data: upcomingPerformanceData } = useQuery({

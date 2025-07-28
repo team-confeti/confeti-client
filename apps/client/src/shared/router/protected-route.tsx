@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import { checkIsNotLoggedIn } from '@shared/utils/check-is-not-logged-in';
+import { getAccessToken } from '@confeti/core/auth';
 
 interface ProtectedRouteProps {
   protect?: boolean;
@@ -14,7 +14,7 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const location = useLocation();
 
-  if (protect && checkIsNotLoggedIn()) {
+  if (protect && !getAccessToken()) {
     const { pathname } = location;
     let redirectPath = '/my/require-login';
 

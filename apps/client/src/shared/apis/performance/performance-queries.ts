@@ -1,9 +1,10 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { BaseResponse } from '@confeti/core/http';
+
 import { get } from '@shared/apis/config/instance';
 import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { PERFORMANCE_QUERY_KEY } from '@shared/constants/query-key';
-import { BaseResponse } from '@shared/types/api';
 import { ConcertDetailResponse } from '@shared/types/concert-response';
 import { FestivalDetailResponse } from '@shared/types/festival-response';
 

@@ -1,3 +1,5 @@
+import { TokenResponse } from '@confeti/core/auth';
+
 export interface KakaoLogin {
   provider: 'KAKAO';
   redirectUrl: string;
@@ -9,11 +11,6 @@ export interface AppleLogin {
   name: string;
   code: string;
 }
-
-export type TokenResponse = {
-  accessToken: string;
-  refreshToken: string;
-};
 
 export type SocialLoginResponse = TokenResponse & {
   isOnboarding: boolean;

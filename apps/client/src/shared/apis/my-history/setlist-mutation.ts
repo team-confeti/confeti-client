@@ -1,6 +1,7 @@
+import { BaseResponse } from '@confeti/core/http';
+
 import { del, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
-import { BaseResponse } from '@shared/types/api';
 import {
   AddMusicToSetListRequest,
   SetListPerformance,

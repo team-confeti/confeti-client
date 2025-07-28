@@ -1,0 +1,10 @@
+{
+  "extends": "@confeti/typescript/react-library.json",
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

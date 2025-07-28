@@ -1,10 +1,11 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { BaseResponse } from '@confeti/core/http';
+
 import { get } from '@shared/apis/config/instance';
 import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
-import { BaseResponse } from '@shared/types/api';
 import {
   MyHistorySetList,
   MyHistorySetListResponse,

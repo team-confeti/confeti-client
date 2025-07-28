@@ -1,23 +1,24 @@
 import * as Sentry from '@sentry/react';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import Cookies from 'js-cookie';
 
-import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
+import {
+  authTokenHandler,
+  getAccessToken,
+  getRefreshToken,
+  TokenResponse,
+} from '@confeti/core/auth';
+import {
+  AxiosError,
+  BaseResponse,
+  ErrorResponse,
+  HTTP_STATUS_CODE,
+  HTTPError,
+  InternalAxiosRequestConfig,
+} from '@confeti/core/http';
+
+import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@shared/constants/config';
-import { routePath } from '@shared/router/path';
-import { BaseResponse, ErrorResponse } from '@shared/types/api';
-import { TokenResponse } from '@shared/types/login-response';
-import { authTokenHandler } from '@shared/utils/token-handler';
 
-import { HTTPError } from './http-error';
-import { axiosInstance } from './instance';
-
-const redirectToHome = () => {
-  authTokenHandler('remove');
-  window.location.replace(routePath.ROOT);
-  throw new Error('인증에 실패했습니다. 다시 로그인해주세요.');
-};
+import { instance } from './instance';
 
 export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
   if (!error.response) {
@@ -72,9 +73,13 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
     throw new Error('요청 정보를 확인할 수 없습니다.');
   }
 
-  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+  const refreshToken = getRefreshToken();
   if (!refreshToken) {
-    return redirectToHome();
+    authTokenHandler('remove');
+    throw new HTTPError(
+      HTTP_STATUS_CODE.UNAUTHORIZED,
+      '리프레시 토큰이 없습니다. 다시 로그인해주세요.',
+    );
   }
 
   try {
@@ -100,14 +105,18 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
 
     const originalConfig = error.config;
     originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
-    return axiosInstance(originalConfig);
+    return instance(originalConfig);
   } catch (error) {
-    return redirectToHome();
+    authTokenHandler('remove');
+    throw new HTTPError(
+      HTTP_STATUS_CODE.UNAUTHORIZED,
+      '토큰 재발급에 실패했습니다.',
+    );
   }
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
-  const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
+  const accessToken = getAccessToken();
 
   if (accessToken && config.headers) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
