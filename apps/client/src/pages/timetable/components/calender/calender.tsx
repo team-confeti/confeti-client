@@ -1,6 +1,5 @@
 import { cn } from '@confeti/utils';
-
-import { formatDate } from '@shared/utils/format-date';
+import { formatDate } from '@confeti/utils';
 
 import {
   checkFestivalDateStatus,

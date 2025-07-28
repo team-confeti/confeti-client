@@ -1,9 +1,9 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { Avatar, LikeButton } from '@confeti/design-system';
+import { getAddedDate } from '@confeti/utils/src/format-date';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { MyArtists } from '@shared/types/user-response';
-import { getAddedDate } from '@shared/utils/format-date';
 
 import * as styles from './artist-list.css';
 
