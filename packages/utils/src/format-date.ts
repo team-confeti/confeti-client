@@ -1,4 +1,4 @@
-import { WEEKDAYS } from '@shared/constants/day';
+export const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 /**
  * 주어진 날짜 문자열에서 연, 월, 일을 추출하여 반환합니다.
