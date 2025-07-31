@@ -1,6 +1,5 @@
 import { Icon } from '@confeti/design-system/icon';
-
-import { formatDate } from '@shared/utils/format-date';
+import { formatDate } from '@confeti/utils';
 
 import * as styles from './hero.css';
 

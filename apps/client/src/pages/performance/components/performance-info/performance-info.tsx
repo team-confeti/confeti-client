@@ -1,8 +1,8 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
-import { formatDate } from '@shared/utils/format-date';
 
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 

@@ -1,9 +1,9 @@
 import { PerformanceCarousel } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { CarouselPerformancesResponse } from '@shared/types/home-response';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
-import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './performance-carousel-section.css';
 
