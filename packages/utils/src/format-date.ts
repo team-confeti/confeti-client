@@ -16,10 +16,16 @@ const getDateParts = (date: string) => {
 
 /**
  * 시작 날짜와 종료 날짜를 받아 형식에 맞는 날짜 문자열을 반환합니다.
+ *
+ * startAt과 endAt이 같으면 하나의 날짜만 반환합니다.
+ *
  * @param {string} startAt - 시작 날짜 (예: "2025-04-09")
  * @param {string} endAt - 종료 날짜 (예: "2025-10-03")
  * @param {boolean} isPerformanceDetail - true이면 연도를 포함한 날짜 형식 사용
- * @returns {string} - 포맷된 날짜 문자열 (예: "2025.04.09 - 10.03" 또는 "2025.04.09 - 2025.10.03")
+ * @returns {string} - 포맷된 날짜 문자열
+ *   - startAt === endAt인 경우: "2025.04.09"
+ *   - isPerformanceDetail이 false인 경우: "2025.04.09 - 10.03"
+ *   - isPerformanceDetail이 true인 경우: "2025.04.09 - 2025.10.03"
  */
 const getStartAtEndAt = (
   startAt: string,
@@ -59,6 +65,15 @@ const getReserveDate = (reserveAt: string): string => {
   return formattedDate;
 };
 
+/**
+ * 주어진 예약 날짜(reserveAt)와 오늘 날짜를 비교하여 D-day 형식의 문자열을 반환합니다.
+ *
+ * - 예약일이 오늘이거나 과거일 경우: "D-DAY" 반환
+ * - 예약일이 미래일 경우: "D-N" 형식으로, 오늘로부터 N일 후를 반환
+ *
+ * @param {string} reserveAt - 예약 날짜 문자열 (예: "2025-04-09")
+ * @returns {string} D-day 형식의 문자열 (예: "D-DAY", "D-3")
+ */
 const calculateDday = (reserveAt: string): string => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -73,6 +88,22 @@ const calculateDday = (reserveAt: string): string => {
   return Dday <= 0 ? 'D-DAY' : `D-${Dday}`;
 };
 
+/**
+ * 주어진 날짜 문자열을 다양한 형식으로 포맷하여 반환합니다.
+ *
+ * @param {string} [date=''] - 포맷할 날짜 문자열 (ISO 8601 형식 권장, 예: '2025-07-31' 또는 '2025-07-31T15:00:00Z')
+ * @param {'default' | 'koHalf' | 'koFull' | 'Dday' | 'startEndFull' | 'startEndHalf'} [formatStyle='default'] - 출력할 날짜 형식
+ * @param {string} [startAt] - 시작 날짜 (startEndFull, startEndHalf 포맷 시 필요)
+ * @param {string} [endAt] - 종료 날짜 (startEndFull, startEndHalf 포맷 시 필요)
+ * @returns {string} 포맷된 날짜 문자열
+ *
+ * @example
+ * formatDate('2025-04-09'); // '2025.04.09'
+ * formatDate('2025-04-09', 'koHalf'); // '2025년 04월'
+ * formatDate('2025-04-09T15:00:00Z', 'koFull'); // '2025년 4월 9일 (수) 오후 3시'
+ * formatDate('2025-04-09', 'Dday'); // 'D-XX' 또는 'D-DAY'
+ * formatDate('', 'startEndFull', '2025-04-09', '2025-10-03'); // '2025.04.09 - 10.03'
+ */
 export const formatDate = (
   date: string = '',
   formatStyle: string = 'default',
