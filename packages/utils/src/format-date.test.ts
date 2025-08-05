@@ -30,7 +30,7 @@ describe('formatDate 함수 테스트', () => {
 
   describe('koFull 형식 테스트', () => {
     it('날짜와 요일이 올바르게 포함되어야 한다', () => {
-      const result = formatDate('2025-04-09T02:00:00Z', 'koFull'); // KST 11:00
+      const result = formatDate(reserveAt, 'koFull');
       expect(result).toContain('2025년 4월 9일');
       expect(result).toMatch(/\((일|월|화|수|목|금|토)\)/);
     });
