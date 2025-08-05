@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 const Hero = ({ posterUrl, title, startAt, onClickBack }: HeroProps) => {
-  const year = formatDate(startAt, 'koHalf').split('년')[0];
+  const year = formatDate(startAt, 'koYearMonth').split('년')[0];
 
   return (
     <div className={styles.wrapper}>

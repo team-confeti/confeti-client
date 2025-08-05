@@ -24,7 +24,7 @@ const Calender = ({
   const { weekDays } = useFormattedWeek(firstDate);
   const festivalDateMap = createFestivalDateMap(festivalDates || []);
 
-  const formattedYear = formatDate(firstDate, 'koHalf');
+  const formattedYear = formatDate(firstDate, 'koYearMonth');
 
   const handleDateClick = (festivalDateId: number) => {
     onDateSelect(festivalDateId);

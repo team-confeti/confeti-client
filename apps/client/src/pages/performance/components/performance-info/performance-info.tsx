@@ -29,7 +29,10 @@ const PerformanceInfo = ({
 }: Props) => {
   const { mutate } = useLikeMutation();
   const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
-  const formattedReserveDate = formatDate(reserveAt, 'koFull');
+  const formattedReserveDate = formatDate(
+    reserveAt,
+    'koFullDateTimeWithWeekday',
+  );
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });

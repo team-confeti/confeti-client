@@ -105,15 +105,15 @@ const calculateDday = (reserveAt: string): string => {
  * 주어진 날짜 문자열을 다양한 형식으로 포맷하여 반환합니다.
  *
  * @param {string} [date=''] - 포맷할 날짜 문자열 (ISO 8601 형식 권장, 예: '2025-07-31' 또는 '2025-07-31T15:00:00Z')
- * @param {'default' | 'koHalf' | 'koFull' | 'Dday' | 'rangeStartEndYearBoth' | 'rangeStartYearOnly'} [formatStyle='default'] - 출력할 날짜 형식
+ * @param {'default' | 'koYearMonth' | 'koFullDateTimeWithWeekday' | 'Dday' | 'rangeStartEndYearBoth' | 'rangeStartYearOnly'} [formatStyle='default'] - 출력할 날짜 형식
  * @param {string} [startAt] - 시작 날짜 (rangeStartEndYearBoth, rangeStartYearOnly 포맷 시 필요)
  * @param {string} [endAt] - 종료 날짜 (rangeStartEndYearBoth, rangeStartYearOnly 포맷 시 필요)
  * @returns {string} 포맷된 날짜 문자열
  *
  * @example
  * formatDate('2025-04-09'); // '2025.04.09'
- * formatDate('2025-04-09', 'koHalf'); // '2025년 04월'
- * formatDate('2025-04-09T15:00:00Z', 'koFull'); // '2025년 4월 9일 (수) 오후 3시'
+ * formatDate('2025-04-09', 'koYearMonth'); // '2025년 04월'
+ * formatDate('2025-04-09T15:00:00Z', 'koFullDateTimeWithWeekday'); // '2025년 4월 9일 (수) 오후 3시'
  * formatDate('2025-04-09', 'Dday'); // 'D-XX' 또는 'D-DAY'
  * formatDate('', 'rangeStartEndYearBoth', '2025-04-09', '2025-10-03'); // '2025.04.09 - 10.03'
  */
@@ -136,9 +136,9 @@ export const formatDate = (
   const { year, month, day } = getDateParts(date);
 
   switch (formatStyle) {
-    case 'koHalf':
+    case 'koYearMonth':
       return `${year}년 ${month}월`;
-    case 'koFull':
+    case 'koFullDateTimeWithWeekday':
       return getReserveDate(date);
     case 'Dday':
       return calculateDday(date);
