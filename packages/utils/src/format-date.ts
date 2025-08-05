@@ -54,15 +54,33 @@ const getStartAtEndAt = (
 const getReserveDate = (reserveAt: string): string => {
   const parsedDate = new Date(reserveAt);
 
-  const weekData = WEEKDAYS;
+  const year = parsedDate.toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+  });
+  const month = parsedDate.toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    month: 'numeric',
+  });
+  const day = parsedDate.toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    day: 'numeric',
+  });
+  const dayOfWeek = parsedDate.toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    weekday: 'short',
+  });
 
-  const hours = parsedDate.getHours();
-  const period = hours >= 12 ? '오후' : '오전';
-  const hour12 = hours % 12 === 0 ? 12 : hours % 12;
+  const hour24 = parsedDate.toLocaleString('en-US', {
+    timeZone: 'Asia/Seoul',
+    hour12: false,
+    hour: 'numeric',
+  });
+  const hourNum = Number(hour24);
+  const period = hourNum >= 12 ? '오후' : '오전';
+  const hour12 = hourNum % 12 === 0 ? 12 : hourNum % 12;
 
-  const formattedDate = `${parsedDate.getFullYear()}년 ${parsedDate.getMonth() + 1}월 ${parsedDate.getDate()}일 (${weekData[parsedDate.getDay()]}) ${period}${hour12}시`;
-
-  return formattedDate;
+  return `${year} ${month} ${day} (${dayOfWeek}) ${period}${hour12}시`;
 };
 
 /**

@@ -2,7 +2,6 @@ import { formatDate, getAddedDate } from './format-date';
 
 describe('formatDate 함수 테스트', () => {
   const date = '2025-04-09';
-  const reserveAt = '2025-04-09T02:00:00Z';
 
   it('기본 형식으로 포맷되어야 한다', () => {
     expect(formatDate(date)).toBe('2025.04.09');
