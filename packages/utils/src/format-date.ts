@@ -51,32 +51,25 @@ const getStartAtEndAt = (
  * @param {string} reserveAt - 예약 날짜 문자열 (예: "2025-03-10T15:00:00Z")
  * @returns {string} - 포맷된 날짜 문자열 (예: "2025년 3월 10일 (월) 오후 3시")
  */
-const getReserveDate = (reserveAt: string): string => {
+const formatWithTimezone = (
+  date: Date,
+  locale: string,
+  options: Intl.DateTimeFormatOptions,
+) => date.toLocaleString(locale, { timeZone: 'Asia/Seoul', ...options });
+
+export const getReserveDate = (reserveAt: string): string => {
   const parsedDate = new Date(reserveAt);
 
-  const year = parsedDate.toLocaleString('ko-KR', {
-    timeZone: 'Asia/Seoul',
-    year: 'numeric',
-  });
-  const month = parsedDate.toLocaleString('ko-KR', {
-    timeZone: 'Asia/Seoul',
-    month: 'numeric',
-  });
-  const day = parsedDate.toLocaleString('ko-KR', {
-    timeZone: 'Asia/Seoul',
-    day: 'numeric',
-  });
-  const dayOfWeek = parsedDate.toLocaleString('ko-KR', {
-    timeZone: 'Asia/Seoul',
+  const year = formatWithTimezone(parsedDate, 'ko-KR', { year: 'numeric' });
+  const month = formatWithTimezone(parsedDate, 'ko-KR', { month: 'numeric' });
+  const day = formatWithTimezone(parsedDate, 'ko-KR', { day: 'numeric' });
+  const dayOfWeek = formatWithTimezone(parsedDate, 'ko-KR', {
     weekday: 'short',
   });
 
-  const hour24 = parsedDate.toLocaleString('en-US', {
-    timeZone: 'Asia/Seoul',
-    hour12: false,
-    hour: 'numeric',
-  });
-  let hourNum = Number(hour24);
+  let hourNum = Number(
+    formatWithTimezone(parsedDate, 'en-US', { hour12: false, hour: 'numeric' }),
+  );
   if (hourNum === 24) hourNum = 0;
 
   const period = hourNum < 12 ? '오전' : '오후';
