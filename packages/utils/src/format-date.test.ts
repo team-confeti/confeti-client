@@ -19,31 +19,31 @@ describe('formatDate 함수 테스트', () => {
 
   describe('koFull 형식 테스트', () => {
     it('날짜와 요일이 올바르게 포함되어야 한다', () => {
-      const result = formatDate(reserveAt, 'koFull');
+      const result = formatDate('2025-04-09T09:00:00+09:00', 'koFull');
       expect(result).toContain('2025년 4월 9일');
       expect(result).toMatch(/\((일|월|화|수|목|금|토)\)/);
     });
 
     it('오전 시간은 "오전 N시"로 표기되어야 한다', () => {
-      const morning = '2025-04-09T00:00:00Z';
+      const morning = '2025-04-09T09:00:00+09:00';
       const result = formatDate(morning, 'koFull');
       expect(result).toMatch(/오전\s?9시/);
     });
 
     it('오후 시간은 "오후 N시"로 표기되어야 한다', () => {
-      const afternoon = '2025-04-09T06:00:00Z';
+      const afternoon = '2025-04-09T15:00:00+09:00';
       const result = formatDate(afternoon, 'koFull');
       expect(result).toMatch(/오후\s?3시/);
     });
 
     it('자정은 "오전 12시"로 표기되어야 한다', () => {
-      const midnight = '2025-04-08T15:00:00Z';
+      const midnight = '2025-04-09T00:00:00+09:00';
       const result = formatDate(midnight, 'koFull');
       expect(result).toMatch(/오전\s?12시/);
     });
 
     it('정오는 "오후 12시"로 표기되어야 한다', () => {
-      const noon = '2025-04-09T03:00:00Z';
+      const noon = '2025-04-09T12:00:00+09:00';
       const result = formatDate(noon, 'koFull');
       expect(result).toMatch(/오후\s?12시/);
     });
