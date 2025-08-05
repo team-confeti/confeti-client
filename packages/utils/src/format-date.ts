@@ -117,9 +117,16 @@ const calculateDday = (reserveAt: string): string => {
  * formatDate('2025-04-09', 'Dday'); // 'D-XX' 또는 'D-DAY'
  * formatDate('', 'rangeStartEndYearBoth', '2025-04-09', '2025-10-03'); // '2025.04.09 - 10.03'
  */
+type FormatStyle =
+  | 'default'
+  | 'koYearMonth'
+  | 'koFullDateTimeWithWeekday'
+  | 'Dday'
+  | 'rangeStartEndYearBoth'
+  | 'rangeStartYearOnly';
 export const formatDate = (
   date: string = '',
-  formatStyle: string = 'default',
+  formatStyle: FormatStyle = 'default',
   startAt?: string,
   endAt?: string,
 ) => {
