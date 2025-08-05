@@ -1,5 +1,5 @@
-export const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
-
+export const DEFAULT_LOCALE = 'ko-KR';
+export const DEFAULT_TIMEZONE = 'Asia/Seoul';
 /**
  * 주어진 날짜 문자열에서 연, 월, 일을 추출하여 반환합니다.
  * @param {string} date - 날짜 문자열 (예: "2025-04-09")
@@ -55,15 +55,21 @@ const formatWithTimezone = (
   date: Date,
   locale: string,
   options: Intl.DateTimeFormatOptions,
-) => date.toLocaleString(locale, { timeZone: 'Asia/Seoul', ...options });
+) => date.toLocaleString(locale, { timeZone: DEFAULT_TIMEZONE, ...options });
 
 export const getReserveDate = (reserveAt: string): string => {
   const parsedDate = new Date(reserveAt);
 
-  const year = formatWithTimezone(parsedDate, 'ko-KR', { year: 'numeric' });
-  const month = formatWithTimezone(parsedDate, 'ko-KR', { month: 'numeric' });
-  const day = formatWithTimezone(parsedDate, 'ko-KR', { day: 'numeric' });
-  const dayOfWeek = formatWithTimezone(parsedDate, 'ko-KR', {
+  const year = formatWithTimezone(parsedDate, DEFAULT_LOCALE, {
+    year: 'numeric',
+  });
+  const month = formatWithTimezone(parsedDate, DEFAULT_LOCALE, {
+    month: 'numeric',
+  });
+  const day = formatWithTimezone(parsedDate, DEFAULT_LOCALE, {
+    day: 'numeric',
+  });
+  const dayOfWeek = formatWithTimezone(parsedDate, DEFAULT_LOCALE, {
     weekday: 'short',
   });
 
