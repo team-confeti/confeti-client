@@ -1,15 +1,4 @@
-import { vi } from 'vitest';
-
 import { formatDate, getAddedDate } from './format-date';
-
-beforeAll(() => {
-  vi.useFakeTimers();
-  vi.setSystemTime(new Date('2025-04-09T00:00:00+09:00'));
-});
-
-afterAll(() => {
-  vi.useRealTimers();
-});
 
 describe('formatDate 함수 테스트', () => {
   const date = '2025-04-09';
@@ -62,7 +51,8 @@ describe('formatDate 함수 테스트', () => {
 
   describe('Dday 포맷 테스트', () => {
     it('오늘 날짜일 경우 "D-DAY"를 반환한다', () => {
-      const isoToday = new Date().toISOString().split('T')[0];
+      const today = new Date();
+      const isoToday = today.toISOString().split('T')[0];
       expect(formatDate(isoToday, 'Dday')).toBe('D-DAY');
     });
 
@@ -74,8 +64,10 @@ describe('formatDate 함수 테스트', () => {
     });
 
     it('미래 날짜일 경우 "D-N" 형식으로 반환한다', () => {
-      const future = '2025-04-14';
-      expect(formatDate(future, 'Dday')).toBe('D-5');
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 5);
+      const isoFuture = futureDate.toISOString().split('T')[0];
+      expect(formatDate(isoFuture, 'Dday')).toBe('D-5');
     });
   });
 
