@@ -74,10 +74,8 @@ describe('formatDate 함수 테스트', () => {
     });
 
     it('미래 날짜일 경우 "D-N" 형식으로 반환한다', () => {
-      const futureDate = new Date();
-      futureDate.setDate(futureDate.getDate() + 5);
-      const isoFuture = futureDate.toISOString().split('T')[0];
-      expect(formatDate(isoFuture, 'Dday')).toBe('D-5');
+      const future = '2025-04-14';
+      expect(formatDate(future, 'Dday')).toBe('D-5');
     });
   });
 
