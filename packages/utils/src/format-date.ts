@@ -77,7 +77,7 @@ const getReserveDate = (reserveAt: string): string => {
     hour: 'numeric',
   });
   const hourNum = Number(hour24);
-  const period = hourNum >= 12 ? '오후' : '오전';
+  const period = hourNum === 0 ? '오전' : hourNum >= 12 ? '오후' : '오전';
   const hour12 = hourNum % 12 === 0 ? 12 : hourNum % 12;
 
   return `${year} ${month} ${day} (${dayOfWeek}) ${period}${hour12}시`;
