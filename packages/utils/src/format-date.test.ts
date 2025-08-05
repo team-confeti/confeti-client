@@ -70,31 +70,31 @@ describe('formatDate 함수 테스트', () => {
     });
   });
 
-  describe('startEndFull / startEndHalf 포맷 - 동일 날짜 처리 및 기본 동작', () => {
+  describe('rangeStartEndYearBoth / rangeStartYearOnly 포맷 - 동일 날짜 처리 및 기본 동작', () => {
     const sameDate = '2025-04-09';
 
-    it('startEndFull 포맷에서 startAt과 endAt이 같으면 단일 날짜를 반환한다', () => {
-      expect(formatDate('', 'startEndFull', sameDate, sameDate)).toBe(
+    it('rangeStartEndYearBoth 포맷에서 startAt과 endAt이 같으면 단일 날짜를 반환한다', () => {
+      expect(formatDate('', 'rangeStartEndYearBoth', sameDate, sameDate)).toBe(
         '2025.04.09',
       );
     });
 
-    it('startEndHalf 포맷에서 startAt과 endAt이 같으면 단일 날짜를 반환한다', () => {
-      expect(formatDate('', 'startEndHalf', sameDate, sameDate)).toBe(
+    it('rangeStartYearOnly 포맷에서 startAt과 endAt이 같으면 단일 날짜를 반환한다', () => {
+      expect(formatDate('', 'rangeStartYearOnly', sameDate, sameDate)).toBe(
         '2025.04.09',
       );
     });
 
-    it('startEndFull 포맷은 연도 포함, endAt 날짜는 월/일만 표기한다', () => {
-      expect(formatDate('', 'startEndFull', '2025-04-09', '2025-10-03')).toBe(
-        '2025.04.09 - 10.03',
-      );
+    it('rangeStartEndYearBoth 포맷은 연도 포함, endAt 날짜는 월/일만 표기한다', () => {
+      expect(
+        formatDate('', 'rangeStartEndYearBoth', '2025-04-09', '2025-10-03'),
+      ).toBe('2025.04.09 - 10.03');
     });
 
-    it('startEndHalf 포맷은 연도를 생략하지 않고 startAt, endAt 모두 연도 포함해 표기한다', () => {
-      expect(formatDate('', 'startEndHalf', '2025-04-09', '2025-10-03')).toBe(
-        '2025.04.09 - 2025.10.03',
-      );
+    it('rangeStartYearOnly 포맷은 연도를 생략하지 않고 startAt, endAt 모두 연도 포함해 표기한다', () => {
+      expect(
+        formatDate('', 'rangeStartYearOnly', '2025-04-09', '2025-10-03'),
+      ).toBe('2025.04.09 - 2025.10.03');
     });
   });
 

@@ -48,7 +48,7 @@ const UpcomingPerformanceSection = ({ performance }: Props) => {
               <p>
                 {formatDate(
                   '',
-                  'startEndFull',
+                  'rangeStartEndYearBoth',
                   performance.startAt,
                   performance.endAt,
                 )}

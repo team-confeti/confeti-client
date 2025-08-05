@@ -26,7 +26,9 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
               <div>
                 <div className={styles.description}>
                   <Icon name="time" width="1.4rem" height="1.4rem" />
-                  <p>{formatDate('', 'startEndFull', startAt, endAt)}</p>
+                  <p>
+                    {formatDate('', 'rangeStartEndYearBoth', startAt, endAt)}
+                  </p>
                 </div>
 
                 <div className={styles.description}>

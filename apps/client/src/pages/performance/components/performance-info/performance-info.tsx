@@ -28,7 +28,7 @@ const PerformanceInfo = ({
   type,
 }: Props) => {
   const { mutate } = useLikeMutation();
-  const formattedDate = formatDate('', 'startEndHalf', startAt, endAt);
+  const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
   const formattedReserveDate = formatDate(reserveAt, 'koFull');
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {

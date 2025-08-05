@@ -25,7 +25,7 @@ const PerformanceInfo = ({
   };
 
   const navigateToDetail = useNavigateToDetail();
-  const formattedDate = formatDate('', 'startEndFull', startAt, endAt);
+  const formattedDate = formatDate('', 'rangeStartEndYearBoth', startAt, endAt);
 
   return (
     <div className={styles.wrapper}>
