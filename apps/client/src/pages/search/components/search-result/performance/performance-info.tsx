@@ -1,11 +1,11 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { formatDate } from '@confeti/utils';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/search-response';
-import { formatDate } from '@shared/utils/format-date';
 
 import * as styles from './performance-info.css';
 
@@ -25,7 +25,7 @@ const PerformanceInfo = ({
   };
 
   const navigateToDetail = useNavigateToDetail();
-  const formattedDate = formatDate('', 'startEndFull', startAt, endAt);
+  const formattedDate = formatDate('', 'rangeStartEndYearBoth', startAt, endAt);
 
   return (
     <div className={styles.wrapper}>
