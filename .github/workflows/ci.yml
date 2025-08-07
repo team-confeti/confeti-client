@@ -37,15 +37,18 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
 
-      # 4. 의존성 설치
+      # 4. TurboRepo 캐시
+      - name: Cache TurboRepo
+        uses: rharkor/caching-for-turbo@v2.2.5
+
+      # 5. 의존성 설치
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5. 테스트 실행
+      # 6. 테스트 실행
       - name: Run tests
         run: pnpm test
 
-      # 6. 빌드 실행
+      # 7. 빌드 실행
       - name: Build project
-        run: |
-          pnpm build
+        run: pnpm build
