@@ -55,7 +55,11 @@ const FestivalArtistSection = ({ artists }: FestivalArtistSectionProps) => {
                     key={artist.artistId}
                     className={styles.festivalArtistContainer}
                   >
-                    <Avatar size="lg" src={artist.profileUrl} />
+                    <Avatar
+                      size="lg"
+                      src={artist.profileUrl}
+                      isHandleClick={false}
+                    />
                     <p className={styles.festivalArtistName}>{artist.name}</p>
                   </figure>
                 ))}
