@@ -29,7 +29,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   } = useFestivalSelect(festivals);
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
 
-  const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
+  const { elementRef } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
   });
   const { data: boardData } = useQuery({
