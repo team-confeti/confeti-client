@@ -39,7 +39,7 @@ export const postAddFestivalTimetable = async (
 
 export const postScreenshot = async (): Promise<void> => {
   await post<BaseResponse<FestivalIds>>(END_POINT.POST_SCREENSHOT, {
-    url: 'http://localhost:5173/timetable',
+    url: 'https://confeti.co.kr/timetable',
     x: 0,
     y: 0,
     width: 500,
