@@ -36,3 +36,13 @@ export const postAddFestivalTimetable = async (
     festivals,
   });
 };
+
+export const postScreenshot = async (): Promise<void> => {
+  await post<BaseResponse<FestivalIds>>(END_POINT.POST_SCREENSHOT, {
+    url: 'http://localhost:5173/timetable',
+    x: 0,
+    y: 0,
+    width: 500,
+    height: 500,
+  });
+};

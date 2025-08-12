@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import { postScreenshot } from '@shared/apis/timetable/festival-timetable-mutation';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
@@ -35,6 +37,13 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
     enabled: selectedDateId !== undefined,
   });
 
+  // 페이지 로딩 완료 시 콘솔 출력
+  useEffect(() => {
+    if (boardData && selectedDateId) {
+      console.log('페이지 로딩 완료');
+    }
+  }, [boardData, selectedDateId]);
+
   if (!boardData || !selectedDateId) return null;
 
   return (
@@ -61,7 +70,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
       <TimetableActions
         isEditMode={isEditTimetableMode}
         onToggleEditMode={toggleEditTimetableMode}
-        onDownload={downloadImage}
+        onDownload={postScreenshot}
       />
     </div>
   );
