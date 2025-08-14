@@ -94,7 +94,7 @@ export const END_POINT = {
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
     `/user/onboard/artists/${artistId}/related?limit=${limit}`,
-  GET_ONBOARDING_STATUS: '/user/onboard/state',
+  GET_ONBOARDING_STATUS: '/user/onboard/status',
   POST_AUTH_ONBOARD: '/auth/onboard',
 } as const;
 
