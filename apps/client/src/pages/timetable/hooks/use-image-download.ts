@@ -16,7 +16,7 @@ interface UseImageDownloadReturn<T extends HTMLElement> {
 export const useImageDownload = <T extends HTMLElement>({
   fileName,
   stageCount,
-  quality = 0.95,
+  quality = 1,
   backgroundColor = '#ffffff',
 }: UseImageDownloadOptions): UseImageDownloadReturn<T> => {
   const elementRef = useRef<T>(null);
@@ -37,7 +37,7 @@ export const useImageDownload = <T extends HTMLElement>({
       let originalStyles: { [key: string]: string } = {};
       const parentOriginalStyles: { [key: string]: string } = {};
 
-      // 4 스테이지 이상인 경우 스크롤 문제 해결을 위한 스타일 임시 변경
+      // 4 스테이지 이상인 경우 스타일 임시 변경
       if (stageCount && stageCount >= 4) {
         originalStyles = {
           width: element.style.width,
@@ -47,7 +47,6 @@ export const useImageDownload = <T extends HTMLElement>({
           position: element.style.position,
         };
 
-        // 부모 요소들의 overflow 스타일도 확인하고 변경
         let parentElement = element.parentElement;
         while (parentElement && parentElement !== document.body) {
           const computedStyle = window.getComputedStyle(parentElement);
@@ -64,10 +63,6 @@ export const useImageDownload = <T extends HTMLElement>({
           }
           parentElement = parentElement.parentElement;
         }
-
-        // 스크롤 앵커링 비활성화로 스크롤 점프 방지
-        document.documentElement.style.overflowAnchor = 'none';
-        document.body.style.overflowAnchor = 'none';
 
         // 캡쳐 영역 조정
         element.style.width = '480px';
@@ -89,24 +84,9 @@ export const useImageDownload = <T extends HTMLElement>({
         cacheBust: false,
         imagePlaceholder: '',
         includeQueryParams: false,
-        // CSS 인라인 관련 설정
-        fetchRequestInit: {
-          mode: 'cors' as RequestMode,
-          credentials: 'omit' as RequestCredentials,
-        },
-        // 외부 리소스 로딩 타임아웃 설정
-        timeout: 3000,
         style: {
           transform: 'scale(1)',
           transformOrigin: 'top left',
-        },
-        // CSS 규칙 접근 문제 해결을 위한 필터
-        filter: (node: Node) => {
-          // 외부 스타일시트 링크는 제외
-          if (node instanceof HTMLLinkElement && node.rel === 'stylesheet') {
-            return false;
-          }
-          return true;
         },
       };
 
@@ -126,7 +106,6 @@ export const useImageDownload = <T extends HTMLElement>({
 
       // 원래 스타일로 복원
       if (stageCount && stageCount >= 4) {
-        // 요소 스타일 복원
         Object.keys(originalStyles).forEach((key) => {
           if (originalStyles[key]) {
             element.style.setProperty(key, originalStyles[key]);
@@ -144,15 +123,11 @@ export const useImageDownload = <T extends HTMLElement>({
           }
           parentElement = parentElement.parentElement;
         }
-
-        // overflow-anchor 원래대로 복원
-        document.documentElement.style.overflowAnchor = '';
-        document.body.style.overflowAnchor = '';
       }
 
       // 이미지 다운로드
       const link = document.createElement('a');
-      link.download = `${fileName}_${new Date().toISOString().split('T')[0]}.png`;
+      link.download = `${fileName}.png`;
       link.href = dataUrl;
       document.body.appendChild(link);
       link.click();
