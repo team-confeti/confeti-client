@@ -35,13 +35,11 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_PERFORMANCES(),
       queryFn: getMyPerformancesPreview,
-      staleTime: CACHE_TIME.MEDIUM,
     }),
   MY_UPCOMING_PERFORMANCE: () =>
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
       queryFn: getMyUpcomingPerformance,
-      staleTime: CACHE_TIME.MEDIUM,
     }),
   MY_ARTISTS: (sortBy: SortOption) =>
     queryOptions({
