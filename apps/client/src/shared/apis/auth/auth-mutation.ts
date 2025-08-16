@@ -1,10 +1,6 @@
-import {
-  authTokenHandler,
-  getRefreshToken,
-  TokenResponse,
-} from '@confeti/core/auth';
+import { TokenResponse } from '@confeti/core/auth';
 import { createInstance } from '@confeti/core/http';
-import { BaseResponse, HTTP_STATUS_CODE, HTTPError } from '@confeti/core/http';
+import { BaseResponse } from '@confeti/core/http';
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
