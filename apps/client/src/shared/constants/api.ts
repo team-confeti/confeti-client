@@ -85,7 +85,7 @@ export const END_POINT = {
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: '/auth/login',
   POST_LOGOUT: '/auth/logout',
-  POST_REISSUE_TOKEN: '/auth/reissue',
+  POST_REISSUE_TOKEN: 'auth/reissue',
   DELETE_ACCOUNT: '/auth/withdraw',
 
   //온보딩

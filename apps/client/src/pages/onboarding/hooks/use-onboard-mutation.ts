@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { BaseResponse } from '@confeti/core/http';
 
+import { postReissueToken } from '@shared/apis/auth/auth-mutation';
 import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
 import { getArtistRelatedArtist } from '@shared/apis/onboard/queries';
 import { onboardResponse } from '@shared/types/onboard-response';
@@ -20,8 +21,18 @@ export const useArtistRelatedArtist = () => {
 
 export const usePostAuthOnboarding = () => {
   return useMutation({
-    mutationFn: (favoriteArtists: string[]) => {
-      return postAuthOnboarding(favoriteArtists);
+    mutationFn: async (favoriteArtists: string[]) => {
+      try {
+        await postAuthOnboarding(favoriteArtists);
+      } catch (error) {
+        console.log('error', error);
+      }
+
+      try {
+        await postReissueToken();
+      } catch (error) {
+        console.log('error', error);
+      }
     },
   });
 };
