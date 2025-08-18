@@ -3,7 +3,7 @@ import { queryOptions } from '@tanstack/react-query';
 import { BaseResponse } from '@confeti/core/http';
 
 import { get } from '@shared/apis/config/instance';
-import { CACHE_TIME, END_POINT } from '@shared/constants/api';
+import { END_POINT } from '@shared/constants/api';
 import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { MyHistoryTimetableResponse } from '@shared/types/my-history-response';
@@ -17,7 +17,6 @@ export const MY_TIMETABLE_QUERY_OPTION = {
     queryOptions({
       queryKey: MY_TIMETABLE_QUERY_KEY.PREVIEW(),
       queryFn: getMyTimetablePreview,
-      staleTime: CACHE_TIME.SHORT,
     }),
   OVERVIEW: (sortBy: SortOption, enabled: boolean = true) =>
     queryOptions({

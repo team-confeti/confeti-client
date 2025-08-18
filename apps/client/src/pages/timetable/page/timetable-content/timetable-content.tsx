@@ -27,12 +27,14 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   } = useFestivalSelect(festivals);
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
 
-  const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
-    fileName: `${selectedFestivalInfo.title}`,
-  });
   const { data: boardData } = useQuery({
     ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(selectedDateId ?? 0),
     enabled: selectedDateId !== undefined,
+  });
+
+  const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
+    fileName: `${selectedFestivalInfo.title}`,
+    stageCount: boardData?.stageCount,
   });
 
   if (!boardData || !selectedDateId) return null;

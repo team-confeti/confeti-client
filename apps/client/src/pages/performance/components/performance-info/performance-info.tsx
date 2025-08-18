@@ -1,8 +1,8 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
-import { formatDate } from '@shared/utils/format-date';
 
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 
@@ -28,8 +28,11 @@ const PerformanceInfo = ({
   type,
 }: Props) => {
   const { mutate } = useLikeMutation();
-  const formattedDate = formatDate('', 'startEndHalf', startAt, endAt);
-  const formattedReserveDate = formatDate(reserveAt, 'koFull');
+  const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
+  const formattedReserveDate = formatDate(
+    reserveAt,
+    'koFullDateTimeWithWeekday',
+  );
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     mutate({ id, action, type });

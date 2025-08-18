@@ -61,6 +61,7 @@ export const END_POINT = {
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
+  POST_SCREENSHOT: '/png/generate',
 
   //검색
   GET_SEARCH_ALL: '/search',
@@ -84,7 +85,7 @@ export const END_POINT = {
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: '/auth/login',
   POST_LOGOUT: '/auth/logout',
-  POST_REISSUE_TOKEN: '/auth/reissue',
+  POST_REISSUE_TOKEN: 'auth/reissue',
   DELETE_ACCOUNT: '/auth/withdraw',
 
   //온보딩
@@ -93,7 +94,7 @@ export const END_POINT = {
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
     `/user/onboard/artists/${artistId}/related?limit=${limit}`,
-  GET_ONBOARDING_STATUS: '/user/onboard/state',
+  GET_ONBOARDING_STATUS: '/user/onboard/status',
   POST_AUTH_ONBOARD: '/auth/onboard',
 } as const;
 

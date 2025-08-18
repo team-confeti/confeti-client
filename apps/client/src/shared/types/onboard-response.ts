@@ -9,5 +9,5 @@ export interface onboardResponse {
 }
 
 export interface onboardStatusResponse {
-  isOnboarding: boolean;
+  onboardStatus: 'PROCESSING' | 'COMPLETED';
 }
