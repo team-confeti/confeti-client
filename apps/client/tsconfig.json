@@ -7,13 +7,14 @@
       "@shared/*": ["src/shared/*"],
       "@pages/*": ["src/pages/*"]
     },
-    "types": ["node"]
+    "types": ["node"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "src",
     "vite.config.ts",
-    "../../packages/utils/src/format-date.ts",
-    "api"
+    "../../packages/utils/src/format-date.ts"
   ],
   "exclude": ["node_modules"]
 }
