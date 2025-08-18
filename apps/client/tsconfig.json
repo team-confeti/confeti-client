@@ -6,12 +6,14 @@
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@pages/*": ["src/pages/*"]
-    }
+    },
+    "types": ["node"]
   },
   "include": [
     "src",
     "vite.config.ts",
-    "../../packages/utils/src/format-date.ts"
+    "../../packages/utils/src/format-date.ts",
+    "api"
   ],
   "exclude": ["node_modules"]
 }
