@@ -1,2 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /login
+Disallow: /auth
+Disallow: /my
+Disallow: /my-history
+Disallow: /timetable
+Disallow: /my/delete-account
+
+Sitemap: https://www.confeti.co.kr/sitemap.xml
