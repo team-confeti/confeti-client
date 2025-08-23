@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
 
-import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutation';
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { UserTimetable } from '@shared/types/timetable-response';
 

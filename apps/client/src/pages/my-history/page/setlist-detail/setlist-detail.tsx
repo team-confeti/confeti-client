@@ -2,8 +2,8 @@ import { useReducer, useState } from 'react';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutation';
-import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
 import { Footer, Hero } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
@@ -38,7 +38,7 @@ const SetListDetailPage = () => {
   }
 
   const { data: setlistDetail } = useSuspenseQuery(
-    SETLIST_QUERY_OPTION.DETAIL(Number(setlistId)),
+    SETLIST_QUERY_OPTIONS.DETAIL(Number(setlistId)),
   );
 
   const [isEditMode, dispatchEditMode] = useReducer(editModeReducer, false);

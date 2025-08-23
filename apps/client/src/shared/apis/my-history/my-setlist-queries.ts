@@ -11,7 +11,7 @@ import {
   MyHistorySetListResponse,
 } from '@shared/types/my-history-response';
 
-export const MY_SETLIST_QUERY_OPTION = {
+export const MY_SETLIST_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
       queryKey: SETLIST_QUERY_KEY.ALL,

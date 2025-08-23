@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
 import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
@@ -39,7 +39,7 @@ const AddSetlistPage = () => {
 
   const { data: setListPerformance, isLoading: isSetListPerformanceLoading } =
     useQuery({
-      ...SETLIST_QUERY_OPTION.SEARCH_PERFORMANCE(
+      ...SETLIST_QUERY_OPTIONS.SEARCH_PERFORMANCE(
         {
           aid: selectedType === 'artist' ? selectedId : null,
           pid: selectedType === 'performance' ? Number(selectedId) : null,

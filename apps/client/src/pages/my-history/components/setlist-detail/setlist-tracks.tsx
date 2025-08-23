@@ -16,7 +16,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, Dialog } from '@confeti/design-system';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutation';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations.ts';
 import { MusicList } from '@shared/components';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';

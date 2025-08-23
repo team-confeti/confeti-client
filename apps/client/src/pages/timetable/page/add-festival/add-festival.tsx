@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
-import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutation';
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { DetailHeader } from '@shared/components';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';

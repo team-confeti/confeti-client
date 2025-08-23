@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutation';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
 
