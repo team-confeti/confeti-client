@@ -1,15 +1,20 @@
 import { useEffect } from 'react';
-import { useInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutation';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { DetailHeader } from '@shared/components';
+import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { routePath } from '@shared/router/path';
 import { useInfiniteScroll } from '@shared/utils/use-infinite-scroll';
-
-import { useAddTimeTableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 
 import { MAX_SELECTIONS } from '../../constants';
 import useFestivalAdd from '../../hooks/use-festival-add';
@@ -32,16 +37,24 @@ const AddFestival = () => {
   const festivals =
     festivalsData?.pages.flatMap((page) => page.festivals) ?? [];
 
-  const { data: addedFestivals } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
-  );
   const observerRef = useInfiniteScroll(hasNextPage, fetchNextPage);
   const navigate = useNavigate();
-  const { mutate: addFestival } = useAddTimeTableFestival(() => {
-    navigate(routePath.TIME_TABLE_OUTLET);
+
+  const queryClient = useQueryClient();
+  const { data } = useSuspenseQuery(
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
+  );
+  const { mutate } = useMutation({
+    ...TIMETABLE_MUTATION_OPTIONS.POST_TIMETABLE(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
+      });
+      navigate(routePath.TIME_TABLE_OUTLET);
+    },
   });
-  const TOTAL_SELECTIONS =
-    selectedFestivals.length + addedFestivals.festivals.length;
+
+  const TOTAL_SELECTIONS = selectedFestivals.length + data.festivals.length;
   const isButtonDisabled =
     selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS;
 
@@ -52,7 +65,7 @@ const AddFestival = () => {
   }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);
 
   const handleAddClick = () => {
-    addFestival(selectedFestivals);
+    mutate(selectedFestivals);
   };
 
   return (
