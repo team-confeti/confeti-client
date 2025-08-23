@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutation';
 import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
-
-import { useAddPerformanceMutation } from '@pages/my-history/hooks/use-add-performance-mutation';
 
 import * as styles from './setlist-performance.css';
 
@@ -21,17 +21,15 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
     Pick<SetListPerformance, 'type' | 'typeId'>[]
   >([]);
 
-  const { mutate: addPerformanceToSetList } = useAddPerformanceMutation();
+  const { mutate: addPerformanceToSetList } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.POST_ADD_PERFORMANCE_TO_SET_LIST(),
+    onSuccess: async () => {
+      navigate(routePath.MY_HISTORY);
+    },
+  });
 
-  // TODO: 1개 추가, 여러개 추가시 네비게이션 추가 필요
-  // 1개 추가 -> 해당 공연의 셋리스트 페이지로 이동
-  // 여러개 추가 -> 셋리스트 초기 페이지로 이동(현재 적용상태)
   const handleAddClick = () => {
-    addPerformanceToSetList(selectedFestivals, {
-      onSuccess: () => {
-        navigate(routePath.MY_HISTORY);
-      },
-    });
+    addPerformanceToSetList(selectedFestivals);
   };
 
   const handleFestivalSelect = (

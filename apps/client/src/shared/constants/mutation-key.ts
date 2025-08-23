@@ -13,3 +13,13 @@ export const TIMETABLE_MUTATION_KEY = {
   DELETE_TIMETABLE: () => ['delete-timetable'],
   PATCH_TIMETABLE: () => ['patch-timetable'],
 } as const;
+
+export const SETLIST_MUTATION_KEY = {
+  POST_START_EDIT_SETLIST: () => ['post-start-edit-setlist'],
+  POST_ADD_PERFORMANCE_TO_SET_LIST: () => ['post-add-performance-to-set-list'],
+  POST_ADD_MUSIC_TO_SET_LIST: () => ['post-add-music-to-set-list'],
+  PATCH_COMPLETE_EDIT_SETLIST: () => ['patch-complete-edit-setlist'],
+  PATCH_REORDER_SET_LIST: () => ['patch-reorder-set-list'],
+  DELETE_MUSIC_FROM_SET_LIST: () => ['delete-music-from-set-list'],
+  DELETE_CANCEL_EDIT_SETLIST: () => ['delete-cancel-edit-setlist'],
+} as const;
