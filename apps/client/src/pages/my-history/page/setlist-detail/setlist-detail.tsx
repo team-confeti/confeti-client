@@ -67,7 +67,7 @@ const SetListDetailPage = () => {
   });
 
   const { mutate: reorderSetList } = useMutation({
-    ...SETLIST_MUTATION_OPTIONS.PATCH_REORDER_SET_LIST(),
+    ...SETLIST_MUTATION_OPTIONS.PATCH_REORDER_SETLIST(),
     onSuccess: () => dispatchEditMode('COMPLETE'),
     onError: () => dispatchEditMode('START'),
   });

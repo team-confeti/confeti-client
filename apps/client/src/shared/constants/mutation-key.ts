@@ -16,10 +16,10 @@ export const TIMETABLE_MUTATION_KEY = {
 
 export const SETLIST_MUTATION_KEY = {
   POST_START_EDIT_SETLIST: () => ['post-start-edit-setlist'],
-  POST_ADD_PERFORMANCE_TO_SET_LIST: () => ['post-add-performance-to-set-list'],
-  POST_ADD_MUSIC_TO_SET_LIST: () => ['post-add-music-to-set-list'],
+  POST_ADD_PERFORMANCE_TO_SETLIST: () => ['post-add-performance-to-setlist'],
+  POST_ADD_MUSIC_TO_SETLIST: () => ['post-add-music-to-setlist'],
   PATCH_COMPLETE_EDIT_SETLIST: () => ['patch-complete-edit-setlist'],
-  PATCH_REORDER_SET_LIST: () => ['patch-reorder-set-list'],
-  DELETE_MUSIC_FROM_SET_LIST: () => ['delete-music-from-set-list'],
+  PATCH_REORDER_SETLIST: () => ['patch-reorder-setlist'],
+  DELETE_MUSIC_FROM_SETLIST: () => ['delete-music-from-setlist'],
   DELETE_CANCEL_EDIT_SETLIST: () => ['delete-cancel-edit-setlist'],
 } as const;

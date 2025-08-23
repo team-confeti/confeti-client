@@ -63,7 +63,7 @@ const SetListTracks = ({
   };
 
   const { mutate: deleteMusic } = useMutation({
-    ...SETLIST_MUTATION_OPTIONS.DELETE_MUSIC_FROM_SET_LIST(),
+    ...SETLIST_MUTATION_OPTIONS.DELETE_MUSIC_FROM_SETLIST(),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: SETLIST_QUERY_KEY.DETAIL(setlistId),

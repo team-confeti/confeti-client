@@ -16,15 +16,15 @@ export const SETLIST_MUTATION_OPTIONS = {
       mutationKey: SETLIST_MUTATION_KEY.POST_START_EDIT_SETLIST(),
       mutationFn: (setlistId: number) => postStartEditSetList(setlistId),
     }),
-  POST_ADD_PERFORMANCE_TO_SET_LIST: () =>
+  POST_ADD_PERFORMANCE_TO_SETLIST: () =>
     mutationOptions({
-      mutationKey: SETLIST_MUTATION_KEY.POST_ADD_PERFORMANCE_TO_SET_LIST(),
+      mutationKey: SETLIST_MUTATION_KEY.POST_ADD_PERFORMANCE_TO_SETLIST(),
       mutationFn: (items: Pick<SetListPerformance, 'type' | 'typeId'>[]) =>
         postAddPerformanceToSetList(items),
     }),
-  POST_ADD_MUSIC_TO_SET_LIST: () =>
+  POST_ADD_MUSIC_TO_SETLIST: () =>
     mutationOptions({
-      mutationKey: SETLIST_MUTATION_KEY.POST_ADD_MUSIC_TO_SET_LIST(),
+      mutationKey: SETLIST_MUTATION_KEY.POST_ADD_MUSIC_TO_SETLIST(),
       mutationFn: ({
         setlistId,
         musics,
@@ -38,9 +38,9 @@ export const SETLIST_MUTATION_OPTIONS = {
       mutationKey: SETLIST_MUTATION_KEY.PATCH_COMPLETE_EDIT_SETLIST(),
       mutationFn: (setlistId: number) => patchCompleteEditSetList(setlistId),
     }),
-  PATCH_REORDER_SET_LIST: () =>
+  PATCH_REORDER_SETLIST: () =>
     mutationOptions({
-      mutationKey: SETLIST_MUTATION_KEY.PATCH_REORDER_SET_LIST(),
+      mutationKey: SETLIST_MUTATION_KEY.PATCH_REORDER_SETLIST(),
       mutationFn: ({
         setlistId,
         tracks,
@@ -49,9 +49,9 @@ export const SETLIST_MUTATION_OPTIONS = {
         tracks: { musicId: string; orders: number }[];
       }) => patchReorderSetList(setlistId, tracks),
     }),
-  DELETE_MUSIC_FROM_SET_LIST: () =>
+  DELETE_MUSIC_FROM_SETLIST: () =>
     mutationOptions({
-      mutationKey: SETLIST_MUTATION_KEY.DELETE_MUSIC_FROM_SET_LIST(),
+      mutationKey: SETLIST_MUTATION_KEY.DELETE_MUSIC_FROM_SETLIST(),
       mutationFn: ({
         setlistId,
         orders,

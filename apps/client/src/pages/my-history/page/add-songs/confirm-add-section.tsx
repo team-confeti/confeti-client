@@ -29,7 +29,7 @@ const ConfirmAddSection = ({
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
-    ...SETLIST_MUTATION_OPTIONS.POST_ADD_MUSIC_TO_SET_LIST(),
+    ...SETLIST_MUTATION_OPTIONS.POST_ADD_MUSIC_TO_SETLIST(),
     onSuccess: async () => {
       navigate(
         buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
