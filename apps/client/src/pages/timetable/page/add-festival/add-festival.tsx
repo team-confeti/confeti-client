@@ -65,7 +65,8 @@ const AddFestival = () => {
   }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);
 
   const handleAddClick = () => {
-    mutate(selectedFestivals);
+    const festivals = selectedFestivals.map((festivalId) => ({ festivalId }));
+    mutate(festivals);
   };
 
   return (

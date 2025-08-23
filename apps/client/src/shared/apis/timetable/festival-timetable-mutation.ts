@@ -15,8 +15,8 @@ export const TIMETABLE_MUTATION_OPTIONS = {
   POST_TIMETABLE: () =>
     mutationOptions({
       mutationKey: TIMETABLE_MUTATION_KEY.POST_TIMETABLE(),
-      mutationFn: (selectedFestivals: number[]) =>
-        postAddFestivalTimetable(selectedFestivals),
+      mutationFn: (festivals: { festivalId: number }[]) =>
+        postAddFestivalTimetable(festivals),
     }),
   DELETE_TIMETABLE: () =>
     mutationOptions({
@@ -49,12 +49,8 @@ export const patchFestivalTimetable = async (
 };
 
 export const postAddFestivalTimetable = async (
-  selectedFestivals: number[],
+  festivals: { festivalId: number }[],
 ): Promise<void> => {
-  const festivals = selectedFestivals.map((festivalId) => ({
-    festivalId,
-  }));
-
   await post<BaseResponse<FestivalIds>>(END_POINT.POST_FESTIVAL_TIMETABLE, {
     festivals,
   });
