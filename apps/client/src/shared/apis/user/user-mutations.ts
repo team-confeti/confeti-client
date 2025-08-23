@@ -9,9 +9,9 @@ import { UserInfo } from '@shared/types/user-response';
 import { patch } from '../config/instance';
 
 export const USER_MUTATION_OPTIONS = {
-  EDIT_PROFILE: () =>
+  PATCH_PROFILE: () =>
     mutationOptions({
-      mutationKey: USER_MUTATION_KEY.EDIT_PROFILE(),
+      mutationKey: USER_MUTATION_KEY.PATCH_PROFILE(),
       mutationFn: (userInfo: UserInfo) => patchUserInfo(userInfo),
     }),
 };

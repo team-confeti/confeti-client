@@ -19,7 +19,7 @@ const EditProfile = () => {
   const { data: profileData } = useUserProfile();
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
-    ...USER_MUTATION_OPTIONS.EDIT_PROFILE(),
+    ...USER_MUTATION_OPTIONS.PATCH_PROFILE(),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: USER_QUERY_KEY.PROFILE(),

@@ -1,3 +1,9 @@
 export const USER_MUTATION_KEY = {
-  EDIT_PROFILE: () => ['edit-profile'],
+  PATCH_PROFILE: () => ['patch-profile'],
+} as const;
+
+export const AUTH_MUTATION_KEY = {
+  POST_SOCIAL_LOGIN: () => ['post-social-login'],
+  POST_LOGOUT: () => ['post-logout'],
+  DELETE_ACCOUNT: () => ['delete-account'],
 } as const;
