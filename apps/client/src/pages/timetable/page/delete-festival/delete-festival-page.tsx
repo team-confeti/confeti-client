@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, useOverlay } from '@confeti/design-system';
 
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { DetailHeader } from '@shared/components';
+import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 
-import { useDeleteTimetableFestival } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import {
   ConfirmDialog,
   SuccessDialog,
@@ -18,14 +23,22 @@ import * as styles from './delete-festival-page.css';
 
 const DeleteFestivalPage = () => {
   const [festivalsToDelete, setFestivalsToDelete] = useState<number[]>([]);
+  const overlay = useOverlay();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const numberToDelete = festivalsToDelete.length;
+
   const { data: festivalsData } = useSuspenseQuery(
     FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
   );
-
-  const deleteFestival = useDeleteTimetableFestival();
-  const overlay = useOverlay();
-  const navigate = useNavigate();
-  const numberToDelete = festivalsToDelete.length;
+  const { mutateAsync } = useMutation({
+    ...TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLE(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
+      });
+    },
+  });
 
   const handleToggleFestival = (festivalId: number) => {
     setFestivalsToDelete((prev) =>
@@ -43,9 +56,7 @@ const DeleteFestivalPage = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={async () => {
-          await Promise.all(
-            festivalsToDelete.map((id) => deleteFestival.mutateAsync(id)),
-          );
+          await Promise.all(festivalsToDelete.map((id) => mutateAsync(id)));
 
           // 삭제 mutation 모두 완료 후 성공 모달창 open
           overlay.open(({ isOpen, close }) => (

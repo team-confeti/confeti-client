@@ -8,7 +8,7 @@ import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { MyHistoryTimetableResponse } from '@shared/types/my-history-response';
 
-export const MY_TIMETABLE_QUERY_OPTION = {
+export const MY_TIMETABLE_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
       queryKey: MY_TIMETABLE_QUERY_KEY.ALL,

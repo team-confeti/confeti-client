@@ -1,7 +1,12 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
+import { authTokenHandler } from '@confeti/core/auth';
 import { Button, Dialog } from '@confeti/design-system';
 import { useOverlay } from '@confeti/design-system';
 
-import { useLogoutMutation } from '@pages/my/hooks/use-logout-mutation';
+import { AUTH_MUTATION_OPTIONS } from '@shared/apis/auth/auth-mutations';
+import { routePath } from '@shared/router/path';
 
 import * as styles from './logout-section.css';
 
@@ -27,7 +32,16 @@ const LogoutDialog = ({
 );
 
 const LogoutSection = () => {
-  const { mutate: logout } = useLogoutMutation();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { mutate } = useMutation({
+    ...AUTH_MUTATION_OPTIONS.POST_LOGOUT(),
+    onSuccess: () => {
+      queryClient.clear();
+      authTokenHandler('remove');
+      navigate(`${routePath.ROOT}`);
+    },
+  });
   const overlay = useOverlay();
 
   const handleLogout = () => {
@@ -36,7 +50,7 @@ const LogoutSection = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={() => {
-          logout();
+          mutate();
           close();
         }}
       />

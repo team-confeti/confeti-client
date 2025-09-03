@@ -7,7 +7,7 @@ import { END_POINT } from '@shared/constants/api';
 import { RECORD_QUERY_KEY } from '@shared/constants/query-key';
 import { MyHistoryRecord } from '@shared/types/my-history-response';
 
-export const MY_RECORD_QUERY_OPTION = {
+export const MY_RECORD_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
       queryKey: RECORD_QUERY_KEY.ALL,

@@ -1,18 +1,32 @@
 import { useState } from 'react';
 import { track } from '@amplitude/analytics-browser';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
+import { authTokenHandler } from '@confeti/core/auth';
 import { Button, Dialog, useOverlay } from '@confeti/design-system';
 
+import { AUTH_MUTATION_OPTIONS } from '@shared/apis/auth/auth-mutations';
 import { DetailHeader, Footer } from '@shared/components';
-
-import { useDeleteAccountMutation } from '@pages/my/hooks/use-delete-account-mutation';
+import { routePath } from '@shared/router/path';
 
 import * as styles from './delete-account.css';
 
 const DeleteAccount = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const overlay = useOverlay();
   const [selectedReason, setSelectedReason] = useState<string>('');
-  const deleteAccountMutation = useDeleteAccountMutation();
+
+  const { mutate } = useMutation({
+    ...AUTH_MUTATION_OPTIONS.DELETE_ACCOUNT(),
+    onSuccess: () => {
+      queryClient.clear();
+
+      authTokenHandler('remove');
+      navigate(`${routePath.LOGIN}`);
+    },
+  });
 
   const reasons = [
     { value: 'no_events', text: '원하는 공연이 많이 없어서' },
@@ -27,7 +41,7 @@ const DeleteAccount = () => {
       reason: selectedReason,
       reason_text: reasons.find((r) => r.value === selectedReason)?.text,
     });
-    deleteAccountMutation.mutate();
+    mutate();
   };
 
   const handleDialogOpen = () => {

@@ -1,8 +1,9 @@
 import { useReducer, useState } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
 import { Footer, Hero } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
@@ -12,11 +13,6 @@ import SetListEmpty from '../../components/setlist-detail/setlist-empty';
 import SetListTracks, {
   SetListTrack,
 } from '../../components/setlist-detail/setlist-tracks';
-import {
-  useCompleteEditSetList,
-  useReorderSetList,
-  useStartEditSetList,
-} from '../../hooks/use-setlist-detail-mutation';
 
 const SetListDetailPage = () => {
   const editModeReducer = (
@@ -42,7 +38,7 @@ const SetListDetailPage = () => {
   }
 
   const { data: setlistDetail } = useSuspenseQuery(
-    SETLIST_QUERY_OPTION.DETAIL(Number(setlistId)),
+    SETLIST_QUERY_OPTIONS.DETAIL(Number(setlistId)),
   );
 
   const [isEditMode, dispatchEditMode] = useReducer(editModeReducer, false);
@@ -58,17 +54,23 @@ const SetListDetailPage = () => {
     }));
   };
 
-  const { mutate: startEditSetlist } = useStartEditSetList({
-    onMutate: () => dispatchEditMode('START'),
+  const { mutate: startEditSetlist } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.POST_START_EDIT_SETLIST(),
+    onSuccess: () => dispatchEditMode('START'),
     onError: () => dispatchEditMode('COMPLETE'),
   });
 
-  const { mutate: completeEditSetList } = useCompleteEditSetList({
-    onMutate: () => dispatchEditMode('COMPLETE'),
+  const { mutate: completeEditSetList } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.PATCH_COMPLETE_EDIT_SETLIST(),
+    onSuccess: () => dispatchEditMode('COMPLETE'),
     onError: () => dispatchEditMode('START'),
   });
 
-  const { mutate: reorderSetList } = useReorderSetList();
+  const { mutate: reorderSetList } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.PATCH_REORDER_SETLIST(),
+    onSuccess: () => dispatchEditMode('COMPLETE'),
+    onError: () => dispatchEditMode('START'),
+  });
 
   const handleStartEdit = () => {
     startEditSetlist(Number(setlistId));
