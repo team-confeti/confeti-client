@@ -1,4 +1,3 @@
-import { useReducer, useRef } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, toast } from '@confeti/design-system';
@@ -12,32 +11,9 @@ import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
+import { useEditProfile } from '@pages/my/hooks/use-edit-profile';
 
 import * as styles from './edit-profile.css';
-
-type State = {
-  name: string;
-  profileFile: File | null;
-  previewImgUrl: string;
-};
-
-type Action =
-  | { type: 'SET_NAME'; payload: string }
-  | { type: 'SET_PROFILE_FILE'; payload: File }
-  | { type: 'SET_PREVIEW_URL'; payload: string };
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case 'SET_NAME':
-      return { ...state, name: action.payload };
-    case 'SET_PROFILE_FILE':
-      return { ...state, profileFile: action.payload };
-    case 'SET_PREVIEW_URL':
-      return { ...state, previewImgUrl: action.payload };
-    default:
-      return state;
-  }
-};
 
 const EditProfile = () => {
   const { data: profileData } = useUserProfile();
@@ -50,15 +26,13 @@ const EditProfile = () => {
     },
   });
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const triggerFileInput = () => fileInputRef.current?.click();
-
-  const [state, dispatch] = useReducer(reducer, {
-    name: '',
-    profileFile: null,
-    previewImgUrl: profileData?.profileUrl || '',
-  });
-
+  const {
+    state,
+    fileInputRef,
+    triggerFileInput,
+    handleInputChange,
+    handleFileChange,
+  } = useEditProfile(profileData?.profileUrl || '');
   if (!profileData) return null;
 
   const showToastForNameLength = () => {
@@ -71,17 +45,14 @@ const EditProfile = () => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'SET_NAME', payload: e.target.value });
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange(e.target.value);
     showToastForNameLength();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      dispatch({ type: 'SET_PROFILE_FILE', payload: file });
-      dispatch({ type: 'SET_PREVIEW_URL', payload: URL.createObjectURL(file) });
-    }
+    handleFileChange(file);
   };
 
   const handleSave = () => {
@@ -91,15 +62,11 @@ const EditProfile = () => {
     if (state.profileFile) {
       formData.append('profileFile', state.profileFile);
     }
-
     mutate(formData);
   };
 
   const isNameInvalid =
-    (state.name.length > 0 && state.name.length < 2) || state.name.length > 10;
-  const isImageChanged = !!state.profileFile;
-  const isButtonDisabled =
-    (state.name.length < 2 || isNameInvalid) && !isImageChanged;
+    state.name.length > 0 && (state.name.length < 2 || state.name.length > 10);
 
   return (
     <>
@@ -118,14 +85,14 @@ const EditProfile = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            onChange={handleFileChange}
+            onChange={onChangeFile}
             style={{ display: 'none' }}
           />
         </div>
         <div className={styles.editProfileContent}>
           <EditNameInput
             name={state.name}
-            onChange={handleInputChange}
+            onChange={onChangeName}
             isInvalid={isNameInvalid}
           />
           <LinkedAccount />
@@ -134,7 +101,7 @@ const EditProfile = () => {
           <Button
             variant="add"
             text="저장하기"
-            disabled={isButtonDisabled}
+            disabled={isNameInvalid}
             onClick={handleSave}
           />
         </div>
