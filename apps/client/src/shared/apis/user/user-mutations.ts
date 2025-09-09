@@ -12,21 +12,11 @@ export const USER_MUTATION_OPTIONS = {
   PATCH_PROFILE: () =>
     mutationOptions({
       mutationKey: USER_MUTATION_KEY.PATCH_PROFILE(),
-      mutationFn: (userInfo: UserInfo) => patchUserInfo(userInfo),
+      mutationFn: (formData: FormData) => patchUserInfo(formData),
     }),
 };
 
-export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
-  const formData = new FormData();
-  formData.append('name', userInfo.name);
-
-  if (userInfo.profileFile) {
-    formData.append('profileFile', userInfo.profileFile);
-  } else {
-    const emptyFile = new Blob([], { type: 'image/jpeg' });
-    formData.append('profileFile', emptyFile, 'empty.jpg');
-  }
-
+export const patchUserInfo = async (formData: FormData): Promise<UserInfo> => {
   const response = await patch<BaseResponse<UserInfo>>(
     END_POINT.PATCH_USER_INFO,
     formData,

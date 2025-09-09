@@ -83,14 +83,17 @@ const EditProfile = () => {
     fileInputRef.current?.click();
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const newName = name || profileData.name;
 
-    const payload = profileFile
-      ? { name: newName, profileFile }
-      : { name: newName, profileUrl: profileData.profileUrl };
+    const formData = new FormData();
+    formData.append('name', newName);
 
-    mutate(payload);
+    if (profileFile) {
+      formData.append('profileFile', profileFile);
+    }
+
+    mutate(formData);
   };
 
   return (
