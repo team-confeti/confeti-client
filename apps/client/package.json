@@ -27,6 +27,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-error-boundary": "^6.0.0",
+    "react-helmet-async": "^2.0.5",
     "react-lottie-player": "^2.1.0",
     "react-router-dom": "^7.6.2"
   },

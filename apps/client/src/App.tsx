@@ -6,6 +6,7 @@ import {
 } from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { HelmetProvider } from 'react-helmet-async';
 import { RouterProvider } from 'react-router-dom';
 
 import {
@@ -33,19 +34,21 @@ addIntegration(browserTracingIntegration());
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <div className={rootStyle}>
-          <OverlayProvider>
-            <RouterProvider router={router} />
-            <ToastContainer />
-          </OverlayProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <div className={rootStyle}>
+            <OverlayProvider>
+              <RouterProvider router={router} />
+              <ToastContainer />
+            </OverlayProvider>
+          </div>
+        </ThemeProvider>
+        <div style={{ fontSize: '16px' }}>
+          <ReactQueryDevtools initialIsOpen={false} />
         </div>
-      </ThemeProvider>
-      <div style={{ fontSize: '16px' }}>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </div>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
 
