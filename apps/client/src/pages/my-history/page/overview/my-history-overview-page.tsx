@@ -4,8 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FestivalCard } from '@confeti/design-system';
 
-import { MY_SETLIST_QUERY_OPTION } from '@shared/apis/my-history/my-setlist-queries';
-import { MY_TIMETABLE_QUERY_OPTION } from '@shared/apis/my-history/my-timetable-queries';
+import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/my-setlist-queries';
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my-history/my-timetable-queries';
 import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
@@ -29,10 +29,10 @@ const MyHistoryOverviewPage = () => {
   const navigate = useNavigate();
 
   const { data: setListOverviewData } = useQuery(
-    MY_SETLIST_QUERY_OPTION.OVERVIEW(sortOption, isSetList),
+    MY_SETLIST_QUERY_OPTIONS.OVERVIEW(sortOption, isSetList),
   );
   const { data: timetableOverviewData } = useQuery(
-    MY_TIMETABLE_QUERY_OPTION.OVERVIEW(sortOption, !isSetList),
+    MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(sortOption, !isSetList),
   );
 
   const overviewData = isSetList

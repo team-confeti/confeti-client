@@ -1,13 +1,15 @@
 import { useRef } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
 
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
+import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { UserTimetable } from '@shared/types/timetable-response';
 
 import BoothOpenBox from '@pages/timetable/components/timetable-board/booth-open-box';
 import TimeCell from '@pages/timetable/components/timetable-board/time-cell';
 import TimetableItem from '@pages/timetable/components/timetable-board/timetable-item';
-import { usePatchTimetableMutation } from '@pages/timetable/hooks/use-timetable-festival-mutation';
 import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 import { generateTableRow, parseTimeString } from '@pages/timetable/utils';
 
@@ -23,7 +25,15 @@ const TimetableBoard = ({ timetableInfo, isEditMode }: Props) => {
   const cellNumber = generateTableRow(openHour);
   const ref = useRef<HTMLDivElement>(null);
 
-  const patchTimeTableMutation = usePatchTimetableMutation();
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...TIMETABLE_MUTATION_OPTIONS.PATCH_TIMETABLE(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
+      });
+    },
+  });
 
   const handleTimetableItemClick = (
     userTimetableId: number,
@@ -49,7 +59,7 @@ const TimetableBoard = ({ timetableInfo, isEditMode }: Props) => {
         })),
     );
 
-    patchTimeTableMutation.mutate(updatedTimetables);
+    mutate({ userTimetables: updatedTimetables });
   };
 
   return (

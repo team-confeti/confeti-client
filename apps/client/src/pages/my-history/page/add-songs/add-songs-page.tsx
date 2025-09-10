@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, SearchBar, toast } from '@confeti/design-system';
 
-import { SETLIST_QUERY_OPTION } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
 import { MusicList, SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
@@ -47,14 +47,14 @@ const AddSongsPage = () => {
   const isTypedSearch = !!debouncedKeyword.trim() && !isArtistSearch;
 
   const { data: musicSearchData } = useQuery({
-    ...SETLIST_QUERY_OPTION.SEARCH_MUSIC(
+    ...SETLIST_QUERY_OPTIONS.SEARCH_MUSIC(
       { term: debouncedKeyword, offset: 0, limit: 5 },
       isTypedSearch,
     ),
   });
 
   const { data: artistSearchData } = useQuery({
-    ...SETLIST_QUERY_OPTION.SEARCH_ARTIST_MUSIC(
+    ...SETLIST_QUERY_OPTIONS.SEARCH_ARTIST_MUSIC(
       {
         aid: isArtistKeywordClick ? selectedArtistId! : '',
         term: isTypedSearch ? debouncedKeyword : '',

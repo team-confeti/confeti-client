@@ -15,7 +15,7 @@ import {
   SetListPerformanceResponse,
 } from '@shared/types/my-history-response';
 
-export const SETLIST_QUERY_OPTION = {
+export const SETLIST_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
       queryKey: SETLIST_QUERY_KEY.ALL,

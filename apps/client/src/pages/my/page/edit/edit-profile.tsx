@@ -1,21 +1,36 @@
 import React, { useRef, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { USER_MUTATION_OPTIONS } from '@shared/apis/user/user-mutations';
 import { DetailHeader } from '@shared/components';
+import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
 import UserInfo from '@pages/my/components/profile/user-info';
-import { useUserProfileMutation } from '@pages/my/hooks/use-user-profile-mutation';
 
 import * as styles from './edit-profile.css';
 
 const EditProfile = () => {
   const { data: profileData } = useUserProfile();
-  const { mutate: updateUserInfo } = useUserProfileMutation();
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...USER_MUTATION_OPTIONS.PATCH_PROFILE(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: USER_QUERY_KEY.PROFILE(),
+      });
+      toast({
+        text: '성공적으로 저장되었어요!',
+        position: 'middleCenter',
+      });
+    },
+  });
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [name, setName] = useState('');
@@ -75,7 +90,7 @@ const EditProfile = () => {
       ? { name: newName, profileFile }
       : { name: newName, profileUrl: profileData.profileUrl };
 
-    updateUserInfo(payload);
+    mutate(payload);
   };
 
   return (

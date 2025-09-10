@@ -1,9 +1,12 @@
+import { mutationOptions } from '@tanstack/react-query';
+
 import { TokenResponse } from '@confeti/core/auth';
 import { createInstance } from '@confeti/core/http';
 import { BaseResponse } from '@confeti/core/http';
 
 import { END_POINT } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
+import { AUTH_MUTATION_KEY } from '@shared/constants/mutation-key';
 import {
   AppleLogin,
   KakaoLogin,
@@ -11,6 +14,25 @@ import {
 } from '@shared/types/login-response';
 
 import { del, post } from '../config/instance';
+
+export const AUTH_MUTATION_OPTIONS = {
+  POST_SOCIAL_LOGIN: () =>
+    mutationOptions({
+      mutationKey: AUTH_MUTATION_KEY.POST_SOCIAL_LOGIN(),
+      mutationFn: (socialLoginData: KakaoLogin | AppleLogin) =>
+        postSocialLogin(socialLoginData),
+    }),
+  POST_LOGOUT: () =>
+    mutationOptions({
+      mutationKey: AUTH_MUTATION_KEY.POST_LOGOUT(),
+      mutationFn: () => postLogout(),
+    }),
+  DELETE_ACCOUNT: () =>
+    mutationOptions({
+      mutationKey: AUTH_MUTATION_KEY.DELETE_ACCOUNT(),
+      mutationFn: () => deleteAccount(),
+    }),
+};
 
 const { post: authPost } = createInstance(ENV_CONFIG.BASE_URL);
 

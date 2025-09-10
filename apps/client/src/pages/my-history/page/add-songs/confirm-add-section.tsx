@@ -1,14 +1,14 @@
+import { useMutation } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
 import { buildPath } from '@shared/utils/build-path';
-
-import { useAddSongsMutation } from '@pages/my-history/hooks/use-add-songs-mutation';
 
 import * as styles from './confirm-add-section.css';
 
@@ -27,7 +27,25 @@ const ConfirmAddSection = ({
   const totalNum = selectedSongs.length;
   const overlay = useOverlay();
   const navigate = useNavigate();
-  const addMusicToSetListMutation = useAddSongsMutation(Number(setlistId));
+
+  const { mutate } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.POST_ADD_MUSIC_TO_SETLIST(),
+    onSuccess: async () => {
+      navigate(
+        buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
+          setlistId: setlistId ?? '',
+        }),
+      );
+    },
+  });
+
+  const handleAddMusicToSetList = () => {
+    mutate({
+      setlistId: Number(setlistId),
+      musics: selectedSongs,
+    });
+  };
+
   const handleOpenDeleteDialog = ({
     trackName,
     musicId,
@@ -60,15 +78,6 @@ const ConfirmAddSection = ({
         </Dialog.Action>
       </Dialog>
     ));
-  };
-  const handleAddMusicToSetList = () => {
-    addMusicToSetListMutation.mutate(selectedSongs);
-
-    navigate(
-      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
-        setlistId: setlistId ?? '',
-      }),
-    );
   };
 
   return (

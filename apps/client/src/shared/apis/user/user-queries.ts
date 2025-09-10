@@ -3,7 +3,7 @@ import { queryOptions } from '@tanstack/react-query';
 import { getAccessToken } from '@confeti/core/auth';
 import { BaseResponse } from '@confeti/core/http';
 
-import { get, patch } from '@shared/apis/config/instance';
+import { get } from '@shared/apis/config/instance';
 import { CACHE_TIME, END_POINT } from '@shared/constants/api';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
@@ -14,7 +14,6 @@ import {
   MyUpcomingPerformance,
   PerformanceResponse,
   PerformancesFilterType,
-  UserInfo,
   UserProfile,
 } from '@shared/types/user-response';
 
@@ -100,29 +99,5 @@ export const getMyPerformances = async (
   const response = await get<BaseResponse<MyPerformancesResponse>>(
     END_POINT.GET_MY_PERFORMANCES(performancesType),
   );
-  return response.data;
-};
-
-export const patchUserInfo = async (userInfo: UserInfo): Promise<UserInfo> => {
-  const formData = new FormData();
-  formData.append('name', userInfo.name);
-
-  if (userInfo.profileFile) {
-    formData.append('profileFile', userInfo.profileFile);
-  } else {
-    const emptyFile = new Blob([], { type: 'image/jpeg' });
-    formData.append('profileFile', emptyFile, 'empty.jpg');
-  }
-
-  const response = await patch<BaseResponse<UserInfo>>(
-    END_POINT.PATCH_USER_INFO,
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
-  );
-
   return response.data;
 };

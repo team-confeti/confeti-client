@@ -12,18 +12,19 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, Dialog } from '@confeti/design-system';
 
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations.ts';
 import { MusicList } from '@shared/components';
+import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
 import AddMusicButton from '../../components/setlist-detail/add-music-button';
-import { useDeleteMusicMutation } from '../../hooks/use-delete-music-mutation';
 import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
 import { usePreventScroll } from '../../hooks/use-prevent-scroll.ts';
-import { useCancelEditSetList } from '../../hooks/use-setlist-detail-mutation.ts';
 
 import * as styles from './setlist-tracks.css';
 
@@ -56,13 +57,22 @@ const SetListTracks = ({
   const [selectedTrack, setSelectedTrack] = useState<SetListTrack | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   usePreventScroll(isDragging);
-
+  const queryClient = useQueryClient();
   const handleDragStart = () => {
     setIsDragging(true);
   };
 
-  const { mutate: deleteMusic } = useDeleteMusicMutation(setlistId);
-  const { mutate: cancelEditSetlist } = useCancelEditSetList();
+  const { mutate: deleteMusic } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.DELETE_MUSIC_FROM_SETLIST(),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: SETLIST_QUERY_KEY.DETAIL(setlistId),
+      });
+    },
+  });
+  const { mutate: cancelEditSetlist } = useMutation({
+    ...SETLIST_MUTATION_OPTIONS.DELETE_CANCEL_EDIT_SETLIST(),
+  });
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -87,13 +97,19 @@ const SetListTracks = ({
 
   const handleConfirmDelete = () => {
     if (!selectedTrack) return;
-    deleteMusic(selectedTrack.orders, {
-      onSuccess: () => {
-        removeTrackFromLocal(selectedTrack.musicId);
-        setDialogOpen(false);
-        setSelectedTrack(null);
+    deleteMusic(
+      {
+        setlistId,
+        orders: selectedTrack.orders,
       },
-    });
+      {
+        onSuccess: () => {
+          removeTrackFromLocal(selectedTrack.musicId);
+          setDialogOpen(false);
+          setSelectedTrack(null);
+        },
+      },
+    );
   };
 
   const handleOpenDialog = (track: SetListTrack) => {
