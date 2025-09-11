@@ -1,36 +1,119 @@
-![표지](https://github.com/user-attachments/assets/50ee07ca-646a-4125-a665-979c3374b412)
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/99db3eda-073a-4b05-bb51-7eacb1fbbb44" alt="로고" width="15%" />
+</p>
 
-![logo_main](https://github.com/user-attachments/assets/f010308f-2774-418a-947e-ebef95f691da)
-<br/> <strong> "콘서트, 페스티벌 티켓 정보를 한눈에, 손쉽게!"</strong>
+> **공연의 설렘부터 감동까지, 공연의 유기적인 흐름을 설계하다.**  
+> > 콘페티는 페스티벌과 공연 정보를 한눈에 보고, 예매 일정과 아티스트 소식을 효율적으로 관리할 수 있는 플랫폼이에요. <br>
+공연을 준비·관람·공유까지 이어지는 전 과정을 담아낼 수 있는 플랫폼으로 자리매김하고, 공연 경험의 감동과 여운을 확장할 수 있는 방향을 고려했어요.
 
-1. 내가 원하는 콘서트 및 페스티벌 정보를 모아서
+<br>
 
-2. 찜한 공연들을 바탕으로 나만의 타임테이블을 만들어
+[![CONFETI 바로가기](https://img.shields.io/badge/🔗%20CONFETI-바로가기-B5F602?style=for-the-badge&logoColor=white&labelColor=323339)](https://www.confeti.co.kr/)
+[![CONFETI 팀블로그 바로가기](https://img.shields.io/badge/🔗%20CONFETI%20팀%20블로그-바로가기-B5F602?style=for-the-badge&logoColor=white&labelColor=323339)](https://confeti.palms.blog/)
+![앱잼 35th 우수상](https://img.shields.io/badge/🏆%20SOPT%2035기%20앱잼-우수상%20수상작-B5F602?style=for-the-badge&logoColor=white&labelColor=323339)
 
-3. 중요한 일정들을 한눈에 확인할 수 있는 곳, **confeti**
+<br />
 
----
+## Service Overview
+<img width="100%" alt="서비스설명1" src="https://github.com/user-attachments/assets/06828f33-cd73-48bf-95f6-6360b380a9a2" />
+<img idth="100%" alt="서비스설명2" src="https://github.com/user-attachments/assets/798a2ef3-d5af-4257-81f8-d2ad752a2dda" />
+<img width="100%" alt="서비스설명3" src="https://github.com/user-attachments/assets/cc9a2004-8ac7-42a3-aca6-7cab86b396c4" />
+<img width="100%" alt="서비스설명4" src="https://github.com/user-attachments/assets/6ba1c190-9c3c-4a7c-910c-d63319d45a54" />
 
-## 📌 서비스 소개
-![솔루션-1](https://github.com/user-attachments/assets/4a0d93bb-18d1-4657-adcb-8e797b5acc9a)
-![솔루션](https://github.com/user-attachments/assets/9fcbe0d8-096d-49f0-84b8-f8dbed0121dc)
-![주기능-4](https://github.com/user-attachments/assets/15ba04cd-fb7d-4509-8274-040dab88c3a7)
+<br />
 
-![주기능-5](https://github.com/user-attachments/assets/ef107f91-0608-45ca-936b-45c952637a71)
-![주기능-1](https://github.com/user-attachments/assets/695d54a8-ff94-4cc1-875d-fff9326c035b)
-![주기능-2](https://github.com/user-attachments/assets/1d9950d7-c978-420f-af59-8462afe2142e)
-![주기능-3](https://github.com/user-attachments/assets/e2bdf790-6509-4dfe-8b40-cb89c97f1330)
-![주기능](https://github.com/user-attachments/assets/92784038-3cba-4788-8a4d-85ae427dc0ca)
+## Architecture
 
-![주기능-6](https://github.com/user-attachments/assets/2623c69a-fee4-4a11-8d14-bce729e0b300)
-![주기능-7](https://github.com/user-attachments/assets/ffc4b46d-2d52-4474-8877-694a932c8570)
-![주기능8](https://github.com/user-attachments/assets/5a3ec751-b8ee-4694-9930-6f0f2e604bcc)
-![주기능9](https://github.com/user-attachments/assets/2575e66d-cd28-4097-95f7-c64474172308)
-![주기능10](https://github.com/user-attachments/assets/fec9a281-079a-4aa5-a00c-9b83b1de8a70)
+```
+CONFETI (Turborepo Monorepo)
+├── apps/
+│   ├── client/          # 메인 웹 애플리케이션 (React + Vite)
+│   └── admin/           # 관리자 페이지 (React + Vite)
+├── packages/
+│   ├── design-system/   # 공통 UI 컴포넌트 (Storybook)
+│   ├── core/           # 비즈니스 로직
+│   └── utils/          # 공통 유틸리티
+└── config/
+    ├── eslint/         # ESLint 설정
+    └── typescript/     # TypeScript 설정
+```
 
 
+## Tech Stack
+<table width="100%" style="table-layout: fixed;">
+  <thead>
+    <tr>
+      <th align="left" style="width: 180px;">Category</th>
+      <th align="left">Tools</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Environment</td>
+      <td>
+        <img src="https://img.shields.io/badge/Node.js-v22.12.0-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+      </td>
+    </tr>
+    <tr>
+      <td>FE Frameworks</td>
+      <td>
+        <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+        <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+        <img src="https://img.shields.io/badge/Vite-6.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+      </td>
+    </tr>
+    <tr>
+      <td>State & Networking</td>
+      <td>
+        <img src="https://img.shields.io/badge/TanStack%20Query-5.0-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="TanStack Query" />
+        <img src="https://img.shields.io/badge/React%20Router-v7-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
+        <img src="https://img.shields.io/badge/Axios-1.6-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" />
+      </td>
+    </tr>
+    <tr>
+      <td>Styling & Design System</td>
+      <td>
+        <img src="https://img.shields.io/badge/Vanilla%20Extract-1.17-DB7093?style=for-the-badge&logo=css3&logoColor=white" alt="Vanilla Extract" />
+        <img src="https://img.shields.io/badge/Storybook-8.0-FF4785?style=for-the-badge&logo=storybook&logoColor=white" alt="Storybook" />
+      </td>
+    </tr>
+    <tr>
+      <td>Build & Tooling</td>
+      <td>
+        <img src="https://img.shields.io/badge/Turborepo-2.5-EF4444?style=for-the-badge&logo=turborepo&logoColor=white" alt="Turborepo" />
+        <img src="https://img.shields.io/badge/pnpm-10.12-F69220?style=for-the-badge&logo=pnpm&logoColor=white" alt="pnpm" />
+        <img src="https://img.shields.io/badge/Monorepo-Architecture-00D4AA?style=for-the-badge&logo=git&logoColor=white" alt="Monorepo" />
+      </td>
+    </tr>
+    <tr>
+      <td>Formatting & Workflow</td>
+      <td>
+        <img src="https://img.shields.io/badge/ESLint-9.0-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+        <img src="https://img.shields.io/badge/Prettier-3.5-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="Prettier" />
+        <img src="https://img.shields.io/badge/Husky-9.1-42B883?style=for-the-badge&logo=git&logoColor=white" alt="Husky" />
+      </td>
+    </tr>
+    <tr>
+      <td>Monitoring & Analytics</td>
+      <td>
+        <img src="https://img.shields.io/badge/Sentry-Monitoring-362D59?style=for-the-badge&logo=sentry&logoColor=white" alt="Sentry" />
+        <img src="https://img.shields.io/badge/Amplitude-Analytics-1F4B99?style=for-the-badge&logo=amplitude&logoColor=white" alt="Amplitude" />
+      </td>
+    </tr>
+    <tr>
+      <td>Version Control</td>
+      <td>
+        <img src="https://img.shields.io/badge/Git-F05033?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<h2>🏴‍☠️ Confeti FE Developers</h2>
+
+<br />
+
+## Confeti FE Developers
 <div align="center">
   <table>
     <thead>
@@ -101,172 +184,4 @@
   </table>
 </div>
 <br />
-
-
-
-
-<br />
-
-## 🛠️ Tech Stack
-
-### Node.js Version
-
-`v22.12.0`
-
-| 역할                       | 종류                                                                                                                                                                                                                                                                                                                    |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`Library`**              | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white) ![VITE](https://img.shields.io/badge/VITE-646CFF?style=for-the-badge&logo=Vite&logoColor=white)                                                                                                                      |
-| **`Programming Language`** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)                                                                                                                                                                                                   |
-| **`Styling`**              | ![VanilaExtract](https://img.shields.io/badge/VanilaExtract-%2399F2D9?style=for-the-badge&logo=VanilaExtract&logoColor=white)                                                                                                                                                                                           |
-| **`Data Fetching`**        | ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![TanstackQuery](https://img.shields.io/badge/TanstackQuery-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white)                                                                                              |
-| **`Formatting`**           | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white) ![Husky](https://img.shields.io/badge/husky-%23025E73?style=for-the-badge&logo=husky&logoColor=white) |
-| **`Package Manager`**      | ![Yarn](https://img.shields.io/badge/pnpm-%23F29F05?style=for-the-badge&logo=pnpm&logoColor=white)                                                                                                                                                                                                                      |
-| **`Version Control`**      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)                                                                                                        |
-| **`Workspace Management`** | ![Monorepo](https://img.shields.io/badge/Monorepo-%23009688?style=for-the-badge&logoColor=white) ![Turborepo](https://img.shields.io/badge/Turborepo-%23007ACC?style=for-the-badge&logo=Turborepo&logoColor=white)                                                                                                      |
-
-<br />
-
-## 🤔 Why?
-
-| 기술 스택                                                                                                                   | 선정 이유                                                                                                                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white&style=for-the-badge)                          | 컴포넌트 기반 개발이 가능하여 재사용성과 유지보수성이 향상됨                                                                                                                                                                                                                 |
-| ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge)                             | React + TypeScript 환경에 친화적으로 설계되어 초기 설정이 간소화되며, ES 모듈 기반으로 빌드 속도를 향상시킴                                                                                                                                                                  |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge)           | 정적 타입 체크를 지원하여 컴파일 단계에서 오류를 방지하고, 명확한 타입 정의를 통해 협업을 용이하게 함                                                                                                                                                                        |
-| ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?logo=reactquery&logoColor=white&style=for-the-badge) | 데이터 패칭, 캐싱, 동기화, 리패칭을 자동으로 처리하며, 백그라운드에서 데이터 업데이트 및 중복 요청을 방지함<br>추후 `Next.js`와 결합하여 SSR 및 스트리밍 기능 확장을 고려함                                                                                                  |
-| ![Vanilla Extract](https://img.shields.io/badge/Vanilla%20Extract-DD8A42?style=for-the-badge)                               | 정적 CSS 생성으로 빌드 타임에 CSS를 생성하여 런타임 성능을 최적화하며, Zero-runtime 스타일링을 통해 번들 크기를 최소화하고 성능을 향상시킴                                                                                                                                   |
-| ![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white&style=for-the-badge)              | [🔗 Storybook 설정 & 크로마틱 자동화](https://velog.io/@hehem/StoryBook-%EC%B4%88%EA%B8%B0-%EC%84%B8%ED%8C%85%EA%B3%BC-%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%9E%91%EC%84%B1-%ED%81%AC%EB%A1%9C%EB%A7%88%ED%8B%B1-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%EA%B9%8C%EC%A7%80) |
-| ![Monorepo](https://img.shields.io/badge/Monorepo-000000?style=for-the-badge)                                               | [🔗 Monorepo 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0)                                                                                                           |
-| ![Turborepo](https://img.shields.io/badge/Turborepo-EC4A3F?style=for-the-badge)                                             | [🔗 Turborepo 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0)                                                                                                          |
-| ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?logo=pnpm&logoColor=white&style=for-the-badge)                             | [🔗 Pnpm 도입기](https://velog.io/@m2na/Turborepo-Pnpm-%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AA%A8%EB%85%B8%EB%A0%88%ED%8F%AC-%EB%8F%84%EC%9E%85%EA%B8%B0)                                                                                                               |
-
-## 📭 Git Convention
-
-### Git Flow
-
-```
-# 메인 브랜치(Main branch)
-main(master)
-`main` 브랜치는 배포 가능한 상태만을 관리해요.
-
-# develop
-`develop` 브랜치는 통합 브랜치 역할을 하며, 평소에는 해당 브랜치를 기반으로 개발을 진행해요.
-모든 기능이 정상적으로 동작할 수 있는 안정적인 상태를 유지하고,
-배포가 가능한 상태라면 `main`브랜치에 `merge` 해요.
-
-# 피쳐 브랜치(Feature branch)
-develop 브랜치에서 분기
-develop 브랜치로 merge
-```
-
-### Create Branch
-
-```
-모든 기능은 구현 이전 이슈를 생성하여 관리해요.
-
-- 브랜치 네이밍: 구현기능 종류/간단한 기능명/#이슈번호
-style/main-page/#43
-refactor/edit-modal/#75
-```
-
-### Commit Convention
-
-```
-모든 작업은 develop 에서 분기된 feature 브랜치에서 진행해요.
-커밋 메시지는 커밋유형: 개발한 내용에 대한 커밋 메시지
-ex) `feat: 타임테이블 기능 추가`
-```
-
-| 커밋유형   | 의미                                         |
-| ---------- | -------------------------------------------- |
-| `feat`     | 새로운 기능 추가                             |
-| `refactor` | 코드 리팩토링                                |
-| `fix`      | 버그 수정                                    |
-| `chore`    | 패키지 매니저, 설정 세팅                     |
-| `init`     | 초기 세팅 및 종속성 추가 관련                |
-| `docs`     | 문서 수정                                    |
-| `design`   | CSS 및 UI 변경                               |
-| `style`    | 코드 포맷팅, 세미콜론 누락 등 코드 변경 없음 |
-| `test`     | 테스트 코드, 리팩토링 테스트 코드 추가       |
-
-<br />
-
-## 📚 ISSUE + PR Convention
-
-### Issue - [구현기능 종류]: 작업명
-
-- `[Feature]: 메인페이지 API 연동`
-
-### Pull Request - 구현기능 종류(패키지명): 작업명
-
-- `Feature(design-system): 공통 버튼컴포넌트 제작`
-- `Feature(client): 메인페이지 API 연동`
-- 루트에서 설정한다면 패키지명은 생략 가능
-  - `Chore: 폴더구조 세팅`
-
-위의 형식 외에는 `탬플릿 형식`을 따라 작성
-
-## 🗂️ Foldering
-
-```
-📦 apps
-└── 📂 client
-    ├── 📂 node_modules
-    ├── 📂 public
-    │   └── 📜 favicon.svg
-    ├── 📂 src
-    │   ├── 📂 pages
-    │   │   ├── 📂 home
-    │   │   │   ├── 📂 components
-    │   │   │   ├── 📂 constants
-    │   │   │   ├── 📂 hooks
-    │   │   │   ├── 📂 page
-    │   │   │   │   └── 📜 home.tsx
-    │   │   │   │   └── 📜 home.css.ts
-    │   │   │   └── 📂 types
-    │   │   ├── 📂 my
-    │   │   │   ├── 📂 components
-    │   │   │   ├── 📂 hooks
-    │   │   │   ├── 📂 page
-    │   │   │   └── 📂 types
-    │   │   ├── 📂 search
-    │   │   │   ├── 📂 components
-    │   │   │   ├── 📂 hooks
-    │   │   │   ├── 📂 page
-    │   │   │   └── 📂 types
-    │   │   └── 📂 time-table
-    │   │       ├── 📂 components
-    │   │       ├── 📂 hooks
-    │   │       ├── 📂 page
-    │   │       └── 📂 types
-    │   ├── 📂 shared
-    │   │   ├── 📂 apis
-    │   │   │   └── 📜 api.ts
-    │   │   ├── 📂 assets
-    │   │   │   └── 📂 images
-    │   │   ├── 📂 components
-    │   │   │   │   └── 📂 button
-    │   │   │   │   │   └── 📜 button.tsx
-    │   │   │   │   │   └── 📜 Button.stories.ts
-    │   │   │   │   │   └── 📜 button.tsx
-    │   │   ├── 📂 constants
-    │   │   ├── 📂 hooks
-    │   │   ├── 📂 pages
-    │   │   ├── 📂 router
-    │   │   ├── 📂 styles
-    │   │   └── 📂 utils
-    │   │       └── 📜 query-client.ts
-    │   ├── 📜 App.tsx
-    │   ├── 📜 main.tsx
-    │   └── 📜 vite-env.d.ts
-    ├── 📜 .eslintrc.cjs
-    ├── 📜 .gitignore
-    ├── 📜 index.html
-    ├── 📜 package.json
-    ├── 📜 tsconfig.json
-    └── 📜 vite.config.ts
-
-```
-## 🎸 [콘페티 자세한 컨벤션 알아보기](https://wonderful-celestite-e3c.notion.site/16d210e281b08084846ad4a71d6866a3)
-<img src="https://github.com/user-attachments/assets/d10d6901-6cb9-4c15-940c-25fb01fd685d" alt="Component 1" style="width: 100%; height: auto;"/>
 
