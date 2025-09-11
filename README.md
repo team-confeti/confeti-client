@@ -1,5 +1,4 @@
 <br>
-<br>
 
 <p align="left">
   <img src="https://github.com/user-attachments/assets/99db3eda-073a-4b05-bb51-7eacb1fbbb44" alt="로고" width="17%" />
