@@ -1,7 +1,7 @@
 <br>
 
 <p align="left">
-  <img src="https://github.com/user-attachments/assets/99db3eda-073a-4b05-bb51-7eacb1fbbb44" alt="로고" width="17%" />
+  <img src="https://github.com/user-attachments/assets/3a7004f8-f6ed-46f9-9e58-f1f43a0b87c1" alt="로고" width="17%" />
 </p>
 
 **공연의 설렘부터 감동까지, 공연의 유기적인 흐름을 설계하다.**  
