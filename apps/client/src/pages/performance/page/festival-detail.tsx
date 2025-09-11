@@ -62,7 +62,6 @@ const FestivalDetailPage = () => {
         onClick={() =>
           openKakaoRoute({
             address: festival.address,
-            name: festival.title,
             by: 'publictransit',
             useCurrentAsStart: true,
           })
