@@ -13,6 +13,7 @@ import PerformanceInfo from '@pages/performance/components/performance-info/perf
 import Reservation from '@pages/performance/components/reservation/reservation';
 
 import FestivalArtistSection from '../components/artist/festival-artist-section';
+import { openKakaoRoute } from '../utils/kakao-map';
 
 const FestivalDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
@@ -54,9 +55,21 @@ const FestivalDetailPage = () => {
         ageRating={festival.ageRating}
         price={festival.price}
       />
-      <Location address={festival.address} />
-      <Spacing />
 
+      {/* 지도 섹션 */}
+      <Location
+        address={festival.address}
+        onClick={() =>
+          openKakaoRoute({
+            address: festival.address,
+            name: festival.title,
+            by: 'publictransit',
+            useCurrentAsStart: true,
+          })
+        }
+      />
+
+      <Spacing />
       <FestivalArtistSection artists={festivalDetail.festivalDates} />
       <FloatingButtonContainer />
       <Footer />

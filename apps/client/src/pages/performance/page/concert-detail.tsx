@@ -13,6 +13,8 @@ import Location from '@pages/performance/components/location/location';
 import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
 
+import { openKakaoRoute } from '../utils/kakao-map';
+
 const ConcertDetailPage = () => {
   const { typeId } = useParams<{ typeId: string }>();
   const parsedConcertId = typeId ? Number(typeId) : 0;
@@ -55,7 +57,17 @@ const ConcertDetailPage = () => {
       />
       <Spacing />
 
-      <Location address={concert.address} />
+      <Location
+        address={concert.address}
+        onClick={() =>
+          openKakaoRoute({
+            address: concert.address,
+            name: concert.title,
+            by: 'publictransit',
+            useCurrentAsStart: true,
+          })
+        }
+      />
       <Spacing />
 
       <ConcertArtistSection artists={concertDetail.concertArtists} />

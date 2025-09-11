@@ -6,14 +6,15 @@ import * as styles from './location.css';
 
 interface LocationProps {
   address: string;
+  onClick?: () => void;
 }
 
-const Location = ({ address }: LocationProps) => {
+const Location = ({ address, onClick }: LocationProps) => {
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}> {PERFORMANCE_LABEL.LOCATION}</h2>
+      <h2 className={styles.title}>{PERFORMANCE_LABEL.LOCATION}</h2>
       <p className={styles.address}>{address}</p>
-      <MapView address={address} />
+      <MapView address={address} onClick={onClick} />
     </section>
   );
 };
