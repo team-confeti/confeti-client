@@ -21,6 +21,7 @@
 <img width="100%" alt="서비스설명4" src="https://github.com/user-attachments/assets/6ba1c190-9c3c-4a7c-910c-d63319d45a54" />
 
 <br />
+<br />
 
 ## Architecture
 
@@ -38,6 +39,7 @@ CONFETI (Turborepo Monorepo)
     └── typescript/     # TypeScript 설정
 ```
 
+<br />
 
 ## Tech Stack
 <table width="100%" style="table-layout: fixed;">
