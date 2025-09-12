@@ -60,14 +60,14 @@ export async function geocodeByKakaoJS(
         status: kakao.maps.services.Status,
       ) => {
         if (status === w.kakao!.maps.services.Status.OK && results?.length) {
-          const r = results[0];
-          const road = r.road_address?.address_name?.trim();
-          const jibun = r.address?.address_name?.trim();
-          const label = road || jibun || address.trim();
+          const result = results[0];
+          const roadAddress = result.road_address?.address_name?.trim();
+          const streetAddress = result.address?.address_name?.trim();
+          const label = roadAddress || streetAddress || address.trim();
 
           resolve({
-            lat: parseFloat(r.y),
-            lng: parseFloat(r.x),
+            lat: parseFloat(result.y),
+            lng: parseFloat(result.x),
             label,
           });
         } else {
@@ -79,9 +79,9 @@ export async function geocodeByKakaoJS(
 }
 
 // WebLink
-function openKakaoWebTo(dst: Coords, label: string) {
+function openKakaoWebTo(destination: Coords, label: string) {
   const title = encodeURIComponent(label);
-  const url = `https://map.kakao.com/link/to/${title},${dst.lat},${dst.lng}`;
+  const url = `https://map.kakao.com/link/to/${title},${destination.lat},${destination.lng}`;
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 
@@ -91,39 +91,39 @@ export async function openKakaoRoute({
   by = 'publictransit',
   useCurrentAsStart = true,
 }: OpenRouteByAddressOptions) {
-  const addrInput = address.trim();
+  const trimmedAddress = address.trim();
 
-  const dst = await geocodeByKakaoJS(addrInput);
-  if (!dst) {
+  const destination = await geocodeByKakaoJS(trimmedAddress);
+  if (!destination) {
     const fallbackUrl = `https://map.kakao.com/link/search/${encodeURIComponent(
-      addrInput,
+      trimmedAddress,
     )}`;
     window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
     return;
   }
 
-  const ua = navigator.userAgent;
-  const isAndroid = /Android/i.test(ua);
-  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const userAgent = navigator.userAgent;
+  const isAndroid = /Android/i.test(userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
   const isMobile = isAndroid || isIOS;
 
-  const sp = useCurrentAsStart ? await getCurrentPosition() : null;
+  const startPoint = useCurrentAsStart ? await getCurrentPosition() : null;
 
   const params = new URLSearchParams();
-  if (sp) {
-    params.set('sp', `${sp.lat},${sp.lng}`);
+  if (startPoint) {
+    params.set('sp', `${startPoint.lat},${startPoint.lng}`);
     params.set('startLoc', '현재 위치');
   }
-  params.set('ep', `${dst.lat},${dst.lng}`);
+  params.set('ep', `${destination.lat},${destination.lng}`);
   params.set('by', by);
-  params.set('endLoc', dst.label);
+  params.set('endLoc', destination.label);
 
   const query = params.toString();
 
   const mobileWebUrl = `https://m.map.kakao.com/scheme/route?${query}`;
 
   if (!isMobile) {
-    openKakaoWebTo({ lat: dst.lat, lng: dst.lng }, dst.label);
+    openKakaoWebTo(destination, destination.label);
     return;
   }
 
