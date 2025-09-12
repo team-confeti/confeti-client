@@ -53,7 +53,10 @@ declare global {
       position: LatLng;
     }
 
-    interface Marker {}
+    interface Marker {
+      setMap(map: Map | null): void;
+      getPosition(): LatLng;
+    }
 
     namespace services {
       type Status = 'OK' | 'ZERO_RESULT' | 'ERROR';
