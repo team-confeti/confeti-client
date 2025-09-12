@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-changesets:
+    name: Check Changesets (PR to main)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.0
+
+      - name: Install dependencies
+        run: pnpm -w install
+
+      - name: Check for changeset files
+        run: |
+          if [ -z "$(ls .changeset/*.md 2>/dev/null)" ]; then
+            echo "❌ No changeset files found!"
+            echo "💡 Please run 'pnpm changeset' to create one"
+            exit 1
+          fi
+          echo "✅ Changeset files found:"
+          ls -la .changeset/*.md
+
+      - name: Preview Changesets
+        run: pnpm -w changeset status
+
+  version-bump:
+    name: Version bump (after merge to main)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.0
+
+      - name: Install dependencies
+        run: pnpm -w install
+
+      - name: Version bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm -w changeset version
+
+      - name: Commit and push version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "chore: release version" || echo "No changes to commit"
+          git push origin HEAD:${{ github.ref_name }}
