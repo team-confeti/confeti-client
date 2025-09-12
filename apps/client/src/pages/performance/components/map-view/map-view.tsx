@@ -43,14 +43,7 @@ const MapView = ({ address, onClick }: MapViewProps) => {
     initMap();
   }, [address]);
 
-  return (
-    <div
-      ref={mapRef}
-      className={styles.map}
-      onClick={onClick}
-      style={{ cursor: onClick ? 'pointer' : 'default' }}
-    />
-  );
+  return <div ref={mapRef} className={styles.map} onClick={onClick} />;
 };
 
 export default MapView;

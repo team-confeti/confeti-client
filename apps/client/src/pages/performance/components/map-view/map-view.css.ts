@@ -5,4 +5,5 @@ export const map = style({
   height: '26rem',
   marginTop: '1rem',
   overflow: 'hidden',
+  cursor: 'pointer',
 });
