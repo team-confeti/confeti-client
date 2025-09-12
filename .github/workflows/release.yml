@@ -2,11 +2,9 @@ name: Release
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
   push:
-    branches:
-      - main
+    branches: [main]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -16,14 +14,15 @@ permissions:
 
 jobs:
   check-changesets:
-    name: Check Changesets (PR to main)
+    name: Check Changesets
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.base_ref == 'main' && github.head_ref == 'develop'
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,23 +36,23 @@ jobs:
           version: 10.12.0
 
       - name: Install dependencies
-        run: pnpm -w install
+        run: pnpm -w install --frozen-lockfile
 
       - name: Check for changeset files
         run: |
           if [ -z "$(ls .changeset/*.md 2>/dev/null)" ]; then
-            echo "❌ No changeset files found!"
-            echo "💡 Please run 'pnpm changeset' to create one"
+            echo "❌ changeset 파일이 없습니다!"
+            echo "💡 배포 전 반드시 'pnpm changeset'으로 changeset을 추가하세요."
             exit 1
           fi
-          echo "✅ Changeset files found:"
+          echo "✅ Changeset 파일 확인됨:"
           ls -la .changeset/*.md
 
       - name: Preview Changesets
         run: pnpm -w changeset status
 
   version-bump:
-    name: Version bump (after merge to main)
+    name: Version bump
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
@@ -61,6 +60,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -74,7 +74,7 @@ jobs:
           version: 10.12.0
 
       - name: Install dependencies
-        run: pnpm -w install
+        run: pnpm -w install --frozen-lockfile
 
       - name: Version bump
         env:
@@ -85,6 +85,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
+          git add -A
           git commit -m "chore: release version" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref_name }}
