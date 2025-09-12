@@ -1,4 +1,5 @@
-// Types
+import { ENV_CONFIG } from '@shared/constants/config';
+
 type Transport = 'car' | 'publictransit' | 'foot' | 'bicycle';
 type Coords = { lat: number; lng: number };
 
@@ -21,9 +22,7 @@ export const loadKakaoMapScript = (): Promise<void> => {
 
     const script = document.createElement('script');
     script.id = 'kakao-map-script';
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${
-      import.meta.env.VITE_KAKAO_JS_KEY
-    }&autoload=false&libraries=services`;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${ENV_CONFIG.KAKAO_JS_KEY}&autoload=false&libraries=services`;
     script.async = true;
 
     script.onload = () => resolve();
@@ -110,19 +109,21 @@ export async function openKakaoRoute({
 
   const sp = useCurrentAsStart ? await getCurrentPosition() : null;
 
-  const startLoc = sp ? encodeURIComponent('현재 위치') : '';
-  const endLabel = dst.label;
-  const endLoc = encodeURIComponent(endLabel);
-
-  let query = `ep=${dst.lat},${dst.lng}&by=${by}&endLoc=${endLoc}`;
+  const params = new URLSearchParams();
   if (sp) {
-    query = `sp=${sp.lat},${sp.lng}&startLoc=${startLoc}&` + query;
+    params.set('sp', `${sp.lat},${sp.lng}`);
+    params.set('startLoc', '현재 위치');
   }
+  params.set('ep', `${dst.lat},${dst.lng}`);
+  params.set('by', by);
+  params.set('endLoc', dst.label);
+
+  const query = params.toString();
 
   const mobileWebUrl = `https://m.map.kakao.com/scheme/route?${query}`;
 
   if (!isMobile) {
-    openKakaoWebTo({ lat: dst.lat, lng: dst.lng }, endLabel);
+    openKakaoWebTo({ lat: dst.lat, lng: dst.lng }, dst.label);
     return;
   }
 
