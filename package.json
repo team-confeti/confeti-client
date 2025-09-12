@@ -20,6 +20,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "eslint": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
