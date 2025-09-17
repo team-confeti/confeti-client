@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
@@ -43,11 +43,11 @@ const Location = ({ address }: LocationProps) => {
       <h2 className={styles.title}>{PERFORMANCE_LABEL.LOCATION}</h2>
       <p className={styles.address}>
         {address.split(',').map((part, index, arr) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             {part.trim()}
             {index < arr.length - 1 && ','}
             {index < arr.length - 1 && <br />}
-          </React.Fragment>
+          </Fragment>
         ))}
         <button
           type="button"
