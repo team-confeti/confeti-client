@@ -13,6 +13,7 @@ export const iconNames = [
   'checkbox-default',
   'clear',
   'close',
+  'copy',
   'delete',
   'download',
   'edit',
