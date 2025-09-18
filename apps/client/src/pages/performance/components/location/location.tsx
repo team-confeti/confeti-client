@@ -23,7 +23,7 @@ const Location = ({ address }: LocationProps) => {
     });
   };
 
-  const handleAdressCopy = async () => {
+  const handleAddressCopy = async () => {
     try {
       await navigator.clipboard.writeText(address);
       toast({
@@ -52,7 +52,7 @@ const Location = ({ address }: LocationProps) => {
         <button
           type="button"
           className={styles.copyButton}
-          onClick={handleAdressCopy}
+          onClick={handleAddressCopy}
           aria-label="주소 복사"
         >
           <Icon name="copy" size="2rem" color="gray400" />
