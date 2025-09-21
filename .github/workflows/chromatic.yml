@@ -15,30 +15,14 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install PNPM
-        run: npm i -g pnpm
-
-      - name: Cache node modules
-        id: cache-node
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Setup pnpm and Node.js
+        uses: ./.github/actions/pnpm-setup-node
 
       - name: Install Dependencies
-        if: steps.cache-node.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Build Storybook for Design System

@@ -13,47 +13,41 @@ on:
       - develop
       - main
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
-  build:
+  ci:
+    name: CI
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: ['lint', 'test', 'build', 'coverage']
+      fail-fast: false
 
     steps:
-      # 1. 레포지토리 체크아웃
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      # 2. Pnpm 설정
-      - name: Setup Pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.0
-          run_install: false
+      - name: Setup pnpm and Node.js
+        uses: ./.github/actions/pnpm-setup-node
 
-      # 3. Node.js 환경 설정
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
-
-      # 4. TurboRepo 캐시
       - name: Cache TurboRepo
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          key: ${{ runner.os }}-turbo-${{ matrix.command }}-${{ github.sha }}
           restore-keys: |
+            ${{ runner.os }}-turbo-${{ matrix.command }}-
             ${{ runner.os }}-turbo-
 
-      # 5. 의존성 설치
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 6. 테스트 실행
-      - name: Run tests
-        run: pnpm test
+      - name: Run ${{ matrix.command }}
+        run: pnpm ${{ matrix.command }}
 
-      # 7. 빌드 실행
-      - name: Build project
-        run: pnpm build
+      - name: Upload coverage to Codecov
+        if: matrix.command == 'coverage'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
