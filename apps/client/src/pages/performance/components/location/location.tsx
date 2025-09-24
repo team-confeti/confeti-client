@@ -38,17 +38,19 @@ const Location = ({ address }: LocationProps) => {
     }
   };
 
+  const formattedAddress = address.split(',').map((part, index, arr) => (
+    <Fragment key={index}>
+      {part.trim()}
+      {index < arr.length - 1 && ','}
+      {index < arr.length - 1 && <br />}
+    </Fragment>
+  ));
+
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>{PERFORMANCE_LABEL.LOCATION}</h2>
       <p className={styles.address}>
-        {address.split(',').map((part, index, arr) => (
-          <Fragment key={index}>
-            {part.trim()}
-            {index < arr.length - 1 && ','}
-            {index < arr.length - 1 && <br />}
-          </Fragment>
-        ))}
+        {formattedAddress}
         <button
           type="button"
           className={styles.copyButton}
