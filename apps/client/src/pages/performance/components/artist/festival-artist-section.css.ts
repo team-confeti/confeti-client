@@ -69,6 +69,7 @@ export const festivalArtistName = style({
   overflow: 'hidden',
   textAlign: 'center',
   textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
 
 export const festivalMorebutton = style({
