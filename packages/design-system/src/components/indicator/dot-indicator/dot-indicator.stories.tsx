@@ -3,6 +3,41 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import DotIndicator from './dot-indicator';
 
+const meta: Meta<typeof DotIndicator> = {
+  title: 'Common/Indicator/DotIndicator',
+  component: DotIndicator,
+  parameters: {
+    layout: 'centered',
+    componentSubtitle: '현재 위치를 나타내는 점(dot) 인디케이터 컴포넌트',
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#43444B',
+        },
+      ],
+    },
+    docs: {
+      description: {
+        component:
+          'DotIndicator 컴포넌트는 캐러셀이나 페이지네이션에서 현재 위치를 나타내는 점(dot)요소로 나타내요. \n\n' +
+          '1. **total**: 전체 항목의 개수를 설정해요.\n' +
+          '2. **current**: 현재 활성화된 항목의 인덱스를 설정해요. (0부터 시작)\n' +
+          '3. **onDotClick**: dot 클릭 시 호출되는 콜백 함수예요.',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  args: {
+    total: 5,
+    current: 0,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
 const InteractiveWrapper = ({
   total,
   initialCurrent = 0,
@@ -29,40 +64,6 @@ const InteractiveWrapper = ({
     </div>
   );
 };
-
-const meta: Meta<typeof DotIndicator> = {
-  title: 'Common/Indicator/DotIndicator',
-  component: DotIndicator,
-  parameters: {
-    layout: 'centered',
-    backgrounds: {
-      default: 'dark',
-      values: [
-        {
-          name: 'dark',
-          value: '#43444B',
-        },
-      ],
-    },
-    docs: {
-      description: {
-        component:
-          'Indicator 컴포넌트는 캐러셀이나 페이지네이션에서 현재 위치를 나타내는 점(dot) 형태의 UI 요소입니다. \n\n' +
-          '1. **total**: 전체 항목의 개수를 설정합니다.\n' +
-          '2. **current**: 현재 활성화된 항목의 인덱스를 설정합니다. (0부터 시작)\n' +
-          '3. **onDotClick**: dot 클릭 시 호출되는 콜백 함수입니다.',
-      },
-    },
-  },
-  tags: ['autodocs'],
-  args: {
-    total: 5,
-    current: 0,
-  },
-};
-
-export default meta;
-type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {

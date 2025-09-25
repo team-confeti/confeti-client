@@ -7,6 +7,7 @@ const meta: Meta<typeof NumberIndicator> = {
   component: NumberIndicator,
   parameters: {
     layout: 'centered',
+    componentSubtitle: '현재 위치를 나타내는 숫자 인디케이터 컴포넌트',
     backgrounds: {
       default: 'dark',
       values: [
@@ -19,9 +20,9 @@ const meta: Meta<typeof NumberIndicator> = {
     docs: {
       description: {
         component:
-          'NumberIndicator 컴포넌트는 "1/3", "2/5" 형태로 현재 위치를 숫자로 표시하는 인디케이터입니다. \n\n' +
-          '1. **total**: 전체 항목의 개수를 설정합니다.\n' +
-          '2. **current**: 현재 활성화된 항목의 인덱스를 설정합니다. (0부터 시작)',
+          'NumberIndicator 컴포넌트는 "1/3", "2/5" 형태로 캐러셀에서 현재 위치를 숫자로 표시해요. \n\n' +
+          '1. **total**: 전체 항목의 개수를 설정해요.\n' +
+          '2. **current**: 현재 활성화된 항목의 인덱스를 설정해요. (0부터 시작)',
       },
     },
   },
