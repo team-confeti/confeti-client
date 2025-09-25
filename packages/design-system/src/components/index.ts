@@ -10,6 +10,7 @@ export { default as Dialog } from './dialog/dialog';
 export { default as DropdownMenu } from './dropdown-menu/dropdown-menu';
 export { default as FestivalCard } from './festival-card/festival-card';
 export { default as FloatingButton } from './floating-button/floating-button';
+export { default as DotIndicator } from './indicator/dot-indicator/dot-indicator';
 export { default as LikeButton } from './like-button/like-button';
 export { default as MusicItem } from './music-item/music-item';
 export { default as Navigation } from './navigation/navigation';
