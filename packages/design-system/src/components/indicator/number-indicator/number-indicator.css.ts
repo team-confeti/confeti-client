@@ -10,5 +10,6 @@ export const numberIndicatorVariants = recipe({
     textAlign: 'center',
     backgroundColor: themeVars.color.white_op_20,
     borderRadius: '11px',
+    userSelect: 'none',
   },
 });
