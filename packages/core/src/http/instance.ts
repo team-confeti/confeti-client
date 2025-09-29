@@ -4,7 +4,6 @@ export function createInstance(baseURL: string) {
   const instance = axios.create({
     baseURL,
     withCredentials: true,
-    headers: { 'Content-Type': 'application/json' },
   });
 
   return {
