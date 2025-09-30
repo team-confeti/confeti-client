@@ -11,8 +11,8 @@ const meta: Meta<typeof Chip> = {
     docs: {
       description: {
         component: `
-Chip 컴포넌트는 정보를 표시하거나, 사용자의 선택/입력을 보조하기 위해 사용됩니다.
-타입은 Choice / Input / Assist 세 가지로 나뉘며, 각 타입은 다른 목적에 맞게 설계되었습니다.
+Chip은 항목을 설명하는 키워드를 사용하여 항목에 레이블을 지정하거나 분류하거나 구성합니다.
+사용자는 정보를 입력하고 선택하고 콘텐츠를 필터링하거나 작업을 트리거할 수 있습니다.
 
 - **Choice Chip**: 여러 선택 옵션중에 1개를 선택하여 해당 선택한 결과값만 노출할 때 사용합니다.
 - **Input Chip**: 사용자가 입력하거나 추가한 항목을 나타내며, 삭제가 가능합니다.
@@ -35,7 +35,6 @@ Chip 컴포넌트는 정보를 표시하거나, 사용자의 선택/입력을 �
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
-// --- Choice Chips ---
 export const ChoiceDeselected: Story = {
   args: {
     variant: 'choice',
@@ -61,14 +60,12 @@ export const ChoiceSelected: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          '선택된 상태의 Choice Chip입니다. 보통 필터링이나 탭 전환 등에 사용됩니다.',
+        story: '선택된 상태의 Choice Chip입니다.',
       },
     },
   },
 };
 
-// --- Input Chip (deletable) ---
 const WithDeleteTemplate = (args: React.ComponentProps<typeof Chip>) => {
   const [visible, setVisible] = useState(true);
 
@@ -111,7 +108,7 @@ export const Assist: Story = {
     docs: {
       description: {
         story:
-          'Assist Chip은 부가적인 정보를 표시할 때 사용됩니다. 선택/삭제 기능 없이 정보 전달 목적입니다.',
+          'Assist Chip은 부가적인 정보를 표시할 때 사용됩니다. 선택/삭제 기능이 없는 정보 전달 목적의 컴포넌트입니다.',
       },
     },
   },
