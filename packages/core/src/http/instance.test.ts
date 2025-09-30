@@ -27,7 +27,6 @@ describe('createInstance', () => {
     expect(mockedAxios.create).toHaveBeenCalledWith({
       baseURL,
       withCredentials: true,
-      headers: { 'Content-Type': 'application/json' },
     });
   });
 
