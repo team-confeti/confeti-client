@@ -34,9 +34,33 @@ export const ticketingContainer = recipe({
 });
 
 export const ticketingBannerContainer = style({
-  ...themeVars.display.flexColumn,
-  width: '100%',
-  gap: '1.6rem',
+  ...themeVars.display.flexBetween,
+  margin: '0 2rem',
+});
+
+export const ticketingBannerText = style({
+  paddingLeft: '0.6rem 1rem',
+  ...themeVars.fontStyles.title2_b_20,
+  color: themeVars.color.white,
+});
+
+export const ticketingBubble = style({
+  background: themeVars.color.confeti_lime,
+  padding: '0.8rem 1.4rem',
+  borderRadius: '8px',
+  ...themeVars.fontStyles.body4_m_13,
+  position: 'relative',
+  '::after': {
+    content: '""',
+    position: 'absolute',
+    bottom: '-7px',
+    right: '20px',
+    width: '6px',
+    height: '7.5px',
+    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+  },
 });
 
 export const ticketingScrollContainer = style({
@@ -54,10 +78,4 @@ export const ticketingSection = style({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '0 2rem',
-});
-
-export const ticketingBannerText = style({
-  marginLeft: '2rem',
-  ...themeVars.fontStyles.title2_b_20,
-  color: themeVars.color.white,
 });

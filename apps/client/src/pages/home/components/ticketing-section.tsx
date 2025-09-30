@@ -65,7 +65,12 @@ const TicketingSection = ({
         colorVariant: (currentIndex % 5) as 0 | 1 | 2 | 3 | 4,
       })}
     >
-      <p className={styles.ticketingBannerText}>티켓 오픈</p>
+      <div className={styles.ticketingBannerContainer}>
+        <p className={styles.ticketingBannerText}>티켓 오픈</p>
+        <p className={styles.ticketingBubble}>
+          선호하는 공연 예매가 다가오고 있어요!
+        </p>
+      </div>
       <div className={styles.ticketingScrollContainer} ref={scrollContainerRef}>
         {data?.map((performance, index) => (
           <div key={performance.index} className={styles.ticketingSection}>
