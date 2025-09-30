@@ -22,10 +22,12 @@ const CategoryTabs = ({ selectedCategory, onCategoryClick }: Props) => {
         {categories.map((label) => (
           <li key={label}>
             <Chip
-              label={label}
-              variant={selectedCategory === label ? 'active' : 'default'}
+              variant="choice"
+              selected={selectedCategory === label}
               onClick={() => onCategoryClick(label)}
-            />
+            >
+              {label}
+            </Chip>
           </li>
         ))}
       </ul>
