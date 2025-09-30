@@ -36,8 +36,5 @@
     "vite": "^6.3.6",
     "vite-plugin": "link:@vanilla-extract/vite-plugin",
     "vite-tsconfig-paths": "^5.1.4"
-  },
-  "overrides": {
-    "esbuild": "0.25.10"
   }
 }

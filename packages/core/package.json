@@ -23,8 +23,5 @@
     "typescript": "catalog:",
     "vite": "^6.3.6",
     "vitest": "^3.2.4"
-  },
-  "overrides": {
-    "esbuild": "0.25.10"
   }
 }

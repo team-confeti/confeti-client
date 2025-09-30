@@ -49,8 +49,5 @@
     "typescript": "catalog:",
     "vite": "^6.3.6",
     "vite-tsconfig-paths": "^5.1.4"
-  },
-  "overrides": {
-    "esbuild": "0.25.10"
   }
 }
