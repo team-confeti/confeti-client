@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof TicketingCard.Image>;
 
 const samplePerformance = {
-  reservationBgUrl: 'https://i.imgur.com/gJ7iUTp.png',
+  reservationBgUrl: 'https://i.ibb.co/CsMKfSgn/img-dday03.png',
   reserveAt: 'D-3',
   subtitle: 'HAVE A NICE TRIP',
   type: 'FESTIVAL',
@@ -45,7 +45,7 @@ export const Default: Story = {
       }
       performanceInfoContent={
         <TicketingCard.PerformanceInfo
-          title="공연 정보 확인하기"
+          title="티켓 정보 확인하기"
           typeId={samplePerformance.typeId}
           performanceType={samplePerformance.type}
         />
