@@ -2,22 +2,33 @@
 # - 무시 항목에는 reason(사유)와 until(만료일)을 남기는 것을 권장합니다.
 # - 예시 항목은 주석으로 남겨두었으니 필요 시 주석을 제거하고 수정해서 사용하세요.
 
-ignore: []
-# ---------------------------------------------------------------------------
-# 예시(사용하려면 주석 제거하고 값 수정)
-# ---------------------------------------------------------------------------
-# - vulnerability: CVE-2025-22874
-#   package:
-#     name: esbuild
-#     type: npm     # npm, go-module, apk 등 grype에서 사용하는 타입
-#     # version: "0.25.3"        # 특정 버전만 무시하고 싶을 때
-#     # location: "**/node_modules/**/esbuild/**"  # 특정 경로 매칭이 필요할 때
-#   reason: "Upstream confirmed false positive for this binary build. We pinned esbuild@0.25.10 to mitigate CI noise."
-#   until: "2025-12-31"
-#
-# ---------------------------------------------------------------------------
-# 권장 표기
-# - reason: 반드시 기재(짧은 설명 및 근거 URL 첨부 권장)
-# - until: 임시 예외인 경우 만료일 기재 권장(YYYY-MM-DD)
-# ---------------------------------------------------------------------------
+ignore:
+  - vulnerability: CVE-2025-47907
+    package:
+      name: stdlib
+      type: go-module
+    reason: 'Known false-positive from prebuilt esbuild binary built with go1.23.8; we rebuilt locally and validated. Temporary suppression until upstream confirms rebuild.'
 
+  - vulnerability: CVE-2025-47906
+    package:
+      name: stdlib
+      type: go-module
+    reason: 'See CVE-2025-47907 notes; suppressing noise from prebuilt binary detection.'
+
+  - vulnerability: CVE-2025-4673
+    package:
+      name: stdlib
+      type: go-module
+    reason: 'Temporary suppression for prebuilt esbuild binary detection.'
+
+  - vulnerability: CVE-2025-0913
+    package:
+      name: stdlib
+      type: go-module
+    reason: 'Temporary suppression for prebuilt esbuild binary detection.'
+
+  - vulnerability: CVE-2025-4674
+    package:
+      name: stdlib
+      type: go-module
+    reason: 'Temporary suppression for prebuilt esbuild binary detection.'
