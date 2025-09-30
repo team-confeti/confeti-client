@@ -36,4 +36,5 @@ export const color = {
   confeti_lime_grad: 'linear-gradient(354deg, #B5F602 -208.21%, #FFF 146.29%)',
   black_grad:
     'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%)',
+  black_grad2: 'linear-gradient(133deg, #323339 6.21%, #000 103.67%)',
 } as const;
