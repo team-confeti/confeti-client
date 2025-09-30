@@ -16,13 +16,14 @@ const imageUrls = [
   '/images/img_dday05.svg',
 ];
 
-const TicketingSection = ({
-  data,
-  ref,
-}: {
+interface Props {
+  userName: string | null;
   data: TicketingPerformances[];
   ref: React.RefObject<HTMLDivElement | null>;
-}) => {
+}
+
+const TicketingSection = ({ userName, data, ref }: Props) => {
+  console.log(userName);
   const navigateToDetail = useNavigateToDetail();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -68,7 +69,9 @@ const TicketingSection = ({
       <div className={styles.ticketingBannerContainer}>
         <p className={styles.ticketingBannerText}>티켓 오픈</p>
         <p className={styles.ticketingBubble}>
-          선호하는 공연 예매가 다가오고 있어요!
+          {userName
+            ? '선호하는 공연 예매가 다가오고 있어요!'
+            : '공연 예매가 다가오고 있어요!'}
         </p>
       </div>
       <div className={styles.ticketingScrollContainer} ref={scrollContainerRef}>

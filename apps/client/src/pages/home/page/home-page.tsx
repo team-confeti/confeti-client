@@ -7,7 +7,6 @@ import {
 } from '@shared/components';
 import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 
-import CategoryTabsContainer from '../components/category-tabs-container';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
@@ -34,15 +33,11 @@ const HomePage = () => {
     <>
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
       <PerformanceCarouselSection data={latestPerformances} />
-      <Spacing size="xl" color="white" />
-
-      <CategoryTabsContainer scrollRefs={scrollRefs} />
-      <Spacing size="lg" color="white" />
 
       <TicketingSection
         ref={scrollRefs.ticketing.element}
-        data={ticketing.performances}
         userName={userName}
+        data={ticketing.performances}
       />
       <Spacing size="2xl" color="white" />
 

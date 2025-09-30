@@ -72,6 +72,8 @@ export const ticketingBannerText = style({
 
 export const ticketingBubble = style({
   background: themeVars.color.confeti_lime,
+  width: '21.7rem',
+  textAlign: 'center',
   padding: '0.7rem 1rem',
   borderRadius: '8px',
   ...themeVars.fontStyles.body4_m_13_2,
@@ -82,9 +84,9 @@ export const ticketingBubble = style({
     content: '""',
     position: 'absolute',
     bottom: '-7px',
-    right: '20px',
+    right: '15px',
     width: '6px',
-    height: '8px',
+    height: '8.5px',
     backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
