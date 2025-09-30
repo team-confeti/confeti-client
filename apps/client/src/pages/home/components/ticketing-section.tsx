@@ -1,4 +1,6 @@
-import { TicketingCard } from '@confeti/design-system';
+import { useEffect, useRef, useState } from 'react';
+
+import { DotIndicator, TicketingCard } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
@@ -22,45 +24,89 @@ const TicketingSection = ({
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const navigateToDetail = useNavigateToDetail();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const DdayList = data?.map((performance) => ({
     ...performance,
     reserveAt: formatDate(performance.reserveAt, 'Dday'),
   }));
 
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const containerWidth = container.clientWidth;
+      const newIndex = Math.round(scrollLeft / containerWidth);
+      setCurrentIndex(newIndex);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (index: number) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const containerWidth = container.clientWidth;
+    container.scrollTo({
+      left: index * containerWidth,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <section className={styles.ticketingBannerContainer} ref={ref}>
+    <div
+      ref={ref}
+      className={styles.ticketingContainer({
+        colorVariant: (currentIndex % 5) as 0 | 1 | 2 | 3 | 4,
+      })}
+    >
       <p className={styles.ticketingBannerText}>티켓 오픈</p>
-      <div className={styles.ticketingCardContainer}>
+      <div className={styles.ticketingScrollContainer} ref={scrollContainerRef}>
         {data?.map((performance, index) => (
-          <div key={performance.index} className={styles.ticketingCardWrapper}>
-            <TicketingCard.Image
-              imageUrl={imageUrls[index]}
-              textContent={
-                <>
-                  {/* TODO: startTime 서버 응답에 맞춰서 변경 */}
-                  <TicketingCard.Dday
-                    reserveAt={DdayList[index]?.reserveAt}
-                    startTime="12:00"
-                  />
-                  <TicketingCard.SubTitle subtitle={performance.title} />
-                </>
-              }
-              performanceInfoContent={
-                <TicketingCard.PerformanceInfo
-                  title={'티켓 정보 확인하기'}
-                  typeId={performance.typeId}
-                  performanceType={performance.type}
-                  onClick={() =>
-                    navigateToDetail(performance.type, performance.typeId)
+          <div key={performance.index} className={styles.ticketingSection}>
+            <div className={styles.ticketingCardContainer}>
+              <div className={styles.ticketingCardWrapper}>
+                <TicketingCard.Image
+                  imageUrl={imageUrls[index]}
+                  textContent={
+                    <>
+                      {/* TODO: startTime 서버 응답에 맞춰서 변경 */}
+                      <TicketingCard.Dday
+                        reserveAt={DdayList[index]?.reserveAt}
+                        startTime="12:00"
+                      />
+                      <TicketingCard.SubTitle subtitle={performance.title} />
+                    </>
+                  }
+                  performanceInfoContent={
+                    <TicketingCard.PerformanceInfo
+                      title={'티켓 정보 확인하기'}
+                      typeId={performance.typeId}
+                      performanceType={performance.type}
+                      onClick={() =>
+                        navigateToDetail(performance.type, performance.typeId)
+                      }
+                    />
                   }
                 />
-              }
-            />
+              </div>
+            </div>
           </div>
         ))}
       </div>
-    </section>
+      {data && (
+        <DotIndicator
+          total={data.length}
+          current={currentIndex}
+          onDotClick={scrollToSection}
+        />
+      )}
+    </div>
   );
 };
 
