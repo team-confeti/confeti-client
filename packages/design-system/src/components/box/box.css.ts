@@ -16,7 +16,7 @@ export const header = style({
 
 export const titleWrapper = style({
   ...themeVars.display.flexColumn,
-  gap: '0.4rem',
+  gap: '0.6rem',
 });
 
 export const titleVariants = recipe({
@@ -29,7 +29,7 @@ export const titleVariants = recipe({
         ...themeVars.fontStyles.title4_b_16,
       },
       lg: {
-        ...themeVars.fontStyles.title3_b_18,
+        ...themeVars.fontStyles.title2_b_20,
       },
     },
   },
@@ -37,9 +37,8 @@ export const titleVariants = recipe({
 
 export const subtitle = style({
   ...themeVars.display.flexAlignCenter,
-  ...themeVars.fontStyles.subtitle4_b_14,
-  color: themeVars.color.confeti_lime3,
-  gap: '0.4rem',
+  ...themeVars.fontStyles.body3_m_14,
+  color: themeVars.color.gray500,
 });
 
 export const buttonWrapper = style({

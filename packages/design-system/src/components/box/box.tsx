@@ -32,13 +32,13 @@ const Box = ({
     <section className={cn(styles.boxVariants(), className)} {...props}>
       <div className={styles.header}>
         <div className={styles.titleWrapper}>
+          <h3 className={styles.titleVariants({ titleSize })}>{title}</h3>
           {subtitle && (
             <div className={styles.subtitle}>
               {subtitleIcon}
               {subtitle}
             </div>
           )}
-          <h3 className={styles.titleVariants({ titleSize })}>{title}</h3>
         </div>
         {onShowMore && (
           <div className={styles.buttonWrapper}>

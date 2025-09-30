@@ -43,10 +43,9 @@ const SuggestMusicSection = ({
 
   return (
     <Box
-      title="미리 음악을 한 번 들어볼까요?"
+      title="공연 미리듣기"
       titleSize="lg"
-      subtitle={data.title}
-      subtitleIcon={<Icon name="music" size="1.4rem" />}
+      subtitle="예상 셋리스트, 미리 한번 들어볼까요?"
     >
       <div ref={scrollRef}>
         <MusicList
