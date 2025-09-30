@@ -32,5 +32,10 @@
   "packageManager": "pnpm@10.12.0",
   "engines": {
     "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "tmp": "0.2.4"
+    }
   }
 }
