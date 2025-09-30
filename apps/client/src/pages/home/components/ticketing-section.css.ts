@@ -10,9 +10,18 @@ export const ticketingCardContainer = style({
   overflowX: 'auto',
 });
 
+export const ticketingCardWrapper = style({
+  flex: '0 0 min(390px, calc(100vw - 4rem))',
+  minWidth: 0,
+});
+
 export const ticketingBannerContainer = style({
   ...themeVars.display.flexColumn,
   width: '100%',
-  padding: '0 0 0 2rem',
+  padding: '0 2rem 0 2rem',
   gap: '1.6rem',
+});
+
+export const ticketingBannerText = style({
+  ...themeVars.fontStyles.title2_b_20,
 });

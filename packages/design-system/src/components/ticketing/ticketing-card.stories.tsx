@@ -28,6 +28,7 @@ type Story = StoryObj<typeof TicketingCard.Image>;
 const samplePerformance = {
   reservationBgUrl: 'https://i.ibb.co/CsMKfSgn/img-dday03.png',
   reserveAt: 'D-3',
+  startTime: '12:00',
   subtitle: 'HAVE A NICE TRIP',
   type: 'FESTIVAL',
   typeId: 8,
@@ -39,7 +40,10 @@ export const Default: Story = {
       imageUrl={samplePerformance.reservationBgUrl}
       textContent={
         <>
-          <TicketingCard.Dday reserveAt={samplePerformance.reserveAt} />
+          <TicketingCard.Dday
+            reserveAt={samplePerformance.reserveAt}
+            startTime={samplePerformance.startTime}
+          />
           <TicketingCard.SubTitle subtitle={samplePerformance.subtitle} />
         </>
       }

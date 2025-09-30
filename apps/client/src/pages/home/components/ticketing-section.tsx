@@ -38,7 +38,11 @@ const TicketingSection = ({
               imageUrl={imageUrls[index]}
               textContent={
                 <>
-                  <TicketingCard.Dday reserveAt={DdayList[index]?.reserveAt} />
+                  {/* TODO: startTime 서버 응답에 맞춰서 변경 */}
+                  <TicketingCard.Dday
+                    reserveAt={DdayList[index]?.reserveAt}
+                    startTime="12:00"
+                  />
                   <TicketingCard.SubTitle subtitle={performance.title} />
                 </>
               }
