@@ -12,7 +12,7 @@ const floatingAnimation = keyframes({
   },
 });
 
-export const ticketingContainer = recipe({
+export const ticketOpeningContainer = recipe({
   base: {
     ...themeVars.display.flexColumn,
     padding: '4rem 0 3rem 0',
@@ -28,7 +28,7 @@ export const ticketingContainer = recipe({
   },
 });
 
-export const ticketingScrollContainer = style({
+export const ticketOpeningScrollContainer = style({
   display: 'flex',
   margin: '2rem 0 3rem 0',
   width: '100%',
@@ -37,7 +37,7 @@ export const ticketingScrollContainer = style({
   scrollbarWidth: 'none',
 });
 
-export const ticketingSection = style({
+export const ticketOpeningSection = style({
   flex: '0 0 100%',
   scrollSnapAlign: 'start',
   display: 'flex',
@@ -46,7 +46,7 @@ export const ticketingSection = style({
   padding: '0 2rem',
 });
 
-export const ticketingCardContainer = style({
+export const ticketOpeningCardContainer = style({
   display: 'flex',
   width: '100%',
   height: '100%',
@@ -54,23 +54,23 @@ export const ticketingCardContainer = style({
   overflowX: 'auto',
 });
 
-export const ticketingCardWrapper = style({
+export const ticketOpeningCardWrapper = style({
   maxWidth: '390px',
   width: '100%',
 });
 
-export const ticketingBannerContainer = style({
+export const ticketOpeningBannerContainer = style({
   ...themeVars.display.flexBetween,
   margin: '0 2rem',
 });
 
-export const ticketingBannerText = style({
+export const ticketOpeningBannerText = style({
   paddingLeft: '0.6rem 1rem',
   ...themeVars.fontStyles.title2_b_20,
   color: themeVars.color.white,
 });
 
-export const ticketingBubble = style({
+export const ticketOpeningBubble = style({
   background: themeVars.color.confeti_lime,
   width: '21.7rem',
   textAlign: 'center',

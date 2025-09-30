@@ -10,7 +10,7 @@ import { useMoveScroll } from '@shared/hooks/use-scroll-position';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
-import TicketingSection from '../components/ticketing-section';
+import TicketOpeningSection from '../components/ticket-opening-section';
 import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
@@ -34,7 +34,7 @@ const HomePage = () => {
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
       <PerformanceCarouselSection data={latestPerformances} />
 
-      <TicketingSection
+      <TicketOpeningSection
         ref={scrollRefs.ticketing.element}
         userName={userName}
         data={ticketing.performances}

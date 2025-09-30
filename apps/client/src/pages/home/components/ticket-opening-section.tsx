@@ -6,7 +6,7 @@ import { formatDate } from '@confeti/utils';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { TicketingPerformances } from '@shared/types/home-response';
 
-import * as styles from './ticketing-section.css';
+import * as styles from './ticket-opening-section.css';
 
 const imageUrls = [
   '/images/img_dday01.svg',
@@ -22,7 +22,7 @@ interface Props {
   ref: React.RefObject<HTMLDivElement | null>;
 }
 
-const TicketingSection = ({ userName, data, ref }: Props) => {
+const TicketOpeningSection = ({ userName, data, ref }: Props) => {
   console.log(userName);
   const navigateToDetail = useNavigateToDetail();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -62,23 +62,26 @@ const TicketingSection = ({ userName, data, ref }: Props) => {
   return (
     <div
       ref={ref}
-      className={styles.ticketingContainer({
+      className={styles.ticketOpeningContainer({
         colorVariant: (currentIndex % 5) as 0 | 1 | 2 | 3 | 4,
       })}
     >
-      <div className={styles.ticketingBannerContainer}>
-        <p className={styles.ticketingBannerText}>티켓 오픈</p>
-        <p className={styles.ticketingBubble}>
+      <div className={styles.ticketOpeningBannerContainer}>
+        <p className={styles.ticketOpeningBannerText}>티켓 오픈</p>
+        <p className={styles.ticketOpeningBubble}>
           {userName
             ? '선호하는 공연 예매가 다가오고 있어요!'
             : '공연 예매가 다가오고 있어요!'}
         </p>
       </div>
-      <div className={styles.ticketingScrollContainer} ref={scrollContainerRef}>
+      <div
+        className={styles.ticketOpeningScrollContainer}
+        ref={scrollContainerRef}
+      >
         {data?.map((performance, index) => (
-          <div key={performance.index} className={styles.ticketingSection}>
-            <div className={styles.ticketingCardContainer}>
-              <div className={styles.ticketingCardWrapper}>
+          <div key={performance.index} className={styles.ticketOpeningSection}>
+            <div className={styles.ticketOpeningCardContainer}>
+              <div className={styles.ticketOpeningCardWrapper}>
                 <TicketingCard.Image
                   imageUrl={imageUrls[index]}
                   textContent={
@@ -118,4 +121,4 @@ const TicketingSection = ({ userName, data, ref }: Props) => {
   );
 };
 
-export default TicketingSection;
+export default TicketOpeningSection;
