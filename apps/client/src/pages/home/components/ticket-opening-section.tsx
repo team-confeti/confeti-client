@@ -23,12 +23,13 @@ interface Props {
 }
 
 const TicketOpeningSection = ({ userName, data, ref }: Props) => {
-  console.log(userName);
+  if (!data || data.length === 0) return null;
+
   const navigateToDetail = useNavigateToDetail();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const DdayList = data?.map((performance) => ({
+  const DdayList = data.map((performance) => ({
     ...performance,
     reserveAt: formatDate(performance.reserveAt, 'Dday'),
   }));
@@ -78,7 +79,7 @@ const TicketOpeningSection = ({ userName, data, ref }: Props) => {
         className={styles.ticketOpeningScrollContainer}
         ref={scrollContainerRef}
       >
-        {data?.map((performance, index) => (
+        {data.map((performance, index) => (
           <div key={performance.index} className={styles.ticketOpeningSection}>
             <div className={styles.ticketOpeningCardContainer}>
               <div className={styles.ticketOpeningCardWrapper}>
@@ -110,6 +111,7 @@ const TicketOpeningSection = ({ userName, data, ref }: Props) => {
           </div>
         ))}
       </div>
+
       {data && (
         <DotIndicator
           total={data.length}
