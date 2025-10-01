@@ -121,7 +121,9 @@ const MusicItem = ({
           <p className={styles.artist({ appearance })}>{artist}</p>
         </div>
       </div>
-      <div className={styles.rightIcon}>{renderControlButton()}</div>
+      <div className={styles.player}>
+        <div className={styles.rightIcon}>{renderControlButton()}</div>
+      </div>
     </div>
   );
 };

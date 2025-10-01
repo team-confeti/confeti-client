@@ -140,6 +140,12 @@ export const artist = recipe({
   },
 });
 
-export const rightIcon = style({
-  marginLeft: 'auto',
+export const player = style({
+  ...themeVars.display.flexJustifyAlignCenter,
+  width: '4rem',
+  height: '4rem',
+  backgroundColor: themeVars.color.gray700,
+  borderRadius: '200px',
 });
+
+export const rightIcon = style({});
