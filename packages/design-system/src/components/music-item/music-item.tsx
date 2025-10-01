@@ -15,6 +15,7 @@ interface Props {
   onClickPlayToggle?: () => void;
   onClickDelete?: () => void;
   onClickAdd?: () => void;
+  appearance?: 'default' | 'home';
 }
 
 const MusicItem = ({
@@ -27,6 +28,7 @@ const MusicItem = ({
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
+  appearance = 'default',
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
@@ -110,13 +112,13 @@ const MusicItem = ({
         transition,
       }}
       {...attributes}
-      className={styles.musicItemWrapper}
+      className={styles.musicItemWrapper({ appearance })}
     >
       <div className={styles.contentWrapper} onClick={onClickAdd}>
         {renderAlbumCover()}
         <div className={styles.textSection}>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.artist}>{artist}</p>
+          <p className={styles.title({ appearance })}>{title}</p>
+          <p className={styles.artist({ appearance })}>{artist}</p>
         </div>
       </div>
       <div className={styles.rightIcon}>{renderControlButton()}</div>

@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '../../styles';
 
@@ -10,16 +11,27 @@ export const dragHandle = style({
   },
 });
 
-export const musicItemWrapper = style({
-  ...themeVars.display.flexBetweenAlignCenter,
-  gap: '1.6rem',
-  padding: '1rem 0',
-  userSelect: 'none',
-  selectors: {
-    '&': {
-      WebkitUserSelect: 'none',
-      MozUserSelect: 'none',
-      msUserSelect: 'none',
+export const musicItemWrapper = recipe({
+  base: {
+    ...themeVars.display.flexBetweenAlignCenter,
+    gap: '1.6rem',
+    userSelect: 'none',
+    selectors: {
+      '&': {
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+      },
+    },
+  },
+  variants: {
+    appearance: {
+      default: {
+        padding: '1rem 0',
+      },
+      home: {
+        padding: 0,
+      },
     },
   },
 });
@@ -28,6 +40,7 @@ export const contentWrapper = style({
   ...themeVars.display.flexBetweenAlignCenter,
   gap: '1.6rem',
   flexGrow: 1,
+  minWidth: 0,
   cursor: 'pointer',
 });
 
@@ -67,40 +80,62 @@ export const textSection = style({
   overflow: 'hidden',
 });
 
-export const title = style({
-  ...themeVars.fontStyles.title4_b_16,
-  maxWidth: '21rem',
-  width: '100%',
-  color: themeVars.color.gray800,
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  marginBottom: '0.4rem',
-  userSelect: 'none',
-  selectors: {
-    '&': {
-      WebkitUserSelect: 'none',
-      MozUserSelect: 'none',
-      msUserSelect: 'none',
+export const title = recipe({
+  base: {
+    ...themeVars.fontStyles.title4_b_16,
+    maxWidth: '21rem',
+    width: '100%',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    marginBottom: '0.4rem',
+    userSelect: 'none',
+    selectors: {
+      '&': {
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+      },
+    },
+  },
+  variants: {
+    appearance: {
+      default: {
+        color: themeVars.color.gray800,
+      },
+      home: {
+        color: themeVars.color.white,
+      },
     },
   },
 });
 
-export const artist = style({
-  ...themeVars.fontStyles.body4_m_13,
-  color: themeVars.color.gray600,
-  width: '100%',
-  maxWidth: '21rem',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  lineHeight: '1.5rem',
-  userSelect: 'none',
-  selectors: {
-    '&': {
-      WebkitUserSelect: 'none',
-      MozUserSelect: 'none',
-      msUserSelect: 'none',
+export const artist = recipe({
+  base: {
+    ...themeVars.fontStyles.body4_m_13,
+    width: '100%',
+    maxWidth: '21rem',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    lineHeight: '1.5rem',
+    userSelect: 'none',
+    selectors: {
+      '&': {
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+      },
+    },
+  },
+  variants: {
+    appearance: {
+      default: {
+        color: themeVars.color.gray600,
+      },
+      home: {
+        color: themeVars.color.gray400,
+      },
     },
   },
 });

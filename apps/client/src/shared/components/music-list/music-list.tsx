@@ -4,6 +4,7 @@ import Deferred from '../deferred/deferred';
 import SkeletonList from './skeleton-list';
 
 import * as styles from './music-list.css';
+
 interface Music {
   musicId: string;
   artworkUrl: string;
@@ -20,6 +21,7 @@ interface MusicListProps {
   onClickPlayToggle?: (musicId: string) => void;
   onClickDelete?: (musicId: string) => void;
   onClickAdd?: (musicId: string) => void;
+  appearance?: 'default' | 'home';
 }
 
 const MusicList = ({
@@ -30,9 +32,10 @@ const MusicList = ({
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
+  appearance,
 }: MusicListProps) => {
   return (
-    <div className={styles.loading}>
+    <div className={styles.wrapper({ appearance })}>
       {isPending
         ? Array.from({ length: skeletonCount ?? 0 }).map((_, index) => (
             <Deferred key={index}>
@@ -51,6 +54,7 @@ const MusicList = ({
               onClickPlayToggle={() => onClickPlayToggle?.(music.musicId)}
               onClickDelete={() => onClickDelete?.(music.musicId)}
               onClickAdd={() => onClickAdd?.(music.musicId)}
+              appearance={appearance}
             />
           ))}
     </div>

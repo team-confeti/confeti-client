@@ -108,6 +108,7 @@ const ConfirmAddSection = ({
                 musicId: song.musicId,
               })
             }
+            appearance="default"
           />
         ))}
       </div>
