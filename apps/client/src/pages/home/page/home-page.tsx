@@ -58,7 +58,7 @@ const HomePage = () => {
           data={suggestMusicPerformance}
         />
       )}
-      <Spacing size="2xl" color="white" />
+      <Spacing size="xl" color="white" />
 
       <FloatingButtonContainer />
       <Footer />
