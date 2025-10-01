@@ -59,12 +59,6 @@ const SuggestMusicSection = ({
         />
         <audio ref={audioRef} />
       </div>
-      <Button
-        text="다른 노래 더보기"
-        icon={<Icon name="load" size="2.8rem" />}
-        className={styles.button}
-        onClick={handleRefreshMusic}
-      />
     </Box>
   );
 };
