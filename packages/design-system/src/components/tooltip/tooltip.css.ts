@@ -12,6 +12,24 @@ const floatingAnimation = keyframes({
   },
 });
 
+const fadeInAnimation = keyframes({
+  '0%': {
+    opacity: 0,
+  },
+  '100%': {
+    opacity: 1,
+  },
+});
+
+const fadeOutAnimation = keyframes({
+  '0%': {
+    opacity: 1,
+  },
+  '100%': {
+    opacity: 0,
+  },
+});
+
 export const tooltipContainer = style({
   position: 'relative',
   display: 'inline-block',
@@ -34,12 +52,12 @@ export const tooltipBubble = recipe({
       top: {
         position: 'absolute',
         bottom: '100%',
-        marginBottom: '8.5px',
+        marginBottom: '0.85rem',
       },
       bottom: {
         position: 'absolute',
         top: '100%',
-        marginTop: '8.5px',
+        marginTop: '0.8rem',
       },
     },
     trigger: {
@@ -55,6 +73,7 @@ export const tooltipBubble = recipe({
       'top-right': {},
       'bottom-left': {},
       'bottom-right': {},
+      none: {},
     },
     animated: {
       true: {
@@ -62,10 +81,18 @@ export const tooltipBubble = recipe({
       },
       false: {},
     },
+    showType: {
+      'click-in': {
+        animation: `${fadeInAnimation} 0.3s ease-out`,
+      },
+      'click-out': {
+        animation: `${fadeOutAnimation} 0.3s ease-out`,
+      },
+      hover: {},
+      none: {},
+    },
   },
   compoundVariants: [
-    // trigger가 none이 아닐 때만 화살표 표시
-    // Top position - 아래쪽 화살표
     {
       variants: { position: 'top', tailPosition: 'bottom-left' },
       style: {
@@ -73,11 +100,11 @@ export const tooltipBubble = recipe({
           content: '""',
           position: 'absolute',
           top: '95%',
-          left: '15px',
-          width: '6px',
-          height: '8.5px',
+          left: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
           backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-          transform: 'scaleX(-1)',
+          transform: 'rotate(90deg)',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         },
@@ -90,11 +117,10 @@ export const tooltipBubble = recipe({
           content: '""',
           position: 'absolute',
           top: '95%',
-          right: '15px',
-          width: '6px',
-          height: '8.5px',
+          right: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
           backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-
           backgroundRepeat: 'no-repeat',
         },
       },
@@ -105,12 +131,12 @@ export const tooltipBubble = recipe({
         '::after': {
           content: '""',
           position: 'absolute',
-          bottom: '90%',
-          left: '15px',
-          width: '6px',
-          height: '8.5px',
-          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M0 6.39209C0.914 2.26046 3.71326 0.39209 6 0.39209C6 0.39209 5.68149 1.24927 5.68149 3.52444C5.68149 5.7996 5.99678 6.39209 5.99678 6.39209H0Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-
+          bottom: '95%',
+          left: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
+          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
+          transform: 'rotate(180deg)',
           backgroundRepeat: 'no-repeat',
         },
       },
@@ -121,30 +147,28 @@ export const tooltipBubble = recipe({
         '::after': {
           content: '""',
           position: 'absolute',
-          bottom: '90%',
-          right: '15px',
-          width: '6px',
-          height: '8.5px',
-          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M0 6.39209C0.914 2.26046 3.71326 0.39209 6 0.39209C6 0.39209 5.68149 1.24927 5.68149 3.52444C5.68149 5.7996 5.99678 6.39209 5.99678 6.39209H0Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-          transform: 'scaleX(-1)',
-
+          bottom: '95%',
+          right: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
+          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
+          transform: 'rotate(270deg)',
           backgroundRepeat: 'no-repeat',
         },
       },
     },
-    // Bottom position - 위쪽 화살표
     {
       variants: { position: 'bottom', tailPosition: 'top-left' },
       style: {
         '::after': {
           content: '""',
           position: 'absolute',
-          bottom: '100%',
-          left: '15px',
-          width: '6px',
-          height: '8.5px',
+          bottom: '95%',
+          left: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
           backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-
+          transform: 'rotate(180deg)',
           backgroundRepeat: 'no-repeat',
         },
       },
@@ -155,12 +179,44 @@ export const tooltipBubble = recipe({
         '::after': {
           content: '""',
           position: 'absolute',
-          bottom: '100%',
-          right: '15px',
-          width: '6px',
-          height: '8.5px',
+          bottom: '95%',
+          right: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
           backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
-
+          transform: 'rotate(270deg)',
+          backgroundRepeat: 'no-repeat',
+        },
+      },
+    },
+    {
+      variants: { position: 'bottom', tailPosition: 'bottom-left' },
+      style: {
+        '::after': {
+          content: '""',
+          position: 'absolute',
+          top: '95%',
+          left: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
+          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
+          transform: 'rotate(90deg)',
+          backgroundRepeat: 'no-repeat',
+        },
+      },
+    },
+    {
+      variants: { position: 'bottom', tailPosition: 'bottom-right' },
+      style: {
+        '::after': {
+          content: '""',
+          position: 'absolute',
+          top: '95%',
+          right: '1.5rem',
+          width: '0.6rem',
+          height: '0.8rem',
+          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='7' viewBox='0 0 6 7' fill='none'%3E%3Cpath d='M6 0.39209C5.086 4.52372 2.28674 6.39209 0 6.39209C0 6.39209 0.318511 5.53491 0.318511 3.25974C0.318511 0.984574 0.00321917 0.39209 0.00321917 0.39209H6Z' fill='%23B5F602'/%3E%3C/svg%3E")`,
+          transform: 'rotate(270deg)',
           backgroundRepeat: 'no-repeat',
         },
       },
@@ -171,5 +227,10 @@ export const tooltipBubble = recipe({
     tailPosition: 'bottom-right',
     animated: false,
     trigger: 'interactive',
+    showType: 'hover',
   },
+});
+
+export const tooltipContent = style({
+  marginLeft: '-15px',
 });

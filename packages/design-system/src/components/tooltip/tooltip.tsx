@@ -4,6 +4,8 @@ import {
   isValidElement,
   type ReactNode,
   useContext,
+  useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -16,8 +18,15 @@ interface TooltipContextValue {
   setIsOpen: (open: boolean) => void;
   trigger: 'hover' | 'click' | 'none';
   position: 'top' | 'bottom';
-  tailPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  tailPosition:
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'none';
   animated: boolean;
+  isClosing: boolean;
+  setIsClosing: (closing: boolean) => void;
 }
 
 const TooltipContext = createContext<TooltipContextValue | null>(null);
@@ -35,7 +44,12 @@ const useTooltipContext = () => {
 interface TooltipRootProps {
   trigger?: 'hover' | 'click' | 'none';
   position?: 'top' | 'bottom';
-  tailPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  tailPosition?:
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'none';
   animated?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -55,13 +69,14 @@ interface TooltipContentProps {
 const TooltipRoot = ({
   trigger = 'hover',
   position = 'top',
-  tailPosition = 'bottom-right',
+  tailPosition = 'bottom-left',
   animated = false,
   open: controlledOpen,
   onOpenChange,
   children,
 }: TooltipRootProps) => {
   const [internalOpen, setInternalOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const isControlled = controlledOpen !== undefined;
   const isOpen = isControlled ? controlledOpen : internalOpen;
@@ -82,6 +97,8 @@ const TooltipRoot = ({
         position,
         tailPosition,
         animated,
+        isClosing,
+        setIsClosing,
       }}
     >
       <div className={styles.tooltipContainer}>{children}</div>
@@ -90,13 +107,35 @@ const TooltipRoot = ({
 };
 
 const TooltipTrigger = ({ asChild = true, children }: TooltipTriggerProps) => {
-  const { setIsOpen, trigger } = useTooltipContext();
+  const { setIsOpen, trigger, setIsClosing } = useTooltipContext();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleTriggerEvent = () => {
     if (trigger === 'click') {
       setIsOpen(true);
+      setIsClosing(false);
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setIsClosing(true);
+
+        setTimeout(() => {
+          setIsOpen(false);
+          setIsClosing(false);
+        }, 300);
+      }, 3000);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (trigger === 'hover') {
@@ -135,13 +174,20 @@ const TooltipTrigger = ({ asChild = true, children }: TooltipTriggerProps) => {
 };
 
 const TooltipContent = ({ className, children }: TooltipContentProps) => {
-  const { isOpen, trigger, position, tailPosition, animated } =
+  const { isOpen, trigger, position, tailPosition, animated, isClosing } =
     useTooltipContext();
   const shouldShow = trigger === 'none' || isOpen;
 
   if (!shouldShow) {
     return null;
   }
+
+  const getShowType = () => {
+    if (trigger === 'click') {
+      return isClosing ? 'click-out' : 'click-in';
+    }
+    return trigger;
+  };
 
   return (
     <div
@@ -151,6 +197,7 @@ const TooltipContent = ({ className, children }: TooltipContentProps) => {
           tailPosition,
           animated,
           trigger: trigger === 'none' ? 'none' : 'interactive',
+          showType: getShowType(),
         }),
         className,
       )}
