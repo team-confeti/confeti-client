@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { Box, Button } from '@confeti/design-system';
-import { Icon } from '@confeti/design-system/icon';
+import { Box } from '@confeti/design-system';
 
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { MusicList } from '@shared/components';
 import MusicInfo from '@shared/components/music-list/music-info';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
-
-import * as styles from './suggest-music-section.css';
 
 const SuggestMusicSection = ({
   data,
@@ -19,28 +15,15 @@ const SuggestMusicSection = ({
   data: SuggestMusicPerformanceResponse;
   ref: React.RefObject<HTMLDivElement | null>;
 }) => {
-  const [musicIdList, setMusicIdList] = useState<string[] | undefined>(
-    undefined,
-  );
+  const musicIdList: string[] | undefined = undefined;
 
-  const {
-    data: suggestMusic,
-    refetch,
-    isPending,
-  } = useQuery({
+  const { data: suggestMusic, isPending } = useQuery({
     ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
   });
 
-  const { musicList, onClickPlayToggle, audioRef, stopAudio } = useMusicPlayer(
+  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
     suggestMusic?.musics ?? [],
   );
-
-  const handleRefreshMusic = () => {
-    stopAudio();
-    const ids = musicList.map((music) => music.musicId);
-    setMusicIdList(ids);
-    refetch();
-  };
 
   return (
     <Box
