@@ -191,6 +191,7 @@ const TooltipContent = ({ className, children }: TooltipContentProps) => {
 
   return (
     <div
+      role="tooltip"
       className={cn(
         styles.tooltipBubble({
           position: trigger === 'none' ? undefined : position,

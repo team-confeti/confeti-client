@@ -152,5 +152,5 @@ export const tooltipBubble = recipe({
 });
 
 export const tooltipContent = style({
-  marginLeft: '-15px',
+  marginLeft: '-1.5rem',
 });

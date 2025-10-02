@@ -63,16 +63,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <div style={{ padding: '6rem', display: 'flex', justifyContent: 'center' }}>
-      <Tooltip {...args}>
-        {args.trigger !== 'none' && (
-          <Tooltip.Trigger asChild>
-            <Button text="Tooltip Trigger" variant="default" />
-          </Tooltip.Trigger>
-        )}
-        <Tooltip.Content>Tooltips Content</Tooltip.Content>
-      </Tooltip>
-    </div>
+    <Tooltip {...args}>
+      {args.trigger !== 'none' && (
+        <Tooltip.Trigger asChild>
+          <Button text="Tooltip Trigger" variant="default" />
+        </Tooltip.Trigger>
+      )}
+      <Tooltip.Content>Tooltips Content</Tooltip.Content>
+    </Tooltip>
   ),
 };
 
