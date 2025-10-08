@@ -19,10 +19,9 @@ const imageUrls = [
 interface Props {
   userName: string | null;
   data: TicketingPerformances[];
-  ref: React.RefObject<HTMLDivElement | null>;
 }
 
-const TicketOpeningSection = ({ userName, data, ref }: Props) => {
+const TicketOpeningSection = ({ userName, data }: Props) => {
   if (!data || data.length === 0) return null;
 
   const navigateToDetail = useNavigateToDetail();
@@ -62,7 +61,6 @@ const TicketOpeningSection = ({ userName, data, ref }: Props) => {
 
   return (
     <div
-      ref={ref}
       className={styles.ticketOpeningContainer({
         colorVariant: (currentIndex % 5) as 0 | 1 | 2 | 3 | 4,
       })}
