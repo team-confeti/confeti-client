@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { DotIndicator, TicketingCard } from '@confeti/design-system';
+import { DotIndicator, TicketingCard, Tooltip } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
@@ -69,11 +69,18 @@ const TicketOpeningSection = ({ userName, data, ref }: Props) => {
     >
       <div className={styles.ticketOpeningBannerContainer}>
         <p className={styles.ticketOpeningBannerText}>티켓 오픈</p>
-        <p className={styles.ticketOpeningBubble}>
-          {userName
-            ? '선호하는 공연 예매가 다가오고 있어요!'
-            : '공연 예매가 다가오고 있어요!'}
-        </p>
+        <Tooltip
+          trigger="none"
+          position="top"
+          tailPosition="bottom-right"
+          animated={true}
+        >
+          <Tooltip.Content className={styles.ticketOpeningTooltip}>
+            {userName
+              ? '선호하는 공연 예매가 다가오고 있어요!'
+              : '공연 예매가 다가오고 있어요!'}
+          </Tooltip.Content>
+        </Tooltip>
       </div>
       <div
         className={styles.ticketOpeningScrollContainer}
@@ -112,13 +119,11 @@ const TicketOpeningSection = ({ userName, data, ref }: Props) => {
         ))}
       </div>
 
-      {data && (
-        <DotIndicator
-          total={data.length}
-          current={currentIndex}
-          onDotClick={scrollToSection}
-        />
-      )}
+      <DotIndicator
+        total={data.length}
+        current={currentIndex}
+        onDotClick={scrollToSection}
+      />
     </div>
   );
 };
