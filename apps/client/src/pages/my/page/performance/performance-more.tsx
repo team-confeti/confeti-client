@@ -38,10 +38,12 @@ const PerformanceMore = () => {
           {categories.map((category) => (
             <li key={category}>
               <Chip
-                label={category}
-                variant={selectedCategory === category ? 'active' : 'default'}
+                variant="choice"
+                selected={selectedCategory === category}
                 onClick={() => setSelectedCategory(category)}
-              />
+              >
+                {category}
+              </Chip>
             </li>
           ))}
         </ul>
