@@ -27,6 +27,7 @@ export const zIndex = {
   },
   dropdown: {
     content: '30',
+    tooltip: '30',
   },
   backDrop: {
     content: '100',
