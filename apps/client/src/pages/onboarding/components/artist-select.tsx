@@ -27,9 +27,13 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
   const { mutate: mutateRelateArtist } = useArtistRelatedArtist();
   const { mutate: mutateAuthOnboard } = usePostAuthOnboarding();
 
-  const [artists, setArtists] = useState<onboard[]>(
-    topArtistData?.artists || [],
-  );
+  if (!topArtistData) {
+    throw new Error(
+      '온보딩 페이지에서 TOP 아티스트 데이터를 불러오지 못했습니다.',
+    );
+  }
+
+  const [artists, setArtists] = useState<onboard[]>(topArtistData.artists);
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
