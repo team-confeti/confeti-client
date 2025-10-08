@@ -48,3 +48,7 @@ export const artistName = style({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
+
+export const button = style({
+  flexShrink: 0,
+});
