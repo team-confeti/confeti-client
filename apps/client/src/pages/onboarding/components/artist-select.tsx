@@ -24,7 +24,7 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
   const { data: topArtistData } = useSuspenseQuery({
     ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
   });
-  const { mutateAsync } = useArtistRelatedArtist();
+  const { mutate: mutateRelateArtist } = useArtistRelatedArtist();
   const { mutate: mutateAuthOnboard } = usePostAuthOnboarding();
 
   const [artists, setArtists] = useState<onboard[]>(
@@ -42,16 +42,19 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
     setSearchParams({});
   };
 
-  const handleArtistClick = async (artistId: string) => {
+  const handleArtistClick = (artistId: string) => {
     setSelectedArtistIds((prev) =>
       prev.includes(artistId) ? prev : [...prev, artistId],
     );
-    const relatedArtists = await mutateAsync({
-      artistId,
-      limit: ONBOARD_LIMIT.RELATED_ARTIST,
-    });
 
-    setArtists(relatedArtists?.data?.artists || []);
+    mutateRelateArtist(
+      { artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST },
+      {
+        onSuccess: (data) => {
+          setArtists(data.data.artists);
+        },
+      },
+    );
   };
 
   const handleNextClick = () => {
