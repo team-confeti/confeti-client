@@ -17,18 +17,12 @@ import ConfetiSection from '@pages/my/components/performance/performance-section
 import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserActivitySummary from '@pages/my/components/profile/user-activity-summary';
 import UserInfo from '@pages/my/components/profile/user-info';
-import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
-import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
 
 const MyProfile = () => {
   const navigate = useNavigate();
   const isNotLoggedIn = !getAccessToken();
 
   const { data: profileData } = useUserProfile();
-  const { data: upcomingPerformanceData } = useQuery({
-    ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
-    enabled: !isNotLoggedIn,
-  });
   const { data: artistData } = useQuery({
     ...USER_QUERY_OPTIONS.MY_ARTISTS_PREVIEW(),
     enabled: !isNotLoggedIn,
@@ -59,14 +53,6 @@ const MyProfile = () => {
         TimeTableCount={3}
         setListCount={3}
       />
-      <Box title="다가오는 공연">
-        {upcomingPerformanceData?.typeId ? (
-          <UpcomingPerformanceSection performance={upcomingPerformanceData} />
-        ) : (
-          <NoUpcomingPerformanceSection />
-        )}
-      </Box>
-
       <Box
         title="My Artist"
         onShowMore={
