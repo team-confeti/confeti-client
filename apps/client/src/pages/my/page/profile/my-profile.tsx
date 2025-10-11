@@ -12,11 +12,12 @@ import { routePath } from '@shared/router/path';
 
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
-import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
-import ConfetiSection from '@pages/my/components/performance/performance-section';
+import PerformanceSection from '@pages/my/components/performance/performance-section';
 import LogoutSection from '@pages/my/components/profile/logout-section';
 import UserActivitySummary from '@pages/my/components/profile/user-activity-summary';
 import UserInfo from '@pages/my/components/profile/user-info';
+
+import * as styles from '@pages/my/page/profile/my-profile.css';
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -64,11 +65,13 @@ const MyProfile = () => {
         showMoreText="더보기"
       >
         {performanceData.performances.length > 0 ? (
-          <ConfetiSection
+          <PerformanceSection
             performances={performanceData.performances.slice(0, 3)}
           />
         ) : (
-          <NoConfetiSection />
+          <p className={styles.noLikePerformanceText}>
+            아직 선호하는 공연이 없어요.
+          </p>
         )}
       </Box>
       <Box
