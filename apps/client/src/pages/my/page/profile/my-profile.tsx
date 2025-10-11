@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { getAccessToken } from '@confeti/core/auth';
-import { Box } from '@confeti/design-system';
+import { Box, Spacing } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
@@ -53,24 +53,9 @@ const MyProfile = () => {
         TimeTableCount={3}
         setListCount={3}
       />
+      <Spacing size="md" color="gray" />
       <Box
-        title="My Artist"
-        onShowMore={
-          artistData.artists.length > 3
-            ? () => navigate(routePath.MY_ARTIST)
-            : undefined
-        }
-        showMoreText="더보기"
-      >
-        {artistData.artists.length > 0 ? (
-          <ArtistSection artists={artistData.artists.slice(0, 3)} />
-        ) : (
-          <NoArtistSection />
-        )}
-      </Box>
-
-      <Box
-        title="My Confeti"
+        title="선호하는 공연"
         onShowMore={
           performanceData.performances.length > 3
             ? () => navigate(routePath.MY_CONFETI)
@@ -84,6 +69,21 @@ const MyProfile = () => {
           />
         ) : (
           <NoConfetiSection />
+        )}
+      </Box>
+      <Box
+        title="My Artist"
+        onShowMore={
+          artistData.artists.length > 3
+            ? () => navigate(routePath.MY_ARTIST)
+            : undefined
+        }
+        showMoreText="더보기"
+      >
+        {artistData.artists.length > 0 ? (
+          <ArtistSection artists={artistData.artists.slice(0, 3)} />
+        ) : (
+          <NoArtistSection />
         )}
       </Box>
       <LogoutSection />

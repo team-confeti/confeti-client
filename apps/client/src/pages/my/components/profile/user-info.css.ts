@@ -4,7 +4,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
   ...themeVars.display.flexAlignCenter,
-  padding: '3rem 2rem',
+  padding: '1.6rem 2rem',
   gap: '1.8rem',
 });
 
