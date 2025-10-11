@@ -51,11 +51,7 @@ const MyProfile = () => {
           </button>
         }
       />
-      <UserInfo
-        name={profileData.name}
-        profileUrl={profileData.profileUrl}
-        showArrow={true}
-      />
+      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
       <Box title="다가오는 공연">
         {upcomingPerformanceData?.typeId ? (
           <UpcomingPerformanceSection performance={upcomingPerformanceData} />

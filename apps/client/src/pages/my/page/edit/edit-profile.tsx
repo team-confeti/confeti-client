@@ -10,7 +10,7 @@ import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 
 import EditNameInput from '@pages/my/components/edit/edit-name-input';
 import LinkedAccount from '@pages/my/components/edit/linked-account';
-import UserInfo from '@pages/my/components/profile/user-info';
+import UserEditInfo from '@pages/my/components/edit/user-edit-info';
 import { useEditProfile } from '@pages/my/hooks/use-edit-profile';
 
 import * as styles from './edit-profile.css';
@@ -73,13 +73,10 @@ const EditProfile = () => {
       <DetailHeader title="프로필 편집" />
       <div className={styles.editProfileContainer}>
         <div className={styles.userInfo}>
-          <UserInfo
+          <UserEditInfo
             name={profileData.name}
             profileUrl={state.previewImgUrl || profileData.profileUrl}
-            showArrow={false}
-            showEditBtn
             onEditImage={triggerFileInput}
-            disableClick
           />
           <input
             type="file"
