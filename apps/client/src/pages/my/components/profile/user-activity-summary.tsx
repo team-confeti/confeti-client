@@ -1,3 +1,4 @@
+import { Tooltip } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './user-activity-summary.css';
@@ -17,7 +18,14 @@ const UserActivitySummary = ({
     <section className={styles.wrapper}>
       <div className={styles.itemWrapper}>
         <div className={styles.itemTextWrapper}>
-          <Icon name="info" size="1.5rem" className={styles.infoIcon} />
+          <Tooltip trigger="click">
+            <Tooltip.Trigger asChild>
+              <Icon name="info" size="1.5rem" className={styles.infoIcon} />
+            </Tooltip.Trigger>
+            <Tooltip.Content className={styles.tooltipContent}>
+              타임테이블 + 셋리스트 등록 공연 (중복 제외)
+            </Tooltip.Content>
+          </Tooltip>
           <p>총 관람 공연</p>
         </div>
         <p className={styles.totalPerformanceCount}>
@@ -28,14 +36,14 @@ const UserActivitySummary = ({
         <p className={styles.itemText}>나의 타임테이블</p>
         <div className={styles.itemCountWrapper}>
           <p>{TimeTableCount} 개</p>
-          <Icon name="arrow-horizontal" size="2rem" color="gray400" />
+          <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
         </div>
       </div>
       <div className={styles.itemWrapper}>
         <p className={styles.itemText}>나의 셋리스트</p>
         <div className={styles.itemCountWrapper}>
           <p>{setListCount} 개</p>
-          <Icon name="arrow-horizontal" size="2rem" color="gray400" />
+          <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
         </div>
       </div>
     </section>

@@ -29,11 +29,14 @@ export const itemTextWrapper = style({
 export const itemCountWrapper = style({
   ...themeVars.display.flexAlignCenter,
   gap: '0.8rem',
-  color: themeVars.color.gray600,
+  cursor: 'pointer',
 });
 
 export const infoIcon = style({
+  display: 'flex',
+  alignItems: 'center',
   cursor: 'pointer',
+  marginTop: '0.1rem',
 });
 
 export const itemText = style({
@@ -41,9 +44,10 @@ export const itemText = style({
 });
 
 export const totalPerformanceCount = style({
-  marginRight: '2.75rem',
+  marginRight: '2.5rem',
 });
 
-export const totalPerformanceText = style({
-  marginRight: '2.75rem',
+export const tooltipContent = style({
+  marginLeft: '-2rem',
+  marginBottom: '0.6rem',
 });
