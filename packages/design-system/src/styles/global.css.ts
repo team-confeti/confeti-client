@@ -21,6 +21,8 @@ globalStyle('html, body', {
   fontSize: '62.5%',
   scrollbarWidth: 'none',
   scrollBehavior: 'smooth',
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
 });
 
 /* Scrollbar Hide */
