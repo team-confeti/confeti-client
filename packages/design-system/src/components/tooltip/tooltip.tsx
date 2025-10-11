@@ -181,7 +181,7 @@ const TooltipContent = ({ className, children }: TooltipContentProps) => {
   } = useTooltipContext();
   const shouldShow = trigger === 'none' || isOpen;
 
-  const handleAnimationEnd = (e: React.AnimationEvent) => {
+  const handleAnimationEnd = () => {
     if (isClosing) {
       setIsOpen(false);
       setIsClosing(false);
