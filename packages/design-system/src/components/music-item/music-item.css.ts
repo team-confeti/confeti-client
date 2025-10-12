@@ -150,6 +150,10 @@ export const player = style({
   borderRadius: '200px',
 });
 
+export const playerTransparent = style({
+  background: 'transparent',
+});
+
 export const progressSvg = style({
   position: 'absolute',
   inset: '-1.5px',

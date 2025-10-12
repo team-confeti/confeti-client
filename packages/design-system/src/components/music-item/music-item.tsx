@@ -1,6 +1,8 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
 
 import * as styles from './music-item.css';
@@ -124,7 +126,12 @@ const MusicItem = ({
           <p className={styles.artist({ appearance })}>{artist}</p>
         </div>
       </div>
-      <div className={styles.player}>
+      <div
+        className={cn(
+          styles.player,
+          variant !== 'default' && styles.playerTransparent,
+        )}
+      >
         <svg className={styles.progressSvg} viewBox="0 0 44 44" aria-hidden>
           <circle
             className={styles.progressCircle}
