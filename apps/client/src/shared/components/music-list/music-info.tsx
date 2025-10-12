@@ -5,9 +5,19 @@ import * as styles from './music-info.css';
 
 interface MusicInfoProps {
   title: string;
+  total?: number;
+  current?: number;
+  onDotClick?: (index: number) => void;
 }
 
-const MusicInfo = ({ title }: MusicInfoProps) => {
+const MusicInfo = ({
+  title,
+  total = 2,
+  current = 0,
+  onDotClick,
+}: MusicInfoProps) => {
+  const showDots = total > 1;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -20,8 +30,9 @@ const MusicInfo = ({ title }: MusicInfoProps) => {
           </div>
         </div>
       </div>
-
-      <DotIndicator total={3} current={0} />
+      {showDots && (
+        <DotIndicator total={total} current={current} onDotClick={onDotClick} />
+      )}
     </div>
   );
 };
