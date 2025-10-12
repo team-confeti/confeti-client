@@ -4,6 +4,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { Icon } from '../../icons';
 
 import * as styles from './music-item.css';
+import { CIRC } from './music-item.css';
 
 interface Props {
   musicId: string;
@@ -12,6 +13,7 @@ interface Props {
   title: string;
   artist: string;
   isPlaying?: boolean;
+  progress?: number;
   onClickPlayToggle?: () => void;
   onClickDelete?: () => void;
   onClickAdd?: () => void;
@@ -25,6 +27,7 @@ const MusicItem = ({
   title,
   artist,
   isPlaying = false,
+  progress = 0,
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
@@ -122,7 +125,16 @@ const MusicItem = ({
         </div>
       </div>
       <div className={styles.player}>
-        <div className={styles.rightIcon}>{renderControlButton()}</div>
+        <svg className={styles.progressSvg} viewBox="0 0 44 44" aria-hidden>
+          <circle
+            className={styles.progressCircle}
+            cx="22"
+            cy="22"
+            r="21"
+            style={{ strokeDashoffset: CIRC * (1 - progress) }}
+          />
+        </svg>
+        <div>{renderControlButton()}</div>
       </div>
     </div>
   );

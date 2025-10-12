@@ -141,11 +141,28 @@ export const artist = recipe({
 });
 
 export const player = style({
-  ...themeVars.display.flexJustifyAlignCenter,
+  position: 'relative',
+  display: 'grid',
+  placeItems: 'center',
   width: '4rem',
   height: '4rem',
   backgroundColor: themeVars.color.gray700,
   borderRadius: '200px',
 });
 
-export const rightIcon = style({});
+export const progressSvg = style({
+  position: 'absolute',
+  inset: '-1.5px',
+  transform: 'rotate(-90deg)',
+  pointerEvents: 'none',
+});
+
+export const CIRC = 131.947 as const;
+
+export const progressCircle = style({
+  fill: 'none',
+  stroke: themeVars.color.confeti_lime,
+  strokeWidth: 1,
+  strokeDasharray: `${CIRC}`,
+  strokeDashoffset: `${CIRC}`,
+});

@@ -11,6 +11,7 @@ interface Music {
   trackName: string;
   artistName: string;
   isPlaying?: boolean;
+  progress?: number;
 }
 
 interface MusicListProps {
@@ -50,6 +51,7 @@ const MusicList = ({
               title={music.trackName}
               artist={music.artistName}
               isPlaying={music.isPlaying}
+              progress={music.progress}
               variant={variant}
               onClickPlayToggle={() => onClickPlayToggle?.(music.musicId)}
               onClickDelete={() => onClickDelete?.(music.musicId)}
