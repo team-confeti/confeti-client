@@ -129,7 +129,7 @@ const MusicItem = ({
       <div
         className={cn(
           styles.player,
-          variant !== 'default' && styles.playerTransparent,
+          variant !== 'default' ? styles.playerTransparent : undefined,
         )}
       >
         <svg className={styles.progressSvg} viewBox="0 0 44 44" aria-hidden>
