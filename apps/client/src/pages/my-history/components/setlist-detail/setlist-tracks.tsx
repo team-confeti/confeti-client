@@ -88,7 +88,7 @@ const SetListTracks = ({
 
   useEditCancelOnLeave(isEditMode, () => cancelEditSetlist(setlistId));
 
-  const { musicList, onClickPlayToggle, audioRef } =
+  const { musicList, onClickPlayToggle, audioRef, audioEvents } =
     useMusicPlayer(localTracks);
 
   const removeTrackFromLocal = (musicId: string) => {
@@ -164,7 +164,15 @@ const SetListTracks = ({
         </SortableContext>
       </DndContext>
 
-      <audio ref={audioRef} />
+      <audio
+        ref={audioRef}
+        onLoadedMetadata={audioEvents.onLoadedMetadata}
+        onTimeUpdate={audioEvents.onTimeUpdate}
+        onSeeked={audioEvents.onSeeked}
+        onPlay={audioEvents.onPlay}
+        onPause={audioEvents.onPause}
+        onEnded={audioEvents.onEnded}
+      />
 
       <Dialog open={dialogOpen} handleClose={() => setDialogOpen(false)}>
         <Dialog.Content>

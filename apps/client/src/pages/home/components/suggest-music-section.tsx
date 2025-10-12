@@ -21,9 +21,8 @@ const SuggestMusicSection = ({
     ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
   });
 
-  const { musicList, onClickPlayToggle, audioRef } = useMusicPlayer(
-    suggestMusic?.musics ?? [],
-  );
+  const { musicList, onClickPlayToggle, audioRef, audioEvents } =
+    useMusicPlayer(suggestMusic?.musics ?? []);
 
   return (
     <Box
@@ -40,7 +39,15 @@ const SuggestMusicSection = ({
           isPending={isPending}
           skeletonCount={3}
         />
-        <audio ref={audioRef} />
+        <audio
+          ref={audioRef}
+          onLoadedMetadata={audioEvents.onLoadedMetadata}
+          onTimeUpdate={audioEvents.onTimeUpdate}
+          onSeeked={audioEvents.onSeeked}
+          onPlay={audioEvents.onPlay}
+          onPause={audioEvents.onPause}
+          onEnded={audioEvents.onEnded}
+        />
       </div>
     </Box>
   );

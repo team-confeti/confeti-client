@@ -165,4 +165,5 @@ export const progressCircle = style({
   strokeWidth: 1,
   strokeDasharray: `${CIRC}`,
   strokeDashoffset: `${CIRC}`,
+  transition: 'stroke-dashoffset 0.25s linear',
 });

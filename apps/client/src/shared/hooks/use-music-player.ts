@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { musics } from '@shared/types/home-response';
 
@@ -13,7 +13,7 @@ export const useMusicPlayer = (data: musics[]) => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.pause();
-    // audio.currentTime = 0;
+    audio.currentTime = 0;
     setCurrentPlayingId(null);
     setIsAudioPlaying(false);
     setCurrentTime(0);
@@ -36,54 +36,36 @@ export const useMusicPlayer = (data: musics[]) => {
     setCurrentPlayingId(musicId);
   };
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const onLoadedMetadata = () => {
-      const d = Number.isFinite(audio.duration) ? audio.duration : 30;
-      setDuration(d);
-    };
-
-    const onTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    const onSeeked = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    const onPlay = () => {
-      setIsAudioPlaying(true);
-    };
-
-    const onPause = () => {
-      setIsAudioPlaying(false);
-      // setCurrentPlayingId(null);
-    };
-
-    const onEnded = () => {
-      setCurrentPlayingId(null);
-      setIsAudioPlaying(false);
-      setCurrentTime(0);
-    };
-
-    audio.addEventListener('loadedmetadata', onLoadedMetadata);
-    audio.addEventListener('timeupdate', onTimeUpdate);
-    audio.addEventListener('seeked', onSeeked);
-    audio.addEventListener('play', onPlay);
-    audio.addEventListener('pause', onPause);
-    audio.addEventListener('ended', onEnded);
-
-    return () => {
-      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
-      audio.removeEventListener('timeupdate', onTimeUpdate);
-      audio.removeEventListener('seeked', onSeeked);
-      audio.removeEventListener('play', onPlay);
-      audio.removeEventListener('pause', onPause);
-      audio.removeEventListener('ended', onEnded);
-    };
-  }, []);
+  const audioEvents = useMemo(
+    () => ({
+      onLoadedMetadata: () => {
+        const a = audioRef.current;
+        if (!a) return;
+        const d = Number.isFinite(a.duration) ? a.duration : 30;
+        setDuration(d);
+      },
+      onTimeUpdate: () => {
+        const a = audioRef.current;
+        if (!a) return;
+        setCurrentTime(a.currentTime);
+      },
+      onSeeked: () => {
+        const a = audioRef.current;
+        if (!a) return;
+        setCurrentTime(a.currentTime);
+      },
+      onPlay: () => {
+        setIsAudioPlaying(true);
+      },
+      onPause: () => {
+        stopAudio();
+      },
+      onEnded: () => {
+        stopAudio();
+      },
+    }),
+    [currentPlayingId],
+  );
 
   const progress = duration > 0 ? currentTime / duration : 0;
 
@@ -96,6 +78,7 @@ export const useMusicPlayer = (data: musics[]) => {
   return {
     musicList,
     audioRef,
+    audioEvents,
     onClickPlayToggle,
     stopAudio,
   };
