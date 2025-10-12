@@ -21,6 +21,7 @@ export const searchBarSection = style({
 
 export const avatarGridSection = style({
   width: '100%',
+  padding: '2rem 0 0 0 ',
   overflowY: 'scroll',
   display: 'grid',
   gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
