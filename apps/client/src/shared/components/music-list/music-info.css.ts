@@ -43,6 +43,8 @@ export const title = style({
 
 export const buttonSection = style({
   ...themeVars.display.flexAlignCenter,
+  width: 'fit-content',
+  cursor: 'pointer',
 });
 
 export const buttonText = style({

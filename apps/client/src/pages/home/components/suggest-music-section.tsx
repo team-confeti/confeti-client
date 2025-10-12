@@ -31,7 +31,7 @@ const SuggestMusicSection = ({
       subtitle="예상 셋리스트, 미리 한번 들어볼까요?"
     >
       <div ref={scrollRef}>
-        <MusicInfo />
+        <MusicInfo title={data.title} />
         <MusicList
           appearance="home"
           musics={musicList}
