@@ -22,6 +22,7 @@ export const searchBarSection = style({
 export const avatarGridSection = style({
   width: '100%',
   overflowY: 'scroll',
+  overflow: 'visible',
   display: 'grid',
   gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   rowGap: '2.6rem',

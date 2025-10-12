@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { motion } from 'motion/react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Button, Description, SearchBar } from '@confeti/design-system';
@@ -91,12 +92,14 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
       <div className={styles.avatarGridSection}>
         {artists.map((artist) => (
           <div key={artist.artistId} className={styles.avatar}>
-            <Avatar
-              size="xl"
-              src={artist.profileUrl}
-              alt={`${artist.name} 이미지`}
-              onClick={() => handleArtistClick(artist.artistId)}
-            />
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+              <Avatar
+                size="xl"
+                src={artist.profileUrl}
+                alt={`${artist.name} 이미지`}
+                onClick={() => handleArtistClick(artist.artistId)}
+              />
+            </motion.div>
             <p className={styles.artistName}>{artist.name}</p>
           </div>
         ))}
