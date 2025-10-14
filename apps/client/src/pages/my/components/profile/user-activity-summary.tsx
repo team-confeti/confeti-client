@@ -5,13 +5,13 @@ import * as styles from './user-activity-summary.css';
 
 interface Props {
   totalPerformanceCount: number;
-  TimeTableCount: number;
+  timetableCount: number;
   setListCount: number;
 }
 
 const UserActivitySummary = ({
   totalPerformanceCount,
-  TimeTableCount,
+  timetableCount,
   setListCount,
 }: Props) => {
   return (
@@ -29,20 +29,27 @@ const UserActivitySummary = ({
           <p>총 관람 공연</p>
         </div>
         <p className={styles.totalPerformanceCount}>
-          {totalPerformanceCount} 회
+          {totalPerformanceCount}
+          <span className={styles.countGap}>회</span>
         </p>
       </div>
       <div className={styles.itemWrapper}>
         <p className={styles.itemText}>나의 타임테이블</p>
         <div className={styles.itemCountWrapper}>
-          <p>{TimeTableCount} 개</p>
+          <p>
+            {timetableCount}
+            <span className={styles.countGap}>개</span>
+          </p>
           <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
         </div>
       </div>
       <div className={styles.itemWrapper}>
         <p className={styles.itemText}>나의 셋리스트</p>
         <div className={styles.itemCountWrapper}>
-          <p>{setListCount} 개</p>
+          <p>
+            {setListCount}
+            <span className={styles.countGap}>개</span>
+          </p>
           <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
         </div>
       </div>

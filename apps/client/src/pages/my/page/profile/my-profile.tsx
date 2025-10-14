@@ -51,7 +51,7 @@ const MyProfile = () => {
       {/* TODO: v2 API 연동 후 수정 */}
       <UserActivitySummary
         totalPerformanceCount={3}
-        TimeTableCount={3}
+        timetableCount={3}
         setListCount={3}
       />
       <Spacing size="md" color="gray" />

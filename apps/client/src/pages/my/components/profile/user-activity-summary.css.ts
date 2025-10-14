@@ -32,6 +32,10 @@ export const itemCountWrapper = style({
   cursor: 'pointer',
 });
 
+export const countGap = style({
+  marginLeft: '1px',
+});
+
 export const infoIcon = style({
   display: 'flex',
   alignItems: 'center',
