@@ -16,6 +16,8 @@ const imageUrls = [
   '/images/img_dday05.svg',
 ];
 
+type ColorVariant = 0 | 1 | 2 | 3 | 4;
+
 interface Props {
   userName: string | null;
   data: TicketingPerformances[];
@@ -62,7 +64,7 @@ const TicketOpeningSection = ({ userName, data }: Props) => {
   return (
     <div
       className={styles.ticketOpeningContainer({
-        colorVariant: (currentIndex % 5) as 0 | 1 | 2 | 3 | 4,
+        colorVariant: (currentIndex % 5) as ColorVariant,
       })}
     >
       <div className={styles.ticketOpeningBannerContainer}>
