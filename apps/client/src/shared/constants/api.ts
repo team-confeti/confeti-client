@@ -28,7 +28,6 @@ export const END_POINT = {
 
   // 마이페이지
   GET_USER_PROFILE: '/user/info',
-  GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
   GET_MY_ARTISTS: (sortBy: SortOption) =>
