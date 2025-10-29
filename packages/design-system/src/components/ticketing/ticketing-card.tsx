@@ -11,6 +11,7 @@ interface TicketingImageProps {
 
 interface TicketingDdayProps {
   reserveAt: string;
+  startTime: string;
 }
 
 interface TicketingSubtitleProps {
@@ -41,8 +42,14 @@ const Image = ({
   );
 };
 
-const Dday = ({ reserveAt }: TicketingDdayProps) => {
-  return <p className={styles.Dday}>{reserveAt}</p>;
+// TODO: 서버 응답에 맞춰서 변경
+const Dday = ({ reserveAt, startTime }: TicketingDdayProps) => {
+  return (
+    <div className={styles.ddayContainer}>
+      <p>{reserveAt}</p>
+      <p>{startTime}</p>
+    </div>
+  );
 };
 
 const Subtitle = ({ subtitle }: TicketingSubtitleProps) => {

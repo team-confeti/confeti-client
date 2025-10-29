@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache --fix",
     "lint:staged": "lint-staged",
     "prepare": "husky",
+    "storybook": "pnpm --filter @confeti/design-system run storybook",
     "build-storybook": "pnpm --filter @confeti/design-system run build-storybook"
   },
   "lint-staged": {

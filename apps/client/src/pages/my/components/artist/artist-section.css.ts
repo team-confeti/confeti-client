@@ -6,5 +6,5 @@ export const container = style({
   justifyItems: 'center',
   alignItems: 'center',
   gap: '3.2rem',
-  margin: '0.8rem 0 0rem 0',
+  marginTop: '3.2rem',
 });

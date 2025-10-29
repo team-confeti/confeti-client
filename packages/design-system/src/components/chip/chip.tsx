@@ -3,21 +3,28 @@ import { Icon } from '../../icons';
 import { chipVariants } from './chip.css';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
-  variant?: 'default' | 'active' | 'withDelete';
+  variant: 'choice' | 'input' | 'assist';
+  selected?: boolean;
+  children: React.ReactNode;
   onDelete?: () => void;
 }
 
-const Chip = ({ label, variant = 'default', onDelete, ...props }: Props) => {
+const Chip = ({ variant, selected, children, onDelete, ...props }: Props) => {
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.();
   };
 
   return (
-    <button className={chipVariants({ variant })} {...props}>
-      {label}
-      {variant === 'withDelete' && (
+    <button
+      className={chipVariants({
+        variant,
+        selected: !!selected,
+      })}
+      {...props}
+    >
+      {children}
+      {variant === 'input' && (
         <Icon
           name="close"
           size="1.3rem"
