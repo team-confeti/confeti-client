@@ -18,9 +18,9 @@ import { buildPath } from '@shared/utils/build-path';
 import CountDisplay from '@pages/my-history/components/overview/count-display';
 import OrderByButton from '@pages/my-history/components/overview/order-by-button';
 
-import * as styles from './my-history-overview-page.css';
+import * as styles from './my-overview-page.css';
 
-const MyHistoryOverviewPage = () => {
+const MyOverviewPage = () => {
   //TODO: FestivalCard에 Skeleton 추가
   const [sortOption, setSortOption] = useState<SortOption>(SORT_OPTIONS.RECENT);
   const [searchParams] = useSearchParams();
@@ -52,9 +52,7 @@ const MyHistoryOverviewPage = () => {
   };
 
   const handleNavigateToDetail = (setlistId: number) => {
-    navigate(
-      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, { setlistId }),
-    );
+    navigate(buildPath(routePath.MY_SETLIST_DETAIL_ABSOLUTE, { setlistId }));
   };
 
   const handleNavigateToTimeTable = () => {
@@ -96,4 +94,4 @@ const MyHistoryOverviewPage = () => {
   );
 };
 
-export default MyHistoryOverviewPage;
+export default MyOverviewPage;
