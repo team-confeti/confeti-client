@@ -15,7 +15,9 @@ const MyHistoryPage = () => {
 
   return (
     <>
-      {isNavShow && <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />}
+      {isNavShow && (
+        <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} theme="white" />
+      )}
       <Outlet />
     </>
   );
