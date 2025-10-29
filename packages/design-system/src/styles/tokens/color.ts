@@ -23,7 +23,8 @@ export const color = {
   confeti_purple: '#9747FF',
 
   // opacity
-  black_op: 'rgba(18, 18, 18, 0.5)',
+  black_op: 'rgba(18, 18, 18, 0.50)',
+  gray_op: 'rgba(115, 115, 115, 0.50)',
   white_op_20: 'rgba(255, 255, 255, 0.20)',
   white_op_30: 'rgba(255, 255, 255, 0.30)',
 
