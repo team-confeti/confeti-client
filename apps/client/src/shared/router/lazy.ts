@@ -21,9 +21,9 @@ export const DeleteAccountPage = lazy(
 
 // MyHistory
 
-export const MyRecordPage = lazy(
-  () => import('@pages/my-history/page/record/my-record'),
-);
+// export const MyRecordPage = lazy(
+//   () => import('@pages/my-history/page/record/my-record'),
+// );
 
 export const AddSetlistPage = lazy(
   () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
