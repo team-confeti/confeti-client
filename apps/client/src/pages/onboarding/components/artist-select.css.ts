@@ -19,6 +19,34 @@ export const searchBarSection = style({
   marginBottom: '2.4rem',
 });
 
+export const selectedArtistPriviewSection = style({
+  display: 'flex',
+  padding: '2rem 0',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+});
+
+export const selectedArtistPreview = style({
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%',
+  gap: '0',
+});
+
+export const selectedArtistList = style({
+  display: 'flex',
+  alignItems: 'center',
+  overflowX: 'hidden',
+});
+
+export const selectedArtistItem = style({
+  selectors: {
+    '&:not(:first-child)': {
+      margin: '0 0 0 -1.6rem',
+    },
+  },
+});
+
 export const avatarGridSection = style({
   width: '100%',
   padding: '2rem 0 0 0 ',

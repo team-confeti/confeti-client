@@ -1,19 +1,27 @@
 import { useState } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { motion } from 'motion/react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Avatar, Button, Description, SearchBar } from '@confeti/design-system';
+import {
+  Avatar,
+  Button,
+  Description,
+  SearchBar,
+  toast,
+} from '@confeti/design-system';
+import { Icon } from '@confeti/design-system/icon';
 
-import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
+import {
+  ONBOARD_MUTATION_OPTIONS,
+  ONBOARD_QUERY_OPTIONS,
+} from '@shared/apis/onboard/queries';
+import { routePath } from '@shared/router/path';
 import { onboard } from '@shared/types/onboard-response';
 
 import { ONBOARD_LIMIT } from '../constants/limit';
-import {
-  useArtistRelatedArtist,
-  usePostAuthOnboarding,
-} from '../hooks/use-onboard-mutation';
 import ArtistSearch from './artist-search';
+import OnboardingChip from './onboarding-chip';
 
 import * as styles from './artist-select.css';
 
@@ -22,22 +30,29 @@ interface ArtistSelectProps {
 }
 
 const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
-  const { data: topArtistData } = useSuspenseQuery({
-    ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
-  });
-  const { mutate: mutateRelateArtist } = useArtistRelatedArtist();
-  const { mutate: mutateAuthOnboard } = usePostAuthOnboarding();
-
-  if (!topArtistData) {
-    throw new Error(
-      '온보딩 페이지에서 TOP 아티스트 데이터를 불러오지 못했습니다.',
-    );
-  }
-
-  const [artists, setArtists] = useState<onboard[]>(topArtistData.artists);
+  const navigate = useNavigate();
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
+
+  const { data: topArtistData } = useSuspenseQuery({
+    ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
+  });
+  const { data: selectedArtistData, refetch: refetchSelectedArtist } =
+    useSuspenseQuery({
+      ...ONBOARD_QUERY_OPTIONS.SELECTED_ARTIST(),
+    });
+  const [artists, setArtists] = useState<onboard[]>(topArtistData.artists);
+
+  const { mutate: mutateRelatedArtist } = useMutation({
+    ...ONBOARD_MUTATION_OPTIONS.ARTIST_RELATED_ARTIST(
+      '',
+      ONBOARD_LIMIT.RELATED_ARTIST,
+    ),
+  });
+  const { mutate: mutateAuthOnboard } = useMutation({
+    ...ONBOARD_MUTATION_OPTIONS.AUTH_ONBOARD(),
+  });
 
   const handleSearchBarFocus = () => {
     setSearchParams({ search: 'true' });
@@ -52,19 +67,30 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
       prev.includes(artistId) ? prev : [...prev, artistId],
     );
 
-    mutateRelateArtist(
+    mutateRelatedArtist(
       { artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST },
       {
         onSuccess: (data) => {
           setArtists(data.data.artists);
+          refetchSelectedArtist();
         },
       },
     );
   };
 
   const handleNextClick = () => {
-    mutateAuthOnboard(selectedArtistIds);
-    setStep(1);
+    mutateAuthOnboard(selectedArtistIds, {
+      onSuccess: () => {
+        setStep(1);
+      },
+      onError: () => {
+        toast({
+          text: '온보딩 처리 중 오류가 발생했어요. 다시 시도해주세요.',
+          icon: <Icon name="warning" size="2rem" color="confeti_red" />,
+        });
+        navigate(routePath.ROOT);
+      },
+    });
   };
 
   return (
@@ -86,6 +112,32 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
               placeholder="아티스트를 검색해주세요!"
               onFocus={handleSearchBarFocus}
             />
+          </div>
+          <div className={styles.selectedArtistPriviewSection}>
+            <div className={styles.selectedArtistPreview}>
+              <div className={styles.selectedArtistList}>
+                {selectedArtistData.data.artists.map((artist) => (
+                  <div
+                    key={artist.artistId}
+                    className={styles.selectedArtistItem}
+                  >
+                    <Avatar
+                      size="sesm"
+                      src={artist.profileUrl}
+                      alt={`${artist.name} 이미지`}
+                      isHandleClick={false}
+                    />
+                  </div>
+                ))}
+              </div>
+              {selectedArtistData.data.artists.length > 0 && (
+                <div className={styles.selectedArtistItem}>
+                  <OnboardingChip
+                    count={selectedArtistData.data.artists.length}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           <div className={styles.avatarGridSection}>
             {artists.map((artist) => (
