@@ -33,10 +33,6 @@ const meta: Meta<typeof Toggle> = {
       description: '상태 변경 시 호출되는 콜백 함수',
       table: { disable: true },
     },
-    className: {
-      control: { type: 'text' },
-      description: '추가 CSS 클래스명',
-    },
   },
   args: {
     checked: false,
