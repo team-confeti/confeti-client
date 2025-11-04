@@ -11,7 +11,16 @@ export const item = style({
   display: 'flex',
   gap: '1.2rem',
   alignItems: 'center',
+  justifyContent: 'space-between',
   padding: '1.6rem 0',
+  cursor: 'pointer',
+});
+
+export const itemContent = style({
+  display: 'flex',
+  gap: '1.2rem',
+  alignItems: 'center',
+  flex: 1,
 });
 
 export const avatar = style({
@@ -40,4 +49,16 @@ export const title = style({
   display: '-webkit-box',
   WebkitLineClamp: 2,
   WebkitBoxOrient: 'vertical',
+});
+
+export const content = style({
+  flex: 1,
+});
+
+export const checkbox = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  cursor: 'pointer',
 });
