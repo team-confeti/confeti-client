@@ -40,7 +40,6 @@ const MOCK_TIMETABLES = [
 
 export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [timetables, setTimetables] = useState(MOCK_TIMETABLES);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const handleEditModeToggle = () => {
@@ -52,6 +51,8 @@ export const TimetableContent = () => {
 
   const handleDelete = () => {
     // TODO: 선택된 항목 삭제 API 연동
+    // TODO: 삭제확인 모달 추가
+    console.log(selectedIds);
     setIsEditMode(false);
     setSelectedIds([]);
   };
@@ -71,14 +72,14 @@ export const TimetableContent = () => {
   return (
     <div>
       <TimetableListHeader
-        totalCount={timetables.length}
+        totalCount={MOCK_TIMETABLES.length}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
         onEditModeToggle={handleEditModeToggle}
         onDelete={handleDelete}
       />
       <TimetableList>
-        {timetables.map((timetable) => (
+        {MOCK_TIMETABLES.map((timetable) => (
           <TimetableList.Item
             key={timetable.id}
             timetable={timetable}

@@ -10,15 +10,15 @@ interface TimetableItem {
   dDay: string;
 }
 
-interface TimetableListProps {
+interface TimetableListRootProps {
   children: React.ReactNode;
 }
 
-const TimetableListRoot = ({ children }: TimetableListProps) => {
+const TimetableListRoot = ({ children }: TimetableListRootProps) => {
   return <ul className={styles.wrapper}>{children}</ul>;
 };
 
-interface ItemProps {
+interface TimetableListItemProps {
   timetable: TimetableItem;
   onClick?: () => void;
 }
@@ -27,7 +27,7 @@ const TimetableListItem = ({
   timetable,
   onClick,
   children,
-}: ItemProps & { children?: React.ReactNode }) => {
+}: TimetableListItemProps & { children?: React.ReactNode }) => {
   return (
     <li className={styles.item} onClick={onClick}>
       <div className={styles.itemContent}>
@@ -43,7 +43,7 @@ const TimetableListItem = ({
           <Chip className={styles.chip} variant="assist">
             {timetable.dDay}
           </Chip>
-          <h2 className={styles.title}>{timetable.title}</h2>
+          <p className={styles.title}>{timetable.title}</p>
         </div>
       </div>
       {children}
@@ -51,12 +51,15 @@ const TimetableListItem = ({
   );
 };
 
-interface CheckboxProps {
+interface TimetableListCheckboxProps {
   checked: boolean;
   onChange: () => void;
 }
 
-const TimetableListCheckbox = ({ checked, onChange }: CheckboxProps) => {
+const TimetableListCheckbox = ({
+  checked,
+  onChange,
+}: TimetableListCheckboxProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onChange();
