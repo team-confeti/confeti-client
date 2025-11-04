@@ -9,6 +9,7 @@ import { MyPerformancesResponse } from '@shared/types/user-response';
 
 import * as styles from './performance-list.css';
 
+// TODO: widgets 레벨로 분리하기. 좋아요 버튼까지 분리해서 조합해서 사용 가능하도록 설계
 const PerformanceList = ({ performances }: MyPerformancesResponse) => {
   const navigateToDetail = useNavigateToDetail();
   const { mutate } = useLikeMutation();
