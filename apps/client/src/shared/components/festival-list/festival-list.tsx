@@ -1,39 +1,39 @@
 import { Avatar, Chip } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import * as styles from './timetable-list.css';
+import * as styles from './festival-list.css';
 
-interface TimetableItem {
+interface FestivalItem {
   id: number;
   posterUrl: string;
   title: string;
   dDay: string;
 }
 
-interface TimetableListRootProps {
+interface FestivalListRootProps {
   children: React.ReactNode;
 }
 
-const TimetableListRoot = ({ children }: TimetableListRootProps) => {
+const FestivalListRoot = ({ children }: FestivalListRootProps) => {
   return <ul className={styles.wrapper}>{children}</ul>;
 };
 
-interface TimetableListItemProps {
-  timetable: TimetableItem;
+interface FestivalListItemProps {
+  festival: FestivalItem;
   onClick?: () => void;
 }
 
-const TimetableListItem = ({
-  timetable,
+const FestivalListItem = ({
+  festival,
   onClick,
   children,
-}: TimetableListItemProps & { children?: React.ReactNode }) => {
+}: FestivalListItemProps & { children?: React.ReactNode }) => {
   return (
     <li className={styles.item} onClick={onClick}>
       <div className={styles.itemContent}>
         <Avatar
-          src={timetable.posterUrl}
-          alt={timetable.title}
+          src={festival.posterUrl}
+          alt={festival.title}
           size="md"
           isHandleClick={false}
           className={styles.avatar}
@@ -41,9 +41,9 @@ const TimetableListItem = ({
         <div className={styles.content}>
           {/* TODO: 실제 Chip로직에 맞게 수정 */}
           <Chip className={styles.chip} variant="assist">
-            {timetable.dDay}
+            {festival.dDay}
           </Chip>
-          <p className={styles.title}>{timetable.title}</p>
+          <p className={styles.title}>{festival.title}</p>
         </div>
       </div>
       {children}
@@ -51,15 +51,15 @@ const TimetableListItem = ({
   );
 };
 
-interface TimetableListCheckboxProps {
+interface FestivalListCheckboxProps {
   checked: boolean;
   onChange: () => void;
 }
 
-const TimetableListCheckbox = ({
+const FestivalListCheckbox = ({
   checked,
   onChange,
-}: TimetableListCheckboxProps) => {
+}: FestivalListCheckboxProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onChange();
@@ -76,7 +76,7 @@ const TimetableListCheckbox = ({
   );
 };
 
-export const TimetableList = Object.assign(TimetableListRoot, {
-  Item: TimetableListItem,
-  Checkbox: TimetableListCheckbox,
+export const FestivalList = Object.assign(FestivalListRoot, {
+  Item: FestivalListItem,
+  Checkbox: FestivalListCheckbox,
 });

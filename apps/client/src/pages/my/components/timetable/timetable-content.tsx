@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { TimetableList } from '@shared/components/timetable-list/timetable-list';
+import { FestivalList } from '@shared/components/festival-list/festival-list';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
 
 // TODO: API 연동 후 실제 데이터로 교체
-const MOCK_TIMETABLES = [
+const MOCK_FESTIVALS = [
   {
     id: 1,
     posterUrl: 'https://picsum.photos/200/200?random=1',
@@ -70,30 +70,30 @@ export const TimetableContent = () => {
   };
 
   return (
-    <div>
+    <article>
       <TimetableListHeader
-        totalCount={MOCK_TIMETABLES.length}
+        totalCount={MOCK_FESTIVALS.length}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
         onEditModeToggle={handleEditModeToggle}
         onDelete={handleDelete}
       />
-      <TimetableList>
-        {MOCK_TIMETABLES.map((timetable) => (
-          <TimetableList.Item
-            key={timetable.id}
-            timetable={timetable}
-            onClick={() => handleItemClick(timetable.id)}
+      <FestivalList>
+        {MOCK_FESTIVALS.map((festival) => (
+          <FestivalList.Item
+            key={festival.id}
+            festival={festival}
+            onClick={() => handleItemClick(festival.id)}
           >
             {isEditMode && (
-              <TimetableList.Checkbox
-                checked={selectedIds.includes(timetable.id)}
-                onChange={() => toggleSelection(timetable.id)}
+              <FestivalList.Checkbox
+                checked={selectedIds.includes(festival.id)}
+                onChange={() => toggleSelection(festival.id)}
               />
             )}
-          </TimetableList.Item>
+          </FestivalList.Item>
         ))}
-      </TimetableList>
-    </div>
+      </FestivalList>
+    </article>
   );
 };
