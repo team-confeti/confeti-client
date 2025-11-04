@@ -21,6 +21,7 @@ export const chipList = style({
   gap: '0.5rem',
 });
 
+// TODO: DS Chip 컴포넌트 재설계 해보자
 export const chip = style({
   ...themeVars.fontStyles.body5_m_12,
   padding: '0.8rem 1.4rem',
