@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { FestivalList } from '@shared/components/festival-list/festival-list';
+import { FestivalList } from '@shared/components';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
 
