@@ -25,4 +25,5 @@ export { default as ProgressBar } from './ticketing/progress-bar/progress-bar';
 export { default as TicketingCard } from './ticketing/ticketing-card';
 export { default as ToastContainer } from './toast/toast-container';
 export { toast } from './toast/utils/toast';
+export { default as Toggle } from './toggle/toggle';
 export { default as Tooltip } from './tooltip/tooltip';
