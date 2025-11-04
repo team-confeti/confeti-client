@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeVars } from '@confeti/design-system/styles';
+
 export const container = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
@@ -8,8 +10,19 @@ export const container = style({
   gridRowGap: '3rem',
 });
 
+export const filterSection = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '1.6rem 2rem',
+});
+
 export const chipList = style({
   display: 'flex',
-  gap: '1rem',
-  padding: '1.6rem 2rem',
+  gap: '0.5rem',
+});
+
+export const chip = style({
+  ...themeVars.fontStyles.body5_m_12,
+  padding: '0.8rem 1.4rem',
+  height: '3rem',
 });
