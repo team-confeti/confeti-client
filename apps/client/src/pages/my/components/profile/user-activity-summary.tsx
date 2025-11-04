@@ -1,5 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Tooltip } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+
+import { routePath } from '@shared/router/path';
 
 import * as styles from './user-activity-summary.css';
 
@@ -14,6 +18,12 @@ const UserActivitySummary = ({
   timetableCount,
   setListCount,
 }: Props) => {
+  const navigate = useNavigate();
+
+  const handleTimetableClick = () => {
+    navigate(`${routePath.MY}/${routePath.MY_TIMETABLE}`);
+  };
+
   return (
     <section className={styles.wrapper}>
       <div className={styles.itemWrapper}>
@@ -33,7 +43,7 @@ const UserActivitySummary = ({
           <span className={styles.countGap}>회</span>
         </p>
       </div>
-      <div className={styles.itemWrapper}>
+      <div className={styles.itemWrapper} onClick={handleTimetableClick}>
         <p className={styles.itemText}>나의 타임테이블</p>
         <div className={styles.itemCountWrapper}>
           <p>
