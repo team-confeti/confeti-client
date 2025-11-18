@@ -44,11 +44,7 @@ export const TimetableListHeader = ({
             <p>취소</p>
           </button>
           <button
-            className={
-              selectedCount > 0
-                ? styles.deleteButtonActive
-                : styles.deleteButton
-            }
+            className={styles.deleteButton({ isActive: selectedCount > 0 })}
             onClick={onDelete}
           >
             <p>삭제</p>

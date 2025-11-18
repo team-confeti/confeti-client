@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -35,14 +36,19 @@ export const cancelButton = style({
   color: themeVars.color.gray800,
 });
 
-export const deleteButton = style({
-  ...themeVars.fontStyles.subtitle4_b_14,
-  color: themeVars.color.gray400,
-});
-
-export const deleteButtonActive = style({
-  ...themeVars.fontStyles.subtitle4_b_14,
-  color: themeVars.color.confeti_lime3,
+export const deleteButton = recipe({
+  base: {
+    ...themeVars.fontStyles.subtitle4_b_14,
+  },
+  variants: {
+    isActive: {
+      true: { color: themeVars.color.confeti_lime3 },
+      false: { color: themeVars.color.gray400 },
+    },
+  },
+  defaultVariants: {
+    isActive: false,
+  },
 });
 
 export const editButton = style({
