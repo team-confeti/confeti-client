@@ -36,31 +36,6 @@ export const TimetableListHeader = ({
     );
   };
 
-  const renderButtons = () => {
-    if (isEditMode) {
-      return (
-        <div className={styles.buttons}>
-          <button className={styles.cancelButton} onClick={onEditModeToggle}>
-            <p>취소</p>
-          </button>
-          <button
-            className={styles.deleteButton({ isActive: selectedCount > 0 })}
-            onClick={onDelete}
-          >
-            <p>삭제</p>
-          </button>
-        </div>
-      );
-    }
-
-    return (
-      <button className={styles.editButton} onClick={onEditModeToggle}>
-        <Icon name="edit" size="1.6rem" />
-        <p>편집하기</p>
-      </button>
-    );
-  };
-
   return (
     <section className={styles.header}>
       <div className={styles.leftContent}>
@@ -70,7 +45,52 @@ export const TimetableListHeader = ({
           <Icon name="switch" size="1.6rem" />
         </button>
       </div>
-      <div className={styles.rightContent}>{renderButtons()}</div>
+      <div className={styles.rightContent}>
+        {isEditMode ? (
+          <EditModeButtons
+            selectedCount={selectedCount}
+            onCancel={onEditModeToggle}
+            onDelete={onDelete}
+          />
+        ) : (
+          <DefaultModeButton onEditModeToggle={onEditModeToggle} />
+        )}
+      </div>
     </section>
   );
 };
+
+interface EditModeButtonsProps {
+  selectedCount: number;
+  onCancel: () => void;
+  onDelete: () => void;
+}
+
+const EditModeButtons = ({
+  selectedCount,
+  onCancel,
+  onDelete,
+}: EditModeButtonsProps) => (
+  <div className={styles.buttons}>
+    <button className={styles.cancelButton} onClick={onCancel}>
+      <p>취소</p>
+    </button>
+    <button
+      className={styles.deleteButton({ isActive: selectedCount > 0 })}
+      onClick={onDelete}
+    >
+      <p>삭제</p>
+    </button>
+  </div>
+);
+
+interface DefaultModeButtonProps {
+  onEditModeToggle: () => void;
+}
+
+const DefaultModeButton = ({ onEditModeToggle }: DefaultModeButtonProps) => (
+  <button className={styles.editButton} onClick={onEditModeToggle}>
+    <Icon name="edit" size="1.6rem" />
+    <p>편집하기</p>
+  </button>
+);
