@@ -57,7 +57,7 @@ const AddSetlistPage = () => {
     setSelectedKeyword(keyword);
     setSelectedType(type);
     setSelectedId(id);
-    navigate(`/my-history/setlist/add-setlist?q=${keyword}`);
+    navigate(`/my/setlist/add-setlist?q=${keyword}`);
   };
 
   const { keyboardProps } = useKeyboard({

@@ -57,7 +57,7 @@ const PreviewSection = ({
   };
 
   const handleNavigateToDetail = (setlistId: number) => {
-    navigate(buildPath(routePath.MY_HISTORY_SETLIST_DETAIL, { setlistId }));
+    navigate(buildPath(routePath.MY_SETLIST_DETAIL, { setlistId }));
   };
 
   const handleNavigateToTimeTable = () => {

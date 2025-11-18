@@ -24,7 +24,7 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
   const { mutate: addPerformanceToSetList } = useMutation({
     ...SETLIST_MUTATION_OPTIONS.POST_ADD_PERFORMANCE_TO_SETLIST(),
     onSuccess: async () => {
-      navigate(routePath.MY_HISTORY);
+      navigate(routePath.MY);
     },
   });
 

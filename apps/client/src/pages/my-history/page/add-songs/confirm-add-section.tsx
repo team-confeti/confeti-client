@@ -32,7 +32,7 @@ const ConfirmAddSection = ({
     ...SETLIST_MUTATION_OPTIONS.POST_ADD_MUSIC_TO_SETLIST(),
     onSuccess: async () => {
       navigate(
-        buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, {
+        buildPath(routePath.MY_SETLIST_DETAIL_ABSOLUTE, {
           setlistId: setlistId ?? '',
         }),
       );

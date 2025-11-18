@@ -84,7 +84,7 @@ const SetListDetailPage = () => {
   };
 
   const handleClickAdd = () => {
-    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
+    navigate(buildPath(routePath.MY_ADD_SONGS_ABSOLUTE, { setlistId }));
   };
 
   return (
