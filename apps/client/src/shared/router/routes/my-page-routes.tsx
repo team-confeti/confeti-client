@@ -51,7 +51,7 @@ export const myPageRoutes = [
       },
       {
         path: routePath.MY_OVERVIEW,
-        element: <MyOverviewPage />,
+        element: createProtectedRoute(true, <MyOverviewPage />),
       },
       {
         path: routePath.MY_ADD_SETLIST,
