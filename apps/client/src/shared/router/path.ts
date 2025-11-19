@@ -16,11 +16,13 @@ export const routePath = {
   MY_DELETE_ACCOUNT: '/my/delete-account',
   MY_EDIT_PROFILE: 'edit-profile',
   MY_OVERVIEW: 'overview',
-  MY_ADD_SETLIST: 'setlist/add-setlist',
-  MY_ADD_SONGS: 'setlist/:setlistId/add-songs',
-  MY_SETLIST_DETAIL: 'setlist-detail/:setlistId',
   MY_SETLIST_DETAIL_ABSOLUTE: '/my/setlist-detail/:setlistId',
   MY_ADD_SONGS_ABSOLUTE: '/my/setlist/:setlistId/add-songs',
+
+  //Setlist
+  ADD_SETLIST: 'setlist/add-setlist',
+  ADD_SONGS: 'setlist/:setlistId/add-songs',
+  SETLIST_DETAIL: 'setlist-detail/:setlistId',
 
   // Search
   SEARCH: '/search',
