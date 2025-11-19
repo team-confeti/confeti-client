@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
 import { buildPath } from '@shared/utils/build-path';

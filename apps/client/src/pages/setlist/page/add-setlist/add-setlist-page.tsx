@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';

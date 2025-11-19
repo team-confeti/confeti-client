@@ -4,8 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FestivalCard } from '@confeti/design-system';
 
-import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/my-setlist-queries';
-import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my-history/my-timetable-queries';
+import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my/my-setlist-queries';
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
