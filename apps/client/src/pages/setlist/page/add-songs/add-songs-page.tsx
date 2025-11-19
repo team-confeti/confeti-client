@@ -15,8 +15,8 @@ import Loading from '@shared/pages/loading/loading';
 import { MusicInfoResponse } from '@shared/types/my-history-response';
 import { RelatedArtist } from '@shared/types/search-response';
 
-import ConfirmAddSection from '@pages/my-history/page/add-songs/confirm-add-section';
-import RelatedArtistList from '@pages/my-history/page/add-songs/related-artist-list';
+import ConfirmAddSection from './confirm-add-section';
+import RelatedArtistList from './related-artist-list';
 
 import * as styles from './add-songs-page.css';
 

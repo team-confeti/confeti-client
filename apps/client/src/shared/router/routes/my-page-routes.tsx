@@ -54,15 +54,15 @@ export const myPageRoutes = [
         element: createProtectedRoute(true, <MyOverviewPage />),
       },
       {
-        path: routePath.MY_ADD_SETLIST,
+        path: routePath.ADD_SETLIST,
         element: createProtectedRoute(true, <AddSetlistPage />),
       },
       {
-        path: routePath.MY_ADD_SONGS,
+        path: routePath.ADD_SONGS,
         element: createProtectedRoute(true, <AddSongsPage />),
       },
       {
-        path: routePath.MY_SETLIST_DETAIL,
+        path: routePath.SETLIST_DETAIL,
         element: createProtectedRoute(true, <SetlistDetailPage />),
       },
     ],
