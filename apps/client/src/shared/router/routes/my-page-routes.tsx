@@ -4,17 +4,15 @@ import MyPage from '@pages/my/page/my-page';
 import MyOverviewPage from '@pages/my/page/overview/my-overview-page';
 
 import {
-  AddSetlistPage,
-  AddSongsPage,
   DeleteAccountPage,
   MyArtistPage,
   MyConfetiPage,
   MyProfilePage,
-  SetlistDetailPage,
   SettingPage,
 } from '../lazy';
 import { routePath } from '../path';
 import { createProtectedRoute } from '../protected-route';
+import { setlistRoutes } from './setlist-routes';
 
 export const myPageRoutes = [
   {
@@ -53,18 +51,7 @@ export const myPageRoutes = [
         path: routePath.MY_OVERVIEW,
         element: createProtectedRoute(true, <MyOverviewPage />),
       },
-      {
-        path: routePath.ADD_SETLIST,
-        element: createProtectedRoute(true, <AddSetlistPage />),
-      },
-      {
-        path: routePath.ADD_SONGS,
-        element: createProtectedRoute(true, <AddSongsPage />),
-      },
-      {
-        path: routePath.SETLIST_DETAIL,
-        element: createProtectedRoute(true, <SetlistDetailPage />),
-      },
+      ...setlistRoutes,
     ],
   },
 ];
