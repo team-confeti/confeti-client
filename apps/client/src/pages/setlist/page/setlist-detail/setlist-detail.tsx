@@ -8,11 +8,11 @@ import { Footer, Hero } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
-import SetListHeader from '../../components/setlist-detail/setlist-detail-header';
-import SetListEmpty from '../../components/setlist-detail/setlist-empty';
+import SetListHeader from '@pages/setlist/components/setlist-detail/setlist-detail-header';
+import SetListEmpty from '@pages/setlist/components/setlist-detail/setlist-empty';
 import SetListTracks, {
   SetListTrack,
-} from '../../components/setlist-detail/setlist-tracks';
+} from '@pages/setlist/components/setlist-detail/setlist-tracks';
 
 const SetListDetailPage = () => {
   const editModeReducer = (

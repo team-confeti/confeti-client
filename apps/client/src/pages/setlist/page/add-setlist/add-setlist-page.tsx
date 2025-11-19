@@ -11,7 +11,7 @@ import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
 
-import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
+import SetlistPerformance from '@pages/setlist/components/add-setlist/setlist-performance';
 
 import * as styles from './add-setlist-page.css';
 

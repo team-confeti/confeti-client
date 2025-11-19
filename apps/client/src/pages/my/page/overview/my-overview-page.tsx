@@ -15,8 +15,8 @@ import {
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
-import CountDisplay from '@pages/my-history/components/overview/count-display';
-import OrderByButton from '@pages/my-history/components/overview/order-by-button';
+import CountDisplay from '@pages/my/components/overview/count-display';
+import OrderByButton from '@pages/my/components/overview/order-by-button';
 
 import * as styles from './my-overview-page.css';
 
