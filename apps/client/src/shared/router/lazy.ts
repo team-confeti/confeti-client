@@ -19,21 +19,17 @@ export const DeleteAccountPage = lazy(
   () => import('@pages/my/page/setting/delete-account'),
 );
 
-// MyHistory
-
-export const MyRecordPage = lazy(
-  () => import('@pages/my-history/page/record/my-record'),
-);
+// Setlist
 
 export const AddSetlistPage = lazy(
-  () => import('@pages/my-history/page/add-setlist/add-setlist-page'),
+  () => import('@pages/setlist/page/add-setlist/add-setlist-page'),
 );
 export const SetlistDetailPage = lazy(
-  () => import('@pages/my-history/page/setlist-detail/setlist-detail'),
+  () => import('@pages/setlist/page/setlist-detail/setlist-detail'),
 );
 
 export const AddSongsPage = lazy(
-  () => import('@pages/my-history/page/add-songs/add-songs-page'),
+  () => import('@pages/setlist/page/add-songs/add-songs-page'),
 );
 
 // Search

@@ -16,20 +16,11 @@ export const ProtectedRoute = ({
 
   if (protect && !getAccessToken()) {
     const { pathname } = location;
-    let redirectPath = '/my/require-login';
 
-    switch (true) {
-      case pathname.startsWith('/timetable'):
-        redirectPath = '/timetable/require-login';
-        break;
-      case pathname.startsWith('/my-history'):
-        redirectPath = '/my-history/require-login';
-        break;
-      default:
-        redirectPath = '/my/require-login';
+    if (pathname.startsWith('/timetable')) {
+      return <Navigate to="/timetable/require-login" replace />;
     }
-
-    return <Navigate to={redirectPath} replace />;
+    return <Navigate to="/my/require-login" replace />;
   }
 
   return children ? <>{children}</> : <Outlet />;

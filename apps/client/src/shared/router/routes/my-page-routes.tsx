@@ -2,6 +2,7 @@ import MyRequireLoginPage from '@pages/my/page/auth/require-login';
 import EditProfile from '@pages/my/page/edit/edit-profile';
 import MyPage from '@pages/my/page/my-page';
 import MyTimetable from '@pages/my/page/timetable/my-timetable';
+import MyOverviewPage from '@pages/my/page/overview/my-overview-page';
 
 import {
   DeleteAccountPage,
@@ -12,6 +13,7 @@ import {
 } from '../lazy';
 import { routePath } from '../path';
 import { createProtectedRoute } from '../protected-route';
+import { setlistRoutes } from './setlist-routes';
 
 export const myPageRoutes = [
   {
@@ -50,6 +52,11 @@ export const myPageRoutes = [
         path: routePath.MY_EDIT_PROFILE,
         element: createProtectedRoute(true, <EditProfile />),
       },
+      {
+        path: routePath.MY_OVERVIEW,
+        element: createProtectedRoute(true, <MyOverviewPage />),
+      },
+      ...setlistRoutes,
     ],
   },
 ];

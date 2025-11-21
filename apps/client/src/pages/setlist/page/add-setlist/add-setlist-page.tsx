@@ -4,14 +4,14 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 import { useKeyboard } from '@shared/hooks/use-keyboard';
 import Loading from '@shared/pages/loading/loading';
 
-import SetlistPerformance from '@pages/my-history/components/add-setlist/setlist-performance';
+import SetlistPerformance from '@pages/setlist/components/add-setlist/setlist-performance';
 
 import * as styles from './add-setlist-page.css';
 
@@ -57,7 +57,7 @@ const AddSetlistPage = () => {
     setSelectedKeyword(keyword);
     setSelectedType(type);
     setSelectedId(id);
-    navigate(`/my-history/setlist/add-setlist?q=${keyword}`);
+    navigate(`/my/setlist/add-setlist?q=${keyword}`);
   };
 
   const { keyboardProps } = useKeyboard({
