@@ -11,6 +11,7 @@ export const routePath = {
   MY: '/my',
   MY_ARTIST: 'artist',
   MY_CONFETI: 'confeti',
+  MY_TIMETABLE: 'timetable',
   MY_REQUIRE_LOGIN: 'require-login',
   MY_SETTING: 'setting',
   MY_DELETE_ACCOUNT: '/my/delete-account',

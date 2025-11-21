@@ -1,6 +1,7 @@
 import MyRequireLoginPage from '@pages/my/page/auth/require-login';
 import EditProfile from '@pages/my/page/edit/edit-profile';
 import MyPage from '@pages/my/page/my-page';
+import MyTimetable from '@pages/my/page/timetable/my-timetable';
 import MyOverviewPage from '@pages/my/page/overview/my-overview-page';
 
 import {
@@ -34,6 +35,10 @@ export const myPageRoutes = [
       {
         path: routePath.MY_CONFETI,
         element: createProtectedRoute(true, <MyConfetiPage />),
+      },
+      {
+        path: routePath.MY_TIMETABLE,
+        element: createProtectedRoute(true, <MyTimetable />),
       },
       {
         path: routePath.MY_SETTING,
