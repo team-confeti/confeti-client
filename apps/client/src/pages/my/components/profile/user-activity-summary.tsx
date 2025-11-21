@@ -34,7 +34,7 @@ const UserActivitySummary = ({
         </p>
       </div>
       <div className={styles.itemWrapper}>
-        <p className={styles.itemText}>나의 타임테이블</p>
+        <p className={styles.itemText}>타임테이블</p>
         <div className={styles.itemCountWrapper}>
           <p>
             {timetableCount}
@@ -44,7 +44,7 @@ const UserActivitySummary = ({
         </div>
       </div>
       <div className={styles.itemWrapper}>
-        <p className={styles.itemText}>나의 셋리스트</p>
+        <p className={styles.itemText}>셋리스트</p>
         <div className={styles.itemCountWrapper}>
           <p>
             {setListCount}

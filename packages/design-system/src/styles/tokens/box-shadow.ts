@@ -20,4 +20,7 @@ export const shadowStyles = {
   shadow_home_poster: {
     boxShadow: '0px 3px 6px 1px rgba(0, 0, 0, 0.25)',
   },
+  shadow_toggle: {
+    boxShadow: '0 2rem 4rem 0 rgba(0, 0, 0, 0.1)',
+  },
 };
