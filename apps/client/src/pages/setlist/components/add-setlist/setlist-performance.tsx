@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
 
@@ -24,7 +24,7 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
   const { mutate: addPerformanceToSetList } = useMutation({
     ...SETLIST_MUTATION_OPTIONS.POST_ADD_PERFORMANCE_TO_SETLIST(),
     onSuccess: async () => {
-      navigate(routePath.MY_HISTORY);
+      navigate(routePath.MY);
     },
   });
 

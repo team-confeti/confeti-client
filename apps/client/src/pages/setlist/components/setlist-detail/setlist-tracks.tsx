@@ -16,15 +16,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, Dialog } from '@confeti/design-system';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations.ts';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations.ts';
 import { MusicList } from '@shared/components';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
+import { useEditCancelOnLeave } from '../../../setlist/hooks/use-edit-cancel-on-leave.ts';
+import { usePreventScroll } from '../../../setlist/hooks/use-prevent-scroll.ts';
 import AddMusicButton from '../../components/setlist-detail/add-music-button';
-import { useEditCancelOnLeave } from '../../hooks/use-edit-cancel-on-leave';
-import { usePreventScroll } from '../../hooks/use-prevent-scroll.ts';
 
 import * as styles from './setlist-tracks.css';
 

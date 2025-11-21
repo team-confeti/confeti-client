@@ -2,17 +2,17 @@ import { useReducer, useState } from 'react';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/my-history/setlist-mutations';
-import { SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/setlist-queries';
+import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
+import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { Footer, Hero } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
-import SetListHeader from '../../components/setlist-detail/setlist-detail-header';
-import SetListEmpty from '../../components/setlist-detail/setlist-empty';
+import SetListHeader from '@pages/setlist/components/setlist-detail/setlist-detail-header';
+import SetListEmpty from '@pages/setlist/components/setlist-detail/setlist-empty';
 import SetListTracks, {
   SetListTrack,
-} from '../../components/setlist-detail/setlist-tracks';
+} from '@pages/setlist/components/setlist-detail/setlist-tracks';
 
 const SetListDetailPage = () => {
   const editModeReducer = (
@@ -84,7 +84,7 @@ const SetListDetailPage = () => {
   };
 
   const handleClickAdd = () => {
-    navigate(buildPath(routePath.MY_HISTORY_ADD_SONGS_ABSOLUTE, { setlistId }));
+    navigate(buildPath(routePath.MY_ADD_SONGS_ABSOLUTE, { setlistId }));
   };
 
   return (
