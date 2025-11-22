@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { motion } from 'motion/react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -17,7 +22,6 @@ import {
   ONBOARD_QUERY_OPTIONS,
 } from '@shared/apis/onboard/queries';
 import { routePath } from '@shared/router/path';
-import { onboard } from '@shared/types/onboard-response';
 
 import { ONBOARD_LIMIT } from '../constants/limit';
 import ArtistSearch from './artist-search';
@@ -32,24 +36,22 @@ interface ArtistSelectProps {
 const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
   const navigate = useNavigate();
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
+  const [targetArtistId, setTargetArtistId] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const isFocused = searchParams.get('search') === 'true';
 
-  const { data: topArtistData } = useSuspenseQuery({
-    ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(ONBOARD_LIMIT.TOP_ARTIST),
-  });
-  const { data: selectedArtistData, refetch: refetchSelectedArtist } =
-    useSuspenseQuery({
-      ...ONBOARD_QUERY_OPTIONS.SELECTED_ARTIST(),
-    });
-  const [artists, setArtists] = useState<onboard[]>(topArtistData.artists);
-
-  const { mutate: mutateRelatedArtist } = useMutation({
-    ...ONBOARD_MUTATION_OPTIONS.ARTIST_RELATED_ARTIST(
-      '',
-      ONBOARD_LIMIT.RELATED_ARTIST,
+  const { data: artistData } = useQuery({
+    ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(
+      ONBOARD_LIMIT.TOP_ARTIST,
+      targetArtistId,
     ),
+    placeholderData: keepPreviousData,
   });
+
+  const { data: selectedArtistData } = useSuspenseQuery({
+    ...ONBOARD_QUERY_OPTIONS.SELECTED_ARTIST(),
+  });
+
   const { mutate: mutateAuthOnboard } = useMutation({
     ...ONBOARD_MUTATION_OPTIONS.AUTH_ONBOARD(),
   });
@@ -62,20 +64,11 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
     setSearchParams({});
   };
 
-  const handleArtistClick = (artistId: string) => {
+  const handleArtistClick = async (artistId: string) => {
     setSelectedArtistIds((prev) =>
       prev.includes(artistId) ? prev : [...prev, artistId],
     );
-
-    mutateRelatedArtist(
-      { artistId, limit: ONBOARD_LIMIT.RELATED_ARTIST },
-      {
-        onSuccess: (data) => {
-          setArtists(data.data.artists);
-          refetchSelectedArtist();
-        },
-      },
-    );
+    setTargetArtistId(artistId);
   };
 
   const handleNextClick = () => {
@@ -140,7 +133,7 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
             </div>
           </div>
           <div className={styles.avatarGridSection}>
-            {artists.map((artist) => (
+            {artistData?.artists.map((artist) => (
               <div key={artist.artistId} className={styles.avatar}>
                 <motion.div
                   whileHover={{ scale: 1.1 }}

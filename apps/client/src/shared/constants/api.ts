@@ -89,12 +89,10 @@ export const END_POINT = {
   DELETE_ACCOUNT: '/auth/withdraw',
 
   //온보딩
-  GET_TOP100_ARTIST: (limit: number) =>
-    `/user/onboard/v4/artists?limit=${limit}`,
+  GET_ARTIST: (limit: number, artistId: string | null) =>
+    `/user/onboard/v4/artists?limit=${limit}&targerId=${artistId}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
-  GET_ARTIST_RELATED_ARTIST: (artistId: string, limit: number) =>
-    `/user/onboard/artists/${artistId}/related?limit=${limit}`,
   GET_ONBOARDING_STATUS: '/user/onboard/status',
   POST_AUTH_ONBOARD: '/user/onboard/v4',
   POST_SELECTED_ARTIST: (artistId: string) =>

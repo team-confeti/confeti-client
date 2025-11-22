@@ -19,10 +19,10 @@ export const ONBOARD_QUERY_OPTIONS = {
       queryKey: ONBOARD_QUERY_KEY.STATUS(),
       queryFn: () => getOnboardStatus(),
     }),
-  TOP_ARTIST: (limit: number) =>
+  TOP_ARTIST: (limit: number, artistId: string | null) =>
     queryOptions({
-      queryKey: ONBOARD_QUERY_KEY.TOP_ARTIST(limit),
-      queryFn: () => getTopArtist(limit),
+      queryKey: ONBOARD_QUERY_KEY.TOP_ARTIST(limit, artistId),
+      queryFn: () => getTopArtist(limit, artistId),
     }),
   ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) => ({
     queryKey: ONBOARD_QUERY_KEY.ARTIST_RELATED_KEYWORDS(keyword),
@@ -35,11 +35,6 @@ export const ONBOARD_QUERY_OPTIONS = {
 };
 
 export const ONBOARD_MUTATION_OPTIONS = {
-  ARTIST_RELATED_ARTIST: (artistId: string, limit: number) => ({
-    mutationKey: ONBOARD_MUTATION_KEY.ARTIST_RELATED_ARTIST(artistId),
-    mutationFn: ({ artistId, limit }: { artistId: string; limit: number }) =>
-      getArtistRelatedArtist(artistId, limit),
-  }),
   AUTH_ONBOARD: () => ({
     mutationKey: ONBOARD_MUTATION_KEY.AUTH_ONBOARD(),
     mutationFn: (favoriteArtists: string[]) =>
@@ -54,21 +49,14 @@ const getOnboardStatus = async (): Promise<onboardStatusResponse> => {
   return response.data;
 };
 
-const getTopArtist = async (limit: number): Promise<onboardResponse> => {
+const getTopArtist = async (
+  limit: number,
+  artistId: string | null,
+): Promise<onboardResponse> => {
   const response = await get<BaseResponse<onboardResponse>>(
-    END_POINT.GET_TOP100_ARTIST(limit),
+    END_POINT.GET_ARTIST(limit, artistId),
   );
   return response.data;
-};
-
-export const getArtistRelatedArtist = async (
-  artistId: string,
-  limit: number,
-): Promise<BaseResponse<onboardResponse>> => {
-  const response = await get<BaseResponse<onboardResponse>>(
-    END_POINT.GET_ARTIST_RELATED_ARTIST(artistId, limit),
-  );
-  return response;
 };
 
 const getArtistRelatedKeyword = async (

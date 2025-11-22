@@ -83,10 +83,11 @@ export const SEARCH_QUERY_KEY = {
 
 export const ONBOARD_QUERY_KEY = {
   ALL: ['onboard'],
-  TOP_ARTIST: (limit: number) => [
+  TOP_ARTIST: (limit: number, artistId: string | null) => [
     ...ONBOARD_QUERY_KEY.ALL,
     'top-artist',
     limit,
+    artistId,
   ],
   ARTIST_RELATED_KEYWORDS: (keyword: string) => [
     ...ONBOARD_QUERY_KEY.ALL,
