@@ -16,7 +16,7 @@ export const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
   });
 
   if (onboardingStatus?.onboardStatus === 'COMPLETED') {
-    // return <Navigate to={routePath.ROOT} replace />;
+    return <Navigate to={routePath.ROOT} replace />;
   }
 
   return children ? <>{children}</> : <Outlet />;
