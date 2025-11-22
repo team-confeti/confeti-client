@@ -3,7 +3,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -114,36 +114,50 @@ const ArtistSelectNestedSelect = ({
       </div>
       <div className={styles.selectedArtistPriviewSection}>
         <div className={styles.selectedArtistPreview}>
-          <div className={styles.selectedArtistList}>
-            <AnimatePresence mode="popLayout">
-              {selectedArtistData.data.artists.map((artist) => (
+          <LayoutGroup>
+            <div className={styles.selectedArtistList}>
+              <AnimatePresence>
+                {selectedArtistData.data.artists.map((artist) => (
+                  <motion.div
+                    key={artist.artistId}
+                    className={styles.selectedArtistItem}
+                    layout
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{
+                      duration: 0.3,
+                      layout: { duration: 0.4, ease: 'easeOut' },
+                    }}
+                  >
+                    <Avatar
+                      size="sesm"
+                      src={artist.profileUrl}
+                      alt={`${artist.name} 이미지`}
+                      isHandleClick={false}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+            <AnimatePresence>
+              {selectedArtistData.data.artists.length > 0 && (
                 <motion.div
-                  key={artist.artistId}
                   className={styles.selectedArtistItem}
                   layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.5 }}
-                  transition={{ duration: 0.25, ease: [1, 0, 1, 1] }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <Avatar
-                    size="sesm"
-                    src={artist.profileUrl}
-                    alt={`${artist.name} 이미지`}
-                    isHandleClick={false}
+                  <OnboardingChip
+                    onClick={onEditClick}
+                    count={selectedArtistData.data.artists.length}
                   />
                 </motion.div>
-              ))}
+              )}
             </AnimatePresence>
-          </div>
-          {selectedArtistData.data.artists.length > 0 && (
-            <div className={styles.selectedArtistItem}>
-              <OnboardingChip
-                onClick={onEditClick}
-                count={selectedArtistData.data.artists.length}
-              />
-            </div>
-          )}
+          </LayoutGroup>
         </div>
       </div>
       <div className={styles.avatarGridSection}>

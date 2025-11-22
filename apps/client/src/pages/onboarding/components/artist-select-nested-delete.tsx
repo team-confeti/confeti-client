@@ -82,7 +82,10 @@ const ArtistSelectNestedDelete = ({
       <div className={styles.confirmButtonWrapper}>
         <Button
           text="완료"
-          disabled={checkedIds.length === selectedArtistData.length}
+          disabled={
+            checkedIds.length === selectedArtistData.length &&
+            checkedIds.length > 1
+          }
           onClick={handleCompleteClick}
         />
       </div>
