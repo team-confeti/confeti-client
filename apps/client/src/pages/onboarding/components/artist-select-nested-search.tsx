@@ -7,13 +7,18 @@ import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
 
 import { ONBOARD_LIMIT } from '../constants/limit';
 
-import * as styles from './artist-search.css';
+import * as searchStyles from './artist-search.css';
+import * as styles from './artist-select.css';
 
-interface ArtistSearchProps {
+interface ArtistSelectNestedSearchProps {
+  onBack: () => void;
   onArtistSelect: (artistId: string) => void;
 }
 
-const ArtistSearch = ({ onArtistSelect }: ArtistSearchProps) => {
+const ArtistSelectNestedSearch = ({
+  onBack,
+  onArtistSelect,
+}: ArtistSelectNestedSearchProps) => {
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
 
@@ -28,18 +33,18 @@ const ArtistSearch = ({ onArtistSelect }: ArtistSearchProps) => {
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
   return (
-    <>
-      <div className={styles.searchBarContainer}>
-        <div className={styles.searchBarFrame}>
+    <section className={styles.onboardingContentSection}>
+      <div className={searchStyles.searchBarContainer}>
+        <div className={searchStyles.searchBarFrame}>
           <SearchBar
             placeholder="아티스트를 검색해보세요!"
             value={keyword}
             onChange={handleInputChange}
             autoFocus={true}
+            onBack={onBack}
           />
         </div>
       </div>
-
       {hasArtistResults ? (
         <SearchSuggestionList
           relatedKeyword={relatedKeywordsData?.artists?.map((artist) => ({
@@ -50,14 +55,14 @@ const ArtistSearch = ({ onArtistSelect }: ArtistSearchProps) => {
           onSelectArtistId={onArtistSelect}
         />
       ) : (
-        <section className={styles.artistSearchContainer}>
-          <p className={styles.artistSearchDescription}>
+        <section className={searchStyles.artistSearchContainer}>
+          <p className={searchStyles.artistSearchDescription}>
             선호하는 아티스트를 검색해보세요
           </p>
         </section>
       )}
-    </>
+    </section>
   );
 };
 
-export default ArtistSearch;
+export default ArtistSelectNestedSearch;

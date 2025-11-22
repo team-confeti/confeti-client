@@ -90,14 +90,16 @@ export const END_POINT = {
 
   //온보딩
   GET_ARTIST: (limit: number, artistId: string | null) =>
-    `/user/onboard/v4/artists?limit=${limit}&targerId=${artistId}`,
+    artistId
+      ? `/user/onboard/v4/artists?limit=${limit}&targetArtistId=${artistId}`
+      : `/user/onboard/v4/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ONBOARDING_STATUS: '/user/onboard/status',
   POST_AUTH_ONBOARD: '/user/onboard/v4',
-  POST_SELECTED_ARTIST: (artistId: string) =>
-    `/user/onboard/v4/artists/${artistId}`,
+  POST_SELECTED_ARTIST: '/user/onboard/v4/artists/favorite',
   GET_SELECTED_ARTIST: `/user/onboard/v4/artists/favorite`,
+  PATCH_SELECTED_ARTIST: `/user/onboard/v4/artists/favorite`,
 } as const;
 
 export const HTTP_STATUS_CODE = {

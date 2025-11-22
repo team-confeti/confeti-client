@@ -10,7 +10,7 @@ import {
   onboardStatusResponse,
 } from '@shared/types/onboard-response';
 
-import { get, post } from '../config/instance';
+import { get, patch, post } from '../config/instance';
 
 export const ONBOARD_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: ONBOARD_QUERY_KEY.ALL }),
@@ -39,6 +39,14 @@ export const ONBOARD_MUTATION_OPTIONS = {
     mutationKey: ONBOARD_MUTATION_KEY.AUTH_ONBOARD(),
     mutationFn: (favoriteArtists: string[]) =>
       postAuthOnboarding(favoriteArtists),
+  }),
+  SELECTED_ARTIST: () => ({
+    mutationKey: ONBOARD_MUTATION_KEY.SELECTED_ARTIST(),
+    mutationFn: (artistIds: string[]) => postSelectedArtists(artistIds),
+  }),
+  PATCH_SELECTED_ARTIST: () => ({
+    mutationKey: ONBOARD_MUTATION_KEY.PATCH_SELECTED_ARTIST(),
+    mutationFn: (artistIds: string[]) => patchSelectedArtists(artistIds),
   }),
 };
 
@@ -85,4 +93,22 @@ export const postAuthOnboarding = async (
     favoriteArtists: favoriteArtists.map((id) => ({ artistId: id })),
   };
   await post<BaseResponse<null>>(END_POINT.POST_AUTH_ONBOARD, requestBody);
+};
+
+export const postSelectedArtists = async (
+  artistIds: string[],
+): Promise<void> => {
+  const requestBody = {
+    artistIds: artistIds,
+  };
+  await post<BaseResponse<null>>(END_POINT.POST_SELECTED_ARTIST, requestBody);
+};
+
+export const patchSelectedArtists = async (
+  deleteFavoriteArtistIds: string[],
+): Promise<void> => {
+  const requestBody = {
+    deleteFavoriteArtistIds: deleteFavoriteArtistIds,
+  };
+  await patch<BaseResponse<null>>(END_POINT.PATCH_SELECTED_ARTIST, requestBody);
 };

@@ -1,11 +1,6 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
-
-const fadeInScale = keyframes({
-  '0%': { opacity: 0, transform: 'scale(0.5)' },
-  '100%': { opacity: 1, transform: 'scale(1)' },
-});
 
 export const onboardingContentSection = style({
   height: `100dvh`,
@@ -64,7 +59,6 @@ export const avatar = style({
   ...themeVars.display.flexColumn,
   alignItems: 'center',
   gap: '1.2rem',
-  animation: `${fadeInScale} 0.8s cubic-bezier(0, 0.71, 0.2, 1.01) 0.5s both`,
 });
 
 export const artistName = style({

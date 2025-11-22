@@ -29,6 +29,7 @@ export const ONBOARD_MUTATION_KEY = {
     'artist-related-artist',
     artistId,
   ],
-  SELECTED_ARTIST: (artistId: string) => ['selected-artist', artistId],
+  SELECTED_ARTIST: () => ['selected-artist'],
   AUTH_ONBOARD: () => ['auth-onboard'],
+  PATCH_SELECTED_ARTIST: () => ['patch-selected-artist'],
 } as const;
