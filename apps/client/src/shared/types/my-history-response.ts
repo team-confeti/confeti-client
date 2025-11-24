@@ -5,9 +5,24 @@ export type MyTimeTable = Pick<
   'typeId' | 'posterUrl' | 'title' | 'type'
 >;
 
+export interface MyTimetable {
+  timetableFestivalId: number;
+  posterUrl: string;
+  title: string;
+  type: 'FESTIVAL' | 'CONCERT';
+  dates: FestivalDate[];
+}
+
+export interface FestivalDate {
+  festivalDateId: number;
+  festivalAt: string;
+  dayOfWeek: string;
+  displayedDayOfWeek: string;
+}
+
 export interface MyHistoryTimetableResponse {
   timetableCount: number;
-  timetables: MyTimeTable[];
+  timetables: MyTimetable[];
 }
 
 export interface MyHistorySetList {

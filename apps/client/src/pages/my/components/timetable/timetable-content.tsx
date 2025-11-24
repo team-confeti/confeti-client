@@ -1,46 +1,21 @@
 import { useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { FestivalList } from '@shared/components';
+import { SORT_OPTIONS } from '@shared/constants/sort-label';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
 
-// TODO: API 연동 후 실제 데이터로 교체
-const MOCK_FESTIVALS = [
-  {
-    id: 1,
-    posterUrl: 'https://picsum.photos/200/200?random=1',
-    title: '2024 서울 재즈 페스티벌',
-    dDay: 'D-5',
-  },
-  {
-    id: 2,
-    posterUrl: 'https://picsum.photos/200/200?random=2',
-    title: 'IU 콘서트 H.E.R',
-    dDay: 'D-12',
-  },
-  {
-    id: 3,
-    posterUrl: 'https://picsum.photos/200/200?random=3',
-    title: '락페스티벌 2024',
-    dDay: 'D-20',
-  },
-  {
-    id: 4,
-    posterUrl: 'https://picsum.photos/200/200?random=4',
-    title: '뉴진스 Bunnies Camp 2024',
-    dDay: 'D-30',
-  },
-  {
-    id: 5,
-    posterUrl: 'https://picsum.photos/200/200?random=5',
-    title: '에픽하이 20주년 콘서트',
-    dDay: 'D-45',
-  },
-];
+import * as styles from './timetable-content.css';
 
 export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const { data } = useSuspenseQuery(
+    MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(SORT_OPTIONS.RECENT),
+  );
 
   const handleEditModeToggle = () => {
     setIsEditMode((prev) => !prev);
@@ -69,17 +44,23 @@ export const TimetableContent = () => {
     }
   };
 
+  const festivals = data.timetables.map((timetable) => ({
+    id: timetable.timetableFestivalId,
+    posterUrl: timetable.posterUrl,
+    title: timetable.title,
+  }));
+
   return (
-    <article>
+    <article className={styles.wrapper}>
       <TimetableListHeader
-        totalCount={MOCK_FESTIVALS.length}
+        totalCount={data.timetableCount}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
         onEditModeToggle={handleEditModeToggle}
         onDelete={handleDelete}
       />
       <FestivalList>
-        {MOCK_FESTIVALS.map((festival) => (
+        {festivals.map((festival) => (
           <FestivalList.Item
             key={festival.id}
             festival={festival}
