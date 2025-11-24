@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useMutation,
   useQueryClient,
@@ -23,6 +23,7 @@ export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSuccessDialogopen, setIsSuccessDialogOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -40,6 +41,7 @@ export const TimetableContent = () => {
       setIsEditMode(false);
       setSelectedIds([]);
       setIsDialogOpen(false);
+      setIsSuccessDialogOpen(true);
     },
   });
 
@@ -64,6 +66,16 @@ export const TimetableContent = () => {
     if (isPending) return;
     setIsDialogOpen(false);
   };
+
+  useEffect(() => {
+    if (!isSuccessDialogopen) return;
+
+    const timer = setTimeout(() => {
+      setIsSuccessDialogOpen(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [isSuccessDialogopen]);
 
   const toggleSelection = (id: number) => {
     setSelectedIds((prev) =>
@@ -123,6 +135,15 @@ export const TimetableContent = () => {
           <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
           <Button text="삭제하기" onClick={handleConfirmDelete} />
         </Dialog.Action>
+      </Dialog>
+
+      <Dialog
+        open={isSuccessDialogopen}
+        handleClose={() => setIsSuccessDialogOpen(false)}
+      >
+        <Dialog.Content>
+          <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
+        </Dialog.Content>
       </Dialog>
     </article>
   );
