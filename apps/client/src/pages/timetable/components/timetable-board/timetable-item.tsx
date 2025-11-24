@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { cn } from '@confeti/utils';
 
-import { TIME_SLOT_HEIGHT_1_MIN } from '@pages/timetable/constants';
+import { MINUTE_HEIGHT_PX } from '@pages/timetable/constants';
 import {
   calcMinutesFromOpen,
   calcTotalMinutes,
@@ -64,9 +64,8 @@ const TimetableItem = ({
     onClick(userTimetableId, !selectBlock);
   };
 
-  const MARGIN_TOP_PX = 7;
-  const top = `${minutesFromOpen * TIME_SLOT_HEIGHT_1_MIN + MARGIN_TOP_PX}px`;
-  const height = `${totalPerformMin * TIME_SLOT_HEIGHT_1_MIN}px`;
+  const top = `${minutesFromOpen * MINUTE_HEIGHT_PX}px`;
+  const height = `${totalPerformMin * MINUTE_HEIGHT_PX}px`;
 
   const dynamicVars = assignInlineVars({
     [styles.top]: top,

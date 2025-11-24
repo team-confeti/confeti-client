@@ -3,9 +3,11 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { TIME_LABEL_WIDTH_PX } from '@pages/timetable/constants';
+
 export const container = style({
   backgroundColor: themeVars.color.white,
-  padding: '20px 10px 20px 10px',
+  padding: '25px 10px 20px 1px',
   maxWidth: '477px',
   width: '100%',
   overflowX: 'auto',
@@ -36,12 +38,11 @@ export const wrapper = recipe({
 
 export const stagesContainer = style({
   display: 'flex',
-  width: 'calc(100% - 29px)',
+  width: `calc(100% - ${TIME_LABEL_WIDTH_PX}px)`,
   position: 'absolute',
-  left: '29px',
+  left: `${TIME_LABEL_WIDTH_PX}px`,
   top: 0,
   bottom: 0,
-  backgroundColor: themeVars.color.white,
 });
 
 export const timeList = style({
@@ -81,7 +82,6 @@ export const saveButtonWrapper = style({
 
 export const stageColumn = style({
   flex: 1,
-  minWidth: '102px',
   position: 'relative',
 });
 

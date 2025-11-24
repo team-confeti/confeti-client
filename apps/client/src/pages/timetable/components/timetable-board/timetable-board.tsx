@@ -80,10 +80,12 @@ const TimetableBoard = ({
         })}
       >
         <BoothOpenBox ticketOpenAt={timetableInfo.ticketOpenAt} />
-        {cellNumber.map((hour) => (
-          <div key={hour}>
-            <TimeCell hour={hour} />
-          </div>
+        {cellNumber.map((hour, index) => (
+          <TimeCell
+            key={hour}
+            hour={hour}
+            isLast={index === cellNumber.length - 1}
+          />
         ))}
 
         <div className={styles.stagesContainer}>
