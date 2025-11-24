@@ -82,7 +82,7 @@ const MyOverviewPage = () => {
               ))
             : timetableOverviewData?.timetables?.map((item) => (
                 <FestivalCard
-                  key={item.timetableFestivalId}
+                  key={item.typeId}
                   imageSrc={item.posterUrl}
                   title={item.title}
                   onClick={handleNavigateToTimeTable}

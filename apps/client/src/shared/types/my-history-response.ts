@@ -7,6 +7,7 @@ export type MyTimeTable = Pick<
 
 export interface MyTimetable {
   timetableFestivalId: number;
+  typeId: number;
   posterUrl: string;
   title: string;
   type: 'FESTIVAL' | 'CONCERT';
