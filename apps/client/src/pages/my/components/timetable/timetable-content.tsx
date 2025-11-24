@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
-import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
+import {
+  MY_TIMETABLE_MUTATION_OPTIONS,
+  MY_TIMETABLE_QUERY_OPTIONS,
+} from '@shared/apis/my/my-timetable-queries';
 import { FestivalList } from '@shared/components';
+import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SORT_OPTIONS } from '@shared/constants/sort-label';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
@@ -13,9 +21,23 @@ export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
+  const queryClient = useQueryClient();
+
   const { data } = useSuspenseQuery(
     MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(SORT_OPTIONS.RECENT),
   );
+
+  const { mutate: deleteTimetables, isPending } = useMutation({
+    ...MY_TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLES(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: MY_TIMETABLE_QUERY_KEY.ALL,
+      });
+
+      setIsEditMode(false);
+      setSelectedIds([]);
+    },
+  });
 
   const handleEditModeToggle = () => {
     setIsEditMode((prev) => !prev);
@@ -25,11 +47,10 @@ export const TimetableContent = () => {
   };
 
   const handleDelete = () => {
-    // TODO: 선택된 항목 삭제 API 연동
+    if (selectedIds.length === 0 || isPending) return;
     // TODO: 삭제확인 모달 추가
-    console.log(selectedIds);
-    setIsEditMode(false);
-    setSelectedIds([]);
+    // console.log(selectedIds);
+    deleteTimetables(selectedIds);
   };
 
   const toggleSelection = (id: number) => {
@@ -45,7 +66,7 @@ export const TimetableContent = () => {
   };
 
   const festivals = data.timetables.map((timetable) => ({
-    id: timetable.timetableFestivalId,
+    id: timetable.typeId,
     posterUrl: timetable.posterUrl,
     title: timetable.title,
   }));
