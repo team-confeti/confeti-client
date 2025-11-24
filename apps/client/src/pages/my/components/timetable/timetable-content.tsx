@@ -4,6 +4,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, Dialog } from '@confeti/design-system';
 
@@ -26,6 +27,8 @@ export const TimetableContent = () => {
   const [isSuccessDialogopen, setIsSuccessDialogOpen] = useState(false);
 
   const queryClient = useQueryClient();
+
+  const navigate = useNavigate();
 
   const { data } = useSuspenseQuery(
     MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(SORT_OPTIONS.RECENT),
@@ -86,7 +89,10 @@ export const TimetableContent = () => {
   const handleItemClick = (id: number) => {
     if (isEditMode) {
       toggleSelection(id);
+      return;
     }
+
+    navigate(`/festival-detail/${id}`);
   };
 
   const festivals = data.timetables.map((timetable) => ({
