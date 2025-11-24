@@ -27,18 +27,18 @@ export const stageWrapper = style({
   top: TIMETABLE_HEADER_HEIGHT,
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   backdropFilter: 'blur(2px)',
-  borderTop: themeVars.border.gray200,
+  backgroundColor: themeVars.color.white,
+
   zIndex: themeVars.zIndex.header.content,
   width: '100%',
+  maxWidth: '47.7rem',
 
-  padding: '0.8rem 2rem',
-  paddingLeft: '4.8rem',
+  padding: '0.8rem 1rem',
+  paddingLeft: '3.8rem',
+
   overflowX: 'auto',
   '::-webkit-scrollbar': {
     display: 'none',
   },
-
   scrollbarWidth: 'none',
-
-  maxWidth: '47.7rem',
 });

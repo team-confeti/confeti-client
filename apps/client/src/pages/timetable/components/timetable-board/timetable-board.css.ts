@@ -5,7 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   backgroundColor: themeVars.color.white,
-  padding: '0 20px 20px 20px',
+  padding: '20px 10px 20px 10px',
   maxWidth: '477px',
   width: '100%',
   overflowX: 'auto',
@@ -15,7 +15,6 @@ export const container = style({
   },
   msOverflowStyle: 'none',
   scrollbarWidth: 'none',
-  paddingTop: '12px',
   overflowY: 'visible',
   marginBottom: '9rem',
 });

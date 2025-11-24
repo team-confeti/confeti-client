@@ -24,7 +24,7 @@ export const overlay = style({
   height: '100%',
   zIndex: themeVars.zIndex.heroOverlay,
   background: themeVars.color.black_grad,
-  backdropFilter: 'blur(2px)',
+  backdropFilter: 'blur(10px)',
 });
 
 export const dateInfoWrapper = style({
