@@ -1,13 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
-import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '@pages/timetable/components/calender/calender';
 import FestivalSelector from '@pages/timetable/components/festival-selector/festival-selector';
-import FestivalStage from '@pages/timetable/components/festival-stage/festival-stage';
 import TimetableActions from '@pages/timetable/components/timetable-actions/timetable-actions';
-import TimetableBoard from '@pages/timetable/components/timetable-board/timetable-board';
+import TimetableBoardSection, {
+  TimetableBoardSkeleton,
+} from '@pages/timetable/components/timetable-board/timetable-board-section';
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
@@ -27,22 +27,11 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   } = useFestivalSelect(festivals);
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
 
-  const { data: boardData } = useQuery({
-    ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(selectedDateId ?? 0),
-    enabled: selectedDateId !== undefined,
-  });
-
-  // const { data: datesData } = useQuery({
-  //   ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(selectedDateId ?? 0),
-  //   enabled: selectedDateId !== undefined,
-  // });
-
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
-    stageCount: boardData?.stageCount,
   });
 
-  if (!boardData || !selectedDateId) return null;
+  if (!selectedDateId) return null;
 
   return (
     <div className={styles.wrapper}>
@@ -58,12 +47,14 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
         posterUrl={selectedFestivalInfo.logoUrl}
       />
 
-      <div className={styles.timeTableWrapper} ref={elementRef}>
-        <FestivalStage timetableInfo={boardData} />
-        <TimetableBoard
-          timetableInfo={boardData}
-          isEditMode={isEditTimetableMode}
-        />
+      <div className={styles.timeTableWrapper}>
+        <Suspense key={selectedDateId} fallback={<TimetableBoardSkeleton />}>
+          <TimetableBoardSection
+            selectedDateId={selectedDateId}
+            isEditMode={isEditTimetableMode}
+            elementRef={elementRef}
+          />
+        </Suspense>
       </div>
 
       <TimetableActions
