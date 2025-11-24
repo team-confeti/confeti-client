@@ -54,6 +54,8 @@ export const END_POINT = {
   GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
+  GET_TIMETABLE_DATES: (timetableFestivalId: number) =>
+    `/user/timetables/v4/${timetableFestivalId}/dates`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `/user/timetables/festivals/${festivalId}`,
