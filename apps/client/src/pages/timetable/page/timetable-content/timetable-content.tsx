@@ -4,6 +4,7 @@ import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '@pages/timetable/components/calender/calender';
 import FestivalSelector from '@pages/timetable/components/festival-selector/festival-selector';
+import { TimetableHeader } from '@pages/timetable/components/header/timetable-header';
 import TimetableActions from '@pages/timetable/components/timetable-actions/timetable-actions';
 import TimetableBoardSection, {
   TimetableBoardSkeleton,
@@ -35,6 +36,8 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
 
   return (
     <div className={styles.wrapper}>
+      <TimetableHeader title={selectedFestivalInfo.title} />
+      {/* TODO: 랜딩페이지 추가되면 FestivalSelector 삭제 */}
       <FestivalSelector
         festivals={festivals}
         selectedFestivalId={selectedFestivalInfo.festivalId}
