@@ -1,81 +1,70 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const container = style({
-  padding: '2rem',
+export const container = style({});
+
+export const imageWrapper = style({
+  position: 'relative',
+  width: '100%',
+  height: '8.3rem',
 });
 
-export const noDataContainer = style({
-  padding: '2rem',
-  height: '14.4rem',
+export const calendarImage = style({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
 });
 
-export const yearSection = style({
-  ...themeVars.fontStyles.title5_b_15,
-  color: themeVars.color.black,
+export const overlay = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  zIndex: themeVars.zIndex.heroOverlay,
+  background: themeVars.color.black_grad,
+  backdropFilter: 'blur(2px)',
 });
 
-export const dateSection = style({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(7,1fr)',
-  padding: '2.1rem 0rem',
-  gap: '2rem',
+export const dateInfoWrapper = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  zIndex: themeVars.zIndex.heroContent,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '2.4rem',
 });
 
-export const dateItems = style({
-  ...themeVars.display.flexColumnAlignTextCenter,
+export const dateInfo = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '0.2rem',
+});
+
+export const dateText = style({
+  ...themeVars.fontStyles.subtitle5_sb_12,
+  color: themeVars.color.confeti_lime,
+});
+
+export const dayText = style({
+  ...themeVars.fontStyles.title2_b_20,
+  color: themeVars.color.white,
+});
+
+export const navButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   width: '3rem',
-  height: '5.5rem',
-  gap: '0.6rem',
-});
-
-export const dayNum = recipe({
-  base: {
-    ...themeVars.display.flexJustifyAlignCenter,
-    width: '3rem',
-    height: '3rem',
-    borderRadius: '1.5rem',
-    cursor: 'pointer',
-    background: 'transparent',
-  },
-  variants: {
-    isSelected: {
-      true: {
-        background: themeVars.color.confeti_lime,
-        transition: 'background 0.3s ease',
-      },
-    },
-    hasFestivalDate: {
-      true: {
-        ...themeVars.fontStyles.title4_b_16,
-        color: themeVars.color.black,
-      },
-      false: {
-        ...themeVars.fontStyles.body1_r_16,
-        color: themeVars.color.gray500,
-        cursor: 'default',
-      },
-    },
-  },
-});
-
-export const dayKo = recipe({
-  base: {
-    ...themeVars.display.flexJustifyAlignCenter,
-    background: 'transparent',
-  },
-  variants: {
-    hasFestivalDate: {
-      true: {
-        ...themeVars.fontStyles.title4_b_16,
-        color: themeVars.color.black,
-      },
-      false: {
-        ...themeVars.fontStyles.body1_r_16,
-        color: themeVars.color.gray500,
-      },
-    },
-  },
+  height: '3rem',
+  borderRadius: '50%',
+  background: themeVars.color.white_op_10,
+  border: 'none',
+  cursor: 'pointer',
 });

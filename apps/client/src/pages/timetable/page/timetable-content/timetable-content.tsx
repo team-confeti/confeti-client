@@ -32,6 +32,11 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
     enabled: selectedDateId !== undefined,
   });
 
+  // const { data: datesData } = useQuery({
+  //   ...FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(selectedDateId ?? 0),
+  //   enabled: selectedDateId !== undefined,
+  // });
+
   const { elementRef, downloadImage } = useImageDownload<HTMLDivElement>({
     fileName: `${selectedFestivalInfo.title}`,
     stageCount: boardData?.stageCount,
@@ -48,8 +53,9 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
       />
       <Calender
         festivalDates={selectedFestivalInfo.festivalDates}
-        onDateSelect={handleSelectDate}
         selectedDateId={selectedDateId}
+        onDateSelect={handleSelectDate}
+        posterUrl={selectedFestivalInfo.logoUrl}
       />
 
       <div className={styles.timeTableWrapper} ref={elementRef}>

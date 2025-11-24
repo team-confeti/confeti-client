@@ -24,6 +24,7 @@ export const color = {
 
   // opacity
   black_op: 'rgba(18, 18, 18, 0.5)',
+  white_op_10: 'rgba(255, 255, 255, 0.10)',
   white_op_20: 'rgba(255, 255, 255, 0.20)',
   white_op_30: 'rgba(255, 255, 255, 0.30)',
 

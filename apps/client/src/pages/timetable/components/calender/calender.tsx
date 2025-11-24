@@ -1,79 +1,97 @@
-import { cn } from '@confeti/utils';
-import { formatDate } from '@confeti/utils';
-
-import {
-  checkFestivalDateStatus,
-  createFestivalDateMap,
-  useFormattedWeek,
-} from '@pages/timetable/hooks/use-data-formatted';
+import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './calender.css';
 
-interface CalenderProps {
-  festivalDates: { festivalDateId: number; festivalAt: string }[];
-  onDateSelect: (dateId: number) => void;
-  selectedDateId: number;
+interface FestivalDate {
+  festivalDateId: number;
+  festivalAt: string;
 }
+
+interface CalenderProps {
+  festivalDates: FestivalDate[];
+  selectedDateId: number;
+  onDateSelect: (dateId: number) => void;
+  posterUrl: string;
+}
+
+const DAY_OF_WEEK_MAP: Record<number, string> = {
+  0: '일요일',
+  1: '월요일',
+  2: '화요일',
+  3: '수요일',
+  4: '목요일',
+  5: '금요일',
+  6: '토요일',
+};
+
+// TODO: API 연동 후 삭제해야함
+const formatDateWithDayOfWeek = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = DAY_OF_WEEK_MAP[date.getDay()];
+  return `${month}월 ${day}일 ${dayOfWeek}`;
+};
 
 const Calender = ({
   festivalDates,
-  onDateSelect,
   selectedDateId,
+  onDateSelect,
+  posterUrl,
 }: CalenderProps) => {
-  const firstDate = festivalDates?.[0]?.festivalAt || '';
-  const { weekDays } = useFormattedWeek(firstDate);
-  const festivalDateMap = createFestivalDateMap(festivalDates || []);
+  const currentIndex = festivalDates.findIndex(
+    (date) => date.festivalDateId === selectedDateId,
+  );
+  const currentDate = festivalDates[currentIndex];
 
-  const formattedYear = formatDate(firstDate, 'koYearMonth');
-
-  const handleDateClick = (festivalDateId: number) => {
-    onDateSelect(festivalDateId);
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      onDateSelect(festivalDates[currentIndex - 1].festivalDateId);
+    }
   };
 
-  if (!festivalDates || festivalDates.length === 0) {
-    return (
-      <section className={styles.noDataContainer}>
-        <div className={styles.yearSection}>
-          <p>{formattedYear}</p>
-        </div>
-        <div className={styles.dateSection}></div>
-      </section>
-    );
-  }
+  const handleNext = () => {
+    if (currentIndex < festivalDates.length - 1) {
+      onDateSelect(festivalDates[currentIndex + 1].festivalDateId);
+    }
+  };
 
-  const dateDetails = weekDays.map((day, id) => ({
-    ...day,
-    ...checkFestivalDateStatus(festivalDateMap, id, selectedDateId),
-  }));
+  if (!currentDate) return null;
 
   return (
     <section className={styles.container}>
-      <div className={styles.yearSection}>
-        <p>{formattedYear}</p>
-      </div>
-      <div className={styles.dateSection}>
-        {dateDetails.map(
-          ({ date, dayKo, festivalDateId, isSelected, hasFestivalDate }) => (
-            <div className={styles.dateItems} key={date}>
-              <p
-                className={cn(styles.dayNum({ isSelected, hasFestivalDate }))}
-                onClick={() =>
-                  festivalDateId && handleDateClick(festivalDateId)
-                }
-              >
-                {date}
-              </p>
-              <p
-                className={cn(styles.dayKo({ hasFestivalDate }))}
-                onClick={() =>
-                  festivalDateId && handleDateClick(festivalDateId)
-                }
-              >
-                {dayKo}
-              </p>
-            </div>
-          ),
-        )}
+      <div className={styles.imageWrapper}>
+        <img src={posterUrl} alt="calendar" className={styles.calendarImage} />
+        <div className={styles.overlay} />
+        <div className={styles.dateInfoWrapper}>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+          >
+            <Icon
+              name="arrow-horizontal"
+              size="1.6rem"
+              rotate={180}
+              color="white"
+            />
+          </button>
+          <div className={styles.dateInfo}>
+            <p className={styles.dateText}>
+              {formatDateWithDayOfWeek(currentDate.festivalAt)}
+            </p>
+            <p className={styles.dayText}>DAY {currentIndex + 1}</p>
+          </div>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={handleNext}
+            disabled={currentIndex === festivalDates.length - 1}
+          >
+            <Icon name="arrow-horizontal" size="1.6rem" color="white" />
+          </button>
+        </div>
       </div>
     </section>
   );
