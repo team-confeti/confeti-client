@@ -5,6 +5,8 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import { Button, Dialog } from '@confeti/design-system';
+
 import {
   MY_TIMETABLE_MUTATION_OPTIONS,
   MY_TIMETABLE_QUERY_OPTIONS,
@@ -20,6 +22,7 @@ import * as styles from './timetable-content.css';
 export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -36,6 +39,7 @@ export const TimetableContent = () => {
 
       setIsEditMode(false);
       setSelectedIds([]);
+      setIsDialogOpen(false);
     },
   });
 
@@ -48,9 +52,17 @@ export const TimetableContent = () => {
 
   const handleDelete = () => {
     if (selectedIds.length === 0 || isPending) return;
-    // TODO: 삭제확인 모달 추가
-    // console.log(selectedIds);
+    setIsDialogOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (selectedIds.length === 0 || isPending) return;
     deleteTimetables(selectedIds);
+  };
+
+  const handleCloseDialog = () => {
+    if (isPending) return;
+    setIsDialogOpen(false);
   };
 
   const toggleSelection = (id: number) => {
@@ -96,6 +108,22 @@ export const TimetableContent = () => {
           </FestivalList.Item>
         ))}
       </FestivalList>
+
+      <Dialog open={isDialogOpen} handleClose={handleCloseDialog}>
+        <Dialog.Content>
+          <Dialog.Title>
+            <span className={styles.text}>{selectedIds.length}</span>
+            <span>개의 페스티벌을 삭제할까요?</span>
+          </Dialog.Title>
+          <Dialog.Description>
+            해당 타임테이블이 영구적으로 삭제돼요.
+          </Dialog.Description>
+        </Dialog.Content>
+        <Dialog.Action>
+          <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
+          <Button text="삭제하기" onClick={handleConfirmDelete} />
+        </Dialog.Action>
+      </Dialog>
     </article>
   );
 };
