@@ -19,6 +19,6 @@ export const setlistRoutes = [
   },
   {
     path: routePath.SETLIST_MAINTENANCE,
-    element: createProtectedRoute(true, <MaintenancePage />),
+    element: createProtectedRoute(false, <MaintenancePage />),
   },
 ];
