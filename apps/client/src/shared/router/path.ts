@@ -24,6 +24,7 @@ export const routePath = {
   ADD_SETLIST: 'setlist/add-setlist',
   ADD_SONGS: 'setlist/:setlistId/add-songs',
   SETLIST_DETAIL: 'setlist-detail/:setlistId',
+  SETLIST_MAINTENANCE: 'setlist/maintenance',
 
   // Search
   SEARCH: '/search',

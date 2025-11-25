@@ -1,3 +1,5 @@
+import MaintenancePage from '@pages/setlist/page/maintenance/maintenance-page';
+
 import { AddSetlistPage, AddSongsPage, SetlistDetailPage } from '../lazy';
 import { routePath } from '../path';
 import { createProtectedRoute } from '../protected-route';
@@ -14,5 +16,9 @@ export const setlistRoutes = [
   {
     path: routePath.SETLIST_DETAIL,
     element: createProtectedRoute(true, <SetlistDetailPage />),
+  },
+  {
+    path: routePath.SETLIST_MAINTENANCE,
+    element: createProtectedRoute(true, <MaintenancePage />),
   },
 ];

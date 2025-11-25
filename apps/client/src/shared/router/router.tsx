@@ -13,6 +13,7 @@ import {
   timetableMainRoute,
 } from './routes/layout-free-routes';
 import { myPageRoutes } from './routes/my-page-routes';
+import { setlistRoutes } from './routes/setlist-routes';
 import { timetableSubRoutes } from './routes/timetable-routes';
 
 export const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       ...myPageRoutes,
       ...timetableSubRoutes,
       ...fallbackRoutes,
+      ...setlistRoutes,
     ],
   },
 ]);
