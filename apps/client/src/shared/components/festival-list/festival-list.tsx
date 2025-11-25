@@ -1,4 +1,4 @@
-import { Avatar, Chip } from '@confeti/design-system';
+import { Avatar } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import * as styles from './festival-list.css';
@@ -7,7 +7,6 @@ interface FestivalItem {
   id: number;
   posterUrl: string;
   title: string;
-  dDay: string;
 }
 
 interface FestivalListRootProps {
@@ -39,10 +38,6 @@ const FestivalListItem = ({
           className={styles.avatar}
         />
         <div className={styles.content}>
-          {/* TODO: 실제 Chip로직에 맞게 수정 */}
-          <Chip className={styles.chip} variant="assist">
-            {festival.dDay}
-          </Chip>
           <p className={styles.title}>{festival.title}</p>
         </div>
       </div>

@@ -61,6 +61,7 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
   POST_SCREENSHOT: '/png/generate',
+  DELETE_MY_TIMETABLES: '/user/timetables/v4/festivals',
 
   //검색
   GET_SEARCH_ALL: '/search',

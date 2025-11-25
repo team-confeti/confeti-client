@@ -1,46 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
+import { Button, Dialog } from '@confeti/design-system';
+
+import {
+  MY_TIMETABLE_MUTATION_OPTIONS,
+  MY_TIMETABLE_QUERY_OPTIONS,
+} from '@shared/apis/my/my-timetable-queries';
 import { FestivalList } from '@shared/components';
+import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
+import { SORT_OPTIONS } from '@shared/constants/sort-label';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
 
-// TODO: API 연동 후 실제 데이터로 교체
-const MOCK_FESTIVALS = [
-  {
-    id: 1,
-    posterUrl: 'https://picsum.photos/200/200?random=1',
-    title: '2024 서울 재즈 페스티벌',
-    dDay: 'D-5',
-  },
-  {
-    id: 2,
-    posterUrl: 'https://picsum.photos/200/200?random=2',
-    title: 'IU 콘서트 H.E.R',
-    dDay: 'D-12',
-  },
-  {
-    id: 3,
-    posterUrl: 'https://picsum.photos/200/200?random=3',
-    title: '락페스티벌 2024',
-    dDay: 'D-20',
-  },
-  {
-    id: 4,
-    posterUrl: 'https://picsum.photos/200/200?random=4',
-    title: '뉴진스 Bunnies Camp 2024',
-    dDay: 'D-30',
-  },
-  {
-    id: 5,
-    posterUrl: 'https://picsum.photos/200/200?random=5',
-    title: '에픽하이 20주년 콘서트',
-    dDay: 'D-45',
-  },
-];
+import * as styles from './timetable-content.css';
 
 export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [deleteStatus, setDeleteStatus] = useState<
+    'none' | 'confirm' | 'success'
+  >('none');
+
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const { data } = useSuspenseQuery(
+    MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(SORT_OPTIONS.RECENT),
+  );
+
+  const { mutate: deleteTimetables, isPending } = useMutation({
+    ...MY_TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLES(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: MY_TIMETABLE_QUERY_KEY.ALL,
+      });
+
+      setIsEditMode(false);
+      setSelectedIds([]);
+      setDeleteStatus('success');
+    },
+  });
 
   const handleEditModeToggle = () => {
     setIsEditMode((prev) => !prev);
@@ -50,12 +55,29 @@ export const TimetableContent = () => {
   };
 
   const handleDelete = () => {
-    // TODO: 선택된 항목 삭제 API 연동
-    // TODO: 삭제확인 모달 추가
-    console.log(selectedIds);
-    setIsEditMode(false);
-    setSelectedIds([]);
+    if (selectedIds.length === 0 || isPending) return;
+    setDeleteStatus('confirm');
   };
+
+  const handleConfirmDelete = () => {
+    if (selectedIds.length === 0 || isPending) return;
+    deleteTimetables(selectedIds);
+  };
+
+  const handleCloseDialog = () => {
+    if (isPending) return;
+    setDeleteStatus('none');
+  };
+
+  useEffect(() => {
+    if (deleteStatus !== 'success') return;
+
+    const timer = setTimeout(() => {
+      setDeleteStatus('none');
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [deleteStatus]);
 
   const toggleSelection = (id: number) => {
     setSelectedIds((prev) =>
@@ -66,20 +88,29 @@ export const TimetableContent = () => {
   const handleItemClick = (id: number) => {
     if (isEditMode) {
       toggleSelection(id);
+      return;
     }
+
+    navigate(`/festival-detail/${id}`);
   };
 
+  const festivals = data.timetables.map((timetable) => ({
+    id: timetable.typeId,
+    posterUrl: timetable.posterUrl,
+    title: timetable.title,
+  }));
+
   return (
-    <article>
+    <article className={styles.wrapper}>
       <TimetableListHeader
-        totalCount={MOCK_FESTIVALS.length}
+        totalCount={data.timetableCount}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
         onEditModeToggle={handleEditModeToggle}
         onDelete={handleDelete}
       />
       <FestivalList>
-        {MOCK_FESTIVALS.map((festival) => (
+        {festivals.map((festival) => (
           <FestivalList.Item
             key={festival.id}
             festival={festival}
@@ -94,6 +125,28 @@ export const TimetableContent = () => {
           </FestivalList.Item>
         ))}
       </FestivalList>
+
+      <Dialog open={deleteStatus === 'confirm'} handleClose={handleCloseDialog}>
+        <Dialog.Content>
+          <Dialog.Title>
+            <span className={styles.text}>{selectedIds.length}</span>
+            <span>개의 페스티벌을 삭제할까요?</span>
+          </Dialog.Title>
+          <Dialog.Description>
+            해당 타임테이블이 영구적으로 삭제돼요.
+          </Dialog.Description>
+        </Dialog.Content>
+        <Dialog.Action>
+          <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
+          <Button text="삭제하기" onClick={handleConfirmDelete} />
+        </Dialog.Action>
+      </Dialog>
+
+      <Dialog open={deleteStatus === 'success'}>
+        <Dialog.Content>
+          <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
+        </Dialog.Content>
+      </Dialog>
     </article>
   );
 };
