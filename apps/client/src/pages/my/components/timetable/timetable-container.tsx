@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Dialog, Skeleton } from '@confeti/design-system';
 
 import { MY_TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/my/my-timetable-queries';
+import Deferred from '@shared/components/deferred/deferred';
 import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SORT_OPTIONS } from '@shared/constants/sort-label';
 import { routePath } from '@shared/router/path';
@@ -140,10 +141,17 @@ export const TimetableContainer = () => {
 
 const TimetableListSkeleton = () => {
   return (
-    <div className={styles.skeletonWrapper}>
-      {Array.from({ length: 3 }).map((_, idx) => (
-        <Skeleton key={idx} width="100%" height="5rem" variants="rectangular" />
-      ))}
-    </div>
+    <Deferred>
+      <div className={styles.skeletonWrapper}>
+        {Array.from({ length: 3 }).map((_, idx) => (
+          <Skeleton
+            key={idx}
+            width="100%"
+            height="5rem"
+            variants="rectangular"
+          />
+        ))}
+      </div>
+    </Deferred>
   );
 };
