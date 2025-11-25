@@ -141,19 +141,33 @@ export function useCarouselController({
 
   // Calculate visible slides
   const visibleSlides = [];
-  for (let i = -2; i <= 2; i++) {
-    const slideIndex = mod(index + i, length);
-    const slideData = data[slideIndex];
-    const distanceFromCenter = i + dragOffset / OFFSET;
-    const transform = getSlideTransform(distanceFromCenter);
 
+  // 공연이 1개일 때는 가운데 슬라이드만 표시
+  if (length === 1) {
+    const transform = getSlideTransform(0);
     visibleSlides.push({
-      data: slideData,
-      index: slideIndex,
-      position: i,
-      distanceFromCenter,
+      data: data[0],
+      index: 0,
+      position: 0,
+      distanceFromCenter: 0,
       transform,
     });
+  } else {
+    // 공연이 2개 이상일 때는 좌우 슬라이드 포함
+    for (let i = -2; i <= 2; i++) {
+      const slideIndex = mod(index + i, length);
+      const slideData = data[slideIndex];
+      const distanceFromCenter = i + dragOffset / OFFSET;
+      const transform = getSlideTransform(distanceFromCenter);
+
+      visibleSlides.push({
+        data: slideData,
+        index: slideIndex,
+        position: i,
+        distanceFromCenter,
+        transform,
+      });
+    }
   }
 
   return {
