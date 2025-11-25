@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
-export const useHeaderBackground = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+const TICKET_SECTION_SELECTOR = '[data-ticket-section="true"]';
+const HEADER_SELECTOR = 'header';
 
+export const useHeaderBackground = (isHomePage: boolean) => {
   const [isWhiteBackground, setIsWhiteBackground] = useState(false);
 
   useEffect(() => {
@@ -13,16 +12,14 @@ export const useHeaderBackground = () => {
     let scrollHandler: (() => void) | null = null;
 
     const setupScrollHandler = () => {
-      const ticketSection = document.querySelector(
-        '[data-ticket-section="true"]',
-      );
+      const ticketSection = document.querySelector(TICKET_SECTION_SELECTOR);
 
       if (!ticketSection) {
         requestAnimationFrame(setupScrollHandler);
         return;
       }
 
-      const headerElement = document.querySelector('header');
+      const headerElement = document.querySelector(HEADER_SELECTOR);
       const headerHeight = headerElement
         ? Math.ceil(headerElement.getBoundingClientRect().height)
         : 54;

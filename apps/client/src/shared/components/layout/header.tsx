@@ -13,7 +13,7 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const isMyPage = location.pathname.startsWith('/my');
 
-  const isWhiteBackground = useHeaderBackground();
+  const isWhiteBackground = useHeaderBackground(isHomePage);
 
   const headerClassName = isHomePage
     ? isWhiteBackground
