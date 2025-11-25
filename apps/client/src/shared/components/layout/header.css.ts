@@ -9,37 +9,11 @@ export const container = style({
   height: themeVars.size.height.header,
   top: 0,
   width: '100%',
-  maxWidth: 'var(--max-width)', // 앱의 최대 너비 제한 적용
+  maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
   zIndex: 20,
-});
-
-export const containerScrolled = style({
-  ...themeVars.display.flexAlignCenter,
-  position: 'fixed',
-  height: themeVars.size.height.header,
-  top: 0,
-  width: '100%',
-  maxWidth: 'var(--max-width)', // 앱의 최대 너비 제한 적용
-  padding: '0 2rem',
-  justifyContent: 'space-between',
-  zIndex: 20,
-});
-
-export const blurBackground = style({
-  position: 'absolute',
-  inset: 0,
-  backdropFilter: 'blur(5px)',
-  WebkitBackdropFilter: 'blur(10px)',
-  // backgroundColor: 'rgba(255, 255, 255, 0.65)', // 불투명도 증가 (0.25 -> 0.65)
-  maskImage:
-    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%)',
-  WebkitMaskImage:
-    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%)',
-  transition: 'opacity 0.3s ease',
-  pointerEvents: 'none',
-  zIndex: -1,
+  transition: 'background-color 0.3s ease',
 });
 
 export const containerWhite = style({
@@ -49,10 +23,11 @@ export const containerWhite = style({
   height: themeVars.size.height.header,
   top: 0,
   width: '100%',
-  maxWidth: 'var(--max-width)', // 앱의 최대 너비 제한 적용
+  maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
   zIndex: 20,
+  transition: 'background-color 0.3s ease',
 });
 
 export const containerSticky = style({
@@ -62,7 +37,7 @@ export const containerSticky = style({
   height: themeVars.size.height.header,
   top: 0,
   width: '100%',
-  maxWidth: 'var(--max-width)', // 앱의 최대 너비 제한 적용
+  maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
   zIndex: 20,

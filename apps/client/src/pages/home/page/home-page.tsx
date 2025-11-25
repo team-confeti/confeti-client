@@ -1,10 +1,12 @@
 import { Spacing } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import {
   FloatingButtonContainer,
   Footer,
   NavigationTabs,
 } from '@shared/components';
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
@@ -14,6 +16,8 @@ import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 const HomePage = () => {
+  const navigateToDetail = useNavigateToDetail();
+
   const {
     userName,
     ticketing,
@@ -22,12 +26,46 @@ const HomePage = () => {
     suggestMusicPerformance,
   } = useHomeQueries();
 
-  return (
-    <>
-      <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-      <PerformanceCarouselSection data={latestPerformances} />
+  // CarouselPerformances를 Performance 타입으로 변환
+  const formattedCarouselData = latestPerformances.performances.map(
+    (performance) => ({
+      id: performance.performanceId,
+      typeId: performance.typeId,
+      type: performance.type,
+      title: performance.title,
+      place: '고양종합운동장', // 임시 값, 실제로는 서버에서 받아와야 함
+      date: formatDate(performance.startAt),
+      posterUrl: performance.posterUrl,
+    }),
+  );
 
-      <TicketOpeningSection userName={userName} data={ticketing.performances} />
+  return (
+    <div style={{ position: 'relative' }}>
+      {formattedCarouselData.length > 0 && (
+        <PerformanceCarouselSection
+          data={formattedCarouselData}
+          onPerformanceClick={navigateToDetail}
+        />
+      )}
+      <div
+        style={{
+          position: 'absolute',
+          top: '5.4rem', // 헤더 높이만큼 아래에 위치
+          left: 0,
+          right: 0,
+          zIndex: 15, // 헤더(20)보다 낮지만 캐러셀보다는 높게
+        }}
+      >
+        <NavigationTabs defaultActiveTab={TAB_MENU.HOME} theme="transparent" />
+      </div>
+
+      <div data-ticket-section="true">
+        <TicketOpeningSection
+          userName={userName}
+          data={ticketing.performances}
+        />
+      </div>
+
       <Spacing size="2xl" color="white" />
 
       <SuggestPerformanceSection data={suggestPerformance.performances} />
@@ -40,7 +78,7 @@ const HomePage = () => {
 
       <FloatingButtonContainer />
       <Footer />
-    </>
+    </div>
   );
 };
 
