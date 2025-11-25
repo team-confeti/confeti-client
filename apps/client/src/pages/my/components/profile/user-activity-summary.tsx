@@ -24,6 +24,10 @@ const UserActivitySummary = ({
     navigate(`${routePath.MY}/${routePath.MY_TIMETABLE}`);
   };
 
+  const handleSetListClick = () => {
+    navigate(routePath.SETLIST_MAINTENANCE);
+  };
+
   return (
     <section className={styles.wrapper}>
       <div className={styles.itemWrapper}>
@@ -53,7 +57,7 @@ const UserActivitySummary = ({
           <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
         </div>
       </div>
-      <div className={styles.itemWrapper}>
+      <div className={styles.itemWrapper} onClick={handleSetListClick}>
         <p className={styles.itemText}>셋리스트</p>
         <div className={styles.itemCountWrapper}>
           <p>
