@@ -5,9 +5,9 @@ import { themeVars } from '@confeti/design-system/styles';
 export const sectionContainer = style({
   position: 'relative',
   width: '100%',
-  height: '56.4rem', // 전체 뷰포트 높이 사용
+  height: '56.4rem',
   overflow: 'hidden',
-  marginTop: 0, // 상단 여백 제거
+  marginTop: 0,
 });
 
 export const backgroundWrapper = style({
@@ -16,7 +16,7 @@ export const backgroundWrapper = style({
   left: 0,
   width: '100%',
   height: '100%',
-  zIndex: 1,
+  zIndex: themeVars.zIndex.carousel.background,
 });
 
 export const backgroundImage = style({
@@ -27,8 +27,7 @@ export const backgroundImage = style({
   height: '100%',
   objectFit: 'cover',
   filter: 'blur(13px)',
-  transform: 'scale(1.1)', // 블러 경계 숨기기
-  transition: 'opacity 850ms ease', // 캐러셀 애니메이션과 동일한 시간
+  transform: 'scale(1.1)',
 });
 
 export const backgroundImageFront = style({
@@ -39,9 +38,8 @@ export const backgroundImageFront = style({
   height: '100%',
   objectFit: 'cover',
   filter: 'blur(13px)',
-  transform: 'scale(1.1)', // 블러 경계 숨기기
-  transition: 'opacity 850ms ease', // 캐러셀 애니메이션과 동일한 시간
-  zIndex: 2, // 앞쪽 이미지
+  transform: 'scale(1.1)',
+  zIndex: themeVars.zIndex.carousel.backgroundFront,
 });
 
 export const backgroundOverlay = style({
@@ -51,14 +49,12 @@ export const backgroundOverlay = style({
   width: '100%',
   height: '100%',
   background: themeVars.color.gray_op,
-  zIndex: 3, // 이미지들 위에 오버레이
+  zIndex: themeVars.zIndex.carousel.overlay,
 });
 
 export const carouselWrapper = style({
+  ...themeVars.display.flexJustifyAlignCenter,
   position: 'relative',
-  zIndex: 5,
+  zIndex: themeVars.zIndex.carousel.content,
   height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
 });
