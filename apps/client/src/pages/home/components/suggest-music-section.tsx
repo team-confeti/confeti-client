@@ -21,6 +21,10 @@ const SuggestMusicSection = ({
     ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
   });
 
+  if (!isPending && !suggestMusic?.musics) {
+    return null;
+  }
+
   const { musicList, onClickPlayToggle, audioRef, audioEvents } =
     useMusicPlayer(suggestMusic?.musics ?? []);
 
