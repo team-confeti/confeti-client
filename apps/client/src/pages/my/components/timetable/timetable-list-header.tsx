@@ -6,11 +6,11 @@ import * as styles from './timetable-list-header.css';
 
 interface Props {
   totalCount: number;
-  isEditMode?: boolean;
+  isEditMode: boolean;
   selectedCount?: number;
   sortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST;
-  onEditModeToggle?: () => void;
-  onDelete?: () => void;
+  onEditModeToggle: () => void;
+  onDelete: () => void;
   onSortChange: (sortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST) => void;
 }
 
@@ -41,15 +41,15 @@ export const TimetableListHeader = ({
         </button>
       </div>
       <div className={styles.rightContent}>
-        {isEditMode && onEditModeToggle && onDelete ? (
+        {isEditMode ? (
           <EditModeButtons
             selectedCount={selectedCount}
             onCancel={onEditModeToggle}
             onDelete={onDelete}
           />
-        ) : onEditModeToggle ? (
+        ) : (
           <DefaultModeButton onEditModeToggle={onEditModeToggle} />
-        ) : null}
+        )}
       </div>
     </section>
   );

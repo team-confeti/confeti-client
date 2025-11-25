@@ -11,6 +11,7 @@ import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
 import { TimetableContent } from './timetable-content';
+import { TimetableListHeader } from './timetable-list-header';
 
 import * as styles from './timetable-container.css';
 
@@ -23,6 +24,8 @@ export const TimetableContainer = () => {
   const [sortOption, setSortOption] = useState<
     SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST
   >(SORT_OPTIONS.RECENT);
+
+  const [totalCount, setTotalCount] = useState<number | null>(null);
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -44,9 +47,7 @@ export const TimetableContainer = () => {
 
   const handleEditModeToggle = () => {
     setIsEditMode((prev) => !prev);
-    if (isEditMode) {
-      setSelectedIds([]);
-    }
+    if (isEditMode) setSelectedIds([]);
   };
 
   const handleDelete = () => {
@@ -67,10 +68,7 @@ export const TimetableContainer = () => {
   useEffect(() => {
     if (deleteStatus !== 'success') return;
 
-    const timer = setTimeout(() => {
-      setDeleteStatus('none');
-    }, 2000);
-
+    const timer = setTimeout(() => setDeleteStatus('none'), 2000);
     return () => clearTimeout(timer);
   }, [deleteStatus]);
 
@@ -80,44 +78,46 @@ export const TimetableContainer = () => {
     );
   };
 
-  const handleItemClick = (timetableFestivalId: number) => {
+  const handleItemClick = (id: number) => {
     if (isEditMode) {
-      toggleSelection(timetableFestivalId);
+      toggleSelection(id);
       return;
     }
-
-    navigate(
-      buildPath(routePath.MY_TIMETABLE_DETAIL, { id: timetableFestivalId }),
-    );
+    navigate(buildPath(routePath.MY_TIMETABLE_DETAIL, { id }));
   };
 
   const handleSortChange = (
     newSortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST,
-  ) => {
-    setSortOption(newSortOption);
-  };
+  ) => setSortOption(newSortOption);
 
   return (
     <article className={styles.wrapper}>
+      <TimetableListHeader
+        totalCount={totalCount ?? 0}
+        isEditMode={isEditMode}
+        selectedCount={selectedIds.length}
+        sortOption={sortOption}
+        onEditModeToggle={handleEditModeToggle}
+        onDelete={handleDelete}
+        onSortChange={handleSortChange}
+      />
+
       <Suspense fallback={<TimetableListSkeleton />}>
         <TimetableContent
           isEditMode={isEditMode}
           selectedIds={selectedIds}
-          sortOption={sortOption}
           orderBy={orderBy}
-          onEditModeToggle={handleEditModeToggle}
-          onSortChange={handleSortChange}
-          onDelete={handleDelete}
           onItemClick={handleItemClick}
           onCheckboxToggle={toggleSelection}
+          setTotalCount={setTotalCount}
         />
       </Suspense>
 
       <Dialog open={deleteStatus === 'confirm'} handleClose={handleCloseDialog}>
         <Dialog.Content>
           <Dialog.Title>
-            <span className={styles.text}>{selectedIds.length}</span>
-            <span>개의 페스티벌을 삭제할까요?</span>
+            <span className={styles.text}>{selectedIds.length}</span>개의
+            페스티벌을 삭제할까요?
           </Dialog.Title>
           <Dialog.Description>
             해당 타임테이블이 영구적으로 삭제돼요.
@@ -141,13 +141,8 @@ export const TimetableContainer = () => {
 const TimetableListSkeleton = () => {
   return (
     <div className={styles.skeletonWrapper}>
-      {Array.from({ length: 6 }).map((_, idx) => (
-        <Skeleton
-          key={idx}
-          width="100%"
-          height="20rem"
-          variants="rectangular"
-        />
+      {Array.from({ length: 3 }).map((_, idx) => (
+        <Skeleton key={idx} width="100%" height="5rem" variants="rectangular" />
       ))}
     </div>
   );
