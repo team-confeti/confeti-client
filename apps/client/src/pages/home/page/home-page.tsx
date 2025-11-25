@@ -33,7 +33,7 @@ const HomePage = () => {
       typeId: performance.typeId,
       type: performance.type,
       title: performance.title,
-      place: '고양종합운동장', // 임시 값, 실제로는 서버에서 받아와야 함
+      place: performance.area,
       date: formatDate(performance.startAt),
       posterUrl: performance.posterUrl,
     }),
