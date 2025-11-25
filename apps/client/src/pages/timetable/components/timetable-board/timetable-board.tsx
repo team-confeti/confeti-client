@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { RefObject } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
@@ -18,12 +18,18 @@ import * as styles from './timetable-board.css';
 interface Props {
   timetableInfo: TimetableInfo;
   isEditMode: boolean;
+  scrollRef?: RefObject<HTMLElement | null>;
+  onScroll?: () => void;
 }
 
-const TimetableBoard = ({ timetableInfo, isEditMode }: Props) => {
+const TimetableBoard = ({
+  timetableInfo,
+  isEditMode,
+  scrollRef,
+  onScroll,
+}: Props) => {
   const [openHour] = parseTimeString(timetableInfo.ticketOpenAt);
   const cellNumber = generateTableRow(openHour);
-  const ref = useRef<HTMLDivElement>(null);
 
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
@@ -63,18 +69,23 @@ const TimetableBoard = ({ timetableInfo, isEditMode }: Props) => {
   };
 
   return (
-    <section className={styles.container}>
+    <section
+      className={styles.container}
+      ref={scrollRef as RefObject<HTMLElement>}
+      onScroll={onScroll}
+    >
       <div
         className={styles.wrapper({
           stageCount: timetableInfo.stages.length === 4 ? 4 : undefined,
         })}
-        ref={ref}
       >
         <BoothOpenBox ticketOpenAt={timetableInfo.ticketOpenAt} />
-        {cellNumber.map((hour) => (
-          <div key={hour}>
-            <TimeCell hour={hour} />
-          </div>
+        {cellNumber.map((hour, index) => (
+          <TimeCell
+            key={hour}
+            hour={hour}
+            isLast={index === cellNumber.length - 1}
+          />
         ))}
 
         <div className={styles.stagesContainer}>

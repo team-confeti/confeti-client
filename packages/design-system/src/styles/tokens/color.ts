@@ -25,6 +25,7 @@ export const color = {
   // opacity
   black_op: 'rgba(18, 18, 18, 0.50)',
   gray_op: 'rgba(115, 115, 115, 0.50)',
+  white_op_10: 'rgba(255, 255, 255, 0.10)',
   white_op_20: 'rgba(255, 255, 255, 0.20)',
   white_op_30: 'rgba(255, 255, 255, 0.30)',
 
@@ -36,6 +37,7 @@ export const color = {
   confeti_lime_grad: 'linear-gradient(354deg, #B5F602 -208.21%, #FFF 146.29%)',
   black_grad:
     'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%)',
+  black_grad2: 'linear-gradient(133deg, #323339 6.21%, #000 103.67%)',
 
   // gradients / background
   purple_grad: 'linear-gradient(162deg, #131433 -12.44%, #3D2AB8 104.54%)',

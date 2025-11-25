@@ -53,6 +53,11 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'addable-festivals',
   ],
+  TIMETABLE_DATES: (timetableFestivalId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'dates',
+    timetableFestivalId,
+  ],
 } as const;
 
 export const SEARCH_QUERY_KEY = {

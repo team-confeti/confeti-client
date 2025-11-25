@@ -55,3 +55,12 @@ export interface FestivalTimetableResponseExtended {
 export interface TimeTableCreationHistory {
   hasTimetableHistory: boolean;
 }
+
+export interface TimetableDate {
+  festivalDateId: number;
+  festivalAt: string;
+}
+
+export interface TimetableDatesResponse {
+  dates: TimetableDate[];
+}
