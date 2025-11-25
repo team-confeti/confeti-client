@@ -3,7 +3,6 @@ import EditProfile from '@pages/my/page/edit/edit-profile';
 import MyPage from '@pages/my/page/my-page';
 import MyOverviewPage from '@pages/my/page/overview/my-overview-page';
 import MyTimetable from '@pages/my/page/timetable/my-timetable';
-import TimetableDetail from '@pages/my/page/timetable-detail/timetable-detail';
 
 import {
   DeleteAccountPage,
@@ -56,10 +55,6 @@ export const myPageRoutes = [
       {
         path: routePath.MY_OVERVIEW,
         element: createProtectedRoute(true, <MyOverviewPage />),
-      },
-      {
-        path: routePath.MY_TIMETABLE_DETAIL,
-        element: createProtectedRoute(true, <TimetableDetail />),
       },
       ...setlistRoutes,
     ],

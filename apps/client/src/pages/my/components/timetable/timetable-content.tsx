@@ -92,17 +92,19 @@ export const TimetableContent = () => {
     );
   };
 
-  const handleItemClick = (id: number) => {
+  const handleItemClick = (timetableFestivalId: number) => {
     if (isEditMode) {
-      toggleSelection(id);
+      toggleSelection(timetableFestivalId);
       return;
     }
 
-    navigate(buildPath(routePath.MY_TIMETABLE_DETAIL, { id }));
+    navigate(
+      buildPath(routePath.MY_TIMETABLE_DETAIL, { id: timetableFestivalId }),
+    );
   };
 
   const festivals = data.timetables.map((timetable) => ({
-    id: timetable.typeId,
+    id: timetable.timetableFestivalId,
     posterUrl: timetable.posterUrl,
     title: timetable.title,
   }));
