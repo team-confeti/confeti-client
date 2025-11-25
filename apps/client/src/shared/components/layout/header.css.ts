@@ -12,7 +12,7 @@ export const container = style({
   maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
-  zIndex: 20,
+  zIndex: themeVars.zIndex.header.content,
   transition: 'background-color 0.3s ease',
 });
 
@@ -26,7 +26,7 @@ export const containerWhite = style({
   maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
-  zIndex: 20,
+  zIndex: themeVars.zIndex.header.content,
   transition: 'background-color 0.3s ease',
 });
 
@@ -40,7 +40,7 @@ export const containerSticky = style({
   maxWidth: 'var(--max-width)',
   padding: '0 2rem',
   justifyContent: 'space-between',
-  zIndex: 20,
+  zIndex: themeVars.zIndex.header.content,
 });
 
 export const logo = style({
