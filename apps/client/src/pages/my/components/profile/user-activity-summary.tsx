@@ -1,24 +1,17 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Tooltip } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { MY_RECORD_QUERY_OPTIONS } from '@shared/apis/my/my-record-queries';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './user-activity-summary.css';
 
-interface Props {
-  totalPerformanceCount: number;
-  timetableCount: number;
-  setListCount: number;
-}
-
-const UserActivitySummary = ({
-  totalPerformanceCount,
-  timetableCount,
-  setListCount,
-}: Props) => {
+const UserActivitySummary = () => {
   const navigate = useNavigate();
+  const { data: recordData } = useSuspenseQuery(MY_RECORD_QUERY_OPTIONS.ALL());
 
   const handleTimetableClick = () => {
     navigate(`${routePath.MY}/${routePath.MY_TIMETABLE}`);
@@ -39,7 +32,7 @@ const UserActivitySummary = ({
           <p>총 관람 공연</p>
         </div>
         <p className={styles.totalPerformanceCount}>
-          {totalPerformanceCount}
+          {recordData.totalCount}
           <span className={styles.countGap}>회</span>
         </p>
       </div>
@@ -47,7 +40,7 @@ const UserActivitySummary = ({
         <p className={styles.itemText}>나의 타임테이블</p>
         <div className={styles.itemCountWrapper}>
           <p>
-            {timetableCount}
+            {recordData.timetableCount}
             <span className={styles.countGap}>개</span>
           </p>
           <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
@@ -57,7 +50,7 @@ const UserActivitySummary = ({
         <p className={styles.itemText}>셋리스트</p>
         <div className={styles.itemCountWrapper}>
           <p>
-            {setListCount}
+            {recordData.setlistCount}
             <span className={styles.countGap}>개</span>
           </p>
           <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />

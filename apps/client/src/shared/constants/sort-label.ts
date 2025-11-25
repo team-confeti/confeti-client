@@ -14,3 +14,11 @@ export const SORT_LABELS: Record<SortOption, string> = {
   [SORT_OPTIONS.OLDEST]: '오래된순',
   [SORT_OPTIONS.ALPHABETICAL]: '가나다순',
 };
+
+export const SORT_BASIC_LABELS: Record<
+  Exclude<SortOption, SORT_OPTIONS.ALPHABETICAL>,
+  string
+> = {
+  [SORT_OPTIONS.RECENT]: '최근추가순',
+  [SORT_OPTIONS.OLDEST]: '오래된순',
+};

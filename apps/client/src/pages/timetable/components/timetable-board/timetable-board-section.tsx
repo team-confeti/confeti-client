@@ -13,8 +13,8 @@ import * as styles from './timetable-board-section.css';
 
 interface TimetableBoardSectionProps {
   selectedDateId: number;
-  isEditMode: boolean;
-  elementRef: React.RefObject<HTMLDivElement | null>;
+  isEditMode?: boolean;
+  elementRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const TimetableBoardSection = ({
@@ -36,7 +36,7 @@ const TimetableBoardSection = ({
   if (!boardData) return null;
 
   return (
-    <div ref={elementRef}>
+    <div ref={elementRef ?? undefined}>
       <FestivalStage
         timetableInfo={boardData}
         scrollRef={stageRef}
@@ -44,7 +44,7 @@ const TimetableBoardSection = ({
       />
       <TimetableBoard
         timetableInfo={boardData}
-        isEditMode={isEditMode}
+        isEditMode={isEditMode ?? false}
         scrollRef={boardRef}
         onScroll={handleBoardScroll}
       />

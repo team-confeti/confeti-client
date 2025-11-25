@@ -29,6 +29,11 @@ export const MY_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getMyTimetableOverView(sortBy),
       enabled,
     }),
+  ORDER_BY: (orderBy: 'earliest' | 'latest') =>
+    queryOptions({
+      queryKey: [...MY_TIMETABLE_QUERY_KEY.ALL, orderBy],
+      queryFn: () => getMyTimetableOrderBy(orderBy),
+    }),
 };
 
 export const MY_TIMETABLE_MUTATION_OPTIONS = {
@@ -49,6 +54,13 @@ export const getMyTimetablePreview = async () => {
 export const getMyTimetableOverView = async (sortBy: SortOption) => {
   const response = await get<BaseResponse<MyHistoryTimetableResponse>>(
     END_POINT.GET_MY_TIMETABLE_OVERVIEW(sortBy),
+  );
+  return response.data;
+};
+
+export const getMyTimetableOrderBy = async (orderBy: 'earliest' | 'latest') => {
+  const response = await get<BaseResponse<MyHistoryTimetableResponse>>(
+    END_POINT.GET_MY_TIMETABLE_ORDER_BY(orderBy),
   );
   return response.data;
 };

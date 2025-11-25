@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { getAccessToken } from '@confeti/core/auth';
 import { Box, Spacing } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
@@ -21,19 +20,16 @@ import * as styles from '@pages/my/page/profile/my-profile.css';
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const isNotLoggedIn = !getAccessToken();
 
   const { data: profileData } = useUserProfile();
-  const { data: artistData } = useQuery({
+  const { data: artistData } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_ARTISTS_PREVIEW(),
-    enabled: !isNotLoggedIn,
   });
-  const { data: performanceData } = useQuery({
+  const { data: performanceData } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES_PREVIEW(),
-    enabled: !isNotLoggedIn,
   });
 
-  if (!profileData || !artistData || !performanceData) {
+  if (!profileData) {
     return null;
   }
 
@@ -48,12 +44,7 @@ const MyProfile = () => {
         }
       />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
-      {/* TODO: v2 API 연동 후 수정 */}
-      <UserActivitySummary
-        totalPerformanceCount={3}
-        timetableCount={3}
-        setListCount={3}
-      />
+      <UserActivitySummary />
       <Spacing size="md" color="gray" />
       <Box
         title="선호하는 공연"

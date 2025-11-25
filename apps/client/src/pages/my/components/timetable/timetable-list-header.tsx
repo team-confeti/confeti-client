@@ -1,12 +1,6 @@
-import { useState } from 'react';
-
 import { Icon } from '@confeti/design-system/icon';
 
-import {
-  SORT_LABELS,
-  SORT_OPTIONS,
-  SortOption,
-} from '@shared/constants/sort-label';
+import { SORT_BASIC_LABELS, SORT_OPTIONS } from '@shared/constants/sort-label';
 
 import * as styles from './timetable-list-header.css';
 
@@ -14,26 +8,27 @@ interface Props {
   totalCount: number;
   isEditMode: boolean;
   selectedCount?: number;
+  sortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST;
   onEditModeToggle: () => void;
   onDelete: () => void;
+  onSortChange: (sortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST) => void;
 }
 
 export const TimetableListHeader = ({
   totalCount,
   isEditMode,
   selectedCount = 0,
+  sortOption,
   onEditModeToggle,
   onDelete,
+  onSortChange,
 }: Props) => {
-  const [sortOption, setSortOption] = useState<SortOption>(SORT_OPTIONS.RECENT);
-
-  // TODO: 실제 정렬 기준 나오면 수정
   const toggleSort = () => {
-    setSortOption((prev) =>
-      prev === SORT_OPTIONS.RECENT
-        ? SORT_OPTIONS.ALPHABETICAL
-        : SORT_OPTIONS.RECENT,
-    );
+    const newSortOption =
+      sortOption === SORT_OPTIONS.RECENT
+        ? SORT_OPTIONS.OLDEST
+        : SORT_OPTIONS.RECENT;
+    onSortChange(newSortOption);
   };
 
   return (
@@ -41,7 +36,7 @@ export const TimetableListHeader = ({
       <div className={styles.leftContent}>
         <p>전체 {totalCount}</p>
         <button className={styles.sort} onClick={toggleSort}>
-          <p>{SORT_LABELS[sortOption]}</p>
+          <p>{SORT_BASIC_LABELS[sortOption]}</p>
           <Icon name="switch" size="1.6rem" />
         </button>
       </div>

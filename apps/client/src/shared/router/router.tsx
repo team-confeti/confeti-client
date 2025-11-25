@@ -9,6 +9,7 @@ import { authRoutes } from './routes/auth-routes';
 import { fallbackRoutes } from './routes/fallback-routes';
 import { globalRoutes } from './routes/global-routes';
 import {
+  myTimetableDetailRoute,
   onboardingRoute,
   timetableMainRoute,
 } from './routes/layout-free-routes';
@@ -27,6 +28,12 @@ export const router = createBrowserRouter([
     element: <BasicLayout />,
     errorElement: <ErrorPage />,
     children: [{ index: true, element: timetableMainRoute.element }],
+  },
+  {
+    path: routePath.MY_TIMETABLE_DETAIL,
+    element: <BasicLayout />,
+    errorElement: <ErrorPage />,
+    children: [{ index: true, element: myTimetableDetailRoute.element }],
   },
   {
     path: routePath.LAYOUT,
