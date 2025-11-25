@@ -24,16 +24,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.0
+      - name: Setup pnpm and Node.js
+        uses: ./.github/actions/pnpm-setup-node
 
       - name: Install dependencies
         run: pnpm -w install --frozen-lockfile
@@ -62,16 +54,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.0
+      - name: Setup pnpm and Node.js
+        uses: ./.github/actions/pnpm-setup-node
 
       - name: Install dependencies
         run: pnpm -w install --frozen-lockfile
