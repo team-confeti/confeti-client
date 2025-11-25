@@ -2,60 +2,39 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-const RADIUS = '10px';
-const SHADOW = '0 16px 40px rgba(0,0,0,0.35)';
-
-export const root = style({
-  position: 'relative',
-  width: '100%',
-  overflow: 'visible',
-  userSelect: 'none',
-  touchAction: 'pan-y',
-  marginTop: '8rem',
-});
-
-export const carouselTrack = style({
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  overflow: 'visible',
-});
-
 export const slide = style({
   position: 'absolute',
   top: '50%',
-  transform: 'translateY(-50%)',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   willChange: 'transform',
   pointerEvents: 'auto',
 });
 
-export const centerPoster = style({
-  position: 'relative',
+const posterBase = {
+  position: 'relative' as const,
   width: '30rem',
   height: '39.8rem',
-  borderRadius: RADIUS,
+  borderRadius: '1rem',
   overflow: 'hidden',
-  boxShadow: SHADOW,
+  boxShadow: themeVars.shadowStyles.shadow_home_poster.boxShadow,
   flexShrink: 0,
   transformOrigin: 'center',
+};
+
+export const centerPoster = style({
+  ...posterBase,
 });
 
 export const sidePoster = style({
-  position: 'relative',
-  width: '300px',
-  height: '398px',
-  borderRadius: RADIUS,
-  overflow: 'hidden',
-  boxShadow: SHADOW,
-  flexShrink: 0,
-  transformOrigin: 'center',
+  ...posterBase,
 });
 
 export const image = style({
   width: '100%',
   height: '100%',
-  objectFit: 'cover',
   display: 'block',
+  objectFit: 'cover',
 });
 
 export const blackGradient = style({
@@ -74,8 +53,7 @@ export const infoWrap = style({
   left: '2rem',
   right: '2rem',
   bottom: '2rem',
-  display: 'flex',
-  flexDirection: 'column',
+  ...themeVars.display.flexColumn,
   color: themeVars.color.white,
 });
 
@@ -83,7 +61,6 @@ export const title = style({
   ...themeVars.fontStyles.title1_b_24,
   marginBottom: '1.6rem',
   overflowWrap: 'break-word',
-  wordBreak: 'keep-all',
   whiteSpace: 'normal',
 });
 
@@ -97,9 +74,7 @@ export const date = style({
 });
 
 export const dateIndicatorRow = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  ...themeVars.display.flexBetweenAlignCenter,
 });
 
 export const sideOverlay = style({

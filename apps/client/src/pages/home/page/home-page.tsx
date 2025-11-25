@@ -15,6 +15,8 @@ import TicketOpeningSection from '../components/ticket-opening-section';
 import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
+import * as styles from './home-page.css';
+
 const HomePage = () => {
   const navigateToDetail = useNavigateToDetail();
 
@@ -26,7 +28,6 @@ const HomePage = () => {
     suggestMusicPerformance,
   } = useHomeQueries();
 
-  // CarouselPerformances를 Performance 타입으로 변환
   const formattedCarouselData = latestPerformances.performances.map(
     (performance) => ({
       id: performance.performanceId,
@@ -40,7 +41,7 @@ const HomePage = () => {
   );
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.container}>
       {formattedCarouselData.length > 0 && (
         <PerformanceCarouselSection
           data={formattedCarouselData}
@@ -48,15 +49,8 @@ const HomePage = () => {
           onPerformanceClick={navigateToDetail}
         />
       )}
-      <div
-        style={{
-          position: 'absolute',
-          top: '5.4rem', // 헤더 높이만큼 아래에 위치
-          left: 0,
-          right: 0,
-          zIndex: 15, // 헤더(20)보다 낮지만 캐러셀보다는 높게
-        }}
-      >
+
+      <div className={styles.navTabsWrapper}>
         <NavigationTabs defaultActiveTab={TAB_MENU.HOME} theme="transparent" />
       </div>
 
