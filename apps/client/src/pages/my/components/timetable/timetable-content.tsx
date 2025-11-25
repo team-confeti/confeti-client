@@ -23,11 +23,11 @@ import * as styles from './timetable-content.css';
 export const TimetableContent = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isSuccessDialogopen, setIsSuccessDialogOpen] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState<
+    'none' | 'confirm' | 'success'
+  >('none');
 
   const queryClient = useQueryClient();
-
   const navigate = useNavigate();
 
   const { data } = useSuspenseQuery(
@@ -43,8 +43,7 @@ export const TimetableContent = () => {
 
       setIsEditMode(false);
       setSelectedIds([]);
-      setIsDialogOpen(false);
-      setIsSuccessDialogOpen(true);
+      setDeleteStatus('success');
     },
   });
 
@@ -57,7 +56,7 @@ export const TimetableContent = () => {
 
   const handleDelete = () => {
     if (selectedIds.length === 0 || isPending) return;
-    setIsDialogOpen(true);
+    setDeleteStatus('confirm');
   };
 
   const handleConfirmDelete = () => {
@@ -67,18 +66,18 @@ export const TimetableContent = () => {
 
   const handleCloseDialog = () => {
     if (isPending) return;
-    setIsDialogOpen(false);
+    setDeleteStatus('none');
   };
 
   useEffect(() => {
-    if (!isSuccessDialogopen) return;
+    if (deleteStatus !== 'success') return;
 
     const timer = setTimeout(() => {
-      setIsSuccessDialogOpen(false);
+      setDeleteStatus('none');
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [isSuccessDialogopen]);
+  }, [deleteStatus]);
 
   const toggleSelection = (id: number) => {
     setSelectedIds((prev) =>
@@ -127,7 +126,7 @@ export const TimetableContent = () => {
         ))}
       </FestivalList>
 
-      <Dialog open={isDialogOpen} handleClose={handleCloseDialog}>
+      <Dialog open={deleteStatus === 'confirm'} handleClose={handleCloseDialog}>
         <Dialog.Content>
           <Dialog.Title>
             <span className={styles.text}>{selectedIds.length}</span>
@@ -143,10 +142,7 @@ export const TimetableContent = () => {
         </Dialog.Action>
       </Dialog>
 
-      <Dialog
-        open={isSuccessDialogopen}
-        handleClose={() => setIsSuccessDialogOpen(false)}
-      >
+      <Dialog open={deleteStatus === 'success'}>
         <Dialog.Content>
           <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
         </Dialog.Content>
