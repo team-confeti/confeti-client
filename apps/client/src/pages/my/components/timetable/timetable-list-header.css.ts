@@ -56,3 +56,10 @@ export const editButton = style({
   gap: '0.2rem',
   color: themeVars.color.black,
 });
+
+export const skeletonWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
+  padding: '1.6rem',
+});

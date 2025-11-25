@@ -1,169 +1,74 @@
-import { useEffect, useState } from 'react';
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+'use client';
 
-import { Button, Dialog } from '@confeti/design-system';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import {
-  MY_TIMETABLE_MUTATION_OPTIONS,
-  MY_TIMETABLE_QUERY_OPTIONS,
-} from '@shared/apis/my/my-timetable-queries';
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { FestivalList } from '@shared/components';
-import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SORT_OPTIONS } from '@shared/constants/sort-label';
-import { routePath } from '@shared/router/path';
-import { buildPath } from '@shared/utils/build-path';
 
-import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
+import { TimetableListHeader } from './timetable-list-header';
 
-import * as styles from './timetable-content.css';
+interface Props {
+  isEditMode: boolean;
+  selectedIds: number[];
+  sortOption: SORT_OPTIONS;
+  orderBy: 'latest' | 'earliest';
+  onEditModeToggle: () => void;
+  onSortChange: (o: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST) => void;
+  onDelete: () => void;
+  onItemClick: (id: number) => void;
+  onCheckboxToggle: (id: number) => void;
+}
 
-export const TimetableContent = () => {
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [deleteStatus, setDeleteStatus] = useState<
-    'none' | 'confirm' | 'success'
-  >('none');
-  const [sortOption, setSortOption] = useState<
-    SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST
-  >(SORT_OPTIONS.RECENT);
-
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
-
-  const orderBy = sortOption === SORT_OPTIONS.RECENT ? 'latest' : 'earliest';
-
+export const TimetableContent = ({
+  isEditMode,
+  selectedIds,
+  sortOption,
+  orderBy,
+  onEditModeToggle,
+  onSortChange,
+  onDelete,
+  onItemClick,
+  onCheckboxToggle,
+}: Props) => {
   const { data } = useSuspenseQuery(
     MY_TIMETABLE_QUERY_OPTIONS.ORDER_BY(orderBy),
   );
 
-  const { mutate: deleteTimetables, isPending } = useMutation({
-    ...MY_TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLES(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: MY_TIMETABLE_QUERY_KEY.ALL,
-      });
-
-      setIsEditMode(false);
-      setSelectedIds([]);
-      setDeleteStatus('success');
-    },
-  });
-
-  const handleEditModeToggle = () => {
-    setIsEditMode((prev) => !prev);
-    if (isEditMode) {
-      setSelectedIds([]);
-    }
-  };
-
-  const handleDelete = () => {
-    if (selectedIds.length === 0 || isPending) return;
-    setDeleteStatus('confirm');
-  };
-
-  const handleConfirmDelete = () => {
-    if (selectedIds.length === 0 || isPending) return;
-    deleteTimetables(selectedIds);
-  };
-
-  const handleCloseDialog = () => {
-    if (isPending) return;
-    setDeleteStatus('none');
-  };
-
-  useEffect(() => {
-    if (deleteStatus !== 'success') return;
-
-    const timer = setTimeout(() => {
-      setDeleteStatus('none');
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [deleteStatus]);
-
-  const toggleSelection = (id: number) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
-    );
-  };
-
-  const handleItemClick = (timetableFestivalId: number) => {
-    if (isEditMode) {
-      toggleSelection(timetableFestivalId);
-      return;
-    }
-
-    navigate(
-      buildPath(routePath.MY_TIMETABLE_DETAIL, { id: timetableFestivalId }),
-    );
-  };
-
-  const festivals = data.timetables.map((timetable) => ({
-    id: timetable.timetableFestivalId,
-    posterUrl: timetable.posterUrl,
-    title: timetable.title,
+  const festivals = data.timetables.map((t) => ({
+    id: t.timetableFestivalId,
+    posterUrl: t.posterUrl,
+    title: t.title,
   }));
 
-  const handleSortChange = (
-    newSortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST,
-  ) => {
-    setSortOption(newSortOption);
-  };
-
   return (
-    <article className={styles.wrapper}>
+    <>
       <TimetableListHeader
-        totalCount={data.timetableCount}
+        totalCount={festivals.length}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
-        sortOption={sortOption}
-        onEditModeToggle={handleEditModeToggle}
-        onDelete={handleDelete}
-        onSortChange={handleSortChange}
+        sortOption={sortOption as SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST}
+        onEditModeToggle={onEditModeToggle}
+        onDelete={onDelete}
+        onSortChange={onSortChange}
       />
+
       <FestivalList>
         {festivals.map((festival) => (
           <FestivalList.Item
             key={festival.id}
             festival={festival}
-            onClick={() => handleItemClick(festival.id)}
+            onClick={() => onItemClick(festival.id)}
           >
             {isEditMode && (
               <FestivalList.Checkbox
                 checked={selectedIds.includes(festival.id)}
-                onChange={() => toggleSelection(festival.id)}
+                onChange={() => onCheckboxToggle(festival.id)}
               />
             )}
           </FestivalList.Item>
         ))}
       </FestivalList>
-
-      <Dialog open={deleteStatus === 'confirm'} handleClose={handleCloseDialog}>
-        <Dialog.Content>
-          <Dialog.Title>
-            <span className={styles.text}>{selectedIds.length}</span>
-            <span>개의 페스티벌을 삭제할까요?</span>
-          </Dialog.Title>
-          <Dialog.Description>
-            해당 타임테이블이 영구적으로 삭제돼요.
-          </Dialog.Description>
-        </Dialog.Content>
-        <Dialog.Action>
-          <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
-          <Button text="삭제하기" onClick={handleConfirmDelete} />
-        </Dialog.Action>
-      </Dialog>
-
-      <Dialog open={deleteStatus === 'success'}>
-        <Dialog.Content>
-          <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
-        </Dialog.Content>
-      </Dialog>
-    </article>
+    </>
   );
 };
