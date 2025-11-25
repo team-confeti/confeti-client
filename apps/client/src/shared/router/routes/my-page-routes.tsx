@@ -13,7 +13,6 @@ import {
 } from '../lazy';
 import { routePath } from '../path';
 import { createProtectedRoute } from '../protected-route';
-import { setlistRoutes } from './setlist-routes';
 
 export const myPageRoutes = [
   {
@@ -56,7 +55,6 @@ export const myPageRoutes = [
         path: routePath.MY_OVERVIEW,
         element: createProtectedRoute(true, <MyOverviewPage />),
       },
-      ...setlistRoutes,
     ],
   },
 ];
