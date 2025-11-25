@@ -24,6 +24,7 @@ export const iconNames = [
   'heart-outline',
   'indicator-active',
   'indicator-default',
+  'info',
   'kakao',
   'load',
   'logo-big',

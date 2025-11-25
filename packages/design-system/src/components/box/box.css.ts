@@ -43,6 +43,7 @@ export const subtitle = style({
 
 export const buttonWrapper = style({
   ...themeVars.display.flexAlignCenter,
+  gap: '0.4rem',
 });
 
 export const button = style({

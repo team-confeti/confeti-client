@@ -39,9 +39,13 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
         </Navigation.Item>
         <Navigation.Item
           index={TAB_MENU.MY_HISTORY}
-          handleTabClick={() => handleNavigation(routePath.MY_HISTORY)}
+          handleTabClick={() =>
+            handleNavigation(
+              `${routePath.MY}/${routePath.MY_OVERVIEW}?type=SET_LIST`,
+            )
+          }
         >
-          {'내 공연'}
+          {'셋리스트'}
         </Navigation.Item>
       </Navigation.List>
     </Navigation.Root>

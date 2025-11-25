@@ -37,11 +37,12 @@ const RecentSearchSection = () => {
             {recentSearches.map((keyword) => (
               <Chip
                 key={keyword}
-                label={limitTextLength(keyword, 5)}
-                variant="withDelete"
+                variant="input"
                 onDelete={() => removeSearchKeyword(keyword)}
                 onClick={() => handleSearchKeywordClick(keyword)}
-              />
+              >
+                {limitTextLength(keyword, 5)}
+              </Chip>
             ))}
           </div>
         </div>

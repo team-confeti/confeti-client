@@ -8,10 +8,8 @@ import * as styles from './suggest-performance-section.css';
 
 const SuggestPerformanceSection = ({
   data,
-  ref,
 }: {
   data: SuggestPerformance[];
-  ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const navigateToDetail = useNavigateToDetail();
 
@@ -22,7 +20,7 @@ const SuggestPerformanceSection = ({
       subtitle="이런 공연은 어떠세요?"
       className={styles.boxWrapper}
     >
-      <div className={styles.container} ref={ref}>
+      <div className={styles.container}>
         {data.map((performance) => (
           <div
             key={`${performance.typeId}-${performance.title}`}

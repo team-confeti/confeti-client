@@ -33,7 +33,11 @@ type ColorTokens = {
   black_op: string;
   confeti_grad: string;
   confeti_grad2: string;
-  confeti_purple_grad: string;
+  purple_grad: string;
+  pink_grad: string;
+  green_grad: string;
+  blue_grad: string;
+  orange_grad: string;
 };
 
 const ColorGroup = ({
@@ -115,5 +119,9 @@ const pickOpacityColors = (colors: ColorTokens) => ({
 const pickGradients = (colors: ColorTokens) => ({
   confeti_grad: colors.confeti_grad,
   confeti_grad2: colors.confeti_grad2,
-  confeti_purple_grad: colors.confeti_purple_grad,
+  purple_grad: colors.purple_grad,
+  pink_grad: colors.pink_grad,
+  green_grad: colors.green_grad,
+  blue_grad: colors.blue_grad,
+  orange_grad: colors.orange_grad,
 });

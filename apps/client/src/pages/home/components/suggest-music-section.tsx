@@ -10,10 +10,8 @@ import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
 
 const SuggestMusicSection = ({
   data,
-  ref: scrollRef,
 }: {
   data: SuggestMusicPerformanceResponse;
-  ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const musicIdList: string[] | undefined = undefined;
 
@@ -34,7 +32,7 @@ const SuggestMusicSection = ({
       titleSize="lg"
       subtitle="예상 셋리스트, 미리 한번 들어볼까요?"
     >
-      <div ref={scrollRef}>
+      <div>
         <MusicInfo title={data.title} />
         <MusicList
           appearance="home"
