@@ -4,9 +4,9 @@ import { CSS } from '@dnd-kit/utilities';
 import { cn } from '@confeti/utils';
 
 import { Icon } from '../../icons';
+import { CIRC } from './constants/circle-progress';
 
 import * as styles from './music-item.css';
-import { CIRC } from './music-item.css';
 
 interface Props {
   musicId: string;

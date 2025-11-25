@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '../../styles';
+import { CIRC } from './constants/circle-progress';
 
 export const dragHandle = style({
   cursor: 'grab',
@@ -160,8 +161,6 @@ export const progressSvg = style({
   transform: 'rotate(-90deg)',
   pointerEvents: 'none',
 });
-
-export const CIRC = 131.947 as const;
 
 export const progressCircle = style({
   fill: 'none',
