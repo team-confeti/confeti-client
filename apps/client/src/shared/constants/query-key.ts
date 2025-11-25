@@ -10,10 +10,6 @@ export const USER_QUERY_KEY = {
   PROFILE: () => [...USER_QUERY_KEY.ALL, 'profile'],
   MY_ARTISTS: () => [...USER_QUERY_KEY.ALL, 'artists'],
   MY_PERFORMANCES: () => [...USER_QUERY_KEY.ALL, 'performances'],
-  MY_UPCOMING_PERFORMANCE: () => [
-    ...USER_QUERY_KEY.ALL,
-    'upcoming-performance',
-  ],
 } as const;
 
 export const PERFORMANCE_QUERY_KEY = {
@@ -56,6 +52,11 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   ADDABLE_FESTIVALS: () => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'addable-festivals',
+  ],
+  TIMETABLE_DATES: (timetableFestivalId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'dates',
+    timetableFestivalId,
   ],
 } as const;
 

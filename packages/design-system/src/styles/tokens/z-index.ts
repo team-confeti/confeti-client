@@ -27,6 +27,7 @@ export const zIndex = {
   },
   dropdown: {
     content: '30',
+    tooltip: '30',
   },
   backDrop: {
     content: '100',
@@ -39,4 +40,11 @@ export const zIndex = {
   heroBackground: '0',
   heroOverlay: '1',
   heroContent: '2',
+
+  carousel: {
+    background: '1',
+    backgroundFront: '2',
+    overlay: '3',
+    content: '5',
+  },
 } as const;

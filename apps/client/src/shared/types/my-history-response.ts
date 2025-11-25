@@ -1,9 +1,10 @@
-import { Performances } from './performance-response';
-
-export type MyTimeTable = Pick<
-  Performances,
-  'typeId' | 'posterUrl' | 'title' | 'type'
->;
+export interface MyTimeTable {
+  timetableFestivalId: number;
+  typeId: number;
+  posterUrl: string;
+  title: string;
+  startAt: string;
+}
 
 export interface MyHistoryTimetableResponse {
   timetableCount: number;

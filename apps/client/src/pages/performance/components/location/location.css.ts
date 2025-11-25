@@ -16,4 +16,12 @@ export const title = style({
 export const address = style({
   ...themeVars.fontStyles.body3_r_14,
   color: themeVars.color.black,
+  whiteSpace: 'normal',
+  wordBreak: 'break-word',
+  display: 'inline',
+});
+
+export const copyButton = style({
+  display: 'inline-flex',
+  verticalAlign: 'middle',
 });

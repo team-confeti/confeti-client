@@ -13,10 +13,8 @@ import * as styles from './suggest-music-section.css';
 
 const SuggestMusicSection = ({
   data,
-  ref: scrollRef,
 }: {
   data: SuggestMusicPerformanceResponse;
-  ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const [musicIdList, setMusicIdList] = useState<string[] | undefined>(
     undefined,
@@ -48,7 +46,7 @@ const SuggestMusicSection = ({
       subtitle={data.title}
       subtitleIcon={<Icon name="music" size="1.4rem" />}
     >
-      <div ref={scrollRef}>
+      <div>
         <MusicList
           musics={musicList}
           onClickPlayToggle={onClickPlayToggle}

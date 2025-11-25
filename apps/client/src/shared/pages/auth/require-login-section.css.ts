@@ -6,7 +6,7 @@ export const container = style({
   ...themeVars.display.flexColumnAlignTextCenter,
   justifyContent: 'center',
   width: '100%',
-  height: '90svh',
+  height: 'calc(100dvh - 98px)',
   gap: '2rem',
 });
 

@@ -44,4 +44,5 @@ export const artistName = style({
   overflow: 'hidden',
   textAlign: 'center',
   textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });

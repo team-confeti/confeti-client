@@ -9,4 +9,5 @@ export const ENV_CONFIG = {
   AMPLITUDE_API_KEY: import.meta.env.VITE_AMPLITUDE_API_KEY as string,
   SENTRY_DSN: import.meta.env.VITE_SENTRY_DSN as string,
   IMAGE_CDN_URL: import.meta.env.VITE_IMAGE_CDN_URL as string,
+  KAKAO_JS_KEY: import.meta.env.VITE_KAKAO_JS_KEY as string,
 } as const;

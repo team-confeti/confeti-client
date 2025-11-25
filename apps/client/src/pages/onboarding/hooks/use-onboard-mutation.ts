@@ -1,8 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { authTokenHandler, getRefreshToken } from '@confeti/core/auth';
 import { BaseResponse } from '@confeti/core/http';
 
-import { postReissueToken } from '@shared/apis/auth/auth-mutation';
+import { postReissueToken } from '@shared/apis/auth/auth-mutations';
 import { postAuthOnboarding } from '@shared/apis/onboard/onboard-mutation';
 import { getArtistRelatedArtist } from '@shared/apis/onboard/queries';
 import { onboardResponse } from '@shared/types/onboard-response';
@@ -29,7 +30,8 @@ export const usePostAuthOnboarding = () => {
       }
 
       try {
-        await postReissueToken();
+        const { data } = await postReissueToken(getRefreshToken());
+        authTokenHandler('set', data.accessToken, data.refreshToken);
       } catch (error) {
         console.log('error', error);
       }

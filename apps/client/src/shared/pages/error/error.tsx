@@ -18,7 +18,6 @@ const Error = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate('/');
-    window.location.reload();
   };
 
   return (

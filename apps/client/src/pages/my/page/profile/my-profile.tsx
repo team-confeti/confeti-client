@@ -1,8 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { getAccessToken } from '@confeti/core/auth';
-import { Box } from '@confeti/design-system';
+import { Box, Spacing } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
@@ -12,32 +11,25 @@ import { routePath } from '@shared/router/path';
 
 import ArtistSection from '@pages/my/components/artist/artist-section';
 import NoArtistSection from '@pages/my/components/artist/no-artist-section';
-import NoConfetiSection from '@pages/my/components/performance/no-performance-section';
-import ConfetiSection from '@pages/my/components/performance/performance-section';
+import PerformanceSection from '@pages/my/components/performance/performance-section';
 import LogoutSection from '@pages/my/components/profile/logout-section';
+import UserActivitySummary from '@pages/my/components/profile/user-activity-summary';
 import UserInfo from '@pages/my/components/profile/user-info';
-import NoUpcomingPerformanceSection from '@pages/my/components/upcoming-performance/no-upcoming-performance-section';
-import UpcomingPerformanceSection from '@pages/my/components/upcoming-performance/upcoming-performance-section';
+
+import * as styles from '@pages/my/page/profile/my-profile.css';
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const isNotLoggedIn = !getAccessToken();
 
   const { data: profileData } = useUserProfile();
-  const { data: upcomingPerformanceData } = useQuery({
-    ...USER_QUERY_OPTIONS.MY_UPCOMING_PERFORMANCE(),
-    enabled: !isNotLoggedIn,
-  });
-  const { data: artistData } = useQuery({
+  const { data: artistData } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_ARTISTS_PREVIEW(),
-    enabled: !isNotLoggedIn,
   });
-  const { data: performanceData } = useQuery({
+  const { data: performanceData } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES_PREVIEW(),
-    enabled: !isNotLoggedIn,
   });
 
-  if (!profileData || !artistData || !performanceData) {
+  if (!profileData) {
     return null;
   }
 
@@ -51,19 +43,28 @@ const MyProfile = () => {
           </button>
         }
       />
-      <UserInfo
-        name={profileData.name}
-        profileUrl={profileData.profileUrl}
-        showArrow={true}
-      />
-      <Box title="다가오는 공연">
-        {upcomingPerformanceData?.typeId ? (
-          <UpcomingPerformanceSection performance={upcomingPerformanceData} />
+      <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
+      <UserActivitySummary />
+      <Spacing size="md" color="gray" />
+      <Box
+        title="선호하는 공연"
+        onShowMore={
+          performanceData.performances.length > 3
+            ? () => navigate(routePath.MY_CONFETI)
+            : undefined
+        }
+        showMoreText="더보기"
+      >
+        {performanceData.performances.length > 0 ? (
+          <PerformanceSection
+            performances={performanceData.performances.slice(0, 3)}
+          />
         ) : (
-          <NoUpcomingPerformanceSection />
+          <p className={styles.noLikePerformanceText}>
+            아직 선호하는 공연이 없어요.
+          </p>
         )}
       </Box>
-
       <Box
         title="My Artist"
         onShowMore={
@@ -77,24 +78,6 @@ const MyProfile = () => {
           <ArtistSection artists={artistData.artists.slice(0, 3)} />
         ) : (
           <NoArtistSection />
-        )}
-      </Box>
-
-      <Box
-        title="My Confeti"
-        onShowMore={
-          performanceData.performances.length > 3
-            ? () => navigate(routePath.MY_CONFETI)
-            : undefined
-        }
-        showMoreText="더보기"
-      >
-        {performanceData.performances.length > 0 ? (
-          <ConfetiSection
-            performances={performanceData.performances.slice(0, 3)}
-          />
-        ) : (
-          <NoConfetiSection />
         )}
       </Box>
       <LogoutSection />

@@ -5,6 +5,7 @@ export const border = {
   lime1: `2px solid ${color.confeti_lime}`,
   lime2: `1px solid ${color.confeti_lime}`,
   lime3: `1px solid ${color.confeti_lime3}`,
+  lime4: `0.5px solid ${color.confeti_lime}`,
   gray200: `1px solid ${color.gray200}`,
   gray300: `1px solid ${color.gray300}`,
   gray400: `1px solid ${color.gray400}`,

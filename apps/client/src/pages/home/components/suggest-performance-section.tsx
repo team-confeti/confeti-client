@@ -9,10 +9,8 @@ import * as styles from './suggest-performance-section.css';
 
 const SuggestPerformanceSection = ({
   data,
-  ref,
 }: {
   data: SuggestPerformance[];
-  ref: React.RefObject<HTMLDivElement | null>;
 }) => {
   const navigateToDetail = useNavigateToDetail();
 
@@ -24,7 +22,7 @@ const SuggestPerformanceSection = ({
       subtitleIcon={<Icon name="heart-filled" size="1.4rem" />}
       className={styles.boxWrapper}
     >
-      <div className={styles.container} ref={ref}>
+      <div className={styles.container}>
         {data.map((performance) => (
           <div
             key={`${performance.typeId}-${performance.title}`}

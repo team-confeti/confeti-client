@@ -6,6 +6,8 @@ export const END_POINT = {
   GET_MY_TIMETABLE: '/user/timetables/preview',
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
+  GET_MY_TIMETABLE_ORDER_BY: (orderBy: 'earliest' | 'latest') =>
+    `/user/timetables/v4?orderBy=${orderBy}`,
 
   // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
@@ -28,7 +30,6 @@ export const END_POINT = {
 
   // 마이페이지
   GET_USER_PROFILE: '/user/info',
-  GET_MY_UPCOMING_PERFORMANCE: '/user/favorites/performance',
   GET_MY_ARTISTS_PREVIEW: '/user/favorites/artists/preview',
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
   GET_MY_ARTISTS: (sortBy: SortOption) =>
@@ -55,6 +56,8 @@ export const END_POINT = {
   GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
+  GET_TIMETABLE_DATES: (timetableFestivalId: number) =>
+    `/user/timetables/v4/${timetableFestivalId}/dates`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `/user/timetables/festivals/${festivalId}`,
@@ -62,6 +65,7 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
   POST_SCREENSHOT: '/png/generate',
+  DELETE_MY_TIMETABLES: '/user/timetables/v4/festivals',
 
   //검색
   GET_SEARCH_ALL: '/search',
@@ -85,7 +89,7 @@ export const END_POINT = {
   //로그인,로그아웃,토큰재발급
   POST_SOCIAL_LOGIN: '/auth/login',
   POST_LOGOUT: '/auth/logout',
-  POST_REISSUE_TOKEN: 'auth/reissue',
+  POST_REISSUE_TOKEN: '/auth/reissue',
   DELETE_ACCOUNT: '/auth/withdraw',
 
   //온보딩

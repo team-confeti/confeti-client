@@ -1,7 +1,6 @@
 // 이 파일은 자동 생성 파일입니다. 직접 수정하지 마세요!
 export const iconNames = [
   '404',
-  'account',
   'add-timetable',
   'add',
   'apple',
@@ -13,6 +12,7 @@ export const iconNames = [
   'checkbox-default',
   'clear',
   'close',
+  'copy',
   'delete',
   'download',
   'edit',
@@ -23,6 +23,7 @@ export const iconNames = [
   'heart-outline',
   'indicator-active',
   'indicator-default',
+  'info',
   'kakao',
   'load',
   'logo-big',
@@ -37,6 +38,7 @@ export const iconNames = [
   'pause',
   'place',
   'play',
+  'profile',
   'radio-active',
   'radio-default',
   'remove',

@@ -17,7 +17,9 @@ const TimetableLayout = () => {
       `${routePath.TIME_TABLE_OUTLET}/${routePath.NO_UPCOMING_FESTIVAL}`;
   return (
     <>
-      {!isNavHidden && <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} />}
+      {!isNavHidden && (
+        <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} theme="white" />
+      )}
       <Outlet />
     </>
   );

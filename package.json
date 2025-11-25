@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache --fix",
     "lint:staged": "lint-staged",
     "prepare": "husky",
+    "storybook": "pnpm --filter @confeti/design-system run storybook",
     "build-storybook": "pnpm --filter @confeti/design-system run build-storybook"
   },
   "lint-staged": {
@@ -20,6 +21,8 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.7",
     "eslint": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",

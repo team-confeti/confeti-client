@@ -3,55 +3,68 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const timeList = style({
-  display: 'flex',
-  alignItems: 'center',
-  paddingBottom: '31px',
+import {
+  HALF_HOUR_HEIGHT_PX,
+  TIME_LABEL_WIDTH_PX,
+} from '@pages/timetable/constants';
+
+export const hourCell = style({
+  position: 'relative',
+  height: `${HALF_HOUR_HEIGHT_PX * 2}px`,
   width: '100%',
-  zIndex: themeVars.zIndex.timeTable.row,
 });
 
-export const timeP = recipe({
+export const timeLabel = recipe({
   base: {
-    ...themeVars.fontStyles.body5_r_12,
-    padding: '0 4px',
-    width: '22px',
-    lineHeight: '14px',
-    marginRight: '7px',
+    ...themeVars.fontStyles.subtitle5_sb_12,
+    position: 'absolute',
+    left: 0,
+    width: `${TIME_LABEL_WIDTH_PX}px`,
+    textAlign: 'center',
     backgroundColor: themeVars.color.white,
+    zIndex: themeVars.zIndex.timeTable.row + 1,
+    transform: 'translateY(-50%)',
   },
   variants: {
-    bold: {
-      true: {
+    type: {
+      hour: {
+        top: 0,
         color: themeVars.color.gray600,
       },
-      false: {
+      half: {
+        top: `${HALF_HOUR_HEIGHT_PX}px`,
         color: themeVars.color.gray400,
       },
     },
   },
   defaultVariants: {
-    bold: false,
+    type: 'hour',
   },
 });
 
-export const timeBar = recipe({
+export const timeLine = recipe({
   base: {
+    position: 'absolute',
+    left: `${TIME_LABEL_WIDTH_PX}px`,
+    right: 0,
     height: '1px',
-    width: 'calc(100% - 29px)',
-    margin: '0',
-    color: themeVars.color.gray300,
-    zIndex: themeVars.zIndex.timeTable.row,
+    backgroundColor: themeVars.color.gray300,
+    border: 'none',
+    margin: 0,
+    zIndex: 0,
   },
   variants: {
-    bold: {
-      true: {},
-      false: {
+    type: {
+      hour: {
+        top: 0,
+      },
+      half: {
+        top: `${HALF_HOUR_HEIGHT_PX}px`,
         display: 'none',
       },
     },
   },
   defaultVariants: {
-    bold: false,
+    type: 'hour',
   },
 });

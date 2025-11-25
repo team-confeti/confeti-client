@@ -5,11 +5,11 @@ import { Performance } from '@shared/types/user-response';
 
 import * as styles from './performance-section.css';
 
-interface ConfetiSectionProps {
+interface PerformanceSectionProps {
   performances: Performance[];
 }
 
-const ConfetiSection = ({ performances }: ConfetiSectionProps) => {
+const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
   const navigateToDetail = useNavigateToDetail();
 
   return (
@@ -26,4 +26,4 @@ const ConfetiSection = ({ performances }: ConfetiSectionProps) => {
   );
 };
 
-export default ConfetiSection;
+export default PerformanceSection;

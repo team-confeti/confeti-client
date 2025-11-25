@@ -1,5 +1,4 @@
 import { createTheme } from '@vanilla-extract/css';
-import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { border } from './tokens/border';
 import { shadowStyles } from './tokens/box-shadow';
@@ -23,11 +22,6 @@ const tokens = {
   ...typography,
 };
 
-const properties = defineProperties({
-  properties: tokens,
-});
-const sprinkles = createSprinkles(properties);
-
 const [themeClass, themeVars] = createTheme(tokens);
 
-export { sprinkles, themeClass, themeVars, tokens };
+export { themeClass, themeVars, tokens };

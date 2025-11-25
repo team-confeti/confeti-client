@@ -54,9 +54,11 @@ const FestivalDetailPage = () => {
         ageRating={festival.ageRating}
         price={festival.price}
       />
-      <Location address={festival.address} />
-      <Spacing />
 
+      {/* 지도 섹션 */}
+      <Location address={festival.address} />
+
+      <Spacing />
       <FestivalArtistSection artists={festivalDetail.festivalDates} />
       <FloatingButtonContainer />
       <Footer />

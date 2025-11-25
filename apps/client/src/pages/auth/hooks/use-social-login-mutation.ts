@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { authTokenHandler } from '@confeti/core/auth';
 import { BaseResponse } from '@confeti/core/http';
 
-import { postSocialLogin } from '@shared/apis/auth/auth-mutation';
+import { AUTH_MUTATION_OPTIONS } from '@shared/apis/auth/auth-mutations';
 import { routePath } from '@shared/router/path';
 import {
   AppleLogin,
@@ -19,7 +19,7 @@ export const useSocialLoginMutation = () => {
   const navigate = useNavigate();
 
   return useMutation<BaseResponse<SocialLoginResponse>, Error, SocialLogin>({
-    mutationFn: (socialLoginData) => postSocialLogin(socialLoginData),
+    ...AUTH_MUTATION_OPTIONS.POST_SOCIAL_LOGIN(),
     onSuccess: async (data) => {
       if (data?.data) {
         const { accessToken, refreshToken, isOnboarding } = data.data;
