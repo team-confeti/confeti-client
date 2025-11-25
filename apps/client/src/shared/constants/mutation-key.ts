@@ -23,3 +23,7 @@ export const SETLIST_MUTATION_KEY = {
   DELETE_MUSIC_FROM_SETLIST: () => ['delete-music-from-setlist'],
   DELETE_CANCEL_EDIT_SETLIST: () => ['delete-cancel-edit-setlist'],
 } as const;
+
+export const MY_TIMETABLE_MUTATION_KEY = {
+  DELETE_TIMETABLES: () => ['delete-my-timetables'],
+} as const;

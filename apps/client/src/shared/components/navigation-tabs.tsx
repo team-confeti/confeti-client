@@ -9,9 +9,14 @@ import { TAB_MENU } from '@pages/home/constants/tab';
 interface Props {
   defaultActiveTab: TAB_MENU;
   hidden?: boolean;
+  theme?: 'transparent' | 'white';
 }
 
-const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
+const NavigationTabs = ({
+  defaultActiveTab,
+  hidden = false,
+  theme = 'transparent',
+}: Props) => {
   const navigate = useNavigate();
 
   if (hidden) {
@@ -23,7 +28,7 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
   };
 
   return (
-    <Navigation.Root defaultActiveTab={defaultActiveTab}>
+    <Navigation.Root defaultActiveTab={defaultActiveTab} theme={theme}>
       <Navigation.List>
         <Navigation.Item
           index={TAB_MENU.HOME}
