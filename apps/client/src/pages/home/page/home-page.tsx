@@ -1,10 +1,12 @@
 import { Spacing } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import {
   FloatingButtonContainer,
   Footer,
   NavigationTabs,
 } from '@shared/components';
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
@@ -13,7 +15,11 @@ import TicketOpeningSection from '../components/ticket-opening-section';
 import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
+import * as styles from './home-page.css';
+
 const HomePage = () => {
+  const navigateToDetail = useNavigateToDetail();
+
   const {
     userName,
     ticketing,
@@ -22,12 +28,39 @@ const HomePage = () => {
     suggestMusicPerformance,
   } = useHomeQueries();
 
-  return (
-    <>
-      <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-      <PerformanceCarouselSection data={latestPerformances} />
+  const formattedCarouselData = latestPerformances.performances.map(
+    (performance) => ({
+      id: performance.performanceId,
+      typeId: performance.typeId,
+      type: performance.type,
+      title: performance.title,
+      place: performance.area,
+      date: formatDate(performance.startAt),
+      posterUrl: performance.posterUrl,
+    }),
+  );
 
-      <TicketOpeningSection userName={userName} data={ticketing.performances} />
+  return (
+    <div className={styles.container}>
+      {formattedCarouselData.length > 0 && (
+        <PerformanceCarouselSection
+          data={formattedCarouselData}
+          isPersonalized={latestPerformances.isPersonalized}
+          onPerformanceClick={navigateToDetail}
+        />
+      )}
+
+      <div className={styles.navTabsWrapper}>
+        <NavigationTabs defaultActiveTab={TAB_MENU.HOME} theme="transparent" />
+      </div>
+
+      <div data-ticket-section="true">
+        <TicketOpeningSection
+          userName={userName}
+          data={ticketing.performances}
+        />
+      </div>
+
       <Spacing size="2xl" color="white" />
 
       <SuggestPerformanceSection data={suggestPerformance.performances} />
@@ -40,7 +73,7 @@ const HomePage = () => {
 
       <FloatingButtonContainer />
       <Footer />
-    </>
+    </div>
   );
 };
 

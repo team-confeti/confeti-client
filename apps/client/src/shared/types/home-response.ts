@@ -19,7 +19,13 @@ export type TicketingPerformances = Pick<
 
 export type CarouselPerformances = Pick<
   Performances,
-  'performanceId' | 'typeId' | 'type' | 'title' | 'startAt' | 'posterUrl'
+  | 'performanceId'
+  | 'typeId'
+  | 'type'
+  | 'title'
+  | 'startAt'
+  | 'posterUrl'
+  | 'area'
 >;
 
 export type SuggestPerformance = Pick<
