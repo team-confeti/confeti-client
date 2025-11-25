@@ -17,6 +17,7 @@ export const routePath = {
   MY_DELETE_ACCOUNT: '/my/delete-account',
   MY_EDIT_PROFILE: 'edit-profile',
   MY_OVERVIEW: 'overview',
+  MY_TIMETABLE_DETAIL: '/my/timetable/:id',
   MY_SETLIST_DETAIL_ABSOLUTE: '/my/setlist-detail/:setlistId',
   MY_ADD_SONGS_ABSOLUTE: '/my/setlist/:setlistId/add-songs',
 

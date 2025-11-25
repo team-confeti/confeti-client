@@ -15,6 +15,8 @@ import {
 import { FestivalList } from '@shared/components';
 import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SORT_OPTIONS } from '@shared/constants/sort-label';
+import { routePath } from '@shared/router/path';
+import { buildPath } from '@shared/utils/build-path';
 
 import { TimetableListHeader } from '@pages/my/components/timetable/timetable-list-header';
 
@@ -91,7 +93,7 @@ export const TimetableContent = () => {
       return;
     }
 
-    navigate(`/festival-detail/${id}`);
+    navigate(buildPath(routePath.MY_TIMETABLE_DETAIL, { id }));
   };
 
   const festivals = data.timetables.map((timetable) => ({
