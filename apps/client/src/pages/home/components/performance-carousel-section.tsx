@@ -1,5 +1,5 @@
+import { useCarouselBackground } from '../hooks/use-carousel-background';
 import PerformanceCarousel from './performance-carousel/components/performance-carousel';
-import { useCarouselBackground } from './performance-carousel/hooks/use-carousel-background';
 import { type Performance } from './performance-carousel/types/performance-carousel-types';
 
 import * as styles from './performance-carousel-section.css';

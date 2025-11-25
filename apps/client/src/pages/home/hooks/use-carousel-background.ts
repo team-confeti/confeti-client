@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { CAROUSEL_ANIMATION } from '../constants/animation';
+import { CAROUSEL_ANIMATION } from '../components/performance-carousel/constants/animation';
 
 export function useCarouselBackground() {
   const [activeIndex, setActiveIndex] = useState(0);
