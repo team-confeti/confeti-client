@@ -28,12 +28,17 @@ export const TimetableContent = () => {
   const [deleteStatus, setDeleteStatus] = useState<
     'none' | 'confirm' | 'success'
   >('none');
+  const [sortOption, setSortOption] = useState<
+    SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST
+  >(SORT_OPTIONS.RECENT);
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  const orderBy = sortOption === SORT_OPTIONS.RECENT ? 'latest' : 'earliest';
+
   const { data } = useSuspenseQuery(
-    MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(SORT_OPTIONS.RECENT),
+    MY_TIMETABLE_QUERY_OPTIONS.ORDER_BY(orderBy),
   );
 
   const { mutate: deleteTimetables, isPending } = useMutation({
@@ -102,14 +107,22 @@ export const TimetableContent = () => {
     title: timetable.title,
   }));
 
+  const handleSortChange = (
+    newSortOption: SORT_OPTIONS.RECENT | SORT_OPTIONS.OLDEST,
+  ) => {
+    setSortOption(newSortOption);
+  };
+
   return (
     <article className={styles.wrapper}>
       <TimetableListHeader
         totalCount={data.timetableCount}
         isEditMode={isEditMode}
         selectedCount={selectedIds.length}
+        sortOption={sortOption}
         onEditModeToggle={handleEditModeToggle}
         onDelete={handleDelete}
+        onSortChange={handleSortChange}
       />
       <FestivalList>
         {festivals.map((festival) => (
