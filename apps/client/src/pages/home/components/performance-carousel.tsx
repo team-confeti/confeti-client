@@ -1,4 +1,4 @@
-import { NumberIndicator } from '@confeti/design-system';
+import { Chip, NumberIndicator } from '@confeti/design-system';
 
 import { useCarouselController } from '../hooks/use-carousel-controller';
 import {
@@ -11,6 +11,7 @@ import * as styles from './performance-carousel.css';
 
 const PerformanceCarousel = ({
   data,
+  isPersonalized,
   autoPlayInterval = 5000,
   onSlideChange,
   onPerformanceClick,
@@ -95,6 +96,13 @@ const PerformanceCarousel = ({
                   className={styles.image}
                   draggable={false}
                 />
+
+                {/* Chip: 포스터 왼쪽 상단에 표시 */}
+                <div className={styles.chipWrapper}>
+                  <Chip variant="assist">
+                    {isPersonalized ? '선호하는 아티스트' : '다가오는 공연'}
+                  </Chip>
+                </div>
 
                 {showInfo && (
                   <>

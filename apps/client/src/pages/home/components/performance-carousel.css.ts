@@ -108,3 +108,10 @@ export const sideOverlay = style({
   background: 'rgba(255,255,255,0.30)',
   pointerEvents: 'none',
 });
+
+export const chipWrapper = style({
+  position: 'absolute',
+  top: '2rem',
+  left: '2rem',
+  zIndex: themeVars.zIndex.poster.infoText,
+});

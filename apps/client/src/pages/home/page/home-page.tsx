@@ -44,6 +44,7 @@ const HomePage = () => {
       {formattedCarouselData.length > 0 && (
         <PerformanceCarouselSection
           data={formattedCarouselData}
+          isPersonalized={latestPerformances.isPersonalized}
           onPerformanceClick={navigateToDetail}
         />
       )}

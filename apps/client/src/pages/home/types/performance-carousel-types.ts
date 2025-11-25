@@ -10,6 +10,7 @@ export interface Performance {
 
 export interface PerformanceCarouselProps {
   data: Performance[];
+  isPersonalized: boolean;
   autoPlayInterval?: number; // ms
   onSlideChange?: (index: number) => void; // 0-based 원본 인덱스
   onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
