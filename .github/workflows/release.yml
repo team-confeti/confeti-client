@@ -24,6 +24,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
+      - name: Fetch main branch
+        run: git fetch origin main:main
+
       - name: Setup pnpm and Node.js
         uses: ./.github/actions/pnpm-setup-node
 
