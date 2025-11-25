@@ -4,7 +4,7 @@ const TICKET_SECTION_SELECTOR = '[data-ticket-section="true"]';
 const HEADER_SELECTOR = 'header';
 
 export const useHeaderBackground = (isHomePage: boolean) => {
-  const [isWhiteBackground, setIsWhiteBackground] = useState(false);
+  const [hasPassedTicketSection, setHasPassedTicketSection] = useState(false);
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -29,10 +29,10 @@ export const useHeaderBackground = (isHomePage: boolean) => {
         return rect.bottom <= headerHeight;
       };
 
-      setIsWhiteBackground(checkIfPassed());
+      setHasPassedTicketSection(checkIfPassed());
 
       scrollHandler = () => {
-        setIsWhiteBackground(checkIfPassed());
+        setHasPassedTicketSection(checkIfPassed());
       };
 
       window.addEventListener('scroll', scrollHandler, { passive: true });
@@ -47,5 +47,5 @@ export const useHeaderBackground = (isHomePage: boolean) => {
     };
   }, [isHomePage]);
 
-  return isWhiteBackground;
+  return hasPassedTicketSection;
 };

@@ -13,15 +13,16 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const isMyPage = location.pathname.startsWith('/my');
 
-  const isWhiteBackground = useHeaderBackground(isHomePage);
+  const hasPassedTicketSection = useHeaderBackground(isHomePage);
 
   const headerClassName = isHomePage
-    ? isWhiteBackground
+    ? hasPassedTicketSection
       ? styles.containerWhite
       : styles.container
     : styles.containerSticky;
 
-  const iconColor = isHomePage && !isWhiteBackground ? 'gray300' : 'gray700';
+  const iconColor =
+    isHomePage && !hasPassedTicketSection ? 'gray300' : 'gray700';
 
   const handleNavigation = (path: string) => navigate(path);
 
