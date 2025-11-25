@@ -1,3 +1,5 @@
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
 
 import { chipVariants } from './chip.css';
@@ -7,9 +9,17 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   selected?: boolean;
   children: React.ReactNode;
   onDelete?: () => void;
+  className?: string;
 }
 
-const Chip = ({ variant, selected, children, onDelete, ...props }: Props) => {
+const Chip = ({
+  variant,
+  selected,
+  children,
+  onDelete,
+  className,
+  ...props
+}: Props) => {
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.();
@@ -17,10 +27,13 @@ const Chip = ({ variant, selected, children, onDelete, ...props }: Props) => {
 
   return (
     <button
-      className={chipVariants({
-        variant,
-        selected: !!selected,
-      })}
+      className={cn(
+        chipVariants({
+          variant,
+          selected: !!selected,
+        }),
+        className,
+      )}
       {...props}
     >
       {children}

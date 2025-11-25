@@ -44,7 +44,11 @@ const NavigationTabs = ({
         </Navigation.Item>
         <Navigation.Item
           index={TAB_MENU.MY_HISTORY}
-          handleTabClick={() => handleNavigation(routePath.MY_HISTORY)}
+          handleTabClick={() =>
+            handleNavigation(
+              `${routePath.MY}/${routePath.MY_OVERVIEW}?type=SET_LIST`,
+            )
+          }
         >
           {'셋리스트'}
         </Navigation.Item>

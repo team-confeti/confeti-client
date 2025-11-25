@@ -4,8 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FestivalCard } from '@confeti/design-system';
 
-import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my-history/my-setlist-queries';
-import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my-history/my-timetable-queries';
+import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my/my-setlist-queries';
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { DetailHeader } from '@shared/components';
 import {
   SORT_LABELS,
@@ -15,12 +15,12 @@ import {
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
-import CountDisplay from '@pages/my-history/components/overview/count-display';
-import OrderByButton from '@pages/my-history/components/overview/order-by-button';
+import CountDisplay from '@pages/my/components/overview/count-display';
+import OrderByButton from '@pages/my/components/overview/order-by-button';
 
-import * as styles from './my-history-overview-page.css';
+import * as styles from './my-overview-page.css';
 
-const MyHistoryOverviewPage = () => {
+const MyOverviewPage = () => {
   //TODO: FestivalCard에 Skeleton 추가
   const [sortOption, setSortOption] = useState<SortOption>(SORT_OPTIONS.RECENT);
   const [searchParams] = useSearchParams();
@@ -52,9 +52,7 @@ const MyHistoryOverviewPage = () => {
   };
 
   const handleNavigateToDetail = (setlistId: number) => {
-    navigate(
-      buildPath(routePath.MY_HISTORY_SETLIST_DETAIL_ABSOLUTE, { setlistId }),
-    );
+    navigate(buildPath(routePath.MY_SETLIST_DETAIL_ABSOLUTE, { setlistId }));
   };
 
   const handleNavigateToTimeTable = () => {
@@ -96,4 +94,4 @@ const MyHistoryOverviewPage = () => {
   );
 };
 
-export default MyHistoryOverviewPage;
+export default MyOverviewPage;
