@@ -10,7 +10,6 @@ interface Props {
   title: string;
   titleSize?: 'md' | 'lg';
   subtitle?: string;
-  subtitleIcon?: ReactNode;
   showMoreText?: string;
   onShowMore?: () => void;
   children: ReactNode;
@@ -21,7 +20,6 @@ const Box = ({
   title,
   titleSize = 'md',
   subtitle,
-  subtitleIcon,
   showMoreText,
   onShowMore,
   children,
@@ -32,13 +30,8 @@ const Box = ({
     <section className={cn(styles.boxVariants(), className)} {...props}>
       <div className={styles.header}>
         <div className={styles.titleWrapper}>
-          {subtitle && (
-            <div className={styles.subtitle}>
-              {subtitleIcon}
-              {subtitle}
-            </div>
-          )}
           <h3 className={styles.titleVariants({ titleSize })}>{title}</h3>
+          {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
         </div>
         {onShowMore && (
           <div className={styles.buttonWrapper}>

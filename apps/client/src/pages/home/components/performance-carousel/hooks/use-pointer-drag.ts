@@ -7,6 +7,7 @@ import { DRAG_THRESHOLD } from '../constants/interaction';
 interface UsePointerDragParams {
   rootRef: RefObject<HTMLDivElement | null>;
   dragOffset: number;
+  isAnimating: boolean;
   setDragOffset: (v: number) => void;
   setIsAnimating: (v: boolean) => void;
   clearAutoplay: () => void;
@@ -18,6 +19,7 @@ interface UsePointerDragParams {
 export function usePointerDrag({
   rootRef,
   dragOffset,
+  isAnimating,
   setDragOffset,
   setIsAnimating,
   clearAutoplay,
@@ -32,14 +34,23 @@ export function usePointerDrag({
     if (!el) return;
 
     const onPointerDown = (e: PointerEvent) => {
+      if (isAnimating) {
+        return;
+      }
+
       clearAutoplay();
       setIsAnimating(false);
       startXRef.current = e.clientX;
-      (e.target as Element).setPointerCapture?.(e.pointerId);
+      const target = e.target as Element;
+      if (target.setPointerCapture) {
+        target.setPointerCapture(e.pointerId);
+      }
+      e.preventDefault();
     };
 
     const onPointerMove = (e: PointerEvent) => {
       if (startXRef.current !== null) {
+        e.preventDefault();
         const delta = e.clientX - startXRef.current;
         const capped = Math.max(-OFFSET, Math.min(OFFSET, delta));
         setDragOffset(capped);
@@ -66,22 +77,19 @@ export function usePointerDrag({
 
     const onPointerUp = () => endDrag();
     const onPointerCancel = () => endDrag();
-    const onPointerLeave = () => endDrag();
 
     el.addEventListener('pointerdown', onPointerDown);
     el.addEventListener('pointermove', onPointerMove);
     el.addEventListener('pointerup', onPointerUp);
     el.addEventListener('pointercancel', onPointerCancel);
-    el.addEventListener('pointerleave', onPointerLeave);
 
     return () => {
       el.removeEventListener('pointerdown', onPointerDown);
       el.removeEventListener('pointermove', onPointerMove);
       el.removeEventListener('pointerup', onPointerUp);
       el.removeEventListener('pointercancel', onPointerCancel);
-      el.removeEventListener('pointerleave', onPointerLeave);
     };
-  }, [dragOffset, rootRef, onNext, onPrev]);
+  }, [dragOffset, isAnimating, rootRef, onNext, onPrev]);
 
   return undefined; // ESLint no-unused-expressions 방지
 }

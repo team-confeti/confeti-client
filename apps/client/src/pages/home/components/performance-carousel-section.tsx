@@ -21,30 +21,34 @@ const PerformanceCarouselSection = ({
 
   if (!Array.isArray(data) || data.length === 0) return null;
 
+  const transitionStyle = `opacity ${CAROUSEL_ANIMATION.DURATION}ms ${CAROUSEL_ANIMATION.EASING}`;
+
+  const CurrentBackgroundImage = (
+    <img
+      src={data[activeIndex]?.posterUrl}
+      alt={data[activeIndex]?.title}
+      className={styles.backgroundImage}
+      style={{ transition: transitionStyle }}
+    />
+  );
+
+  const NextBackgroundImage = (
+    <img
+      src={data[nextIndex]?.posterUrl}
+      alt={data[nextIndex]?.title}
+      className={styles.backgroundImageFront}
+      style={{
+        opacity: isTransitioning ? 1 : 0,
+        transition: transitionStyle,
+      }}
+    />
+  );
+
   return (
     <section className={styles.sectionContainer}>
       <div className={styles.backgroundWrapper}>
-        {/* 현재 배경 */}
-        <img
-          src={data[activeIndex]?.posterUrl}
-          alt={data[activeIndex]?.title}
-          className={styles.backgroundImage}
-          style={{
-            transition: `opacity ${CAROUSEL_ANIMATION.DURATION}ms ${CAROUSEL_ANIMATION.EASING}`,
-          }}
-        />
-
-        {/* 다음 배경 (fade-in) */}
-        <img
-          src={data[nextIndex]?.posterUrl}
-          alt={data[nextIndex]?.title}
-          className={styles.backgroundImageFront}
-          style={{
-            opacity: isTransitioning ? 1 : 0,
-            transition: `opacity ${CAROUSEL_ANIMATION.DURATION}ms ${CAROUSEL_ANIMATION.EASING}`,
-          }}
-        />
-
+        {CurrentBackgroundImage}
+        {NextBackgroundImage}
         <div className={styles.backgroundOverlay} />
       </div>
 

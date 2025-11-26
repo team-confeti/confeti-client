@@ -1,5 +1,4 @@
 import { Box, FestivalCard } from '@confeti/design-system';
-import { Icon } from '@confeti/design-system/icon';
 
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { SuggestPerformance } from '@shared/types/home-response';
@@ -16,10 +15,9 @@ const SuggestPerformanceSection = ({
 
   return (
     <Box
-      title="이런 공연은 어떠세요?"
+      title="confeti’s pick!"
       titleSize="lg"
-      subtitle="confeti's pick!"
-      subtitleIcon={<Icon name="heart-filled" size="1.4rem" />}
+      subtitle="이런 공연은 어떠세요?"
       className={styles.boxWrapper}
     >
       <div className={styles.container}>
