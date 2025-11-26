@@ -9,10 +9,6 @@ import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { MyHistoryTimetableResponse } from '@shared/types/my-history-response';
 
-interface DeleteTimetableRequest {
-  deleteFestivalIds: number[];
-}
-
 export const MY_TIMETABLE_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
@@ -29,10 +25,10 @@ export const MY_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getMyTimetableOverView(sortBy),
       enabled,
     }),
-  ORDER_BY: (orderBy: 'earliest' | 'latest') =>
+  SORT_BY: (sortBy: 'earliest' | 'latest') =>
     queryOptions({
-      queryKey: [...MY_TIMETABLE_QUERY_KEY.ALL, orderBy],
-      queryFn: () => getMyTimetableOrderBy(orderBy),
+      queryKey: [...MY_TIMETABLE_QUERY_KEY.ALL, sortBy],
+      queryFn: () => getMyTimetableSortBy(sortBy),
     }),
 };
 
@@ -58,21 +54,19 @@ export const getMyTimetableOverView = async (sortBy: SortOption) => {
   return response.data;
 };
 
-export const getMyTimetableOrderBy = async (orderBy: 'earliest' | 'latest') => {
+export const getMyTimetableSortBy = async (sortBy: 'earliest' | 'latest') => {
   const response = await get<BaseResponse<MyHistoryTimetableResponse>>(
-    END_POINT.GET_MY_TIMETABLE_ORDER_BY(orderBy),
+    END_POINT.GET_MY_TIMETABLE_SORT_BY(sortBy),
   );
   return response.data;
 };
 
 export const deleteMyTimetables = async (festivalIds: number[]) => {
-  const body: DeleteTimetableRequest = {
-    deleteFestivalIds: festivalIds,
-  };
-
   const response = await patch<BaseResponse<null>>(
     END_POINT.DELETE_MY_TIMETABLES,
-    body,
+    {
+      deleteTimetableFestivalIds: festivalIds,
+    },
   );
 
   return response.data;

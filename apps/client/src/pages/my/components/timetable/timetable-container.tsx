@@ -31,7 +31,7 @@ export const TimetableContainer = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const orderBy = sortOption === SORT_OPTIONS.RECENT ? 'latest' : 'earliest';
+  const sortBy = sortOption === SORT_OPTIONS.RECENT ? 'latest' : 'earliest';
 
   const { mutate: deleteTimetables, isPending } = useMutation({
     ...MY_TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLES(),
@@ -107,7 +107,7 @@ export const TimetableContainer = () => {
         <TimetableContent
           isEditMode={isEditMode}
           selectedIds={selectedIds}
-          orderBy={orderBy}
+          sortBy={sortBy}
           onItemClick={handleItemClick}
           onCheckboxToggle={toggleSelection}
           setTotalCount={setTotalCount}
