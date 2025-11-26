@@ -157,15 +157,18 @@ export const playerTransparent = style({
 
 export const progressSvg = style({
   position: 'absolute',
-  inset: '-1.5px',
-  transform: 'rotate(-90deg)',
+  width: '44px',
+  height: '44px',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%) rotate(-90deg)',
   pointerEvents: 'none',
 });
 
 export const progressCircle = style({
   fill: 'none',
   stroke: themeVars.color.confeti_lime,
-  strokeWidth: 1,
+  strokeWidth: 2,
   strokeDasharray: `${CIRC}`,
   strokeDashoffset: `${CIRC}`,
   transition: 'stroke-dashoffset 0.25s linear',
