@@ -9,12 +9,11 @@ import MusicInfo from '@shared/components/music-list/music-info';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
 import { RecommendPerformances } from '@shared/types/home-response';
 
+import { PERFORMANCE_SIZE, SONG_SIZE } from '../constants/recommend';
+
 interface SuggestMusicSectionProps {
   onClickDetail: (type: string, typeId: number) => void;
 }
-
-const PERFORMANCE_SIZE = 3;
-const SONG_SIZE = 3;
 
 const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
   const { data, isPending } = useQuery({
@@ -40,7 +39,7 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
   const { musicList, onClickPlayToggle, audioRef, audioEvents, stopAudio } =
     useMusicPlayer(musicData);
 
-  if (!isPending && performances.length === 0) {
+  if (!isPending && !performances) {
     return null;
   }
 
