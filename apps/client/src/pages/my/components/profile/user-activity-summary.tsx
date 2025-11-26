@@ -41,7 +41,7 @@ const UserActivitySummary = () => {
         </p>
       </div>
       <div className={styles.itemWrapper} onClick={handleTimetableClick}>
-        <p className={styles.itemText}>나의 타임테이블</p>
+        <p className={styles.itemText}>타임테이블</p>
         <div className={styles.itemCountWrapper}>
           <p>
             {recordData.timetableCount}
