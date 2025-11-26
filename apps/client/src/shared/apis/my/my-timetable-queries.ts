@@ -9,10 +9,6 @@ import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { SortOption } from '@shared/constants/sort-label';
 import { MyHistoryTimetableResponse } from '@shared/types/my-history-response';
 
-interface DeleteTimetableRequest {
-  deleteFestivalIds: number[];
-}
-
 export const MY_TIMETABLE_QUERY_OPTIONS = {
   ALL: () =>
     queryOptions({
@@ -66,13 +62,11 @@ export const getMyTimetableOrderBy = async (orderBy: 'earliest' | 'latest') => {
 };
 
 export const deleteMyTimetables = async (festivalIds: number[]) => {
-  const body: DeleteTimetableRequest = {
-    deleteFestivalIds: festivalIds,
-  };
-
   const response = await patch<BaseResponse<null>>(
     END_POINT.DELETE_MY_TIMETABLES,
-    body,
+    {
+      deleteTimetableFestivalIds: festivalIds,
+    },
   );
 
   return response.data;
