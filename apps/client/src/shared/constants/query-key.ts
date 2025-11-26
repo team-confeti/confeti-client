@@ -31,10 +31,11 @@ export const HOME_QUERY_KEY = {
   LATEST_PERFORMANCES: () => [...HOME_QUERY_KEY.ALL, 'latest-performances'],
   TICKETING: () => [...HOME_QUERY_KEY.ALL, 'ticketing'],
   SUGGEST_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggest-performance'],
-  SUGGEST_MUSIC_PERFORMANCE: () => [...HOME_QUERY_KEY.ALL, 'suggest-music'],
-  SUGGEST_MUSIC: (performanceId: number) => [
+  RECOMMEND_PERFORMANCES: (performanceSize: number, songSize: number) => [
     ...HOME_QUERY_KEY.ALL,
-    performanceId,
+    'recommend-performances',
+    performanceSize,
+    songSize,
   ],
 } as const;
 
