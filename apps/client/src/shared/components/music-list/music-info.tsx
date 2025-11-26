@@ -5,23 +5,29 @@ import * as styles from './music-info.css';
 
 interface MusicInfoProps {
   title: string;
-  total?: number;
-  current?: number;
+  posterUrl: string;
+  total: number;
+  current: number;
   onDotClick?: (index: number) => void;
+  onClickDetail?: () => void;
 }
 
 const MusicInfo = ({
   title,
-  total = 2,
-  current = 0,
+  posterUrl,
+  total,
+  current,
   onDotClick,
+  // onClickDetail,
 }: MusicInfoProps) => {
   const showDots = total > 1;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.poster}></div>
+        <div>
+          <img src={posterUrl} className={styles.poster} />
+        </div>
         <div className={styles.textSection}>
           <p className={styles.title}>{title}</p>
           <div className={styles.buttonSection}>

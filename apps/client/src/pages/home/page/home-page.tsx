@@ -25,7 +25,7 @@ const HomePage = () => {
     ticketing,
     latestPerformances,
     suggestPerformance,
-    suggestMusicPerformance,
+    recomendPerformances,
   } = useHomeQueries();
 
   const formattedCarouselData = latestPerformances.performances.map(
@@ -66,8 +66,11 @@ const HomePage = () => {
       <SuggestPerformanceSection data={suggestPerformance.performances} />
       <Spacing size="lg" color="white" />
 
-      {suggestMusicPerformance && (
-        <SuggestMusicSection data={suggestMusicPerformance} />
+      {recomendPerformances && (
+        <SuggestMusicSection
+          performances={recomendPerformances.performances}
+          // onClickDetail={navigateToDetail}
+        />
       )}
       <Spacing size="xl" color="white" />
 

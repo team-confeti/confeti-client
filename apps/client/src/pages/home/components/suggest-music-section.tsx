@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Box } from '@confeti/design-system';
@@ -6,25 +7,55 @@ import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { MusicList } from '@shared/components';
 import MusicInfo from '@shared/components/music-list/music-info';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
+import {
+  RecommendPerformances,
+  SuggestMusicPerformanceResponse,
+} from '@shared/types/home-response';
+
+interface SuggestMusicSectionProps {
+  performances: RecommendPerformances[];
+  // onClickDetail: NavigateToDetail;
+}
 
 const SuggestMusicSection = ({
-  data,
-}: {
-  data: SuggestMusicPerformanceResponse;
-}) => {
-  const musicIdList: string[] | undefined = undefined;
+  performances,
+  // onClickDetail,
+}: SuggestMusicSectionProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { data: suggestMusic, isPending } = useQuery({
-    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
-  });
+  const currentPerformance = performances[currentIndex];
 
-  if (!isPending && !suggestMusic?.musics) {
+  const musicData = useMemo(
+    () =>
+      currentPerformance?.songs.map((song) => ({
+        musicId: song.songId,
+        trackName: song.songId,
+        artistName: song.artistName,
+        artworkUrl: song.artworkUrl,
+        previewUrl: song.previewUrl,
+      })) ?? [],
+    [currentPerformance],
+  );
+
+  const { musicList, onClickPlayToggle, audioRef, audioEvents, stopAudio } =
+    useMusicPlayer(musicData);
+
+  if (!currentPerformance || performances.length === 0) {
     return null;
   }
 
-  const { musicList, onClickPlayToggle, audioRef, audioEvents } =
-    useMusicPlayer(suggestMusic?.musics ?? []);
+  // const musicIdList: string[] | undefined = undefined;
+
+  // const { data: suggestMusic, isPending } = useQuery({
+  //   ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
+  // });
+
+  // if (!isPending && !suggestMusic?.musics) {
+  //   return null;
+  // }
+
+  // const { musicList, onClickPlayToggle, audioRef, audioEvents } =
+  //   useMusicPlayer(suggestMusic?.musics ?? []);
 
   return (
     <Box
@@ -33,12 +64,19 @@ const SuggestMusicSection = ({
       subtitle="예상 셋리스트, 미리 한번 들어볼까요?"
     >
       <div>
-        <MusicInfo title={data.title} />
+        <MusicInfo
+          title={currentPerformance.title}
+          posterUrl={currentPerformance.posterUrl}
+          total={performances.length}
+          current={currentIndex}
+          // onDotClick={}
+          // onClickDetail={}
+        />
         <MusicList
           appearance="home"
           musics={musicList}
           onClickPlayToggle={onClickPlayToggle}
-          isPending={isPending}
+          // isPending={isPending}
           skeletonCount={3}
         />
         <audio
