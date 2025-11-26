@@ -55,6 +55,8 @@ jobs:
         run: pnpm -w changeset status
 
       - name: Version bump and commit
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           # Run version bump
           pnpm -w changeset version
