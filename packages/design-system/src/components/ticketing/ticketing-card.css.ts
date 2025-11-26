@@ -33,7 +33,7 @@ export const ddayContainer = style({
 export const subTitle = style({
   ...themeVars.fontStyles.title3_b_18,
   color: themeVars.color.confeti_lime,
-  width: '16rem',
+  width: '28rem',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
