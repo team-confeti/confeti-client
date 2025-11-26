@@ -45,6 +45,7 @@ export function getSlideView(params: {
   const transform = getSlideTransform(distanceFromCenter);
   const isCenter = position === 0;
   const isRight = position === 1;
+  const isLeft = position === -1;
   const isTransitioning = isAnimating || dragOffset !== 0;
 
   let showInfo = false;
@@ -52,11 +53,15 @@ export function getSlideView(params: {
 
   if (isCenter) {
     const progress = Math.abs(dragOffset) / OFFSET;
-    infoOpacity = dragOffset < 0 ? 1 - progress : 1;
+    infoOpacity = dragOffset < 0 ? 1 - progress : 1 - progress;
     showInfo = true;
   } else if (isRight && isTransitioning) {
     const progress = Math.abs(dragOffset) / OFFSET;
     infoOpacity = dragOffset < 0 ? progress : 0;
+    showInfo = true;
+  } else if (isLeft && isTransitioning) {
+    const progress = Math.abs(dragOffset) / OFFSET;
+    infoOpacity = dragOffset > 0 ? progress : 0;
     showInfo = true;
   }
 
