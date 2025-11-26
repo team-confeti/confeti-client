@@ -6,7 +6,7 @@ export const imageField = style({
   ...themeVars.display.flexColumn,
   justifyContent: 'space-between',
   width: '100%',
-  aspectRatio: '335 / 190',
+  aspectRatio: '375 / 193.7',
   padding: '2rem',
   borderRadius: '1rem',
   flexShrink: 0,
