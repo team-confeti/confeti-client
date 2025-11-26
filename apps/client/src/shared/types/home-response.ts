@@ -36,7 +36,7 @@ export type SuggestPerformance = Pick<
 export type musics = {
   musicId: string;
   artistName: string;
-  trackName: string;
+  songName: string;
   artworkUrl: string;
   previewUrl: string;
 };
@@ -66,6 +66,7 @@ export interface SuggestMusicResponse {
 
 export interface RecommendSong {
   songId: string;
+  songName: string;
   artistName: string;
   artworkUrl: string;
   previewUrl: string;
