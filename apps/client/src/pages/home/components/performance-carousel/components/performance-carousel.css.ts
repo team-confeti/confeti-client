@@ -5,7 +5,7 @@ export const root = style({
   width: '100%',
   overflow: 'visible',
   userSelect: 'none',
-  touchAction: 'pan-y',
+  touchAction: 'none',
   marginTop: '8rem',
 });
 
