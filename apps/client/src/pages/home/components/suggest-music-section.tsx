@@ -13,7 +13,7 @@ interface SuggestMusicSectionProps {
   onClickDetail: (type: string, typeId: number) => void;
 }
 
-const PERFORMANCE_SIZE = 2;
+const PERFORMANCE_SIZE = 3;
 const SONG_SIZE = 3;
 
 const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
