@@ -20,13 +20,8 @@ import * as styles from './home-page.css';
 const HomePage = () => {
   const navigateToDetail = useNavigateToDetail();
 
-  const {
-    userName,
-    ticketing,
-    latestPerformances,
-    suggestPerformance,
-    recomendPerformances,
-  } = useHomeQueries();
+  const { userName, ticketing, latestPerformances, suggestPerformance } =
+    useHomeQueries();
 
   const formattedCarouselData = latestPerformances.performances.map(
     (performance) => ({
@@ -66,12 +61,7 @@ const HomePage = () => {
       <SuggestPerformanceSection data={suggestPerformance.performances} />
       <Spacing size="lg" color="white" />
 
-      {recomendPerformances && (
-        <SuggestMusicSection
-          performances={recomendPerformances.performances}
-          onClickDetail={navigateToDetail}
-        />
-      )}
+      <SuggestMusicSection onClickDetail={navigateToDetail} />
       <Spacing size="xl" color="white" />
 
       <FloatingButtonContainer />
