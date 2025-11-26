@@ -13,8 +13,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  check-changesets:
-    name: Check Changesets
+  check-and-version-bump:
+    name: Check Changesets and Version Bump
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.base_ref == 'main' && github.head_ref == 'develop'
     steps:
@@ -23,6 +23,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+          ref: ${{ github.head_ref }}
 
       - name: Fetch main branch
         run: git fetch origin main:main
@@ -35,7 +36,7 @@ jobs:
 
       - name: Check for changeset files
         run: |
-          if [ -z "$(ls .changeset/*.md 2>/dev/null)" ]; then
+          if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v README)" ]; then
             echo "❌ changeset 파일이 없습니다!"
             echo "💡 배포 전 반드시 'pnpm changeset'으로 changeset을 추가하세요."
             exit 1
@@ -46,29 +47,12 @@ jobs:
       - name: Preview Changesets
         run: pnpm -w changeset status
 
-  version-bump:
-    name: Version bump
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: true
-
-      - name: Setup pnpm and Node.js
-        uses: ./.github/actions/pnpm-setup-node
-
-      - name: Install dependencies
-        run: pnpm -w install --frozen-lockfile
-
       - name: Version bump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm -w changeset version
 
-      - name: Create version bump PR
+      - name: Commit and push version bump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -77,24 +61,11 @@ jobs:
 
           # Check if there are changes
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit"
+            echo "No version bump needed"
             exit 0
           fi
 
-          # Create a new branch for version bump
-          BRANCH_NAME="chore/version-bump-$(date +%s)"
-          git checkout -b "$BRANCH_NAME"
-
-          # Commit changes
+          # Commit and push to the PR branch
           git add -A
-          git commit -m "chore: release version"
-
-          # Push to new branch
-          git push origin "$BRANCH_NAME"
-
-          # Create PR using GitHub CLI
-          gh pr create \
-            --title "chore: release version" \
-            --body "Automated version bump from changesets" \
-            --base main \
-            --head "$BRANCH_NAME"
+          git commit -m "chore: version bump"
+          git push origin ${{ github.head_ref }}
