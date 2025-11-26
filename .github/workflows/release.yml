@@ -68,10 +68,33 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm -w changeset version
 
-      - name: Commit and push version bump
+      - name: Create version bump PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Check if there are changes
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          # Create a new branch for version bump
+          BRANCH_NAME="chore/version-bump-$(date +%s)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Commit changes
           git add -A
-          git commit -m "chore: release version" || echo "No changes to commit"
-          git push origin HEAD:${{ github.ref_name }}
+          git commit -m "chore: release version"
+
+          # Push to new branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR using GitHub CLI
+          gh pr create \
+            --title "chore: release version" \
+            --body "Automated version bump from changesets" \
+            --base main \
+            --head "$BRANCH_NAME"
