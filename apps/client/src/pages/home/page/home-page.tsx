@@ -69,7 +69,7 @@ const HomePage = () => {
       {recomendPerformances && (
         <SuggestMusicSection
           performances={recomendPerformances.performances}
-          // onClickDetail={navigateToDetail}
+          onClickDetail={navigateToDetail}
         />
       )}
       <Spacing size="xl" color="white" />

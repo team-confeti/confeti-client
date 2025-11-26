@@ -18,7 +18,7 @@ const MusicInfo = ({
   total,
   current,
   onDotClick,
-  // onClickDetail,
+  onClickDetail,
 }: MusicInfoProps) => {
   const showDots = total > 1;
 
@@ -31,7 +31,9 @@ const MusicInfo = ({
         <div className={styles.textSection}>
           <p className={styles.title}>{title}</p>
           <div className={styles.buttonSection}>
-            <p className={styles.buttonText}>공연 상세정보 확인하기</p>
+            <p className={styles.buttonText} onClick={onClickDetail}>
+              공연 상세정보 확인하기
+            </p>
             <Icon name="arrow-horizontal" size={12} color="white" />
           </div>
         </div>

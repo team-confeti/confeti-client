@@ -9,12 +9,12 @@ import { RecommendPerformances } from '@shared/types/home-response';
 
 interface SuggestMusicSectionProps {
   performances: RecommendPerformances[];
-  // onClickDetail: NavigateToDetail;
+  onClickDetail: (type: string, typeId: number) => void;
 }
 
 const SuggestMusicSection = ({
   performances,
-  // onClickDetail,
+  onClickDetail,
 }: SuggestMusicSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -48,6 +48,10 @@ const SuggestMusicSection = ({
     setCurrentIndex(index);
   };
 
+  const handleClickDetail = () => {
+    onClickDetail(currentPerformance.type, currentPerformance.typeId);
+  };
+
   return (
     <Box
       title="공연 미리듣기"
@@ -61,7 +65,7 @@ const SuggestMusicSection = ({
           total={performances.length}
           current={currentIndex}
           onDotClick={handleDotClick}
-          // onClickDetail={}
+          onClickDetail={handleClickDetail}
         />
         <MusicList
           appearance="home"
