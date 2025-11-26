@@ -1,16 +1,11 @@
 import { useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 import { Box } from '@confeti/design-system';
 
-import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { MusicList } from '@shared/components';
 import MusicInfo from '@shared/components/music-list/music-info';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import {
-  RecommendPerformances,
-  SuggestMusicPerformanceResponse,
-} from '@shared/types/home-response';
+import { RecommendPerformances } from '@shared/types/home-response';
 
 interface SuggestMusicSectionProps {
   performances: RecommendPerformances[];
@@ -44,18 +39,14 @@ const SuggestMusicSection = ({
     return null;
   }
 
-  // const musicIdList: string[] | undefined = undefined;
+  const handleDotClick = (index: number) => {
+    if (index === currentIndex) return;
 
-  // const { data: suggestMusic, isPending } = useQuery({
-  //   ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
-  // });
+    if (index < 0 || index >= performances.length) return;
 
-  // if (!isPending && !suggestMusic?.musics) {
-  //   return null;
-  // }
-
-  // const { musicList, onClickPlayToggle, audioRef, audioEvents } =
-  //   useMusicPlayer(suggestMusic?.musics ?? []);
+    stopAudio();
+    setCurrentIndex(index);
+  };
 
   return (
     <Box
@@ -69,7 +60,7 @@ const SuggestMusicSection = ({
           posterUrl={currentPerformance.posterUrl}
           total={performances.length}
           current={currentIndex}
-          // onDotClick={}
+          onDotClick={handleDotClick}
           // onClickDetail={}
         />
         <MusicList
