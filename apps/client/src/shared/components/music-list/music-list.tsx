@@ -7,7 +7,7 @@ import * as styles from './music-list.css';
 
 interface Music {
   musicId: string;
-  songName: string;
+  trackName: string;
   artworkUrl: string;
   artistName: string;
   isPlaying?: boolean;
@@ -48,7 +48,7 @@ const MusicList = ({
               key={music.musicId}
               musicId={music.musicId}
               albumImage={music.artworkUrl}
-              title={music.songName}
+              title={music.trackName}
               artist={music.artistName}
               isPlaying={music.isPlaying}
               progress={music.progress}

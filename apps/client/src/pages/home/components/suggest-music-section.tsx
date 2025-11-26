@@ -28,7 +28,7 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
     () =>
       currentPerformance?.songs.map((song) => ({
         musicId: song.songId,
-        songName: song.songName,
+        trackName: song.songName,
         artistName: song.artistName,
         artworkUrl: song.artworkUrl,
         previewUrl: song.previewUrl,
