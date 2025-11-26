@@ -6,6 +6,7 @@ export const wrapper = style({
   ...themeVars.display.flexColumn,
   padding: '1rem 2rem 3.2rem 2rem',
   gap: '2rem',
+  flexGrow: 1,
 });
 
 export const performanceItem = style({
