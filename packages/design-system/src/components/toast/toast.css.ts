@@ -36,7 +36,7 @@ export const text = style({
 });
 
 export const highlightText = style({
-  color: themeVars.color.confeti_lime3,
+  color: themeVars.color.confeti_lime,
   display: 'inline-block',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -59,8 +59,6 @@ export const toastVariants = recipe({
 
     ...themeVars.display.flexJustifyAlignCenter,
     borderRadius: 20,
-    backgroundColor: themeVars.color.white,
-    color: themeVars.color.black,
     textAlign: 'center',
     zIndex: themeVars.zIndex.toast.content,
     boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
@@ -78,6 +76,16 @@ export const toastVariants = recipe({
     animation: {
       enter: {},
       exit: {},
+    },
+    color: {
+      white: {
+        backgroundColor: themeVars.color.white,
+        color: themeVars.color.black,
+      },
+      black: {
+        backgroundColor: themeVars.color.gray800,
+        color: themeVars.color.white,
+      },
     },
   },
   compoundVariants: [
@@ -103,5 +111,6 @@ export const toastVariants = recipe({
   ],
   defaultVariants: {
     isTopPosition: false,
+    color: 'white',
   },
 });

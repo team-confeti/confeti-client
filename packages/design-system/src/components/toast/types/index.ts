@@ -13,9 +13,10 @@ export type ToastProps = {
   autoClose?: false | number;
   closeOnClick?: boolean;
   position?: ToastPosition;
-  icon?: React.JSX.Element | 'default';
+  icon?: React.JSX.Element | 'default' | 'warning';
   className?: string;
   highlightText?: string;
+  color?: 'black' | 'white';
 };
 
 export const enum ToastEvent {

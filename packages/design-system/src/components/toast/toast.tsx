@@ -16,6 +16,7 @@ const Toast = ({
   icon,
   className,
   highlightText,
+  color = 'black',
 }: ToastProps) => {
   const { isExiting, handleAnimationEnd, handleClick } = useToast(
     toastId,
@@ -28,7 +29,9 @@ const Toast = ({
   const renderIcon = () => {
     switch (icon) {
       case 'default':
-        return <Icon name="toast-info" size="2rem" color="confeti_lime2" />;
+        return <Icon name="toast-info" size="1.6rem" color="confeti_lime2" />;
+      case 'warning':
+        return <Icon name="toast-info" size="1.6rem" color="confeti_red" />;
       case undefined:
         return null;
       default:
@@ -42,6 +45,7 @@ const Toast = ({
         styles.toastVariants({
           isTopPosition,
           animation: isExiting ? 'exit' : 'enter',
+          color,
         }),
         className,
       )}
