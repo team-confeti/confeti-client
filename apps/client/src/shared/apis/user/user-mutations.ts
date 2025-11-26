@@ -20,11 +20,6 @@ export const patchUserInfo = async (formData: FormData): Promise<UserInfo> => {
   const response = await patch<BaseResponse<UserInfo>>(
     END_POINT.PATCH_USER_INFO,
     formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
   );
 
   return response.data;
