@@ -7,6 +7,7 @@ import { DRAG_THRESHOLD } from '../constants/interaction';
 interface UsePointerDragParams {
   rootRef: RefObject<HTMLDivElement | null>;
   dragOffset: number;
+  isAnimating: boolean;
   setDragOffset: (v: number) => void;
   setIsAnimating: (v: boolean) => void;
   clearAutoplay: () => void;
@@ -18,6 +19,7 @@ interface UsePointerDragParams {
 export function usePointerDrag({
   rootRef,
   dragOffset,
+  isAnimating,
   setDragOffset,
   setIsAnimating,
   clearAutoplay,
@@ -32,6 +34,10 @@ export function usePointerDrag({
     if (!el) return;
 
     const onPointerDown = (e: PointerEvent) => {
+      if (isAnimating) {
+        return;
+      }
+
       clearAutoplay();
       setIsAnimating(false);
       startXRef.current = e.clientX;
@@ -83,7 +89,7 @@ export function usePointerDrag({
       el.removeEventListener('pointerup', onPointerUp);
       el.removeEventListener('pointercancel', onPointerCancel);
     };
-  }, [dragOffset, rootRef, onNext, onPrev]);
+  }, [dragOffset, isAnimating, rootRef, onNext, onPrev]);
 
   return undefined; // ESLint no-unused-expressions 방지
 }

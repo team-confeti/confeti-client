@@ -81,6 +81,7 @@ export function useCarouselController({
   usePointerDrag({
     rootRef,
     dragOffset,
+    isAnimating,
     setDragOffset,
     setIsAnimating,
     clearAutoplay,
