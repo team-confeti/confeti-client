@@ -8,7 +8,7 @@ import { FestivalList } from '@shared/components';
 interface Props {
   isEditMode: boolean;
   selectedIds: number[];
-  orderBy: 'latest' | 'earliest';
+  sortBy: 'latest' | 'earliest';
   onItemClick: (id: number) => void;
   onCheckboxToggle: (id: number) => void;
   setTotalCount: (count: number) => void;
@@ -17,14 +17,12 @@ interface Props {
 export const TimetableContent = ({
   isEditMode,
   selectedIds,
-  orderBy,
+  sortBy,
   onItemClick,
   onCheckboxToggle,
   setTotalCount,
 }: Props) => {
-  const { data } = useSuspenseQuery(
-    MY_TIMETABLE_QUERY_OPTIONS.ORDER_BY(orderBy),
-  );
+  const { data } = useSuspenseQuery(MY_TIMETABLE_QUERY_OPTIONS.SORT_BY(sortBy));
 
   const festivals = data.timetables.map((t) => ({
     id: t.timetableFestivalId,

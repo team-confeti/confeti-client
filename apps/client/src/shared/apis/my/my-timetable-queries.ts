@@ -25,10 +25,10 @@ export const MY_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getMyTimetableOverView(sortBy),
       enabled,
     }),
-  ORDER_BY: (orderBy: 'earliest' | 'latest') =>
+  SORT_BY: (sortBy: 'earliest' | 'latest') =>
     queryOptions({
-      queryKey: [...MY_TIMETABLE_QUERY_KEY.ALL, orderBy],
-      queryFn: () => getMyTimetableOrderBy(orderBy),
+      queryKey: [...MY_TIMETABLE_QUERY_KEY.ALL, sortBy],
+      queryFn: () => getMyTimetableSortBy(sortBy),
     }),
 };
 
@@ -54,9 +54,9 @@ export const getMyTimetableOverView = async (sortBy: SortOption) => {
   return response.data;
 };
 
-export const getMyTimetableOrderBy = async (orderBy: 'earliest' | 'latest') => {
+export const getMyTimetableSortBy = async (sortBy: 'earliest' | 'latest') => {
   const response = await get<BaseResponse<MyHistoryTimetableResponse>>(
-    END_POINT.GET_MY_TIMETABLE_ORDER_BY(orderBy),
+    END_POINT.GET_MY_TIMETABLE_SORT_BY(sortBy),
   );
   return response.data;
 };
