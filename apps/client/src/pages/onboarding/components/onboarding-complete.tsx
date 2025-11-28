@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
-import { Description } from '@confeti/design-system';
+import { Button, Description } from '@confeti/design-system';
 
 import { SwitchCase } from '@shared/components';
 import Loading from '@shared/pages/loading/loading';
@@ -9,7 +9,7 @@ import Loading from '@shared/pages/loading/loading';
 import * as styles from './onboarding-complete.css';
 
 interface OnBoardingCompleteProps {
-  children: ReactNode;
+  setStep: (step: number) => void;
 }
 
 type Phase = 'loading' | 'description' | 'cta';
@@ -45,7 +45,7 @@ const DescriptionContent = () => (
   </motion.div>
 );
 
-const CtaContent = ({ children }: { children: ReactNode }) => (
+const CtaContent = ({ setStep }: OnBoardingCompleteProps) => (
   <motion.div
     key="cta"
     initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,12 @@ const CtaContent = ({ children }: { children: ReactNode }) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
-        {children}
+        <Button
+          text={'시작하기'}
+          variant={'add'}
+          onClick={() => setStep(2)}
+          className={styles.button}
+        />
       </motion.div>
     </section>
   </motion.div>
@@ -100,7 +105,7 @@ const CtaContent = ({ children }: { children: ReactNode }) => (
  * - `exit`: 컴포넌트가 퇴장할 때의 상태입니다.
  * - `transition`: 애니메이션의 지속시간 및 지연 시간을 설정합니다.
  */
-const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
+const OnBoardingComplete = ({ setStep }: OnBoardingCompleteProps) => {
   const [phase, setPhase] = useState<Phase>('loading');
 
   useEffect(() => {
@@ -118,7 +123,7 @@ const OnBoardingComplete = ({ children }: OnBoardingCompleteProps) => {
         caseBy={{
           loading: () => <LoadingContent />,
           description: () => <DescriptionContent />,
-          cta: () => <CtaContent>{children}</CtaContent>,
+          cta: () => <CtaContent setStep={setStep} />,
         }}
       />
     </AnimatePresence>

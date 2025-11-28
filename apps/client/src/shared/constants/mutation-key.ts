@@ -24,6 +24,16 @@ export const SETLIST_MUTATION_KEY = {
   DELETE_CANCEL_EDIT_SETLIST: () => ['delete-cancel-edit-setlist'],
 } as const;
 
+export const ONBOARD_MUTATION_KEY = {
+  ARTIST_RELATED_ARTIST: (artistId: string) => [
+    'artist-related-artist',
+    artistId,
+  ],
+  SELECTED_ARTIST: () => ['selected-artist'],
+  AUTH_ONBOARD: () => ['auth-onboard'],
+  PATCH_SELECTED_ARTIST: () => ['patch-selected-artist'],
+} as const;
+
 export const MY_TIMETABLE_MUTATION_KEY = {
   DELETE_TIMETABLES: () => ['delete-my-timetables'],
 } as const;

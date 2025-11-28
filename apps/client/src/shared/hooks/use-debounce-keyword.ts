@@ -21,6 +21,14 @@ export const useDebouncedKeyword = (initialKeyword = '', delay = 500) => {
     [delay],
   );
 
+  const resetKeyword = useCallback(() => {
+    setKeyword(initialKeyword);
+    setDebouncedKeyword(initialKeyword);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+  }, [initialKeyword]);
+
   useEffect(() => {
     return () => {
       if (timerRef.current) {
@@ -38,5 +46,6 @@ export const useDebouncedKeyword = (initialKeyword = '', delay = 500) => {
     keyword,
     debouncedKeyword,
     handleInputChange,
+    resetKeyword,
   };
 };

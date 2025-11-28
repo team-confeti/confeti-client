@@ -11,6 +11,11 @@ interface KeywordProps {
 interface Props {
   relatedKeyword: KeywordProps[] | undefined;
   onSelectArtistId?: (id: string) => void;
+  onSelectArtist?: (artist: {
+    artistId: string;
+    profileUrl: string;
+    name: string;
+  }) => void;
   onSelectKeyword?: (keyword: string, id: string | number) => void;
   handleSearchParams?: () => void;
   listType?: 'artist' | 'performance';
@@ -19,14 +24,20 @@ interface Props {
 const SearchSuggestionList = ({
   relatedKeyword,
   onSelectArtistId,
+  onSelectArtist,
   onSelectKeyword,
   handleSearchParams,
   listType,
 }: Props) => {
-  const handleClick = (id: string | number, title: string) => {
-    handleSearchParams?.();
+  const handleClick = (
+    id: string | number,
+    title: string,
+    profileUrl: string,
+  ) => {
     onSelectArtistId?.(id.toString());
+    onSelectArtist?.({ artistId: id.toString(), profileUrl, name: title });
     onSelectKeyword?.(title, id);
+    handleSearchParams?.();
   };
 
   return (
@@ -35,7 +46,9 @@ const SearchSuggestionList = ({
         <li
           key={keyword.id}
           className={styles.listContainer}
-          onPointerDown={() => handleClick(keyword.id, keyword.title)}
+          onPointerDown={() =>
+            handleClick(keyword.id, keyword.title, keyword.profileUrl)
+          }
         >
           <div className={styles.listImageContainer}>
             {listType === 'performance' ? (

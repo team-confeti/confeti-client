@@ -7,7 +7,7 @@ import { Icon } from '../../icons';
 import * as styles from './avatar.css';
 
 interface Props {
-  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size: 'xs' | 'sesm' | 'sm' | 'md' | 'lg' | 'xl';
   src?: string;
   alt?: string;
   fallback?: string;

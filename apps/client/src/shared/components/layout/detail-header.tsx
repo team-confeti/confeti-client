@@ -10,6 +10,7 @@ interface Props {
   icon?: ReactNode;
   isBackToHome?: boolean;
   rightIcon?: ReactNode;
+  onBack?: () => void;
 }
 
 const DetailHeader = ({
@@ -17,14 +18,25 @@ const DetailHeader = ({
   icon,
   isBackToHome = false,
   rightIcon,
+  onBack,
 }: Props) => {
   const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else if (isBackToHome) {
+      navigate('/');
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
     <header className={styles.container}>
       <button
         className={styles.button}
-        onClick={() => (isBackToHome ? navigate('/') : navigate(-1))}
+        onClick={handleBack}
         aria-label="뒤로가기"
       >
         {icon || <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />}

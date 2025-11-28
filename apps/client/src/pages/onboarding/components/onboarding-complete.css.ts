@@ -33,3 +33,7 @@ export const logoImage = style({
   width: '18rem',
   height: '18rem',
 });
+
+export const button = style({
+  flexShrink: 0,
+});
