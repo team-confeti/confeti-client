@@ -26,9 +26,9 @@ const PerformanceCarousel = ({
   return (
     <div ref={rootRef} className={styles.root} aria-roledescription="carousel">
       <div className={styles.carouselTrack}>
-        {visibleSlides.map((slide) => (
+        {visibleSlides.map((slide, index) => (
           <SlideView
-            key={slide.index}
+            key={`${slide.data.id}-${index}`}
             slide={slide}
             length={length}
             isAnimating={isAnimating}
