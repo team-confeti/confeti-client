@@ -1,74 +1,52 @@
-import { ReactNode } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 
-import { Avatar, Description, SearchBar } from '@confeti/design-system';
+import SwitchCase from '@shared/components/switch-case';
 
-import { onboard } from '@shared/types/onboard-response';
+import ArtistSelectNestedDelete from './artist-select-nested-delete';
+import ArtistSelectNestedSearch from './artist-select-nested-search';
+import ArtistSelectNestedSelect from './artist-select-nested-select';
 
-import ArtistSearch from './artist-search';
+type ViewState = 'select' | 'search' | 'edit';
 
-import * as styles from './artist-select.css';
-
-interface artistSelectProps {
-  artists: onboard[] | undefined;
-  onArtistSelect: (artistId: string) => void;
-  children: ReactNode;
+interface ArtistSelectProps {
+  setStep: (step: number) => void;
 }
 
-const ArtistSelect = ({
-  children,
-  artists,
-  onArtistSelect,
-}: artistSelectProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const isFocused = searchParams.get('search') === 'true';
+const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
+  const [viewState, setViewState] = useState<ViewState>('select');
 
-  const handleSearchBarFocus = () => {
-    setSearchParams({ search: 'true' });
+  const handleSearchFocus = () => {
+    setViewState('search');
   };
 
-  const handleSearchArtistSelect = () => {
-    setSearchParams({});
+  const handleEditClick = () => {
+    setViewState('edit');
   };
 
-  if (isFocused) {
-    return (
-      <ArtistSearch
-        onArtistSelect={onArtistSelect}
-        handleSearchParams={handleSearchArtistSelect}
-      />
-    );
-  } else {
-    return (
-      <section className={styles.onboardingContentSection}>
-        <Description.Text
-          descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
-          fontSize={20}
-        />
-        <div className={styles.searchBarSection}>
-          <SearchBar
-            showBackButton={false}
-            placeholder="아티스트를 검색해주세요!"
-            onFocus={handleSearchBarFocus}
+  const handleBackToSelect = () => {
+    setViewState('select');
+  };
+
+  const handleNextClick = () => {
+    setStep(1);
+  };
+
+  return (
+    <SwitchCase
+      value={viewState}
+      caseBy={{
+        search: () => <ArtistSelectNestedSearch onBack={handleBackToSelect} />,
+        edit: () => <ArtistSelectNestedDelete onBack={handleBackToSelect} />,
+        select: () => (
+          <ArtistSelectNestedSelect
+            onSearchFocus={handleSearchFocus}
+            onEditClick={handleEditClick}
+            onNextClick={handleNextClick}
           />
-        </div>
-        <div className={styles.avatarGridSection}>
-          {artists?.map((artist) => (
-            <div key={artist?.artistId} className={styles.avatar}>
-              <Avatar
-                size="xl"
-                src={artist?.profileUrl}
-                alt={`${artist?.name} 이미지`}
-                onClick={() => onArtistSelect(artist?.artistId)}
-              />
-              <p className={styles.artistName}>{artist.name}</p>
-            </div>
-          ))}
-        </div>
-        {children}
-      </section>
-    );
-  }
+        ),
+      }}
+    />
+  );
 };
 
 export default ArtistSelect;

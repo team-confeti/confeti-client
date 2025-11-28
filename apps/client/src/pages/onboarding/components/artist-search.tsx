@@ -11,13 +11,9 @@ import * as styles from './artist-search.css';
 
 interface ArtistSearchProps {
   onArtistSelect: (artistId: string) => void;
-  handleSearchParams: () => void;
 }
 
-const ArtistSearch = ({
-  onArtistSelect,
-  handleSearchParams,
-}: ArtistSearchProps) => {
+const ArtistSearch = ({ onArtistSelect }: ArtistSearchProps) => {
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
 
@@ -52,7 +48,6 @@ const ArtistSearch = ({
             profileUrl: artist.profileUrl,
           }))}
           onSelectArtistId={onArtistSelect}
-          handleSearchParams={handleSearchParams}
         />
       ) : (
         <section className={styles.artistSearchContainer}>

@@ -11,3 +11,7 @@ export interface onboardResponse {
 export interface onboardStatusResponse {
   onboardStatus: 'PROCESSING' | 'COMPLETED';
 }
+
+export interface selectedArtistRequest {
+  artistId: string;
+}

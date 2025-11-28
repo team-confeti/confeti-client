@@ -12,6 +12,7 @@ interface Props {
   onFocus?: () => void;
   onBlur?: () => void;
   onClear?: () => void;
+  onBack?: () => void;
   showBackButton?: boolean;
   placeholder?: string;
   autoFocus?: boolean;
@@ -25,6 +26,7 @@ export const SearchBar = ({
   onFocus,
   onBlur,
   onClear,
+  onBack,
   showBackButton = true,
   placeholder,
   autoFocus = false,
@@ -32,7 +34,6 @@ export const SearchBar = ({
   const textInput = useRef<HTMLInputElement>(null);
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-
   const updateFocusState = (focused: boolean, showClear: boolean) => {
     setIsFocused(focused);
     setShowClearBtn(showClear);
@@ -82,7 +83,7 @@ export const SearchBar = ({
         <Icon
           name="arrow-back"
           size="2.2rem"
-          onClick={() => window.history.back()}
+          onClick={onBack ?? (() => window.history.back())}
           className={styles.arrowButton}
         />
       )}

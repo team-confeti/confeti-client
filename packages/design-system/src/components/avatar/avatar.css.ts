@@ -24,6 +24,18 @@ export const avatarVariants = recipe({
           height: '3.44rem',
         }),
       },
+      sesm: {
+        width: '4.8rem',
+        height: '4.8rem',
+        ...screen.md({
+          width: '5.1rem',
+          height: '5.1rem',
+        }),
+        ...screen.lg({
+          width: '5.36rem',
+          height: '5.36rem',
+        }),
+      },
       sm: {
         width: '5.6rem',
         height: '5.6rem',
