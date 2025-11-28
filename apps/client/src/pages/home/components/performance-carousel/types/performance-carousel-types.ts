@@ -23,6 +23,7 @@ export interface SlideTransform {
 
 export interface SlideData {
   data: Performance;
+  typeId: number;
   index: number;
   position: number;
   distanceFromCenter: number;
