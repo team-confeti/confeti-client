@@ -68,7 +68,7 @@ export const tooltipBubble = recipe({
       top: {
         position: 'absolute',
         bottom: '100%',
-        marginBottom: '0.85rem',
+        marginBottom: '0.8rem',
       },
       bottom: {
         position: 'absolute',
@@ -102,7 +102,7 @@ export const tooltipBubble = recipe({
         animation: `${fadeInAnimation} 0.3s ease-out`,
       },
       'click-out': {
-        animation: `${fadeOutAnimation} 0.3s ease-out`,
+        animation: `${fadeOutAnimation} 0.3s ease-out forwards`,
       },
       hover: {},
       none: {},

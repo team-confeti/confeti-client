@@ -42,12 +42,6 @@ export interface MyPerformances extends Omit<Performance, 'index'> {
   isFavorite: boolean;
 }
 
-export interface MyUpcomingPerformance extends Omit<Performance, 'index'> {
-  startAt: string;
-  endAt: string;
-  area: string;
-}
-
 export interface PerformanceResponse {
   performances: Performance[];
 }

@@ -120,11 +120,6 @@ const TooltipTrigger = ({ asChild = true, children }: TooltipTriggerProps) => {
       }
       timeoutRef.current = setTimeout(() => {
         setIsClosing(true);
-
-        setTimeout(() => {
-          setIsOpen(false);
-          setIsClosing(false);
-        }, 300);
       }, 3000);
     }
   };
@@ -174,9 +169,24 @@ const TooltipTrigger = ({ asChild = true, children }: TooltipTriggerProps) => {
 };
 
 const TooltipContent = ({ className, children }: TooltipContentProps) => {
-  const { isOpen, trigger, position, tailPosition, animated, isClosing } =
-    useTooltipContext();
+  const {
+    isOpen,
+    trigger,
+    position,
+    tailPosition,
+    animated,
+    isClosing,
+    setIsOpen,
+    setIsClosing,
+  } = useTooltipContext();
   const shouldShow = trigger === 'none' || isOpen;
+
+  const handleAnimationEnd = () => {
+    if (isClosing) {
+      setIsOpen(false);
+      setIsClosing(false);
+    }
+  };
 
   if (!shouldShow) {
     return null;
@@ -202,6 +212,7 @@ const TooltipContent = ({ className, children }: TooltipContentProps) => {
         }),
         className,
       )}
+      onAnimationEnd={handleAnimationEnd}
     >
       {children}
     </div>

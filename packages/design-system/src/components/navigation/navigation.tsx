@@ -7,9 +7,12 @@ import React, {
 
 import * as styles from './navigation.css';
 
+type NavigationTheme = 'transparent' | 'white';
+
 interface NavContextProps {
   activeTab: number;
   setActiveTab: (index: number) => void;
+  theme: NavigationTheme;
 }
 
 const NavContext = createContext<NavContextProps | undefined>(undefined);
@@ -27,19 +30,25 @@ const useTabContext = (): NavContextProps => {
 interface NavProps {
   children: ReactNode;
   defaultActiveTab?: number;
+  theme?: NavigationTheme;
 }
 
-const NavRoot = ({ children, defaultActiveTab = 0 }: NavProps) => {
+const NavRoot = ({
+  children,
+  defaultActiveTab = 0,
+  theme = 'white',
+}: NavProps) => {
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
   return (
-    <NavContext.Provider value={{ activeTab, setActiveTab }}>
+    <NavContext.Provider value={{ activeTab, setActiveTab, theme }}>
       <div className={styles.box}>{children}</div>
     </NavContext.Provider>
   );
 };
 
 const NavList = ({ children }: { children: ReactNode }) => {
-  return <div className={styles.container}>{children}</div>;
+  const { theme } = useTabContext();
+  return <div className={styles.container({ theme })}>{children}</div>;
 };
 
 interface ItemProps {
@@ -49,12 +58,12 @@ interface ItemProps {
 }
 
 const NavItem = ({ index, children, handleTabClick }: ItemProps) => {
-  const { activeTab, setActiveTab } = useTabContext();
+  const { activeTab, setActiveTab, theme } = useTabContext();
 
   return (
     <button
       key={activeTab}
-      className={styles.list({ active: activeTab === index })}
+      className={styles.list({ active: activeTab === index, theme })}
       onClick={() => {
         setActiveTab(index);
         handleTabClick();
@@ -64,7 +73,7 @@ const NavItem = ({ index, children, handleTabClick }: ItemProps) => {
       <div
         className={
           activeTab === index
-            ? styles.underBar
+            ? styles.underBar({ theme })
             : index === 0
               ? styles.activeUnderBar
               : styles.secondTabUnderBar

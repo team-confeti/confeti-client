@@ -10,7 +10,7 @@ const Deferred = ({ children }: DeferredProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDeferred(true);
-    }, 200);
+    }, 250);
     return () => clearTimeout(timer);
   }, []);
 

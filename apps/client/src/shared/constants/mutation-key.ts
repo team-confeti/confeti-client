@@ -33,3 +33,7 @@ export const ONBOARD_MUTATION_KEY = {
   AUTH_ONBOARD: () => ['auth-onboard'],
   PATCH_SELECTED_ARTIST: () => ['patch-selected-artist'],
 } as const;
+
+export const MY_TIMETABLE_MUTATION_KEY = {
+  DELETE_TIMETABLES: () => ['delete-my-timetables'],
+} as const;

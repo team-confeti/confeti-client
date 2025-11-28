@@ -9,6 +9,7 @@ import {
   FestivalTimetableResponse,
   FestivalTimetableResponseExtended,
   TimeTableCreationHistory,
+  TimetableDatesResponse,
 } from '@shared/types/festival-timetable-response';
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 
@@ -39,6 +40,13 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryFn: ({ pageParam }) => getFestivalToAdd(pageParam as number),
       initialPageParam: undefined,
       getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
+    }),
+  TIMETABLE_DATES: (timetableFestivalId: number) =>
+    queryOptions({
+      queryKey:
+        FESTIVAL_TIMETABLE_QUERY_KEY.TIMETABLE_DATES(timetableFestivalId),
+      queryFn: () => getTimetableDates(timetableFestivalId),
+      enabled: timetableFestivalId !== undefined,
     }),
 };
 
@@ -71,6 +79,15 @@ export const getFestivalToAdd = async (
 ): Promise<GetFestivalToAddResponse> => {
   const response = await get<BaseResponse<GetFestivalToAddResponse>>(
     END_POINT.GET_FESTIVAL_TO_ADD(cursor),
+  );
+  return response.data;
+};
+
+export const getTimetableDates = async (
+  timetableFestivalId: number,
+): Promise<TimetableDatesResponse> => {
+  const response = await get<BaseResponse<TimetableDatesResponse>>(
+    END_POINT.GET_TIMETABLE_DATES(timetableFestivalId),
   );
   return response.data;
 };

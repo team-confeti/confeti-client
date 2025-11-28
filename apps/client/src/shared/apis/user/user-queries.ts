@@ -11,7 +11,6 @@ import {
   FavoriteArtistsResponses,
   MyArtistsResponse,
   MyPerformancesResponse,
-  MyUpcomingPerformance,
   PerformanceResponse,
   PerformancesFilterType,
   UserProfile,
@@ -34,11 +33,6 @@ export const USER_QUERY_OPTIONS = {
     queryOptions({
       queryKey: USER_QUERY_KEY.MY_PERFORMANCES(),
       queryFn: getMyPerformancesPreview,
-    }),
-  MY_UPCOMING_PERFORMANCE: () =>
-    queryOptions({
-      queryKey: USER_QUERY_KEY.MY_UPCOMING_PERFORMANCE(),
-      queryFn: getMyUpcomingPerformance,
     }),
   MY_ARTISTS: (sortBy: SortOption) =>
     queryOptions({
@@ -72,14 +66,6 @@ export const getMyPerformancesPreview =
   async (): Promise<PerformanceResponse> => {
     const response = await get<BaseResponse<PerformanceResponse>>(
       END_POINT.GET_MY_PERFORMANCES_PREVIEW,
-    );
-    return response.data;
-  };
-
-export const getMyUpcomingPerformance =
-  async (): Promise<MyUpcomingPerformance> => {
-    const response = await get<BaseResponse<MyUpcomingPerformance>>(
-      END_POINT.GET_MY_UPCOMING_PERFORMANCE,
     );
     return response.data;
   };

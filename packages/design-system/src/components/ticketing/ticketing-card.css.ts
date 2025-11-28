@@ -5,11 +5,14 @@ import { themeVars } from '../../styles';
 export const imageField = style({
   ...themeVars.display.flexColumn,
   justifyContent: 'space-between',
-  width: '20rem',
-  height: '20rem',
+  width: '100%',
+  aspectRatio: '375 / 193.7',
   padding: '2rem',
   borderRadius: '1rem',
   flexShrink: 0,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
 });
 
 export const textField = style({
@@ -20,7 +23,9 @@ export const textField = style({
   gap: '0.4rem',
 });
 
-export const Dday = style({
+export const ddayContainer = style({
+  ...themeVars.display.flexAlignCenter,
+  gap: '1.2rem',
   color: themeVars.color.white,
   ...themeVars.fontStyles.title1_b_24,
 });
@@ -28,7 +33,7 @@ export const Dday = style({
 export const subTitle = style({
   ...themeVars.fontStyles.title3_b_18,
   color: themeVars.color.confeti_lime,
-  width: '16rem',
+  width: '28rem',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -36,6 +41,6 @@ export const subTitle = style({
 
 export const performanceInfoButton = style({
   ...themeVars.display.flexAlignCenter,
-  ...themeVars.fontStyles.subtitle5_sb_12,
+  ...themeVars.fontStyles.body3_m_14,
   color: themeVars.color.white,
 });

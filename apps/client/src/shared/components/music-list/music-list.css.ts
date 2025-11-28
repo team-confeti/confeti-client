@@ -1,5 +1,20 @@
-import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-export const loading = style({
-  height: '26.4rem',
+import { themeVars } from '@confeti/design-system/styles';
+
+export const wrapper = recipe({
+  base: {
+    ...themeVars.display.flexColumn,
+  },
+  variants: {
+    appearance: {
+      home: {
+        gap: '1.6rem',
+        padding: '2rem',
+        borderRadius: '0 0 10px 10px',
+        background: themeVars.color.black_grad2,
+      },
+      default: {},
+    },
+  },
 });

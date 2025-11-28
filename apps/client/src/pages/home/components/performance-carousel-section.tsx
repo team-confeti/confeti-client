@@ -1,42 +1,66 @@
-import { PerformanceCarousel } from '@confeti/design-system';
-import { formatDate } from '@confeti/utils';
-
-import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
-import { CarouselPerformancesResponse } from '@shared/types/home-response';
-import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
+import { useCarouselBackground } from '../hooks/use-carousel-background';
+import PerformanceCarousel from './performance-carousel/components/performance-carousel';
+import { CAROUSEL_ANIMATION } from './performance-carousel/constants/animation';
+import { type Performance } from './performance-carousel/types/performance-carousel-types';
 
 import * as styles from './performance-carousel-section.css';
 
+interface PerformanceCarouselSectionProps {
+  data: Performance[];
+  isPersonalized: boolean;
+  onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
+}
+
 const PerformanceCarouselSection = ({
   data,
-}: {
-  data: CarouselPerformancesResponse;
-}) => {
-  const navigateToDetail = useNavigateToDetail();
+  isPersonalized,
+  onPerformanceClick,
+}: PerformanceCarouselSectionProps) => {
+  const { activeIndex, nextIndex, isTransitioning, handleSlideChange } =
+    useCarouselBackground();
 
-  const badgeText = data.isPersonalized ? '선호하는 아티스트' : '다가오는 공연';
-  const displayPerformances = data.performances.slice(0, 7);
-  const formattedPerformData = displayPerformances.map((performance) => {
-    return {
-      ...performance,
-      performanceAt: formatDate(performance.startAt),
-      posterUrl: convertToCdnUrl(performance.posterUrl),
-    };
-  });
-  const initialSlideIndex = Math.floor(formattedPerformData.length / 2);
+  if (!Array.isArray(data) || data.length === 0) return null;
+
+  const transitionStyle = `opacity ${CAROUSEL_ANIMATION.DURATION}ms ${CAROUSEL_ANIMATION.EASING}`;
+
+  const CurrentBackgroundImage = (
+    <img
+      src={data[activeIndex]?.posterUrl}
+      alt={data[activeIndex]?.title}
+      className={styles.backgroundImage}
+      style={{ transition: transitionStyle }}
+    />
+  );
+
+  const NextBackgroundImage = (
+    <img
+      src={data[nextIndex]?.posterUrl}
+      alt={data[nextIndex]?.title}
+      className={styles.backgroundImageFront}
+      style={{
+        opacity: isTransitioning ? 1 : 0,
+        transition: transitionStyle,
+      }}
+    />
+  );
 
   return (
-    <section className={styles.performanceBannerContainer}>
-      <PerformanceCarousel
-        performData={formattedPerformData}
-        initialSlideIndex={initialSlideIndex}
-        handleContainerClick={(type, typeId) => navigateToDetail(type, typeId)}
-      >
-        <PerformanceCarousel.ImageSlider>
-          <PerformanceCarousel.Badge text={badgeText} />
-          <PerformanceCarousel.Info />
-        </PerformanceCarousel.ImageSlider>
-      </PerformanceCarousel>
+    <section className={styles.sectionContainer}>
+      <div className={styles.backgroundWrapper}>
+        {CurrentBackgroundImage}
+        {NextBackgroundImage}
+        <div className={styles.backgroundOverlay} />
+      </div>
+
+      <div className={styles.carouselWrapper}>
+        <PerformanceCarousel
+          data={data}
+          isPersonalized={isPersonalized}
+          autoPlayInterval={5000}
+          onSlideChange={handleSlideChange}
+          onPerformanceClick={onPerformanceClick}
+        />
+      </div>
     </section>
   );
 };

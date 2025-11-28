@@ -1,7 +1,10 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { cn } from '@confeti/utils';
+
 import { Icon } from '../../icons';
+import { CIRC } from './constants/circle-progress';
 
 import * as styles from './music-item.css';
 
@@ -12,9 +15,11 @@ interface Props {
   title: string;
   artist: string;
   isPlaying?: boolean;
+  progress?: number;
   onClickPlayToggle?: () => void;
   onClickDelete?: () => void;
   onClickAdd?: () => void;
+  appearance?: 'default' | 'home';
 }
 
 const MusicItem = ({
@@ -24,9 +29,11 @@ const MusicItem = ({
   title,
   artist,
   isPlaying = false,
+  progress = 0,
   onClickPlayToggle,
   onClickDelete,
   onClickAdd,
+  appearance = 'default',
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
@@ -110,16 +117,32 @@ const MusicItem = ({
         transition,
       }}
       {...attributes}
-      className={styles.musicItemWrapper}
+      className={styles.musicItemWrapper({ appearance })}
     >
       <div className={styles.contentWrapper} onClick={onClickAdd}>
         {renderAlbumCover()}
         <div className={styles.textSection}>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.artist}>{artist}</p>
+          <p className={styles.title({ appearance })}>{title}</p>
+          <p className={styles.artist({ appearance })}>{artist}</p>
         </div>
       </div>
-      <div className={styles.rightIcon}>{renderControlButton()}</div>
+      <div
+        className={cn(
+          styles.player,
+          variant !== 'default' ? styles.playerTransparent : undefined,
+        )}
+      >
+        <svg className={styles.progressSvg} viewBox="0 0 44 44" aria-hidden>
+          <circle
+            className={styles.progressCircle}
+            cx="22"
+            cy="22"
+            r="21"
+            style={{ strokeDashoffset: CIRC * (1 - progress) }}
+          />
+        </svg>
+        <div>{renderControlButton()}</div>
+      </div>
     </div>
   );
 };

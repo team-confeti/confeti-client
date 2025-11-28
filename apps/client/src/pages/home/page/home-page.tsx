@@ -1,26 +1,24 @@
 import { Spacing } from '@confeti/design-system';
+import { formatDate } from '@confeti/utils';
 
 import {
   FloatingButtonContainer,
   Footer,
   NavigationTabs,
 } from '@shared/components';
-import { useMoveScroll } from '@shared/hooks/use-scroll-position';
+import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 
-import CategoryTabsContainer from '../components/category-tabs-container';
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
-import TicketingSection from '../components/ticketing-section';
+import TicketOpeningSection from '../components/ticket-opening-section';
 import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
+import * as styles from './home-page.css';
+
 const HomePage = () => {
-  const scrollRefs = {
-    ticketing: useMoveScroll(),
-    suggestPerformance: useMoveScroll(),
-    suggestMusic: useMoveScroll(),
-  };
+  const navigateToDetail = useNavigateToDetail();
 
   const {
     userName,
@@ -30,39 +28,52 @@ const HomePage = () => {
     suggestMusicPerformance,
   } = useHomeQueries();
 
+  const formattedCarouselData = latestPerformances.performances.map(
+    (performance) => ({
+      id: performance.performanceId,
+      typeId: performance.typeId,
+      type: performance.type,
+      title: performance.title,
+      place: performance.area,
+      date: formatDate(performance.startAt),
+      posterUrl: performance.posterUrl,
+    }),
+  );
+
   return (
-    <>
-      <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-      <PerformanceCarouselSection data={latestPerformances} />
-      <Spacing size="xl" color="white" />
+    <div className={styles.container}>
+      {formattedCarouselData.length > 0 && (
+        <PerformanceCarouselSection
+          data={formattedCarouselData}
+          isPersonalized={latestPerformances.isPersonalized}
+          onPerformanceClick={navigateToDetail}
+        />
+      )}
 
-      <CategoryTabsContainer scrollRefs={scrollRefs} />
-      <Spacing size="lg" color="white" />
+      <div className={styles.navTabsWrapper}>
+        <NavigationTabs defaultActiveTab={TAB_MENU.HOME} theme="transparent" />
+      </div>
 
-      <TicketingSection
-        ref={scrollRefs.ticketing.element}
-        data={ticketing.performances}
-        userName={userName}
-      />
+      <div data-ticket-section="true">
+        <TicketOpeningSection
+          userName={userName}
+          data={ticketing.performances}
+        />
+      </div>
+
       <Spacing size="2xl" color="white" />
 
-      <SuggestPerformanceSection
-        ref={scrollRefs.suggestPerformance.element}
-        data={suggestPerformance.performances}
-      />
+      <SuggestPerformanceSection data={suggestPerformance.performances} />
       <Spacing size="lg" color="white" />
 
       {suggestMusicPerformance && (
-        <SuggestMusicSection
-          ref={scrollRefs.suggestMusic.element}
-          data={suggestMusicPerformance}
-        />
+        <SuggestMusicSection data={suggestMusicPerformance} />
       )}
-      <Spacing size="2xl" color="white" />
+      <Spacing size="xl" color="white" />
 
       <FloatingButtonContainer />
       <Footer />
-    </>
+    </div>
   );
 };
 

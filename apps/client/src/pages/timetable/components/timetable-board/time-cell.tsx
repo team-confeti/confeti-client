@@ -4,24 +4,20 @@ import * as styles from './time-cell.css';
 
 interface TimeCellProps {
   hour: number;
+  isLast?: boolean;
 }
 
-const TimeCell = ({ hour }: TimeCellProps) => {
+const TimeCell = ({ hour, isLast = false }: TimeCellProps) => {
   return (
-    <>
-      <div className={styles.timeList}>
-        <p className={styles.timeP({ bold: true })}>{hour}</p>
-        <hr className={styles.timeBar({ bold: true })} />
-      </div>
-      {hour !== 24 && (
-        <div className={styles.timeList}>
-          <p className={styles.timeP({ bold: false })}>
-            {HALF_HOUR_TO_MINUTES}
-          </p>
-          <hr className={styles.timeBar({ bold: false })} />
-        </div>
+    <div className={styles.hourCell}>
+      <span className={styles.timeLabel({ type: 'hour' })}>{hour}</span>
+      <hr className={styles.timeLine({ type: 'hour' })} />
+      {!isLast && (
+        <span className={styles.timeLabel({ type: 'half' })}>
+          {HALF_HOUR_TO_MINUTES}
+        </span>
       )}
-    </>
+    </div>
   );
 };
 
