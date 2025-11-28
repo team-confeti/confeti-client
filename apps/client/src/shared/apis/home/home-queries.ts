@@ -6,8 +6,7 @@ import { END_POINT } from '@shared/constants/api';
 import { HOME_QUERY_KEY } from '@shared/constants/query-key';
 import {
   CarouselPerformancesResponse,
-  SuggestMusicPerformanceResponse,
-  SuggestMusicResponse,
+  RecommendPerformancesResponse,
   SuggestPerformanceResponse,
   TicketingPerformancesResponse,
 } from '@shared/types/home-response';
@@ -31,15 +30,13 @@ export const HOME_QUERY_OPTIONS = {
       queryKey: HOME_QUERY_KEY.SUGGEST_PERFORMANCE(),
       queryFn: getSuggestPerformance,
     }),
-  SUGGEST_MUSIC_PERFORMANCE: () =>
+  RECOMMEND_PERFORMANCES: (performanceSize: number, songSize: number) =>
     queryOptions({
-      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC_PERFORMANCE(),
-      queryFn: getSuggestMusicPerformance,
-    }),
-  SUGGEST_MUSIC: (performanceId: number, musicIds?: string[]) =>
-    queryOptions({
-      queryKey: HOME_QUERY_KEY.SUGGEST_MUSIC(performanceId),
-      queryFn: () => getSuggestMusic(performanceId, musicIds),
+      queryKey: HOME_QUERY_KEY.RECOMMEND_PERFORMANCES(
+        performanceSize,
+        songSize,
+      ),
+      queryFn: () => getRecommendPerformances(performanceSize, songSize),
     }),
 };
 
@@ -67,41 +64,13 @@ export const getSuggestPerformance =
     return response.data;
   };
 
-export const getSuggestMusicPerformance =
-  async (): Promise<SuggestMusicPerformanceResponse | null> => {
-    try {
-      const response = await get<BaseResponse<SuggestMusicPerformanceResponse>>(
-        END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE,
-      );
+export const getRecommendPerformances = async (
+  performanceSize: number,
+  songSize: number,
+): Promise<RecommendPerformancesResponse> => {
+  const response = await get<BaseResponse<RecommendPerformancesResponse>>(
+    END_POINT.GET_SUGGEST_MUSIC_PERFORMANCE(performanceSize, songSize),
+  );
 
-      if (!response.data) {
-        return null;
-      }
-
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
-export const getSuggestMusic = async (
-  performanceId: number,
-  musicIds?: string[],
-): Promise<SuggestMusicResponse> => {
-  try {
-    const query = new URLSearchParams();
-
-    query.append('performanceId', String(performanceId));
-    musicIds?.forEach((id) => query.append('musicId', id));
-
-    const url = `performances/recommend/musics?${query.toString()}`;
-
-    const response = await get<BaseResponse<SuggestMusicResponse>>(url);
-
-    return response.data || { musics: [] };
-  } catch (error) {
-    console.error(error);
-    return { musics: [] };
-  }
+  return response.data ?? { performances: [] };
 };

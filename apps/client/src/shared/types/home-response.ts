@@ -63,3 +63,23 @@ export interface SuggestMusicPerformanceResponse {
 export interface SuggestMusicResponse {
   musics: musics[];
 }
+
+export interface RecommendSong {
+  songId: string;
+  songName: string;
+  artistName: string;
+  artworkUrl: string;
+  previewUrl: string;
+}
+
+export interface RecommendPerformances {
+  typeId: number;
+  type: 'concert' | 'festival';
+  title: string;
+  posterUrl: string;
+  songs: RecommendSong[];
+}
+
+export interface RecommendPerformancesResponse {
+  performances: RecommendPerformances[];
+}

@@ -5,7 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const container = style({
   ...themeVars.display.flexJustifyAlignCenter,
   flexDirection: 'column',
-  height: 'calc(100dvh - 14rem)',
+  flex: 1,
   gap: '2rem',
 });
 

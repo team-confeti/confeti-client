@@ -9,14 +9,12 @@ export const useHomeQueries = () => {
     ticketingResult,
     latestPerformancesResult,
     suggestPerformanceResult,
-    suggestMusicPerformanceResult,
   ] = useSuspenseQueries({
     queries: [
       USER_QUERY_OPTIONS.PROFILE(),
       HOME_QUERY_OPTIONS.TICKETING(),
       HOME_QUERY_OPTIONS.LATEST_PERFORMANCES(),
       HOME_QUERY_OPTIONS.SUGGEST_PERFORMANCE(),
-      HOME_QUERY_OPTIONS.SUGGEST_MUSIC_PERFORMANCE(),
     ],
   });
 
@@ -25,6 +23,5 @@ export const useHomeQueries = () => {
     ticketing: ticketingResult.data,
     latestPerformances: latestPerformancesResult.data,
     suggestPerformance: suggestPerformanceResult.data,
-    suggestMusicPerformance: suggestMusicPerformanceResult.data,
   };
 };

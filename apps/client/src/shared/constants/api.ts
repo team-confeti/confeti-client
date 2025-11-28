@@ -50,7 +50,8 @@ export const END_POINT = {
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: '/performances/info',
   GET_SUGGEST_PERFORMANCE: '/performances/recommend',
-  GET_SUGGEST_MUSIC_PERFORMANCE: '/performances/recommend/performance',
+  GET_SUGGEST_MUSIC_PERFORMANCE: (performanceSize: number, songSize: number) =>
+    `performances/v4/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
 
   //타임 테이블
   GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',

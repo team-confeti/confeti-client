@@ -7,8 +7,8 @@ import * as styles from './music-list.css';
 
 interface Music {
   musicId: string;
-  artworkUrl: string;
   trackName: string;
+  artworkUrl: string;
   artistName: string;
   isPlaying?: boolean;
   progress?: number;
