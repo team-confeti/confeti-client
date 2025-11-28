@@ -24,9 +24,7 @@ const ArtistSelectNestedDelete = ({
   const { mutate: mutatePatchSelectedArtist } = useMutation({
     ...ONBOARD_MUTATION_OPTIONS.PATCH_SELECTED_ARTIST(),
   });
-  const [checkedIds, setCheckedIds] = useState<string[]>(() =>
-    selectedArtistData.map((artist) => artist.artistId),
-  );
+  const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
   const handleCheckboxClick = (artistId: string) => {
     setCheckedIds((prev) => {
@@ -81,12 +79,10 @@ const ArtistSelectNestedDelete = ({
       </div>
       <div className={styles.confirmButtonWrapper}>
         <Button
-          text="완료"
-          disabled={
-            checkedIds.length === selectedArtistData.length &&
-            checkedIds.length > 1
-          }
+          text="삭제하기"
           onClick={handleCompleteClick}
+          variant="add"
+          disabled={checkedIds.length === 0}
         />
       </div>
     </div>
