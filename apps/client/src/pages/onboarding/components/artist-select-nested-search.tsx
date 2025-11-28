@@ -1,9 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { ONBOARD_QUERY_OPTIONS } from '@shared/apis/onboard/queries';
+import {
+  ONBOARD_MUTATION_OPTIONS,
+  ONBOARD_QUERY_OPTIONS,
+} from '@shared/apis/onboard/queries';
+import { ONBOARD_QUERY_KEY } from '@shared/constants/query-key';
 import { useDebouncedKeyword } from '@shared/hooks/use-debounce-keyword';
+import { queryClient } from '@shared/utils/query-client';
 
 import { ONBOARD_LIMIT } from '../constants/limit';
 
@@ -12,15 +18,14 @@ import * as styles from './artist-select.css';
 
 interface ArtistSelectNestedSearchProps {
   onBack: () => void;
-  onArtistSelect: (artistId: string) => void;
 }
 
 const ArtistSelectNestedSearch = ({
   onBack,
-  onArtistSelect,
 }: ArtistSelectNestedSearchProps) => {
   const { keyword, debouncedKeyword, handleInputChange } =
     useDebouncedKeyword();
+  const [_searchParams, setSearchParams] = useSearchParams();
 
   const { data: relatedKeywordsData } = useQuery({
     ...ONBOARD_QUERY_OPTIONS.ARTIST_RELATED_KEYWORDS(
@@ -30,7 +35,22 @@ const ArtistSelectNestedSearch = ({
     enabled: !!debouncedKeyword.trim(),
   });
 
+  const { mutate: mutateSelectedArtist } = useMutation({
+    ...ONBOARD_MUTATION_OPTIONS.SELECTED_ARTIST(),
+  });
+
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
+
+  const handleArtistSelect = (artistId: string) => {
+    mutateSelectedArtist([artistId], {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ONBOARD_QUERY_KEY.SELECTED_ARTIST(),
+        });
+        setSearchParams({ artist: artistId });
+      },
+    });
+  };
 
   return (
     <section className={styles.onboardingContentSection}>
@@ -52,7 +72,7 @@ const ArtistSelectNestedSearch = ({
             title: artist.name,
             profileUrl: artist.profileUrl,
           }))}
-          onSelectArtistId={onArtistSelect}
+          onSelectArtistId={handleArtistSelect}
         />
       ) : (
         <section className={searchStyles.artistSearchContainer}>

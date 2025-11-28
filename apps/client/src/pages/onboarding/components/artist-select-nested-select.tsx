@@ -4,7 +4,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import {
   Avatar,
@@ -28,22 +28,20 @@ import OnboardingChip from './onboarding-chip';
 import * as styles from './artist-select.css';
 
 interface ArtistSelectNestedSelectProps {
-  targetArtistId: string | null;
-  setTargetArtistId: (id: string) => void;
   onSearchFocus: () => void;
   onEditClick: () => void;
   onNextClick: () => void;
 }
 
 const ArtistSelectNestedSelect = ({
-  targetArtistId,
-  setTargetArtistId,
   onSearchFocus,
   onEditClick,
   onNextClick,
 }: ArtistSelectNestedSelectProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const targetArtistId = searchParams.get('artist');
 
   const { data: artistData } = useSuspenseQuery({
     ...ONBOARD_QUERY_OPTIONS.TOP_ARTIST(
@@ -76,7 +74,7 @@ const ArtistSelectNestedSelect = ({
         queryClient.invalidateQueries({
           queryKey: ONBOARD_QUERY_KEY.SELECTED_ARTIST(),
         });
-        setTargetArtistId(artistId);
+        setSearchParams({ artist: artistId });
       },
     });
   };
@@ -122,9 +120,7 @@ const ArtistSelectNestedSelect = ({
                     key={artist.artistId}
                     className={styles.selectedArtistItem}
                     layout
-                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
                     transition={{
                       duration: 0.3,
                       layout: { duration: 0.4, ease: 'easeOut' },
@@ -145,9 +141,7 @@ const ArtistSelectNestedSelect = ({
                 <motion.div
                   className={styles.selectedArtistItem}
                   layout
-                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
                 >
                   <OnboardingChip

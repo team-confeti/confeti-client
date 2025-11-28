@@ -1,26 +1,35 @@
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
 
 import { Avatar, Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import { ONBOARD_MUTATION_OPTIONS } from '@shared/apis/onboard/queries';
+import {
+  ONBOARD_MUTATION_OPTIONS,
+  ONBOARD_QUERY_OPTIONS,
+} from '@shared/apis/onboard/queries';
 import { DetailHeader } from '@shared/components';
 import { ONBOARD_QUERY_KEY } from '@shared/constants/query-key';
-import type { onboard } from '@shared/types/onboard-response';
 
 import * as styles from './artist-select-nested-delete.css';
 
 interface ArtistSelectNestedDeleteProps {
-  selectedArtistData: onboard[];
   onBack: () => void;
 }
 
 const ArtistSelectNestedDelete = ({
-  selectedArtistData,
   onBack,
 }: ArtistSelectNestedDeleteProps) => {
+  const [_searchParams, setSearchParams] = useSearchParams();
   const queryClient = useQueryClient();
+  const { data: selectedArtistData } = useSuspenseQuery({
+    ...ONBOARD_QUERY_OPTIONS.SELECTED_ARTIST(),
+  });
   const { mutate: mutatePatchSelectedArtist } = useMutation({
     ...ONBOARD_MUTATION_OPTIONS.PATCH_SELECTED_ARTIST(),
   });
@@ -42,7 +51,7 @@ const ArtistSelectNestedDelete = ({
         queryClient.invalidateQueries({
           queryKey: ONBOARD_QUERY_KEY.SELECTED_ARTIST(),
         });
-        onBack();
+        setSearchParams({});
       },
     });
   };
@@ -51,7 +60,7 @@ const ArtistSelectNestedDelete = ({
     <div className={styles.wrapper}>
       <DetailHeader title="아티스트 선택" onBack={onBack} />
       <div className={styles.container}>
-        {selectedArtistData.map((artist) => (
+        {selectedArtistData.data.artists.map((artist) => (
           <div
             key={artist.artistId}
             className={styles.selectedArtistItem}
