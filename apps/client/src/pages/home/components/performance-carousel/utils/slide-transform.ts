@@ -68,6 +68,7 @@ export function getSlideView(params: {
   return {
     data: slide,
     index: slideIndex,
+    typeId: slide.typeId,
     position,
     distanceFromCenter,
     transform,
