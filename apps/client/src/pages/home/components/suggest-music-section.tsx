@@ -39,10 +39,6 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
   const { musicList, onClickPlayToggle, audioRef, audioEvents, stopAudio } =
     useMusicPlayer(musicData);
 
-  if (!isPending && performances.length === 0) {
-    return null;
-  }
-
   const handleDotClick = (index: number) => {
     if (!performances.length) return;
     if (index === currentIndex) return;
