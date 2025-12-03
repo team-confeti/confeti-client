@@ -10,9 +10,18 @@ export const wrapper = style({
   borderRadius: '10px 10px 0 0',
 });
 
-export const container = style({
+export const scrollContainer = style({
   display: 'flex',
   width: '100%',
+  overflowX: 'auto',
+  scrollSnapType: 'x mandatory',
+  scrollbarWidth: 'none',
+});
+
+export const slideSection = style({
+  flex: '0 0 100%',
+  scrollSnapAlign: 'start',
+  display: 'flex',
   gap: '1.6rem',
 });
 

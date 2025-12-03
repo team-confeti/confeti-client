@@ -39,7 +39,7 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
   const { musicList, onClickPlayToggle, audioRef, audioEvents, stopAudio } =
     useMusicPlayer(musicData);
 
-  if (!isPending && !performances) {
+  if (!isPending && performances.length === 0) {
     return null;
   }
 
@@ -65,11 +65,10 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
     >
       <div>
         <MusicInfo
-          title={currentPerformance?.title ?? ''}
-          posterUrl={currentPerformance?.posterUrl ?? ''}
+          performances={performances}
           total={performances.length}
           current={currentIndex}
-          onDotClick={handleDotClick}
+          onChangeIndex={handleDotClick}
           onClickDetail={handleClickDetail}
         />
         <MusicList
