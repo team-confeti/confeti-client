@@ -13,6 +13,7 @@ interface MusicInfoProps {
   current: number;
   onChangeIndex?: (index: number) => void;
   onClickDetail?: () => void;
+  isPending?: boolean;
 }
 
 const MusicInfo = ({
@@ -21,6 +22,7 @@ const MusicInfo = ({
   current,
   onChangeIndex,
   onClickDetail,
+  isPending = false,
 }: MusicInfoProps) => {
   const showDots = total > 1;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -43,7 +45,7 @@ const MusicInfo = ({
 
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [total, onChangeIndex]);
+  }, [total, current, onChangeIndex]);
 
   const handleDotClick = (index: number) => {
     const container = scrollContainerRef.current;
@@ -55,6 +57,23 @@ const MusicInfo = ({
       behavior: 'smooth',
     });
   };
+
+  if (isPending) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.slideSection}>
+          <div className={styles.poster} />
+          <div className={styles.textSection}>
+            <p className={styles.title}></p>
+            <div className={styles.buttonSection}>
+              <p className={styles.buttonText}>공연 상세정보 확인하기</p>
+              <Icon name="arrow-horizontal" size={12} color="white" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>

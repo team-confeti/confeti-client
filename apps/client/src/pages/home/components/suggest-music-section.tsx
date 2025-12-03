@@ -70,6 +70,7 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
           current={currentIndex}
           onChangeIndex={handleDotClick}
           onClickDetail={handleClickDetail}
+          isPending={isPending}
         />
         <MusicList
           appearance="home"
