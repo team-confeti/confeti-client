@@ -5,6 +5,8 @@ import { Icon } from '@confeti/design-system/icon';
 
 import { RecommendPerformances } from '@shared/types/home-response';
 
+import SkeletonInfo from './skeleton-info';
+
 import * as styles from './music-info.css';
 
 interface MusicInfoProps {
@@ -59,20 +61,7 @@ const MusicInfo = ({
   };
 
   if (isPending) {
-    return (
-      <div className={styles.wrapper}>
-        <div className={styles.slideSection}>
-          <div className={styles.poster} />
-          <div className={styles.textSection}>
-            <p className={styles.title}></p>
-            <div className={styles.buttonSection}>
-              <p className={styles.buttonText}>공연 상세정보 확인하기</p>
-              <Icon name="arrow-horizontal" size={12} color="white" />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <SkeletonInfo />;
   }
 
   return (
