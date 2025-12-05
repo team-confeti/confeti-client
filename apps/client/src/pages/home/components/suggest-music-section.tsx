@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Box } from '@confeti/design-system';
@@ -6,25 +7,51 @@ import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { MusicList } from '@shared/components';
 import MusicInfo from '@shared/components/music-list/music-info';
 import { useMusicPlayer } from '@shared/hooks/use-music-player';
-import { SuggestMusicPerformanceResponse } from '@shared/types/home-response';
+import { RecommendPerformances } from '@shared/types/home-response';
 
-const SuggestMusicSection = ({
-  data,
-}: {
-  data: SuggestMusicPerformanceResponse;
-}) => {
-  const musicIdList: string[] | undefined = undefined;
+import { PERFORMANCE_SIZE, SONG_SIZE } from '../constants/recommend';
 
-  const { data: suggestMusic, isPending } = useQuery({
-    ...HOME_QUERY_OPTIONS.SUGGEST_MUSIC(data.performanceId, musicIdList),
+interface SuggestMusicSectionProps {
+  onClickDetail: (type: string, typeId: number) => void;
+}
+
+const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
+  const { data, isPending } = useQuery({
+    ...HOME_QUERY_OPTIONS.RECOMMEND_PERFORMANCES(PERFORMANCE_SIZE, SONG_SIZE),
   });
 
-  if (!isPending && !suggestMusic?.musics) {
-    return null;
-  }
+  const performances: RecommendPerformances[] = data?.performances ?? [];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentPerformance = performances[currentIndex];
 
-  const { musicList, onClickPlayToggle, audioRef, audioEvents } =
-    useMusicPlayer(suggestMusic?.musics ?? []);
+  const musicData = useMemo(
+    () =>
+      currentPerformance?.songs.map((song) => ({
+        musicId: song.songId,
+        trackName: song.songName,
+        artistName: song.artistName,
+        artworkUrl: song.artworkUrl,
+        previewUrl: song.previewUrl,
+      })) ?? [],
+    [currentPerformance],
+  );
+
+  const { musicList, onClickPlayToggle, audioRef, audioEvents, stopAudio } =
+    useMusicPlayer(musicData);
+
+  const handleDotClick = (index: number) => {
+    if (!performances.length) return;
+    if (index === currentIndex) return;
+    if (index < 0 || index >= performances.length) return;
+
+    stopAudio();
+    setCurrentIndex(index);
+  };
+
+  const handleClickDetail = () => {
+    if (!currentPerformance) return;
+    onClickDetail(currentPerformance.type, currentPerformance.typeId);
+  };
 
   return (
     <Box
@@ -33,7 +60,14 @@ const SuggestMusicSection = ({
       subtitle="예상 셋리스트, 미리 한번 들어볼까요?"
     >
       <div>
-        <MusicInfo title={data.title} />
+        <MusicInfo
+          performances={performances}
+          total={performances.length}
+          current={currentIndex}
+          onChangeIndex={handleDotClick}
+          onClickDetail={handleClickDetail}
+          isPending={isPending}
+        />
         <MusicList
           appearance="home"
           musics={musicList}
