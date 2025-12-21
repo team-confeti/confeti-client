@@ -10,10 +10,11 @@ export const useMusicPlayer = (data: musics[]) => {
   const [duration, setDuration] = useState(30);
 
   const stopAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.pause();
-    audio.currentTime = 0;
+    if (!audioRef.current) return;
+
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+
     setCurrentPlayingId(null);
     setIsAudioPlaying(false);
     setCurrentTime(0);
@@ -24,35 +25,33 @@ export const useMusicPlayer = (data: musics[]) => {
     if (!selectedMusic || !selectedMusic.previewUrl || !audioRef.current)
       return;
 
-    const audio = audioRef.current;
-
-    if (currentPlayingId === musicId && !audio.paused) {
+    if (currentPlayingId === musicId && !audioRef.current.paused) {
       stopAudio();
       return;
     }
 
-    audio.src = selectedMusic.previewUrl;
-    audio.play().catch((e) => console.error('재생 오류', e));
+    audioRef.current.src = selectedMusic.previewUrl;
+    audioRef.current.play().catch((e) => console.error('재생 오류', e));
     setCurrentPlayingId(musicId);
   };
 
   const audioEvents = useMemo(
     () => ({
       onLoadedMetadata: () => {
-        const a = audioRef.current;
-        if (!a) return;
-        const d = Number.isFinite(a.duration) ? a.duration : 30;
+        if (!audioRef.current) return;
+
+        const d = Number.isFinite(audioRef.current.duration)
+          ? audioRef.current.duration
+          : 30;
         setDuration(d);
       },
       onTimeUpdate: () => {
-        const a = audioRef.current;
-        if (!a) return;
-        setCurrentTime(a.currentTime);
+        if (!audioRef.current) return;
+        setCurrentTime(audioRef.current.currentTime);
       },
       onSeeked: () => {
-        const a = audioRef.current;
-        if (!a) return;
-        setCurrentTime(a.currentTime);
+        if (!audioRef.current) return;
+        setCurrentTime(audioRef.current.currentTime);
       },
       onPlay: () => {
         setIsAudioPlaying(true);
