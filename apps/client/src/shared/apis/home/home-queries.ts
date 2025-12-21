@@ -59,7 +59,7 @@ export const getTicketing =
 export const getSuggestPerformance =
   async (): Promise<SuggestPerformanceResponse> => {
     const response = await get<BaseResponse<SuggestPerformanceResponse>>(
-      END_POINT.GET_SUGGEST_PERFORMANCE,
+      END_POINT.GET_SUGGEST_PERFORMANCE(10),
     );
     return response.data;
   };
