@@ -49,9 +49,10 @@ export const END_POINT = {
   // 홈 페이지
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: '/performances/info',
-  GET_SUGGEST_PERFORMANCE: '/performances/recommend',
+  GET_SUGGEST_PERFORMANCE: (limit: number) =>
+    `/v2/performances/recommend?limit=${limit}`,
   GET_SUGGEST_MUSIC_PERFORMANCE: (performanceSize: number, songSize: number) =>
-    `performances/v2/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
+    `/v2/performances/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
 
   //타임 테이블
   GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
