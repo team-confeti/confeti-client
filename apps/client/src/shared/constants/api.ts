@@ -7,7 +7,7 @@ export const END_POINT = {
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
   GET_MY_TIMETABLE_SORT_BY: (sortBy: 'earliest' | 'latest') =>
-    `/user/timetables/v4?sortBy=${sortBy}`,
+    `/user/timetables/v2?sortBy=${sortBy}`,
 
   // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
@@ -49,16 +49,17 @@ export const END_POINT = {
   // 홈 페이지
   GET_TICKETING: '/performances/reservation',
   GET_LATEST_PERFORMANCES: '/performances/info',
-  GET_SUGGEST_PERFORMANCE: '/performances/recommend',
+  GET_SUGGEST_PERFORMANCE: (limit: number) =>
+    `/v2/performances/recommend?limit=${limit}`,
   GET_SUGGEST_MUSIC_PERFORMANCE: (performanceSize: number, songSize: number) =>
-    `performances/v4/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
+    `/v2/performances/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
 
   //타임 테이블
   GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
   GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
     `/user/timetables/festivals/${festivalDateId}`,
   GET_TIMETABLE_DATES: (timetableFestivalId: number) =>
-    `/user/timetables/v4/${timetableFestivalId}/dates`,
+    `/user/timetables/${timetableFestivalId}/dates`,
   POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
   DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
     `/user/timetables/festivals/${festivalId}`,
@@ -66,7 +67,7 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
   POST_SCREENSHOT: '/png/generate',
-  DELETE_MY_TIMETABLES: '/user/timetables/v4/festivals',
+  DELETE_MY_TIMETABLES: '/user/timetables/festivals',
 
   //검색
   GET_SEARCH_ALL: '/search',
@@ -96,15 +97,15 @@ export const END_POINT = {
   //온보딩
   GET_ARTIST: (limit: number, artistId: string | null) =>
     artistId
-      ? `/user/onboard/v4/artists?limit=${limit}&targetArtistId=${artistId}`
-      : `/user/onboard/v4/artists?limit=${limit}`,
+      ? `/user/onboard/v2/artists?limit=${limit}&targetArtistId=${artistId}`
+      : `/user/onboard/v2/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ONBOARDING_STATUS: '/user/onboard/status',
-  POST_AUTH_ONBOARD: '/user/onboard/v4',
-  POST_SELECTED_ARTIST: '/user/onboard/v4/artists/favorite',
-  GET_SELECTED_ARTIST: `/user/onboard/v4/artists/favorite`,
-  PATCH_SELECTED_ARTIST: `/user/onboard/v4/artists/favorite`,
+  POST_AUTH_ONBOARD: '/user/onboard',
+  POST_SELECTED_ARTIST: '/user/onboard/artists/favorite',
+  GET_SELECTED_ARTIST: `/user/onboard/artists/favorite`,
+  PATCH_SELECTED_ARTIST: `/user/onboard/artists/favorite`,
 } as const;
 
 export const HTTP_STATUS_CODE = {
