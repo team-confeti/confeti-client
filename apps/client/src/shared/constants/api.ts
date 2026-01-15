@@ -97,8 +97,8 @@ export const END_POINT = {
   //온보딩
   GET_ARTIST: (limit: number, artistId: string | null) =>
     artistId
-      ? `/user/onboard/v2/artists?limit=${limit}&targetArtistId=${artistId}`
-      : `/user/onboard/v2/artists?limit=${limit}`,
+      ? `v2/user/onboard/artists?limit=${limit}&targetArtistId=${artistId}`
+      : `v2/user/onboard/artists?limit=${limit}`,
   GET_ARTIST_RELATED_KEYWORDS: (keyword: string, limit: number) =>
     `/user/onboard/artists/search?term=${encodeURIComponent(keyword)}&limit=${limit}`,
   GET_ONBOARDING_STATUS: '/user/onboard/status',
