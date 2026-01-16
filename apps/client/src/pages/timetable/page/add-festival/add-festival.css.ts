@@ -9,22 +9,15 @@ export const wrapper = style({
 });
 
 export const container = style({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  overflowY: 'auto',
-  padding: '2.4rem 2rem',
-  rowGap: '3rem',
-  columnGap: '1.8rem',
-  maxWidth: 'fit-content',
-  maxHeight: 'fit-content',
-});
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
 
-export const festivalCardWrapper = style({
-  width: 'calc((100% - 8rem ) / 3)',
-  flexShrink: 0,
-  flexGrow: 0,
+  gap: '3rem 1.8rem',
+  padding: '2.4rem 2rem',
+
+  width: '100%',
+  height: '100%',
+  overflowY: 'auto',
 });
 
 export const buttonSection = style({

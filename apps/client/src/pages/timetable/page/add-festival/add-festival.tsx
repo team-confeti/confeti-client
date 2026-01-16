@@ -76,10 +76,7 @@ const AddFestival = () => {
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
-            <div
-              key={festival.festivalId}
-              className={styles.festivalCardWrapper}
-            >
+            <div key={festival.festivalId}>
               <FestivalCard
                 title={festival.title}
                 imageSrc={festival.posterUrl}
