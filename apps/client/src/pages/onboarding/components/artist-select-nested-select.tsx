@@ -110,50 +110,48 @@ const ArtistSelectNestedSelect = ({
           onFocus={onSearchFocus}
         />
       </div>
-      <div className={styles.selectedArtistPriviewSection}>
-        <div className={styles.selectedArtistPreview}>
-          <LayoutGroup>
-            <div className={styles.selectedArtistList}>
-              <AnimatePresence>
-                {selectedArtistData.data.artists.map((artist) => (
-                  <motion.div
-                    key={artist.artistId}
-                    className={styles.selectedArtistItem}
-                    layout
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.3,
-                      layout: { duration: 0.4, ease: 'easeOut' },
-                    }}
-                  >
-                    <Avatar
-                      size="sesm"
-                      src={artist.profileUrl}
-                      alt={`${artist.name} 이미지`}
-                      isHandleClick={false}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-            <AnimatePresence>
-              {selectedArtistData.data.artists.length > 0 && (
-                <motion.div
-                  className={styles.selectedArtistItem}
-                  layout
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <OnboardingChip
-                    onClick={onEditClick}
-                    count={selectedArtistData.data.artists.length}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </LayoutGroup>
+      {selectedArtistData.data.artists.length > 0 && (
+        <div className={styles.selectedArtistPriviewSection}>
+          <div className={styles.selectedArtistPreview}>
+            <LayoutGroup>
+              <div className={styles.selectedArtistList}>
+                <AnimatePresence>
+                  {selectedArtistData.data.artists.map((artist) => (
+                    <motion.div
+                      key={artist.artistId}
+                      className={styles.selectedArtistItem}
+                      layout
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.3,
+                        layout: { duration: 0.4, ease: 'easeOut' },
+                      }}
+                    >
+                      <Avatar
+                        size="sesm"
+                        src={artist.profileUrl}
+                        alt={`${artist.name} 이미지`}
+                        isHandleClick={false}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+              <motion.div
+                className={styles.selectedArtistItem}
+                layout
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <OnboardingChip
+                  onClick={onEditClick}
+                  count={selectedArtistData.data.artists.length}
+                />
+              </motion.div>
+            </LayoutGroup>
+          </div>
         </div>
-      </div>
+      )}
       <div className={styles.avatarGridSection}>
         {artistData.artists.map((artist, index) => (
           <motion.div

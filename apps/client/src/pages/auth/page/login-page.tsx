@@ -70,7 +70,6 @@ const LoginPage = () => {
 
   return (
     <>
-      <DetailHeader title="로그인" />
       <section className={styles.container}>
         <div>
           <Icon name="logo-big" size="18rem" />

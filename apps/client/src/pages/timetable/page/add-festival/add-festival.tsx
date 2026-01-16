@@ -56,10 +56,10 @@ const AddFestival = () => {
 
   const TOTAL_SELECTIONS = selectedFestivals.length + data.festivals.length;
   const isButtonDisabled =
-    selectedFestivals.length === 0 || TOTAL_SELECTIONS >= MAX_SELECTIONS;
+    selectedFestivals.length === 0 || TOTAL_SELECTIONS > MAX_SELECTIONS;
 
   useEffect(() => {
-    if (TOTAL_SELECTIONS >= MAX_SELECTIONS) {
+    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
       showToast();
     }
   }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);

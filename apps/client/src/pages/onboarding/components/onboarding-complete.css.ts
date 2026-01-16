@@ -11,6 +11,10 @@ export const completeContentSection = recipe({
   },
   variants: {
     phase: {
+      loading: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
       description: {
         textAlign: 'center',
         justifyContent: 'center',
