@@ -24,10 +24,8 @@ export const itemContent = style({
 });
 
 export const avatar = style({
-  width: '5rem',
-  height: '5rem',
-  borderRadius: '0.8rem',
   flexShrink: 0,
+  border: `1px solid ${themeVars.color.gray400}`,
 });
 
 export const chip = style({
@@ -53,6 +51,22 @@ export const title = style({
 
 export const content = style({
   flex: 1,
+  ...themeVars.display.flexColumn,
+  gap: '1rem',
+});
+
+/**
+ * D-DAY 칩 스타일
+ * 제목 위에 표시되는 작은 칩
+ */
+export const dDay = style({
+  display: 'inline-block',
+  padding: '0.4rem 0.8rem',
+  ...themeVars.fontStyles.caption_b_10,
+  backgroundColor: themeVars.color.confeti_lime,
+  color: themeVars.color.gray900,
+  borderRadius: '1rem',
+  width: 'fit-content',
 });
 
 export const checkbox = style({

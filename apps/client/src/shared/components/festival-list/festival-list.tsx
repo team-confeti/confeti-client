@@ -7,6 +7,7 @@ interface FestivalItem {
   id: number;
   posterUrl: string;
   title: string;
+  dDay?: string;
 }
 
 interface FestivalListRootProps {
@@ -38,6 +39,9 @@ const FestivalListItem = ({
           className={styles.avatar}
         />
         <div className={styles.content}>
+          {festival.dDay && (
+            <span className={styles.dDay}>{festival.dDay}</span>
+          )}
           <p className={styles.title}>{festival.title}</p>
         </div>
       </div>

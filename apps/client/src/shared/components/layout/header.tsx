@@ -11,18 +11,21 @@ const Header = () => {
   const location = useLocation();
 
   const isHomePage = location.pathname === '/';
+  const isTimetableLandingPage = location.pathname === '/timetable';
   const isMyPage = location.pathname.startsWith('/my');
 
   const hasPassedTicketSection = useHeaderBackground(isHomePage);
 
-  const headerClassName = isHomePage
-    ? hasPassedTicketSection
-      ? styles.containerWhite
-      : styles.container
-    : styles.containerSticky;
+  const shouldUseTransparentHeader =
+    (isHomePage && !hasPassedTicketSection) || isTimetableLandingPage;
 
-  const iconColor =
-    isHomePage && !hasPassedTicketSection ? 'gray300' : 'gray700';
+  const headerClassName = shouldUseTransparentHeader
+    ? styles.container
+    : isHomePage
+      ? styles.containerWhite
+      : styles.containerSticky;
+
+  const iconColor = shouldUseTransparentHeader ? 'gray300' : 'gray700';
 
   const handleNavigation = (path: string) => navigate(path);
 

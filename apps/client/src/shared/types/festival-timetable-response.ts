@@ -14,6 +14,18 @@ export interface FestivalTimetableResponse {
   festivals: FestivalTimetable[];
 }
 
+export interface TimetableItem {
+  timetableFestivalId: number;
+  posterUrl: string;
+  title: string;
+  startAt: string;
+}
+
+export interface TimetableListResponse {
+  nextCursor: string;
+  timetables: TimetableItem[];
+}
+
 export interface FestivalIds {
   festivals: festivalId[];
 }
