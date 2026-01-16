@@ -17,6 +17,7 @@ type Phase = 'loading' | 'description' | 'cta';
 const LoadingContent = () => (
   <motion.div
     key="loading"
+    className={styles.completeContentSection({ phase: 'loading' })}
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -20 }}

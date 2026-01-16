@@ -62,5 +62,5 @@ export const ticketOpeningBannerText = style({
 });
 
 export const ticketOpeningTooltip = style({
-  width: '21.7rem',
+  padding: '0.6rem 1rem',
 });

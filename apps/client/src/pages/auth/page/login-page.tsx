@@ -1,7 +1,6 @@
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
-import { DetailHeader } from '@shared/components';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
@@ -70,7 +69,6 @@ const LoginPage = () => {
 
   return (
     <>
-      <DetailHeader title="로그인" />
       <section className={styles.container}>
         <div>
           <Icon name="logo-big" size="18rem" />

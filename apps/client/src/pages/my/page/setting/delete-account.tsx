@@ -22,7 +22,7 @@ const DeleteAccount = () => {
     ...AUTH_MUTATION_OPTIONS.DELETE_ACCOUNT(),
     onSuccess: () => {
       queryClient.clear();
-
+      localStorage.clear();
       authTokenHandler('remove');
       navigate(`${routePath.LOGIN}`);
     },

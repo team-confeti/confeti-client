@@ -7,6 +7,10 @@ export const listContainer = style({
   ...themeVars.display.flexAlignCenter,
   gap: '1.5rem',
   alignSelf: 'stretch',
+
+  ':hover': {
+    backgroundColor: themeVars.color.gray100,
+  },
 });
 
 export const listImageContainer = style({
