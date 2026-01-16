@@ -11,13 +11,13 @@ interface OnboardingGuardProps {
 }
 
 export const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
-  // const { data: onboardingStatus } = useSuspenseQuery({
-  //   ...ONBOARD_QUERY_OPTIONS.STATUS(),
-  // });
+  const { data: onboardingStatus } = useSuspenseQuery({
+    ...ONBOARD_QUERY_OPTIONS.STATUS(),
+  });
 
-  // if (onboardingStatus?.onboardStatus === 'COMPLETED') {
-  //   return <Navigate to={routePath.ROOT} replace />;
-  // }
+  if (onboardingStatus?.onboardStatus === 'COMPLETED') {
+    return <Navigate to={routePath.ROOT} replace />;
+  }
 
   return children ? <>{children}</> : <Outlet />;
 };
