@@ -7,7 +7,7 @@ export const END_POINT = {
   GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
     `/user/timetables?sortBy=${sortBy}`,
   GET_MY_TIMETABLE_SORT_BY: (sortBy: 'earliest' | 'latest') =>
-    `/user/timetables/v2?sortBy=${sortBy}`,
+    `/v2/user/timetables?sortBy=${sortBy}`,
 
   // 셋리스트
   GET_MY_SET_LIST: '/my/setlists/preview',
@@ -67,7 +67,7 @@ export const END_POINT = {
     `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
   POST_SCREENSHOT: '/png/generate',
-  DELETE_MY_TIMETABLES: '/user/timetables/festivals',
+  DELETE_MY_TIMETABLES: '/v2/user/timetables/festivals',
 
   //검색
   GET_SEARCH_ALL: '/search',
