@@ -57,6 +57,6 @@ export const searchSuggestionListSection = recipe({
     gap: '2rem',
     width: '100%',
     height: 'auto',
-    padding: '2rem 0',
+    padding: '2rem',
   },
 });
