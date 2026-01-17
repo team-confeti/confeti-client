@@ -12,6 +12,7 @@ export const searchBarContainer = style({
 export const searchBarFrame = style({
   ...themeVars.display.flexAlignCenter,
   width: '100%',
+  padding: '0.8rem 2rem',
   gap: '0.5rem',
 });
 

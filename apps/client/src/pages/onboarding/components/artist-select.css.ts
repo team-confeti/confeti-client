@@ -4,7 +4,6 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const onboardingContentSection = style({
   height: `100dvh`,
-  padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
 });

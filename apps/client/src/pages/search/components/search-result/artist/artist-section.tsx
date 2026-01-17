@@ -18,7 +18,6 @@ const ArtistSection = ({ artist, refetchArtist }: ArtistSectionProps) => {
         id={artist?.artistId || ''}
         image={artist?.profileUrl}
         name={artist?.name}
-        recentAlbumName={artist?.recentAlbumName}
         isFavorite={artist?.isFavorite}
         refetchArtist={refetchArtist}
       />
