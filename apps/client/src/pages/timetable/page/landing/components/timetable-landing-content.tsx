@@ -83,8 +83,6 @@ const TimetableLandingContent = ({
   const isEmpty = totalCount === 0;
   const selectedCount = selectedIds.length;
 
-  console.log(data.timetables);
-
   const handleEditModeToggle = () => {
     setIsEditMode(!isEditMode);
     if (isEditMode) {
