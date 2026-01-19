@@ -45,6 +45,7 @@ export const dateInfo = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '0.2rem',
+  minWidth: '7.8rem',
 });
 
 export const dateText = style({
@@ -55,6 +56,8 @@ export const dateText = style({
 export const dayText = style({
   ...themeVars.fontStyles.title2_b_20,
   color: themeVars.color.white,
+  fontVariantNumeric: 'tabular-nums',
+  wordSpacing: '-0.2rem',
 });
 
 export const navButton = style({
@@ -67,4 +70,9 @@ export const navButton = style({
   background: themeVars.color.white_op_10,
   border: 'none',
   cursor: 'pointer',
+});
+
+export const navButtonPlaceholder = style({
+  width: '3rem',
+  height: '3rem',
 });
