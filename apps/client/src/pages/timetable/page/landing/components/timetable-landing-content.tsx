@@ -16,7 +16,6 @@ import {
 import { FestivalList } from '@shared/components';
 import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import { routePath } from '@shared/router/path';
-import { buildPath } from '@shared/utils/build-path';
 import { calculateDDay } from '@shared/utils/calculate-d-day';
 
 import * as styles from './timetable-landing-content.css';
@@ -32,9 +31,8 @@ const TimetableLandingContent = ({
   isEditMode,
   setIsEditMode,
 }: TimetableLandingContentProps) => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [dialogStatus, setDialogStatus] = useState<DialogStatus>('none');
 
@@ -59,24 +57,33 @@ const TimetableLandingContent = ({
     },
   });
 
-  const festivals = data.timetables
-    .filter((t) => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const festivalDate = new Date(t.startAt);
-      festivalDate.setHours(0, 0, 0, 0);
-      return festivalDate >= today;
-    })
-    .map((t) => ({
-      id: t.timetableFestivalId,
-      posterUrl: t.posterUrl,
-      title: t.title,
-      dDay: calculateDDay(t.startAt),
-    }));
+  // const festivals = data.timetables
+  // .filter((t) => {
+  //   const today = new Date();
+  //   today.setHours(0, 0, 0, 0);
+  //   const festivalDate = new Date(t.startAt);
+  //   festivalDate.setHours(0, 0, 0, 0);
+  //   return festivalDate >= today;
+  // })
+  // .map((t) => ({
+  //   id: t.timetableFestivalId,
+  //   posterUrl: t.posterUrl,
+  //   title: t.title,
+  //   dDay: calculateDDay(t.startAt),
+  // }));
+
+  const festivals = data.timetables.map((t) => ({
+    id: t.timetableFestivalId,
+    posterUrl: t.posterUrl,
+    title: t.title,
+    dDay: calculateDDay(t.startAt),
+  }));
 
   const totalCount = festivals.length;
   const isEmpty = totalCount === 0;
   const selectedCount = selectedIds.length;
+
+  console.log(data.timetables);
 
   const handleEditModeToggle = () => {
     setIsEditMode(!isEditMode);
@@ -98,7 +105,7 @@ const TimetableLandingContent = ({
       handleCheckboxToggle(festivalId);
       return;
     }
-    navigate(buildPath(routePath.MY_TIMETABLE_DETAIL, { id: festivalId }));
+    navigate(`${routePath.TIME_TABLE_OUTLET}/${festivalId}`);
   };
 
   const handleDeleteClick = () => {
