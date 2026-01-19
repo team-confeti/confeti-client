@@ -28,12 +28,12 @@ const Location = ({ address }: LocationProps) => {
       await navigator.clipboard.writeText(address);
       toast({
         text: '주소가 복사되었어요.',
-        position: 'middleCenter',
+        position: 'bottomCenter',
       });
     } catch {
       toast({
         text: '복사에 실패했어요. 다시 시도해주세요!',
-        position: 'middleCenter',
+        position: 'bottomCenter',
       });
     }
   };

@@ -11,7 +11,7 @@ import { globalRoutes } from './routes/global-routes';
 import {
   myTimetableDetailRoute,
   onboardingRoute,
-  timetableMainRoute,
+  timetableDetailRoute,
 } from './routes/layout-free-routes';
 import { myPageRoutes } from './routes/my-page-routes';
 import { setlistRoutes } from './routes/setlist-routes';
@@ -25,10 +25,10 @@ export const router = createBrowserRouter([
     children: [{ index: true, element: onboardingRoute.element }],
   },
   {
-    path: routePath.TIME_TABLE_OUTLET,
+    path: routePath.TIMETABLE_DETAIL,
     element: <BasicLayout />,
     errorElement: <ErrorPage />,
-    children: [{ index: true, element: timetableMainRoute.element }],
+    children: [{ index: true, element: timetableDetailRoute.element }],
   },
   {
     path: routePath.MY_TIMETABLE_DETAIL,

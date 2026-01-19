@@ -43,7 +43,10 @@ const TimetableDetail = () => {
 
       <div className={styles.timeTableWrapper}>
         <Suspense key={selectedDateId} fallback={<TimetableBoardSkeleton />}>
-          <TimetableBoardSection selectedDateId={selectedDateId} />
+          <TimetableBoardSection
+            selectedDateId={selectedDateId}
+            disableToast={true}
+          />
         </Suspense>
       </div>
     </div>

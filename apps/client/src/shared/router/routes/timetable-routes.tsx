@@ -1,5 +1,6 @@
 import RequireLoginPage from '@pages/auth/page/require-login';
 import TimetableLayout from '@pages/timetable/page/timetable-layout';
+import TimeTablePage from '@pages/timetable/page/timetable-page';
 
 import {
   AddFestivalPage,
@@ -14,6 +15,10 @@ export const timetableSubRoutes = [
     path: routePath.TIME_TABLE_OUTLET,
     element: <TimetableLayout />,
     children: [
+      {
+        index: true,
+        element: createProtectedRoute(true, <TimeTablePage />),
+      },
       {
         path: routePath.TIME_TABLE_REQUIRE_LOGIN,
         element: <RequireLoginPage />,

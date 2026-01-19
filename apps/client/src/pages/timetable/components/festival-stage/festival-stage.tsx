@@ -22,7 +22,13 @@ const FestivalStage = ({
     <div className={styles.stageWrapper} ref={scrollRef} onScroll={onScroll}>
       {timetableInfo.stages.map((info, index) => (
         <div key={info.stageOrder} className={styles.stageBoxWrapper}>
-          <div className={styles.stageBox}>{info.stageName}</div>
+          <div
+            className={styles.stageBox({
+              hasSingleStage: timetableInfo.stages.length === 1,
+            })}
+          >
+            {info.stageName}
+          </div>
           {index !== lastIndex && (
             <Icon name="timetable-stroke" width="0.5rem" height="1.6rem" />
           )}
