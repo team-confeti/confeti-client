@@ -15,12 +15,14 @@ interface TimetableBoardSectionProps {
   selectedDateId: number;
   isEditMode?: boolean;
   elementRef?: React.RefObject<HTMLDivElement | null>;
+  disableToast?: boolean;
 }
 
 const TimetableBoardSection = ({
   selectedDateId,
   isEditMode,
   elementRef,
+  disableToast,
 }: TimetableBoardSectionProps) => {
   const {
     primaryRef: stageRef,
@@ -47,6 +49,7 @@ const TimetableBoardSection = ({
         isEditMode={isEditMode ?? false}
         scrollRef={boardRef}
         onScroll={handleBoardScroll}
+        disableToast={disableToast}
       />
     </div>
   );

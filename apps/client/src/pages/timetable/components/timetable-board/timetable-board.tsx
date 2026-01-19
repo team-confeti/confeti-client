@@ -20,6 +20,7 @@ interface Props {
   isEditMode: boolean;
   scrollRef?: RefObject<HTMLElement | null>;
   onScroll?: () => void;
+  disableToast?: boolean;
 }
 
 const TimetableBoard = ({
@@ -27,6 +28,7 @@ const TimetableBoard = ({
   isEditMode,
   scrollRef,
   onScroll,
+  disableToast = false,
 }: Props) => {
   const [openHour] = parseTimeString(timetableInfo.ticketOpenAt);
   const cellNumber = generateTableRow(openHour);
@@ -46,11 +48,13 @@ const TimetableBoard = ({
     isSelected: boolean,
   ) => {
     if (!isEditMode) {
-      toast({
-        text: ` 버튼으로 편집할 수 있어요.`,
-        position: 'middleCenter',
-        highlightText: `'타임테이블 편집하기'`,
-      });
+      if (!disableToast) {
+        toast({
+          text: ` 버튼으로 편집할 수 있어요.`,
+          position: 'middleCenter',
+          highlightText: `'타임테이블 편집하기'`,
+        });
+      }
       return;
     }
 

@@ -64,33 +64,39 @@ const Calender = ({
         <img src={posterUrl} alt="calendar" className={styles.calendarImage} />
         <div className={styles.overlay} />
         <div className={styles.dateInfoWrapper}>
-          <button
-            type="button"
-            className={styles.navButton}
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            <Icon
-              name="arrow-horizontal"
-              size="1.6rem"
-              rotate={180}
-              color="white"
-            />
-          </button>
+          {currentIndex > 0 ? (
+            <button
+              type="button"
+              className={styles.navButton}
+              onClick={handlePrev}
+            >
+              <Icon
+                name="arrow-horizontal"
+                size="1.6rem"
+                rotate={180}
+                color="white"
+              />
+            </button>
+          ) : (
+            <div className={styles.navButtonPlaceholder} />
+          )}
           <div className={styles.dateInfo}>
             <p className={styles.dateText}>
               {formatDateWithDayOfWeek(currentDate.festivalAt)}
             </p>
             <p className={styles.dayText}>DAY {currentIndex + 1}</p>
           </div>
-          <button
-            type="button"
-            className={styles.navButton}
-            onClick={handleNext}
-            disabled={currentIndex === festivalDates.length - 1}
-          >
-            <Icon name="arrow-horizontal" size="1.6rem" color="white" />
-          </button>
+          {currentIndex < festivalDates.length - 1 ? (
+            <button
+              type="button"
+              className={styles.navButton}
+              onClick={handleNext}
+            >
+              <Icon name="arrow-horizontal" size="1.6rem" color="white" />
+            </button>
+          ) : (
+            <div className={styles.navButtonPlaceholder} />
+          )}
         </div>
       </div>
     </section>

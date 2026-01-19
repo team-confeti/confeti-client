@@ -1,4 +1,5 @@
 import TimetableDetail from '@pages/my/page/timetable-detail/timetable-detail';
+import TimetableDetailPage from '@pages/timetable/page/detail/timetable-detail-page';
 import TimeTablePage from '@pages/timetable/page/timetable-page';
 
 import { OnboardingPage } from '../lazy';
@@ -15,4 +16,8 @@ export const timetableMainRoute = {
 
 export const myTimetableDetailRoute = {
   element: createProtectedRoute(true, <TimetableDetail />),
+};
+
+export const timetableDetailRoute = {
+  element: createProtectedRoute(true, <TimetableDetailPage />),
 };

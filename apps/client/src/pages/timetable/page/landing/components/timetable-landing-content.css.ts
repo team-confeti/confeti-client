@@ -14,6 +14,7 @@ export const leftContent = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.2rem',
+  minHeight: '2.8rem',
 });
 
 export const totalCount = style({
