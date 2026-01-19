@@ -24,7 +24,7 @@ const FestivalStage = ({
         <div key={info.stageOrder} className={styles.stageBoxWrapper}>
           <div
             className={styles.stageBox({
-              hasSingleFestivalTime: info.festivalTimes.length === 1,
+              hasSingleStage: timetableInfo.stages.length === 1,
             })}
           >
             {info.stageName}

@@ -21,7 +21,7 @@ export const stageBox = recipe({
     padding: '0.4rem 1.4rem',
   },
   variants: {
-    hasSingleFestivalTime: {
+    hasSingleStage: {
       true: {
         marginRight: '2.8rem',
       },
@@ -29,7 +29,7 @@ export const stageBox = recipe({
     },
   },
   defaultVariants: {
-    hasSingleFestivalTime: false,
+    hasSingleStage: false,
   },
 });
 
