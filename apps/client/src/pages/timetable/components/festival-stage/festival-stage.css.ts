@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -10,13 +11,26 @@ export const stageBoxWrapper = style({
   minWidth: '10rem',
 });
 
-export const stageBox = style({
-  ...themeVars.fontStyles.caption_r_10,
-  ...themeVars.display.flexJustifyAlignCenter,
-  textAlign: 'center',
-  height: '4rem',
-  width: '100%',
-  padding: '0.4rem 1.4rem',
+export const stageBox = recipe({
+  base: {
+    ...themeVars.fontStyles.caption_r_10,
+    ...themeVars.display.flexJustifyAlignCenter,
+    textAlign: 'center',
+    height: '4rem',
+    width: '100%',
+    padding: '0.4rem 1.4rem',
+  },
+  variants: {
+    hasSingleFestivalTime: {
+      true: {
+        marginRight: '2.8rem',
+      },
+      false: {},
+    },
+  },
+  defaultVariants: {
+    hasSingleFestivalTime: false,
+  },
 });
 
 export const stageWrapper = style({
