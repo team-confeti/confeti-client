@@ -85,9 +85,18 @@ export const avatarVariants = recipe({
         }),
       },
     },
+    borderVariant: {
+      none: {
+        border: 'none',
+      },
+      selected: {
+        border: '0.2rem solid #fff',
+      },
+    },
   },
   defaultVariants: {
     size: 'md',
+    borderVariant: 'none',
   },
 });
 
