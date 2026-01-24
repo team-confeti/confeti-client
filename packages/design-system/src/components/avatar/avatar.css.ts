@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { screen, themeVars } from '../../styles';
+import { border } from '../../styles/tokens/border';
 
 export const avatarVariants = recipe({
   base: {
@@ -85,9 +86,18 @@ export const avatarVariants = recipe({
         }),
       },
     },
+    borderVariant: {
+      none: {
+        border: 'none',
+      },
+      selected: {
+        border: '0.2rem solid #fff',
+      },
+    },
   },
   defaultVariants: {
     size: 'md',
+    borderVariant: 'none',
   },
 });
 
