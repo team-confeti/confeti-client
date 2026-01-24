@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { screen, themeVars } from '../../styles';
-import { border } from '../../styles/tokens/border';
 
 export const avatarVariants = recipe({
   base: {
