@@ -12,6 +12,7 @@ interface CalenderProps {
   selectedDateId: number;
   onDateSelect: (dateId: number) => void;
   posterUrl: string;
+  isEditMode?: boolean;
 }
 
 const DAY_OF_WEEK_MAP: Record<number, string> = {
@@ -38,6 +39,7 @@ const Calender = ({
   selectedDateId,
   onDateSelect,
   posterUrl,
+  isEditMode,
 }: CalenderProps) => {
   const currentIndex = festivalDates.findIndex(
     (date) => date.festivalDateId === selectedDateId,
@@ -64,7 +66,7 @@ const Calender = ({
         <img src={posterUrl} alt="calendar" className={styles.calendarImage} />
         <div className={styles.overlay} />
         <div className={styles.dateInfoWrapper}>
-          {currentIndex > 0 ? (
+          {currentIndex > 0 && !isEditMode ? (
             <button
               type="button"
               className={styles.navButton}
@@ -86,7 +88,7 @@ const Calender = ({
             </p>
             <p className={styles.dayText}>DAY {currentIndex + 1}</p>
           </div>
-          {currentIndex < festivalDates.length - 1 ? (
+          {currentIndex < festivalDates.length - 1 && !isEditMode ? (
             <button
               type="button"
               className={styles.navButton}
