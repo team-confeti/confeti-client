@@ -21,9 +21,10 @@ type ColorVariant = 0 | 1 | 2 | 3 | 4;
 interface Props {
   userName: string | null;
   data: TicketingPerformances[];
+  isPersonalized: boolean;
 }
 
-const TicketOpeningSection = ({ userName, data }: Props) => {
+const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
   if (!data || data.length === 0) return null;
 
   const navigateToDetail = useNavigateToDetail();
@@ -76,7 +77,7 @@ const TicketOpeningSection = ({ userName, data }: Props) => {
           animated={true}
         >
           <Tooltip.Content className={styles.ticketOpeningTooltip}>
-            {userName
+            {userName && isPersonalized
               ? '선호하는 공연 예매가 다가오고 있어요!'
               : '공연 예매가 다가오고 있어요!'}
           </Tooltip.Content>

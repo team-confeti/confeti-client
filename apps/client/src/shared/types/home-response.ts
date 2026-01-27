@@ -42,6 +42,7 @@ export type musics = {
 };
 
 export type TicketingPerformancesResponse = {
+  isPersonalized: boolean;
   performanceCount: number;
   performances: TicketingPerformances[];
 };
