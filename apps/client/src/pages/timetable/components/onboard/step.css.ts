@@ -35,6 +35,7 @@ export const timeTableOnboardButtonContainer = style({
   ...themeVars.display.flexJustifyAlignCenter,
   width: '100%',
   flexDirection: 'column',
+  gap: '0.8rem',
   padding: '3rem 2rem',
 });
 
