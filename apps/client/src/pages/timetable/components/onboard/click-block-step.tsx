@@ -54,8 +54,8 @@ const ClickBlockStep = ({
             onClick={() => handleNavigate({ isReTry: false })}
           />
           <SkipButton
-            onClick={() => handleNavigate({ isReTry: true })}
             text="다시보기"
+            onClick={() => handleNavigate({ isReTry: true })}
           />
         </div>
       </div>

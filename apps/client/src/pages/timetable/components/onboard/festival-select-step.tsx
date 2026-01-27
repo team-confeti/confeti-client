@@ -30,18 +30,13 @@ const FestivalSelectStep = ({
         <div className={styles.timeTableImageContainer}>
           <div className={styles.timeTableDescriptionContainer}>
             <Description.Text fontSize={20} descriptionText="원하는">
-              <Description.Text fontSize={20} descriptionText={' '} />
               <Description.HighlightedText
                 fontSize={20}
                 highlightedText="페스티벌을 추가"
               />
               <Description.Text
                 fontSize={20}
-                descriptionText="해"
-              ></Description.Text>
-              <Description.Text
-                fontSize={20}
-                descriptionText={'\n여러 페스티벌 일정을 한 곳에서 확인해요'}
+                descriptionText={'해\n여러 페스티벌 일정을 한 곳에서 확인해요'}
               />
             </Description.Text>
           </div>
