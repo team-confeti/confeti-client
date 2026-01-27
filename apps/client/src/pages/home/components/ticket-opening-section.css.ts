@@ -21,7 +21,7 @@ export const ticketOpeningContainer = recipe({
 
 export const ticketOpeningScrollContainer = style({
   display: 'flex',
-  margin: '2rem 0 3rem 0',
+  margin: '1rem 0 3rem 0',
   width: '100%',
   overflowX: 'auto',
   scrollSnapType: 'x mandatory',
@@ -51,8 +51,10 @@ export const ticketOpeningCardWrapper = style({
 });
 
 export const ticketOpeningBannerContainer = style({
-  ...themeVars.display.flexBetweenAlignCenter,
+  ...themeVars.display.flexBetween,
+  alignItems: 'start',
   margin: '0 2rem',
+  height: '3.4rem',
 });
 
 export const ticketOpeningBannerText = style({

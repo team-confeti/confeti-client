@@ -6,6 +6,7 @@ export const onboardingContentSection = style({
   height: `100dvh`,
   display: 'flex',
   flexDirection: 'column',
+  padding: '2rem',
 });
 
 export const searchBarSection = style({

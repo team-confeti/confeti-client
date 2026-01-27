@@ -28,20 +28,25 @@ const FestivalCustomStep = ({
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
         <div className={styles.timeTableImageContainer}>
-          <Description.Text fontSize={20} descriptionText={''}>
-            <Description.HighlightedText
-              fontSize={20}
-              highlightedText="페스티벌 추가/삭제"
-            />
-            <Description.Text
-              fontSize={20}
-              descriptionText={`로 \n원하는 타임테이블을 커스텀해요.`}
-            />
-          </Description.Text>
+          <div className={styles.timeTableDescriptionContainer}>
+            <Description.Text fontSize={20} descriptionText={''}>
+              <Description.HighlightedText
+                fontSize={20}
+                highlightedText="페스티벌을 삭제"
+              />
+              <Description.Text fontSize={20} descriptionText={`해\n`} />
+              <Description.Text
+                fontSize={20}
+                descriptionText={`더 효율적으로 일정을 관리해요`}
+              />
+            </Description.Text>
+          </div>
           <img src={onboardImage} />
-          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
+          <div className={styles.progressBarContainer}>
+            <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
+          </div>
           <Button text="다음" variant="add" onClick={handleNextStep} />
           <SkipButton
             onClick={() => handleNavigate({ isReTry: false })}

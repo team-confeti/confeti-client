@@ -77,7 +77,7 @@ export const END_POINT = {
     `/performances/search/ac?term=${encodeURIComponent(keyword)}&limit=${limit}`,
 
   GET_POPULAR_SEARCH: (limit: number) => `search/terms/popular?limit=${limit}`,
-  GET_RECENT_VIEW: (items: string) => `performances/expected?items=${items}`,
+  GET_RECENT_VIEW: (items: string) => `performances/upcoming?items=${items}`,
   GET_MUSIC_SEARCH: (keyword: string, offset: number, limit: number) =>
     `my/setlists/search/musics?term=${keyword}&offset=${offset}&limit=${limit}`,
   GET_ARTIST_MUSIC_SEARCH: (
