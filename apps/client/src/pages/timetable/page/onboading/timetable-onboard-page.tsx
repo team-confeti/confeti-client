@@ -8,7 +8,6 @@ import EditTimetableStep from '@pages/timetable/components/onboard/edit-timetabl
 import FestivalCustomStep from '@pages/timetable/components/onboard/festival-custom-step';
 import FestivalSelectStep from '@pages/timetable/components/onboard/festival-select-step';
 import IntroStep from '@pages/timetable/components/onboard/intro-step';
-import SaveTimetableStep from '@pages/timetable/components/onboard/save-timetable-step';
 import { useImagePreload } from '@pages/timetable/hooks/use-image-preload';
 
 import ImgOnboard1 from '/images/img_onboard_1.webp';
@@ -16,7 +15,6 @@ import ImgOnboard2 from '/images/img_onboard_2.webp';
 import ImgOnboard3 from '/images/img_onboard_3.webp';
 import ImgOnboard4 from '/images/img_onboard_4.webp';
 import ImgOnboard5 from '/images/img_onboard_5.webp';
-import ImgOnboard6 from '/images/img_onboard_6.webp';
 
 const onboardImages = [
   ImgOnboard1,
@@ -24,13 +22,12 @@ const onboardImages = [
   ImgOnboard3,
   ImgOnboard4,
   ImgOnboard5,
-  ImgOnboard6,
 ];
 
 const TimetableOnboard = () => {
   const navigate = useNavigate();
-  const TOTAL_STEPS = 6;
-  const TOTAL_INDEX = 5;
+  const TOTAL_STEPS = 5;
+  const TOTAL_INDEX = 4;
   const { Funnel, Step, setStep } = useFunnel(
     TOTAL_STEPS,
     routePath.TIME_TABLE_OUTLET,
@@ -90,14 +87,6 @@ const TimetableOnboard = () => {
           totalIndex={TOTAL_INDEX}
           currentIndex={3}
           onboardImage={ImgOnboard5}
-        />
-      </Step>
-      <Step name="6">
-        <SaveTimetableStep
-          handleNavigate={handleNavigate}
-          totalIndex={TOTAL_INDEX}
-          currentIndex={4}
-          onboardImage={ImgOnboard6}
         />
       </Step>
     </Funnel>

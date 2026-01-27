@@ -28,29 +28,29 @@ const FestivalSelectStep = ({
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
         <div className={styles.timeTableImageContainer}>
-          <Description.Text fontSize={20} descriptionText="원하는">
-            <Description.Text fontSize={20} descriptionText={' '} />
-            <Description.HighlightedText
-              fontSize={20}
-              highlightedText="페스티벌"
-            />
-            <Description.Text fontSize={20} descriptionText="과">
+          <div className={styles.timeTableDescriptionContainer}>
+            <Description.Text fontSize={20} descriptionText="원하는">
               <Description.Text fontSize={20} descriptionText={' '} />
               <Description.HighlightedText
                 fontSize={20}
-                highlightedText="날짜"
+                highlightedText="페스티벌을 추가"
+              />
+              <Description.Text
+                fontSize={20}
+                descriptionText="해"
+              ></Description.Text>
+              <Description.Text
+                fontSize={20}
+                descriptionText={'\n여러 페스티벌 일정을 한 곳에서 확인해요'}
               />
             </Description.Text>
-            <Description.Text fontSize={20} descriptionText={`를 선택하고,`} />
-            <Description.Text
-              fontSize={20}
-              descriptionText={'\n타임라인을 확인해요'}
-            />
-          </Description.Text>
+          </div>
           <img src={onboardImage} />
-          <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
+          <div className={styles.progressBarContainer}>
+            <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
+          </div>
           <Button text="다음" variant="add" onClick={handleNextStep} />
           <SkipButton
             onClick={() => handleNavigate({ isReTry: false })}

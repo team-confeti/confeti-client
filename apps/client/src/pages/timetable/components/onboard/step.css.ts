@@ -6,7 +6,6 @@ export const timeTableOnboardContainer = style({
   display: 'flex',
   width: '100%',
   flex: '1',
-  padding: '3rem 2rem',
   boxSizing: 'border-box',
 });
 
@@ -23,11 +22,20 @@ export const timeTableImageContainer = style({
   flex: 1,
 });
 
+export const timeTableDescriptionContainer = style({
+  width: '100%',
+  padding: '2rem 0',
+});
+
+export const progressBarContainer = style({
+  margin: '0 0 2.6rem 0',
+});
+
 export const timeTableOnboardButtonContainer = style({
   ...themeVars.display.flexJustifyAlignCenter,
   width: '100%',
   flexDirection: 'column',
-  gap: '0.8rem',
+  padding: '3rem 2rem',
 });
 
 export const customAddButton = style({

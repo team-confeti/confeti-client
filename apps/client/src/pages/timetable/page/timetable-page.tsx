@@ -13,8 +13,8 @@ const TimeTablePage = () => {
   );
 
   const timetableState = useMemo<'onboard' | 'landing'>(() => {
-    if (!timeTableHistory.hasTimetableHistory) return 'onboard';
-    return 'landing';
+    if (!timeTableHistory.hasTimetableHistory) return 'landing';
+    return 'onboard';
   }, [timeTableHistory.hasTimetableHistory]);
 
   return (

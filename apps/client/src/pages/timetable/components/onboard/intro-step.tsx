@@ -21,12 +21,14 @@ const ItroStep = ({
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
         <div className={styles.timeTableImageContainer}>
-          <Description.Text
-            descriptionText={
-              '나만의 타임테이블을 만들고,\n이미지 저장까지 간편하게!'
-            }
-            fontSize={20}
-          />
+          <div className={styles.timeTableDescriptionContainer}>
+            <Description.Text
+              descriptionText={
+                '나만의 타임테이블을 만들어,\n페스티벌 일정을 쉽게 확인해 보세요 :)'
+              }
+              fontSize={20}
+            />
+          </div>
           <img src={onboardImage} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
