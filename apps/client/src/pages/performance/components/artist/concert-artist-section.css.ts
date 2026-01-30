@@ -34,6 +34,7 @@ export const artistItem = style({
   ...themeVars.display.flexColumn,
   alignItems: 'center',
   width: '100%',
+  minWidth: 0,
   gap: '0.8rem',
 });
 
