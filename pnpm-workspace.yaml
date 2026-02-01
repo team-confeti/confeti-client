@@ -1,7 +1,7 @@
 packages:
-  - 'config/*'
-  - 'apps/*'
-  - 'packages/*'
+  - config/*
+  - apps/*
+  - packages/*
 
 catalog:
   typescript: ^5
