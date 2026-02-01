@@ -1,10 +1,16 @@
 {
   "name": "@confeti/eslint",
   "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./eslint.base.js"
+  },
   "files": [
-    ".eslintrc.cjs"
+    ".eslintrc.cjs",
+    "eslint.base.js"
   ],
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@typescript-eslint/eslint-plugin": "^8.34.1",
     "@typescript-eslint/parser": "^8.34.1",
     "@vercel/style-guide": "^6.0.0",
@@ -17,6 +23,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.2.0",
     "typescript": "catalog:"
   }
 }

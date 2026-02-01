@@ -1,6 +1,7 @@
 {
   "name": "confeti",
   "private": true,
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo build",
