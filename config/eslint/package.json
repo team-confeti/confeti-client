@@ -1,13 +1,12 @@
 {
   "name": "@confeti/eslint",
   "private": true,
-  "type": "module",
   "exports": {
-    "./base": "./eslint.base.js"
+    "./base": "./eslint.base.mjs"
   },
   "files": [
     ".eslintrc.cjs",
-    "eslint.base.js"
+    "eslint.base.mjs"
   ],
   "devDependencies": {
     "@eslint/js": "^9.32.0",
