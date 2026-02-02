@@ -23,6 +23,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
+    "@confeti/eslint": "workspace:*",
     "eslint": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",

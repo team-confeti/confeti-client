@@ -25,16 +25,9 @@ interface Props {
 }
 
 const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
-  if (!data || data.length === 0) return null;
-
   const navigateToDetail = useNavigateToDetail();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const DdayList = data.map((performance) => ({
-    ...performance,
-    reserveAt: formatDate(performance.reserveAt, 'Dday'),
-  }));
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -50,6 +43,13 @@ const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (!data || data.length === 0) return null;
+
+  const DdayList = data.map((performance) => ({
+    ...performance,
+    reserveAt: formatDate(performance.reserveAt, 'Dday'),
+  }));
 
   const scrollToSection = (index: number) => {
     const container = scrollContainerRef.current;
