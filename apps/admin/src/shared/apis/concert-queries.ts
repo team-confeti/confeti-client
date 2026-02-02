@@ -46,11 +46,6 @@ export const postConcert = async (concert: Concert): Promise<Concert> => {
   const response = await post<BaseResponse<ConcertDetailDTO>>(
     END_POINT.CONCERT,
     formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
   );
   return toConcert(response.data);
 };
@@ -64,11 +59,6 @@ export const patchConcert = async (
   const response = await patch<BaseResponse<ConcertDetailDTO>>(
     END_POINT.CONCERT_DETAIL(concertId),
     formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
   );
   return toConcert(response.data);
 };
