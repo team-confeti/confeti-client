@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
+    "@confeti/eslint": "workspace:*",
     "@confeti/typescript": "workspace:*",
     "@confeti/utils": "workspace:*",
     "@pivanov/vite-plugin-svg-sprite": "^3.0.0",

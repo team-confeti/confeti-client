@@ -53,6 +53,7 @@ const HomePage = () => {
         <TicketOpeningSection
           userName={userName}
           data={ticketing.performances}
+          isPersonalized={ticketing.isPersonalized}
         />
       </div>
 

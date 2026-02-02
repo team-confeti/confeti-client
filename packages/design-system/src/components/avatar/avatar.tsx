@@ -6,8 +6,11 @@ import { Icon } from '../../icons';
 
 import * as styles from './avatar.css';
 
+type borderType = 'none' | 'selected';
+
 interface Props {
   size: 'xs' | 'sesm' | 'sm' | 'md' | 'lg' | 'xl';
+  borderVariant?: borderType;
   src?: string;
   alt?: string;
   fallback?: string;
@@ -22,6 +25,7 @@ const Avatar = ({
   src,
   alt,
   size,
+  borderVariant = 'none',
   fallback,
   isSelected = false,
   isHandleClick = true,
@@ -52,7 +56,7 @@ const Avatar = ({
 
   return (
     <div
-      className={cn(styles.avatarVariants({ size }), className)}
+      className={cn(styles.avatarVariants({ size, borderVariant }), className)}
       {...props}
       onClick={handleClick}
     >

@@ -37,9 +37,7 @@ const DialogRoot = ({
   ...props
 }: RootProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  if (handleClose) {
-    useClickOutside(ref, handleClose);
-  }
+  useClickOutside(ref, handleClose || (() => {}));
 
   if (!open) return null;
   return createPortal(

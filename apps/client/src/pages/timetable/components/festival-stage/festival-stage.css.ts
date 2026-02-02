@@ -48,7 +48,7 @@ export const stageWrapper = style({
   maxWidth: '47.7rem',
 
   padding: '0.8rem 1rem',
-  paddingLeft: '3.8rem',
+  paddingLeft: '3.4rem',
 
   overflowX: 'auto',
   '::-webkit-scrollbar': {

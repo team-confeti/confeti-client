@@ -21,19 +21,13 @@ type ColorVariant = 0 | 1 | 2 | 3 | 4;
 interface Props {
   userName: string | null;
   data: TicketingPerformances[];
+  isPersonalized: boolean;
 }
 
-const TicketOpeningSection = ({ userName, data }: Props) => {
-  if (!data || data.length === 0) return null;
-
+const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
   const navigateToDetail = useNavigateToDetail();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const DdayList = data.map((performance) => ({
-    ...performance,
-    reserveAt: formatDate(performance.reserveAt, 'Dday'),
-  }));
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -49,6 +43,13 @@ const TicketOpeningSection = ({ userName, data }: Props) => {
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (!data || data.length === 0) return null;
+
+  const DdayList = data.map((performance) => ({
+    ...performance,
+    reserveAt: formatDate(performance.reserveAt, 'Dday'),
+  }));
 
   const scrollToSection = (index: number) => {
     const container = scrollContainerRef.current;
@@ -76,7 +77,7 @@ const TicketOpeningSection = ({ userName, data }: Props) => {
           animated={true}
         >
           <Tooltip.Content className={styles.ticketOpeningTooltip}>
-            {userName
+            {userName && isPersonalized
               ? '선호하는 공연 예매가 다가오고 있어요!'
               : '공연 예매가 다가오고 있어요!'}
           </Tooltip.Content>
