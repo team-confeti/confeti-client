@@ -58,6 +58,7 @@ export const festivalArtistContainer = style({
   ...themeVars.display.flexColumn,
   alignItems: 'center',
   height: '100%',
+  minWidth: 0,
   gap: '1.2rem',
 });
 

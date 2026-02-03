@@ -40,10 +40,7 @@ const TimetableLandingPage = () => {
       />
 
       <div className={styles.navTabsWrapper}>
-        <NavigationTabs
-          defaultActiveTab={TAB_MENU.TIMETABLE}
-          theme="transparent"
-        />
+        <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} />
       </div>
 
       <div className={styles.contentArea}>

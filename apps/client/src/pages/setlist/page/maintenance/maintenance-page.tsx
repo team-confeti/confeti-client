@@ -9,7 +9,7 @@ import ImgSetlistMaintenance from '/images/img_setlist_maintenance.webp';
 const MaintenancePage = () => {
   return (
     <>
-      <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} theme="white" />
+      <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />
       <div className={styles.container}>
         <img
           className={styles.image}
