@@ -9,11 +9,7 @@ export const landingWrapper = style({
 });
 
 export const navTabsWrapper = style({
-  position: 'absolute',
-  top: '5.4rem',
-  left: 0,
-  right: 0,
-  zIndex: 15,
+  width: '100%',
 });
 
 export const contentArea = style({

@@ -45,17 +45,13 @@ const HomePage = () => {
         />
       )}
 
-      <div className={styles.navTabsWrapper}>
-        <NavigationTabs defaultActiveTab={TAB_MENU.HOME} theme="transparent" />
-      </div>
+      <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
 
-      <div data-ticket-section="true">
-        <TicketOpeningSection
-          userName={userName}
-          data={ticketing.performances}
-          isPersonalized={ticketing.isPersonalized}
-        />
-      </div>
+      <TicketOpeningSection
+        userName={userName}
+        data={ticketing.performances}
+        isPersonalized={ticketing.isPersonalized}
+      />
 
       <Spacing size="2xl" color="white" />
 

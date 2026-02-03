@@ -1,27 +1,23 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Icon } from '@confeti/design-system/icon';
 
-import { useHeaderBackground } from '../../hooks/use-header-background';
+import { usePageScrollState } from '../../hooks/use-page-scroll-state';
 
 import * as styles from './header.css';
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const isHomePage = location.pathname === '/';
-  const isTimetableLandingPage = location.pathname === '/timetable';
-  const isMyPage = location.pathname.startsWith('/my');
-
-  const hasPassedTicketSection = useHeaderBackground(isHomePage);
+  const { isHomePage, isTimetableLandingPage, isMyPage, isScrolled } =
+    usePageScrollState();
 
   const shouldUseTransparentHeader =
-    (isHomePage && !hasPassedTicketSection) || isTimetableLandingPage;
+    (isHomePage || isTimetableLandingPage) && !isScrolled;
 
   const headerClassName = shouldUseTransparentHeader
     ? styles.container
-    : isHomePage
+    : isHomePage || isTimetableLandingPage
       ? styles.containerWhite
       : styles.containerSticky;
 
