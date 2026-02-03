@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global process */
 
 const SITE_URL = process.env.SITE_URL ?? 'https://www.confeti.co.kr';
 const BACKEND_API_BASE = (

@@ -37,6 +37,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
         selectedDateId={selectedDateId}
         onDateSelect={handleSelectDate}
         posterUrl={selectedFestivalInfo.logoUrl}
+        isEditMode={isEditTimetableMode}
       />
 
       <div className={styles.timeTableWrapper}>

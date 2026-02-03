@@ -129,6 +129,7 @@ const ArtistSelectNestedSelect = ({
                     >
                       <Avatar
                         size="sesm"
+                        borderVariant="selected"
                         src={artist.profileUrl}
                         alt={`${artist.name} 이미지`}
                         isHandleClick={false}

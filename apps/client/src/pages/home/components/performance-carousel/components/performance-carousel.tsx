@@ -13,15 +13,15 @@ const PerformanceCarousel = ({
 }: PerformanceCarouselProps) => {
   const length = data?.length ?? 0;
 
-  if (!Array.isArray(data) || length === 0) {
-    return null;
-  }
-
   const { isAnimating, rootRef, visibleSlides } = useCarouselController({
     data,
     autoPlayInterval,
     onSlideChange,
   });
+
+  if (!Array.isArray(data) || length === 0) {
+    return null;
+  }
 
   return (
     <div ref={rootRef} className={styles.root} aria-roledescription="carousel">

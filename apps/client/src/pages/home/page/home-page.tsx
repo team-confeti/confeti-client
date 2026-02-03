@@ -47,7 +47,11 @@ const HomePage = () => {
 
       <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
 
-      <TicketOpeningSection userName={userName} data={ticketing.performances} />
+      <TicketOpeningSection
+        userName={userName}
+        data={ticketing.performances}
+        isPersonalized={ticketing.isPersonalized}
+      />
 
       <Spacing size="2xl" color="white" />
 
