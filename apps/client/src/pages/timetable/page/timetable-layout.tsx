@@ -19,9 +19,7 @@ const TimetableLayout = () => {
 
   return (
     <>
-      {!isNavHidden && (
-        <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} theme="white" />
-      )}
+      {!isNavHidden && <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} />}
       <Outlet />
     </>
   );
