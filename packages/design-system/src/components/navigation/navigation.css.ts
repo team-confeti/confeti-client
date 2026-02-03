@@ -18,6 +18,7 @@ export const container = recipe({
       padding: '0rem 2rem',
       gap: '1.8rem',
       zIndex: themeVars.zIndex.navigation.content,
+      transition: 'background-color 0.3s ease',
     },
   ],
   variants: {

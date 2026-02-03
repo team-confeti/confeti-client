@@ -23,7 +23,7 @@ export const zIndex = {
     infoText: '25',
   },
   navigation: {
-    content: '10',
+    content: '50',
   },
   dropdown: {
     content: '30',
