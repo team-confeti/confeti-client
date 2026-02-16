@@ -43,3 +43,6 @@ yarn-error.log*
 
 *storybook.log
 storybook-static/
+
+# Claude
+claude.local.md
