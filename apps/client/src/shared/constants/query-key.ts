@@ -42,22 +42,30 @@ export const HOME_QUERY_KEY = {
 export const FESTIVAL_TIMETABLE_QUERY_KEY = {
   ALL: ['festival-timetable'],
   ONBOARDING: () => [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL, 'onboarding'],
-  FESTIVAL_TIMETABLE: (festivalId: number) => [
+  FESTIVAL_TIMETABLE: (timetableId: number, festivalDateId: number) => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
-    festivalId,
-  ],
-  AVAILABLE_FESTIVALS: () => [
-    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
-    'available-festivals',
+    timetableId,
+    festivalDateId,
   ],
   ADDABLE_FESTIVALS: () => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'addable-festivals',
   ],
-  TIMETABLE_DATES: (timetableFestivalId: number) => [
+  TIMETABLE_DATES: (timetableId: number) => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'dates',
-    timetableFestivalId,
+    timetableId,
+  ],
+  TIMETABLE_ARCHIVE: (timetableId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'archive',
+    timetableId,
+  ],
+  TIMETABLE_DATE_ARCHIVE: (timetableId: number, festivalDateId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'archive',
+    timetableId,
+    festivalDateId,
   ],
 } as const;
 
@@ -103,7 +111,6 @@ export const ONBOARD_QUERY_KEY = {
 export const MY_TIMETABLE_QUERY_KEY = {
   ALL: ['myTimetable'],
   PREVIEW: () => [...MY_TIMETABLE_QUERY_KEY.ALL, 'preview'],
-  OVERVIEW: (sortBy: SortOption) => [...MY_TIMETABLE_QUERY_KEY.ALL, sortBy],
 } as const;
 
 export const SETLIST_QUERY_KEY = {

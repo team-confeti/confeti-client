@@ -4,8 +4,6 @@ export const END_POINT = {
   //내 공연
   GET_MY_RECORD: '/performances/record',
   GET_MY_TIMETABLE: '/user/timetables/preview',
-  GET_MY_TIMETABLE_OVERVIEW: (sortBy: SortOption) =>
-    `/user/timetables?sortBy=${sortBy}`,
   GET_MY_TIMETABLE_SORT_BY: (sortBy: 'earliest' | 'latest') =>
     `/v2/user/timetables?sortBy=${sortBy}`,
 
@@ -55,19 +53,22 @@ export const END_POINT = {
     `/v2/performances/song/recommend?performanceSize=${performanceSize}&songSize=${songSize}`,
 
   //타임 테이블
-  GET_AVAILABLE_FESTIVALS: '/user/timetables/festivals',
-  GET_FESTIVAL_TIMETABLE: (festivalDateId: number) =>
-    `/user/timetables/festivals/${festivalDateId}`,
-  GET_TIMETABLE_DATES: (timetableFestivalId: number) =>
-    `/user/timetables/${timetableFestivalId}/dates`,
-  POST_FESTIVAL_TIMETABLE: '/user/timetables/festivals',
-  DEL_FESTIVAL_TIMETABLES: (festivalId: number) =>
-    `/user/timetables/festivals/${festivalId}`,
+  GET_FESTIVAL_TIMETABLE: (timetableId: number, festivalDateId: number) =>
+    `/user/timetables/${timetableId}/dates/${festivalDateId}`,
+  GET_TIMETABLE_DATES: (timetableId: number) =>
+    `/user/timetables/${timetableId}/dates`,
+  POST_TIMETABLE: '/user/timetables',
+  PATCH_TIMETABLE_TIME_BLOCKS: (timetableId: number) =>
+    `/user/timetables/${timetableId}/time-blocks`,
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
-    `/user/timetables/festivals/add${cursor ? `?cursor=${cursor}` : ''}`,
-  FETCH_TIMETABLE_CREATION_HISTORY: `user/timetables/festivals/history`,
+    `/user/timetables/festivals${cursor ? `?cursor=${cursor}` : ''}`,
+  FETCH_TIMETABLE_CREATION_HISTORY: '/user/timetables/history',
+  GET_TIMETABLE_ARCHIVE: (timetableId: number) =>
+    `/user/timetables/${timetableId}/archive`,
+  GET_TIMETABLE_DATE_ARCHIVE: (timetableId: number, festivalDateId: number) =>
+    `/user/timetables/${timetableId}/dates/${festivalDateId}/archive`,
   POST_SCREENSHOT: '/png/generate',
-  DELETE_MY_TIMETABLES: '/v2/user/timetables/festivals',
+  DELETE_MY_TIMETABLES: '/v2/user/timetables',
 
   //검색
   GET_SEARCH_ALL: '/search',

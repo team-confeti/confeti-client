@@ -8,14 +8,14 @@ import TimetableContent from '../timetable-content/timetable-content';
 
 const TimetableDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const timetableFestivalId = Number(id);
+  const timetableId = Number(id);
 
   const { data } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(timetableFestivalId),
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(timetableId),
   );
 
   const festival: FestivalTimetable = {
-    festivalId: data.timetableFestivalId,
+    festivalId: data.timetableId,
     title: data.title,
     logoUrl: data.posterUrl,
     festivalDates: data.dates.map((d) => ({

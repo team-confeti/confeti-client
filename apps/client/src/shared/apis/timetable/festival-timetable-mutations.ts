@@ -2,56 +2,46 @@ import { mutationOptions } from '@tanstack/react-query';
 
 import { BaseResponse } from '@confeti/core/http';
 
-import { del, patch, post } from '@shared/apis/config/instance';
+import { patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { TIMETABLE_MUTATION_KEY } from '@shared/constants/mutation-key';
 import {
   FestivalIds,
   FestivalTimetableResponse,
 } from '@shared/types/festival-timetable-response';
-import { UserTimetableResponse } from '@shared/types/timetable-response';
+import { TimeBlock, TimeBlockResponse } from '@shared/types/timetable-response';
 
 export const TIMETABLE_MUTATION_OPTIONS = {
   POST_TIMETABLE: () =>
     mutationOptions({
       mutationKey: TIMETABLE_MUTATION_KEY.POST_TIMETABLE(),
       mutationFn: (festivals: { festivalId: number }[]) =>
-        postAddFestivalTimetable(festivals),
-    }),
-  DELETE_TIMETABLE: () =>
-    mutationOptions({
-      mutationKey: TIMETABLE_MUTATION_KEY.DELETE_TIMETABLE(),
-      mutationFn: (festivalId: number) => deleteFestivalTimetables(festivalId),
+        postAddTimetable(festivals),
     }),
   PATCH_TIMETABLE: () =>
     mutationOptions({
       mutationKey: TIMETABLE_MUTATION_KEY.PATCH_TIMETABLE(),
-      mutationFn: (requestData: UserTimetableResponse) =>
-        patchFestivalTimetable(requestData),
+      mutationFn: (data: { timetableId: number; timeBlocks: TimeBlock[] }) =>
+        patchTimetableTimeBlocks(data.timetableId, {
+          timeBlocks: data.timeBlocks,
+        }),
     }),
 };
 
-export const deleteFestivalTimetables = async (
-  festivalId: number,
-): Promise<void> => {
-  await del<FestivalTimetableResponse>(
-    END_POINT.DEL_FESTIVAL_TIMETABLES(festivalId),
-  );
-};
-
-export const patchFestivalTimetable = async (
-  requestData: UserTimetableResponse,
+export const patchTimetableTimeBlocks = async (
+  timetableId: number,
+  requestData: TimeBlockResponse,
 ): Promise<void> => {
   await patch<BaseResponse<FestivalTimetableResponse>>(
-    END_POINT.GET_AVAILABLE_FESTIVALS,
+    END_POINT.PATCH_TIMETABLE_TIME_BLOCKS(timetableId),
     requestData,
   );
 };
 
-export const postAddFestivalTimetable = async (
+export const postAddTimetable = async (
   festivals: { festivalId: number }[],
 ): Promise<void> => {
-  await post<BaseResponse<FestivalIds>>(END_POINT.POST_FESTIVAL_TIMETABLE, {
+  await post<BaseResponse<FestivalIds>>(END_POINT.POST_TIMETABLE, {
     festivals,
   });
 };

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
+import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { DetailHeader } from '@shared/components';
@@ -41,8 +42,8 @@ const AddFestival = () => {
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
-  const { data } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
+  const { data: myTimetableData } = useSuspenseQuery(
+    MY_TIMETABLE_QUERY_OPTIONS.SORT_BY('earliest'),
   );
   const { mutate } = useMutation({
     ...TIMETABLE_MUTATION_OPTIONS.POST_TIMETABLE(),
@@ -54,7 +55,8 @@ const AddFestival = () => {
     },
   });
 
-  const TOTAL_SELECTIONS = selectedFestivals.length + data.festivals.length;
+  const TOTAL_SELECTIONS =
+    selectedFestivals.length + myTimetableData.timetables.length;
   const isButtonDisabled =
     selectedFestivals.length === 0 || TOTAL_SELECTIONS > MAX_SELECTIONS;
 

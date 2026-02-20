@@ -1,8 +1,8 @@
-export interface UserTimetable {
-  userTimetableId: number;
+export interface TimeBlock {
+  timeBlockId: number;
   isSelected: boolean;
 }
 
-export interface UserTimetableResponse {
-  userTimetables: UserTimetable[];
+export interface TimeBlockResponse {
+  timeBlocks: TimeBlock[];
 }

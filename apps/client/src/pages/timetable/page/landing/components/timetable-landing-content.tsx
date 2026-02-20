@@ -57,23 +57,8 @@ const TimetableLandingContent = ({
     },
   });
 
-  // const festivals = data.timetables
-  // .filter((t) => {
-  //   const today = new Date();
-  //   today.setHours(0, 0, 0, 0);
-  //   const festivalDate = new Date(t.startAt);
-  //   festivalDate.setHours(0, 0, 0, 0);
-  //   return festivalDate >= today;
-  // })
-  // .map((t) => ({
-  //   id: t.timetableFestivalId,
-  //   posterUrl: t.posterUrl,
-  //   title: t.title,
-  //   dDay: calculateDDay(t.startAt),
-  // }));
-
   const festivals = data.timetables.map((t) => ({
-    id: t.timetableFestivalId,
+    id: t.timetableId,
     posterUrl: t.posterUrl,
     title: t.title,
     dDay: calculateDDay(t.startAt),

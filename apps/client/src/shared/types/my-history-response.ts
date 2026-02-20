@@ -1,5 +1,5 @@
 export interface MyTimeTable {
-  timetableFestivalId: number;
+  timetableId: number;
   typeId: number;
   posterUrl: string;
   title: string;

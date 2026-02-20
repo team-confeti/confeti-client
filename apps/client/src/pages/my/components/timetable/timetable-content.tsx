@@ -25,7 +25,7 @@ export const TimetableContent = ({
   const { data } = useSuspenseQuery(MY_TIMETABLE_QUERY_OPTIONS.SORT_BY(sortBy));
 
   const festivals = data.timetables.map((t) => ({
-    id: t.timetableFestivalId,
+    id: t.timetableId,
     posterUrl: t.posterUrl,
     title: t.title,
   }));

@@ -6,7 +6,6 @@ import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 import {
-  FestivalTimetableResponse,
   FestivalTimetableResponseExtended,
   TimeTableCreationHistory,
   TimetableDatesResponse,
@@ -23,16 +22,14 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.ONBOARDING(),
       queryFn: getTimeTableCreationHistory,
     }),
-  AVAILABLE_FESTIVALS: () =>
+  FESTIVAL_TIMETABLE: (timetableId: number, festivalDateId: number) =>
     queryOptions({
-      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.AVAILABLE_FESTIVALS(),
-      queryFn: getAvailableFestivals,
-    }),
-  FESTIVAL_TIMETABLE: (festivalId: number) =>
-    queryOptions({
-      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(festivalId),
-      queryFn: () => getFestivalTimetable(festivalId),
-      enabled: festivalId !== undefined,
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(
+        timetableId,
+        festivalDateId,
+      ),
+      queryFn: () => getFestivalTimetable(timetableId, festivalDateId),
+      enabled: festivalDateId !== undefined,
     }),
   ADDABLE_FESTIVALS: () =>
     infiniteQueryOptions<GetFestivalToAddResponse, Error>({
@@ -41,28 +38,20 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       initialPageParam: undefined,
       getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
     }),
-  TIMETABLE_DATES: (timetableFestivalId: number) =>
+  TIMETABLE_DATES: (timetableId: number) =>
     queryOptions({
-      queryKey:
-        FESTIVAL_TIMETABLE_QUERY_KEY.TIMETABLE_DATES(timetableFestivalId),
-      queryFn: () => getTimetableDates(timetableFestivalId),
-      enabled: timetableFestivalId !== undefined,
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.TIMETABLE_DATES(timetableId),
+      queryFn: () => getTimetableDates(timetableId),
+      enabled: timetableId !== undefined,
     }),
 };
 
-export const getAvailableFestivals =
-  async (): Promise<FestivalTimetableResponse> => {
-    const response = await get<BaseResponse<FestivalTimetableResponse>>(
-      END_POINT.GET_AVAILABLE_FESTIVALS,
-    );
-    return response.data;
-  };
-
 export const getFestivalTimetable = async (
+  timetableId: number,
   festivalDateId: number,
 ): Promise<FestivalTimetableResponseExtended> => {
   const response = await get<BaseResponse<FestivalTimetableResponseExtended>>(
-    END_POINT.GET_FESTIVAL_TIMETABLE(festivalDateId),
+    END_POINT.GET_FESTIVAL_TIMETABLE(timetableId, festivalDateId),
   );
   return response.data;
 };
@@ -84,10 +73,10 @@ export const getFestivalToAdd = async (
 };
 
 export const getTimetableDates = async (
-  timetableFestivalId: number,
+  timetableId: number,
 ): Promise<TimetableDatesResponse> => {
   const response = await get<BaseResponse<TimetableDatesResponse>>(
-    END_POINT.GET_TIMETABLE_DATES(timetableFestivalId),
+    END_POINT.GET_TIMETABLE_DATES(timetableId),
   );
   return response.data;
 };

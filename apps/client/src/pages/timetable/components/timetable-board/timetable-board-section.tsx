@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Skeleton } from '@confeti/design-system';
@@ -8,21 +9,26 @@ import Deferred from '@shared/components/deferred/deferred';
 import FestivalStage from '@pages/timetable/components/festival-stage/festival-stage';
 import TimetableBoard from '@pages/timetable/components/timetable-board/timetable-board';
 import useSyncScroll from '@pages/timetable/hooks/use-sync-scroll';
+import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 
 import * as styles from './timetable-board-section.css';
 
 interface TimetableBoardSectionProps {
+  timetableId: number;
   selectedDateId: number;
   isEditMode?: boolean;
   elementRef?: React.RefObject<HTMLDivElement | null>;
   disableToast?: boolean;
+  onDataLoaded?: (data: TimetableInfo) => void;
 }
 
 const TimetableBoardSection = ({
+  timetableId,
   selectedDateId,
   isEditMode,
   elementRef,
   disableToast,
+  onDataLoaded,
 }: TimetableBoardSectionProps) => {
   const {
     primaryRef: stageRef,
@@ -32,8 +38,15 @@ const TimetableBoardSection = ({
   } = useSyncScroll();
 
   const { data: boardData } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(selectedDateId),
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(
+      timetableId,
+      selectedDateId,
+    ),
   );
+
+  useEffect(() => {
+    if (boardData && onDataLoaded) onDataLoaded(boardData);
+  }, [boardData, onDataLoaded]);
 
   if (!boardData) return null;
 
@@ -45,6 +58,7 @@ const TimetableBoardSection = ({
         onScroll={handleStageScroll}
       />
       <TimetableBoard
+        timetableId={timetableId}
         timetableInfo={boardData}
         isEditMode={isEditMode ?? false}
         scrollRef={boardRef}

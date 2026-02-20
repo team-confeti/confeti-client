@@ -4,7 +4,7 @@ interface Artist {
 }
 
 interface FestivalTimes {
-  userTimetableId: number;
+  timeBlockId: number;
   startAt: string;
   endAt: string;
   isSelected: boolean;
