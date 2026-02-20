@@ -5,7 +5,7 @@ import { toast } from '@confeti/design-system';
 
 import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
-import { UserTimetable } from '@shared/types/timetable-response';
+import { TimeBlock } from '@shared/types/timetable-response';
 
 import BoothOpenBox from '@pages/timetable/components/timetable-board/booth-open-box';
 import TimeCell from '@pages/timetable/components/timetable-board/time-cell';
@@ -16,6 +16,7 @@ import { generateTableRow, parseTimeString } from '@pages/timetable/utils';
 import * as styles from './timetable-board.css';
 
 interface Props {
+  timetableId: number;
   timetableInfo: TimetableInfo;
   isEditMode: boolean;
   scrollRef?: RefObject<HTMLElement | null>;
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const TimetableBoard = ({
+  timetableId,
   timetableInfo,
   isEditMode,
   scrollRef,
@@ -44,7 +46,7 @@ const TimetableBoard = ({
   });
 
   const handleTimetableItemClick = (
-    userTimetableId: number,
+    timeBlockId: number,
     isSelected: boolean,
   ) => {
     if (!isEditMode) {
@@ -58,18 +60,16 @@ const TimetableBoard = ({
       return;
     }
 
-    const updatedTimetables: UserTimetable[] = timetableInfo.stages.flatMap(
+    const updatedTimeBlocks: TimeBlock[] = timetableInfo.stages.flatMap(
       (stage) =>
         stage.festivalTimes.map((time) => ({
-          userTimetableId: time.userTimetableId,
+          timeBlockId: time.timeBlockId,
           isSelected:
-            time.userTimetableId === userTimetableId
-              ? isSelected
-              : time.isSelected,
+            time.timeBlockId === timeBlockId ? isSelected : time.isSelected,
         })),
     );
 
-    mutate({ userTimetables: updatedTimetables });
+    mutate({ timetableId, timeBlocks: updatedTimeBlocks });
   };
 
   return (
@@ -97,8 +97,8 @@ const TimetableBoard = ({
             <div key={stage.stageOrder} className={styles.stageColumn}>
               {stage.festivalTimes.map((block) => (
                 <TimetableItem
-                  key={block.userTimetableId}
-                  userTimetableId={block.userTimetableId}
+                  key={block.timeBlockId}
+                  timeBlockId={block.timeBlockId}
                   artists={block.artists}
                   isSelected={block.isSelected}
                   startTime={block.startAt}

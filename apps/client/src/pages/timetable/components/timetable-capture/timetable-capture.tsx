@@ -218,7 +218,7 @@ const TimetableCapture = forwardRef<HTMLDivElement, TimetableCaptureProps>(
 
                       return (
                         <div
-                          key={block.userTimetableId}
+                          key={block.timeBlockId}
                           className={styles.captureItem({
                             isSelected: block.isSelected,
                           })}

@@ -18,9 +18,9 @@ interface ItemProps {
   endTime: string;
   isSelected: boolean;
   ticketOpenAt: string;
-  userTimetableId: number;
+  timeBlockId: number;
   isEditTimetableMode: boolean;
-  onClick: (userTimetableId: number, isSelected: boolean) => void;
+  onClick: (timeBlockId: number, isSelected: boolean) => void;
 }
 
 interface Artist {
@@ -35,7 +35,7 @@ const TimetableItem = ({
   ticketOpenAt,
   isSelected,
 
-  userTimetableId,
+  timeBlockId,
   isEditTimetableMode,
   onClick,
 }: ItemProps) => {
@@ -61,7 +61,7 @@ const TimetableItem = ({
     if (isEditTimetableMode) {
       setSelectBlock((prev) => !prev);
     }
-    onClick(userTimetableId, !selectBlock);
+    onClick(timeBlockId, !selectBlock);
   };
 
   const top = `${minutesFromOpen * MINUTE_HEIGHT_PX}px`;

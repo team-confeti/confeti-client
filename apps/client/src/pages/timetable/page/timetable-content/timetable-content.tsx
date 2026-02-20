@@ -69,6 +69,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
       <div className={styles.timeTableWrapper}>
         <Suspense key={selectedDateId} fallback={<TimetableBoardSkeleton />}>
           <TimetableBoardSection
+            timetableId={selectedFestivalInfo.festivalId}
             selectedDateId={selectedDateId}
             isEditMode={isEditTimetableMode}
             onDataLoaded={setBoardData}

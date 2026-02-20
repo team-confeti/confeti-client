@@ -15,7 +15,7 @@ export interface FestivalTimetableResponse {
 }
 
 export interface TimetableItem {
-  timetableFestivalId: number;
+  timetableId: number;
   posterUrl: string;
   title: string;
   startAt: string;
@@ -38,7 +38,7 @@ export interface Artist {
 }
 
 export interface FestivalTime {
-  userTimetableId: number;
+  timeBlockId: number;
   startAt: string;
   endAt: string;
   isSelected: boolean;
@@ -76,7 +76,7 @@ export interface TimetableDate {
 }
 
 export interface TimetableDatesResponse {
-  timetableFestivalId: number;
+  timetableId: number;
   title: string;
   posterUrl: string;
   dates: TimetableDate[];

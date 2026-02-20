@@ -28,12 +28,16 @@ const MyOverviewPage = () => {
   const isSetList = type === 'SET_LIST';
   const navigate = useNavigate();
 
+  const timetableSortBy =
+    sortOption === SORT_OPTIONS.OLDEST ? 'earliest' : 'latest';
+
   const { data: setListOverviewData } = useQuery(
     MY_SETLIST_QUERY_OPTIONS.OVERVIEW(sortOption, isSetList),
   );
-  const { data: timetableOverviewData } = useQuery(
-    MY_TIMETABLE_QUERY_OPTIONS.OVERVIEW(sortOption, !isSetList),
-  );
+  const { data: timetableOverviewData } = useQuery({
+    ...MY_TIMETABLE_QUERY_OPTIONS.SORT_BY(timetableSortBy),
+    enabled: !isSetList,
+  });
 
   const overviewData = isSetList
     ? {

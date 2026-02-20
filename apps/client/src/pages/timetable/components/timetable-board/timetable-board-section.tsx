@@ -14,6 +14,7 @@ import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 import * as styles from './timetable-board-section.css';
 
 interface TimetableBoardSectionProps {
+  timetableId: number;
   selectedDateId: number;
   isEditMode?: boolean;
   elementRef?: React.RefObject<HTMLDivElement | null>;
@@ -22,6 +23,7 @@ interface TimetableBoardSectionProps {
 }
 
 const TimetableBoardSection = ({
+  timetableId,
   selectedDateId,
   isEditMode,
   elementRef,
@@ -36,7 +38,10 @@ const TimetableBoardSection = ({
   } = useSyncScroll();
 
   const { data: boardData } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(selectedDateId),
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.FESTIVAL_TIMETABLE(
+      timetableId,
+      selectedDateId,
+    ),
   );
 
   useEffect(() => {
@@ -53,6 +58,7 @@ const TimetableBoardSection = ({
         onScroll={handleStageScroll}
       />
       <TimetableBoard
+        timetableId={timetableId}
         timetableInfo={boardData}
         isEditMode={isEditMode ?? false}
         scrollRef={boardRef}
