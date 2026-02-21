@@ -8,6 +8,10 @@ globalStyle(':root', {
     '--min-width': '375px',
     '--max-width': '430px',
     '--height': '100dvh',
+    '--safe-area-top': 'env(safe-area-inset-top, 0px)',
+    '--safe-area-bottom': 'env(safe-area-inset-bottom, 0px)',
+    '--safe-area-left': 'env(safe-area-inset-left, 0px)',
+    '--safe-area-right': 'env(safe-area-inset-right, 0px)',
   },
 });
 
@@ -39,5 +43,7 @@ export const rootStyle = style({
   minWidth: 'var(--min-width)',
   maxWidth: 'var(--max-width)',
   backgroundColor: themeVars.color.white,
+  paddingTop: 'var(--safe-area-top)',
+  paddingBottom: 'var(--safe-area-bottom)',
   ...themeVars.shadowStyles.shadow_global,
 });
