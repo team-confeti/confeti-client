@@ -7,30 +7,13 @@ import {
   CAPTURE_WIDTH,
 } from '@pages/timetable/constants/capture';
 import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
+import {
+  fetchImageAsDataUrl,
+  triggerDownload,
+  waitForImages,
+} from '@pages/timetable/utils/capture';
 
-const S3_HOST = 'https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com';
-
-function toProxiedUrl(url: string): string {
-  if (url.startsWith(S3_HOST)) {
-    return url.replace(S3_HOST, '/s3-proxy');
-  }
-  return url;
-}
-
-async function fetchImageAsDataUrl(url: string): Promise<string> {
-  try {
-    const response = await fetch(toProxiedUrl(url));
-    const blob = await response.blob();
-    return await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = () => resolve('');
-      reader.readAsDataURL(blob);
-    });
-  } catch {
-    return '';
-  }
-}
+import * as captureStyles from '@pages/timetable/components/timetable-capture/timetable-capture.css';
 
 interface UseImageDownloadOptions {
   fileName: string;
@@ -77,18 +60,7 @@ export const useImageDownload = ({
     }
 
     try {
-      // Wait for images to load
-      const images = captureRef.current.querySelectorAll('img');
-      await Promise.all(
-        Array.from(images).map((img) =>
-          img.complete
-            ? Promise.resolve()
-            : new Promise<void>((resolve) => {
-                img.onload = () => resolve();
-                img.onerror = () => resolve();
-              }),
-        ),
-      );
+      await waitForImages(captureRef.current);
 
       const dataUrl = await toPng(captureRef.current, {
         width: CAPTURE_WIDTH,
@@ -102,12 +74,7 @@ export const useImageDownload = ({
         includeQueryParams: false,
       });
 
-      const link = document.createElement('a');
-      link.download = `${fileName}.png`;
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      triggerDownload(dataUrl, fileName);
 
       return {
         success: true,
@@ -124,17 +91,7 @@ export const useImageDownload = ({
   }, [boardData, fileName]);
 
   const CaptureElement: ReactNode = boardData ? (
-    <div
-      style={{
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        width: 0,
-        height: 0,
-        overflow: 'hidden',
-        pointerEvents: 'none',
-      }}
-    >
+    <div className={captureStyles.offscreenWrapper}>
       <TimetableCapture
         ref={captureRef}
         boardData={boardData}

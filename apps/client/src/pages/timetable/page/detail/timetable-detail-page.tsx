@@ -15,7 +15,7 @@ const TimetableDetailPage = () => {
   );
 
   const festival: FestivalTimetable = {
-    festivalId: data.timetableId,
+    festivalId: timetableId,
     title: data.title,
     logoUrl: data.posterUrl,
     festivalDates: data.dates.map((d) => ({

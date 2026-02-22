@@ -19,6 +19,17 @@ import {
   CAPTURE_WIDTH,
 } from '@pages/timetable/constants/capture';
 
+// ── Offscreen wrapper (hook에서 캡처 요소를 숨기기 위한 컨테이너) ──
+export const offscreenWrapper = style({
+  position: 'fixed',
+  left: 0,
+  top: 0,
+  width: 0,
+  height: 0,
+  overflow: 'hidden',
+  pointerEvents: 'none',
+});
+
 // ── Root container ──
 export const captureRoot = style({
   width: `${CAPTURE_WIDTH}px`,
@@ -63,11 +74,18 @@ export const posterOverlay = style({
 export const posterContent = style({
   position: 'absolute',
   top: `${CAPTURE_POSTER_PADDING}px`,
+  bottom: `${CAPTURE_POSTER_PADDING}px`,
   left: `${CAPTURE_LEFT_PADDING}px`,
   width: `${CAPTURE_POSTER_CONTENT_WIDTH}px`,
   display: 'flex',
   flexDirection: 'column',
-  gap: '67px',
+  justifyContent: 'space-between',
+});
+
+export const posterTopGroup = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '61px',
 });
 
 export const titleBlock = style({
@@ -168,6 +186,7 @@ export const timetableArea = style({
   paddingLeft: `${CAPTURE_LEFT_PADDING}px`,
   paddingRight: `${CAPTURE_RIGHT_PADDING}px`,
   boxSizing: 'border-box',
+  paddingTop: '40px',
 });
 
 export const timetableContent = style({
@@ -182,6 +201,7 @@ export const stageHeader = style({
   alignItems: 'center',
   backgroundColor: themeVars.color.gray900,
   borderRadius: '2px 2px 0 0',
+  marginBottom: '25px',
 });
 
 export const stageHeaderItem = style({
@@ -306,6 +326,11 @@ export const captureItem = recipe({
     zIndex: 1,
     padding: '4px 4px 8px 4px',
     boxSizing: 'border-box',
+    borderTop: `1px solid ${themeVars.color.gray300}`,
+    borderLeft: `1px solid ${themeVars.color.gray300}`,
+    borderRight: 'none',
+    borderBottom: 'none',
+    boxShadow: `1px 0 0 0 ${themeVars.color.gray300}, 0 1px 0 0 ${themeVars.color.gray300}, 1px 1px 0 0 ${themeVars.color.gray300}`,
   },
   variants: {
     isSelected: {
