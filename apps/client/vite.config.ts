@@ -26,5 +26,12 @@ export default defineConfig({
   },
   server: {
     host: true,
+    proxy: {
+      '/s3-proxy': {
+        target: 'https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/s3-proxy/, ''),
+      },
+    },
   },
 });
