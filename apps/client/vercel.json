@@ -1,6 +1,10 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap.xml" },
+    {
+      "source": "/s3-proxy/:path*",
+      "destination": "https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com/:path*"
+    },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
