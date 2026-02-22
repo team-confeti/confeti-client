@@ -8,10 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, useOverlay } from '@confeti/design-system';
 
-import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
-import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import {
+  MY_TIMETABLE_MUTATION_OPTIONS,
+  MY_TIMETABLE_QUERY_OPTIONS,
+} from '@shared/apis/my/my-timetable-queries';
 import { DetailHeader } from '@shared/components';
 import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
+import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
 
 import {
   ConfirmDialog,
@@ -28,14 +31,25 @@ const DeleteFestivalPage = () => {
   const queryClient = useQueryClient();
   const numberToDelete = festivalsToDelete.length;
 
-  const { data: festivalsData } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.AVAILABLE_FESTIVALS(),
+  const { data: timetableData } = useSuspenseQuery(
+    MY_TIMETABLE_QUERY_OPTIONS.SORT_BY('earliest'),
   );
-  const { mutateAsync } = useMutation({
-    ...TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLE(),
+  const festivalsData = {
+    festivals: timetableData.timetables.map((t) => ({
+      festivalId: t.timetableId,
+      title: t.title,
+      logoUrl: t.posterUrl,
+      festivalDates: [],
+    })),
+  };
+  const { mutate: deleteTimetables } = useMutation({
+    ...MY_TIMETABLE_MUTATION_OPTIONS.DELETE_TIMETABLES(),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
+      });
+      queryClient.invalidateQueries({
+        queryKey: MY_TIMETABLE_QUERY_KEY.ALL,
       });
     },
   });
@@ -56,9 +70,9 @@ const DeleteFestivalPage = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={async () => {
-          await Promise.all(festivalsToDelete.map((id) => mutateAsync(id)));
+          deleteTimetables(festivalsToDelete);
 
-          // 삭제 mutation 모두 완료 후 성공 모달창 open
+          // 삭제 mutation 완료 후 성공 모달창 open
           overlay.open(({ isOpen, close }) => (
             <SuccessDialog
               isOpen={isOpen}

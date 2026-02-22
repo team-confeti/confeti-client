@@ -1,0 +1,10 @@
+export const CAPTURE_WIDTH = 1080;
+export const CAPTURE_HEIGHT = 1350;
+export const CAPTURE_POSTER_WIDTH = 400;
+export const CAPTURE_LEFT_PADDING = 40;
+export const CAPTURE_POSTER_PADDING = 40;
+export const CAPTURE_POSTER_CONTENT_WIDTH = 320;
+export const CAPTURE_RIGHT_PADDING = 40;
+export const CAPTURE_TIME_LABEL_WIDTH = 28;
+export const CAPTURE_STAGE_AREA_WIDTH = 572; // 680 - 40 - 40 - 28
+export const CAPTURE_STAGE_HEADER_HEIGHT = 60;

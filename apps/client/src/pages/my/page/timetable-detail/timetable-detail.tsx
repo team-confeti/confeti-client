@@ -14,10 +14,10 @@ import * as styles from './timetable-detail.css';
 
 const TimetableDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const timetableFestivalId = Number(id);
+  const timetableId = Number(id);
 
   const { data: datesData } = useSuspenseQuery(
-    FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(timetableFestivalId),
+    FESTIVAL_TIMETABLE_QUERY_OPTIONS.TIMETABLE_DATES(timetableId),
   );
 
   const [selectedDateId, setSelectedDateId] = useState<number>(
@@ -44,6 +44,7 @@ const TimetableDetail = () => {
       <div className={styles.timeTableWrapper}>
         <Suspense key={selectedDateId} fallback={<TimetableBoardSkeleton />}>
           <TimetableBoardSection
+            timetableId={timetableId}
             selectedDateId={selectedDateId}
             disableToast={true}
           />
