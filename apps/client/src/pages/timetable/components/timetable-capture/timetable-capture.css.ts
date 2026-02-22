@@ -330,7 +330,7 @@ export const captureItem = recipe({
     borderLeft: `1px solid ${themeVars.color.gray300}`,
     borderRight: 'none',
     borderBottom: 'none',
-    boxShadow: `1px 0 0 0 ${themeVars.color.gray300}, 0 1px 0 0 ${themeVars.color.gray300}, 1px 1px 0 0 ${themeVars.color.gray300}`,
+    filter: `drop-shadow(1px 0 0 ${themeVars.color.gray300}) drop-shadow(0 1px 0 ${themeVars.color.gray300})`,
   },
   variants: {
     isSelected: {

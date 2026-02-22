@@ -74,7 +74,7 @@ export const useImageDownload = ({
         includeQueryParams: false,
       });
 
-      triggerDownload(dataUrl, fileName);
+      await triggerDownload(dataUrl, fileName);
 
       return {
         success: true,

@@ -90,12 +90,34 @@ export const waitForImages = (container: HTMLElement): Promise<void[]> =>
     ),
   );
 
-/** data URL을 파일로 다운로드 트리거 */
-export const triggerDownload = (dataUrl: string, fileName: string): void => {
+// ── Download ──
+
+const isMobile = (): boolean =>
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+export const triggerDownload = async (
+  dataUrl: string,
+  fileName: string,
+): Promise<void> => {
+  const fullName = `${fileName}.png`;
+
+  const blob = await (await fetch(dataUrl)).blob();
+  const file = new File([blob], fullName, { type: 'image/png' });
+
+  if (isMobile() && navigator.canShare?.({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file] });
+      return;
+    } catch {
+      // 공유 취소 시 다운로드로 폴백
+    }
+  }
+
   const link = document.createElement('a');
-  link.download = `${fileName}.png`;
-  link.href = dataUrl;
+  link.download = fullName;
+  link.href = URL.createObjectURL(blob);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
 };
