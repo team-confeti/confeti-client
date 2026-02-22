@@ -47,5 +47,8 @@ storybook-static/
 # Claude
 claude.local.md
 
+# MCP
+.mcp.json
+
 # Codex
 AGENTS.md

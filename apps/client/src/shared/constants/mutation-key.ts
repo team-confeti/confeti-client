@@ -10,7 +10,6 @@ export const AUTH_MUTATION_KEY = {
 
 export const TIMETABLE_MUTATION_KEY = {
   POST_TIMETABLE: () => ['post-timetable'],
-  DELETE_TIMETABLE: () => ['delete-timetable'],
   PATCH_TIMETABLE: () => ['patch-timetable'],
 } as const;
 
