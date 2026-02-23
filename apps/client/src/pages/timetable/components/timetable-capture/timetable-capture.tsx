@@ -157,7 +157,7 @@ const TimetableCapture = ({
                     );
 
                     const top = `${fromOpen * MINUTE_HEIGHT_PX}px`;
-                    const height = `${totalMin * MINUTE_HEIGHT_PX}px`;
+                    const height = `${totalMin * MINUTE_HEIGHT_PX + 1}px`;
 
                     return (
                       <div

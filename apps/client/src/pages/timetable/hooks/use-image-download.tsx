@@ -62,17 +62,20 @@ export const useImageDownload = ({
     try {
       await waitForImages(captureRef.current);
 
-      const dataUrl = await toPng(captureRef.current, {
+      const toPngOptions = {
         width: CAPTURE_WIDTH,
         height: CAPTURE_HEIGHT,
-        pixelRatio: 2,
+        pixelRatio: 4,
         skipAutoScale: true,
         skipFonts: true,
         cacheBust: false,
         backgroundColor: '#ffffff',
         imagePlaceholder: '',
         includeQueryParams: false,
-      });
+      };
+
+      await toPng(captureRef.current, toPngOptions);
+      const dataUrl = await toPng(captureRef.current, toPngOptions);
 
       await triggerDownload(dataUrl, fileName);
 
