@@ -7,6 +7,7 @@ export const timeTableOnboardContainer = style({
   width: '100%',
   flex: '1',
   boxSizing: 'border-box',
+  padding: `calc(${themeVars.size.height.header} + 2rem) 0 0 0`,
 });
 
 export const timeTableOnboardContent = style({
@@ -24,7 +25,6 @@ export const timeTableImageContainer = style({
 
 export const timeTableDescriptionContainer = style({
   width: '100%',
-  padding: '2rem 0',
 });
 
 export const progressBarContainer = style({
