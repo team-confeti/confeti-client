@@ -320,22 +320,19 @@ export const captureItem = recipe({
     textAlign: 'center',
     position: 'absolute',
     top: itemTop,
-    width: '100%',
+    width: 'calc(100% + 1px)',
     height: itemHeight,
     borderRadius: '2px',
     zIndex: 1,
     padding: '4px 4px 8px 4px',
     boxSizing: 'border-box',
-    borderTop: `1px solid ${themeVars.color.gray300}`,
-    borderLeft: `1px solid ${themeVars.color.gray300}`,
-    borderRight: 'none',
-    borderBottom: 'none',
-    filter: `drop-shadow(1px 0 0 ${themeVars.color.gray300}) drop-shadow(0 1px 0 ${themeVars.color.gray300})`,
+    border: `1px solid ${themeVars.color.gray300}`,
   },
   variants: {
     isSelected: {
       true: {
         backgroundColor: themeVars.color.confeti_lime,
+        borderColor: themeVars.color.confeti_lime,
         color: themeVars.color.black,
       },
       false: {
