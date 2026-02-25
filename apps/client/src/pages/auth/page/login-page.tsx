@@ -6,6 +6,7 @@ import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import { useSocialLoginMutation } from '../hooks/use-social-login-mutation';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
+import { getKakaoLoginRedirectUri } from '../utils/kakao-redirect-uri';
 
 import * as styles from './login-page.css';
 
@@ -59,12 +60,9 @@ const LoginPage = () => {
   };
 
   const handleKakaoLogin = () => {
-    const REDIRECT_URI =
-      window.location.hostname === 'localhost'
-        ? ENV_CONFIG.KAKAO_LOCAL_REDIRECT_URI
-        : ENV_CONFIG.KAKAO_REDIRECT_URI;
-
-    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${REDIRECT_URI}`;
+    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${encodeURIComponent(
+      getKakaoLoginRedirectUri(),
+    )}`;
   };
 
   return (
