@@ -14,11 +14,12 @@ interface Props {
 const PerformanceSection = ({ performanceCount, performances }: Props) => {
   if (performanceCount === 0 || performances.length === 0) {
     return (
-      <Box title={'예정된 공연 (0)'}>
+      <div className={styles.section}>
+        <p className={styles.sectionTitle}>예정된 공연 ({performanceCount})</p>
         <div className={styles.emptyPerformanceSection}>
           아직 예정된 공연이 없어요
         </div>
-      </Box>
+      </div>
     );
   }
 

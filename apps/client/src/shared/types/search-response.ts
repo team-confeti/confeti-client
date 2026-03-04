@@ -7,6 +7,14 @@ export interface ArtistSearch {
   isMultipleArtists: boolean;
 }
 
+export interface SongsRelatedToSearch {
+  artistName: string;
+  artworkUrl: string;
+  previewUrl: string;
+  songId: number;
+  songName: string;
+}
+
 export interface ArtistSearchResponse {
   artist: ArtistSearch;
 }
@@ -71,6 +79,7 @@ export interface RecentPerformanceViewResponse {
 export interface SearchAllResponse {
   // TODO: ArtistSearch 내부 타입 수정 필요
   artist: ArtistSearch;
+  songs: SongsRelatedToSearch[];
   performanceCount: number;
   performances: Performance[];
 }

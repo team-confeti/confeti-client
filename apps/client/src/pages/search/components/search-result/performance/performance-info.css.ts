@@ -4,7 +4,13 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const wrapper = style({
   display: 'flex',
-  padding: '0.4rem 0 1.6rem 0',
+  justifyContent: 'space-between',
+});
+
+export const content = style({
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: '1.6rem',
 });
 
 export const poster = style({
@@ -12,7 +18,6 @@ export const poster = style({
   height: '14.2rem',
   borderRadius: '1rem',
   objectFit: 'cover',
-  marginRight: '1.6rem',
 });
 
 export const textSection = style({
@@ -20,7 +25,8 @@ export const textSection = style({
   ...themeVars.display.flexColumn,
   gap: '0.5rem',
   textAlign: 'left',
-  width: '10%',
+  width: '100%',
+  maxWidth: '18rem',
 });
 
 export const title = style({
