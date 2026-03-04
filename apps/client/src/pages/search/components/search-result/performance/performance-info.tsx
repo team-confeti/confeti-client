@@ -29,32 +29,33 @@ const PerformanceInfo = ({
 
   return (
     <div className={styles.wrapper}>
-      <img
-        src={posterUrl}
-        alt={title}
-        className={styles.poster}
-        onClick={() => navigateToDetail(type, typeId)}
-      />
-
-      <div className={styles.textSection}>
-        <p
-          className={styles.title}
+      <div className={styles.content}>
+        <img
+          src={posterUrl}
+          alt={title}
+          className={styles.poster}
           onClick={() => navigateToDetail(type, typeId)}
-        >
-          {title}
-        </p>
+        />
 
-        <div className={styles.infoRow}>
-          <Icon name="time" size="1.4rem" color="gray600" />
-          <p className={styles.infoText}>{formattedDate}</p>
-        </div>
+        <div className={styles.textSection}>
+          <p
+            className={styles.title}
+            onClick={() => navigateToDetail(type, typeId)}
+          >
+            {title}
+          </p>
 
-        <div className={styles.infoRow}>
-          <Icon name="place" size="1.4rem" color="gray600" />
-          <p className={styles.infoText}>{area}</p>
+          <div className={styles.infoRow}>
+            <Icon name="time" size="1.4rem" color="gray600" />
+            <p className={styles.infoText}>{formattedDate}</p>
+          </div>
+
+          <div className={styles.infoRow}>
+            <Icon name="place" size="1.4rem" color="gray600" />
+            <p className={styles.infoText}>{area}</p>
+          </div>
         </div>
       </div>
-
       <LikeButton
         onLikeToggle={handleLike}
         isFavorite={isFavorite}

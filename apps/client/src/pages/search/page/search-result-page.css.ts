@@ -11,5 +11,4 @@ export const pageWrapper = style({
 export const resultSection = style({
   flex: 1,
   ...themeVars.display.flexColumn,
-  paddingBottom: '9rem',
 });
