@@ -14,6 +14,11 @@ export const wrapper = recipe({
         borderRadius: '0 0 10px 10px',
         background: themeVars.color.black_grad2,
       },
+      searchResult: {
+        gap: '1.6rem',
+        padding: '2rem',
+        borderRadius: '0 0 10px 10px',
+      },
       default: {},
     },
   },
