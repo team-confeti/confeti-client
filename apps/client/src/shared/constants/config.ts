@@ -3,6 +3,8 @@ export const ENV_CONFIG = {
   KAKAO_REDIRECT_URI: import.meta.env.VITE_KAKAO_REDIRECT_URI as string,
   KAKAO_LOCAL_REDIRECT_URI: import.meta.env
     .VITE_KAKAO_LOCAL_REDIRECT_URI as string,
+  KAKAO_NATIVE_REDIRECT_URI: import.meta.env
+    .VITE_KAKAO_NATIVE_REDIRECT_URI as string,
   KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
   APPLE_CLIENT_ID: import.meta.env.VITE_APPLE_CLIENT_ID as string,
   APPLE_REDIRECT_URI: import.meta.env.VITE_APPLE_REDIRECT_URI as string,

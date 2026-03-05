@@ -5,6 +5,8 @@ import Loading from '@shared/pages/loading/loading';
 
 import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
 
+import { getKakaoCallbackRedirectUri } from '../utils/kakao-redirect-uri';
+
 const RedirectKakao = () => {
   const location = useLocation();
   const { mutate: kakaoLoginMutate } = useSocialLoginMutation();
@@ -12,14 +14,14 @@ const RedirectKakao = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('code');
-    const REDIRECT_URI = window.location.origin + '/auth';
+    if (!code) return;
 
     kakaoLoginMutate({
       provider: 'KAKAO',
-      code: code ?? '',
-      redirectUrl: REDIRECT_URI,
+      code,
+      redirectUrl: getKakaoCallbackRedirectUri(),
     });
-  }, []);
+  }, [location.search, kakaoLoginMutate]);
 
   return <Loading />;
 };
