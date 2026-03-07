@@ -13,10 +13,16 @@ import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 
 import * as styles from './timetable-board-section.css';
 
+const IDENTITY_SELECTED = (_: number, serverIsSelected: boolean): boolean =>
+  serverIsSelected;
+const NOOP_TOGGLE = () => {};
+
 interface TimetableBoardSectionProps {
   timetableId: number;
   selectedDateId: number;
   isEditMode?: boolean;
+  onToggleBlock?: (timeBlockId: number, isSelected: boolean) => void;
+  getIsSelected?: (timeBlockId: number, serverIsSelected: boolean) => boolean;
   elementRef?: React.RefObject<HTMLDivElement | null>;
   disableToast?: boolean;
   onDataLoaded?: (data: TimetableInfo) => void;
@@ -26,6 +32,8 @@ const TimetableBoardSection = ({
   timetableId,
   selectedDateId,
   isEditMode,
+  onToggleBlock = NOOP_TOGGLE,
+  getIsSelected = IDENTITY_SELECTED,
   elementRef,
   disableToast,
   onDataLoaded,
@@ -58,9 +66,10 @@ const TimetableBoardSection = ({
         onScroll={handleStageScroll}
       />
       <TimetableBoard
-        timetableId={timetableId}
         timetableInfo={boardData}
         isEditMode={isEditMode ?? false}
+        onToggleBlock={onToggleBlock}
+        getIsSelected={getIsSelected}
         scrollRef={boardRef}
         onScroll={handleBoardScroll}
         disableToast={disableToast}

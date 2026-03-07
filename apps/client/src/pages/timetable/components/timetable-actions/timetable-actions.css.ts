@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -34,4 +34,18 @@ export const downloadButton = style({
   border: `1px solid ${themeVars.color.gray300}`,
   background: themeVars.color.white,
   cursor: 'pointer',
+});
+
+const spin = keyframes({
+  from: { transform: 'rotate(0deg)' },
+  to: { transform: 'rotate(360deg)' },
+});
+
+export const spinner = style({
+  width: '2rem',
+  height: '2rem',
+  border: `2px solid ${themeVars.color.gray200}`,
+  borderTop: `2px solid ${themeVars.color.gray500}`,
+  borderRadius: '50%',
+  animation: `${spin} 1s linear infinite`,
 });
