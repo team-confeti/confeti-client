@@ -45,11 +45,11 @@ const TimetableActions = ({
           aria-label="이미지 저장"
           disabled={isDownloading}
         >
-          <Icon
-            name="download"
-            size="5rem"
-            color={isDownloading ? 'gray300' : 'gray500'}
-          />
+          {isDownloading ? (
+            <div className={styles.spinner} />
+          ) : (
+            <Icon name="download" size="5rem" color="gray500" />
+          )}
         </button>
       )}
       <Button
