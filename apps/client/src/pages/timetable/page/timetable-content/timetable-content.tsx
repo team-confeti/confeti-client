@@ -1,5 +1,7 @@
 import { Suspense, useMemo, useState } from 'react';
 
+import { toast } from '@confeti/design-system';
+
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '@pages/timetable/components/calender/calender';
@@ -10,6 +12,7 @@ import TimetableBoardSection, {
 } from '@pages/timetable/components/timetable-board/timetable-board-section';
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
+import { useTimeBlockToggle } from '@pages/timetable/hooks/use-time-block-toggle';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
 import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 
@@ -35,6 +38,17 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
   const [boardData, setBoardData] = useState<TimetableInfo | null>(null);
 
+  const {
+    toggleBlock,
+    saveChanges,
+    resetChanges,
+    getIsSelected,
+    hasPendingChanges,
+  } = useTimeBlockToggle({
+    timetableId: selectedFestivalInfo.festivalId,
+    festivalDateId: selectedDateId ?? 0,
+  });
+
   const { dayNumber, festivalDate } = useMemo(() => {
     const dates = selectedFestivalInfo.festivalDates ?? [];
     const idx = dates.findIndex((d) => d.festivalDateId === selectedDateId);
@@ -52,6 +66,23 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
     festivalDate,
     dayNumber,
   });
+
+  const handleToggleEditMode = () => {
+    if (isEditTimetableMode) {
+      if (hasPendingChanges && boardData) {
+        saveChanges(boardData).catch(() => {
+          resetChanges();
+          toast({
+            text: '저장에 실패했어요. 다시 시도해 주세요.',
+            position: 'middleCenter',
+          });
+        });
+      }
+    } else {
+      resetChanges();
+    }
+    toggleEditTimetableMode();
+  };
 
   if (!selectedDateId) return null;
 
@@ -72,6 +103,8 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
             timetableId={selectedFestivalInfo.festivalId}
             selectedDateId={selectedDateId}
             isEditMode={isEditTimetableMode}
+            onToggleBlock={toggleBlock}
+            getIsSelected={getIsSelected}
             onDataLoaded={setBoardData}
           />
         </Suspense>
@@ -79,7 +112,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
 
       <TimetableActions
         isEditMode={isEditTimetableMode}
-        onToggleEditMode={toggleEditTimetableMode}
+        onToggleEditMode={handleToggleEditMode}
         onDownload={downloadImage}
       />
 
