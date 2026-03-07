@@ -38,13 +38,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
   const [boardData, setBoardData] = useState<TimetableInfo | null>(null);
 
-  const {
-    toggleBlock,
-    saveChanges,
-    resetChanges,
-    getIsSelected,
-    hasPendingChanges,
-  } = useTimeBlockToggle({
+  const timeBlock = useTimeBlockToggle({
     timetableId: selectedFestivalInfo.festivalId,
     festivalDateId: selectedDateId ?? 0,
   });
@@ -69,9 +63,9 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
 
   const handleToggleEditMode = () => {
     if (isEditTimetableMode) {
-      if (hasPendingChanges && boardData) {
-        saveChanges(boardData).catch(() => {
-          resetChanges();
+      if (timeBlock.hasPendingChanges && boardData) {
+        timeBlock.saveChanges(boardData).catch(() => {
+          timeBlock.resetChanges();
           toast({
             text: '저장에 실패했어요. 다시 시도해 주세요.',
             position: 'middleCenter',
@@ -79,7 +73,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
         });
       }
     } else {
-      resetChanges();
+      timeBlock.resetChanges();
     }
     toggleEditTimetableMode();
   };
@@ -103,8 +97,8 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
             timetableId={selectedFestivalInfo.festivalId}
             selectedDateId={selectedDateId}
             isEditMode={isEditTimetableMode}
-            onToggleBlock={toggleBlock}
-            getIsSelected={getIsSelected}
+            onToggleBlock={timeBlock.toggleBlock}
+            getIsSelected={timeBlock.getIsSelected}
             onDataLoaded={setBoardData}
           />
         </Suspense>
