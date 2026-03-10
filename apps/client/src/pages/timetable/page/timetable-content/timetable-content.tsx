@@ -53,7 +53,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   }, [selectedFestivalInfo.festivalDates, selectedDateId]);
 
   const { downloadImage, CaptureElement } = useImageDownload({
-    fileName: selectedFestivalInfo.title,
+    fileName: `${selectedFestivalInfo.title}_day${dayNumber}`,
     boardData,
     posterUrl: selectedFestivalInfo.logoUrl,
     festivalTitle: selectedFestivalInfo.title,

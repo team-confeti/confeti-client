@@ -156,7 +156,7 @@ export const artistRowName = style({
   fontSize: '16px',
   lineHeight: 'normal',
   color: '#ffffff',
-  whiteSpace: 'pre-wrap',
+  wordBreak: 'break-all',
 });
 
 export const artistRowTime = style({
