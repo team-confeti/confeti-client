@@ -1,11 +1,6 @@
 import { RefObject } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from '@confeti/design-system';
-
-import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
-import { FESTIVAL_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
-import { TimeBlock } from '@shared/types/timetable-response';
 
 import BoothOpenBox from '@pages/timetable/components/timetable-board/booth-open-box';
 import TimeCell from '@pages/timetable/components/timetable-board/time-cell';
@@ -16,34 +11,26 @@ import { generateTableRow, parseTimeString } from '@pages/timetable/utils';
 import * as styles from './timetable-board.css';
 
 interface Props {
-  timetableId: number;
   timetableInfo: TimetableInfo;
   isEditMode: boolean;
+  onToggleBlock: (timeBlockId: number, isSelected: boolean) => void;
+  getIsSelected: (timeBlockId: number, serverIsSelected: boolean) => boolean;
   scrollRef?: RefObject<HTMLElement | null>;
   onScroll?: () => void;
   disableToast?: boolean;
 }
 
 const TimetableBoard = ({
-  timetableId,
   timetableInfo,
   isEditMode,
+  onToggleBlock,
+  getIsSelected,
   scrollRef,
   onScroll,
   disableToast = false,
 }: Props) => {
   const [openHour] = parseTimeString(timetableInfo.ticketOpenAt);
   const cellNumber = generateTableRow(openHour);
-
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    ...TIMETABLE_MUTATION_OPTIONS.PATCH_TIMETABLE(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
-      });
-    },
-  });
 
   const handleTimetableItemClick = (
     timeBlockId: number,
@@ -59,17 +46,7 @@ const TimetableBoard = ({
       }
       return;
     }
-
-    const updatedTimeBlocks: TimeBlock[] = timetableInfo.stages.flatMap(
-      (stage) =>
-        stage.festivalTimes.map((time) => ({
-          timeBlockId: time.timeBlockId,
-          isSelected:
-            time.timeBlockId === timeBlockId ? isSelected : time.isSelected,
-        })),
-    );
-
-    mutate({ timetableId, timeBlocks: updatedTimeBlocks });
+    onToggleBlock(timeBlockId, isSelected);
   };
 
   return (
@@ -100,11 +77,13 @@ const TimetableBoard = ({
                   key={block.timeBlockId}
                   timeBlockId={block.timeBlockId}
                   artists={block.artists}
-                  isSelected={block.isSelected}
+                  isSelected={getIsSelected(
+                    block.timeBlockId,
+                    block.isSelected,
+                  )}
                   startTime={block.startAt}
                   endTime={block.endAt}
                   ticketOpenAt={timetableInfo.ticketOpenAt}
-                  isEditTimetableMode={isEditMode}
                   onClick={handleTimetableItemClick}
                 />
               ))}
