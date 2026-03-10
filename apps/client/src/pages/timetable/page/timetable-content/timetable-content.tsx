@@ -1,5 +1,7 @@
 import { Suspense, useMemo, useState } from 'react';
 
+import { toast } from '@confeti/design-system';
+
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '@pages/timetable/components/calender/calender';
@@ -10,6 +12,7 @@ import TimetableBoardSection, {
 } from '@pages/timetable/components/timetable-board/timetable-board-section';
 import { useFestivalSelect } from '@pages/timetable/hooks/use-festival-select';
 import { useImageDownload } from '@pages/timetable/hooks/use-image-download';
+import { useTimeBlockToggle } from '@pages/timetable/hooks/use-time-block-toggle';
 import { useTimetableEdit } from '@pages/timetable/hooks/use-timetable-edit';
 import { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 
@@ -35,6 +38,11 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   const { isEditTimetableMode, toggleEditTimetableMode } = useTimetableEdit();
   const [boardData, setBoardData] = useState<TimetableInfo | null>(null);
 
+  const timeBlock = useTimeBlockToggle({
+    timetableId: selectedFestivalInfo.festivalId,
+    festivalDateId: selectedDateId ?? 0,
+  });
+
   const { dayNumber, festivalDate } = useMemo(() => {
     const dates = selectedFestivalInfo.festivalDates ?? [];
     const idx = dates.findIndex((d) => d.festivalDateId === selectedDateId);
@@ -45,13 +53,30 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   }, [selectedFestivalInfo.festivalDates, selectedDateId]);
 
   const { downloadImage, CaptureElement } = useImageDownload({
-    fileName: selectedFestivalInfo.title,
+    fileName: `${selectedFestivalInfo.title}_day${dayNumber}`,
     boardData,
     posterUrl: selectedFestivalInfo.logoUrl,
     festivalTitle: selectedFestivalInfo.title,
     festivalDate,
     dayNumber,
   });
+
+  const handleToggleEditMode = () => {
+    if (isEditTimetableMode) {
+      if (timeBlock.hasPendingChanges && boardData) {
+        timeBlock.saveChanges(boardData).catch(() => {
+          timeBlock.resetChanges();
+          toast({
+            text: '저장에 실패했어요. 다시 시도해 주세요.',
+            position: 'middleCenter',
+          });
+        });
+      }
+    } else {
+      timeBlock.resetChanges();
+    }
+    toggleEditTimetableMode();
+  };
 
   if (!selectedDateId) return null;
 
@@ -72,6 +97,8 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
             timetableId={selectedFestivalInfo.festivalId}
             selectedDateId={selectedDateId}
             isEditMode={isEditTimetableMode}
+            onToggleBlock={timeBlock.toggleBlock}
+            getIsSelected={timeBlock.getIsSelected}
             onDataLoaded={setBoardData}
           />
         </Suspense>
@@ -79,7 +106,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
 
       <TimetableActions
         isEditMode={isEditTimetableMode}
-        onToggleEditMode={toggleEditTimetableMode}
+        onToggleEditMode={handleToggleEditMode}
         onDownload={downloadImage}
       />
 
