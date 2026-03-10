@@ -161,11 +161,14 @@ const TimetableCapture = ({
                     const top = `${fromOpen * MINUTE_HEIGHT_PX}px`;
                     const height = `${totalMin * MINUTE_HEIGHT_PX + 1}px`;
 
+                    const isShort = totalMin <= 20;
+
                     return (
                       <div
                         key={block.timeBlockId}
                         className={styles.captureItem({
                           isSelected: block.isSelected,
+                          isShort,
                         })}
                         style={assignInlineVars({
                           [styles.itemTop]: top,
@@ -175,6 +178,7 @@ const TimetableCapture = ({
                         <div
                           className={styles.artistName({
                             isSelected: block.isSelected,
+                            isShort,
                           })}
                         >
                           {block.artists.map((a) => a.artistName).join(', ')}
@@ -182,6 +186,7 @@ const TimetableCapture = ({
                         <div
                           className={styles.durationText({
                             isSelected: block.isSelected,
+                            isShort,
                           })}
                         >
                           {`${startHour}:${startMin}-${endHour}:${endMin}`}

@@ -60,16 +60,21 @@ const TimetableItem = ({
     [styles.height]: height,
   });
 
+  const isShort = totalPerformMin <= 20;
+
   return (
     <div
       style={dynamicVars}
-      className={cn(styles.itemsWrapper({ isSelected }), 'time-table-item')}
+      className={cn(
+        styles.itemsWrapper({ isSelected, isShort }),
+        'time-table-item',
+      )}
       onClick={() => onClick(timeBlockId, !isSelected)}
     >
-      <div className={cn(styles.artistName({ isSelected }))}>
+      <div className={cn(styles.artistName({ isSelected, isShort }))}>
         {artists.map((artist) => artist.artistName).join(', ')}
       </div>
-      <div className={styles.durationP({ isSelected })}>
+      <div className={styles.durationP({ isSelected, isShort })}>
         {`${startHour}:${startMin}-${endHour}:${endMin}`}
         {`(${totalPerformMin}min)`}
       </div>

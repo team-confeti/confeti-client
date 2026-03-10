@@ -41,13 +41,11 @@ export const useTimeBlockToggle = ({
 
     await mutateAsync({ timetableId, timeBlocks });
 
-    const queryKey = FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(
-      timetableId,
-      festivalDateId,
-    );
-
     queryClient.setQueryData<FestivalTimetableResponseExtended>(
-      queryKey,
+      FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(
+        timetableId,
+        festivalDateId,
+      ),
       (old) => {
         if (!old) return old;
         const updatedStages = old.stages.map((stage) => ({
@@ -66,7 +64,12 @@ export const useTimeBlockToggle = ({
     );
 
     setPendingChanges(new Map());
-    queryClient.invalidateQueries({ queryKey });
+    queryClient.invalidateQueries({
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.FESTIVAL_TIMETABLE(
+        timetableId,
+        festivalDateId,
+      ),
+    });
   };
 
   const resetChanges = () => setPendingChanges(new Map());
