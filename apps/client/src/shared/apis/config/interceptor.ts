@@ -50,7 +50,8 @@ export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
     case HTTP_STATUS_CODE.UNAUTHORIZED:
       try {
         return await handleTokenError(error);
-      } catch (tokenError) {
+      } catch {
+        redirectToLogin();
         throw new HTTPError(status, '인증 토큰 갱신에 실패했습니다.');
       }
 
@@ -68,11 +69,9 @@ export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
   }
 };
 
-export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
-  if (!error.config) {
-    throw new Error('요청 정보를 확인할 수 없습니다.');
-  }
+let refreshPromise: Promise<string> | null = null;
 
+const requestTokenRefresh = async (): Promise<string> => {
   const refreshToken = getRefreshToken();
   if (!refreshToken) {
     authTokenHandler('remove');
@@ -81,37 +80,51 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
       '리프레시 토큰이 없습니다. 다시 로그인해주세요.',
     );
   }
-
-  try {
-    const response = await fetch(
-      `${ENV_CONFIG.BASE_URL}${END_POINT.POST_REISSUE_TOKEN}`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${refreshToken}`,
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
+  const response = await fetch(
+    `${ENV_CONFIG.BASE_URL}${END_POINT.POST_REISSUE_TOKEN}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+        'Content-Type': 'application/json',
       },
-    );
+      credentials: 'include',
+    },
+  );
 
-    if (!response.ok) throw new Error('토큰 재발급 실패');
+  if (!response.ok) throw new Error('토큰 재발급 실패');
+  const result: BaseResponse<TokenResponse> = await response.json();
+  const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+    result.data;
+  authTokenHandler('set', newAccessToken, newRefreshToken);
+  return newAccessToken;
+};
 
-    const result: BaseResponse<TokenResponse> = await response.json();
-    const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-      result.data;
+export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
+  if (!error.config) {
+    throw new Error('요청 정보를 확인할 수 없습니다.');
+  }
 
-    authTokenHandler('set', newAccessToken, newRefreshToken);
+  if (!refreshPromise) {
+    refreshPromise = requestTokenRefresh().finally(() => {
+      refreshPromise = null;
+    });
+  }
 
-    const originalConfig = error.config;
-    originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
-    return instance(originalConfig);
-  } catch (error) {
-    authTokenHandler('remove');
-    throw new HTTPError(
-      HTTP_STATUS_CODE.UNAUTHORIZED,
-      '토큰 재발급에 실패했습니다.',
-    );
+  const newAccessToken = await refreshPromise;
+  const originalConfig = error.config;
+  originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
+  return instance(originalConfig);
+};
+
+const redirectToLogin = () => {
+  authTokenHandler('remove');
+
+  const { pathname } = window.location;
+  if (pathname.startsWith('/timetable')) {
+    window.location.href = '/timetable/require-login';
+  } else {
+    window.location.href = '/my/require-login';
   }
 };
 
