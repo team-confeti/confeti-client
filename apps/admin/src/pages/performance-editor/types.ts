@@ -43,4 +43,17 @@ export interface ExistingPerformance {
   endDate?: string;
   venueName?: string;
   venueAddress?: string;
+  ageRating?: string;
+  durationMinutes?: number;
+  bookingSchedules?: Array<{ round: string; startDate: string }>;
+  selectedTicketingPlatforms?: Array<{
+    id: number;
+    name: string;
+    url: string;
+    datetime: string;
+  }>;
+  priceGrades?: Array<{ grade: string; price: string }>;
+  mainPosterPreview?: string;
+  logoPreview?: string;
+  artists?: Array<{ id: number; name: string }>;
 }

@@ -14,6 +14,25 @@ type PerformanceDataJson = {
   area?: string;
   venueAddress?: string;
   address?: string;
+  ageRating?: string;
+  durationMinutes?: number;
+  time?: string;
+  price?: string;
+  bookingSchedules?: Array<{ round: string; startDate: string }>;
+  priceGrades?: Array<{ grade: string; price: string }>;
+  artists?: Array<{ id: number; name: string }>;
+  selectedTicketingPlatforms?: Array<{
+    id: number;
+    name: string;
+    url: string;
+    datetime: string;
+  }>;
+};
+
+const parseDurationMinutes = (time?: string): number | undefined => {
+  if (!time) return undefined;
+  const match = time.match(/(\d+)/);
+  return match ? Number(match[1]) : undefined;
 };
 
 export const mapDraftDetailToExistingPerformance = (
@@ -21,7 +40,10 @@ export const mapDraftDetailToExistingPerformance = (
 ): ExistingPerformance => {
   let parsed: PerformanceDataJson = {};
   try {
-    parsed = JSON.parse(draft.performanceData) as PerformanceDataJson;
+    const result = JSON.parse(draft.performanceData);
+    if (result && typeof result === 'object') {
+      parsed = result as PerformanceDataJson;
+    }
   } catch {
     // performanceData might be empty or malformed
   }
@@ -35,5 +57,19 @@ export const mapDraftDetailToExistingPerformance = (
     endDate: parsed.endDate ?? parsed.endAt,
     venueName: parsed.venueName ?? parsed.area,
     venueAddress: parsed.venueAddress ?? parsed.address,
+    ageRating: parsed.ageRating,
+    durationMinutes:
+      parsed.durationMinutes ?? parseDurationMinutes(parsed.time),
+    bookingSchedules: parsed.bookingSchedules,
+    priceGrades: parsed.priceGrades,
+    mainPosterPreview: draft.posterUrl || undefined,
+    logoPreview: draft.logoUrl || undefined,
+    artists:
+      parsed.artists ??
+      draft.artists?.map((a) => ({
+        id: Number(a.artistId),
+        name: a.name,
+      })),
+    selectedTicketingPlatforms: parsed.selectedTicketingPlatforms,
   };
 };
