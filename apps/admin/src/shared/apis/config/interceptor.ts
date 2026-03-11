@@ -22,7 +22,7 @@ export const handleAPIError = async (error: AxiosError<ErrorResponse>) => {
     throw new HTTPError(0, '네트워크 연결에 실패했습니다.');
   }
 
-  const { config, response } = error;
+  const { response } = error;
   const { data, status } = response;
 
   switch (status) {
