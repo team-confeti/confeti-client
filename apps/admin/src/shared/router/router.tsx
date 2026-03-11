@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
+import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import Layout from '@shared/components/layout/layout';
 import { PATH } from '@shared/constants/path';
 
@@ -13,6 +14,12 @@ import TicketingPlatformPage from '@pages/ticketing-platform/ticketing-platform-
 const router = createBrowserRouter([
   {
     element: <Layout />,
+    errorElement: (
+      <ErrorFallback
+        error={new Error('페이지를 불러오는 중 오류가 발생했습니다.')}
+        resetErrorBoundary={() => window.location.reload()}
+      />
+    ),
     children: [
       {
         index: true,

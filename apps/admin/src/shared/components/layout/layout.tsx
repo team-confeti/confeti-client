@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet, useLocation } from 'react-router-dom';
 
+import Deferred from '@shared/components/deferred/deferred';
+import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu';
 import Header from '@shared/components/layout/header';
+import Loading from '@shared/components/loading/loading';
 import { PENDING_ITEMS } from '@shared/mocks';
 
 import * as styles from './layout.css';
@@ -45,7 +49,20 @@ const Layout = () => {
           onSearchChange={setSearchQuery}
         />
         <main className={styles.content}>
-          <Outlet context={{ searchQuery }} />
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            resetKeys={[location.pathname]}
+          >
+            <Suspense
+              fallback={
+                <Deferred>
+                  <Loading />
+                </Deferred>
+              }
+            >
+              <Outlet context={{ searchQuery }} />
+            </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
     </div>

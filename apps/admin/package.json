@@ -20,6 +20,7 @@
     "lucide-react": "^0.577.0",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.58.1",
     "react-router-dom": "^7.6.2",
     "zod": "^3.25.67"

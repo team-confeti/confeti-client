@@ -1,11 +1,11 @@
 import { Calendar, ChevronRight, MapPin, Music } from 'lucide-react';
 
-import type { PerformanceItem } from '@shared/types';
+import type { PerformanceCardData } from '@shared/models/performance-card';
 
 import * as styles from './performance-card.css';
 
 interface Props {
-  data: PerformanceItem;
+  data: PerformanceCardData;
   onClick: () => void;
   isPast?: boolean;
 }
