@@ -1,4 +1,7 @@
 export const END_POINT = {
+  // 인증
+  POST_REISSUE_TOKEN: '/auth/reissue',
+
   // 공연 관리
   GET_PENDING_EVENTS: '/admin/events/pending',
   GET_FESTIVALS: '/admin/events/festivals',
