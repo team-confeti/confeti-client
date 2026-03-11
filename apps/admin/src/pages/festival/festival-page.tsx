@@ -1,24 +1,23 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
+import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import { EmptyState } from '@shared/components/common';
-import EventCard from '@shared/components/event/event-card';
+import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
-import { FESTIVALS } from '@shared/mocks';
+import { mapFestivalToCardData } from '@shared/models/performance-card';
 
 import * as styles from './festival-page.css';
 
 const FestivalPage = () => {
   const navigate = useNavigate();
 
-  const upcomingFestivals = FESTIVALS.filter(
-    (festival) => festival.status === 'Scheduled',
-  );
-  const pastFestivals = FESTIVALS.filter(
-    (festival) => festival.status === 'Completed',
-  );
+  const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST());
+  const upcomingFestivals = data.upcomingFestivals.festivals;
+  const pastFestivals = data.finishedFestivals.festivals;
 
-  const handleSelectEvent = (id: number) => {
-    navigate(PATH.EVENTS.replace(':id', String(id)));
+  const handleSelectPerformance = (id: number) => {
+    navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=festival`);
   };
 
   return (
@@ -26,17 +25,19 @@ const FestivalPage = () => {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>
-          <span className={styles.countBadge}>{upcomingFestivals.length}</span>
+          <span className={styles.countBadge}>
+            {data.upcomingFestivals.count}
+          </span>
         </div>
         {upcomingFestivals.length === 0 ? (
           <EmptyState title="진행 예정인 페스티벌이 없습니다." />
         ) : (
           <div className={styles.grid}>
             {upcomingFestivals.map((festival) => (
-              <EventCard
-                key={festival.id}
-                data={festival}
-                onClick={() => handleSelectEvent(festival.id)}
+              <PerformanceCard
+                key={festival.festivalId}
+                data={mapFestivalToCardData(festival)}
+                onClick={() => handleSelectPerformance(festival.festivalId)}
               />
             ))}
           </div>
@@ -46,17 +47,19 @@ const FestivalPage = () => {
       <section className={styles.section}>
         <div className={styles.sectionHeaderPast}>
           <h3 className={styles.sectionTitlePast}>종료된 공연</h3>
-          <span className={styles.countBadgePast}>{pastFestivals.length}</span>
+          <span className={styles.countBadgePast}>
+            {data.finishedFestivals.count}
+          </span>
         </div>
         {pastFestivals.length === 0 ? (
           <EmptyState title="종료된 페스티벌이 없습니다." />
         ) : (
           <div className={styles.gridPast}>
             {pastFestivals.map((festival) => (
-              <EventCard
-                key={festival.id}
-                data={festival}
-                onClick={() => handleSelectEvent(festival.id)}
+              <PerformanceCard
+                key={festival.festivalId}
+                data={mapFestivalToCardData(festival)}
+                onClick={() => handleSelectPerformance(festival.festivalId)}
                 isPast
               />
             ))}

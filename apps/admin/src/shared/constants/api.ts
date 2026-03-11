@@ -1,49 +1,31 @@
 export const END_POINT = {
-  // 공연 관리
-  GET_PENDING_EVENTS: '/admin/events/pending',
-  GET_FESTIVALS: '/admin/events/festivals',
-  GET_CONCERTS: '/admin/events/concerts',
-  GET_EVENT_DETAIL: (eventId: number) => `/admin/events/${eventId}`,
-  POST_CREATE_EVENT: '/admin/events',
-  PATCH_UPDATE_EVENT: (eventId: number) => `/admin/events/${eventId}`,
-  DELETE_EVENT: (eventId: number) => `/admin/events/${eventId}`,
-  PATCH_PUBLISH_EVENT: (eventId: number) => `/admin/events/${eventId}/publish`,
+  POST_REISSUE_TOKEN: '/auth/reissue',
 
-  // 아티스트 관리
-  GET_ARTISTS: '/admin/artists',
-  GET_ARTIST_DETAIL: (artistId: number) => `/admin/artists/${artistId}`,
-  POST_CREATE_ARTIST: '/admin/artists',
-  PATCH_UPDATE_ARTIST: (artistId: number) => `/admin/artists/${artistId}`,
-  DELETE_ARTIST: (artistId: number) => `/admin/artists/${artistId}`,
+  GET_FESTIVALS: '/admin/performances/festivals',
+  PUT_FESTIVAL: '/admin/performances/festivals',
+  GET_FESTIVAL_DETAIL: (festivalId: number) =>
+    `/admin/performances/festivals/${festivalId}`,
 
-  // 예매처 관리
-  GET_AGENCIES: '/admin/agencies',
-  GET_AGENCY_DETAIL: (agencyId: number) => `/admin/agencies/${agencyId}`,
-  POST_CREATE_AGENCY: '/admin/agencies',
-  PATCH_UPDATE_AGENCY: (agencyId: number) => `/admin/agencies/${agencyId}`,
-  DELETE_AGENCY: (agencyId: number) => `/admin/agencies/${agencyId}`,
+  GET_CONCERTS: '/admin/performances/concerts',
+  PUT_CONCERT: '/admin/performances/concerts',
+  GET_CONCERT_DETAIL: (concertId: number) =>
+    `/admin/performances/concerts/${concertId}`,
 
-  // 타임테이블 관리
-  GET_TIMETABLE: (eventId: number) => `/admin/events/${eventId}/timetable`,
-  POST_CREATE_TIMETABLE_SLOT: (eventId: number) =>
-    `/admin/events/${eventId}/timetable`,
-  PATCH_UPDATE_TIMETABLE_SLOT: (eventId: number, slotId: string) =>
-    `/admin/events/${eventId}/timetable/${slotId}`,
-  DELETE_TIMETABLE_SLOT: (eventId: number, slotId: string) =>
-    `/admin/events/${eventId}/timetable/${slotId}`,
+  GET_DRAFTS: '/admin/performances/drafts',
+  POST_DRAFT: '/admin/performances/drafts',
+  GET_DRAFT_DETAIL: (draftId: number) =>
+    `/admin/performances/drafts/${draftId}`,
+  DELETE_DRAFT: (draftId: number) => `/admin/performances/drafts/${draftId}`,
+  PATCH_DRAFT: (draftId: number) => `/admin/performances/drafts/${draftId}`,
 
-  // 통계 및 대시보드
-  GET_DASHBOARD_STATS: '/admin/dashboard/stats',
+  GET_TICKET_VENDORS: '/admin/ticket-vendors',
+  POST_TICKET_VENDOR: '/admin/ticket-vendors',
+  DELETE_TICKET_VENDOR: (ticketVendorId: number) =>
+    `/admin/ticket-vendors/${ticketVendorId}`,
+  PATCH_TICKET_VENDOR: (ticketVendorId: number) =>
+    `/admin/ticket-vendors/${ticketVendorId}`,
 
-  // Concert & Festival 호환성 (기존 코드 지원)
-  CONCERT: '/admin/events/concerts',
-  CONCERT_DETAIL: (concertId: number) => `/admin/events/${concertId}`,
-  FESTIVAL: '/admin/events/festivals',
-  FESTIVAL_DETAIL: (festivalId: number) => `/admin/events/${festivalId}`,
-
-  // 파일 업로드
-  POST_UPLOAD_IMAGE: '/admin/upload/image',
-  POST_UPLOAD_LOGO: '/admin/upload/logo',
+  GET_ARTIST_SEARCH: '/admin/artists/search',
 } as const;
 
 export const HTTP_STATUS_CODE = {
@@ -59,7 +41,7 @@ export const HTTP_STATUS_CODE = {
 } as const;
 
 export const CACHE_TIME = {
-  SHORT: 1000 * 60 * 3, // 3분
-  MEDIUM: 1000 * 60 * 5, // 5분
-  LONG: 1000 * 60 * 10, // 10분
+  SHORT: 1000 * 60 * 3,
+  MEDIUM: 1000 * 60 * 5,
+  LONG: 1000 * 60 * 10,
 } as const;

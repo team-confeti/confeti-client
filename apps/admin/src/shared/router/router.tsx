@@ -1,18 +1,25 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
+import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import Layout from '@shared/components/layout/layout';
 import { PATH } from '@shared/constants/path';
 
-import AgencyPage from '@pages/agency/agency-page';
 import ConcertPage from '@pages/concert/concert-page';
 import DashboardPage from '@pages/dashboard/page/dashboard-page';
-import EventEditorPage from '@pages/event-editor/event-editor-page';
 import FestivalPage from '@pages/festival/festival-page';
 import PendingPage from '@pages/pending/pending-page';
+import PerformanceEditorPage from '@pages/performance-editor/performance-editor-page';
+import TicketingPlatformPage from '@pages/ticketing-platform/ticketing-platform-page';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
+    errorElement: (
+      <ErrorFallback
+        error={new Error('페이지를 불러오는 중 오류가 발생했습니다.')}
+        resetErrorBoundary={() => window.location.reload()}
+      />
+    ),
     children: [
       {
         index: true,
@@ -35,16 +42,16 @@ const router = createBrowserRouter([
         element: <FestivalPage />,
       },
       {
-        path: PATH.AGENCY,
-        element: <AgencyPage />,
+        path: PATH.TICKETING_PLATFORM,
+        element: <TicketingPlatformPage />,
       },
       {
-        path: PATH.EVENT_EDITOR,
-        element: <EventEditorPage />,
+        path: PATH.PERFORMANCE_EDITOR,
+        element: <PerformanceEditorPage />,
       },
       {
-        path: PATH.EVENTS,
-        element: <EventEditorPage />,
+        path: PATH.PERFORMANCES,
+        element: <PerformanceEditorPage />,
       },
     ],
   },

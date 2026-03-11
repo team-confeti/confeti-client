@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 
-import { ThemeProvider } from '@confeti/design-system';
+import { ThemeProvider, ToastContainer } from '@confeti/design-system';
 
 import router from '@shared/router/router';
 
@@ -20,6 +20,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <RouterProvider router={router} />
+        <ToastContainer />
       </ThemeProvider>
     </QueryClientProvider>
   );

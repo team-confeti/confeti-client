@@ -1,21 +1,25 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Clock, MoreVertical, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
 import { Badge, Button, EmptyState } from '@shared/components/common';
 import { PATH } from '@shared/constants';
-import { PENDING_ITEMS } from '@shared/mocks';
 
 import * as styles from './pending-page.css';
 
 const PendingPage = () => {
   const navigate = useNavigate();
 
+  const { data } = useSuspenseQuery(DRAFT_QUERY_OPTIONS.LIST());
+  const items = data.drafts;
+
   const handleCreateNew = () => {
-    navigate(PATH.EVENT_EDITOR.replace(':id', 'new'));
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
   };
 
   const handleSelectItem = (id: number) => {
-    navigate(PATH.EVENT_EDITOR.replace(':id', String(id)));
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(id)));
   };
 
   return (
@@ -36,14 +40,14 @@ const PendingPage = () => {
         </Button>
       </div>
 
-      {PENDING_ITEMS.length === 0 ? (
+      {items.length === 0 ? (
         <EmptyState
           icon={<Clock size={48} />}
           title="대기 중인 공연이 없습니다."
         />
       ) : (
         <div className={styles.listContainer}>
-          {PENDING_ITEMS.map((item) => (
+          {items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleSelectItem(item.id)}
@@ -54,31 +58,32 @@ const PendingPage = () => {
                   className={styles.itemIcon}
                   style={{
                     backgroundColor:
-                      item.type === 'Festival' ? '#AD46FF' : '#00BC7D',
+                      item.performanceType === 'FESTIVAL'
+                        ? '#AD46FF'
+                        : '#00BC7D',
                   }}
                 >
                   <span className={styles.typeIcon}>
-                    {item.type === 'Festival' ? 'F' : 'C'}
+                    {item.performanceType === 'FESTIVAL' ? 'F' : 'C'}
                   </span>
                 </div>
                 <div className={styles.itemInfo}>
                   <h3 className={styles.itemTitle}>{item.title}</h3>
                   <div className={styles.itemMeta}>
-                    <span>{item.date}</span>
+                    <span>{item.startAt}</span>
                     <span className={styles.dot}>•</span>
-                    <span>{item.venueName || '장소 미정'}</span>
+                    <span>{item.area || '장소 미정'}</span>
                   </div>
                 </div>
               </div>
               <div className={styles.itemActions}>
-                <Badge variant="warning">검토 필요</Badge>
+                <Badge variant="warning">{item.status}</Badge>
                 <Button
                   variant="ghost"
                   size="small"
                   className={styles.moreButton}
                   onClick={(e) => {
                     e.stopPropagation();
-                    // 더보기 메뉴 처리
                   }}
                 >
                   <MoreVertical size={18} />
