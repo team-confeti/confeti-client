@@ -1,7 +1,9 @@
 export const PATH = {
+  DASHBOARD: '/dashboard',
+  PENDING: '/pending',
   CONCERT: '/concert',
   FESTIVAL: '/festival',
-  DASHBOARD: '/dashboard',
-  EDIT_CONCERT: '/dashboard/edit-concert/:id',
-  EDIT_FESTIVAL: '/dashboard/edit-festival/:id',
+  AGENCY: '/agency',
+  EVENT_EDITOR: '/event-editor/:id',
+  EVENTS: '/events/:id',
 } as const;

@@ -3,11 +3,12 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from '@shared/components/layout/layout';
 import { PATH } from '@shared/constants/path';
 
+import AgencyPage from '@pages/agency/agency-page';
 import ConcertPage from '@pages/concert/concert-page';
 import DashboardPage from '@pages/dashboard/page/dashboard-page';
-import EditConcertPage from '@pages/dashboard/page/edit-concert-page';
-import EditFestivalPage from '@pages/dashboard/page/edit-festival-page';
+import EventEditorPage from '@pages/event-editor/event-editor-page';
 import FestivalPage from '@pages/festival/festival-page';
+import PendingPage from '@pages/pending/pending-page';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
         element: <Navigate to={PATH.DASHBOARD} replace />,
       },
       {
+        path: PATH.DASHBOARD,
+        element: <DashboardPage />,
+      },
+      {
+        path: PATH.PENDING,
+        element: <PendingPage />,
+      },
+      {
         path: PATH.CONCERT,
         element: <ConcertPage />,
       },
@@ -26,16 +35,16 @@ const router = createBrowserRouter([
         element: <FestivalPage />,
       },
       {
-        path: PATH.DASHBOARD,
-        element: <DashboardPage />,
+        path: PATH.AGENCY,
+        element: <AgencyPage />,
       },
       {
-        path: PATH.EDIT_CONCERT,
-        element: <EditConcertPage />,
+        path: PATH.EVENT_EDITOR,
+        element: <EventEditorPage />,
       },
       {
-        path: PATH.EDIT_FESTIVAL,
-        element: <EditFestivalPage />,
+        path: PATH.EVENTS,
+        element: <EventEditorPage />,
       },
     ],
   },
