@@ -2,24 +2,24 @@ import type { Artist } from './artist';
 import type { BookingLink, BookingSchedule, PriceInfo, Stage } from './common';
 import type { TimetableSlot } from './timetable';
 
-export type EventType = 'Festival' | 'Concert';
+export type PerformanceType = 'Festival' | 'Concert';
 
-export type EventStatus =
+export type PerformanceStatus =
   | 'Pending'
   | 'Published'
   | 'Draft'
   | 'Scheduled'
   | 'Completed';
 
-export interface EventItem {
+export interface PerformanceItem {
   id: number;
   title: string;
   subtitle: string;
   date: string;
   startDate: string;
   endDate: string;
-  status: EventStatus;
-  type: EventType;
+  status: PerformanceStatus;
+  type: PerformanceType;
   venueName: string;
   venueAddress: string;
   image: string;

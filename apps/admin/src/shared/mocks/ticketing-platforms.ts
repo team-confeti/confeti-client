@@ -1,6 +1,6 @@
-import type { Agency } from '@shared/types';
+import type { TicketingPlatform } from '@shared/types';
 
-export const AGENCIES: Agency[] = [
+export const TICKETING_PLATFORMS: TicketingPlatform[] = [
   {
     id: 1,
     name: '인터파크 티켓',

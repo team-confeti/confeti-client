@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import type { EventFormData } from '../types';
+import type { PerformanceFormData } from '../types';
 
 interface UseArtistManagementProps {
-  formData: EventFormData;
-  setFormData: Dispatch<SetStateAction<EventFormData>>;
+  formData: PerformanceFormData;
+  setFormData: Dispatch<SetStateAction<PerformanceFormData>>;
 }
 
 export const useArtistManagement = ({

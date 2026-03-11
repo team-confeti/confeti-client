@@ -2,42 +2,43 @@ import { useState } from 'react';
 import { Plus, Ticket, Upload, X } from 'lucide-react';
 
 import { Button, EmptyState } from '@shared/components/common';
-import { AGENCIES } from '@shared/mocks';
-import type { Agency } from '@shared/types';
+import { TICKETING_PLATFORMS } from '@shared/mocks';
+import type { TicketingPlatform } from '@shared/types';
 import { fileToBase64, validateLogoFile } from '@shared/utils';
 
-import * as styles from './agency-page.css';
+import * as styles from './ticketing-platform-page.css';
 
 type FormMode = 'create' | 'edit';
 
-const AgencyPage = () => {
+const TicketingPlatformPage = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<FormMode>('create');
-  const [editingAgency, setEditingAgency] = useState<Agency | null>(null);
-  const [agencyName, setAgencyName] = useState('');
+  const [editingTicketingPlatform, setEditingTicketingPlatform] =
+    useState<TicketingPlatform | null>(null);
+  const [ticketingPlatformName, setTicketingPlatformName] = useState('');
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
 
   const handleOpenCreateForm = () => {
     setIsFormOpen(true);
     setFormMode('create');
-    setEditingAgency(null);
-    setAgencyName('');
+    setEditingTicketingPlatform(null);
+    setTicketingPlatformName('');
     setLogoPreview(null);
   };
 
-  const handleOpenEditForm = (agency: Agency) => {
+  const handleOpenEditForm = (ticketingPlatform: TicketingPlatform) => {
     setIsFormOpen(true);
     setFormMode('edit');
-    setEditingAgency(agency);
-    setAgencyName(agency.name);
-    setLogoPreview(agency.logoUrl || null);
+    setEditingTicketingPlatform(ticketingPlatform);
+    setTicketingPlatformName(ticketingPlatform.name);
+    setLogoPreview(ticketingPlatform.logoUrl || null);
   };
 
   const handleCloseForm = () => {
     setIsFormOpen(false);
     setFormMode('create');
-    setEditingAgency(null);
-    setAgencyName('');
+    setEditingTicketingPlatform(null);
+    setTicketingPlatformName('');
     setLogoPreview(null);
   };
 
@@ -64,27 +65,30 @@ const AgencyPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formMode === 'create') {
-      // TODO: Implement actual agency creation logic
-      console.log('Creating agency:', { name: agencyName, logo: logoPreview });
+      console.log('Creating ticketing platform:', {
+        name: ticketingPlatformName,
+        logo: logoPreview,
+      });
     } else {
-      // TODO: Implement actual agency update logic
-      console.log('Updating agency:', {
-        id: editingAgency?.id,
-        name: agencyName,
+      console.log('Updating ticketing platform:', {
+        id: editingTicketingPlatform?.id,
+        name: ticketingPlatformName,
         logo: logoPreview,
       });
     }
     handleCloseForm();
   };
 
-  const handleAgencyDoubleClick = (agency: Agency) => {
+  const handleTicketingPlatformDoubleClick = (
+    ticketingPlatform: TicketingPlatform,
+  ) => {
     // 추가 폼이 열려있으면 입력 정보만 초기화하고 폼 닫기
     if (isFormOpen && formMode === 'create') {
       handleCloseForm();
       return;
     }
     // 편집 폼이 열려있거나 폼이 닫혀있으면 편집 폼 열기
-    handleOpenEditForm(agency);
+    handleOpenEditForm(ticketingPlatform);
   };
 
   return (
@@ -105,7 +109,7 @@ const AgencyPage = () => {
         </Button>
       </div>
 
-      {AGENCIES.length === 0 && !isFormOpen ? (
+      {TICKETING_PLATFORMS.length === 0 && !isFormOpen ? (
         <EmptyState
           icon={<Ticket size={48} />}
           title="등록된 예매처가 없습니다."
@@ -153,9 +157,9 @@ const AgencyPage = () => {
                   </label>
                   <input
                     type="text"
-                    id="agency-name"
-                    value={agencyName}
-                    onChange={(e) => setAgencyName(e.target.value)}
+                    id="ticketing-platform-name"
+                    value={ticketingPlatformName}
+                    onChange={(e) => setTicketingPlatformName(e.target.value)}
                     placeholder="예매처 이름 (예: 인터파크)"
                     className={styles.input}
                     required
@@ -167,24 +171,26 @@ const AgencyPage = () => {
               </form>
             </div>
           )}
-          {AGENCIES.map((agency) => (
+          {TICKETING_PLATFORMS.map((ticketingPlatform) => (
             <div
-              key={agency.id}
-              onDoubleClick={() => handleAgencyDoubleClick(agency)}
+              key={ticketingPlatform.id}
+              onDoubleClick={() =>
+                handleTicketingPlatformDoubleClick(ticketingPlatform)
+              }
               className={styles.card}
             >
               <div className={styles.cardLogo}>
-                {agency.logoUrl ? (
+                {ticketingPlatform.logoUrl ? (
                   <img
-                    src={agency.logoUrl}
-                    alt={agency.name}
+                    src={ticketingPlatform.logoUrl}
+                    alt={ticketingPlatform.name}
                     className={styles.cardLogoImage}
                   />
                 ) : (
                   <Ticket size={32} />
                 )}
               </div>
-              <h3 className={styles.cardTitle}>{agency.name}</h3>
+              <h3 className={styles.cardTitle}>{ticketingPlatform.name}</h3>
             </div>
           ))}
         </div>
@@ -193,4 +199,4 @@ const AgencyPage = () => {
   );
 };
 
-export default AgencyPage;
+export default TicketingPlatformPage;

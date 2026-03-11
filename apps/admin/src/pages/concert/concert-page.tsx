@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { EmptyState } from '@shared/components/common';
-import EventCard from '@shared/components/event/event-card';
+import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
 import { CONCERTS } from '@shared/mocks';
 
@@ -17,8 +17,8 @@ const ConcertPage = () => {
     (concert) => concert.status === 'Completed',
   );
 
-  const handleSelectEvent = (id: number) => {
-    navigate(PATH.EVENTS.replace(':id', String(id)));
+  const handleSelectPerformance = (id: number) => {
+    navigate(PATH.PERFORMANCES.replace(':id', String(id)));
   };
 
   return (
@@ -33,10 +33,10 @@ const ConcertPage = () => {
         ) : (
           <div className={styles.grid}>
             {upcomingConcerts.map((concert) => (
-              <EventCard
+              <PerformanceCard
                 key={concert.id}
                 data={concert}
-                onClick={() => handleSelectEvent(concert.id)}
+                onClick={() => handleSelectPerformance(concert.id)}
               />
             ))}
           </div>
@@ -53,10 +53,10 @@ const ConcertPage = () => {
         ) : (
           <div className={styles.gridPast}>
             {pastConcerts.map((concert) => (
-              <EventCard
+              <PerformanceCard
                 key={concert.id}
                 data={concert}
-                onClick={() => handleSelectEvent(concert.id)}
+                onClick={() => handleSelectPerformance(concert.id)}
                 isPast
               />
             ))}

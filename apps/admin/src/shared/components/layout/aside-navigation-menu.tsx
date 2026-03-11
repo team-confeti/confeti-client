@@ -41,7 +41,11 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
     },
     { name: '페스티벌', path: PATH.FESTIVAL, icon: <Tent size={20} /> },
     { name: '콘서트', path: PATH.CONCERT, icon: <Music size={20} /> },
-    { name: '예매처 관리', path: '/agency', icon: <Ticket size={20} /> },
+    {
+      name: '예매처 관리',
+      path: '/ticketing-platform',
+      icon: <Ticket size={20} />,
+    },
   ];
 
   return (

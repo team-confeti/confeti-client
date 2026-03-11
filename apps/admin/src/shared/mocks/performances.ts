@@ -1,6 +1,6 @@
-import type { EventItem } from '@shared/types';
+import type { PerformanceItem } from '@shared/types';
 
-export const PENDING_ITEMS: EventItem[] = [
+export const PENDING_ITEMS: PerformanceItem[] = [
   {
     id: 101,
     title: '2025 서울 재즈 페스티벌',
@@ -115,7 +115,7 @@ export const PENDING_ITEMS: EventItem[] = [
   },
 ] as const;
 
-export const FESTIVALS: EventItem[] = [
+export const FESTIVALS: PerformanceItem[] = [
   {
     id: 201,
     title: 'Beautiful Mint Life 2026',
@@ -231,7 +231,7 @@ export const FESTIVALS: EventItem[] = [
   },
 ] as const;
 
-export const CONCERTS: EventItem[] = [
+export const CONCERTS: PerformanceItem[] = [
   {
     id: 301,
     title: 'DAY6 World Tour <GRAVITY>',

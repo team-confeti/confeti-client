@@ -9,11 +9,11 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 
-import type { EventFormData, TimetableSlot } from '../types';
+import type { PerformanceFormData, TimetableSlot } from '../types';
 
 interface UseTimetableDndProps {
-  formData: EventFormData;
-  setFormData: Dispatch<SetStateAction<EventFormData>>;
+  formData: PerformanceFormData;
+  setFormData: Dispatch<SetStateAction<PerformanceFormData>>;
   selectedDay: string;
 }
 

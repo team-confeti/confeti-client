@@ -7,7 +7,7 @@ export interface TimetableSlot {
   endTime: string;
 }
 
-export interface EventFormData {
+export interface PerformanceFormData {
   type: string;
   title: string;
   subtitle: string;
@@ -16,7 +16,7 @@ export interface EventFormData {
   ageRating: string;
   durationMinutes: number;
   bookingSchedules: Array<{ round: string; startDate: string }>;
-  selectedAgencies: Array<{
+  selectedTicketingPlatforms: Array<{
     id: number;
     name: string;
     url: string;
@@ -35,7 +35,7 @@ export interface EventFormData {
   timetableSlots: TimetableSlot[];
 }
 
-export interface ExistingEvent {
+export interface ExistingPerformance {
   type?: string;
   title?: string;
   subtitle?: string;

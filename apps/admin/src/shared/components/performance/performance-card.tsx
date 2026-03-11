@@ -1,16 +1,16 @@
 import { Calendar, ChevronRight, MapPin, Music } from 'lucide-react';
 
-import type { EventItem } from '@shared/types';
+import type { PerformanceItem } from '@shared/types';
 
-import * as styles from './event-card.css';
+import * as styles from './performance-card.css';
 
 interface Props {
-  data: EventItem;
+  data: PerformanceItem;
   onClick: () => void;
   isPast?: boolean;
 }
 
-const EventCard = ({ data, onClick, isPast = false }: Props) => {
+const PerformanceCard = ({ data, onClick, isPast = false }: Props) => {
   return (
     <div
       onClick={onClick}
@@ -63,4 +63,4 @@ const EventCard = ({ data, onClick, isPast = false }: Props) => {
   );
 };
 
-export default EventCard;
+export default PerformanceCard;

@@ -3,12 +3,12 @@ import { ArrowRight, Plus, Search, Trash2, X } from 'lucide-react';
 import { Button, EmptyState, FormSection } from '@shared/components/common';
 import { ARTISTS } from '@shared/mocks';
 
-import type { EventFormData } from '../types';
+import type { PerformanceFormData } from '../types';
 
 import * as styles from './lineup-tab.css';
 
 interface LineupTabProps {
-  formData: EventFormData;
+  formData: PerformanceFormData;
   handleAddStage: () => void;
   handleRemoveStage: (index: number) => void;
   handleStageChange: (index: number, value: string) => void;
