@@ -1,4 +1,4 @@
-import { Calendar, Check, Plus, Trash2 } from 'lucide-react';
+import { Calendar, Check, Link2, Plus, Trash2 } from 'lucide-react';
 
 import {
   Button,
@@ -195,6 +195,7 @@ export const BasicInfoTab = ({
               <div className={styles.bookingInputGroup}>
                 <Input
                   label="예매 시작"
+                  type="datetime-local"
                   value={schedule.startDate}
                   onChange={(e) =>
                     handleBookingScheduleChange(
@@ -273,7 +274,7 @@ export const BasicInfoTab = ({
             </div>
             <div className={styles.ticketingPlatformCardContent}>
               <div className={styles.ticketingPlatformUrlInput}>
-                <span className={styles.linkIcon}>🔗</span>
+                <Link2 size={16} className={styles.linkIcon} />
                 <input
                   type="text"
                   value={platform.url}
