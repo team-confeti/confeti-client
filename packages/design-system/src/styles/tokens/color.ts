@@ -1,6 +1,7 @@
 export const color = {
   // gray scale
   white: '#FFFFFF',
+  gray50: '#FAFBFC',
   gray100: '#F9FAFE',
   gray200: '#EFF0F4',
   gray300: '#D9DADD',
@@ -21,6 +22,28 @@ export const color = {
   confeti_lime3: '#92C015',
   confeti_red: '#FA4250',
   confeti_purple: '#9747FF',
+
+  // admin colors
+  slate900: '#0F172B',
+  slate700: '#1D293D',
+  slate600: '#62748E',
+  slate400: '#90A1B9',
+  blue500: '#3B82F6',
+  blue550: '#155DFC',
+  blue600: '#2563EB',
+  blue700: '#1D4ED8',
+  emerald500: '#10B981',
+  emerald600: '#059669',
+  purple500: '#A855F7',
+  purple600: '#9333EA',
+  yellow500: '#EAB308',
+  yellow600: '#CA8A04',
+  yellow400: '#F0B100',
+  red500: '#EF4444',
+  red550: '#FB2C36',
+  red600: '#DC2626',
+  purple400: '#AD46FF',
+  emerald400: '#00BC7D',
 
   // opacity
   black_op: 'rgba(18, 18, 18, 0.50)',
