@@ -24,7 +24,7 @@ const PAGE_TITLES: Record<string, string> = {
   '/concert': '콘서트 목록',
   '/ticketing-platform': '예매처 관리',
   '/performance-editor': '공연 등록/수정',
-  '/performances': '공연 상세',
+  '/performances': '공연 정보 수정',
 };
 
 const Layout = () => {

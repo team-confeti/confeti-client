@@ -57,7 +57,7 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
     },
     {
       name: '대기 목록',
-      path: '/pending',
+      path: PATH.PENDING,
       icon: <ListMusic size={20} />,
       badge: pendingCount,
     },
@@ -65,13 +65,24 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
     { name: '콘서트', path: PATH.CONCERT, icon: <Music size={20} /> },
     {
       name: '예매처 관리',
-      path: '/ticketing-platform',
+      path: PATH.TICKETING_PLATFORM,
       icon: <Ticket size={20} />,
     },
   ];
 
   const renderMenuLink = (item: MenuItem) => {
-    const isActive = location.pathname.startsWith(item.path);
+    const { pathname, search } = location;
+    let isActive = pathname.startsWith(item.path);
+
+    if (!isActive && pathname.startsWith('/performances/')) {
+      const type = new URLSearchParams(search).get('type');
+      if (type === 'festival' && item.path === PATH.FESTIVAL) isActive = true;
+      if (type === 'concert' && item.path === PATH.CONCERT) isActive = true;
+    }
+
+    if (!isActive && pathname.startsWith('/performance-editor/')) {
+      if (item.path === '/pending') isActive = true;
+    }
 
     return (
       <Link

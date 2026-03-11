@@ -65,9 +65,16 @@ export const typeBadge = style({
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
   color: themeVars.color.white,
-  backgroundColor: themeVars.color.purple400,
   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1)',
   lineHeight: '1.6rem',
+});
+
+export const typeBadgeFestival = style({
+  backgroundColor: themeVars.color.purple400,
+});
+
+export const typeBadgeConcert = style({
+  backgroundColor: '#00BC7D',
 });
 
 export const pastOverlay = style({

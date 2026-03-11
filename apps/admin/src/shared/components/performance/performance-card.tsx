@@ -24,7 +24,9 @@ const PerformanceCard = ({ data, onClick, isPast = false }: Props) => {
             <Music size={48} />
           </div>
         )}
-        <div className={styles.typeBadge}>
+        <div
+          className={`${styles.typeBadge} ${data.type === 'Festival' ? styles.typeBadgeFestival : styles.typeBadgeConcert}`}
+        >
           {data.type === 'Festival' ? '페스티벌' : '콘서트'}
         </div>
         {isPast && (
