@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -51,6 +51,33 @@ export const titleSection = style({
   flex: 1,
 });
 
+export const titleRow = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  gap: '0.4rem',
+});
+export const typeBadge = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.6rem',
+  ...themeVars.fontStyles.body5_m_12,
+  color: themeVars.color.gray500,
+});
+
+export const concertDot = style({
+  width: '0.8rem',
+  height: '0.8rem',
+  borderRadius: '50%',
+  backgroundColor: themeVars.color.emerald500,
+});
+
+export const festivalDot = style({
+  width: '0.8rem',
+  height: '0.8rem',
+  borderRadius: '50%',
+  backgroundColor: themeVars.color.purple500,
+});
 export const pageTitle = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
@@ -118,6 +145,19 @@ export const saveButton = style({
   ':hover': {
     backgroundColor: themeVars.color.gray800,
   },
+  ':disabled': {
+    opacity: 0.7,
+    cursor: 'not-allowed',
+  },
+});
+
+const spin = keyframes({
+  from: { transform: 'rotate(0deg)' },
+  to: { transform: 'rotate(360deg)' },
+});
+
+export const buttonSpinner = style({
+  animation: `${spin} 1s linear infinite`,
 });
 
 // Tabs

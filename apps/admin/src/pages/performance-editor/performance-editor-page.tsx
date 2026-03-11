@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   Calendar,
   FileText,
   Image,
+  Loader2,
   Save,
   Trash2,
   Users,
@@ -29,6 +30,7 @@ import { mapConcertDetailToExistingPerformance } from '@shared/models/concert';
 import { mapDraftDetailToExistingPerformance } from '@shared/models/draft';
 import { mapFestivalDetailToExistingPerformance } from '@shared/models/festival';
 import { fileToBase64, generateDateRange } from '@shared/utils';
+import { adminToast } from '@shared/utils/admin-toast';
 
 import { BasicInfoTab } from './components/basic-info-tab';
 import { DetailInfoTab } from './components/detail-info-tab';
@@ -48,7 +50,7 @@ import * as styles from './performance-editor-page.css';
 
 type TabKey = 'basic' | 'detail' | 'lineup' | 'timetable';
 
-const PerformanceEditorPage = () => {
+const PerformanceEditorContent = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -71,46 +73,83 @@ const PerformanceEditorPage = () => {
   );
 
   const queryClient = useQueryClient();
-  const { mutate: postMutate } = useMutation({
+  const { mutate: postMutate, isPending: isPostPending } = useMutation({
     ...DRAFT_MUTATION_OPTIONS.POST_DRAFT(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
-      navigate(PATH.PENDING);
+      adminToast.success({ text: '공연이 저장되었습니다.' });
+      navigateToList();
+    },
+    onError: (error) => {
+      adminToast.error({
+        text: error.message || '저장에 실패했습니다.',
+      });
     },
   });
-  const { mutate: patchMutate } = useMutation({
+  const { mutate: patchMutate, isPending: isPatchPending } = useMutation({
     ...DRAFT_MUTATION_OPTIONS.PATCH_DRAFT(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
-      navigate(PATH.PENDING);
+      adminToast.success({ text: '공연이 저장되었습니다.' });
+      navigateToList();
+    },
+    onError: (error) => {
+      adminToast.error({
+        text: error.message || '저장에 실패했습니다.',
+      });
     },
   });
   const { mutate: deleteMutate } = useMutation({
     ...DRAFT_MUTATION_OPTIONS.DELETE_DRAFT(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
-      navigate(PATH.PENDING);
+      navigateToList();
     },
   });
 
-  const { mutate: putConcertMutate } = useMutation({
-    ...CONCERT_MUTATION_OPTIONS.PUT_CONCERT(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: CONCERT_QUERY_KEY.ALL });
-      navigate(PATH.CONCERT);
+  const { mutate: putConcertMutate, isPending: isConcertPending } = useMutation(
+    {
+      ...CONCERT_MUTATION_OPTIONS.PUT_CONCERT(),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: CONCERT_QUERY_KEY.ALL });
+        adminToast.success({ text: '콘서트가 저장되었습니다.' });
+        navigate(PATH.CONCERT);
+      },
+      onError: (error) => {
+        adminToast.error({
+          text: error.message || '저장에 실패했습니다.',
+        });
+      },
     },
-  });
-  const { mutate: putFestivalMutate } = useMutation({
-    ...FESTIVAL_MUTATION_OPTIONS.PUT_FESTIVAL(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: FESTIVAL_QUERY_KEY.ALL });
-      navigate(PATH.FESTIVAL);
-    },
-  });
+  );
+  const { mutate: putFestivalMutate, isPending: isFestivalPending } =
+    useMutation({
+      ...FESTIVAL_MUTATION_OPTIONS.PUT_FESTIVAL(),
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: FESTIVAL_QUERY_KEY.ALL,
+        });
+        adminToast.success({ text: '페스티벌이 저장되었습니다.' });
+        navigate(PATH.FESTIVAL);
+      },
+      onError: (error) => {
+        adminToast.error({
+          text: error.message || '저장에 실패했습니다.',
+        });
+      },
+    });
+
+  const isSaving =
+    isPostPending || isPatchPending || isConcertPending || isFestivalPending;
+  const isSubmittingRef = useRef(false);
   const existingPerformance: ExistingPerformance | null = (() => {
     if (isNew) return null;
     if (draftData) return mapDraftDetailToExistingPerformance(draftData);
-    if (concertData) return mapConcertDetailToExistingPerformance(concertData);
+    if (concertData)
+      return mapConcertDetailToExistingPerformance(
+        concertData,
+        ticketVendorData?.ticketVendors,
+      );
     if (festivalData)
       return mapFestivalDetailToExistingPerformance(festivalData);
     return null;
@@ -202,7 +241,7 @@ const PerformanceEditorPage = () => {
           [`${field}Preview`]: base64,
         }));
       } catch {
-        alert('파일 업로드에 실패했습니다.');
+        adminToast.error({ text: '파일 업로드에 실패했습니다.' });
       }
     } else {
       setFormData((prev) => ({
@@ -214,76 +253,109 @@ const PerformanceEditorPage = () => {
   };
 
   const handleSubmit = () => {
+    if (isSubmittingRef.current || isSaving) return;
+    isSubmittingRef.current = true;
+
+    const resetRef = () => {
+      isSubmittingRef.current = false;
+    };
     if (performanceType === 'concert') {
-      putConcertMutate({
-        request: {
-          concertId: Number(id),
-          title: formData.title,
-          subtitle: formData.subtitle,
-          startAt: formData.startDate,
-          endAt: formData.endDate,
-          area: formData.venueName,
-          address: formData.venueAddress,
-          reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
-          ageRating: formData.ageRating,
-          time: `${formData.durationMinutes}분`,
-          price: formData.priceGrades
-            .map((g) => `${g.grade} ${g.price}`)
-            .join(' / '),
-          artistIds: formData.artists.map((a) => String(a.id)),
-          reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
-            ticketVendorId: p.id,
-            reservationUrl: p.url,
-          })),
+      if (!formData.mainPoster) {
+        adminToast.error({ text: '포스터 이미지를 등록해주세요.' });
+        resetRef();
+        return;
+      }
+      putConcertMutate(
+        {
+          request: {
+            concertId: Number(id),
+            title: formData.title,
+            subtitle: formData.subtitle,
+            startAt: formData.startDate,
+            endAt: formData.endDate,
+            area: formData.venueName,
+            address: formData.venueAddress,
+            reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+            ageRating: formData.ageRating,
+            time: `${formData.durationMinutes}분`,
+            price: formData.priceGrades
+              .map((g) => `${g.grade} ${g.price}`)
+              .join(' / '),
+            artistIds: formData.artists.map((a) => String(a.id)),
+            reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
+              ticketVendorId: p.id,
+              reservationUrl: p.url,
+            })),
+          },
+          poster: formData.mainPoster,
         },
-        poster: formData.mainPoster,
-      });
+        { onSettled: resetRef },
+      );
     } else if (performanceType === 'festival') {
-      putFestivalMutate({
-        request: {
-          festivalId: Number(id),
-          title: formData.title,
-          subtitle: formData.subtitle,
-          startAt: formData.startDate,
-          endAt: formData.endDate,
-          area: formData.venueName,
-          address: formData.venueAddress,
-          reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
-          ageRating: formData.ageRating,
-          time: `${formData.durationMinutes}분`,
-          price: formData.priceGrades
-            .map((g) => `${g.grade} ${g.price}`)
-            .join(' / '),
-          reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
-            ticketVendorId: p.id,
-            reservationUrl: p.url,
-          })),
-          artistIds: formData.artists.map((a) => String(a.id)),
+      if (!formData.mainPoster) {
+        adminToast.error({ text: '포스터 이미지를 등록해주세요.' });
+        resetRef();
+        return;
+      }
+      putFestivalMutate(
+        {
+          request: {
+            festivalId: Number(id),
+            title: formData.title,
+            subtitle: formData.subtitle,
+            startAt: formData.startDate,
+            endAt: formData.endDate,
+            area: formData.venueName,
+            address: formData.venueAddress,
+            reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+            ageRating: formData.ageRating,
+            time: `${formData.durationMinutes}분`,
+            price: formData.priceGrades
+              .map((g) => `${g.grade} ${g.price}`)
+              .join(' / '),
+            reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
+              ticketVendorId: p.id,
+              reservationUrl: p.url,
+            })),
+            artistIds: formData.artists.map((a) => String(a.id)),
+          },
+          poster: formData.mainPoster,
+          logo: formData.logo ?? undefined,
         },
-        poster: formData.mainPoster,
-        logo: formData.logo ?? undefined,
-      });
+        { onSettled: resetRef },
+      );
     } else {
       const performanceData = JSON.stringify(formData);
       if (isNew) {
-        postMutate({
-          performanceType:
-            formData.type === 'Festival' ? 'FESTIVAL' : 'CONCERT',
-          performanceData,
-          posterImage: formData.mainPoster,
-          ...(formData.logo && { logoImage: formData.logo }),
-        });
-      } else {
-        patchMutate({
-          draftId: Number(id),
-          request: {
+        if (!formData.mainPoster) {
+          adminToast.error({ text: '포스터 이미지를 등록해주세요.' });
+          resetRef();
+          return;
+        }
+        postMutate(
+          {
+            performanceType:
+              formData.type === 'Festival' ? 'FESTIVAL' : 'CONCERT',
             performanceData,
-            ...(formData.mainPoster && {
-              posterImage: formData.mainPoster,
-            }),
+            posterImage: formData.mainPoster,
             ...(formData.logo && { logoImage: formData.logo }),
           },
-        });
+          { onSettled: resetRef },
+        );
+      } else {
+        patchMutate(
+          {
+            draftId: Number(id),
+            request: {
+              performanceData,
+              ...(formData.mainPoster && {
+                posterImage: formData.mainPoster,
+              }),
+              ...(formData.logo && { logoImage: formData.logo }),
+            },
+          },
+          { onSettled: resetRef },
+        );
       }
     }
   };
@@ -292,16 +364,36 @@ const PerformanceEditorPage = () => {
     deleteMutate(Number(id));
   };
 
+  const navigateToList = () => {
+    if (performanceType === 'concert') {
+      navigate(PATH.CONCERT);
+    } else if (performanceType === 'festival') {
+      navigate(PATH.FESTIVAL);
+    } else {
+      navigate(PATH.PENDING);
+    }
+  };
   const handleClose = () => {
-    navigate(PATH.PENDING);
+    navigateToList();
   };
 
+  const isConcert = formData.type === 'Concert';
   const tabs = [
     { key: 'basic' as TabKey, label: '기본 정보', icon: FileText },
     { key: 'detail' as TabKey, label: '상세 정보 & 미디어', icon: Image },
-    { key: 'lineup' as TabKey, label: '라인업 & 스테이지', icon: Users },
-    { key: 'timetable' as TabKey, label: '타임테이블', icon: Calendar },
+    {
+      key: 'lineup' as TabKey,
+      label: isConcert ? '라인업' : '라인업 & 스테이지',
+      icon: Users,
+    },
+    ...(isConcert
+      ? []
+      : [{ key: 'timetable' as TabKey, label: '타임테이블', icon: Calendar }]),
   ];
+
+  if (isConcert && activeTab === 'timetable') {
+    setActiveTab('basic');
+  }
 
   return (
     <div className={styles.container}>
@@ -312,16 +404,40 @@ const PerformanceEditorPage = () => {
             <X size={20} />
           </button>
           <div className={styles.titleSection}>
-            <h1 className={styles.pageTitle}>새 공연 등록</h1>
+            <div className={styles.titleRow}>
+              <h1 className={styles.pageTitle}>
+                {isNew ? '새 공연 등록' : formData.title || '공연 정보 수정'}
+              </h1>
+              {!isNew && performanceType && (
+                <span className={styles.typeBadge}>
+                  <span
+                    className={
+                      performanceType === 'festival'
+                        ? styles.festivalDot
+                        : styles.concertDot
+                    }
+                  />
+                  {performanceType === 'festival' ? '페스티벌' : '콘서트'}
+                </span>
+              )}
+            </div>
           </div>
           <div className={styles.headerActions}>
             <button onClick={handleDelete} className={styles.deleteButton}>
               <Trash2 size={16} />
               삭제
             </button>
-            <button onClick={handleSubmit} className={styles.saveButton}>
-              <Save size={18} />
-              저장 및 게시
+            <button
+              onClick={handleSubmit}
+              className={styles.saveButton}
+              disabled={isSaving}
+            >
+              {isSaving ? (
+                <Loader2 size={18} className={styles.buttonSpinner} />
+              ) : (
+                <Save size={18} />
+              )}
+              {isSaving ? '저장 중...' : '저장 및 게시'}
             </button>
           </div>
         </div>
@@ -385,6 +501,7 @@ const PerformanceEditorPage = () => {
               handleRemoveArtist={handleRemoveArtist}
               handleArtistSearchChange={handleArtistSearchChange}
               setActiveTab={setActiveTab}
+              isConcert={isConcert}
             />
           )}
           {activeTab === 'timetable' && (
@@ -563,4 +680,8 @@ const PerformanceEditorPage = () => {
   );
 };
 
+const PerformanceEditorPage = () => {
+  const { id } = useParams();
+  return <PerformanceEditorContent key={id} />;
+};
 export default PerformanceEditorPage;

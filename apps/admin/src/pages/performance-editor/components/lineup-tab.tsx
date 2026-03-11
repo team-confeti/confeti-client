@@ -22,6 +22,7 @@ interface LineupTabProps {
   handleRemoveArtist: (index: number) => void;
   handleArtistSearchChange: (value: string) => void;
   setActiveTab: (tab: 'basic' | 'detail' | 'lineup' | 'timetable') => void;
+  isConcert: boolean;
 }
 
 export const LineupTab = ({
@@ -36,6 +37,7 @@ export const LineupTab = ({
   handleRemoveArtist,
   handleArtistSearchChange,
   setActiveTab,
+  isConcert,
 }: LineupTabProps) => {
   const [debouncedSearch, setDebouncedSearch] = useState(formData.artistSearch);
   useEffect(() => {
@@ -58,40 +60,42 @@ export const LineupTab = ({
   return (
     <>
       {/* 스테이지 관리 */}
-      <FormSection
-        title="스테이지 관리"
-        description="페스티벌에서 운영되는 스테이지를 정의합니다. 타임테이블에서 사용됩니다."
-      >
-        <div className={styles.stageList}>
-          {formData.stages.map((stage, index) => (
-            <div key={index} className={styles.stageRow}>
-              <div className={styles.stageNumber}>{index + 1}</div>
-              <input
-                type="text"
-                value={stage.name}
-                onChange={(e) => handleStageChange(index, e.target.value)}
-                placeholder="스테이지 이름"
-                className={styles.stageInput}
-              />
-              <button
-                onClick={() => handleRemoveStage(index)}
-                className={styles.stageDeleteButton}
-              >
-                <Trash2 size={16} />
-              </button>
-            </div>
-          ))}
-        </div>
-        <Button
-          onClick={handleAddStage}
-          variant="secondary"
-          size="medium"
-          leftIcon={<Plus size={16} />}
-          className={styles.addButton}
+      {!isConcert && (
+        <FormSection
+          title="스테이지 관리"
+          description="페스티벌에서 운영되는 스테이지를 정의합니다. 타임테이블에서 사용됩니다."
         >
-          스테이지 추가
-        </Button>
-      </FormSection>
+          <div className={styles.stageList}>
+            {formData.stages.map((stage, index) => (
+              <div key={index} className={styles.stageRow}>
+                <div className={styles.stageNumber}>{index + 1}</div>
+                <input
+                  type="text"
+                  value={stage.name}
+                  onChange={(e) => handleStageChange(index, e.target.value)}
+                  placeholder="스테이지 이름"
+                  className={styles.stageInput}
+                />
+                <button
+                  onClick={() => handleRemoveStage(index)}
+                  className={styles.stageDeleteButton}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            ))}
+          </div>
+          <Button
+            onClick={handleAddStage}
+            variant="secondary"
+            size="medium"
+            leftIcon={<Plus size={16} />}
+            className={styles.addButton}
+          >
+            스테이지 추가
+          </Button>
+        </FormSection>
+      )}
 
       {/* 아티스트 라인업 */}
       <FormSection title="아티스트 라인업">
@@ -167,17 +171,19 @@ export const LineupTab = ({
       </FormSection>
 
       {/* 타임테이블 편집 이동 */}
-      <div className={styles.timetableNavigation}>
-        <Button
-          onClick={() => setActiveTab('timetable')}
-          variant="primary"
-          size="large"
-          rightIcon={<ArrowRight size={18} />}
-          className={styles.timetableNavigationButton}
-        >
-          타임테이블 편집으로 이동
-        </Button>
-      </div>
+      {!isConcert && (
+        <div className={styles.timetableNavigation}>
+          <Button
+            onClick={() => setActiveTab('timetable')}
+            variant="primary"
+            size="large"
+            rightIcon={<ArrowRight size={18} />}
+            className={styles.timetableNavigationButton}
+          >
+            타임테이블 편집으로 이동
+          </Button>
+        </div>
+      )}
     </>
   );
 };
