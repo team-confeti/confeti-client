@@ -1,16 +1,96 @@
-import { Outlet } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Outlet, useLocation } from 'react-router-dom';
 
+import { getAccessToken } from '@confeti/core/auth';
+
+import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
+import Deferred from '@shared/components/deferred/deferred';
+import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu';
+import Header from '@shared/components/layout/header';
+import LoginRequired from '@shared/components/layout/login-required';
+import Loading from '@shared/components/loading/loading';
 
 import * as styles from './layout.css';
 
+const COLLAPSE_BREAKPOINT = 1024;
+
+const PAGE_TITLES: Record<string, string> = {
+  '/dashboard': '대시보드',
+  '/pending': '대기 목록',
+  '/festival': '페스티벌 목록',
+  '/concert': '콘서트 목록',
+  '/ticketing-platform': '예매처 관리',
+  '/performance-editor': '공연 등록/수정',
+  '/performances': '공연 정보 수정',
+};
+
 const Layout = () => {
+  const accessToken = getAccessToken();
+
+  const [sidebarExpanded, setSidebarExpanded] = useState(
+    () => window.innerWidth >= COLLAPSE_BREAKPOINT,
+  );
+  const [searchQuery, setSearchQuery] = useState('');
+  const location = useLocation();
+  const { data } = useQuery({
+    ...DRAFT_QUERY_OPTIONS.LIST(),
+    throwOnError: false,
+    enabled: !!accessToken,
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia(`(min-width: ${COLLAPSE_BREAKPOINT}px)`);
+    const handler = (e: MediaQueryListEvent) => setSidebarExpanded(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  if (!accessToken) {
+    return <LoginRequired />;
+  }
+
+  const pageTitle =
+    PAGE_TITLES[location.pathname] ||
+    PAGE_TITLES[
+      Object.keys(PAGE_TITLES).find((key) =>
+        location.pathname.startsWith(key),
+      ) || ''
+    ] ||
+    '관리자';
+
   return (
     <div className={styles.wrapper}>
-      <AsideNavigationMenu />
-      <main className={styles.content}>
-        <Outlet />
-      </main>
+      <AsideNavigationMenu
+        isExpanded={sidebarExpanded}
+        pendingCount={data?.drafts?.length ?? 0}
+      />
+      <div className={styles.mainContainer}>
+        <Header
+          title={pageTitle}
+          onMenuClick={() => setSidebarExpanded(!sidebarExpanded)}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+        />
+        <main className={styles.content}>
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            resetKeys={[location.pathname]}
+          >
+            <Suspense
+              fallback={
+                <Deferred>
+                  <Loading />
+                </Deferred>
+              }
+            >
+              <Outlet context={{ searchQuery }} />
+            </Suspense>
+          </ErrorBoundary>
+        </main>
+      </div>
     </div>
   );
 };
