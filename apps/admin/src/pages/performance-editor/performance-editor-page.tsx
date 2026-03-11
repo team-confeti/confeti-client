@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Calendar, FileText, Image, Trash2, Users, X } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { DRAFT_MUTATION_OPTIONS } from '@shared/apis/draft-mutations';
+import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
+import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
 import { Input, Select } from '@shared/components/common';
 import { PATH } from '@shared/constants';
-import { PENDING_ITEMS } from '@shared/mocks';
+import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
+import { mapDraftDetailToExistingPerformance } from '@shared/models/draft';
 import { fileToBase64, generateDateRange } from '@shared/utils';
 
 import { BasicInfoTab } from './components/basic-info-tab';
@@ -30,9 +35,39 @@ const PerformanceEditorPage = () => {
   const navigate = useNavigate();
   const isNew = id === 'new';
 
-  const existingPerformance: ExistingPerformance | null = isNew
-    ? null
-    : PENDING_ITEMS.find((item) => item.id === Number(id)) || null;
+  const { data: draftData } = useQuery({
+    ...DRAFT_QUERY_OPTIONS.DETAIL(Number(id)),
+    enabled: !isNew,
+  });
+  const { data: ticketVendorData } = useQuery(
+    TICKET_VENDOR_QUERY_OPTIONS.LIST(),
+  );
+
+  const queryClient = useQueryClient();
+  const { mutate: postMutate } = useMutation({
+    ...DRAFT_MUTATION_OPTIONS.POST_DRAFT(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      navigate(PATH.PENDING);
+    },
+  });
+  const { mutate: patchMutate } = useMutation({
+    ...DRAFT_MUTATION_OPTIONS.PATCH_DRAFT(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      navigate(PATH.PENDING);
+    },
+  });
+  const { mutate: deleteMutate } = useMutation({
+    ...DRAFT_MUTATION_OPTIONS.DELETE_DRAFT(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      navigate(PATH.PENDING);
+    },
+  });
+
+  const existingPerformance: ExistingPerformance | null =
+    !isNew && draftData ? mapDraftDetailToExistingPerformance(draftData) : null;
 
   const [activeTab, setActiveTab] = useState<TabKey>('basic');
   const [selectedDay, setSelectedDay] = useState<string>('');
@@ -132,13 +167,29 @@ const PerformanceEditorPage = () => {
   };
 
   const handleSubmit = () => {
-    console.log('Submitting:', formData);
-    navigate(PATH.PENDING);
+    if (!formData.mainPoster) return;
+    const performanceData = JSON.stringify(formData);
+    if (isNew) {
+      postMutate({
+        performanceType: formData.type === 'Festival' ? 'FESTIVAL' : 'CONCERT',
+        performanceData,
+        posterImage: formData.mainPoster,
+        ...(formData.logo && { logoImage: formData.logo }),
+      });
+    } else {
+      patchMutate({
+        draftId: Number(id),
+        request: {
+          performanceData,
+          ...(formData.mainPoster && { posterImage: formData.mainPoster }),
+          ...(formData.logo && { logoImage: formData.logo }),
+        },
+      });
+    }
   };
 
   const handleDelete = () => {
-    console.log('Deleting performance');
-    navigate(PATH.PENDING);
+    deleteMutate(Number(id));
   };
 
   const handleClose = () => {
@@ -198,6 +249,7 @@ const PerformanceEditorPage = () => {
           {activeTab === 'basic' && (
             <BasicInfoTab
               formData={formData}
+              ticketVendors={ticketVendorData?.ticketVendors ?? []}
               handleInputChange={handleInputChange}
               handleAddBookingSchedule={handleAddBookingSchedule}
               handleRemoveBookingSchedule={handleRemoveBookingSchedule}

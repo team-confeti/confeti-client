@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { ArrowRight, Plus, Search, Trash2, X } from 'lucide-react';
 
+import { ARTIST_QUERY_OPTIONS } from '@shared/apis/artist-queries';
 import { Button, EmptyState, FormSection } from '@shared/components/common';
-import { ARTISTS } from '@shared/mocks';
+import { mapArtistSearchToFormArtist } from '@shared/models/artist';
 
 import type { PerformanceFormData } from '../types';
 
@@ -34,13 +37,23 @@ export const LineupTab = ({
   handleArtistSearchChange,
   setActiveTab,
 }: LineupTabProps) => {
-  // 검색어로 필터링된 아티스트 목록 (이미 추가된 아티스트 제외)
-  const filteredArtists = ARTISTS.filter((artist) => {
-    const searchLower = formData.artistSearch.toLowerCase();
-    const isNotAdded = !formData.artists.find((a) => a.id === artist.id);
-    const matchesSearch = artist.name.toLowerCase().includes(searchLower);
-    return isNotAdded && matchesSearch;
-  });
+  const [debouncedSearch, setDebouncedSearch] = useState(formData.artistSearch);
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setDebouncedSearch(formData.artistSearch),
+      300,
+    );
+    return () => clearTimeout(timer);
+  }, [formData.artistSearch]);
+  const { data: artistSearchData } = useQuery(
+    ARTIST_QUERY_OPTIONS.SEARCH(debouncedSearch),
+  );
+
+  const apiArtists =
+    artistSearchData?.artists.map(mapArtistSearchToFormArtist) ?? [];
+  const filteredArtists = apiArtists.filter(
+    (artist) => !formData.artists.find((a) => a.id === artist.id),
+  );
 
   return (
     <>

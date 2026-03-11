@@ -1,9 +1,16 @@
 import { useState } from 'react';
-import { Plus, Ticket, Upload, X } from 'lucide-react';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { Plus, Ticket, Trash2, Upload, X } from 'lucide-react';
 
+import { TICKET_VENDOR_MUTATION_OPTIONS } from '@shared/apis/ticket-vendor-mutations';
+import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
 import { Button, EmptyState } from '@shared/components/common';
-import { TICKETING_PLATFORMS } from '@shared/mocks';
-import type { TicketingPlatform } from '@shared/types';
+import { TICKET_VENDOR_QUERY_KEY } from '@shared/constants/query-key';
+import type { TicketVendorResponse } from '@shared/types/api';
 import { fileToBase64, validateLogoFile } from '@shared/utils';
 
 import * as styles from './ticketing-platform-page.css';
@@ -11,12 +18,17 @@ import * as styles from './ticketing-platform-page.css';
 type FormMode = 'create' | 'edit';
 
 const TicketingPlatformPage = () => {
+  const queryClient = useQueryClient();
+  const { data } = useSuspenseQuery(TICKET_VENDOR_QUERY_OPTIONS.LIST());
+  const ticketVendors = data.ticketVendors;
+
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<FormMode>('create');
   const [editingTicketingPlatform, setEditingTicketingPlatform] =
-    useState<TicketingPlatform | null>(null);
+    useState<TicketVendorResponse | null>(null);
   const [ticketingPlatformName, setTicketingPlatformName] = useState('');
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
 
   const handleOpenCreateForm = () => {
     setIsFormOpen(true);
@@ -24,14 +36,16 @@ const TicketingPlatformPage = () => {
     setEditingTicketingPlatform(null);
     setTicketingPlatformName('');
     setLogoPreview(null);
+    setLogoFile(null);
   };
 
-  const handleOpenEditForm = (ticketingPlatform: TicketingPlatform) => {
+  const handleOpenEditForm = (ticketVendor: TicketVendorResponse) => {
     setIsFormOpen(true);
     setFormMode('edit');
-    setEditingTicketingPlatform(ticketingPlatform);
-    setTicketingPlatformName(ticketingPlatform.name);
-    setLogoPreview(ticketingPlatform.logoUrl || null);
+    setEditingTicketingPlatform(ticketVendor);
+    setTicketingPlatformName(ticketVendor.name);
+    setLogoPreview(ticketVendor.logoPath || null);
+    setLogoFile(null);
   };
 
   const handleCloseForm = () => {
@@ -40,6 +54,23 @@ const TicketingPlatformPage = () => {
     setEditingTicketingPlatform(null);
     setTicketingPlatformName('');
     setLogoPreview(null);
+    setLogoFile(null);
+  };
+
+  const { mutate: postMutate } = useMutation(
+    TICKET_VENDOR_MUTATION_OPTIONS.POST_TICKET_VENDOR(),
+  );
+
+  const { mutate: patchMutate } = useMutation(
+    TICKET_VENDOR_MUTATION_OPTIONS.PATCH_TICKET_VENDOR(),
+  );
+
+  const { mutate: deleteMutate } = useMutation(
+    TICKET_VENDOR_MUTATION_OPTIONS.DELETE_TICKET_VENDOR(),
+  );
+
+  const invalidateTicketVendors = () => {
+    queryClient.invalidateQueries({ queryKey: TICKET_VENDOR_QUERY_KEY.ALL });
   };
 
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +88,7 @@ const TicketingPlatformPage = () => {
     try {
       const base64 = await fileToBase64(file);
       setLogoPreview(base64);
+      setLogoFile(file);
     } catch {
       alert('파일 업로드에 실패했습니다.');
     }
@@ -65,22 +97,47 @@ const TicketingPlatformPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formMode === 'create') {
-      console.log('Creating ticketing platform:', {
-        name: ticketingPlatformName,
-        logo: logoPreview,
-      });
+      if (!logoFile) {
+        alert('로고 이미지를 업로드해주세요.');
+        return;
+      }
+      postMutate(
+        { name: ticketingPlatformName, logoImage: logoFile },
+        {
+          onSuccess: () => {
+            invalidateTicketVendors();
+            handleCloseForm();
+          },
+        },
+      );
     } else {
-      console.log('Updating ticketing platform:', {
-        id: editingTicketingPlatform?.id,
-        name: ticketingPlatformName,
-        logo: logoPreview,
-      });
+      if (!editingTicketingPlatform) return;
+      patchMutate(
+        {
+          ticketVendorId: editingTicketingPlatform.id,
+          request: {
+            name: ticketingPlatformName,
+            ...(logoFile && { logoImage: logoFile }),
+          },
+        },
+        {
+          onSuccess: () => {
+            invalidateTicketVendors();
+            handleCloseForm();
+          },
+        },
+      );
     }
-    handleCloseForm();
+  };
+
+  const handleDelete = (ticketVendorId: number) => {
+    deleteMutate(ticketVendorId, {
+      onSuccess: invalidateTicketVendors,
+    });
   };
 
   const handleTicketingPlatformDoubleClick = (
-    ticketingPlatform: TicketingPlatform,
+    ticketVendor: TicketVendorResponse,
   ) => {
     // 추가 폼이 열려있으면 입력 정보만 초기화하고 폼 닫기
     if (isFormOpen && formMode === 'create') {
@@ -88,7 +145,7 @@ const TicketingPlatformPage = () => {
       return;
     }
     // 편집 폼이 열려있거나 폼이 닫혀있으면 편집 폼 열기
-    handleOpenEditForm(ticketingPlatform);
+    handleOpenEditForm(ticketVendor);
   };
 
   return (
@@ -109,7 +166,7 @@ const TicketingPlatformPage = () => {
         </Button>
       </div>
 
-      {TICKETING_PLATFORMS.length === 0 && !isFormOpen ? (
+      {ticketVendors.length === 0 && !isFormOpen ? (
         <EmptyState
           icon={<Ticket size={48} />}
           title="등록된 예매처가 없습니다."
@@ -171,26 +228,36 @@ const TicketingPlatformPage = () => {
               </form>
             </div>
           )}
-          {TICKETING_PLATFORMS.map((ticketingPlatform) => (
+          {ticketVendors.map((ticketVendor) => (
             <div
-              key={ticketingPlatform.id}
+              key={ticketVendor.id}
               onDoubleClick={() =>
-                handleTicketingPlatformDoubleClick(ticketingPlatform)
+                handleTicketingPlatformDoubleClick(ticketVendor)
               }
               className={styles.card}
             >
               <div className={styles.cardLogo}>
-                {ticketingPlatform.logoUrl ? (
+                {ticketVendor.logoPath ? (
                   <img
-                    src={ticketingPlatform.logoUrl}
-                    alt={ticketingPlatform.name}
+                    src={ticketVendor.logoPath}
+                    alt={ticketVendor.name}
                     className={styles.cardLogoImage}
                   />
                 ) : (
                   <Ticket size={32} />
                 )}
               </div>
-              <h3 className={styles.cardTitle}>{ticketingPlatform.name}</h3>
+              <h3 className={styles.cardTitle}>{ticketVendor.name}</h3>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(ticketVendor.id);
+                }}
+                className={styles.closeButton}
+                type="button"
+              >
+                <Trash2 size={16} />
+              </button>
             </div>
           ))}
         </div>

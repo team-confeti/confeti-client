@@ -7,7 +7,7 @@ import {
   Input,
   Select,
 } from '@shared/components/common';
-import { TICKETING_PLATFORMS } from '@shared/mocks';
+import type { TicketVendorResponse } from '@shared/types/api';
 
 import type { PerformanceFormData } from '../types';
 
@@ -15,6 +15,7 @@ import * as styles from './basic-info-tab.css';
 
 interface BasicInfoTabProps {
   formData: PerformanceFormData;
+  ticketVendors: TicketVendorResponse[];
   handleInputChange: (field: string, value: string | number) => void;
   handleAddBookingSchedule: () => void;
   handleRemoveBookingSchedule: (index: number) => void;
@@ -39,6 +40,7 @@ interface BasicInfoTabProps {
 
 export const BasicInfoTab = ({
   formData,
+  ticketVendors,
   handleInputChange,
   handleAddBookingSchedule,
   handleRemoveBookingSchedule,
@@ -233,7 +235,7 @@ export const BasicInfoTab = ({
           </span>
         </div>
         <div className={styles.ticketingPlatformPillList}>
-          {TICKETING_PLATFORMS.map((platform) => (
+          {ticketVendors.map((platform) => (
             <button
               key={platform.id}
               onClick={() =>
