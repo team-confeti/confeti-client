@@ -28,10 +28,10 @@ export const putConcert = async (
 ): Promise<PutAdminConcertResponse> => {
   const formData = new FormData();
   formData.append(
-    'concert',
+    'request',
     new Blob([JSON.stringify(request)], { type: 'application/json' }),
   );
-  formData.append('poster', poster);
+  formData.append('posterFile', poster);
 
   return put<PutAdminConcertResponse>(END_POINT.PUT_CONCERT, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },

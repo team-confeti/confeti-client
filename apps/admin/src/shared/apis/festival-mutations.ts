@@ -10,7 +10,7 @@ import {
 
 type PutFestivalParams = {
   request: PutAdminFestivalRequest;
-  poster?: File;
+  poster: File;
   logo?: File;
 };
 
@@ -25,16 +25,16 @@ export const FESTIVAL_MUTATION_OPTIONS = {
 
 export const putFestival = async (
   request: PutAdminFestivalRequest,
-  poster?: File,
+  poster: File,
   logo?: File,
 ): Promise<PutAdminFestivalResponse> => {
   const formData = new FormData();
   formData.append(
-    'festival',
+    'request',
     new Blob([JSON.stringify(request)], { type: 'application/json' }),
   );
-  if (poster) formData.append('poster', poster);
-  if (logo) formData.append('logo', logo);
+  formData.append('posterFile', poster);
+  if (logo) formData.append('logoFile', logo);
 
   return put<PutAdminFestivalResponse>(END_POINT.PUT_FESTIVAL, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
