@@ -1,7 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { TICKET_VENDOR_QUERY_KEY } from '@shared/constants/query-key';
@@ -18,8 +16,5 @@ export const TICKET_VENDOR_QUERY_OPTIONS = {
 
 export const getTicketVendorList =
   async (): Promise<TicketVendorListResponse> => {
-    const response = await get<BaseResponse<TicketVendorListResponse>>(
-      END_POINT.GET_TICKET_VENDORS,
-    );
-    return response.data;
+    return get<TicketVendorListResponse>(END_POINT.GET_TICKET_VENDORS);
   };

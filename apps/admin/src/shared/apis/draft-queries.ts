@@ -1,7 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
@@ -22,17 +20,11 @@ export const DRAFT_QUERY_OPTIONS = {
 };
 
 export const getDraftList = async (): Promise<DraftListResponse> => {
-  const response = await get<BaseResponse<DraftListResponse>>(
-    END_POINT.GET_DRAFTS,
-  );
-  return response.data;
+  return get<DraftListResponse>(END_POINT.GET_DRAFTS);
 };
 
 export const getDraftDetail = async (
   draftId: number,
 ): Promise<DraftDetailResponse> => {
-  const response = await get<BaseResponse<DraftDetailResponse>>(
-    END_POINT.GET_DRAFT_DETAIL(draftId),
-  );
-  return response.data;
+  return get<DraftDetailResponse>(END_POINT.GET_DRAFT_DETAIL(draftId));
 };

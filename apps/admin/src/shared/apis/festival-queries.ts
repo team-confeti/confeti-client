@@ -1,7 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { FESTIVAL_QUERY_KEY } from '@shared/constants/query-key';
@@ -25,17 +23,13 @@ export const FESTIVAL_QUERY_OPTIONS = {
 };
 
 export const getFestivalList = async (): Promise<AdminFestivalListResponse> => {
-  const response = await get<BaseResponse<AdminFestivalListResponse>>(
-    END_POINT.GET_FESTIVALS,
-  );
-  return response.data;
+  return get<AdminFestivalListResponse>(END_POINT.GET_FESTIVALS);
 };
 
 export const getFestivalDetail = async (
   festivalId: number,
 ): Promise<AdminFestivalDetailResponse> => {
-  const response = await get<BaseResponse<AdminFestivalDetailResponse>>(
+  return get<AdminFestivalDetailResponse>(
     END_POINT.GET_FESTIVAL_DETAIL(festivalId),
   );
-  return response.data;
 };

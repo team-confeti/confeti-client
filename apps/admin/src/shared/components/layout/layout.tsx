@@ -26,7 +26,10 @@ const Layout = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
-  const { data } = useQuery(DRAFT_QUERY_OPTIONS.LIST());
+  const { data } = useQuery({
+    ...DRAFT_QUERY_OPTIONS.LIST(),
+    throwOnError: false,
+  });
 
   const pageTitle =
     PAGE_TITLES[location.pathname] ||

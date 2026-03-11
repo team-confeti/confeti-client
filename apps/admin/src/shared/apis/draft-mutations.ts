@@ -1,7 +1,5 @@
 import { mutationOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { del, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { DRAFT_MUTATION_KEY } from '@shared/constants/mutation-key';
@@ -44,12 +42,9 @@ export const postDraft = async (
   formData.append('posterImage', request.posterImage);
   if (request.logoImage) formData.append('logoImage', request.logoImage);
 
-  const response = await post<BaseResponse<DraftResponse>>(
-    END_POINT.POST_DRAFT,
-    formData,
-    { headers: { 'Content-Type': 'multipart/form-data' } },
-  );
-  return response.data;
+  return post<DraftResponse>(END_POINT.POST_DRAFT, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const patchDraft = async (
@@ -65,14 +60,11 @@ export const patchDraft = async (
   if (request.posterImage) formData.append('posterImage', request.posterImage);
   if (request.logoImage) formData.append('logoImage', request.logoImage);
 
-  const response = await patch<BaseResponse<DraftResponse>>(
-    END_POINT.PATCH_DRAFT(draftId),
-    formData,
-    { headers: { 'Content-Type': 'multipart/form-data' } },
-  );
-  return response.data;
+  return patch<DraftResponse>(END_POINT.PATCH_DRAFT(draftId), formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const deleteDraft = async (draftId: number): Promise<void> => {
-  await del<BaseResponse<void>>(END_POINT.DELETE_DRAFT(draftId));
+  await del(END_POINT.DELETE_DRAFT(draftId));
 };

@@ -1,7 +1,5 @@
 import { mutationOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { put } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { CONCERT_MUTATION_KEY } from '@shared/constants/mutation-key';
@@ -35,10 +33,7 @@ export const putConcert = async (
   );
   formData.append('poster', poster);
 
-  const response = await put<BaseResponse<PutAdminConcertResponse>>(
-    END_POINT.PUT_CONCERT,
-    formData,
-    { headers: { 'Content-Type': 'multipart/form-data' } },
-  );
-  return response.data;
+  return put<PutAdminConcertResponse>(END_POINT.PUT_CONCERT, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };

@@ -1,7 +1,5 @@
 import { mutationOptions } from '@tanstack/react-query';
 
-import { BaseResponse } from '@confeti/core/http';
-
 import { del, patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { TICKET_VENDOR_MUTATION_KEY } from '@shared/constants/mutation-key';
@@ -44,12 +42,9 @@ export const postTicketVendor = async (
   formData.append('name', request.name);
   formData.append('logoImage', request.logoImage);
 
-  const response = await post<BaseResponse<TicketVendorResponse>>(
-    END_POINT.POST_TICKET_VENDOR,
-    formData,
-    { headers: { 'Content-Type': 'multipart/form-data' } },
-  );
-  return response.data;
+  return post<TicketVendorResponse>(END_POINT.POST_TICKET_VENDOR, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const patchTicketVendor = async (
@@ -60,16 +55,15 @@ export const patchTicketVendor = async (
   if (request.name) formData.append('name', request.name);
   if (request.logoImage) formData.append('logoImage', request.logoImage);
 
-  const response = await patch<BaseResponse<TicketVendorResponse>>(
+  return patch<TicketVendorResponse>(
     END_POINT.PATCH_TICKET_VENDOR(ticketVendorId),
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } },
   );
-  return response.data;
 };
 
 export const deleteTicketVendor = async (
   ticketVendorId: number,
 ): Promise<void> => {
-  await del<BaseResponse<void>>(END_POINT.DELETE_TICKET_VENDOR(ticketVendorId));
+  await del(END_POINT.DELETE_TICKET_VENDOR(ticketVendorId));
 };
