@@ -1,3 +1,4 @@
+// ===== Common =====
 export type BaseResponse<T> = {
   status: number;
   message: string;
@@ -9,119 +10,127 @@ export interface ErrorResponse {
   code?: number;
 }
 
-export type ArtistDTO = {
+// ===== Artist =====
+export type ArtistResponse = {
   artistId: string;
-};
-
-export type ReservationUrlResponseDTO = {
-  reservationUrl: string;
   name: string;
-  logoUrl: string;
+  artworkUrl: string;
 };
 
-export type ReservationUrlRequestDTO = {
-  reservationUrl: string;
+export type AdminArtistSearchResponse = {
+  id: string;
   name: string;
-  logoImg: File;
+  artworkUrl: string;
 };
 
-export type ConcertListDTO = {
-  concerts: {
-    concertId: number;
-    title: string;
-    subtitle: string;
-    startAt: string;
-    area: string;
-    reserveAt: string;
-  }[];
+export type AdminArtistSearchResponses = {
+  artists: AdminArtistSearchResponse[];
 };
 
-export type ConcertDetailDTO = {
-  concert: {
-    title: string;
-    subtitle: string;
-    posterUrl: string;
-    startAt: string;
-    endAt: string;
-    area: string;
-    reserveAt: string;
-    ageRating: string;
-    time: string;
-    price: string;
-    address: string;
-    artists: ArtistDTO[];
-    reservationUrls: ReservationUrlResponseDTO[];
-  };
+// ===== Reservation URL =====
+export type ReservationUrlRequest = {
+  ticketVendorId: number;
+  reservationUrl: string;
 };
 
-export type ConcertCreateDTO = {
-  title: string;
-  subtitle: string;
-  posterImg: File;
-  startAt: string;
-  endAt: string;
-  area: string;
-  reserveAt: string;
-  ageRating: string;
-  time: string;
-  price: string;
-  address: string;
-  artists: ArtistDTO[];
-  reservationUrls: ReservationUrlRequestDTO[];
+export type ReservationUrlResponse = {
+  reservationUrlId: number;
+  reservationUrl: string;
+  ticketVendorId: number;
 };
 
-export type FestivalListDTO = {
-  festivals: {
-    festivalId: number;
-    title: string;
-    subtitle: string;
-    startAt: string;
-    area: string;
-    reserveAt: string;
-  }[];
-};
-
-export type FestivalDetailDTO = {
-  title: string;
-  subtitle: string;
+// ===== Festival =====
+// List
+export type FestivalResponse = {
+  festivalId: number;
   posterUrl: string;
+  title: string;
+  subtitle: string;
   startAt: string;
   endAt: string;
   area: string;
-  reserveAt: string;
-  ageRating: string;
-  time: string;
-  price: string;
-  address: string;
-  artists: ArtistDTO[];
-  reservationUrls: ReservationUrlResponseDTO[];
 };
 
-type FestivalStageTimeDTO = {
+export type FestivalGroupResponse = {
+  festivals: FestivalResponse[];
+  count: number;
+};
+
+export type AdminFestivalListResponse = {
+  upcomingFestivals: FestivalGroupResponse;
+  finishedFestivals: FestivalGroupResponse;
+};
+
+// Detail
+export type TimeResponse = {
+  festivalTimeId: number;
   startAt: string;
   endAt: string;
-  artists: {
-    artistId: string;
-  }[];
+  artists: ArtistResponse[];
 };
 
-type FestivalStageDTO = {
+export type StageResponse = {
+  festivalStageId: number;
   name: string;
   order: number;
-  times: FestivalStageTimeDTO[];
+  times: TimeResponse[];
 };
 
-type FestivalDateDTO = {
+export type DateResponse = {
+  festivalDateId: number;
   festivalAt: string;
   openAt: string;
-  stages: FestivalStageDTO[];
+  artists: ArtistResponse[];
+  stages: StageResponse[];
 };
 
-export type FestivalCreateDTO = {
+export type AdminFestivalDetailResponse = {
+  festivalId: number;
   title: string;
   subtitle: string;
-  posterImg: File;
-  logoImg: File;
+  startAt: string;
+  endAt: string;
+  area: string;
+  posterUrl: string;
+  logoUrl: string;
+  reserveAt: string;
+  ageRating: string;
+  time: string;
+  price: string;
+  address: string;
+  timetableSupportStatus: 'NOT_SUPPORTED' | 'SUPPORTED';
+  createdAt: string;
+  updatedAt: string;
+  dates: DateResponse[];
+};
+
+// Request
+export type TimeRequest = {
+  festivalTimeId?: number;
+  startAt: string;
+  endAt: string;
+  name?: string;
+  artistIds: string[];
+};
+
+export type StageRequest = {
+  festivalStageId?: number;
+  name: string;
+  order: number;
+  times: TimeRequest[];
+};
+
+export type DateRequest = {
+  festivalDateId?: number;
+  festivalAt: string;
+  openAt: string;
+  stages?: StageRequest[];
+};
+
+export type PutAdminFestivalRequest = {
+  festivalId?: number;
+  title: string;
+  subtitle: string;
   startAt: string;
   endAt: string;
   area: string;
@@ -130,8 +139,149 @@ export type FestivalCreateDTO = {
   time: string;
   price: string;
   address: string;
-  dates: FestivalDateDTO[];
-  reservationUrls: ReservationUrlRequestDTO[];
+  reservationUrls: ReservationUrlRequest[];
+  artistIds?: string[];
+  dates?: DateRequest[];
 };
 
-export type FestivalUpdateDTO = Partial<FestivalCreateDTO>;
+export type PutAdminFestivalResponse = {
+  festivalId: number;
+};
+
+// ===== Concert =====
+// List
+export type ConcertResponse = {
+  concertId: number;
+  posterUrl: string;
+  title: string;
+  subtitle: string;
+  startAt: string;
+  endAt: string;
+  area: string;
+};
+
+export type ConcertGroupResponse = {
+  concerts: ConcertResponse[];
+  count: number;
+};
+
+export type AdminConcertListResponse = {
+  upcomingConcerts: ConcertGroupResponse;
+  finishedConcerts: ConcertGroupResponse;
+};
+
+// Detail
+export type AdminConcertDetailResponse = {
+  concertId: number;
+  title: string;
+  subtitle: string;
+  startAt: string;
+  endAt: string;
+  area: string;
+  posterUrl: string;
+  reserveAt: string;
+  ageRating: string;
+  time: string;
+  price: string;
+  address: string;
+  createdAt: string;
+  updatedAt: string;
+  reservationUrls: ReservationUrlResponse[];
+  artists: ArtistResponse[];
+};
+
+// Request
+export type PutAdminConcertRequest = {
+  concertId?: number;
+  title: string;
+  subtitle: string;
+  startAt: string;
+  endAt: string;
+  area: string;
+  reserveAt: string;
+  ageRating: string;
+  time: string;
+  price: string;
+  address: string;
+  artistIds: string[];
+  reservationUrls: ReservationUrlRequest[];
+};
+
+export type PutAdminConcertResponse = {
+  concertId: number;
+};
+
+// ===== Draft (대기 공연) =====
+export type PerformanceDraftType = 'FESTIVAL' | 'CONCERT';
+
+export type DraftStatus = '검토 필요' | '보류';
+
+export type DraftListItem = {
+  id: number;
+  performanceType: PerformanceDraftType;
+  status: DraftStatus;
+  title: string;
+  area: string;
+  startAt: string;
+};
+
+export type DraftListResponse = {
+  drafts: DraftListItem[];
+};
+
+export type DraftDetailResponse = {
+  id: number;
+  performanceType: PerformanceDraftType;
+  status: DraftStatus;
+  performanceData: string;
+  posterUrl: string;
+  logoUrl: string;
+  artists: ArtistResponse[];
+};
+
+export type DraftResponse = {
+  id: number;
+  performanceType: PerformanceDraftType;
+  status: DraftStatus;
+  performanceData: string;
+  posterUrl: string;
+  logoUrl: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateDraftRequest = {
+  performanceType: PerformanceDraftType;
+  performanceData: string;
+  posterImage: File;
+  logoImage?: File;
+};
+
+export type UpdateDraftRequest = {
+  performanceType?: PerformanceDraftType;
+  status?: DraftStatus;
+  performanceData?: string;
+  posterImage?: File;
+  logoImage?: File;
+};
+
+// ===== Ticket Vendor (예매처) =====
+export type TicketVendorResponse = {
+  id: number;
+  name: string;
+  logoPath: string;
+};
+
+export type TicketVendorListResponse = {
+  ticketVendors: TicketVendorResponse[];
+};
+
+export type CreateTicketVendorRequest = {
+  name: string;
+  logoImage: File;
+};
+
+export type UpdateTicketVendorRequest = {
+  name?: string;
+  logoImage?: File;
+};
