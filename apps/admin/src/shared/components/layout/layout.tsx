@@ -1,13 +1,14 @@
 import { Suspense, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet, useLocation } from 'react-router-dom';
 
+import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
 import Deferred from '@shared/components/deferred/deferred';
 import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu';
 import Header from '@shared/components/layout/header';
 import Loading from '@shared/components/loading/loading';
-import { PENDING_ITEMS } from '@shared/mocks';
 
 import * as styles from './layout.css';
 
@@ -25,6 +26,7 @@ const Layout = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
+  const { data } = useQuery(DRAFT_QUERY_OPTIONS.LIST());
 
   const pageTitle =
     PAGE_TITLES[location.pathname] ||
@@ -39,7 +41,7 @@ const Layout = () => {
     <div className={styles.wrapper}>
       <AsideNavigationMenu
         isExpanded={sidebarExpanded}
-        pendingCount={PENDING_ITEMS.length}
+        pendingCount={data?.drafts.length ?? 0}
       />
       <div className={styles.mainContainer}>
         <Header
