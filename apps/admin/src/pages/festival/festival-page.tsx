@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { EmptyState } from '@shared/components/common';
-import EventCard from '@shared/components/event/event-card';
+import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
 import { FESTIVALS } from '@shared/mocks';
 
@@ -17,8 +17,8 @@ const FestivalPage = () => {
     (festival) => festival.status === 'Completed',
   );
 
-  const handleSelectEvent = (id: number) => {
-    navigate(PATH.EVENTS.replace(':id', String(id)));
+  const handleSelectPerformance = (id: number) => {
+    navigate(PATH.PERFORMANCES.replace(':id', String(id)));
   };
 
   return (
@@ -33,10 +33,10 @@ const FestivalPage = () => {
         ) : (
           <div className={styles.grid}>
             {upcomingFestivals.map((festival) => (
-              <EventCard
+              <PerformanceCard
                 key={festival.id}
                 data={festival}
-                onClick={() => handleSelectEvent(festival.id)}
+                onClick={() => handleSelectPerformance(festival.id)}
               />
             ))}
           </div>
@@ -53,10 +53,10 @@ const FestivalPage = () => {
         ) : (
           <div className={styles.gridPast}>
             {pastFestivals.map((festival) => (
-              <EventCard
+              <PerformanceCard
                 key={festival.id}
                 data={festival}
-                onClick={() => handleSelectEvent(festival.id)}
+                onClick={() => handleSelectPerformance(festival.id)}
                 isPast
               />
             ))}

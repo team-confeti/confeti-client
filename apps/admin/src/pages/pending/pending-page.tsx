@@ -11,11 +11,11 @@ const PendingPage = () => {
   const navigate = useNavigate();
 
   const handleCreateNew = () => {
-    navigate(PATH.EVENT_EDITOR.replace(':id', 'new'));
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
   };
 
   const handleSelectItem = (id: number) => {
-    navigate(PATH.EVENT_EDITOR.replace(':id', String(id)));
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(id)));
   };
 
   return (

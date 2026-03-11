@@ -10,7 +10,7 @@ const FestivalDashboard = () => {
 
   // TODO: client의 generatePath를 packages에 추가하고 사용하기
   const handleRowClick = (id: string) => {
-    navigate(`${PATH.EVENT_EDITOR.replace(':id', id)}`);
+    navigate(`${PATH.PERFORMANCE_EDITOR.replace(':id', id)}`);
   };
 
   return (
