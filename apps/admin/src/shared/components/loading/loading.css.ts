@@ -9,7 +9,7 @@ export const container = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '20rem',
+  height: '100%',
   width: '100%',
 });
 

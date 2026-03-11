@@ -17,7 +17,7 @@ const ConcertPage = () => {
   const pastConcerts = data.finishedConcerts.concerts;
 
   const handleSelectPerformance = (id: number) => {
-    navigate(PATH.PERFORMANCES.replace(':id', String(id)));
+    navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=concert`);
   };
 
   return (

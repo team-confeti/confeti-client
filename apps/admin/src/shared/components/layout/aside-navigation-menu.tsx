@@ -6,9 +6,12 @@ import {
   Tent,
   Ticket,
 } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { PATH } from '@shared/constants/path';
+
+import ConfetiLogo from './confeti-logo';
 
 import * as styles from './aside-navigation-menu.css';
 
@@ -23,6 +26,25 @@ interface Props {
   isExpanded: boolean;
   pendingCount?: number;
 }
+
+const SIDEBAR_WIDTH = { expanded: 256, collapsed: 72 };
+const LOGO_SIZE = { expanded: 32, collapsed: 24 };
+
+const SPRING_TRANSITION = {
+  type: 'spring' as const,
+  stiffness: 300,
+  damping: 30,
+};
+
+const TEXT_VARIANTS = {
+  hidden: { opacity: 0, width: 0 },
+  visible: { opacity: 1, width: 'auto' },
+};
+
+const TWEEN_TRANSITION = {
+  duration: 0.2,
+  ease: 'easeOut' as const,
+};
 
 const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
   const location = useLocation();
@@ -48,91 +70,155 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
     },
   ];
 
+  const renderMenuLink = (item: MenuItem) => {
+    const isActive = location.pathname.startsWith(item.path);
+
+    return (
+      <Link
+        key={item.path}
+        to={item.path}
+        className={styles.link({ active: isActive })}
+        title={!isExpanded ? item.name : ''}
+      >
+        <div className={styles.iconWrapper}>{item.icon}</div>
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.span
+              key="text"
+              className={styles.linkText}
+              variants={TEXT_VARIANTS}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              transition={SPRING_TRANSITION}
+            >
+              {item.name}
+            </motion.span>
+          )}
+        </AnimatePresence>
+        <AnimatePresence initial={false}>
+          {isExpanded && item.badge && item.badge > 0 && (
+            <motion.span
+              key="badge"
+              className={styles.badge}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.15 }}
+            >
+              {item.badge}
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </Link>
+    );
+  };
+
   return (
-    <aside
-      className={`${styles.container} ${isExpanded ? styles.expanded : styles.collapsed}`}
+    <motion.aside
+      className={styles.container}
+      animate={{
+        width: isExpanded ? SIDEBAR_WIDTH.expanded : SIDEBAR_WIDTH.collapsed,
+      }}
+      transition={SPRING_TRANSITION}
     >
-      <div className={styles.header}>
-        {isExpanded ? (
-          <h1 className={styles.logo}>CONFETI</h1>
-        ) : (
-          <h1 className={styles.logoCollapsed}>C</h1>
-        )}
-      </div>
+      <motion.div
+        className={styles.header}
+        animate={{ paddingLeft: isExpanded ? 20 : 24 }}
+        transition={SPRING_TRANSITION}
+      >
+        <motion.div
+          animate={{
+            width: isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed,
+            height: isExpanded
+              ? LOGO_SIZE.expanded * 0.75
+              : LOGO_SIZE.collapsed * 0.75,
+          }}
+          transition={SPRING_TRANSITION}
+          style={{ flexShrink: 0 }}
+        >
+          <ConfetiLogo
+            size={isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed}
+          />
+        </motion.div>
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.div
+              key="logo-text"
+              style={{ overflow: 'hidden', flexShrink: 0 }}
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 'auto', opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={TWEEN_TRANSITION}
+            >
+              <h1 className={styles.logoText}>CONFETI</h1>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       <nav className={styles.nav}>
         <div className={styles.section}>
-          {MENU_ITEMS.slice(0, 1).map((item) => {
-            const isActive = location.pathname.startsWith(item.path);
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${styles.link} ${isActive ? styles.active : ''}`}
-                title={!isExpanded ? item.name : ''}
-              >
-                <div className={styles.iconWrapper}>{item.icon}</div>
-                {isExpanded && (
-                  <span className={styles.linkText}>{item.name}</span>
-                )}
-              </Link>
-            );
-          })}
+          {MENU_ITEMS.slice(0, 1).map(renderMenuLink)}
         </div>
 
         <div className={styles.section}>
-          {isExpanded && <div className={styles.sectionTitle}>공연 관리</div>}
-          {MENU_ITEMS.slice(1, 4).map((item) => {
-            const isActive = location.pathname.startsWith(item.path);
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${styles.link} ${isActive ? styles.active : ''}`}
-                title={!isExpanded ? item.name : ''}
+          <AnimatePresence initial={false}>
+            {isExpanded && (
+              <motion.div
+                key="section-title-performances"
+                className={styles.sectionTitle}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 40 }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={SPRING_TRANSITION}
               >
-                <div className={styles.iconWrapper}>{item.icon}</div>
-                {isExpanded && (
-                  <>
-                    <span className={styles.linkText}>{item.name}</span>
-                    {item.badge && item.badge > 0 && (
-                      <span className={styles.badge}>{item.badge}</span>
-                    )}
-                  </>
-                )}
-              </Link>
-            );
-          })}
+                공연 관리
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {MENU_ITEMS.slice(1, 4).map(renderMenuLink)}
         </div>
 
         <div className={styles.section}>
-          {isExpanded && <div className={styles.sectionTitle}>시스템 관리</div>}
-          {MENU_ITEMS.slice(4).map((item) => {
-            const isActive = location.pathname.startsWith(item.path);
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${styles.link} ${isActive ? styles.active : ''}`}
-                title={!isExpanded ? item.name : ''}
+          <AnimatePresence initial={false}>
+            {isExpanded && (
+              <motion.div
+                key="section-title-system"
+                className={styles.sectionTitle}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 40 }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={SPRING_TRANSITION}
               >
-                <div className={styles.iconWrapper}>{item.icon}</div>
-                {isExpanded && (
-                  <span className={styles.linkText}>{item.name}</span>
-                )}
-              </Link>
-            );
-          })}
+                시스템 관리
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {MENU_ITEMS.slice(4).map(renderMenuLink)}
         </div>
       </nav>
 
       <div className={styles.footer}>
         <button className={styles.logoutButton}>
           <LogOut size={20} />
-          {isExpanded && <span>로그아웃</span>}
+          <AnimatePresence initial={false}>
+            {isExpanded && (
+              <motion.span
+                key="logout-text"
+                variants={TEXT_VARIANTS}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                transition={TWEEN_TRANSITION}
+              >
+                로그아웃
+              </motion.span>
+            )}
+          </AnimatePresence>
         </button>
       </div>
-    </aside>
+    </motion.aside>
   );
 };
 

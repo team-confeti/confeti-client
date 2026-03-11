@@ -1,15 +1,33 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Calendar, FileText, Image, Trash2, Users, X } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import {
+  Calendar,
+  FileText,
+  Image,
+  Save,
+  Trash2,
+  Users,
+  X,
+} from 'lucide-react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
+import { CONCERT_MUTATION_OPTIONS } from '@shared/apis/concert-mutations';
+import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
 import { DRAFT_MUTATION_OPTIONS } from '@shared/apis/draft-mutations';
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
+import { FESTIVAL_MUTATION_OPTIONS } from '@shared/apis/festival-mutations';
+import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
 import { Input, Select } from '@shared/components/common';
 import { PATH } from '@shared/constants';
-import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
+import {
+  CONCERT_QUERY_KEY,
+  DRAFT_QUERY_KEY,
+  FESTIVAL_QUERY_KEY,
+} from '@shared/constants/query-key';
+import { mapConcertDetailToExistingPerformance } from '@shared/models/concert';
 import { mapDraftDetailToExistingPerformance } from '@shared/models/draft';
+import { mapFestivalDetailToExistingPerformance } from '@shared/models/festival';
 import { fileToBase64, generateDateRange } from '@shared/utils';
 
 import { BasicInfoTab } from './components/basic-info-tab';
@@ -32,12 +50,21 @@ type TabKey = 'basic' | 'detail' | 'lineup' | 'timetable';
 
 const PerformanceEditorPage = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const isNew = id === 'new';
-
+  const performanceType = searchParams.get('type');
   const { data: draftData } = useQuery({
     ...DRAFT_QUERY_OPTIONS.DETAIL(Number(id)),
-    enabled: !isNew,
+    enabled: !isNew && !performanceType,
+  });
+  const { data: concertData } = useQuery({
+    ...CONCERT_QUERY_OPTIONS.DETAIL(Number(id)),
+    enabled: !isNew && performanceType === 'concert',
+  });
+  const { data: festivalData } = useQuery({
+    ...FESTIVAL_QUERY_OPTIONS.DETAIL(Number(id)),
+    enabled: !isNew && performanceType === 'festival',
   });
   const { data: ticketVendorData } = useQuery(
     TICKET_VENDOR_QUERY_OPTIONS.LIST(),
@@ -66,8 +93,28 @@ const PerformanceEditorPage = () => {
     },
   });
 
-  const existingPerformance: ExistingPerformance | null =
-    !isNew && draftData ? mapDraftDetailToExistingPerformance(draftData) : null;
+  const { mutate: putConcertMutate } = useMutation({
+    ...CONCERT_MUTATION_OPTIONS.PUT_CONCERT(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: CONCERT_QUERY_KEY.ALL });
+      navigate(PATH.CONCERT);
+    },
+  });
+  const { mutate: putFestivalMutate } = useMutation({
+    ...FESTIVAL_MUTATION_OPTIONS.PUT_FESTIVAL(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: FESTIVAL_QUERY_KEY.ALL });
+      navigate(PATH.FESTIVAL);
+    },
+  });
+  const existingPerformance: ExistingPerformance | null = (() => {
+    if (isNew) return null;
+    if (draftData) return mapDraftDetailToExistingPerformance(draftData);
+    if (concertData) return mapConcertDetailToExistingPerformance(concertData);
+    if (festivalData)
+      return mapFestivalDetailToExistingPerformance(festivalData);
+    return null;
+  })();
 
   const [activeTab, setActiveTab] = useState<TabKey>('basic');
   const [selectedDay, setSelectedDay] = useState<string>('');
@@ -167,24 +214,77 @@ const PerformanceEditorPage = () => {
   };
 
   const handleSubmit = () => {
-    if (!formData.mainPoster) return;
-    const performanceData = JSON.stringify(formData);
-    if (isNew) {
-      postMutate({
-        performanceType: formData.type === 'Festival' ? 'FESTIVAL' : 'CONCERT',
-        performanceData,
-        posterImage: formData.mainPoster,
-        ...(formData.logo && { logoImage: formData.logo }),
+    if (performanceType === 'concert') {
+      putConcertMutate({
+        request: {
+          concertId: Number(id),
+          title: formData.title,
+          subtitle: formData.subtitle,
+          startAt: formData.startDate,
+          endAt: formData.endDate,
+          area: formData.venueName,
+          address: formData.venueAddress,
+          reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+          ageRating: formData.ageRating,
+          time: `${formData.durationMinutes}분`,
+          price: formData.priceGrades
+            .map((g) => `${g.grade} ${g.price}`)
+            .join(' / '),
+          artistIds: formData.artists.map((a) => String(a.id)),
+          reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
+            ticketVendorId: p.id,
+            reservationUrl: p.url,
+          })),
+        },
+        poster: formData.mainPoster,
+      });
+    } else if (performanceType === 'festival') {
+      putFestivalMutate({
+        request: {
+          festivalId: Number(id),
+          title: formData.title,
+          subtitle: formData.subtitle,
+          startAt: formData.startDate,
+          endAt: formData.endDate,
+          area: formData.venueName,
+          address: formData.venueAddress,
+          reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+          ageRating: formData.ageRating,
+          time: `${formData.durationMinutes}분`,
+          price: formData.priceGrades
+            .map((g) => `${g.grade} ${g.price}`)
+            .join(' / '),
+          reservationUrls: formData.selectedTicketingPlatforms.map((p) => ({
+            ticketVendorId: p.id,
+            reservationUrl: p.url,
+          })),
+          artistIds: formData.artists.map((a) => String(a.id)),
+        },
+        poster: formData.mainPoster,
+        logo: formData.logo ?? undefined,
       });
     } else {
-      patchMutate({
-        draftId: Number(id),
-        request: {
+      const performanceData = JSON.stringify(formData);
+      if (isNew) {
+        postMutate({
+          performanceType:
+            formData.type === 'Festival' ? 'FESTIVAL' : 'CONCERT',
           performanceData,
-          ...(formData.mainPoster && { posterImage: formData.mainPoster }),
+          posterImage: formData.mainPoster,
           ...(formData.logo && { logoImage: formData.logo }),
-        },
-      });
+        });
+      } else {
+        patchMutate({
+          draftId: Number(id),
+          request: {
+            performanceData,
+            ...(formData.mainPoster && {
+              posterImage: formData.mainPoster,
+            }),
+            ...(formData.logo && { logoImage: formData.logo }),
+          },
+        });
+      }
     }
   };
 
@@ -220,7 +320,8 @@ const PerformanceEditorPage = () => {
               삭제
             </button>
             <button onClick={handleSubmit} className={styles.saveButton}>
-              저장 및 계속
+              <Save size={18} />
+              저장 및 게시
             </button>
           </div>
         </div>

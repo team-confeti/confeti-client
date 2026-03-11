@@ -17,7 +17,7 @@ const FestivalPage = () => {
   const pastFestivals = data.finishedFestivals.festivals;
 
   const handleSelectPerformance = (id: number) => {
-    navigate(PATH.PERFORMANCES.replace(':id', String(id)));
+    navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=festival`);
   };
 
   return (

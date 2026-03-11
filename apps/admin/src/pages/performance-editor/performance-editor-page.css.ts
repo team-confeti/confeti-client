@@ -97,21 +97,24 @@ export const deleteButton = style({
 });
 
 export const saveButton = style({
-  height: '3.6rem',
-  padding: '0 1.6rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '0.6rem',
+  height: '4rem',
+  padding: '0 2rem',
   backgroundColor: themeVars.color.slate900,
   color: themeVars.color.white,
   border: 'none',
   borderRadius: '1rem',
-  fontSize: '1.4rem',
+  fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.medium,
-  lineHeight: '2rem',
-  letterSpacing: '-0.011em',
+  lineHeight: '2.4rem',
+  letterSpacing: '-0.02em',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   boxShadow:
-    '0 10px 15px rgba(15, 23, 43, 0.2), 0 4px 6px rgba(15, 23, 43, 0.2)',
-
+    '0px 4px 6px -4px rgba(15, 23, 43, 0.2), 0px 10px 15px -3px rgba(15, 23, 43, 0.2)',
   ':hover': {
     backgroundColor: themeVars.color.gray800,
   },

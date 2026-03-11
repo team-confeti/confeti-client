@@ -82,6 +82,9 @@ importers:
       lucide-react:
         specifier: ^0.577.0
         version: 0.577.0(react@19.1.0)
+      motion:
+        specifier: ^12.18.1
+        version: 12.18.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -122,6 +125,9 @@ importers:
       '@vanilla-extract/css':
         specifier: ^1.17.4
         version: 1.17.4(babel-plugin-macros@3.1.0)
+      '@vanilla-extract/recipes':
+        specifier: ^0.5.7
+        version: 0.5.7(@vanilla-extract/css@1.17.4(babel-plugin-macros@3.1.0))
       '@vanilla-extract/vite-plugin':
         specifier: ^5.0.6
         version: 5.0.6(@types/node@24.0.3)(babel-plugin-macros@3.1.0)(jiti@1.21.6)(tsx@4.20.3)(vite@6.3.5(@types/node@24.0.3)(jiti@1.21.6)(tsx@4.20.3)(yaml@2.8.0))(yaml@2.8.0)

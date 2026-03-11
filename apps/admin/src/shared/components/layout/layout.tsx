@@ -1,16 +1,21 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet, useLocation } from 'react-router-dom';
+
+import { getAccessToken } from '@confeti/core/auth';
 
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
 import Deferred from '@shared/components/deferred/deferred';
 import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu';
 import Header from '@shared/components/layout/header';
+import LoginRequired from '@shared/components/layout/login-required';
 import Loading from '@shared/components/loading/loading';
 
 import * as styles from './layout.css';
+
+const COLLAPSE_BREAKPOINT = 1024;
 
 const PAGE_TITLES: Record<string, string> = {
   '/dashboard': '대시보드',
@@ -23,13 +28,29 @@ const PAGE_TITLES: Record<string, string> = {
 };
 
 const Layout = () => {
-  const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const accessToken = getAccessToken();
+
+  const [sidebarExpanded, setSidebarExpanded] = useState(
+    () => window.innerWidth >= COLLAPSE_BREAKPOINT,
+  );
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const { data } = useQuery({
     ...DRAFT_QUERY_OPTIONS.LIST(),
     throwOnError: false,
+    enabled: !!accessToken,
   });
+
+  useEffect(() => {
+    const mql = window.matchMedia(`(min-width: ${COLLAPSE_BREAKPOINT}px)`);
+    const handler = (e: MediaQueryListEvent) => setSidebarExpanded(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  if (!accessToken) {
+    return <LoginRequired />;
+  }
 
   const pageTitle =
     PAGE_TITLES[location.pathname] ||
@@ -44,7 +65,7 @@ const Layout = () => {
     <div className={styles.wrapper}>
       <AsideNavigationMenu
         isExpanded={sidebarExpanded}
-        pendingCount={data?.drafts.length ?? 0}
+        pendingCount={data?.drafts?.length ?? 0}
       />
       <div className={styles.mainContainer}>
         <Header

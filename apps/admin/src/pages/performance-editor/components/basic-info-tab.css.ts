@@ -198,6 +198,7 @@ export const ticketingPlatformHeaderLabel = style({
 
 export const ticketingPlatformPillList = style({
   display: 'flex',
+  flexWrap: 'wrap',
   gap: '1.2rem',
   marginBottom: '2.4rem',
 });
@@ -216,9 +217,10 @@ export const ticketingPlatformPill = style({
   fontWeight: themeVars.fontWeight.medium,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
+  whiteSpace: 'nowrap',
+  flexShrink: 0,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
-
   ':hover': {
     borderColor: themeVars.color.slate700,
     backgroundColor: '#F9FAFB',
@@ -239,11 +241,17 @@ export const ticketingPlatformPillActive = style({
   fontWeight: themeVars.fontWeight.bold,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
+  whiteSpace: 'nowrap',
+  flexShrink: 0,
   cursor: 'pointer',
 });
 
 export const ticketingPlatformIcon = style({
-  fontSize: '1.8rem',
+  width: '2rem',
+  height: '2rem',
+  objectFit: 'contain',
+  borderRadius: '0.4rem',
+  flexShrink: 0,
 });
 
 export const ticketingPlatformCard = style({
@@ -264,12 +272,10 @@ export const ticketingPlatformCardHeader = style({
 export const ticketingPlatformLogo = style({
   width: '4rem',
   height: '4rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  objectFit: 'contain',
   backgroundColor: '#F9FAFB',
   borderRadius: '0.8rem',
-  fontSize: '2rem',
+  flexShrink: 0,
 });
 
 export const ticketingPlatformName = style({

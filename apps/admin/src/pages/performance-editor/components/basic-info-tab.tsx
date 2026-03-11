@@ -249,7 +249,11 @@ export const BasicInfoTab = ({
                   : styles.ticketingPlatformPill
               }
             >
-              <span className={styles.ticketingPlatformIcon}>🎫</span>
+              <img
+                src={platform.logoPath}
+                alt={platform.name}
+                className={styles.ticketingPlatformIcon}
+              />
               {platform.name}
               <Plus size={16} />
             </button>
@@ -258,7 +262,11 @@ export const BasicInfoTab = ({
         {formData.selectedTicketingPlatforms.map((platform) => (
           <div key={platform.id} className={styles.ticketingPlatformCard}>
             <div className={styles.ticketingPlatformCardHeader}>
-              <div className={styles.ticketingPlatformLogo}>🎫</div>
+              <img
+                src={ticketVendors.find((v) => v.id === platform.id)?.logoPath}
+                alt={platform.name}
+                className={styles.ticketingPlatformLogo}
+              />
               <span className={styles.ticketingPlatformName}>
                 {platform.name}
               </span>

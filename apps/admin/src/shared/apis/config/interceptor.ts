@@ -96,9 +96,14 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
   return instance(originalConfig);
 };
 
+const LOGIN_URL =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:5173/login'
+    : 'https://www.confeti.co.kr/login';
+
 const redirectToLogin = () => {
   authTokenHandler('remove');
-  window.location.href = '/';
+  window.location.href = LOGIN_URL;
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
