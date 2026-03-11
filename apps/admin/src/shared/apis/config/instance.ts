@@ -2,6 +2,11 @@ import { createInstance } from '@confeti/core/http';
 
 import { ENV_CONFIG } from '@shared/constants/config';
 
-export const { get, post, put, patch, del } = createInstance(
+import { handleAPIError, handleCheckAndSetToken } from './interceptor';
+
+export const { instance, get, post, put, patch, del } = createInstance(
   ENV_CONFIG.BASE_URL,
 );
+
+instance.interceptors.request.use(handleCheckAndSetToken);
+instance.interceptors.response.use((res) => res, handleAPIError);
