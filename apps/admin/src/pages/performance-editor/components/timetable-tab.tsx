@@ -17,12 +17,12 @@ import { Clock, Plus, Search, Trash2 } from 'lucide-react';
 import { EmptyState } from '@shared/components/common';
 import { formatDateShort } from '@shared/utils';
 
-import type { EventFormData, TimetableSlot } from '../types';
+import type { PerformanceFormData, TimetableSlot } from '../types';
 
 import * as styles from './timetable-tab.css';
 
 interface TimetableTabProps {
-  formData: EventFormData;
+  formData: PerformanceFormData;
   daysArray: string[];
   selectedDay: string;
   setSelectedDay: (day: string) => void;

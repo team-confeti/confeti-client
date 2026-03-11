@@ -2,12 +2,12 @@ import { CircleDollarSign, MapPin, Plus, Trash2, Upload } from 'lucide-react';
 
 import { Button, FormSection, Input } from '@shared/components/common';
 
-import type { EventFormData } from '../types';
+import type { PerformanceFormData } from '../types';
 
 import * as styles from './detail-info-tab.css';
 
 interface DetailInfoTabProps {
-  formData: EventFormData;
+  formData: PerformanceFormData;
   handleInputChange: (field: string, value: string | number) => void;
   handleAddPriceGrade: () => void;
   handleRemovePriceGrade: (index: number) => void;

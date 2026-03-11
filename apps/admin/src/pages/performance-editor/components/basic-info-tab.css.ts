@@ -183,12 +183,12 @@ export const addButton = style({
   },
 });
 
-// Agency
-export const agencyHeader = style({
+// Ticketing Platform
+export const ticketingPlatformHeader = style({
   marginBottom: '1.2rem',
 });
 
-export const agencyHeaderLabel = style({
+export const ticketingPlatformHeaderLabel = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.medium,
   color: '#6A7282',
@@ -196,13 +196,13 @@ export const agencyHeaderLabel = style({
   letterSpacing: '-0.011em',
 });
 
-export const agencyPillList = style({
+export const ticketingPlatformPillList = style({
   display: 'flex',
   gap: '1.2rem',
   marginBottom: '2.4rem',
 });
 
-export const agencyPill = style({
+export const ticketingPlatformPill = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
@@ -225,7 +225,7 @@ export const agencyPill = style({
   },
 });
 
-export const agencyPillActive = style({
+export const ticketingPlatformPillActive = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
@@ -242,11 +242,11 @@ export const agencyPillActive = style({
   cursor: 'pointer',
 });
 
-export const agencyIcon = style({
+export const ticketingPlatformIcon = style({
   fontSize: '1.8rem',
 });
 
-export const agencyCard = style({
+export const ticketingPlatformCard = style({
   padding: '2rem',
   backgroundColor: themeVars.color.white,
   border: `1px solid ${themeVars.color.gray200}`,
@@ -254,14 +254,14 @@ export const agencyCard = style({
   marginBottom: '1.6rem',
 });
 
-export const agencyCardHeader = style({
+export const ticketingPlatformCardHeader = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.2rem',
   marginBottom: '1.6rem',
 });
 
-export const agencyLogo = style({
+export const ticketingPlatformLogo = style({
   width: '4rem',
   height: '4rem',
   display: 'flex',
@@ -272,7 +272,7 @@ export const agencyLogo = style({
   fontSize: '2rem',
 });
 
-export const agencyName = style({
+export const ticketingPlatformName = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
   color: '#101828',
@@ -280,14 +280,14 @@ export const agencyName = style({
   letterSpacing: '-0.02em',
 });
 
-export const agencyCardContent = style({
+export const ticketingPlatformCardContent = style({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr auto',
   gap: '1.6rem',
   alignItems: 'center',
 });
 
-export const agencyUrlInput = style({
+export const ticketingPlatformUrlInput = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.2rem',
@@ -298,13 +298,13 @@ export const agencyUrlInput = style({
   borderRadius: '0.8rem',
 });
 
-export const agencyDatetimeInput = style({
+export const ticketingPlatformDatetimeInput = style({
   display: 'flex',
   alignItems: 'center',
   height: '4.8rem',
 });
 
-export const agencyDatetimeInputField = style({
+export const ticketingPlatformDatetimeInputField = style({
   width: '100%',
   height: '4.8rem',
   padding: '0 1.6rem',
@@ -325,7 +325,7 @@ export const agencyDatetimeInputField = style({
   },
 });
 
-export const agencyInput = style({
+export const ticketingPlatformInput = style({
   flex: 1,
   border: 'none',
   outline: 'none',
@@ -354,7 +354,7 @@ export const calendarIcon = style({
   flexShrink: 0,
 });
 
-export const agencyDeleteButton = style({
+export const ticketingPlatformDeleteButton = style({
   width: '4.8rem',
   height: '4.8rem',
   display: 'flex',

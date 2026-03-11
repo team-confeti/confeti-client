@@ -11,26 +11,26 @@ import { BasicInfoTab } from './components/basic-info-tab';
 import { DetailInfoTab } from './components/detail-info-tab';
 import { LineupTab } from './components/lineup-tab';
 import { TimetableTab } from './components/timetable-tab';
-import { useAgencyManagement } from './hooks/use-agency-management';
 import { useArtistManagement } from './hooks/use-artist-management';
 import { useBookingSchedule } from './hooks/use-booking-schedule';
-import { useEventForm } from './hooks/use-event-form';
 import { useModals } from './hooks/use-modals';
+import { usePerformanceForm } from './hooks/use-performance-form';
 import { usePriceGrades } from './hooks/use-price-grades';
 import { useStageManagement } from './hooks/use-stage-management';
+import { useTicketingPlatformManagement } from './hooks/use-ticketing-platform-management';
 import { useTimetableDnd } from './hooks/use-timetable-dnd';
-import type { ExistingEvent } from './types';
+import type { ExistingPerformance } from './types';
 
-import * as styles from './event-editor-page.css';
+import * as styles from './performance-editor-page.css';
 
 type TabKey = 'basic' | 'detail' | 'lineup' | 'timetable';
 
-const EventEditorPage = () => {
+const PerformanceEditorPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isNew = id === 'new';
 
-  const existingEvent: ExistingEvent | null = isNew
+  const existingPerformance: ExistingPerformance | null = isNew
     ? null
     : PENDING_ITEMS.find((item) => item.id === Number(id)) || null;
 
@@ -38,8 +38,8 @@ const EventEditorPage = () => {
   const [selectedDay, setSelectedDay] = useState<string>('');
 
   // Custom hooks
-  const { formData, setFormData, handleInputChange } = useEventForm({
-    existingEvent,
+  const { formData, setFormData, handleInputChange } = usePerformanceForm({
+    existingPerformance,
   });
 
   const {
@@ -48,8 +48,11 @@ const EventEditorPage = () => {
     handleBookingScheduleChange,
   } = useBookingSchedule({ formData, setFormData });
 
-  const { handleToggleAgency, handleRemoveAgency, handleAgencyChange } =
-    useAgencyManagement({ formData, setFormData });
+  const {
+    handleToggleTicketingPlatform,
+    handleRemoveTicketingPlatform,
+    handleTicketingPlatformChange,
+  } = useTicketingPlatformManagement({ formData, setFormData });
 
   const {
     handleAddPriceGrade,
@@ -134,7 +137,7 @@ const EventEditorPage = () => {
   };
 
   const handleDelete = () => {
-    console.log('Deleting event');
+    console.log('Deleting performance');
     navigate(PATH.PENDING);
   };
 
@@ -199,9 +202,9 @@ const EventEditorPage = () => {
               handleAddBookingSchedule={handleAddBookingSchedule}
               handleRemoveBookingSchedule={handleRemoveBookingSchedule}
               handleBookingScheduleChange={handleBookingScheduleChange}
-              handleToggleAgency={handleToggleAgency}
-              handleRemoveAgency={handleRemoveAgency}
-              handleAgencyChange={handleAgencyChange}
+              handleToggleTicketingPlatform={handleToggleTicketingPlatform}
+              handleRemoveTicketingPlatform={handleRemoveTicketingPlatform}
+              handleTicketingPlatformChange={handleTicketingPlatformChange}
               scheduleSynced={scheduleSynced}
               handleSyncSchedule={handleSyncSchedule}
             />
@@ -407,4 +410,4 @@ const EventEditorPage = () => {
   );
 };
 
-export default EventEditorPage;
+export default PerformanceEditorPage;

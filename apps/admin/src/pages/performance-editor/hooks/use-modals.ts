@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import type { EventFormData, TimetableSlot } from '../types';
+import type { PerformanceFormData, TimetableSlot } from '../types';
 
 interface UseModalsProps {
-  formData: EventFormData;
-  setFormData: Dispatch<SetStateAction<EventFormData>>;
+  formData: PerformanceFormData;
+  setFormData: Dispatch<SetStateAction<PerformanceFormData>>;
 }
 
 export const useModals = ({ setFormData }: UseModalsProps) => {

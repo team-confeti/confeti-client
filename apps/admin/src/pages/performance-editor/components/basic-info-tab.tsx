@@ -7,14 +7,14 @@ import {
   Input,
   Select,
 } from '@shared/components/common';
-import { AGENCIES } from '@shared/mocks';
+import { TICKETING_PLATFORMS } from '@shared/mocks';
 
-import type { EventFormData } from '../types';
+import type { PerformanceFormData } from '../types';
 
 import * as styles from './basic-info-tab.css';
 
 interface BasicInfoTabProps {
-  formData: EventFormData;
+  formData: PerformanceFormData;
   handleInputChange: (field: string, value: string | number) => void;
   handleAddBookingSchedule: () => void;
   handleRemoveBookingSchedule: (index: number) => void;
@@ -23,10 +23,13 @@ interface BasicInfoTabProps {
     field: 'round' | 'startDate',
     value: string,
   ) => void;
-  handleToggleAgency: (agencyId: number, agencyName: string) => void;
-  handleRemoveAgency: (agencyId: number) => void;
-  handleAgencyChange: (
-    agencyId: number,
+  handleToggleTicketingPlatform: (
+    ticketingPlatformId: number,
+    ticketingPlatformName: string,
+  ) => void;
+  handleRemoveTicketingPlatform: (ticketingPlatformId: number) => void;
+  handleTicketingPlatformChange: (
+    ticketingPlatformId: number,
     field: 'url' | 'datetime',
     value: string,
   ) => void;
@@ -40,9 +43,9 @@ export const BasicInfoTab = ({
   handleAddBookingSchedule,
   handleRemoveBookingSchedule,
   handleBookingScheduleChange,
-  handleToggleAgency,
-  handleRemoveAgency,
-  handleAgencyChange,
+  handleToggleTicketingPlatform,
+  handleRemoveTicketingPlatform,
+  handleTicketingPlatformChange,
   scheduleSynced,
   handleSyncSchedule,
 }: BasicInfoTabProps) => {
@@ -224,67 +227,81 @@ export const BasicInfoTab = ({
 
       {/* 예매처 정보 */}
       <FormSection title="예매처 정보">
-        <div className={styles.agencyHeader}>
-          <span className={styles.agencyHeaderLabel}>
+        <div className={styles.ticketingPlatformHeader}>
+          <span className={styles.ticketingPlatformHeaderLabel}>
             예매처 선택 및 URL 입력
           </span>
         </div>
-        <div className={styles.agencyPillList}>
-          {AGENCIES.map((agency) => (
+        <div className={styles.ticketingPlatformPillList}>
+          {TICKETING_PLATFORMS.map((platform) => (
             <button
-              key={agency.id}
-              onClick={() => handleToggleAgency(agency.id, agency.name)}
+              key={platform.id}
+              onClick={() =>
+                handleToggleTicketingPlatform(platform.id, platform.name)
+              }
               className={
-                formData.selectedAgencies.find((a) => a.id === agency.id)
-                  ? styles.agencyPillActive
-                  : styles.agencyPill
+                formData.selectedTicketingPlatforms.find(
+                  (a) => a.id === platform.id,
+                )
+                  ? styles.ticketingPlatformPillActive
+                  : styles.ticketingPlatformPill
               }
             >
-              <span className={styles.agencyIcon}>🎫</span>
-              {agency.name}
+              <span className={styles.ticketingPlatformIcon}>🎫</span>
+              {platform.name}
               <Plus size={16} />
             </button>
           ))}
         </div>
-        {formData.selectedAgencies.map((agency) => (
-          <div key={agency.id} className={styles.agencyCard}>
-            <div className={styles.agencyCardHeader}>
-              <div className={styles.agencyLogo}>🎫</div>
-              <span className={styles.agencyName}>{agency.name}</span>
+        {formData.selectedTicketingPlatforms.map((platform) => (
+          <div key={platform.id} className={styles.ticketingPlatformCard}>
+            <div className={styles.ticketingPlatformCardHeader}>
+              <div className={styles.ticketingPlatformLogo}>🎫</div>
+              <span className={styles.ticketingPlatformName}>
+                {platform.name}
+              </span>
             </div>
-            <div className={styles.agencyCardContent}>
-              <div className={styles.agencyUrlInput}>
+            <div className={styles.ticketingPlatformCardContent}>
+              <div className={styles.ticketingPlatformUrlInput}>
                 <span className={styles.linkIcon}>🔗</span>
                 <input
                   type="text"
-                  value={agency.url}
+                  value={platform.url}
                   onChange={(e) =>
-                    handleAgencyChange(agency.id, 'url', e.target.value)
+                    handleTicketingPlatformChange(
+                      platform.id,
+                      'url',
+                      e.target.value,
+                    )
                   }
                   placeholder="예매 페이지 URL을 입력하세요"
-                  className={styles.agencyInput}
+                  className={styles.ticketingPlatformInput}
                 />
               </div>
-              <div className={styles.agencyDatetimeInput}>
+              <div className={styles.ticketingPlatformDatetimeInput}>
                 <input
                   type="datetime-local"
-                  value={agency.datetime}
+                  value={platform.datetime}
                   onChange={(e) =>
-                    handleAgencyChange(agency.id, 'datetime', e.target.value)
+                    handleTicketingPlatformChange(
+                      platform.id,
+                      'datetime',
+                      e.target.value,
+                    )
                   }
-                  className={styles.agencyDatetimeInputField}
+                  className={styles.ticketingPlatformDatetimeInputField}
                 />
               </div>
               <button
-                onClick={() => handleRemoveAgency(agency.id)}
-                className={styles.agencyDeleteButton}
+                onClick={() => handleRemoveTicketingPlatform(platform.id)}
+                className={styles.ticketingPlatformDeleteButton}
               >
                 <Trash2 size={16} />
               </button>
             </div>
           </div>
         ))}
-        {formData.selectedAgencies.length === 0 && (
+        {formData.selectedTicketingPlatforms.length === 0 && (
           <EmptyState
             title="등록된 예매처가 없습니다."
             description="상단의 버튼을 눌러 예매처를 추가해주세요."
