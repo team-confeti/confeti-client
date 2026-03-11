@@ -1,34 +1,38 @@
-import { useState } from 'react';
+import { ListMusic, Music, Tent } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-import { TAB } from '@shared/constants/tab';
-
-import ConcertDashboard from '../components/concert-dashboard';
-import FestivalDashboard from '../components/festival-dashboard';
+import DashboardCard from '@shared/components/dashboard/dashboard-card';
+import { CONCERTS, FESTIVALS, PENDING_ITEMS } from '@shared/mocks';
 
 import * as styles from './dashboard-page.css';
 
 const DashboardPage = () => {
-  const [tab, setTab] = useState<TAB>(TAB.CONCERT);
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
-      <div className={styles.tabWrapper}>
-        <button
-          className={tab === TAB.CONCERT ? styles.activeTab : styles.tab}
-          onClick={() => setTab(TAB.CONCERT)}
-        >
-          콘서트
-        </button>
-        <button
-          className={tab === TAB.FESTIVAL ? styles.activeTab : styles.tab}
-          onClick={() => setTab(TAB.FESTIVAL)}
-        >
-          페스티벌
-        </button>
-      </div>
-      <div>
-        {tab === TAB.CONCERT && <ConcertDashboard />}
-        {tab === TAB.FESTIVAL && <FestivalDashboard />}
+      <div className={styles.cardGrid}>
+        <DashboardCard
+          title="대기 중인 공연"
+          count={PENDING_ITEMS.length}
+          icon={<ListMusic size={24} strokeWidth={2} />}
+          variant="pending"
+          onClick={() => navigate('/pending')}
+        />
+        <DashboardCard
+          title="등록된 페스티벌"
+          count={FESTIVALS.length}
+          icon={<Tent size={24} strokeWidth={2} />}
+          variant="festival"
+          onClick={() => navigate('/festival')}
+        />
+        <DashboardCard
+          title="등록된 콘서트"
+          count={CONCERTS.length}
+          icon={<Music size={24} strokeWidth={2} />}
+          variant="concert"
+          onClick={() => navigate('/concert')}
+        />
       </div>
     </div>
   );
