@@ -12,6 +12,7 @@ import { Button, EmptyState } from '@shared/components/common';
 import { TICKET_VENDOR_QUERY_KEY } from '@shared/constants/query-key';
 import type { TicketVendorResponse } from '@shared/types/api';
 import { fileToBase64, validateLogoFile } from '@shared/utils';
+import { adminToast } from '@shared/utils/admin-toast';
 
 import * as styles from './ticketing-platform-page.css';
 
@@ -80,7 +81,9 @@ const TicketingPlatformPage = () => {
     // 파일 유효성 검사
     const validation = validateLogoFile(file);
     if (!validation.isValid) {
-      alert(validation.error);
+      adminToast.error({
+        text: validation.error ?? '유효하지 않은 파일입니다.',
+      });
       return;
     }
 
@@ -90,7 +93,7 @@ const TicketingPlatformPage = () => {
       setLogoPreview(base64);
       setLogoFile(file);
     } catch {
-      alert('파일 업로드에 실패했습니다.');
+      adminToast.error({ text: '파일 업로드에 실패했습니다.' });
     }
   };
 
@@ -98,7 +101,7 @@ const TicketingPlatformPage = () => {
     e.preventDefault();
     if (formMode === 'create') {
       if (!logoFile) {
-        alert('로고 이미지를 업로드해주세요.');
+        adminToast.error({ text: '로고 이미지를 업로드해주세요.' });
         return;
       }
       postMutate(
