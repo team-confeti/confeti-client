@@ -1,4 +1,4 @@
-export interface Agency {
+export interface TicketingPlatform {
   id: number;
   name: string;
   logoUrl?: string;

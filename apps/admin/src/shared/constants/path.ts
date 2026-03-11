@@ -3,7 +3,7 @@ export const PATH = {
   PENDING: '/pending',
   CONCERT: '/concert',
   FESTIVAL: '/festival',
-  AGENCY: '/agency',
-  EVENT_EDITOR: '/event-editor/:id',
-  EVENTS: '/events/:id',
+  TICKETING_PLATFORM: '/ticketing-platform',
+  PERFORMANCE_EDITOR: '/performance-editor/:id',
+  PERFORMANCES: '/performances/:id',
 } as const;

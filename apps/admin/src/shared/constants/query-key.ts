@@ -1,13 +1,17 @@
-export const EVENT_QUERY_KEY = {
-  ALL: ['events'],
-  PENDING: () => [...EVENT_QUERY_KEY.ALL, 'pending'],
-  FESTIVALS: () => [...EVENT_QUERY_KEY.ALL, 'festivals'],
-  CONCERTS: () => [...EVENT_QUERY_KEY.ALL, 'concerts'],
-  DETAIL: (eventId: number) => [...EVENT_QUERY_KEY.ALL, 'detail', eventId],
-  TIMETABLE: (eventId: number) => [
-    ...EVENT_QUERY_KEY.ALL,
+export const PERFORMANCE_QUERY_KEY = {
+  ALL: ['performances'],
+  PENDING: () => [...PERFORMANCE_QUERY_KEY.ALL, 'pending'],
+  FESTIVALS: () => [...PERFORMANCE_QUERY_KEY.ALL, 'festivals'],
+  CONCERTS: () => [...PERFORMANCE_QUERY_KEY.ALL, 'concerts'],
+  DETAIL: (performanceId: number) => [
+    ...PERFORMANCE_QUERY_KEY.ALL,
+    'detail',
+    performanceId,
+  ],
+  TIMETABLE: (performanceId: number) => [
+    ...PERFORMANCE_QUERY_KEY.ALL,
     'timetable',
-    eventId,
+    performanceId,
   ],
 } as const;
 
@@ -18,10 +22,14 @@ export const ARTIST_QUERY_KEY = {
   SEARCH: (keyword: string) => [...ARTIST_QUERY_KEY.ALL, 'search', keyword],
 } as const;
 
-export const AGENCY_QUERY_KEY = {
-  ALL: ['agencies'],
-  LIST: () => [...AGENCY_QUERY_KEY.ALL, 'list'],
-  DETAIL: (agencyId: number) => [...AGENCY_QUERY_KEY.ALL, 'detail', agencyId],
+export const TICKETING_PLATFORM_QUERY_KEY = {
+  ALL: ['ticketing-platforms'],
+  LIST: () => [...TICKETING_PLATFORM_QUERY_KEY.ALL, 'list'],
+  DETAIL: (ticketingPlatformId: number) => [
+    ...TICKETING_PLATFORM_QUERY_KEY.ALL,
+    'detail',
+    ticketingPlatformId,
+  ],
 } as const;
 
 export const DASHBOARD_QUERY_KEY = {
