@@ -12,9 +12,9 @@ const PAGE_TITLES: Record<string, string> = {
   '/pending': '대기 목록',
   '/festival': '페스티벌 목록',
   '/concert': '콘서트 목록',
-  '/agency': '예매처 관리',
-  '/event-editor': '공연 등록/수정',
-  '/events': '공연 상세',
+  '/ticketing-platform': '예매처 관리',
+  '/performance-editor': '공연 등록/수정',
+  '/performances': '공연 상세',
 };
 
 const Layout = () => {
