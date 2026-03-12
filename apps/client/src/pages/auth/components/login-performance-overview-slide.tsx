@@ -25,7 +25,7 @@ const LoginPerformanceOverviewSlide = ({
       <img
         src="/images/img_login_2.webp"
         alt="공연 정보를 소개하는 로그인 이미지"
-        className={`${styles.overlayImage} ${styles.loginTwoImage}`}
+        className={`${styles.overlayImage} ${styles.overlayImage}`}
       />
       <div className={styles.closeButtonSection}>
         <button
@@ -37,7 +37,7 @@ const LoginPerformanceOverviewSlide = ({
           <Icon name="close" size="2rem" />
         </button>
       </div>
-      <div className={styles.titleSection}>
+      <div className={styles.overlayImage}>
         <div className={styles.title}>
           {'콘서트, 페스티벌 등\n나에게 맞는 공연 정보를 확인해요'}
         </div>
