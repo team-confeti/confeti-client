@@ -7,6 +7,7 @@ import { Button, DotIndicator } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import loginLogoAnimation from '@shared/assets/lotties/login-logo-animtaion.json';
+import SwitchCase from '@shared/components/switch-case';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { clearLottieAssetBasePath } from '@shared/utils/images';
 
@@ -100,25 +101,31 @@ const LoginPage = () => {
         <div className={styles.heroSection} ref={sliderRef}>
           {LOGIN_SLIDES.map((slide) => (
             <div key={slide.title} className={styles.heroSectionItem}>
-              {slide.type === 'LOTTIE' ? (
-                <div className={styles.lottieBody}>
-                  <div className={styles.lottieAnimation}>
-                    <Lottie
-                      loop
-                      play={currentSlideIndex === 0}
-                      animationData={clearLottieAssetBasePath(
-                        loginLogoAnimation,
-                      )}
+              <SwitchCase
+                value={slide.type}
+                caseBy={{
+                  LOTTIE: () => (
+                    <div className={styles.lottieBody}>
+                      <div className={styles.lottieAnimation}>
+                        <Lottie
+                          loop
+                          play={currentSlideIndex === 0}
+                          animationData={clearLottieAssetBasePath(
+                            loginLogoAnimation,
+                          )}
+                        />
+                      </div>
+                    </div>
+                  ),
+                  IMAGE: () => (
+                    <img
+                      src={slide.src}
+                      alt={slide.alt}
+                      className={styles.overlayImage}
                     />
-                  </div>
-                </div>
-              ) : (
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className={styles.overlayImage}
-                />
-              )}
+                  ),
+                }}
+              />
             </div>
           ))}
         </div>

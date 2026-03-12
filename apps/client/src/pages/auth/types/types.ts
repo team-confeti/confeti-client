@@ -7,6 +7,8 @@ export interface BaseLoginSlide {
 
 export interface LottieLoginSlide extends BaseLoginSlide {
   type: 'LOTTIE';
+  src?: string;
+  alt?: string;
 }
 
 export interface ImageLoginSlide extends BaseLoginSlide {
