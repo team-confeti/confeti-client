@@ -35,6 +35,15 @@ export const itemsWrapper = recipe({
         backgroundColor: themeVars.color.gray100,
       },
     },
+    isShort: {
+      true: {
+        flexDirection: 'row',
+        gap: '4px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '4px 6px',
+      },
+    },
   },
   defaultVariants: {
     isSelected: true,
@@ -63,6 +72,14 @@ export const artistName = recipe({
         color: themeVars.color.gray500,
       },
     },
+    isShort: {
+      true: {
+        flex: '0 1 auto',
+        minWidth: 0,
+        width: 'auto',
+        maxWidth: 'none',
+      },
+    },
   },
   defaultVariants: {
     isSelected: true,
@@ -82,6 +99,11 @@ export const durationP = recipe({
       },
       false: {
         color: themeVars.color.gray500,
+      },
+    },
+    isShort: {
+      true: {
+        flexShrink: 0,
       },
     },
   },

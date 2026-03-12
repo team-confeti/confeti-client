@@ -156,7 +156,7 @@ export const artistRowName = style({
   fontSize: '16px',
   lineHeight: 'normal',
   color: '#ffffff',
-  whiteSpace: 'pre-wrap',
+  wordBreak: 'break-all',
 });
 
 export const artistRowTime = style({
@@ -339,6 +339,15 @@ export const captureItem = recipe({
         backgroundColor: themeVars.color.gray100,
       },
     },
+    isShort: {
+      true: {
+        flexDirection: 'row',
+        gap: '4px',
+        padding: '4px 6px',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
   },
   defaultVariants: {
     isSelected: true,
@@ -367,6 +376,14 @@ export const artistName = recipe({
         color: themeVars.color.gray500,
       },
     },
+    isShort: {
+      true: {
+        flex: '0 1 auto',
+        minWidth: 0,
+        width: 'auto',
+        maxWidth: 'none',
+      },
+    },
   },
   defaultVariants: {
     isSelected: true,
@@ -386,6 +403,11 @@ export const durationText = recipe({
       },
       false: {
         color: themeVars.color.gray500,
+      },
+    },
+    isShort: {
+      true: {
+        flexShrink: 0,
       },
     },
   },

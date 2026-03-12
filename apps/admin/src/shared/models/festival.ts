@@ -1,73 +1,61 @@
-import { FestivalDetailDTO, FestivalListDTO } from '../types/api';
+import type { AdminFestivalDetailResponse } from '@shared/types/api';
 
-type Artist = {
-  artistId: string;
+import type { ExistingPerformance } from '@pages/performance-editor/types';
+
+const parseDurationMinutes = (time: string): number => {
+  const match = time.match(/(\d+)/);
+  return match ? Number(match[1]) : 120;
 };
 
-type ReservationUrl = {
-  reservationUrl: string;
-  name: string;
-  logoUrl: string;
-  logoImg?: File;
+const parsePriceGrades = (
+  price: string,
+): Array<{ grade: string; price: string }> => {
+  if (!price) return [];
+  return price
+    .split(' / ')
+    .map((p) => {
+      const trimmed = p.trim();
+      const lastSpace = trimmed.lastIndexOf(' ');
+      if (lastSpace === -1) return { grade: trimmed, price: '' };
+      return {
+        grade: trimmed.slice(0, lastSpace),
+        price: trimmed.slice(lastSpace + 1),
+      };
+    })
+    .filter((g) => g.grade);
 };
 
-export type FestivalListItem = {
-  id: number;
-  title: string;
-  subtitle: string;
-  startAt: Date;
-  area: string;
-  reserveAt: Date;
-};
+export const mapFestivalDetailToExistingPerformance = (
+  festival: AdminFestivalDetailResponse,
+): ExistingPerformance => {
+  const artistMap = new Map<string, { id: number; name: string }>();
+  festival.dates?.forEach((date) => {
+    date.artists?.forEach((artist) => {
+      if (!artistMap.has(artist.artistId)) {
+        artistMap.set(artist.artistId, {
+          id: Number(artist.artistId),
+          name: artist.name,
+        });
+      }
+    });
+  });
 
-export type Festival = {
-  title: string;
-  subtitle: string;
-  posterImg?: File;
-  logoImg?: File;
-  posterUrl: string;
-  startAt: Date;
-  endAt: Date;
-  area: string;
-  reserveAt: Date;
-  ageRating: string;
-  time: string;
-  price: string;
-  address: string;
-  artists: Artist[];
-  reservationUrls: ReservationUrl[];
-};
-
-export function toFestivalListItem(
-  dto: FestivalListDTO['festivals'][0],
-): FestivalListItem {
   return {
-    id: dto.festivalId,
-    title: dto.title,
-    subtitle: dto.subtitle,
-    startAt: new Date(dto.startAt),
-    area: dto.area,
-    reserveAt: new Date(dto.reserveAt),
+    type: 'Festival',
+    title: festival.title,
+    subtitle: festival.subtitle,
+    startDate: festival.startAt,
+    endDate: festival.endAt,
+    venueName: festival.area,
+    venueAddress: festival.address,
+    ageRating: festival.ageRating,
+    durationMinutes: parseDurationMinutes(festival.time),
+    bookingSchedules: festival.reserveAt
+      ? [{ round: '1차', startDate: festival.reserveAt }]
+      : [],
+    priceGrades: parsePriceGrades(festival.price),
+    mainPosterPreview: festival.posterUrl || undefined,
+    logoPreview: festival.logoUrl || undefined,
+    artists: Array.from(artistMap.values()),
   };
-}
-
-export function toFestival(dto: FestivalDetailDTO): Festival {
-  return {
-    title: dto.title,
-    subtitle: dto.subtitle,
-    posterUrl: dto.posterUrl,
-    startAt: new Date(dto.startAt),
-    endAt: new Date(dto.endAt),
-    area: dto.area,
-    reserveAt: new Date(dto.reserveAt),
-    ageRating: dto.ageRating,
-    time: dto.time,
-    price: dto.price,
-    address: dto.address,
-    artists: dto.artists,
-    reservationUrls: dto.reservationUrls.map((url) => ({
-      ...url,
-      logoUrl: url.logoUrl,
-    })),
-  };
-}
+};
