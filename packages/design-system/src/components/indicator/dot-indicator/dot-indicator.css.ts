@@ -31,18 +31,46 @@ export const dotVariants = recipe({
       true: {
         width: '2.4rem',
         borderRadius: '3px',
-        backgroundColor: themeVars.color.white,
+      },
+      false: {},
+    },
+    tone: {
+      dark: {
+        backgroundColor: themeVars.color.white_op_30,
         ':hover': {
-          backgroundColor: themeVars.color.white,
-          opacity: 0.9,
+          backgroundColor: themeVars.color.white_op_30,
+          opacity: 0.8,
+        },
+        selectors: {
+          '&[aria-selected="true"]': {
+            backgroundColor: themeVars.color.white,
+          },
+          '&[aria-selected="true"]:hover': {
+            backgroundColor: themeVars.color.white,
+            opacity: 0.9,
+          },
         },
       },
-      false: {
-        backgroundColor: themeVars.color.white_op_30,
+      light: {
+        backgroundColor: themeVars.color.gray300,
+        ':hover': {
+          backgroundColor: themeVars.color.gray300,
+          opacity: 0.8,
+        },
+        selectors: {
+          '&[aria-selected="true"]': {
+            backgroundColor: themeVars.color.confeti_lime,
+          },
+          '&[aria-selected="true"]:hover': {
+            backgroundColor: themeVars.color.confeti_lime,
+            opacity: 0.9,
+          },
+        },
       },
     },
   },
   defaultVariants: {
     active: false,
+    tone: 'dark',
   },
 });

@@ -5,6 +5,7 @@ import { routePath } from '@shared/router/path';
 
 import BasicLayout from './basic-layout';
 import GlobalLayout from './global-layout';
+import { LoginPage } from './lazy';
 import { authRoutes } from './routes/auth-routes';
 import { fallbackRoutes } from './routes/fallback-routes';
 import { globalRoutes } from './routes/global-routes';
@@ -35,6 +36,12 @@ export const router = createBrowserRouter([
     element: <BasicLayout />,
     errorElement: <ErrorPage />,
     children: [{ index: true, element: myTimetableDetailRoute.element }],
+  },
+  {
+    path: routePath.LOGIN,
+    element: <BasicLayout />,
+    errorElement: <ErrorPage />,
+    children: [{ index: true, element: <LoginPage /> }],
   },
   {
     path: routePath.LAYOUT,

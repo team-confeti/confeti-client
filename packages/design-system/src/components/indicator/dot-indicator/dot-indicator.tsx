@@ -7,9 +7,16 @@ interface Props {
   current: number;
   className?: string;
   onDotClick?: (index: number) => void;
+  tone?: 'dark' | 'light';
 }
 
-const DotIndicator = ({ total, current, className, onDotClick }: Props) => {
+const DotIndicator = ({
+  total,
+  current,
+  className,
+  onDotClick,
+  tone = 'dark',
+}: Props) => {
   return (
     <div
       className={cn(dotIndicatorVariants(), className)}
@@ -26,6 +33,7 @@ const DotIndicator = ({ total, current, className, onDotClick }: Props) => {
           className={cn(
             dotVariants({
               active: index === current,
+              tone,
             }),
           )}
           onClick={() => onDotClick?.(index)}
