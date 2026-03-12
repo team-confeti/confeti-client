@@ -10,7 +10,7 @@ export const showEvents = [
     params: {},
   },
   {
-    name: 'show_onboarding_artist_search',
+    name: 'show_onboarding_artist_search_page',
     params: {},
   },
 ] as const satisfies EventDefinitions;
