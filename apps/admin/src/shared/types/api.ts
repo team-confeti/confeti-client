@@ -51,6 +51,12 @@ export type FestivalResponse = {
   area: string;
 };
 
+export type AdminPerformanceStatus = 'Scheduled' | 'Completed' | string;
+
+export type AdminFestivalListItemResponse = FestivalResponse & {
+  status?: AdminPerformanceStatus;
+};
+
 export type FestivalGroupResponse = {
   festivals: FestivalResponse[];
   count: number;
@@ -60,6 +66,18 @@ export type AdminFestivalListResponse = {
   upcomingFestivals: FestivalGroupResponse;
   finishedFestivals: FestivalGroupResponse;
 };
+
+export type AdminFestivalListQueryResponse =
+  | AdminFestivalListResponse
+  | {
+      upcomingFestivals: FestivalResponse[];
+      finishedFestivals: FestivalResponse[];
+    }
+  | AdminFestivalListItemResponse[]
+  | {
+      festivals: AdminFestivalListItemResponse[];
+      count?: number;
+    };
 
 // Detail
 export type TimeResponse = {
@@ -160,6 +178,10 @@ export type ConcertResponse = {
   area: string;
 };
 
+export type AdminConcertListItemResponse = ConcertResponse & {
+  status?: AdminPerformanceStatus;
+};
+
 export type ConcertGroupResponse = {
   concerts: ConcertResponse[];
   count: number;
@@ -169,6 +191,18 @@ export type AdminConcertListResponse = {
   upcomingConcerts: ConcertGroupResponse;
   finishedConcerts: ConcertGroupResponse;
 };
+
+export type AdminConcertListQueryResponse =
+  | AdminConcertListResponse
+  | {
+      upcomingConcerts: ConcertResponse[];
+      finishedConcerts: ConcertResponse[];
+    }
+  | AdminConcertListItemResponse[]
+  | {
+      concerts: AdminConcertListItemResponse[];
+      count?: number;
+    };
 
 // Detail
 export type AdminConcertDetailResponse = {
@@ -228,6 +262,8 @@ export type DraftListItem = {
 export type DraftListResponse = {
   drafts: DraftListItem[];
 };
+
+export type DraftListQueryResponse = DraftListResponse | DraftListItem[];
 
 export type DraftDetailResponse = {
   id: number;

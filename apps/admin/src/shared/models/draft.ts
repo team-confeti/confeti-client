@@ -1,4 +1,8 @@
-import type { DraftDetailResponse } from '@shared/types/api';
+import type {
+  DraftDetailResponse,
+  DraftListItem,
+  DraftListQueryResponse,
+} from '@shared/types/api';
 
 import type { ExistingPerformance } from '@pages/performance-editor/types';
 
@@ -34,6 +38,13 @@ const parseDurationMinutes = (time?: string): number | undefined => {
   const match = time.match(/(\d+)/);
   return match ? Number(match[1]) : undefined;
 };
+
+export const getDraftItems = (
+  draftListResponse: DraftListQueryResponse | null | undefined,
+): DraftListItem[] =>
+  Array.isArray(draftListResponse)
+    ? draftListResponse
+    : (draftListResponse?.drafts ?? []);
 
 export const mapDraftDetailToExistingPerformance = (
   draft: DraftDetailResponse,

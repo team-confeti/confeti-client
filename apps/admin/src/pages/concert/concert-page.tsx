@@ -5,6 +5,7 @@ import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
 import { EmptyState } from '@shared/components/common';
 import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
+import { getConcertGroups } from '@shared/models/concert';
 import { mapConcertToCardData } from '@shared/models/performance-card';
 
 import * as styles from './concert-page.css';
@@ -13,8 +14,9 @@ const ConcertPage = () => {
   const navigate = useNavigate();
 
   const { data } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST());
-  const upcomingConcerts = data.upcomingConcerts.concerts;
-  const pastConcerts = data.finishedConcerts.concerts;
+  const concertGroups = getConcertGroups(data);
+  const upcomingConcerts = concertGroups.upcomingConcerts.concerts;
+  const pastConcerts = concertGroups.finishedConcerts.concerts;
 
   const handleSelectPerformance = (id: number) => {
     navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=concert`);
@@ -26,7 +28,7 @@ const ConcertPage = () => {
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>
           <span className={styles.countBadge}>
-            {data.upcomingConcerts.count}
+            {concertGroups.upcomingConcerts.count}
           </span>
         </div>
         {upcomingConcerts.length === 0 ? (
@@ -48,7 +50,7 @@ const ConcertPage = () => {
         <div className={styles.sectionHeaderPast}>
           <h3 className={styles.sectionTitlePast}>종료된 공연</h3>
           <span className={styles.countBadgePast}>
-            {data.finishedConcerts.count}
+            {concertGroups.finishedConcerts.count}
           </span>
         </div>
         {pastConcerts.length === 0 ? (

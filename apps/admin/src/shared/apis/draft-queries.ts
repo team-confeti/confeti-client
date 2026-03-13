@@ -3,7 +3,7 @@ import { queryOptions } from '@tanstack/react-query';
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
-import { DraftDetailResponse, DraftListResponse } from '@shared/types/api';
+import { DraftDetailResponse, DraftListQueryResponse } from '@shared/types/api';
 
 export const DRAFT_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: DRAFT_QUERY_KEY.ALL }),
@@ -19,8 +19,8 @@ export const DRAFT_QUERY_OPTIONS = {
     }),
 };
 
-export const getDraftList = async (): Promise<DraftListResponse> => {
-  return get<DraftListResponse>(END_POINT.GET_DRAFTS);
+export const getDraftList = async (): Promise<DraftListQueryResponse> => {
+  return get<DraftListQueryResponse>(END_POINT.GET_DRAFTS);
 };
 
 export const getDraftDetail = async (

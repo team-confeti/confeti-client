@@ -5,6 +5,7 @@ import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import { EmptyState } from '@shared/components/common';
 import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
+import { getFestivalGroups } from '@shared/models/festival';
 import { mapFestivalToCardData } from '@shared/models/performance-card';
 
 import * as styles from './festival-page.css';
@@ -13,8 +14,9 @@ const FestivalPage = () => {
   const navigate = useNavigate();
 
   const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST());
-  const upcomingFestivals = data.upcomingFestivals.festivals;
-  const pastFestivals = data.finishedFestivals.festivals;
+  const festivalGroups = getFestivalGroups(data);
+  const upcomingFestivals = festivalGroups.upcomingFestivals.festivals;
+  const pastFestivals = festivalGroups.finishedFestivals.festivals;
 
   const handleSelectPerformance = (id: number) => {
     navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=festival`);
@@ -26,7 +28,7 @@ const FestivalPage = () => {
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>
           <span className={styles.countBadge}>
-            {data.upcomingFestivals.count}
+            {festivalGroups.upcomingFestivals.count}
           </span>
         </div>
         {upcomingFestivals.length === 0 ? (
@@ -48,7 +50,7 @@ const FestivalPage = () => {
         <div className={styles.sectionHeaderPast}>
           <h3 className={styles.sectionTitlePast}>종료된 공연</h3>
           <span className={styles.countBadgePast}>
-            {data.finishedFestivals.count}
+            {festivalGroups.finishedFestivals.count}
           </span>
         </div>
         {pastFestivals.length === 0 ? (
