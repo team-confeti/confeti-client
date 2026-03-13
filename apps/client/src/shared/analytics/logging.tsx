@@ -32,3 +32,21 @@ export const LogShowEvent = (props: ShowEventPayload) => {
 
   return null;
 };
+
+type ClickEventPayloadResolver<TArgs extends unknown[]> =
+  | ClickEventPayload
+  | ((...args: TArgs) => ClickEventPayload);
+
+export const withClickEvent =
+  <TArgs extends unknown[]>(
+    eventPayload: ClickEventPayloadResolver<TArgs>,
+    handler?: (...args: TArgs) => void,
+  ) =>
+  (...args: TArgs) => {
+    const payload =
+      typeof eventPayload === 'function' ? eventPayload(...args) : eventPayload;
+
+    trackClickEvent(payload);
+
+    return handler?.(...args);
+  };

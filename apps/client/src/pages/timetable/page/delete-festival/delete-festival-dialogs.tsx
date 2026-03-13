@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { Button, Dialog } from '@confeti/design-system';
 import { cn } from '@confeti/utils';
 
+import { LogShowEvent } from '@shared/analytics/logging';
+
 export const ConfirmDialog = ({
   isOpen,
   onClose,
@@ -16,25 +18,28 @@ export const ConfirmDialog = ({
   numberToDelete: number;
   className?: string;
 }) => (
-  <Dialog open={isOpen} handleClose={onClose}>
-    <Dialog.Content>
-      <Dialog.Title>
-        <span className={cn(className)} style={{ marginRight: '0.2rem' }}>
-          {numberToDelete}
-        </span>
-        개의 공연을 삭제할까요?
-      </Dialog.Title>
+  <>
+    <LogShowEvent name="show_timetable_delete_confirm_dialog" />
+    <Dialog open={isOpen} handleClose={onClose}>
+      <Dialog.Content>
+        <Dialog.Title>
+          <span className={cn(className)} style={{ marginRight: '0.2rem' }}>
+            {numberToDelete}
+          </span>
+          개의 공연을 삭제할까요?
+        </Dialog.Title>
 
-      <Dialog.Description>
-        <p>제작했던 타임테이블은</p>
-        <p>&apos;내 공연&apos; 페이지에서 다시 볼 수 있어요.</p>
-      </Dialog.Description>
-    </Dialog.Content>
-    <Dialog.Action>
-      <Button text="돌아가기" onClick={onClose} variant="back" />
-      <Button text="삭제하기" onClick={onConfirm} />
-    </Dialog.Action>
-  </Dialog>
+        <Dialog.Description>
+          <p>제작했던 타임테이블은</p>
+          <p>&apos;내 공연&apos; 페이지에서 다시 볼 수 있어요.</p>
+        </Dialog.Description>
+      </Dialog.Content>
+      <Dialog.Action>
+        <Button text="돌아가기" onClick={onClose} variant="back" />
+        <Button text="삭제하기" onClick={onConfirm} />
+      </Dialog.Action>
+    </Dialog>
+  </>
 );
 
 export const SuccessDialog = ({
@@ -56,10 +61,13 @@ export const SuccessDialog = ({
   }, [isOpen, onClose]);
 
   return (
-    <Dialog open={isOpen}>
-      <Dialog.Content>
-        <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
-      </Dialog.Content>
-    </Dialog>
+    <>
+      <LogShowEvent name="show_timetable_delete_success_dialog" />
+      <Dialog open={isOpen}>
+        <Dialog.Content>
+          <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
+        </Dialog.Content>
+      </Dialog>
+    </>
   );
 };

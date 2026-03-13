@@ -1,6 +1,7 @@
 import { Spacing } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import {
   FloatingButtonContainer,
   Footer,
@@ -37,6 +38,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
+      <LogShowEvent name="show_home" />
       {formattedCarouselData.length > 0 && (
         <PerformanceCarouselSection
           data={formattedCarouselData}

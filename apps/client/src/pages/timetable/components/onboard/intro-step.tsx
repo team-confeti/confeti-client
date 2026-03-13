@@ -1,6 +1,8 @@
 import { Button, Description } from '@confeti/design-system';
 import { cn } from '@confeti/utils';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import {
   WithNavigate,
   WithNextStep,
@@ -17,6 +19,10 @@ const ItroStep = ({
   handleNavigate,
   onboardImage,
 }: IntroProps) => {
+  const handleStartTimetable = () => {
+    handleNavigate({ isReTry: false });
+  };
+
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -32,17 +38,33 @@ const ItroStep = ({
           <img src={onboardImage} />
         </div>
         <div className={styles.timeTableOnboardButtonContainer}>
-          <Button
-            text="타임테이블 사용법 알아보기"
-            variant="add"
-            onClick={handleNextStep}
-          />
-          <Button
-            text="타임테이블 바로 시작하기"
-            variant="add"
-            className={cn(styles.customAddButton)}
-            onClick={() => handleNavigate({ isReTry: false })}
-          />
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              entry_point: 'intro',
+              action: 'next',
+            }}
+          >
+            <Button
+              text="타임테이블 사용법 알아보기"
+              variant="add"
+              onClick={handleNextStep}
+            />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              entry_point: 'intro',
+              action: 'start',
+            }}
+          >
+            <Button
+              text="타임테이블 바로 시작하기"
+              variant="add"
+              className={cn(styles.customAddButton)}
+              onClick={handleStartTimetable}
+            />
+          </LogClickEvent>
         </div>
       </div>
     </section>

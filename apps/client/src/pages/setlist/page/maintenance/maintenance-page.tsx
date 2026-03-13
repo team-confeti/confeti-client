@@ -1,3 +1,4 @@
+import { LogShowEvent } from '@shared/analytics/logging';
 import NavigationTabs from '@shared/components/navigation-tabs';
 
 import { TAB_MENU } from '@pages/home/constants/tab';
@@ -9,6 +10,7 @@ import ImgSetlistMaintenance from '/images/img_setlist_maintenance.webp';
 const MaintenancePage = () => {
   return (
     <>
+      <LogShowEvent name="show_setlist_maintenance" />
       <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />
       <div className={styles.container}>
         <img

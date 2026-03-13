@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './no-artist-section.css';
@@ -19,7 +20,12 @@ const NoArtistSection = () => {
       </p>
 
       <div className={styles.button}>
-        <Button text="아티스트 선택하기" onClick={handleNavigate} />
+        <LogClickEvent
+          name="click_my_profile_select_artist"
+          params={{ source_page: 'my_profile' }}
+        >
+          <Button text="아티스트 선택하기" onClick={handleNavigate} />
+        </LogClickEvent>
       </div>
     </div>
   );

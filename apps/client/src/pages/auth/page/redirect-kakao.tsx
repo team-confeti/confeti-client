@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import Loading from '@shared/pages/loading/loading';
 
 import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
@@ -19,9 +20,15 @@ const RedirectKakao = () => {
       code: code ?? '',
       redirectUrl: REDIRECT_URI,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Loading />;
+  return (
+    <>
+      <LogShowEvent name="show_redirect_kakao" />
+      <Loading />
+    </>
+  );
 };
 
 export default RedirectKakao;

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Tooltip } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { MY_RECORD_QUERY_OPTIONS } from '@shared/apis/my/my-record-queries';
 import { routePath } from '@shared/router/path';
 
@@ -40,26 +41,36 @@ const UserActivitySummary = () => {
           <span className={styles.countGap}>회</span>
         </p>
       </div>
-      <div className={styles.itemWrapper} onClick={handleTimetableClick}>
-        <p className={styles.itemText}>타임테이블</p>
-        <div className={styles.itemCountWrapper}>
-          <p>
-            {recordData.timetableCount}
-            <span className={styles.countGap}>개</span>
-          </p>
-          <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
+      <LogClickEvent
+        name="click_my_activity_summary"
+        params={{ entry_point: 'timetable' }}
+      >
+        <div className={styles.itemWrapper} onClick={handleTimetableClick}>
+          <p className={styles.itemText}>타임테이블</p>
+          <div className={styles.itemCountWrapper}>
+            <p>
+              {recordData.timetableCount}
+              <span className={styles.countGap}>개</span>
+            </p>
+            <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
+          </div>
         </div>
-      </div>
-      <div className={styles.itemWrapper} onClick={handleSetListClick}>
-        <p className={styles.itemText}>셋리스트</p>
-        <div className={styles.itemCountWrapper}>
-          <p>
-            {recordData.setlistCount}
-            <span className={styles.countGap}>개</span>
-          </p>
-          <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
+      </LogClickEvent>
+      <LogClickEvent
+        name="click_my_activity_summary"
+        params={{ entry_point: 'setlist' }}
+      >
+        <div className={styles.itemWrapper} onClick={handleSetListClick}>
+          <p className={styles.itemText}>셋리스트</p>
+          <div className={styles.itemCountWrapper}>
+            <p>
+              {recordData.setlistCount}
+              <span className={styles.countGap}>개</span>
+            </p>
+            <Icon name="arrow-horizontal" size="1.7rem" color="gray400" />
+          </div>
         </div>
-      </div>
+      </LogClickEvent>
     </section>
   );
 };

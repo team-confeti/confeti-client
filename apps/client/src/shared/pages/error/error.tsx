@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
+
 import * as styles from './error.css';
 
 const ERROR_MESSAGES = {
@@ -22,6 +24,7 @@ const Error = () => {
 
   return (
     <>
+      <LogShowEvent name="show_error" />
       <div className={styles.container}>
         <Icon name="404" width="11.4rem" height="4.3rem" color="gray400" />
 
@@ -33,11 +36,13 @@ const Error = () => {
         </div>
       </div>
       <div className={styles.button}>
-        <Button
-          text={ERROR_MESSAGES.buttonText}
-          variant="add"
-          onClick={handleNavigate}
-        />
+        <LogClickEvent name="click_error_go_home">
+          <Button
+            text={ERROR_MESSAGES.buttonText}
+            variant="add"
+            onClick={handleNavigate}
+          />
+        </LogClickEvent>
       </div>
     </>
   );
