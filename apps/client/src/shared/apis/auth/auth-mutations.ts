@@ -39,16 +39,10 @@ const { post: authPost } = createInstance(ENV_CONFIG.BASE_URL);
 export const postSocialLogin = async (
   socialLoginData: KakaoLogin | AppleLogin,
 ): Promise<BaseResponse<SocialLoginResponse>> => {
-  try {
-    const response = await authPost<BaseResponse<SocialLoginResponse>>(
-      END_POINT.POST_SOCIAL_LOGIN,
-      socialLoginData,
-    );
-
-    return response;
-  } catch {
-    throw new Error('Unexpected error occurred');
-  }
+  return await authPost<BaseResponse<SocialLoginResponse>>(
+    END_POINT.POST_SOCIAL_LOGIN,
+    socialLoginData,
+  );
 };
 
 export const postReissueToken = async (

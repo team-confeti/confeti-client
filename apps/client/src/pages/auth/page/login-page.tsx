@@ -3,8 +3,9 @@ import { useMotionValueEvent, useScroll } from 'motion/react';
 import Lottie from 'react-lottie-player';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, DotIndicator } from '@confeti/design-system';
+import { Button, DotIndicator, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { onError } from '@confeti/utils';
 
 import loginLogoAnimation from '@shared/assets/lotties/login-logo-animtaion.json';
 import SwitchCase from '@shared/components/switch-case';
@@ -24,7 +25,7 @@ const LoginPage = () => {
   const { scrollX } = useScroll({
     container: sliderRef,
   });
-  const { mutate: appleLoginMutate } = useSocialLoginMutation();
+  const { mutateAsync: postSocialLogin } = useSocialLoginMutation();
 
   useMotionValueEvent(scrollX, 'change', (scrollLeft) => {
     const container = sliderRef.current;
@@ -55,15 +56,16 @@ const LoginPage = () => {
     });
   };
 
-  const handleAppleLogin = async () => {
-    try {
-      initAppleAuth();
-      const loginData = await getAppleAuthData();
-      appleLoginMutate(loginData);
-    } catch (error) {
-      console.error('애플 로그인 에러:', error);
-    }
-  };
+  const handleAppleLogin = onError(() => {
+    toast({
+      text: '애플 로그인에 실패했어요.',
+      position: 'middleCenter',
+    });
+  })(async () => {
+    initAppleAuth();
+    const loginData = await getAppleAuthData();
+    await postSocialLogin(loginData);
+  });
 
   const handleKakaoLogin = () => {
     const REDIRECT_URI =
