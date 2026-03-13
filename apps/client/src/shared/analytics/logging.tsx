@@ -1,6 +1,6 @@
 import { Children, cloneElement, type ReactElement, useEffect } from 'react';
 
-import type { ClickEventPayload, ShowEventPayload } from './events/events';
+import type { ClickEventPayload, ShowEventPayload } from './events/types';
 import { trackClickEvent, trackShowEvent } from './track';
 
 type LogClickEventProps = ClickEventPayload & {

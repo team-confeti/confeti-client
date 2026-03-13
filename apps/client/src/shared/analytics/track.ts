@@ -5,7 +5,7 @@ import {
   type ClickEventPayload,
   type ShowEventName,
   type ShowEventPayload,
-} from './events/events';
+} from './events/types';
 
 const trackEvent = (
   eventName: ShowEventName | ClickEventName,
