@@ -584,9 +584,10 @@ export const clickEvents = [
   {
     name: 'click_my_timetable_confirm_delete',
     params: {
-      count: {
-        type: 'number',
+      action: {
+        type: 'enum',
         required: true,
+        oneOf: ['cancel', 'confirm'],
       },
     },
   },
@@ -938,39 +939,30 @@ export const clickEvents = [
     },
   },
   {
-    name: 'click_timetable_edit',
-  },
-  {
-    name: 'click_timetable_cancel_edit',
-  },
-  {
-    name: 'click_timetable_open_delete',
+    name: 'click_timetable_edit_mode',
     params: {
-      count: {
-        type: 'number',
+      action: {
+        type: 'enum',
         required: true,
-      },
-      entry_point: {
-        type: 'string',
-        required: false,
+        oneOf: ['start', 'complete'],
       },
     },
   },
   {
-    name: 'click_timetable_confirm_delete',
+    name: 'click_timetable_delete_selection',
     params: {
+      action: {
+        type: 'enum',
+        required: true,
+        oneOf: ['cancel', 'open_delete'],
+      },
       count: {
         type: 'number',
-        required: true,
+        required: false,
       },
       entry_point: {
         type: 'string',
         required: false,
-      },
-      action: {
-        type: 'enum',
-        required: true,
-        oneOf: ['cancel', 'confirm'],
       },
     },
   },
@@ -1009,36 +1001,12 @@ export const clickEvents = [
     },
   },
   {
-    name: 'click_timetable_delete_festival_select',
-    params: {
-      target_id: {
-        type: 'number',
-        required: true,
-      },
-      action: {
-        type: 'enum',
-        required: true,
-        oneOf: [
-          'open',
-          'cancel',
-          'confirm',
-          'next',
-          'retry',
-          'skip',
-          'start',
-          'complete',
-          'select',
-          'deselect',
-        ],
-      },
-    },
-  },
-  {
     name: 'click_timetable_dropdown_action',
     params: {
       action: {
-        type: 'string',
+        type: 'enum',
         required: true,
+        oneOf: ['add'],
       },
     },
   },

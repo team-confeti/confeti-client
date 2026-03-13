@@ -40,7 +40,6 @@ export const routePath = {
   TIME_TABLE_EMPTY_FESTIVAL: 'empty-festival',
   TIME_TABLE_REQUIRE_LOGIN: 'require-login',
   ADD_FESTIVAL: 'add-festival',
-  DELETE_FESTIVAL: 'delete-festival',
   NO_UPCOMING_FESTIVAL: 'no-upcoming-festival',
 
   // Onboarding

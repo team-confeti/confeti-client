@@ -110,10 +110,6 @@ export const showEvents = [
     type: 'page',
   },
   {
-    name: 'show_timetable_delete_festival',
-    type: 'page',
-  },
-  {
     name: 'show_timetable_no_upcoming_festival',
     type: 'page',
   },
