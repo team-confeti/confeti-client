@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
 import { Badge, Button, EmptyState } from '@shared/components/common';
 import { PATH } from '@shared/constants';
+import { getDraftItems } from '@shared/models/draft';
 
 import * as styles from './pending-page.css';
 
@@ -12,7 +13,7 @@ const PendingPage = () => {
   const navigate = useNavigate();
 
   const { data } = useSuspenseQuery(DRAFT_QUERY_OPTIONS.LIST());
-  const items = data.drafts;
+  const draftItems = getDraftItems(data);
 
   const handleCreateNew = () => {
     navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
@@ -40,14 +41,14 @@ const PendingPage = () => {
         </Button>
       </div>
 
-      {items.length === 0 ? (
+      {draftItems.length === 0 ? (
         <EmptyState
           icon={<Clock size={48} />}
           title="대기 중인 공연이 없습니다."
         />
       ) : (
         <div className={styles.listContainer}>
-          {items.map((item) => (
+          {draftItems.map((item) => (
             <div
               key={item.id}
               onClick={() => handleSelectItem(item.id)}

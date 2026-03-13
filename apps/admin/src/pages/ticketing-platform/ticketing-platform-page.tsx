@@ -10,6 +10,7 @@ import { TICKET_VENDOR_MUTATION_OPTIONS } from '@shared/apis/ticket-vendor-mutat
 import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
 import { Button, EmptyState } from '@shared/components/common';
 import { TICKET_VENDOR_QUERY_KEY } from '@shared/constants/query-key';
+import { getTicketVendors } from '@shared/models/ticket-vendor';
 import type { TicketVendorResponse } from '@shared/types/api';
 import { fileToBase64, validateLogoFile } from '@shared/utils';
 import { adminToast } from '@shared/utils/admin-toast';
@@ -21,7 +22,7 @@ type FormMode = 'create' | 'edit';
 const TicketingPlatformPage = () => {
   const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(TICKET_VENDOR_QUERY_OPTIONS.LIST());
-  const ticketVendors = data.ticketVendors;
+  const ticketVendors = getTicketVendors(data);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<FormMode>('create');

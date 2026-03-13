@@ -12,6 +12,7 @@ import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu
 import Header from '@shared/components/layout/header';
 import LoginRequired from '@shared/components/layout/login-required';
 import Loading from '@shared/components/loading/loading';
+import { getDraftItems } from '@shared/models/draft';
 
 import * as styles from './layout.css';
 
@@ -60,12 +61,13 @@ const Layout = () => {
       ) || ''
     ] ||
     '관리자';
+  const pendingCount = getDraftItems(data).length;
 
   return (
     <div className={styles.wrapper}>
       <AsideNavigationMenu
         isExpanded={sidebarExpanded}
-        pendingCount={data?.drafts?.length ?? 0}
+        pendingCount={pendingCount}
       />
       <div className={styles.mainContainer}>
         <Header

@@ -13,14 +13,28 @@ export const useStageManagement = ({
   const handleAddStage = () => {
     setFormData((prev) => ({
       ...prev,
-      stages: [...prev.stages, { name: '' }],
+      stages: [...prev.stages, { name: '', order: prev.stages.length }],
     }));
   };
 
   const handleRemoveStage = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      stages: prev.stages.filter((_, i) => i !== index),
+      stages: prev.stages
+        .filter((_, stageIndex) => stageIndex !== index)
+        .map((stage, order) => ({
+          ...stage,
+          order,
+        })),
+      timetableSlots: prev.timetableSlots
+        .filter((timeSlot) => timeSlot.stageIndex !== index)
+        .map((timeSlot) => ({
+          ...timeSlot,
+          stageIndex:
+            timeSlot.stageIndex > index
+              ? timeSlot.stageIndex - 1
+              : timeSlot.stageIndex,
+        })),
     }));
   };
 

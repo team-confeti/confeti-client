@@ -5,7 +5,7 @@ import { END_POINT } from '@shared/constants/api';
 import { CONCERT_QUERY_KEY } from '@shared/constants/query-key';
 import {
   AdminConcertDetailResponse,
-  AdminConcertListResponse,
+  AdminConcertListQueryResponse,
 } from '@shared/types/api';
 
 export const CONCERT_QUERY_OPTIONS = {
@@ -22,9 +22,10 @@ export const CONCERT_QUERY_OPTIONS = {
     }),
 };
 
-export const getConcertList = async (): Promise<AdminConcertListResponse> => {
-  return get<AdminConcertListResponse>(END_POINT.GET_CONCERTS);
-};
+export const getConcertList =
+  async (): Promise<AdminConcertListQueryResponse> => {
+    return get<AdminConcertListQueryResponse>(END_POINT.GET_CONCERTS);
+  };
 
 export const getConcertDetail = async (
   concertId: number,
