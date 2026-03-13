@@ -31,6 +31,26 @@ type PerformanceDataJson = {
     url: string;
     datetime: string;
   }>;
+  stages?: Array<{
+    name: string;
+    order?: number;
+    festivalStageId?: number;
+  }>;
+  timetableSlots?: Array<{
+    id: string;
+    date: string;
+    stageIndex: number;
+    artistId: number;
+    startTime: string;
+    endTime: string;
+    festivalTimeId?: number;
+  }>;
+  festivalDateMetas?: Array<{
+    date: string;
+    openAt?: string;
+    festivalDateId?: number;
+  }>;
+  publishedPerformanceId?: number | null;
 };
 
 const parseDurationMinutes = (time?: string): number | undefined => {
@@ -82,5 +102,9 @@ export const mapDraftDetailToExistingPerformance = (
         name: a.name,
       })),
     selectedTicketingPlatforms: parsed.selectedTicketingPlatforms,
+    stages: parsed.stages,
+    timetableSlots: parsed.timetableSlots,
+    festivalDateMetas: parsed.festivalDateMetas,
+    publishedPerformanceId: parsed.publishedPerformanceId ?? undefined,
   };
 };

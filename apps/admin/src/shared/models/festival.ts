@@ -5,6 +5,7 @@ import type {
   AdminFestivalListResponse,
   FestivalGroupResponse,
   FestivalResponse,
+  TicketVendorResponse,
 } from '@shared/types/api';
 import { isDatePast } from '@shared/utils/format-date';
 
@@ -32,6 +33,11 @@ const parsePriceGrades = (
     })
     .filter((g) => g.grade);
 };
+
+const extractDate = (value: string) => value.split('T')[0] ?? value;
+
+const extractTime = (value: string) =>
+  value.split('T')[1]?.slice(0, 5) ?? value;
 
 const EMPTY_FESTIVAL_GROUP: FestivalGroupResponse = {
   festivals: [],
@@ -160,8 +166,14 @@ export const getFestivalGroups = (
 
 export const mapFestivalDetailToExistingPerformance = (
   festival: AdminFestivalDetailResponse,
+  ticketVendors?: TicketVendorResponse[],
 ): ExistingPerformance => {
   const artistMap = new Map<string, { id: number; name: string }>();
+  const stagesById = new Map<
+    string,
+    { name: string; order?: number; festivalStageId?: number }
+  >();
+
   festival.dates?.forEach((date) => {
     date.artists?.forEach((artist) => {
       if (!artistMap.has(artist.artistId)) {
@@ -171,6 +183,28 @@ export const mapFestivalDetailToExistingPerformance = (
         });
       }
     });
+
+    date.stages?.forEach((stage) => {
+      const stageKey = String(stage.festivalStageId);
+
+      if (!stagesById.has(stageKey)) {
+        stagesById.set(stageKey, {
+          name: stage.name,
+          order: stage.order,
+          festivalStageId: stage.festivalStageId,
+        });
+      }
+    });
+  });
+
+  const stages = Array.from(stagesById.values()).sort(
+    (left, right) => (left.order ?? 0) - (right.order ?? 0),
+  );
+  const stageIndexById = new Map<number, number>();
+  stages.forEach((stage, index) => {
+    if (stage.festivalStageId !== undefined) {
+      stageIndexById.set(stage.festivalStageId, index);
+    }
   });
 
   return {
@@ -189,6 +223,51 @@ export const mapFestivalDetailToExistingPerformance = (
     priceGrades: parsePriceGrades(festival.price),
     mainPosterPreview: festival.posterUrl || undefined,
     logoPreview: festival.logoUrl || undefined,
+    publishedPerformanceId: festival.festivalId,
+    selectedTicketingPlatforms:
+      festival.reservationUrls?.map((reservationUrl) => {
+        const ticketVendor = ticketVendors?.find(
+          (vendor) => vendor.id === reservationUrl.ticketVendorId,
+        );
+
+        return {
+          id: reservationUrl.ticketVendorId,
+          name: ticketVendor?.name ?? '',
+          url: reservationUrl.reservationUrl,
+          datetime: '',
+        };
+      }) ?? [],
     artists: Array.from(artistMap.values()),
+    stages,
+    festivalDateMetas:
+      festival.dates?.map((date) => ({
+        date: extractDate(date.festivalAt),
+        openAt: extractTime(date.openAt),
+        festivalDateId: date.festivalDateId,
+      })) ?? [],
+    timetableSlots:
+      festival.dates?.flatMap((date) =>
+        date.stages.flatMap((stage) =>
+          stage.times
+            .map((time) => {
+              const artist = time.artists[0];
+
+              if (!artist) {
+                return null;
+              }
+
+              return {
+                id: `slot-${time.festivalTimeId}`,
+                date: extractDate(date.festivalAt),
+                stageIndex: stageIndexById.get(stage.festivalStageId) ?? 0,
+                artistId: Number(artist.artistId),
+                startTime: extractTime(time.startAt),
+                endTime: extractTime(time.endAt),
+                festivalTimeId: time.festivalTimeId,
+              };
+            })
+            .filter((timeSlot) => timeSlot !== null),
+        ),
+      ) ?? [],
   };
 };

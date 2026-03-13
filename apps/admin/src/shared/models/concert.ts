@@ -177,6 +177,7 @@ export const mapConcertDetailToExistingPerformance = (
     : [],
   priceGrades: parsePriceGrades(concert.price),
   mainPosterPreview: concert.posterUrl || undefined,
+  publishedPerformanceId: concert.concertId,
   selectedTicketingPlatforms:
     concert.reservationUrls?.map((r) => {
       const vendor = ticketVendors?.find((v) => v.id === r.ticketVendorId);

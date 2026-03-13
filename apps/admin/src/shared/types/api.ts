@@ -119,6 +119,7 @@ export type AdminFestivalDetailResponse = {
   timetableSupportStatus: 'NOT_SUPPORTED' | 'SUPPORTED';
   createdAt: string;
   updatedAt: string;
+  reservationUrls?: ReservationUrlResponse[];
   dates: DateResponse[];
 };
 
@@ -311,6 +312,10 @@ export type TicketVendorResponse = {
 export type TicketVendorListResponse = {
   ticketVendors: TicketVendorResponse[];
 };
+
+export type TicketVendorListQueryResponse =
+  | TicketVendorListResponse
+  | TicketVendorResponse[];
 
 export type CreateTicketVendorRequest = {
   name: string;

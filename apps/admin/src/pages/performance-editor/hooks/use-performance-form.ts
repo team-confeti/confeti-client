@@ -25,10 +25,12 @@ const createInitialFormData = (
   logo: null,
   mainPosterPreview: existing?.mainPosterPreview ?? null,
   logoPreview: existing?.logoPreview ?? null,
-  stages: [],
+  stages: existing?.stages ?? [],
   artists: existing?.artists ?? [],
   artistSearch: '',
-  timetableSlots: [],
+  timetableSlots: existing?.timetableSlots ?? [],
+  festivalDateMetas: existing?.festivalDateMetas ?? [],
+  publishedPerformanceId: existing?.publishedPerformanceId ?? null,
 });
 
 const S3_BASE_URL = 'https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com';
@@ -36,7 +38,9 @@ const fetchImageAsFile = async (
   url: string,
   filename: string,
 ): Promise<File> => {
-  const proxyUrl = url.replace(S3_BASE_URL, '/s3-proxy');
+  const proxyUrl = url.startsWith(S3_BASE_URL)
+    ? url.replace(S3_BASE_URL, '/s3-proxy')
+    : url;
   const response = await fetch(proxyUrl);
   const blob = await response.blob();
   return new File([blob], filename, { type: blob.type });
