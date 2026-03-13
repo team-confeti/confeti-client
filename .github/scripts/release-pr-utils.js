@@ -9,6 +9,12 @@ const RELEASE_SECTION_TITLE = '### develop에 반영된 PR 목록';
 const MENTION_SECTION_TITLE = '### 배포 알림 대상';
 const TIME_ZONE = 'Asia/Seoul';
 const NOTIFICATION_MENTION_TAGS = ['@plan', '@client', '@design', '@server'];
+const USER_GROUP_ID_BY_TAG = {
+  '@plan': 'S0AD2SDFF5X',
+  '@client': 'S0ACTGLVC0L',
+  '@design': 'S0AD2S8QM25',
+  '@server': 'S0ADJ7QPZ1N',
+};
 
 const formatEventDate = (date) =>
   new Intl.DateTimeFormat('en-CA', {
@@ -141,6 +147,9 @@ const formatCommitTitle = (commit) => {
   return escapeMarkdownText(firstLine);
 };
 
+const isIgnoredCommitTitle = (title) =>
+  /^Merge branch 'main' into develop$/i.test(title);
+
 const extractMentionTags = (title) => {
   const normalizedTitle = title.toLowerCase();
 
@@ -159,8 +168,25 @@ const formatReleaseItemMarkdownLine = (item) => {
   return `- [${item.title}](${item.url})${tagSuffix}`;
 };
 
+const formatSlackUserGroupMention = (mentionTag) => {
+  const userGroupId = USER_GROUP_ID_BY_TAG[mentionTag];
+
+  return userGroupId ? `<!subteam^${userGroupId}>` : mentionTag;
+};
+
+const formatSlackLink = (url, text) => `<${url}|${text}>`;
+
 const formatReleaseItemSlackLine = (item) => {
-  return `• ${item.title}`;
+  const titleWithSlackMentions = item.mentions.reduce(
+    (currentTitle, mentionTag) =>
+      currentTitle.replaceAll(
+        mentionTag,
+        formatSlackUserGroupMention(mentionTag),
+      ),
+    item.title,
+  );
+
+  return `• ${formatSlackLink(item.url, titleWithSlackMentions)}`;
 };
 
 const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
@@ -204,10 +230,16 @@ const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
       continue;
     }
 
+    const commitTitle = formatCommitTitle(commit);
+
+    if (isIgnoredCommitTitle(commitTitle)) {
+      continue;
+    }
+
     releaseItems.push({
-      mentions: extractMentionTags(formatCommitTitle(commit)),
+      mentions: extractMentionTags(commitTitle),
       sha: commit.sha,
-      title: formatCommitTitle(commit),
+      title: commitTitle,
       type: 'commit',
       url:
         commit.html_url ||
@@ -291,13 +323,16 @@ module.exports = {
   NOTIFICATION_MENTION_TAGS,
   RELEASE_SECTION_TITLE,
   TIME_ZONE,
+  USER_GROUP_ID_BY_TAG,
   collectReleaseItems,
   collectUniqueMentions,
   createRequestJson,
   escapeMarkdownText,
   extractMentionTags,
   formatReleaseItemMarkdownLine,
+  formatSlackLink,
   formatReleaseItemSlackLine,
+  formatSlackUserGroupMention,
   getNextReleaseSequence,
   isTargetBranchFlow,
   readGithubContext,
