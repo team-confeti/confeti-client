@@ -22,6 +22,7 @@ const PR_MENTION_OPTIONS = [
 ];
 const ANSI_RESET = '\u001B[0m';
 const ANSI_YELLOW = '\u001B[33m';
+const NOTIFY_GROUP_COMMENT_PREFIX = '<!-- notify-group:';
 
 function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -102,6 +103,14 @@ function loadPrBodyTemplate() {
   }
 
   return readFileSync(templatePath, 'utf8').trim();
+}
+
+function appendNotifyGroupMetadata(prBody, mentionGroup) {
+  if (mentionGroup === '선택 안 함') {
+    return prBody;
+  }
+
+  return `${prBody}\n\n${NOTIFY_GROUP_COMMENT_PREFIX} ${mentionGroup} -->`;
 }
 
 function createNumberedOptions(options) {
@@ -333,10 +342,7 @@ async function main() {
     PR_MENTION_OPTIONS,
   );
   const titleInput = await askPrTitle();
-  const prTitle =
-    mentionGroup === '선택 안 함'
-      ? `${prType}(${prScope}): ${titleInput}`
-      : `${prType}(${prScope}): ${titleInput} ${mentionGroup}`;
+  const prTitle = `${prType}(${prScope}): ${titleInput}`;
 
   output.write(`\n생성할 PR 제목: ${prTitle}\n`);
 
@@ -345,7 +351,7 @@ async function main() {
     pushBranch(branchName);
   }
 
-  const prBody = loadPrBodyTemplate();
+  const prBody = appendNotifyGroupMetadata(loadPrBodyTemplate(), mentionGroup);
   const prUrl = createPr(prTitle, prBody, branchName);
 
   output.write(`\n드래프트 PR을 만들었어요.\n${prUrl}\n`);
