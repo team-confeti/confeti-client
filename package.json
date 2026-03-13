@@ -5,6 +5,7 @@
     "preinstall": "npx only-allow pnpm",
     "build": "turbo build",
     "dev": "turbo dev",
+    "pr": "node scripts/create-draft-pr.mjs",
     "test": "turbo run test",
     "coverage": "turbo run coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache --fix",
