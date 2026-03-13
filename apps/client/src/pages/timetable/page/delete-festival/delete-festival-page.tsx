@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, useOverlay } from '@confeti/design-system';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import {
   MY_TIMETABLE_MUTATION_OPTIONS,
   MY_TIMETABLE_QUERY_OPTIONS,
@@ -72,7 +73,6 @@ const DeleteFestivalPage = () => {
         onConfirm={async () => {
           deleteTimetables(festivalsToDelete);
 
-          // 삭제 mutation 완료 후 성공 모달창 open
           overlay.open(({ isOpen, close }) => (
             <SuccessDialog
               isOpen={isOpen}
@@ -89,6 +89,7 @@ const DeleteFestivalPage = () => {
 
   return (
     <div className={styles.container}>
+      <LogShowEvent name="show_timetable_delete_festival" />
       <DetailHeader title="페스티벌 삭제하기" />
       <main className={styles.festivalSelectorWrapper}>
         <DeleteFestivalSelector
@@ -98,12 +99,20 @@ const DeleteFestivalPage = () => {
         />
       </main>
       <footer className={styles.buttonContainer}>
-        <Button
-          text={numberToDelete + ' ' + `개 항목 삭제하기`}
-          className={styles.buttonStyle}
-          onClick={handleConfirm}
-          disabled={numberToDelete == 0}
-        ></Button>
+        <LogClickEvent
+          name="click_timetable_open_delete"
+          params={{
+            count: numberToDelete,
+            entry_point: 'delete_page',
+          }}
+        >
+          <Button
+            text={numberToDelete + ' ' + `개 항목 삭제하기`}
+            className={styles.buttonStyle}
+            onClick={handleConfirm}
+            disabled={numberToDelete == 0}
+          ></Button>
+        </LogClickEvent>
       </footer>
     </div>
   );

@@ -967,6 +967,11 @@ export const clickEvents = [
         type: 'string',
         required: false,
       },
+      action: {
+        type: 'enum',
+        required: true,
+        oneOf: ['cancel', 'confirm'],
+      },
     },
   },
   {

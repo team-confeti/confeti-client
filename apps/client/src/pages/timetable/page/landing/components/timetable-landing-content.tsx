@@ -10,6 +10,11 @@ import { Button, Dialog } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import {
+  LogClickEvent,
+  LogShowEvent,
+  withClickEvent,
+} from '@shared/analytics/logging';
+import {
   MY_TIMETABLE_MUTATION_OPTIONS,
   MY_TIMETABLE_QUERY_OPTIONS,
 } from '@shared/apis/my/my-timetable-queries';
@@ -140,12 +145,32 @@ const TimetableLandingContent = ({
               <FestivalList.Item
                 key={festival.id}
                 festival={festival}
-                onClick={() => handleItemClick(festival.id)}
+                onClick={withClickEvent(
+                  {
+                    name: 'click_timetable_select_festival',
+                    params: {
+                      target_id: festival.id,
+                      action: isEditMode ? 'select' : 'open',
+                    },
+                  },
+                  () => handleItemClick(festival.id),
+                )}
               >
                 {isEditMode && (
                   <FestivalList.Checkbox
                     checked={selectedIds.includes(festival.id)}
-                    onChange={() => handleCheckboxToggle(festival.id)}
+                    onChange={withClickEvent(
+                      {
+                        name: 'click_timetable_select_festival',
+                        params: {
+                          target_id: festival.id,
+                          action: selectedIds.includes(festival.id)
+                            ? 'deselect'
+                            : 'select',
+                        },
+                      },
+                      () => handleCheckboxToggle(festival.id),
+                    )}
                   />
                 )}
               </FestivalList.Item>
@@ -155,6 +180,9 @@ const TimetableLandingContent = ({
       )}
 
       <Dialog open={dialogStatus === 'confirm'} handleClose={handleCloseDialog}>
+        {dialogStatus === 'confirm' && (
+          <LogShowEvent name="show_timetable_delete_confirm_dialog" />
+        )}
         <Dialog.Content>
           <Dialog.Title>
             <span className={styles.dialogHighlight}>{selectedCount}</span>개의
@@ -165,12 +193,37 @@ const TimetableLandingContent = ({
           </Dialog.Description>
         </Dialog.Content>
         <Dialog.Action>
-          <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
-          <Button text="삭제하기" onClick={handleConfirmDelete} />
+          <LogClickEvent
+            name="click_timetable_confirm_delete"
+            params={{
+              count: selectedCount,
+              entry_point: 'landing',
+              action: 'cancel',
+            }}
+          >
+            <Button
+              text="돌아가기"
+              onClick={handleCloseDialog}
+              variant="back"
+            />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_timetable_confirm_delete"
+            params={{
+              count: selectedCount,
+              entry_point: 'landing',
+              action: 'confirm',
+            }}
+          >
+            <Button text="삭제하기" onClick={handleConfirmDelete} />
+          </LogClickEvent>
         </Dialog.Action>
       </Dialog>
 
       <Dialog open={dialogStatus === 'success'}>
+        {dialogStatus === 'success' && (
+          <LogShowEvent name="show_timetable_delete_success_dialog" />
+        )}
         <Dialog.Content>
           <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
         </Dialog.Content>
@@ -197,12 +250,27 @@ const EditModeButtons = ({
 
   return (
     <div className={styles.editModeButtons}>
-      <button className={styles.cancelButton} onClick={onCancel}>
+      <button
+        className={styles.cancelButton}
+        onClick={withClickEvent(
+          { name: 'click_timetable_cancel_edit' },
+          onCancel,
+        )}
+      >
         <p>취소</p>
       </button>
       <button
         className={styles.deleteButton({ isActive: isDeleteEnabled })}
-        onClick={onDelete}
+        onClick={withClickEvent(
+          {
+            name: 'click_timetable_open_delete',
+            params: {
+              count: selectedCount,
+              entry_point: 'landing',
+            },
+          },
+          onDelete,
+        )}
         disabled={!isDeleteEnabled}
       >
         <p>삭제</p>
@@ -219,7 +287,10 @@ interface DefaultModeButtonProps {
 }
 
 const DefaultModeButton = ({ onEditModeToggle }: DefaultModeButtonProps) => (
-  <button className={styles.editButton} onClick={onEditModeToggle}>
+  <button
+    className={styles.editButton}
+    onClick={withClickEvent({ name: 'click_timetable_edit' }, onEditModeToggle)}
+  >
     <Icon name="edit" size="1.6rem" />
     <p>편집하기</p>
   </button>

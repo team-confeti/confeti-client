@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Dialog } from '@confeti/design-system';
 import { cn } from '@confeti/utils';
 
-import { LogShowEvent } from '@shared/analytics/logging';
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 
 export const ConfirmDialog = ({
   isOpen,
@@ -35,8 +35,26 @@ export const ConfirmDialog = ({
         </Dialog.Description>
       </Dialog.Content>
       <Dialog.Action>
-        <Button text="돌아가기" onClick={onClose} variant="back" />
-        <Button text="삭제하기" onClick={onConfirm} />
+        <LogClickEvent
+          name="click_timetable_confirm_delete"
+          params={{
+            count: numberToDelete,
+            entry_point: 'delete_page',
+            action: 'cancel',
+          }}
+        >
+          <Button text="돌아가기" onClick={onClose} variant="back" />
+        </LogClickEvent>
+        <LogClickEvent
+          name="click_timetable_confirm_delete"
+          params={{
+            count: numberToDelete,
+            entry_point: 'delete_page',
+            action: 'confirm',
+          }}
+        >
+          <Button text="삭제하기" onClick={onConfirm} />
+        </LogClickEvent>
       </Dialog.Action>
     </Dialog>
   </>
