@@ -76,7 +76,7 @@ const DeleteAccount = () => {
 
   return (
     <>
-      <LogShowEvent name="show_delete_account_page" />
+      <LogShowEvent name="show_delete_account" />
       <DetailHeader title="회원탈퇴" />
       <main className={styles.selectSection}>
         <div className={styles.textStyle}>

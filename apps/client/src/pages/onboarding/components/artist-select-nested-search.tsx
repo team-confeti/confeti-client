@@ -55,7 +55,7 @@ const ArtistSelectNestedSearch = ({
 
   return (
     <>
-      <LogShowEvent name="show_onboarding_artist_search_page" />
+      <LogShowEvent name="show_onboarding_artist_search" />
       <section className={styles.onboardingContentSection}>
         <div className={searchStyles.searchBarContainer}>
           <div className={searchStyles.searchBarFrame}>

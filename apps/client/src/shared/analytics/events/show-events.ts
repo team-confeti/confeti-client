@@ -1,16 +1,16 @@
-import type { EventDefinitions } from './schema';
+import type { ShowEventDefinitions } from './schema';
 
 export const showEvents = [
   {
-    name: 'show_delete_account_page',
-    params: {},
+    name: 'show_delete_account',
+    type: 'page',
   },
   {
     name: 'show_withdraw_confirm_dialog',
-    params: {},
+    type: 'component',
   },
   {
-    name: 'show_onboarding_artist_search_page',
-    params: {},
+    name: 'show_onboarding_artist_search',
+    type: 'page',
   },
-] as const satisfies EventDefinitions;
+] as const satisfies ShowEventDefinitions;

@@ -1,4 +1,4 @@
-import type { EventDefinitions } from './schema';
+import type { ClickEventDefinitions } from './schema';
 
 export const clickEvents = [
   {
@@ -14,4 +14,4 @@ export const clickEvents = [
       },
     },
   },
-] as const satisfies EventDefinitions;
+] as const satisfies ClickEventDefinitions;

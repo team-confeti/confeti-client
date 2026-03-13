@@ -1,4 +1,5 @@
 export type EventParamType = 'string' | 'number' | 'boolean';
+export type ShowEventType = 'page' | 'component';
 
 type StringEventParamDefinition = {
   readonly type: 'string';
@@ -25,10 +26,21 @@ type EventParamDefinition =
 
 type EventParamDefinitions = Readonly<Record<string, EventParamDefinition>>;
 
-export type EventDefinitions = readonly {
+type BaseEventDefinition = {
   readonly name: string;
-  readonly params: EventParamDefinitions;
-}[];
+  readonly params?: EventParamDefinitions;
+};
+
+type ShowEventParamDefinitions = EventParamDefinitions & {
+  readonly type?: never;
+};
+
+export type ClickEventDefinitions = readonly BaseEventDefinition[];
+
+export type ShowEventDefinitions = readonly (BaseEventDefinition & {
+  readonly type: ShowEventType;
+  readonly params?: ShowEventParamDefinitions;
+})[];
 
 type EventParamValue<TParam extends EventParamDefinition> = TParam extends {
   readonly enum: readonly (infer Value)[];
@@ -40,38 +52,56 @@ type EventParamValue<TParam extends EventParamDefinition> = TParam extends {
       ? number
       : boolean;
 
-type RequiredParamKeys<TParams extends EventParamDefinitions> = {
-  [Key in keyof TParams]-?: TParams[Key] extends { readonly required: true }
-    ? Key
-    : never;
-}[keyof TParams];
-
-type OptionalParamKeys<TParams extends EventParamDefinitions> = Exclude<
-  keyof TParams,
-  RequiredParamKeys<TParams>
->;
-
 type EmptyEventParams = Record<never, never>;
+type NormalizedEventParams<TParams extends EventParamDefinitions | undefined> =
+  Extract<TParams, EventParamDefinitions>;
 
-export type EventParamsFromSchema<TParams extends EventParamDefinitions> = [
-  keyof TParams,
-] extends [never]
+export type EventParamsFromSchema<
+  TParams extends EventParamDefinitions | undefined,
+> = [TParams] extends [undefined]
   ? EmptyEventParams
-  : {
-      [Key in RequiredParamKeys<TParams>]: EventParamValue<TParams[Key]>;
-    } & {
-      [Key in OptionalParamKeys<TParams>]?: EventParamValue<TParams[Key]>;
-    };
+  : [keyof NormalizedEventParams<TParams>] extends [never]
+    ? EmptyEventParams
+    : {
+        [Key in keyof NormalizedEventParams<TParams> as NormalizedEventParams<TParams>[Key] extends {
+          readonly required: true;
+        }
+          ? Key
+          : never]: EventParamValue<NormalizedEventParams<TParams>[Key]>;
+      } & {
+        [Key in keyof NormalizedEventParams<TParams> as NormalizedEventParams<TParams>[Key] extends {
+          readonly required: true;
+        }
+          ? never
+          : Key]?: EventParamValue<NormalizedEventParams<TParams>[Key]>;
+      };
 
-export type EventNameFromDefinitions<TEvents extends EventDefinitions> =
-  TEvents[number]['name'];
+export type EventNameFromDefinitions<
+  TEvents extends readonly { readonly name: string }[],
+> = TEvents[number]['name'];
 
-export type EventParamsByNameFromDefinitions<TEvents extends EventDefinitions> =
-  {
-    [Name in EventNameFromDefinitions<TEvents>]: EventParamsFromSchema<
-      Extract<TEvents[number], { readonly name: Name }>['params']
-    >;
-  };
+export type EventParamsByNameFromDefinitions<
+  TEvents extends readonly {
+    readonly name: string;
+    readonly params?: EventParamDefinitions;
+  }[],
+> = {
+  [Name in EventNameFromDefinitions<TEvents>]: EventParamsFromSchema<
+    Extract<TEvents[number], { readonly name: Name }>['params']
+  >;
+};
+
+export type EventTypeByNameFromDefinitions<
+  TEvents extends readonly {
+    readonly name: string;
+    readonly type: string;
+  }[],
+> = {
+  [Name in EventNameFromDefinitions<TEvents>]: Extract<
+    TEvents[number],
+    { readonly name: Name }
+  >['type'];
+};
 
 type RequiredKeys<TParams extends object> = {
   [Key in keyof TParams]-?: undefined extends TParams[Key] ? never : Key;
