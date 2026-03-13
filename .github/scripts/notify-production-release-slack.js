@@ -2,6 +2,7 @@
 const {
   collectReleaseItems,
   createRequestJson,
+  formatSlackLink,
   formatReleaseItemSlackLine,
   isTargetBranchFlow,
   readGithubContext,
@@ -34,8 +35,7 @@ const createSlackMessage = async () => {
   return {
     text: [
       ':rocket: 프로덕션 배포가 완료되었어요.',
-      `릴리즈 PR: ${pr.title}`,
-      `링크: ${pr.html_url}`,
+      `릴리즈 PR: ${formatSlackLink(pr.html_url, pr.title)}`,
       '',
       ...releaseLines,
     ].join('\n'),
