@@ -5,6 +5,19 @@ export interface TimetableSlot {
   artistId: number;
   startTime: string;
   endTime: string;
+  festivalTimeId?: number;
+}
+
+export interface FestivalStageFormData {
+  name: string;
+  order?: number;
+  festivalStageId?: number;
+}
+
+export interface FestivalDateMeta {
+  date: string;
+  openAt?: string;
+  festivalDateId?: number;
 }
 
 export interface PerformanceFormData {
@@ -29,10 +42,12 @@ export interface PerformanceFormData {
   logo: File | null;
   mainPosterPreview: string | null;
   logoPreview: string | null;
-  stages: Array<{ name: string }>;
+  stages: FestivalStageFormData[];
   artists: Array<{ id: number; name: string }>;
   artistSearch: string;
   timetableSlots: TimetableSlot[];
+  festivalDateMetas: FestivalDateMeta[];
+  publishedPerformanceId: number | null;
 }
 
 export interface ExistingPerformance {
@@ -56,4 +71,8 @@ export interface ExistingPerformance {
   mainPosterPreview?: string;
   logoPreview?: string;
   artists?: Array<{ id: number; name: string }>;
+  stages?: FestivalStageFormData[];
+  timetableSlots?: TimetableSlot[];
+  festivalDateMetas?: FestivalDateMeta[];
+  publishedPerformanceId?: number;
 }

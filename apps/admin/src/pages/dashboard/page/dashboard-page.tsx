@@ -6,6 +6,9 @@ import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
 import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import DashboardCard from '@shared/components/dashboard/dashboard-card';
+import { getConcertGroups } from '@shared/models/concert';
+import { getDraftItems } from '@shared/models/draft';
+import { getFestivalGroups } from '@shared/models/festival';
 
 import * as styles from './dashboard-page.css';
 
@@ -18,12 +21,14 @@ const DashboardPage = () => {
   );
   const { data: concertsData } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST());
 
-  const pendingCount = draftsData.drafts.length;
+  const festivalGroups = getFestivalGroups(festivalsData);
+  const concertGroups = getConcertGroups(concertsData);
+  const pendingCount = getDraftItems(draftsData).length;
   const festivalCount =
-    festivalsData.upcomingFestivals.count +
-    festivalsData.finishedFestivals.count;
+    festivalGroups.upcomingFestivals.count +
+    festivalGroups.finishedFestivals.count;
   const concertCount =
-    concertsData.upcomingConcerts.count + concertsData.finishedConcerts.count;
+    concertGroups.upcomingConcerts.count + concertGroups.finishedConcerts.count;
 
   return (
     <div className={styles.container}>

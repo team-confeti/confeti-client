@@ -10,7 +10,7 @@ import {
 
 type PutConcertParams = {
   request: PutAdminConcertRequest;
-  poster: File;
+  poster?: File;
 };
 
 export const CONCERT_MUTATION_OPTIONS = {
@@ -24,14 +24,16 @@ export const CONCERT_MUTATION_OPTIONS = {
 
 export const putConcert = async (
   request: PutAdminConcertRequest,
-  poster: File,
+  poster?: File,
 ): Promise<PutAdminConcertResponse> => {
   const formData = new FormData();
   formData.append(
     'request',
     new Blob([JSON.stringify(request)], { type: 'application/json' }),
   );
-  formData.append('posterFile', poster);
+  if (poster) {
+    formData.append('posterFile', poster);
+  }
 
   return put<PutAdminConcertResponse>(END_POINT.PUT_CONCERT, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },

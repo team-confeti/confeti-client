@@ -5,7 +5,7 @@ import { END_POINT } from '@shared/constants/api';
 import { FESTIVAL_QUERY_KEY } from '@shared/constants/query-key';
 import {
   AdminFestivalDetailResponse,
-  AdminFestivalListResponse,
+  AdminFestivalListQueryResponse,
 } from '@shared/types/api';
 
 export const FESTIVAL_QUERY_OPTIONS = {
@@ -22,9 +22,10 @@ export const FESTIVAL_QUERY_OPTIONS = {
     }),
 };
 
-export const getFestivalList = async (): Promise<AdminFestivalListResponse> => {
-  return get<AdminFestivalListResponse>(END_POINT.GET_FESTIVALS);
-};
+export const getFestivalList =
+  async (): Promise<AdminFestivalListQueryResponse> => {
+    return get<AdminFestivalListQueryResponse>(END_POINT.GET_FESTIVALS);
+  };
 
 export const getFestivalDetail = async (
   festivalId: number,
