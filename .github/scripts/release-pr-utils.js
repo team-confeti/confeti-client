@@ -149,9 +149,6 @@ const formatCommitTitle = (commit) => {
   return escapeMarkdownText(firstLine);
 };
 
-const isIgnoredCommitTitle = (title) =>
-  /^Merge branch 'main' into develop$/i.test(title);
-
 const extractMentionTags = (title) => {
   const normalizedTitle = title.toLowerCase();
 
@@ -241,10 +238,6 @@ const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
     }
 
     const commitTitle = formatCommitTitle(commit);
-
-    if (isIgnoredCommitTitle(commitTitle)) {
-      continue;
-    }
 
     releaseItems.push({
       mentions: extractMentionTags(commitTitle),
