@@ -106,6 +106,105 @@ function createNumberedOptions(options) {
     .join('\n');
 }
 
+function clearPromptLines(lineCount) {
+  for (let index = 0; index < lineCount; index += 1) {
+    output.moveCursor(0, -1);
+    output.clearLine(0);
+  }
+
+  output.cursorTo(0);
+}
+
+async function selectOptionWithArrowKeys(message, options) {
+  if (!input.isTTY || !output.isTTY) {
+    const rl = createInterface({ input, output });
+
+    try {
+      return await selectOption(rl, message, options);
+    } finally {
+      rl.close();
+    }
+  }
+
+  return new Promise((resolve) => {
+    let selectedIndex = 0;
+    const promptLineCount = options.length + 2;
+
+    const render = () => {
+      const prompt = [
+        message,
+        ...options.map((option, index) => {
+          const label =
+            typeof option === 'string'
+              ? option
+              : `${option.label} - ${option.description}`;
+
+          return `${selectedIndex === index ? '>' : ' '} ${label}`;
+        }),
+        '방향키로 이동하고 Enter로 선택해주세요.',
+      ].join('\n');
+
+      output.write(`${prompt}\n`);
+    };
+
+    const cleanup = () => {
+      input.setRawMode(false);
+      input.pause();
+      input.removeListener('data', handleKeyPress);
+      clearPromptLines(promptLineCount + 1);
+    };
+
+    const handleKeyPress = (chunk) => {
+      const key = chunk.toString();
+
+      if (key === '\u0003') {
+        cleanup();
+        exit(1);
+      }
+
+      if (key === '\u001B[A') {
+        selectedIndex =
+          selectedIndex === 0 ? options.length - 1 : selectedIndex - 1;
+        clearPromptLines(promptLineCount + 1);
+        render();
+        return;
+      }
+
+      if (key === '\u001B[B') {
+        selectedIndex =
+          selectedIndex === options.length - 1 ? 0 : selectedIndex + 1;
+        clearPromptLines(promptLineCount + 1);
+        render();
+        return;
+      }
+
+      if (key === '\r') {
+        const selectedOption = options[selectedIndex];
+
+        cleanup();
+        output.write(
+          `${message}\n${
+            typeof selectedOption === 'string'
+              ? selectedOption
+              : `${selectedOption.label} - ${selectedOption.description}`
+          }\n`,
+        );
+        resolve(
+          typeof selectedOption === 'string'
+            ? selectedOption
+            : selectedOption.label,
+        );
+      }
+    };
+
+    input.setRawMode(true);
+    input.resume();
+    input.on('data', handleKeyPress);
+
+    render();
+  });
+}
+
 async function selectOption(rl, message, options) {
   while (true) {
     output.write(`\n${message}\n${createNumberedOptions(options)}\n`);
@@ -203,21 +302,22 @@ async function main() {
   const rl = createInterface({ input, output });
 
   try {
-    const prType = await selectOption(
-      rl,
+    rl.pause();
+
+    const prType = await selectOptionWithArrowKeys(
       'PR 타입을 선택해주세요.',
       PR_TYPE_OPTIONS,
     );
-    const prScope = await selectOption(
-      rl,
+    const prScope = await selectOptionWithArrowKeys(
       'PR 범위를 선택해주세요.',
       PR_SCOPE_OPTIONS,
     );
-    const mentionGroup = await selectOption(
-      rl,
+    const mentionGroup = await selectOptionWithArrowKeys(
       '알릴 사용자 그룹을 선택해주세요.',
       PR_MENTION_OPTIONS,
     );
+
+    rl.resume();
     const titleInput = await inputPrTitle(rl);
     const prTitle = `${prType}(${prScope}): ${titleInput} ${mentionGroup}`;
 
