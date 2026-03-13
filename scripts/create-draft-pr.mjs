@@ -13,7 +13,15 @@ const PR_TYPE_OPTIONS = [
 ];
 
 const PR_SCOPE_OPTIONS = ['Client', 'Admin', 'Product'];
-const PR_MENTION_OPTIONS = ['@plan', '@client', '@design', '@server'];
+const PR_MENTION_OPTIONS = [
+  '선택 안 함',
+  '@plan',
+  '@client',
+  '@design',
+  '@server',
+];
+const ANSI_RESET = '\u001B[0m';
+const ANSI_YELLOW = '\u001B[33m';
 
 function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -106,18 +114,18 @@ function createNumberedOptions(options) {
     .join('\n');
 }
 
-function clearPromptLines(lineCount) {
-  for (let index = 0; index < lineCount; index += 1) {
-    output.moveCursor(0, -1);
-    output.clearLine(0);
-  }
+function createQuestionInterface() {
+  return createInterface({ input, output });
+}
 
-  output.cursorTo(0);
+function clearRenderedMenu(lineCount) {
+  output.write(`\u001B[${lineCount}F`);
+  output.write('\u001B[J');
 }
 
 async function selectOptionWithArrowKeys(message, options) {
   if (!input.isTTY || !output.isTTY) {
-    const rl = createInterface({ input, output });
+    const rl = createQuestionInterface();
 
     try {
       return await selectOption(rl, message, options);
@@ -128,10 +136,11 @@ async function selectOptionWithArrowKeys(message, options) {
 
   return new Promise((resolve) => {
     let selectedIndex = 0;
-    const promptLineCount = options.length + 2;
+    const instruction = '방향키로 이동하고 Enter로 선택해주세요.';
+    const renderedLineCount = options.length + 2;
 
     const render = () => {
-      const prompt = [
+      const lines = [
         message,
         ...options.map((option, index) => {
           const label =
@@ -139,19 +148,21 @@ async function selectOptionWithArrowKeys(message, options) {
               ? option
               : `${option.label} - ${option.description}`;
 
-          return `${selectedIndex === index ? '>' : ' '} ${label}`;
+          return selectedIndex === index
+            ? `${ANSI_YELLOW}> ${label}${ANSI_RESET}`
+            : `  ${label}`;
         }),
-        '방향키로 이동하고 Enter로 선택해주세요.',
-      ].join('\n');
+        instruction,
+      ];
 
-      output.write(`${prompt}\n`);
+      output.write(`${lines.join('\n')}\n`);
     };
 
     const cleanup = () => {
       input.setRawMode(false);
       input.pause();
       input.removeListener('data', handleKeyPress);
-      clearPromptLines(promptLineCount + 1);
+      clearRenderedMenu(renderedLineCount);
     };
 
     const handleKeyPress = (chunk) => {
@@ -165,7 +176,7 @@ async function selectOptionWithArrowKeys(message, options) {
       if (key === '\u001B[A') {
         selectedIndex =
           selectedIndex === 0 ? options.length - 1 : selectedIndex - 1;
-        clearPromptLines(promptLineCount + 1);
+        clearRenderedMenu(renderedLineCount);
         render();
         return;
       }
@@ -173,7 +184,7 @@ async function selectOptionWithArrowKeys(message, options) {
       if (key === '\u001B[B') {
         selectedIndex =
           selectedIndex === options.length - 1 ? 0 : selectedIndex + 1;
-        clearPromptLines(promptLineCount + 1);
+        clearRenderedMenu(renderedLineCount);
         render();
         return;
       }
@@ -240,6 +251,16 @@ async function inputPrTitle(rl) {
   }
 }
 
+async function askPrTitle() {
+  const rl = createQuestionInterface();
+
+  try {
+    return await inputPrTitle(rl);
+  } finally {
+    rl.close();
+  }
+}
+
 function createPr(prTitle, prBody, branchName) {
   const result = spawnSync(
     'gh',
@@ -299,42 +320,35 @@ async function main() {
     );
   }
 
-  const rl = createInterface({ input, output });
+  const prType = await selectOptionWithArrowKeys(
+    'PR 타입을 선택해주세요.',
+    PR_TYPE_OPTIONS,
+  );
+  const prScope = await selectOptionWithArrowKeys(
+    'PR 범위를 선택해주세요.',
+    PR_SCOPE_OPTIONS,
+  );
+  const mentionGroup = await selectOptionWithArrowKeys(
+    '알릴 사용자 그룹을 선택해주세요.',
+    PR_MENTION_OPTIONS,
+  );
+  const titleInput = await askPrTitle();
+  const prTitle =
+    mentionGroup === '선택 안 함'
+      ? `${prType}(${prScope}): ${titleInput}`
+      : `${prType}(${prScope}): ${titleInput} ${mentionGroup}`;
 
-  try {
-    rl.pause();
+  output.write(`\n생성할 PR 제목: ${prTitle}\n`);
 
-    const prType = await selectOptionWithArrowKeys(
-      'PR 타입을 선택해주세요.',
-      PR_TYPE_OPTIONS,
-    );
-    const prScope = await selectOptionWithArrowKeys(
-      'PR 범위를 선택해주세요.',
-      PR_SCOPE_OPTIONS,
-    );
-    const mentionGroup = await selectOptionWithArrowKeys(
-      '알릴 사용자 그룹을 선택해주세요.',
-      PR_MENTION_OPTIONS,
-    );
-
-    rl.resume();
-    const titleInput = await inputPrTitle(rl);
-    const prTitle = `${prType}(${prScope}): ${titleInput} ${mentionGroup}`;
-
-    output.write(`\n생성할 PR 제목: ${prTitle}\n`);
-
-    if (!hasRemoteBranch(branchName)) {
-      output.write(`\n원격에 ${branchName} 브랜치가 없어서 먼저 푸시할게요.\n`);
-      pushBranch(branchName);
-    }
-
-    const prBody = loadPrBodyTemplate();
-    const prUrl = createPr(prTitle, prBody, branchName);
-
-    output.write(`\n드래프트 PR을 만들었어요.\n${prUrl}\n`);
-  } finally {
-    rl.close();
+  if (!hasRemoteBranch(branchName)) {
+    output.write(`\n원격에 ${branchName} 브랜치가 없어서 먼저 푸시할게요.\n`);
+    pushBranch(branchName);
   }
+
+  const prBody = loadPrBodyTemplate();
+  const prUrl = createPr(prTitle, prBody, branchName);
+
+  output.write(`\n드래프트 PR을 만들었어요.\n${prUrl}\n`);
 }
 
 main().catch((error) => {
