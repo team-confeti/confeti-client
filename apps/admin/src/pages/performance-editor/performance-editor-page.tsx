@@ -107,10 +107,7 @@ const PerformanceEditorContent = () => {
     if (concertData)
       return mapConcertDetailToExistingPerformance(concertData, ticketVendors);
     if (festivalData)
-      return mapFestivalDetailToExistingPerformance(
-        festivalData,
-        ticketVendors,
-      );
+      return mapFestivalDetailToExistingPerformance(festivalData);
     return null;
   })();
 
@@ -248,9 +245,16 @@ const PerformanceEditorContent = () => {
 
     try {
       if (performanceType === 'concert') {
+        if (!formData.mainPoster) {
+          adminToast.error({
+            text: '콘서트 포스터 이미지를 다시 등록해주세요.',
+          });
+          return;
+        }
+
         await putConcertMutate({
-          request: buildConcertRequest(formData, publishedPerformanceId),
-          poster: formData.mainPoster ?? undefined,
+          concert: buildConcertRequest(formData, publishedPerformanceId),
+          poster: formData.mainPoster,
         });
         await queryClient.invalidateQueries({
           queryKey: CONCERT_QUERY_KEY.ALL,
@@ -262,7 +266,7 @@ const PerformanceEditorContent = () => {
 
       if (performanceType === 'festival') {
         await putFestivalMutate({
-          request: buildFestivalRequest(formData, publishedPerformanceId),
+          festival: buildFestivalRequest(formData, publishedPerformanceId),
           poster: formData.mainPoster ?? undefined,
           logo: formData.logo ?? undefined,
         });
@@ -276,9 +280,16 @@ const PerformanceEditorContent = () => {
 
       if (publishValidationMessage === null) {
         if (formData.type === 'Concert') {
+          if (!formData.mainPoster) {
+            adminToast.error({
+              text: '콘서트 포스터 이미지를 다시 등록해주세요.',
+            });
+            return;
+          }
+
           await putConcertMutate({
-            request: buildConcertRequest(formData, publishedPerformanceId),
-            poster: formData.mainPoster ?? undefined,
+            concert: buildConcertRequest(formData, publishedPerformanceId),
+            poster: formData.mainPoster,
           });
           if (!isNew && id && Number.isFinite(Number(id))) {
             try {
@@ -299,7 +310,7 @@ const PerformanceEditorContent = () => {
         }
 
         await putFestivalMutate({
-          request: buildFestivalRequest(formData, publishedPerformanceId),
+          festival: buildFestivalRequest(formData, publishedPerformanceId),
           poster: formData.mainPoster ?? undefined,
           logo: formData.logo ?? undefined,
         });
@@ -475,6 +486,7 @@ const PerformanceEditorContent = () => {
             <BasicInfoTab
               formData={formData}
               ticketVendors={ticketVendors}
+              showScheduleSyncButton={!isConcert}
               handleInputChange={handleInputChange}
               handleAddBookingSchedule={handleAddBookingSchedule}
               handleRemoveBookingSchedule={handleRemoveBookingSchedule}

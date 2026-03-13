@@ -67,17 +67,7 @@ export type AdminFestivalListResponse = {
   finishedFestivals: FestivalGroupResponse;
 };
 
-export type AdminFestivalListQueryResponse =
-  | AdminFestivalListResponse
-  | {
-      upcomingFestivals: FestivalResponse[];
-      finishedFestivals: FestivalResponse[];
-    }
-  | AdminFestivalListItemResponse[]
-  | {
-      festivals: AdminFestivalListItemResponse[];
-      count?: number;
-    };
+export type AdminFestivalListQueryResponse = AdminFestivalListResponse;
 
 // Detail
 export type TimeResponse = {
@@ -119,7 +109,6 @@ export type AdminFestivalDetailResponse = {
   timetableSupportStatus: 'NOT_SUPPORTED' | 'SUPPORTED';
   createdAt: string;
   updatedAt: string;
-  reservationUrls?: ReservationUrlResponse[];
   dates: DateResponse[];
 };
 
@@ -147,7 +136,7 @@ export type DateRequest = {
 };
 
 export type PutAdminFestivalRequest = {
-  festivalId?: number;
+  festivalId: number | null;
   title: string;
   subtitle: string;
   startAt: string;
@@ -193,17 +182,7 @@ export type AdminConcertListResponse = {
   finishedConcerts: ConcertGroupResponse;
 };
 
-export type AdminConcertListQueryResponse =
-  | AdminConcertListResponse
-  | {
-      upcomingConcerts: ConcertResponse[];
-      finishedConcerts: ConcertResponse[];
-    }
-  | AdminConcertListItemResponse[]
-  | {
-      concerts: AdminConcertListItemResponse[];
-      count?: number;
-    };
+export type AdminConcertListQueryResponse = AdminConcertListResponse;
 
 // Detail
 export type AdminConcertDetailResponse = {
@@ -227,7 +206,7 @@ export type AdminConcertDetailResponse = {
 
 // Request
 export type PutAdminConcertRequest = {
-  concertId?: number;
+  concertId: number | null;
   title: string;
   subtitle: string;
   startAt: string;
@@ -264,7 +243,7 @@ export type DraftListResponse = {
   drafts: DraftListItem[];
 };
 
-export type DraftListQueryResponse = DraftListResponse | DraftListItem[];
+export type DraftListQueryResponse = DraftListResponse;
 
 export type DraftDetailResponse = {
   id: number;
@@ -313,9 +292,7 @@ export type TicketVendorListResponse = {
   ticketVendors: TicketVendorResponse[];
 };
 
-export type TicketVendorListQueryResponse =
-  | TicketVendorListResponse
-  | TicketVendorResponse[];
+export type TicketVendorListQueryResponse = TicketVendorListResponse;
 
 export type CreateTicketVendorRequest = {
   name: string;
