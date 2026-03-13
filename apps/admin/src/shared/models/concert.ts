@@ -44,48 +44,56 @@ const EMPTY_CONCERT_LIST_RESPONSE: AdminConcertListResponse = {
   finishedConcerts: EMPTY_CONCERT_GROUP,
 };
 
-const isConcertGroup = (value: unknown): value is ConcertGroupResponse =>
+const matchesConcertGroup = (
+  value: unknown,
+): value is { concerts: ConcertResponse[]; count?: number } =>
   typeof value === 'object' &&
   value !== null &&
   'concerts' in value &&
-  Array.isArray(value.concerts) &&
-  'count' in value &&
-  typeof value.count === 'number';
+  Array.isArray(value.concerts);
 
-const hasConcertGroupObjects = (
-  response: AdminConcertListQueryResponse,
+const matchesConcertGroupObjectResponse = (
+  response: unknown,
 ): response is AdminConcertListResponse =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
   'upcomingConcerts' in response &&
   'finishedConcerts' in response &&
-  isConcertGroup(response.upcomingConcerts) &&
-  isConcertGroup(response.finishedConcerts);
+  matchesConcertGroup(response.upcomingConcerts) &&
+  matchesConcertGroup(response.finishedConcerts);
 
-const hasConcertGroupArrays = (
-  response: AdminConcertListQueryResponse,
+const matchesConcertGroupArrayResponse = (
+  response: unknown,
 ): response is {
   upcomingConcerts: ConcertResponse[];
   finishedConcerts: ConcertResponse[];
 } =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
   'upcomingConcerts' in response &&
   'finishedConcerts' in response &&
   Array.isArray(response.upcomingConcerts) &&
   Array.isArray(response.finishedConcerts);
 
-const hasConcertList = (
-  response: AdminConcertListQueryResponse,
-): response is { concerts: AdminConcertListItemResponse[]; count?: number } =>
+const matchesFlatConcertListResponse = (
+  response: unknown,
+): response is {
+  concerts: AdminConcertListItemResponse[];
+  count?: number;
+} =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
-  'concerts' in response;
+  'concerts' in response &&
+  Array.isArray(response.concerts);
 
-const isFinishedPerformance = (status: string | undefined, endAt: string) => {
+const createConcertGroup = (
+  concerts: ConcertResponse[],
+): ConcertGroupResponse => ({
+  concerts,
+  count: concerts.length,
+});
+
+const showFinishedPerformance = (status: string | undefined, endAt: string) => {
   const normalizedStatus = status?.toLowerCase();
 
   if (normalizedStatus === 'completed') {
@@ -99,38 +107,34 @@ const isFinishedPerformance = (status: string | undefined, endAt: string) => {
   return isDatePast(endAt);
 };
 
-const createConcertGroup = (
-  concerts: ConcertResponse[],
-): ConcertGroupResponse => ({
-  concerts,
-  count: concerts.length,
-});
-
 export const getConcertGroups = (
-  response: AdminConcertListQueryResponse | null | undefined,
+  response: AdminConcertListQueryResponse | null | undefined | unknown,
 ): AdminConcertListResponse => {
   if (!response) {
     return EMPTY_CONCERT_LIST_RESPONSE;
   }
 
-  if (hasConcertGroupObjects(response)) {
-    return response;
+  if (matchesConcertGroupObjectResponse(response)) {
+    return {
+      upcomingConcerts: createConcertGroup(response.upcomingConcerts.concerts),
+      finishedConcerts: createConcertGroup(response.finishedConcerts.concerts),
+    };
   }
 
-  if (hasConcertGroupArrays(response)) {
+  if (matchesConcertGroupArrayResponse(response)) {
     return {
       upcomingConcerts: createConcertGroup(response.upcomingConcerts),
       finishedConcerts: createConcertGroup(response.finishedConcerts),
     };
   }
 
-  if (!Array.isArray(response) && !hasConcertList(response)) {
-    return EMPTY_CONCERT_LIST_RESPONSE;
-  }
+  const concerts = Array.isArray(response)
+    ? response
+    : matchesFlatConcertListResponse(response)
+      ? response.concerts
+      : [];
 
-  const concerts = Array.isArray(response) ? response : response.concerts;
-
-  if (!concerts.length) {
+  if (concerts.length === 0) {
     return EMPTY_CONCERT_LIST_RESPONSE;
   }
 
@@ -139,7 +143,7 @@ export const getConcertGroups = (
     finishedConcerts: ConcertResponse[];
   }>(
     (result, concert) => {
-      if (isFinishedPerformance(concert.status, concert.endAt)) {
+      if (showFinishedPerformance(concert.status, concert.endAt)) {
         result.finishedConcerts.push(concert);
         return result;
       }

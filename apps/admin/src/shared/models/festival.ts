@@ -5,7 +5,6 @@ import type {
   AdminFestivalListResponse,
   FestivalGroupResponse,
   FestivalResponse,
-  TicketVendorResponse,
 } from '@shared/types/api';
 import { isDatePast } from '@shared/utils/format-date';
 
@@ -49,48 +48,56 @@ const EMPTY_FESTIVAL_LIST_RESPONSE: AdminFestivalListResponse = {
   finishedFestivals: EMPTY_FESTIVAL_GROUP,
 };
 
-const isFestivalGroup = (value: unknown): value is FestivalGroupResponse =>
+const matchesFestivalGroup = (
+  value: unknown,
+): value is { festivals: FestivalResponse[]; count?: number } =>
   typeof value === 'object' &&
   value !== null &&
   'festivals' in value &&
-  Array.isArray(value.festivals) &&
-  'count' in value &&
-  typeof value.count === 'number';
+  Array.isArray(value.festivals);
 
-const hasFestivalGroupObjects = (
-  response: AdminFestivalListQueryResponse,
+const matchesFestivalGroupObjectResponse = (
+  response: unknown,
 ): response is AdminFestivalListResponse =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
   'upcomingFestivals' in response &&
   'finishedFestivals' in response &&
-  isFestivalGroup(response.upcomingFestivals) &&
-  isFestivalGroup(response.finishedFestivals);
+  matchesFestivalGroup(response.upcomingFestivals) &&
+  matchesFestivalGroup(response.finishedFestivals);
 
-const hasFestivalGroupArrays = (
-  response: AdminFestivalListQueryResponse,
+const matchesFestivalGroupArrayResponse = (
+  response: unknown,
 ): response is {
   upcomingFestivals: FestivalResponse[];
   finishedFestivals: FestivalResponse[];
 } =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
   'upcomingFestivals' in response &&
   'finishedFestivals' in response &&
   Array.isArray(response.upcomingFestivals) &&
   Array.isArray(response.finishedFestivals);
 
-const hasFestivalList = (
-  response: AdminFestivalListQueryResponse,
-): response is { festivals: AdminFestivalListItemResponse[]; count?: number } =>
+const matchesFlatFestivalListResponse = (
+  response: unknown,
+): response is {
+  festivals: AdminFestivalListItemResponse[];
+  count?: number;
+} =>
   typeof response === 'object' &&
   response !== null &&
-  !Array.isArray(response) &&
-  'festivals' in response;
+  'festivals' in response &&
+  Array.isArray(response.festivals);
 
-const isFinishedPerformance = (status: string | undefined, endAt: string) => {
+const createFestivalGroup = (
+  festivals: FestivalResponse[],
+): FestivalGroupResponse => ({
+  festivals,
+  count: festivals.length,
+});
+
+const showFinishedPerformance = (status: string | undefined, endAt: string) => {
   const normalizedStatus = status?.toLowerCase();
 
   if (normalizedStatus === 'completed') {
@@ -104,38 +111,38 @@ const isFinishedPerformance = (status: string | undefined, endAt: string) => {
   return isDatePast(endAt);
 };
 
-const createFestivalGroup = (
-  festivals: FestivalResponse[],
-): FestivalGroupResponse => ({
-  festivals,
-  count: festivals.length,
-});
-
 export const getFestivalGroups = (
-  response: AdminFestivalListQueryResponse | null | undefined,
+  response: AdminFestivalListQueryResponse | null | undefined | unknown,
 ): AdminFestivalListResponse => {
   if (!response) {
     return EMPTY_FESTIVAL_LIST_RESPONSE;
   }
 
-  if (hasFestivalGroupObjects(response)) {
-    return response;
+  if (matchesFestivalGroupObjectResponse(response)) {
+    return {
+      upcomingFestivals: createFestivalGroup(
+        response.upcomingFestivals.festivals,
+      ),
+      finishedFestivals: createFestivalGroup(
+        response.finishedFestivals.festivals,
+      ),
+    };
   }
 
-  if (hasFestivalGroupArrays(response)) {
+  if (matchesFestivalGroupArrayResponse(response)) {
     return {
       upcomingFestivals: createFestivalGroup(response.upcomingFestivals),
       finishedFestivals: createFestivalGroup(response.finishedFestivals),
     };
   }
 
-  if (!Array.isArray(response) && !hasFestivalList(response)) {
-    return EMPTY_FESTIVAL_LIST_RESPONSE;
-  }
+  const festivals = Array.isArray(response)
+    ? response
+    : matchesFlatFestivalListResponse(response)
+      ? response.festivals
+      : [];
 
-  const festivals = Array.isArray(response) ? response : response.festivals;
-
-  if (!festivals.length) {
+  if (festivals.length === 0) {
     return EMPTY_FESTIVAL_LIST_RESPONSE;
   }
 
@@ -144,7 +151,7 @@ export const getFestivalGroups = (
     finishedFestivals: FestivalResponse[];
   }>(
     (result, festival) => {
-      if (isFinishedPerformance(festival.status, festival.endAt)) {
+      if (showFinishedPerformance(festival.status, festival.endAt)) {
         result.finishedFestivals.push(festival);
         return result;
       }
@@ -166,7 +173,6 @@ export const getFestivalGroups = (
 
 export const mapFestivalDetailToExistingPerformance = (
   festival: AdminFestivalDetailResponse,
-  ticketVendors?: TicketVendorResponse[],
 ): ExistingPerformance => {
   const artistMap = new Map<string, { id: number; name: string }>();
   const stagesById = new Map<
@@ -224,19 +230,7 @@ export const mapFestivalDetailToExistingPerformance = (
     mainPosterPreview: festival.posterUrl || undefined,
     logoPreview: festival.logoUrl || undefined,
     publishedPerformanceId: festival.festivalId,
-    selectedTicketingPlatforms:
-      festival.reservationUrls?.map((reservationUrl) => {
-        const ticketVendor = ticketVendors?.find(
-          (vendor) => vendor.id === reservationUrl.ticketVendorId,
-        );
-
-        return {
-          id: reservationUrl.ticketVendorId,
-          name: ticketVendor?.name ?? '',
-          url: reservationUrl.reservationUrl,
-          datetime: '',
-        };
-      }) ?? [],
+    selectedTicketingPlatforms: [],
     artists: Array.from(artistMap.values()),
     stages,
     festivalDateMetas:

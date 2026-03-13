@@ -24,7 +24,24 @@ const hasFilledPriceGrade = (
       priceGrade.grade.trim().length > 0 && priceGrade.price.trim().length > 0,
   );
 
-const formatDateTime = (date: string, time: string) => `${date}T${time}`;
+const withSeconds = (value: string) => {
+  if (!value) {
+    return value;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value)) {
+    return value;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value)) {
+    return `${value}:00`;
+  }
+
+  return value;
+};
+
+const formatDateTime = (date: string, time: string) =>
+  withSeconds(`${date}T${time}`);
 
 const extractDate = (value: string) => value.split('T')[0] ?? value;
 
@@ -151,14 +168,14 @@ export const buildConcertRequest = (
   formData: PerformanceFormData,
   concertId?: number,
 ): PutAdminConcertRequest => ({
-  ...(concertId !== undefined ? { concertId } : {}),
+  concertId: concertId ?? null,
   title: formData.title,
   subtitle: formData.subtitle,
   startAt: formData.startDate,
   endAt: formData.endDate,
   area: formData.venueName,
   address: formData.venueAddress,
-  reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+  reserveAt: withSeconds(formData.bookingSchedules[0]?.startDate ?? ''),
   ageRating: formData.ageRating,
   time: `${formData.durationMinutes}분`,
   price: formData.priceGrades
@@ -182,14 +199,14 @@ export const buildFestivalRequest = (
   formData: PerformanceFormData,
   festivalId?: number,
 ): PutAdminFestivalRequest => ({
-  ...(festivalId !== undefined ? { festivalId } : {}),
+  festivalId: festivalId ?? null,
   title: formData.title,
   subtitle: formData.subtitle,
   startAt: formData.startDate,
   endAt: formData.endDate,
   area: formData.venueName,
   address: formData.venueAddress,
-  reserveAt: formData.bookingSchedules[0]?.startDate ?? '',
+  reserveAt: withSeconds(formData.bookingSchedules[0]?.startDate ?? ''),
   ageRating: formData.ageRating,
   time: `${formData.durationMinutes}분`,
   price: formData.priceGrades
