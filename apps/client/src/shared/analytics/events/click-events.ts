@@ -598,10 +598,6 @@ export const clickEvents = [
         type: 'number',
         required: true,
       },
-      action: {
-        type: 'string',
-        required: true,
-      },
     },
   },
   {

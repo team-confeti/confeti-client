@@ -2,6 +2,7 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { FestivalList } from '@shared/components';
 
@@ -34,18 +35,23 @@ export const TimetableContent = ({
   return (
     <FestivalList>
       {festivals.map((festival) => (
-        <FestivalList.Item
+        <LogClickEvent
           key={festival.id}
-          festival={festival}
-          onClick={() => onItemClick(festival.id)}
+          name="click_my_timetable_item"
+          params={{ target_id: festival.id }}
         >
-          {isEditMode && (
-            <FestivalList.Checkbox
-              checked={selectedIds.includes(festival.id)}
-              onChange={() => onCheckboxToggle(festival.id)}
-            />
-          )}
-        </FestivalList.Item>
+          <FestivalList.Item
+            festival={festival}
+            onClick={() => onItemClick(festival.id)}
+          >
+            {isEditMode && (
+              <FestivalList.Checkbox
+                checked={selectedIds.includes(festival.id)}
+                onChange={() => onCheckboxToggle(festival.id)}
+              />
+            )}
+          </FestivalList.Item>
+        </LogClickEvent>
       ))}
     </FestivalList>
   );
