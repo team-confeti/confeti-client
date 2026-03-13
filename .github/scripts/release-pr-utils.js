@@ -9,6 +9,14 @@ const RELEASE_SECTION_TITLE = '### develop에 반영된 PR 목록';
 const MENTION_SECTION_TITLE = '### 배포 알림 대상';
 const TIME_ZONE = 'Asia/Seoul';
 const NOTIFICATION_MENTION_TAGS = ['@plan', '@client', '@design', '@server'];
+const NOTIFY_GROUP_COMMENT_REGEX =
+  /<!--\s*notify-group:\s*(@plan|@client|@design|@server)\s*-->/gi;
+const USER_GROUP_ID_BY_TAG = {
+  '@plan': 'S0AD2SDFF5X',
+  '@client': 'S0ACTGLVC0L',
+  '@design': 'S0AD2S8QM25',
+  '@server': 'S0ADJ7QPZ1N',
+};
 
 const formatEventDate = (date) =>
   new Intl.DateTimeFormat('en-CA', {
@@ -149,6 +157,12 @@ const extractMentionTags = (title) => {
   );
 };
 
+const extractNotifyGroupsFromBody = (body = '') => {
+  const matches = body.matchAll(NOTIFY_GROUP_COMMENT_REGEX);
+
+  return [...new Set([...matches].map((match) => match[1]))];
+};
+
 const collectUniqueMentions = (releaseItems) => [
   ...new Set(releaseItems.flatMap((item) => item.mentions)),
 ];
@@ -159,8 +173,25 @@ const formatReleaseItemMarkdownLine = (item) => {
   return `- [${item.title}](${item.url})${tagSuffix}`;
 };
 
+const formatSlackUserGroupMention = (mentionTag) => {
+  const userGroupId = USER_GROUP_ID_BY_TAG[mentionTag];
+
+  return userGroupId ? `<!subteam^${userGroupId}>` : mentionTag;
+};
+
+const formatSlackLink = (url, text) => `<${url}|${text}>`;
+
 const formatReleaseItemSlackLine = (item) => {
-  return `• ${item.title}`;
+  const titleWithSlackMentions = item.mentions.reduce(
+    (currentTitle, mentionTag) =>
+      currentTitle.replaceAll(
+        mentionTag,
+        formatSlackUserGroupMention(mentionTag),
+      ),
+    item.title,
+  );
+
+  return `• ${formatSlackLink(item.url, titleWithSlackMentions)}`;
 };
 
 const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
@@ -194,8 +225,10 @@ const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
       }
 
       seenPullNumbers.add(releasePull.number);
+      const notifyGroups = extractNotifyGroupsFromBody(releasePull.body || '');
+
       releaseItems.push({
-        mentions: extractMentionTags(releasePull.title || ''),
+        mentions: notifyGroups,
         number: releasePull.number,
         title: escapeMarkdownText(releasePull.title || 'Untitled PR'),
         type: 'pull',
@@ -204,10 +237,12 @@ const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
       continue;
     }
 
+    const commitTitle = formatCommitTitle(commit);
+
     releaseItems.push({
-      mentions: extractMentionTags(formatCommitTitle(commit)),
+      mentions: extractMentionTags(commitTitle),
       sha: commit.sha,
-      title: formatCommitTitle(commit),
+      title: commitTitle,
       type: 'commit',
       url:
         commit.html_url ||
@@ -289,15 +324,20 @@ module.exports = {
   MARKER_START,
   MENTION_SECTION_TITLE,
   NOTIFICATION_MENTION_TAGS,
+  NOTIFY_GROUP_COMMENT_REGEX,
   RELEASE_SECTION_TITLE,
   TIME_ZONE,
+  USER_GROUP_ID_BY_TAG,
   collectReleaseItems,
   collectUniqueMentions,
   createRequestJson,
   escapeMarkdownText,
   extractMentionTags,
+  extractNotifyGroupsFromBody,
   formatReleaseItemMarkdownLine,
+  formatSlackLink,
   formatReleaseItemSlackLine,
+  formatSlackUserGroupMention,
   getNextReleaseSequence,
   isTargetBranchFlow,
   readGithubContext,
