@@ -9,7 +9,6 @@ interface SlideViewProps {
   slide: SlideData;
   isAnimating: boolean;
   length: number;
-  isPersonalized: boolean;
   onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
 }
 
@@ -17,7 +16,6 @@ export const SlideView = ({
   slide,
   isAnimating,
   length,
-  isPersonalized,
   onPerformanceClick,
 }: SlideViewProps) => {
   const transitionTransform = isAnimating
@@ -59,7 +57,7 @@ export const SlideView = ({
 
         <div className={styles.chipWrapper}>
           <Chip variant="assist">
-            {isPersonalized ? '선호하는 아티스트' : '다가오는 공연'}
+            {slide.data.isFavorite ? '선호하는 아티스트' : '다가오는 공연'}
           </Chip>
         </div>
 
