@@ -10,10 +10,10 @@ import {
 
 export const FESTIVAL_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: FESTIVAL_QUERY_KEY.ALL }),
-  LIST: () =>
+  LIST: (search?: string) =>
     queryOptions({
-      queryKey: FESTIVAL_QUERY_KEY.LIST(),
-      queryFn: getFestivalList,
+      queryKey: FESTIVAL_QUERY_KEY.LIST(search),
+      queryFn: () => getFestivalList(search),
     }),
   DETAIL: (festivalId: number) =>
     queryOptions({
@@ -22,10 +22,14 @@ export const FESTIVAL_QUERY_OPTIONS = {
     }),
 };
 
-export const getFestivalList =
-  async (): Promise<AdminFestivalListQueryResponse> => {
-    return get<AdminFestivalListQueryResponse>(END_POINT.GET_FESTIVALS);
-  };
+export const getFestivalList = async (
+  search?: string,
+): Promise<AdminFestivalListQueryResponse> => {
+  const params = search ? `?search=${encodeURIComponent(search)}` : '';
+  return get<AdminFestivalListQueryResponse>(
+    `${END_POINT.GET_FESTIVALS}${params}`,
+  );
+};
 
 export const getFestivalDetail = async (
   festivalId: number,

@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeVars } from '@confeti/design-system/styles';
+
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
@@ -14,19 +18,19 @@ export const container = style({
 export const icon = style({
   width: '4.8rem',
   height: '4.8rem',
-  color: '#EF4444',
+  color: themeVars.color.red500,
 });
 
 export const title = style({
   fontSize: '2rem',
   fontWeight: 600,
-  color: '#111827',
+  color: adminVars.gray900tw,
   margin: 0,
 });
 
 export const message = style({
   fontSize: '1.4rem',
-  color: '#6B7280',
+  color: adminVars.gray500tw,
   margin: 0,
   maxWidth: '40rem',
 });
@@ -36,16 +40,17 @@ export const retryButton = style({
   alignItems: 'center',
   gap: '0.8rem',
   padding: '1rem 2rem',
-  backgroundColor: '#6366F1',
-  color: '#FFFFFF',
+  backgroundColor: themeVars.color.slate900,
+  color: themeVars.color.white,
   border: 'none',
-  borderRadius: '0.8rem',
+  borderRadius: '1rem',
   fontSize: '1.4rem',
   fontWeight: 500,
   cursor: 'pointer',
+  transition: 'background-color 0.2s ease',
   selectors: {
     '&:hover': {
-      backgroundColor: '#4F46E5',
+      backgroundColor: themeVars.color.gray800,
     },
   },
 });

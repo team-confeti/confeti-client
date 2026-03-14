@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
@@ -15,7 +17,7 @@ export const fullWidth = style({
 export const label = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#344054',
+  color: adminVars.slate800,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
@@ -29,7 +31,7 @@ export const inputWrapper = style({
 export const leftIcon = style({
   position: 'absolute',
   left: '1.2rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
@@ -43,7 +45,7 @@ export const input = style({
   borderRadius: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -56,7 +58,7 @@ export const input = style({
   },
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -65,10 +67,10 @@ export const withIcon = style({
 });
 
 export const error = style({
-  borderColor: '#DC2626',
+  borderColor: themeVars.color.red600,
 
   ':focus': {
-    borderColor: '#DC2626',
+    borderColor: themeVars.color.red600,
     boxShadow: '0 0 0 3px rgba(220, 38, 38, 0.1)',
   },
 });
@@ -76,7 +78,7 @@ export const error = style({
 export const errorText = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#DC2626',
+  color: themeVars.color.red600,
   lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });

@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const badge = style({
   display: 'inline-flex',
   alignItems: 'center',
@@ -11,26 +13,26 @@ export const badge = style({
 });
 
 export const primary = style({
-  backgroundColor: '#DBEAFE',
-  color: '#1E40AF',
+  backgroundColor: adminVars.blue100,
+  color: adminVars.blue800,
 });
 
 export const success = style({
-  backgroundColor: '#D1FAE5',
-  color: '#065F46',
+  backgroundColor: adminVars.green100,
+  color: adminVars.green800,
 });
 
 export const warning = style({
-  backgroundColor: '#FEF3C7',
-  color: '#92400E',
+  backgroundColor: adminVars.amber100,
+  color: adminVars.amber800,
 });
 
 export const danger = style({
-  backgroundColor: '#FEE2E2',
-  color: '#991B1B',
+  backgroundColor: adminVars.red100,
+  color: adminVars.red800,
 });
 
 export const neutral = style({
-  backgroundColor: '#F3F4F6',
-  color: '#4B5563',
+  backgroundColor: adminVars.gray100tw,
+  color: adminVars.gray600tw,
 });

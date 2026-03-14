@@ -14,8 +14,10 @@ const DashboardCard = ({ title, count, icon, variant, onClick }: Props) => {
   return (
     <div onClick={onClick} className={styles.card}>
       <div className={styles.iconWrapper[variant]}>{icon}</div>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.count}>{count}</p>
+      <div className={styles.bottom}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.count}>{count}</p>
+      </div>
     </div>
   );
 };

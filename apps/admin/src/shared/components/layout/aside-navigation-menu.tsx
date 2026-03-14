@@ -90,6 +90,8 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
         to={item.path}
         className={styles.link({ active: isActive })}
         title={!isExpanded ? item.name : ''}
+        aria-current={isActive ? 'page' : undefined}
+        aria-label={item.name}
       >
         <div className={styles.iconWrapper}>{item.icon}</div>
         <AnimatePresence initial={false}>
