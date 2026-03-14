@@ -5,6 +5,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 import { Plus, Ticket, Trash2, Upload, X } from 'lucide-react';
+import { useOutletContext } from 'react-router-dom';
 
 import { TICKET_VENDOR_MUTATION_OPTIONS } from '@shared/apis/ticket-vendor-mutations';
 import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
@@ -21,7 +22,9 @@ type FormMode = 'create' | 'edit';
 
 const TicketingPlatformPage = () => {
   const queryClient = useQueryClient();
-  const { data } = useSuspenseQuery(TICKET_VENDOR_QUERY_OPTIONS.LIST());
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
+  const search = searchQuery.trim() || undefined;
+  const { data } = useSuspenseQuery(TICKET_VENDOR_QUERY_OPTIONS.LIST(search));
   const ticketVendors = getTicketVendors(data);
 
   const [isFormOpen, setIsFormOpen] = useState(false);

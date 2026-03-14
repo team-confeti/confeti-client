@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import { EmptyState } from '@shared/components/common';
@@ -13,8 +13,10 @@ import * as styles from './festival-page.css';
 
 const FestivalPage = () => {
   const navigate = useNavigate();
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
+  const search = searchQuery.trim() || undefined;
 
-  const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST());
+  const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST(search));
   const festivalGroups = getFestivalGroups(data);
   const upcomingFestivals = festivalGroups.upcomingFestivals.festivals;
   const pastFestivals = festivalGroups.finishedFestivals.festivals;

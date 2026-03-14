@@ -1,6 +1,6 @@
 export const FESTIVAL_QUERY_KEY = {
   ALL: ['festivals'],
-  LIST: () => [...FESTIVAL_QUERY_KEY.ALL, 'list'],
+  LIST: (search?: string) => [...FESTIVAL_QUERY_KEY.ALL, 'list', search ?? ''],
   DETAIL: (festivalId: number) => [
     ...FESTIVAL_QUERY_KEY.ALL,
     'detail',
@@ -10,7 +10,7 @@ export const FESTIVAL_QUERY_KEY = {
 
 export const CONCERT_QUERY_KEY = {
   ALL: ['concerts'],
-  LIST: () => [...CONCERT_QUERY_KEY.ALL, 'list'],
+  LIST: (search?: string) => [...CONCERT_QUERY_KEY.ALL, 'list', search ?? ''],
   DETAIL: (concertId: number) => [
     ...CONCERT_QUERY_KEY.ALL,
     'detail',
@@ -26,7 +26,11 @@ export const DRAFT_QUERY_KEY = {
 
 export const TICKET_VENDOR_QUERY_KEY = {
   ALL: ['ticket-vendors'],
-  LIST: () => [...TICKET_VENDOR_QUERY_KEY.ALL, 'list'],
+  LIST: (search?: string) => [
+    ...TICKET_VENDOR_QUERY_KEY.ALL,
+    'list',
+    search ?? '',
+  ],
 } as const;
 
 export const ARTIST_QUERY_KEY = {

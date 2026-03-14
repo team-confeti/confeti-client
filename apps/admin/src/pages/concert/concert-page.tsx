@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
 import { EmptyState } from '@shared/components/common';
@@ -13,8 +13,10 @@ import * as styles from './concert-page.css';
 
 const ConcertPage = () => {
   const navigate = useNavigate();
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
+  const search = searchQuery.trim() || undefined;
 
-  const { data } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST());
+  const { data } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST(search));
   const concertGroups = getConcertGroups(data);
   const upcomingConcerts = concertGroups.upcomingConcerts.concerts;
   const pastConcerts = concertGroups.finishedConcerts.concerts;
