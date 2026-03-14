@@ -20,7 +20,7 @@ export const CONCERT_QUERY_KEY = {
 
 export const DRAFT_QUERY_KEY = {
   ALL: ['drafts'],
-  LIST: () => [...DRAFT_QUERY_KEY.ALL, 'list'],
+  LIST: (search?: string) => [...DRAFT_QUERY_KEY.ALL, 'list', search ?? ''],
   DETAIL: (draftId: number) => [...DRAFT_QUERY_KEY.ALL, 'detail', draftId],
 } as const;
 

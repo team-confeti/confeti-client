@@ -5,7 +5,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 import { Clock, Plus, Trash2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { DRAFT_MUTATION_OPTIONS } from '@shared/apis/draft-mutations';
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
@@ -16,6 +16,7 @@ import {
   EmptyState,
 } from '@shared/components/common';
 import { PATH } from '@shared/constants';
+import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
 import { getDraftItems } from '@shared/models/draft';
 
 import * as styles from './pending-page.css';
@@ -23,16 +24,18 @@ import * as styles from './pending-page.css';
 const PendingPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
   const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
 
-  const { data } = useSuspenseQuery(DRAFT_QUERY_OPTIONS.LIST());
+  const search = searchQuery.trim() || undefined;
+  const { data } = useSuspenseQuery(DRAFT_QUERY_OPTIONS.LIST(search));
   const draftItems = getDraftItems(data);
 
   const { mutate: deleteDraft } = useMutation({
     ...DRAFT_MUTATION_OPTIONS.DELETE_DRAFT(),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: DRAFT_QUERY_OPTIONS.LIST().queryKey,
+        queryKey: DRAFT_QUERY_KEY.ALL,
       });
       setDeleteTargetId(null);
     },
