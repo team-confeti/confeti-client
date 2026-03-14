@@ -10,6 +10,7 @@ export interface Performances {
   reserveAt: string;
   area: string;
   posterUrl: string;
+  isFavorite: boolean;
 }
 
 export type TicketingPerformances = Pick<
@@ -26,6 +27,7 @@ export type CarouselPerformances = Pick<
   | 'startAt'
   | 'posterUrl'
   | 'area'
+  | 'isFavorite'
 >;
 
 export type SuggestPerformance = Pick<
@@ -48,7 +50,6 @@ export type TicketingPerformancesResponse = {
 };
 
 export type CarouselPerformancesResponse = {
-  isPersonalized: boolean;
   performances: CarouselPerformances[];
 };
 

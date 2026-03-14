@@ -6,11 +6,11 @@ export interface Performance {
   place: string;
   date: string;
   posterUrl: string;
+  isFavorite: boolean;
 }
 
 export interface PerformanceCarouselProps {
   data: Performance[];
-  isPersonalized: boolean;
   autoPlayInterval?: number;
   onSlideChange?: (index: number) => void;
   onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
