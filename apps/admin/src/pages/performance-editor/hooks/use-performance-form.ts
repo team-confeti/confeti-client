@@ -4,12 +4,14 @@ import type { ExistingPerformance, PerformanceFormData } from '../types';
 
 interface UsePerformanceFormProps {
   existingPerformance: ExistingPerformance | null;
+  initialType?: 'Festival' | 'Concert';
 }
 
 const createInitialFormData = (
   existing: ExistingPerformance | null,
+  initialType?: 'Festival' | 'Concert',
 ): PerformanceFormData => ({
-  type: existing?.type || 'Festival',
+  type: existing?.type || initialType || 'Festival',
   title: existing?.title || '',
   subtitle: existing?.subtitle || '',
   startDate: existing?.startDate || '',
@@ -48,9 +50,10 @@ const fetchImageAsFile = async (
 
 export const usePerformanceForm = ({
   existingPerformance,
+  initialType,
 }: UsePerformanceFormProps) => {
   const [formData, setFormData] = useState<PerformanceFormData>(() =>
-    createInitialFormData(existingPerformance),
+    createInitialFormData(existingPerformance, initialType),
   );
 
   const isInitializedRef = useRef(false);

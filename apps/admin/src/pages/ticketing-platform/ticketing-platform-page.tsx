@@ -8,7 +8,7 @@ import { Plus, Ticket, Trash2, Upload, X } from 'lucide-react';
 
 import { TICKET_VENDOR_MUTATION_OPTIONS } from '@shared/apis/ticket-vendor-mutations';
 import { TICKET_VENDOR_QUERY_OPTIONS } from '@shared/apis/ticket-vendor-queries';
-import { Button, EmptyState } from '@shared/components/common';
+import { Button, ConfirmDialog, EmptyState } from '@shared/components/common';
 import { TICKET_VENDOR_QUERY_KEY } from '@shared/constants/query-key';
 import { getTicketVendors } from '@shared/models/ticket-vendor';
 import type { TicketVendorResponse } from '@shared/types/api';
@@ -31,6 +31,7 @@ const TicketingPlatformPage = () => {
   const [ticketingPlatformName, setTicketingPlatformName] = useState('');
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
 
   const handleOpenCreateForm = () => {
     setIsFormOpen(true);
@@ -134,21 +135,26 @@ const TicketingPlatformPage = () => {
     }
   };
 
-  const handleDelete = (ticketVendorId: number) => {
-    deleteMutate(ticketVendorId, {
-      onSuccess: invalidateTicketVendors,
+  const handleDeleteClick = (e: React.MouseEvent, ticketVendorId: number) => {
+    e.stopPropagation();
+    setDeleteTargetId(ticketVendorId);
+  };
+
+  const handleConfirmDelete = () => {
+    if (deleteTargetId === null) return;
+    deleteMutate(deleteTargetId, {
+      onSuccess: () => {
+        invalidateTicketVendors();
+        setDeleteTargetId(null);
+      },
     });
   };
 
-  const handleTicketingPlatformDoubleClick = (
-    ticketVendor: TicketVendorResponse,
-  ) => {
-    // 추가 폼이 열려있으면 입력 정보만 초기화하고 폼 닫기
+  const handleTicketingPlatformClick = (ticketVendor: TicketVendorResponse) => {
     if (isFormOpen && formMode === 'create') {
       handleCloseForm();
       return;
     }
-    // 편집 폼이 열려있거나 폼이 닫혀있으면 편집 폼 열기
     handleOpenEditForm(ticketVendor);
   };
 
@@ -235,9 +241,7 @@ const TicketingPlatformPage = () => {
           {ticketVendors.map((ticketVendor) => (
             <div
               key={ticketVendor.id}
-              onDoubleClick={() =>
-                handleTicketingPlatformDoubleClick(ticketVendor)
-              }
+              onClick={() => handleTicketingPlatformClick(ticketVendor)}
               className={styles.card}
             >
               <div className={styles.cardLogo}>
@@ -253,12 +257,10 @@ const TicketingPlatformPage = () => {
               </div>
               <h3 className={styles.cardTitle}>{ticketVendor.name}</h3>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(ticketVendor.id);
-                }}
+                onClick={(e) => handleDeleteClick(e, ticketVendor.id)}
                 className={styles.closeButton}
                 type="button"
+                aria-label={`${ticketVendor.name} 삭제`}
               >
                 <Trash2 size={16} />
               </button>
@@ -266,6 +268,17 @@ const TicketingPlatformPage = () => {
           ))}
         </div>
       )}
+
+      <ConfirmDialog
+        isOpen={deleteTargetId !== null}
+        title="예매처 삭제"
+        message="이 예매처를 삭제하시겠습니까? 삭제된 예매처는 복구할 수 없습니다."
+        confirmLabel="삭제"
+        cancelLabel="취소"
+        risk="high"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setDeleteTargetId(null)}
+      />
     </div>
   );
 };

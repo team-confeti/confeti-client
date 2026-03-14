@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
@@ -24,6 +25,23 @@ const ConcertPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.pageHeader}>
+        <div>
+          <h1 className={styles.pageTitle}>콘서트</h1>
+          <p className={styles.pageSubtitle}>등록된 콘서트를 관리하세요.</p>
+        </div>
+        <button
+          className={styles.addButton}
+          onClick={() =>
+            navigate(
+              `${PATH.PERFORMANCE_EDITOR.replace(':id', 'new')}?type=concert`,
+            )
+          }
+        >
+          <Plus size={16} />새 콘서트 등록
+        </button>
+      </div>
+
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>
