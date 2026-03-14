@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
 // Price
 export const priceHeader = style({
   marginBottom: '1.6rem',
@@ -10,7 +11,7 @@ export const priceHeader = style({
 export const priceHeaderLabel = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });
@@ -31,7 +32,7 @@ export const priceGradeInput = style({
   borderRadius: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -43,7 +44,7 @@ export const priceGradeInput = style({
   },
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -56,7 +57,7 @@ export const priceInputWrapper = style({
 export const priceIcon = style({
   position: 'absolute',
   left: '1.2rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   pointerEvents: 'none',
 });
 
@@ -69,7 +70,7 @@ export const priceInput = style({
   borderRadius: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -82,7 +83,7 @@ export const priceInput = style({
   },
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -95,13 +96,13 @@ export const deleteIconButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   borderRadius: '0.8rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#FEE2E2',
-    color: '#DC2626',
+    backgroundColor: adminVars.red100,
+    color: themeVars.color.red600,
   },
 });
 
@@ -177,14 +178,14 @@ export const fileInput = style({
 });
 
 export const uploadIcon = style({
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   marginBottom: '1.6rem',
 });
 
 export const uploadTitle = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.semibold,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
   marginBottom: '1.6rem',
@@ -197,7 +198,7 @@ export const uploadDescription = style({
   gap: '0.4rem',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.6rem',
   letterSpacing: '-0.011em',
   textAlign: 'center',
@@ -206,7 +207,7 @@ export const uploadDescription = style({
 export const uploadDescriptionSingle = style({
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.6rem',
   letterSpacing: '-0.011em',
   textAlign: 'center',

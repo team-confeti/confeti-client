@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const card = style({
   backgroundColor: themeVars.color.white,
   borderRadius: '1.4rem',
@@ -74,7 +76,7 @@ export const typeBadgeFestival = style({
 });
 
 export const typeBadgeConcert = style({
-  backgroundColor: '#00BC7D',
+  backgroundColor: themeVars.color.emerald400,
 });
 
 export const pastOverlay = style({
@@ -110,7 +112,7 @@ export const content = style({
 export const title = style({
   fontSize: '1.8rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
   marginBottom: '0.4rem',
@@ -122,7 +124,7 @@ export const title = style({
 export const subtitle = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   marginBottom: '2rem',
@@ -144,15 +146,15 @@ export const infoItem = style({
   gap: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#4A5565',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
 
 export const footer = style({
   padding: '1.25rem 2rem',
-  borderTop: `1px solid #F3F4F6`,
-  backgroundColor: '#F9FAFB',
+  borderTop: `1px solid ${adminVars.gray100tw}`,
+  backgroundColor: adminVars.gray50tw,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -164,8 +166,8 @@ export const statusBadge = style({
   fontWeight: themeVars.fontWeight.medium,
   padding: '0.5rem 0.8rem',
   borderRadius: '0.4rem',
-  color: '#155DFC',
-  backgroundColor: '#EFF6FF',
+  color: themeVars.color.blue550,
+  backgroundColor: adminVars.blue50,
   lineHeight: '1.6rem',
   height: '2.4rem',
   display: 'flex',
@@ -173,8 +175,8 @@ export const statusBadge = style({
 });
 
 export const pastStatus = style({
-  color: '#4A5565',
-  backgroundColor: '#E5E7EB',
+  color: adminVars.slate600tw,
+  backgroundColor: adminVars.gray200tw,
 });
 
 export const chevron = style({

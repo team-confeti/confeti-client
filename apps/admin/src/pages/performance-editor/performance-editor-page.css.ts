@@ -2,6 +2,8 @@ import { keyframes, style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 // Container
 export const container = style({
   display: 'flex',
@@ -47,6 +49,28 @@ export const closeButton = style({
   },
 });
 
+export const backButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  height: '3.6rem',
+  padding: '0 1.2rem',
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderRadius: '0.8rem',
+  fontSize: '1.4rem',
+  fontWeight: themeVars.fontWeight.medium,
+  color: adminVars.slate600tw,
+  cursor: 'pointer',
+  transition: 'all 0.15s ease',
+  flexShrink: 0,
+
+  ':hover': {
+    backgroundColor: adminVars.gray100tw,
+    color: themeVars.color.slate900,
+  },
+});
+
 export const titleSection = style({
   flex: 1,
 });
@@ -81,7 +105,7 @@ export const festivalDot = style({
 export const pageTitle = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
   marginBottom: '0.4rem',
@@ -90,7 +114,7 @@ export const pageTitle = style({
 export const pageSubtitle = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
@@ -180,7 +204,7 @@ export const tab = style({
   borderBottom: '2px solid transparent',
   fontSize: '1.5rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2.2rem',
   letterSpacing: '-0.011em',
   cursor: 'pointer',
@@ -189,7 +213,7 @@ export const tab = style({
   marginBottom: '-1px',
 
   ':hover': {
-    color: '#101828',
+    color: adminVars.gray900tw,
     backgroundColor: themeVars.color.gray100,
   },
 });
@@ -219,8 +243,8 @@ export const tabBadge = style({
   minWidth: '1.8rem',
   height: '1.8rem',
   padding: '0 0.6rem',
-  backgroundColor: '#E5E7EB',
-  color: '#6A7282',
+  backgroundColor: adminVars.gray200tw,
+  color: adminVars.slate600tw,
   borderRadius: '9999px',
   fontSize: '1.1rem',
   fontWeight: themeVars.fontWeight.bold,
@@ -269,7 +293,7 @@ export const modalHeader = style({
 export const modalTitle = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
 });
@@ -284,7 +308,7 @@ export const modalCloseButton = style({
   border: 'none',
   borderRadius: '0.8rem',
   cursor: 'pointer',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   transition: 'all 0.2s ease',
 
   ':hover': {
@@ -311,7 +335,7 @@ export const modalCancelButton = style({
   height: '4.4rem',
   padding: '0 2rem',
   backgroundColor: themeVars.color.white,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   border: `1px solid ${themeVars.color.gray300}`,
   borderRadius: '1rem',
   fontSize: '1.6rem',
@@ -329,7 +353,7 @@ export const modalCancelButton = style({
 export const modalDeleteButton = style({
   height: '4.4rem',
   padding: '0 2rem',
-  backgroundColor: '#DC2626',
+  backgroundColor: themeVars.color.red600,
   color: themeVars.color.white,
   border: 'none',
   borderRadius: '1rem',
@@ -342,7 +366,7 @@ export const modalDeleteButton = style({
   boxShadow: '0 4px 6px rgba(220, 38, 38, 0.2)',
 
   ':hover': {
-    backgroundColor: '#B91C1C',
+    backgroundColor: adminVars.red700,
   },
 });
 

@@ -2,6 +2,8 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const card = style({
   backgroundColor: themeVars.color.white,
   padding: '2.5rem',
@@ -48,7 +50,7 @@ export const iconWrapper = styleVariants({
 export const title = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   marginBottom: '0.4rem',
@@ -57,7 +59,7 @@ export const title = style({
 export const count = style({
   fontSize: '3rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '3.6rem',
   letterSpacing: '0.013em',
 });

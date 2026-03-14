@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeVars } from '@confeti/design-system/styles';
+
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const overlay = style({
   position: 'fixed',
   top: 0,
@@ -14,7 +18,7 @@ export const overlay = style({
 });
 
 export const modal = style({
-  backgroundColor: '#FFFFFF',
+  backgroundColor: themeVars.color.white,
   borderRadius: '1.2rem',
   boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
   maxWidth: '50rem',
@@ -28,20 +32,20 @@ export const header = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '2rem',
-  borderBottom: '1px solid #E5E7EB',
+  borderBottom: `1px solid ${adminVars.gray200tw}`,
 });
 
 export const title = style({
   fontSize: '1.8rem',
   fontWeight: 600,
-  color: '#1F2937',
+  color: adminVars.gray900tw,
 });
 
 export const closeButton = style({
   background: 'none',
   border: 'none',
   cursor: 'pointer',
-  color: '#6B7280',
+  color: adminVars.gray500tw,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -49,7 +53,7 @@ export const closeButton = style({
   borderRadius: '0.4rem',
   transition: 'background-color 0.2s',
   ':hover': {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: adminVars.gray100tw,
   },
 });
 
@@ -62,5 +66,5 @@ export const footer = style({
   gap: '1.2rem',
   justifyContent: 'flex-end',
   padding: '2rem',
-  borderTop: '1px solid #E5E7EB',
+  borderTop: `1px solid ${adminVars.gray200tw}`,
 });
