@@ -8,7 +8,7 @@ import * as styles from './timetable-actions.css';
 interface Props {
   isEditMode: boolean;
   onToggleEditMode: () => void;
-  onDownload: () => Promise<{ success: boolean; message: string }>;
+  onDownload: () => Promise<void>;
 }
 
 const TimetableActions = ({
@@ -18,29 +18,31 @@ const TimetableActions = ({
 }: Props) => {
   const [isDownloading, setIsDownloading] = useState(false);
 
+  const handleDownload = async () => {
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+    try {
+      await onDownload();
+      toast({
+        text: '이미지가 성공적으로 저장되었어요.',
+        position: 'middleCenter',
+      });
+    } catch {
+      toast({
+        text: '이미지 저장 중 오류가 발생했어요.',
+        position: 'middleCenter',
+      });
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <div className={styles.actionsWrapper}>
       {!isEditMode && (
         <button
-          onClick={async () => {
-            if (isDownloading) return;
-
-            setIsDownloading(true);
-            try {
-              const result = await onDownload();
-              toast({
-                text: result.message,
-                position: 'middleCenter',
-              });
-            } catch (error) {
-              toast({
-                text: '이미지 저장 중 오류가 발생했습니다.',
-                position: 'middleCenter',
-              });
-            } finally {
-              setIsDownloading(false);
-            }
-          }}
+          onClick={handleDownload}
           className={styles.downloadButton}
           aria-label="이미지 저장"
           disabled={isDownloading}
