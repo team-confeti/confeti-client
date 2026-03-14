@@ -35,12 +35,12 @@ export const logoText = style({
 
 export const nav = style({
   flex: 1,
-  paddingTop: '2.4rem',
+  paddingTop: '2rem',
   paddingLeft: '1.2rem',
   paddingRight: '1.2rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
+  gap: '0.4rem',
   overflowY: 'auto',
   overflowX: 'hidden',
 });
@@ -48,7 +48,7 @@ export const nav = style({
 export const section = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
+  gap: '0.2rem',
 });
 
 export const sectionTitle = style({
@@ -70,11 +70,11 @@ export const link = recipe({
     display: 'flex',
     alignItems: 'center',
     gap: '1.2rem',
-    height: '4.8rem',
+    height: '4.4rem',
     padding: '0 1.4rem',
     color: themeVars.color.slate400,
     textDecoration: 'none',
-    borderRadius: '1rem',
+    borderRadius: '0.8rem',
     transition:
       'background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease',
     position: 'relative',
@@ -114,10 +114,10 @@ export const iconWrapper = style({
 });
 
 export const linkText = style({
-  fontSize: '1.6rem',
+  fontSize: '1.5rem',
   fontWeight: themeVars.fontWeight.medium,
-  lineHeight: '2.4rem',
-  letterSpacing: '-0.02em',
+  lineHeight: '2.2rem',
+  letterSpacing: '-0.01em',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
 });

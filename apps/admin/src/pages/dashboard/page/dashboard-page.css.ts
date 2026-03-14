@@ -17,11 +17,11 @@ export const pageHeader = style({
 });
 
 export const pageTitle = style({
-  fontSize: '2.4rem',
+  fontSize: '2.8rem',
   fontWeight: themeVars.fontWeight.bold,
   color: themeVars.color.slate900,
-  lineHeight: '3.2rem',
-  letterSpacing: '-0.025em',
+  lineHeight: '3.6rem',
+  letterSpacing: '-0.03em',
   margin: 0,
 });
 
@@ -168,24 +168,22 @@ export const quickActions = style({
 
 export const quickActionButton = style({
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
-  gap: '1rem',
-  padding: '2.4rem 1.6rem',
+  gap: '1.2rem',
+  padding: '1.6rem 2rem',
   backgroundColor: themeVars.color.white,
   border: `1px solid ${themeVars.color.gray200}`,
   borderRadius: '1.4rem',
   cursor: 'pointer',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.medium,
   color: themeVars.color.slate900,
-  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+  textAlign: 'left' as const,
 
   ':hover': {
-    borderColor: themeVars.color.slate900,
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+    borderColor: themeVars.color.gray300,
+    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
     transform: 'translateY(-1px)',
   },
 });
