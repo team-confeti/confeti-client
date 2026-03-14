@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   backgroundColor: themeVars.color.white,
   border: `1px solid ${themeVars.color.gray200}`,
@@ -25,7 +27,7 @@ export const header = style({
 export const title = style({
   fontSize: '1.8rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
   marginBottom: 0,
@@ -34,7 +36,7 @@ export const title = style({
 export const subtitle = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   marginTop: '0.4rem',
@@ -65,15 +67,13 @@ export const createButton = style({
 });
 
 export const emptyState = style({
+  flex: 1,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '4rem',
   color: themeVars.color.gray400,
-  backgroundColor: themeVars.color.white,
-  borderRadius: '0.75rem',
-  border: `1px solid ${themeVars.color.gray200}`,
 });
 
 export const emptyIcon = style({
@@ -92,7 +92,7 @@ export const listItem = style({
   justifyContent: 'space-between',
   height: '9.7rem',
   padding: '0 2.4rem',
-  borderBottom: `1px solid #F3F4F6`,
+  borderBottom: `1px solid ${adminVars.gray100tw}`,
   cursor: 'pointer',
   transition: 'background-color 0.2s ease',
 
@@ -138,7 +138,7 @@ export const itemInfo = style({
 export const itemTitle = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
   marginBottom: '0.4rem',
@@ -157,7 +157,7 @@ export const itemMeta = style({
   gap: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
@@ -166,7 +166,7 @@ export const dot = style({
   width: '0.4rem',
   height: '0.4rem',
   borderRadius: '50%',
-  backgroundColor: '#D1D5DC',
+  backgroundColor: themeVars.color.gray300,
   flexShrink: 0,
 });
 
@@ -181,8 +181,8 @@ export const badge = style({
   padding: '0 1.2rem',
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: '#FEF9C2',
-  color: '#A65F00',
+  backgroundColor: adminVars.yellow100,
+  color: adminVars.amber700,
   borderRadius: '9999px',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
@@ -199,10 +199,10 @@ export const moreButton = style({
   border: 'none',
   borderRadius: '9999px',
   cursor: 'pointer',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   transition: 'background-color 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: adminVars.gray100tw,
   },
 });

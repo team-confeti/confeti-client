@@ -2,20 +2,22 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const card = style({
   backgroundColor: themeVars.color.white,
-  borderRadius: '1.4rem',
+  borderRadius: '1.6rem',
   border: `1px solid ${themeVars.color.gray200}`,
   overflow: 'hidden',
   cursor: 'pointer',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
   display: 'flex',
   flexDirection: 'column',
-  height: '39.9rem',
 
   ':hover': {
-    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
-    borderColor: themeVars.color.gray900,
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+    borderColor: themeVars.color.gray300,
+    transform: 'translateY(-2px)',
   },
 });
 
@@ -27,7 +29,7 @@ export const pastCard = style({
 
 export const imageContainer = style({
   position: 'relative',
-  height: '19.2rem',
+  height: '16rem',
   backgroundColor: themeVars.color.gray200,
   overflow: 'hidden',
 });
@@ -74,7 +76,7 @@ export const typeBadgeFestival = style({
 });
 
 export const typeBadgeConcert = style({
-  backgroundColor: '#00BC7D',
+  backgroundColor: themeVars.color.emerald400,
 });
 
 export const pastOverlay = style({
@@ -101,31 +103,31 @@ export const pastLabel = style({
 });
 
 export const content = style({
-  padding: '2rem',
+  padding: '1.6rem 2rem',
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
 });
 
 export const title = style({
-  fontSize: '1.8rem',
+  fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
-  lineHeight: '2.8rem',
-  letterSpacing: '-0.025em',
-  marginBottom: '0.4rem',
+  color: adminVars.gray900tw,
+  lineHeight: '2.4rem',
+  letterSpacing: '-0.02em',
+  marginBottom: '0.2rem',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
 
 export const subtitle = style({
-  fontSize: '1.4rem',
+  fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
-  lineHeight: '2rem',
+  color: adminVars.slate600tw,
+  lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
-  marginBottom: '2rem',
+  marginBottom: '1.2rem',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
@@ -141,22 +143,22 @@ export const infoSection = style({
 export const infoItem = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '0.8rem',
-  fontSize: '1.4rem',
+  gap: '0.6rem',
+  fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#4A5565',
-  lineHeight: '2rem',
+  color: adminVars.slate600tw,
+  lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });
 
 export const footer = style({
-  padding: '1.25rem 2rem',
-  borderTop: `1px solid #F3F4F6`,
-  backgroundColor: '#F9FAFB',
+  padding: '1.2rem 2rem',
+  borderTop: `1px solid ${adminVars.gray100tw}`,
+  backgroundColor: adminVars.gray50tw,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  height: '4.9rem',
+  height: '4.4rem',
 });
 
 export const statusBadge = style({
@@ -164,8 +166,8 @@ export const statusBadge = style({
   fontWeight: themeVars.fontWeight.medium,
   padding: '0.5rem 0.8rem',
   borderRadius: '0.4rem',
-  color: '#155DFC',
-  backgroundColor: '#EFF6FF',
+  color: themeVars.color.blue550,
+  backgroundColor: adminVars.blue50,
   lineHeight: '1.6rem',
   height: '2.4rem',
   display: 'flex',
@@ -173,8 +175,8 @@ export const statusBadge = style({
 });
 
 export const pastStatus = style({
-  color: '#4A5565',
-  backgroundColor: '#E5E7EB',
+  color: adminVars.slate600tw,
+  backgroundColor: adminVars.gray200tw,
 });
 
 export const chevron = style({

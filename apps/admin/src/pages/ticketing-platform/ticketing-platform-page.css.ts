@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
@@ -17,7 +19,7 @@ export const header = style({
 export const title = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.4492px',
   marginBottom: '0.4rem',
@@ -26,7 +28,7 @@ export const title = style({
 export const subtitle = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6a7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.1504px',
 });
@@ -36,7 +38,7 @@ export const createButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '0.8rem',
-  backgroundColor: '#0f172b',
+  backgroundColor: themeVars.color.slate900,
   color: themeVars.color.white,
   padding: '0 1.6rem',
   height: '3.6rem',
@@ -86,7 +88,7 @@ export const grid = style({
 export const card = style({
   backgroundColor: themeVars.color.white,
   borderRadius: '1.4rem',
-  border: `1px solid #e5e7eb`,
+  border: `1px solid ${adminVars.gray200tw}`,
   padding: '0.1rem 1.7rem',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
@@ -106,8 +108,8 @@ export const cardLogo = style({
   width: '5.6rem',
   height: '5.6rem',
   borderRadius: '1rem',
-  backgroundColor: '#f9fafb',
-  border: `1px solid #f3f4f6`,
+  backgroundColor: adminVars.gray50tw,
+  border: `1px solid ${adminVars.gray100tw}`,
   color: themeVars.color.gray400,
   display: 'flex',
   alignItems: 'center',
@@ -125,7 +127,7 @@ export const cardLogoImage = style({
 export const cardTitle = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.3125px',
   flex: 1,
@@ -133,9 +135,9 @@ export const cardTitle = style({
 
 // Form card styles
 export const formCard = style({
-  backgroundColor: '#f8fafc',
+  backgroundColor: adminVars.slate50,
   borderRadius: '1.4rem',
-  border: `2px solid #0f172b`,
+  border: `2px solid ${themeVars.color.slate900}`,
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1)',
   display: 'flex',
   flexDirection: 'column',
@@ -154,7 +156,7 @@ export const modalHeader = style({
 export const modalTitle = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#0f172b',
+  color: themeVars.color.slate900,
   lineHeight: '2.4rem',
   letterSpacing: '-0.3125px',
 });
@@ -168,7 +170,7 @@ export const closeButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   padding: 0,
-  color: '#0f172b',
+  color: themeVars.color.slate900,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   flexShrink: 0,
@@ -204,16 +206,16 @@ export const logoUploadBox = style({
   width: '6.4rem',
   height: '6.4rem',
   backgroundColor: themeVars.color.white,
-  border: `2px solid #d1d5dc`,
+  border: `2px solid ${themeVars.color.gray300}`,
   borderRadius: '1rem',
-  color: '#99a1af',
+  color: adminVars.slate400tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   overflow: 'hidden',
   flexShrink: 0,
 
   ':hover': {
-    borderColor: '#0f172b',
+    borderColor: themeVars.color.slate900,
   },
 });
 
@@ -244,9 +246,9 @@ export const input = style({
   height: '3.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#0f172b',
+  color: themeVars.color.slate900,
   backgroundColor: themeVars.color.white,
-  border: `1px solid #d1d5dc`,
+  border: `1px solid ${themeVars.color.gray300}`,
   borderRadius: '1rem',
   lineHeight: 'normal',
   letterSpacing: '-0.1504px',
@@ -254,7 +256,7 @@ export const input = style({
 
   ':focus': {
     outline: 'none',
-    borderColor: '#0f172b',
+    borderColor: themeVars.color.slate900,
   },
 
   '::placeholder': {
@@ -268,7 +270,7 @@ export const submitButton = style({
   justifyContent: 'center',
   width: '100%',
   height: '3.6rem',
-  backgroundColor: '#0f172b',
+  backgroundColor: themeVars.color.slate900,
   color: themeVars.color.white,
   border: 'none',
   borderRadius: '1rem',

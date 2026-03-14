@@ -7,14 +7,18 @@ import { TicketVendorListQueryResponse } from '@shared/types/api';
 
 export const TICKET_VENDOR_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: TICKET_VENDOR_QUERY_KEY.ALL }),
-  LIST: () =>
+  LIST: (search?: string) =>
     queryOptions({
-      queryKey: TICKET_VENDOR_QUERY_KEY.LIST(),
-      queryFn: getTicketVendorList,
+      queryKey: TICKET_VENDOR_QUERY_KEY.LIST(search),
+      queryFn: () => getTicketVendorList(search),
     }),
 };
 
-export const getTicketVendorList =
-  async (): Promise<TicketVendorListQueryResponse> => {
-    return get<TicketVendorListQueryResponse>(END_POINT.GET_TICKET_VENDORS);
-  };
+export const getTicketVendorList = async (
+  search?: string,
+): Promise<TicketVendorListQueryResponse> => {
+  const params = search ? `?search=${encodeURIComponent(search)}` : '';
+  return get<TicketVendorListQueryResponse>(
+    `${END_POINT.GET_TICKET_VENDORS}${params}`,
+  );
+};

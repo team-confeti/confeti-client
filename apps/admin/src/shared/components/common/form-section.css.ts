@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   backgroundColor: themeVars.color.white,
   padding: '2.4rem',
@@ -22,7 +24,7 @@ export const header = style({
 export const title = style({
   fontSize: '1.8rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.6rem',
   letterSpacing: '-0.02em',
   paddingLeft: '1.2rem',
@@ -33,7 +35,7 @@ export const title = style({
 export const description = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   marginTop: '0.8rem',
