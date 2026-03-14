@@ -3,6 +3,20 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@confeti/design-system/styles';
 
 import { adminVars } from '@shared/styles/admin-tokens.css';
+
+export const twoColumnRow = style({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '2.4rem',
+  alignItems: 'start',
+
+  '@media': {
+    '(max-width: 960px)': {
+      gridTemplateColumns: '1fr',
+    },
+  },
+});
+
 // Price
 export const priceHeader = style({
   marginBottom: '1.6rem',
