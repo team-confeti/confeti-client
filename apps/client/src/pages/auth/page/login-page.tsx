@@ -148,7 +148,7 @@ const LoginPage = () => {
         <div className={styles.loginButton}>
           <LogClickEvent
             name="click_login_provider"
-            params={{ entry_point: 'kakao' }}
+            params={{ provider: 'kakao' }}
           >
             <Button
               text="카카오로 계속하기"
@@ -160,7 +160,7 @@ const LoginPage = () => {
           </LogClickEvent>
           <LogClickEvent
             name="click_login_provider"
-            params={{ entry_point: 'apple' }}
+            params={{ provider: 'apple' }}
           >
             <Button
               text="Apple로 계속하기"
@@ -177,7 +177,7 @@ const LoginPage = () => {
           <p className={styles.policyLine}>
             <LogClickEvent
               name="click_login_policy_link"
-              params={{ entry_point: 'terms' }}
+              params={{ link_name: 'terms' }}
             >
               <a
                 href="https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9"
@@ -191,7 +191,7 @@ const LoginPage = () => {
             <span>및</span>
             <LogClickEvent
               name="click_login_policy_link"
-              params={{ entry_point: 'privacy' }}
+              params={{ link_name: 'privacy' }}
             >
               <a
                 href="https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a"

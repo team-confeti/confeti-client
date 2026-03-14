@@ -41,7 +41,7 @@ const ItroStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'intro',
+              step: 'intro',
               action: 'next',
             }}
           >
@@ -54,7 +54,7 @@ const ItroStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'intro',
+              step: 'intro',
               action: 'start',
             }}
           >

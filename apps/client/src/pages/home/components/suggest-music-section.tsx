@@ -59,7 +59,7 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
       params: {
         source_page: 'home',
         target_id: musicId,
-        entry_point: 'recommend_music',
+        section: 'recommend_music',
       },
     });
     onClickPlayToggle(musicId);

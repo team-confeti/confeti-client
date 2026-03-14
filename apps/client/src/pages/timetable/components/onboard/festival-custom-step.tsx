@@ -56,7 +56,7 @@ const FestivalCustomStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'festival_custom',
+              step: 'festival_custom',
               action: 'next',
             }}
           >
@@ -65,7 +65,7 @@ const FestivalCustomStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'festival_custom',
+              step: 'festival_custom',
               action: 'skip',
             }}
           >

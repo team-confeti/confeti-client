@@ -61,7 +61,7 @@ const ClickBlockStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'click_block',
+              step: 'click_block',
               action: 'start',
             }}
           >
@@ -74,7 +74,7 @@ const ClickBlockStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'click_block',
+              step: 'click_block',
               action: 'retry',
             }}
           >

@@ -36,10 +36,6 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
   const performanceItems = performances.map((performance) => ({
     ...performance,
     key: `${performance.type}-${performance.typeId}`,
-    eventParams: {
-      entry_point: 'favorite_performance' as const,
-      target_id: performance.typeId,
-    },
     handleClick: () => navigateToDetail(performance.type, performance.typeId),
   }));
 
@@ -56,13 +52,15 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
           type,
           typeId,
           isFavorite,
-          eventParams,
           handleClick,
         }) => (
           <LogClickEvent
             key={key}
             name="click_my_overview_item"
-            params={eventParams}
+            params={{
+              section: 'favorite_performance',
+              target_id: typeId,
+            }}
           >
             <li className={styles.performanceItem} onClick={handleClick}>
               <img src={posterUrl} alt={title} className={styles.image} />

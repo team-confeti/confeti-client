@@ -239,7 +239,6 @@ const EditModeButtons = ({
         params={{
           action: 'open_delete',
           count: selectedCount,
-          entry_point: 'landing',
         }}
       >
         <button

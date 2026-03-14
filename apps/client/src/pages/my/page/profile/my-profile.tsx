@@ -43,7 +43,7 @@ const MyProfile = () => {
       name: 'click_box_show_more',
       params: {
         source_page: 'my_profile',
-        entry_point: 'favorite_performance',
+        section: 'favorite_performance',
       },
     });
     navigate(routePath.MY_CONFETI);
@@ -54,7 +54,7 @@ const MyProfile = () => {
       name: 'click_box_show_more',
       params: {
         source_page: 'my_profile',
-        entry_point: 'favorite_artist',
+        section: 'favorite_artist',
       },
     });
     navigate(routePath.MY_ARTIST);

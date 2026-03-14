@@ -55,7 +55,7 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
           <LogClickEvent
             name="click_navigation_tab"
             params={{
-              entry_point: 'home',
+              tab: 'home',
             }}
           >
             <Navigation.Item
@@ -68,7 +68,7 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
           <LogClickEvent
             name="click_navigation_tab"
             params={{
-              entry_point: 'timetable',
+              tab: 'timetable',
             }}
           >
             <Navigation.Item
@@ -81,7 +81,7 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
           <LogClickEvent
             name="click_navigation_tab"
             params={{
-              entry_point: 'setlist',
+              tab: 'setlist',
             }}
           >
             <Navigation.Item

@@ -29,7 +29,7 @@ const RelatedSongs = ({ relatedSongs }: Props) => {
       params: {
         source_page: 'search',
         target_id: musicId,
-        entry_point: 'related_songs',
+        section: 'related_songs',
       },
     });
     onClickPlayToggle(musicId);

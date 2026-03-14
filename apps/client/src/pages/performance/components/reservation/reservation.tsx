@@ -35,7 +35,7 @@ const Reservation = ({ reservations }: Props) => {
           <li key={key} className={styles.item}>
             <LogClickEvent
               name="click_reservation_link"
-              params={{ entry_point: name }}
+              params={{ vendor: name }}
             >
               <button className={styles.logoButton} onClick={handleClick}>
                 <img

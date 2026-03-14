@@ -69,10 +69,7 @@ const MyOverviewPage = () => {
       key: item.typeId,
       imageSrc: item.posterUrl,
       title: item.title,
-      eventParams: {
-        entry_point: 'setlist',
-        target_id: item.setlistId,
-      },
+      targetId: item.setlistId,
       handleClick: () => handleNavigateToDetail(item.setlistId),
     })) ?? [];
 
@@ -81,10 +78,7 @@ const MyOverviewPage = () => {
       key: item.typeId,
       imageSrc: item.posterUrl,
       title: item.title,
-      eventParams: {
-        entry_point: 'timetable',
-        target_id: item.timetableId,
-      },
+      targetId: item.timetableId,
       handleClick: handleNavigateToTimeTable,
     })) ?? [];
 
@@ -113,11 +107,14 @@ const MyOverviewPage = () => {
         <div className={styles.gridContainer}>
           {isSetList
             ? setlistOverviewItems.map(
-                ({ key, imageSrc, title, eventParams, handleClick }) => (
+                ({ key, imageSrc, title, targetId, handleClick }) => (
                   <LogClickEvent
                     key={key}
                     name="click_my_overview_item"
-                    params={eventParams}
+                    params={{
+                      section: 'setlist',
+                      target_id: targetId,
+                    }}
                   >
                     <FestivalCard
                       imageSrc={imageSrc}
@@ -128,11 +125,14 @@ const MyOverviewPage = () => {
                 ),
               )
             : timetableOverviewItems.map(
-                ({ key, imageSrc, title, eventParams, handleClick }) => (
+                ({ key, imageSrc, title, targetId, handleClick }) => (
                   <LogClickEvent
                     key={key}
                     name="click_my_overview_item"
-                    params={eventParams}
+                    params={{
+                      section: 'timetable',
+                      target_id: targetId,
+                    }}
                   >
                     <FestivalCard
                       imageSrc={imageSrc}

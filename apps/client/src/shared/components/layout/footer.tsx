@@ -36,7 +36,7 @@ const Footer = () => {
             <li key={item.label}>
               <LogClickEvent
                 name="click_footer_external_link"
-                params={{ entry_point: item.label }}
+                params={{ link_name: item.label }}
               >
                 <a href={item.url} target="_blank" rel="noopener noreferrer">
                   {item.label}

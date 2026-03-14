@@ -19,7 +19,7 @@ const Setting = () => {
           <LogClickEvent
             key={item.url}
             name="click_setting_external_link"
-            params={{ entry_point: item.label }}
+            params={{ link_name: item.label }}
           >
             <a
               className={styles.navigationLink}

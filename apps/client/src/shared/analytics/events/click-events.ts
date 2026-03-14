@@ -16,7 +16,7 @@ export const clickEvents = [
   {
     name: 'click_navigation_tab',
     params: {
-      entry_point: {
+      tab: {
         type: 'enum',
         required: true,
         oneOf: ['home', 'timetable', 'setlist'],
@@ -26,7 +26,7 @@ export const clickEvents = [
   {
     name: 'click_footer_external_link',
     params: {
-      entry_point: {
+      link_name: {
         type: 'string',
         required: true,
       },
@@ -73,9 +73,10 @@ export const clickEvents = [
           'unknown',
         ],
       },
-      entry_point: {
-        type: 'string',
+      section: {
+        type: 'enum',
         required: true,
+        oneOf: ['festival_artist', 'favorite_performance', 'favorite_artist'],
       },
     },
   },
@@ -160,7 +161,7 @@ export const clickEvents = [
   {
     name: 'click_login_provider',
     params: {
-      entry_point: {
+      provider: {
         type: 'enum',
         required: true,
         oneOf: ['kakao', 'apple'],
@@ -170,7 +171,7 @@ export const clickEvents = [
   {
     name: 'click_login_policy_link',
     params: {
-      entry_point: {
+      link_name: {
         type: 'string',
         required: true,
       },
@@ -300,9 +301,16 @@ export const clickEvents = [
         type: 'string',
         required: true,
       },
-      entry_point: {
-        type: 'string',
+      section: {
+        type: 'enum',
         required: true,
+        oneOf: [
+          'setlist_track',
+          'related_songs',
+          'search_result',
+          'artist_result',
+          'recommend_music',
+        ],
       },
     },
   },
@@ -458,9 +466,10 @@ export const clickEvents = [
   {
     name: 'click_my_activity_summary',
     params: {
-      entry_point: {
-        type: 'string',
+      summary_type: {
+        type: 'enum',
         required: true,
+        oneOf: ['timetable', 'setlist'],
       },
     },
   },
@@ -548,7 +557,7 @@ export const clickEvents = [
   {
     name: 'click_setting_external_link',
     params: {
-      entry_point: {
+      link_name: {
         type: 'string',
         required: true,
       },
@@ -593,9 +602,10 @@ export const clickEvents = [
   {
     name: 'click_my_overview_item',
     params: {
-      entry_point: {
-        type: 'string',
+      section: {
+        type: 'enum',
         required: true,
+        oneOf: ['favorite_performance', 'setlist', 'timetable'],
       },
       target_id: {
         type: 'number',
@@ -826,12 +836,6 @@ export const clickEvents = [
   },
   {
     name: 'click_timetable_create',
-    params: {
-      entry_point: {
-        type: 'string',
-        required: false,
-      },
-    },
   },
   {
     name: 'click_timetable_select_festival',
@@ -878,10 +882,6 @@ export const clickEvents = [
       },
       count: {
         type: 'number',
-        required: false,
-      },
-      entry_point: {
-        type: 'string',
         required: false,
       },
     },
@@ -945,7 +945,7 @@ export const clickEvents = [
   {
     name: 'click_timetable_onboarding_action',
     params: {
-      entry_point: {
+      step: {
         type: 'string',
         required: true,
       },
@@ -973,7 +973,7 @@ export const clickEvents = [
   {
     name: 'click_reservation_link',
     params: {
-      entry_point: {
+      vendor: {
         type: 'string',
         required: true,
       },

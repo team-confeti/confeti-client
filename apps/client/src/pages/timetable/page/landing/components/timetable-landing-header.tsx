@@ -32,10 +32,7 @@ const TimetableLandingHeader = ({
 
         {!isEditMode && (
           <div className={styles.ctaSection}>
-            <LogClickEvent
-              name="click_timetable_create"
-              params={{ entry_point: 'landing_header' }}
-            >
+            <LogClickEvent name="click_timetable_create">
               <Button
                 variant="add"
                 text="새 타임테이블"

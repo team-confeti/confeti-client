@@ -152,7 +152,7 @@ const AddSongsPage = () => {
       params: {
         source_page: 'setlist_add_songs',
         target_id: musicId,
-        entry_point: 'search_result',
+        section: 'search_result',
       },
     });
     onClickPlayToggle(musicId);
@@ -164,7 +164,7 @@ const AddSongsPage = () => {
       params: {
         source_page: 'setlist_add_songs',
         target_id: musicId,
-        entry_point: 'artist_result',
+        section: 'artist_result',
       },
     });
     onClickPlayToggle(musicId);

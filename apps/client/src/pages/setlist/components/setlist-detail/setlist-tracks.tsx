@@ -128,7 +128,7 @@ const SetListTracks = ({
       params: {
         source_page: 'setlist_detail',
         target_id: musicId,
-        entry_point: 'setlist_track',
+        section: 'setlist_track',
       },
     });
     onClickPlayToggle(musicId);

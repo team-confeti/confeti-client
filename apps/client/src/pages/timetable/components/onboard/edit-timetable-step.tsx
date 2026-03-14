@@ -54,7 +54,7 @@ const EditTimetableStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'edit_timetable',
+              step: 'edit_timetable',
               action: 'next',
             }}
           >
@@ -63,7 +63,7 @@ const EditTimetableStep = ({
           <LogClickEvent
             name="click_timetable_onboarding_action"
             params={{
-              entry_point: 'edit_timetable',
+              step: 'edit_timetable',
               action: 'skip',
             }}
           >

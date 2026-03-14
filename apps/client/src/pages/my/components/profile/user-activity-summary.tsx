@@ -43,7 +43,7 @@ const UserActivitySummary = () => {
       </div>
       <LogClickEvent
         name="click_my_activity_summary"
-        params={{ entry_point: 'timetable' }}
+        params={{ summary_type: 'timetable' }}
       >
         <div className={styles.itemWrapper} onClick={handleTimetableClick}>
           <p className={styles.itemText}>타임테이블</p>
@@ -58,7 +58,7 @@ const UserActivitySummary = () => {
       </LogClickEvent>
       <LogClickEvent
         name="click_my_activity_summary"
-        params={{ entry_point: 'setlist' }}
+        params={{ summary_type: 'setlist' }}
       >
         <div className={styles.itemWrapper} onClick={handleSetListClick}>
           <p className={styles.itemText}>셋리스트</p>
