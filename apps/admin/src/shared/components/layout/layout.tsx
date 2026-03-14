@@ -44,6 +44,7 @@ const Layout = () => {
     ...DRAFT_QUERY_OPTIONS.LIST(),
     throwOnError: false,
     enabled: !!accessToken,
+    staleTime: 30_000,
   });
 
   useEffect(() => {
