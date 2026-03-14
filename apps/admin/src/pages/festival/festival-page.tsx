@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import { EmptyState } from '@shared/components/common';
@@ -12,8 +13,10 @@ import * as styles from './festival-page.css';
 
 const FestivalPage = () => {
   const navigate = useNavigate();
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
+  const search = searchQuery.trim() || undefined;
 
-  const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST());
+  const { data } = useSuspenseQuery(FESTIVAL_QUERY_OPTIONS.LIST(search));
   const festivalGroups = getFestivalGroups(data);
   const upcomingFestivals = festivalGroups.upcomingFestivals.festivals;
   const pastFestivals = festivalGroups.finishedFestivals.festivals;
@@ -24,6 +27,23 @@ const FestivalPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.pageHeader}>
+        <div>
+          <h1 className={styles.pageTitle}>페스티벌</h1>
+          <p className={styles.pageSubtitle}>등록된 페스티벌을 관리하세요.</p>
+        </div>
+        <button
+          className={styles.addButton}
+          onClick={() =>
+            navigate(
+              `${PATH.PERFORMANCE_EDITOR.replace(':id', 'new')}?type=festival`,
+            )
+          }
+        >
+          <Plus size={16} />새 페스티벌 등록
+        </button>
+      </div>
+
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>

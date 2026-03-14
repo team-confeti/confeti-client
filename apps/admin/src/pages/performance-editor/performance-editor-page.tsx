@@ -115,8 +115,16 @@ const PerformanceEditorContent = () => {
   const [selectedDay, setSelectedDay] = useState<string>('');
 
   // Custom hooks
+  const initialType =
+    isNew && performanceType === 'concert'
+      ? ('Concert' as const)
+      : isNew && performanceType === 'festival'
+        ? ('Festival' as const)
+        : undefined;
+
   const { formData, setFormData, handleInputChange } = usePerformanceForm({
     existingPerformance,
+    initialType,
   });
 
   const {

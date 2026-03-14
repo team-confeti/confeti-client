@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
 // Stage
 export const stageList = style({
   display: 'flex',
@@ -27,7 +28,7 @@ export const stageNumber = style({
   borderRadius: '1rem',
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#99A1AF',
+  color: adminVars.slate400tw,
 });
 
 export const stageInput = style({
@@ -38,7 +39,7 @@ export const stageInput = style({
   borderRadius: '0.8rem',
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.02em',
   outline: 'none',
@@ -50,7 +51,7 @@ export const stageInput = style({
   },
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -63,13 +64,13 @@ export const stageDeleteButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   borderRadius: '0.8rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#FEE2E2',
-    color: '#DC2626',
+    backgroundColor: adminVars.red100,
+    color: themeVars.color.red600,
   },
 });
 
@@ -109,7 +110,7 @@ export const artistSearchWrapper = style({
 export const searchIcon = style({
   position: 'absolute',
   left: '1.6rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   pointerEvents: 'none',
 });
 
@@ -122,7 +123,7 @@ export const artistSearchInput = style({
   borderRadius: '1rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -135,7 +136,7 @@ export const artistSearchInput = style({
   },
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -181,7 +182,7 @@ export const artistDropdownAvatar = style({
   borderRadius: '9999px',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   flexShrink: 0,
 });
 
@@ -189,13 +190,13 @@ export const artistDropdownName = style({
   flex: 1,
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
 
 export const artistDropdownIcon = style({
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   flexShrink: 0,
 });
 
@@ -204,7 +205,7 @@ export const artistDropdownEmpty = style({
   textAlign: 'center',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
@@ -266,14 +267,14 @@ export const artistAvatar = style({
   borderRadius: '9999px',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
 });
 
 export const artistName = style({
   flex: 1,
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
@@ -287,13 +288,13 @@ export const artistDeleteButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   borderRadius: '0.6rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#FEE2E2',
-    color: '#DC2626',
+    backgroundColor: adminVars.red100,
+    color: themeVars.color.red600,
   },
 });
 

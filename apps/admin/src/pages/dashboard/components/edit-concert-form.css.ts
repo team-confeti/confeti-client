@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const formWrapper = style({
   ...themeVars.display.flexColumn,
   gap: '2rem',
@@ -12,7 +14,7 @@ export const submitButton = style({
   fontSize: themeVars.fontSize.body2,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-end',

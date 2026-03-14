@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 // Shared Artist Styles (used in both tabs and timetable)
 export const artistAvatar = style({
   display: 'flex',
@@ -13,14 +15,14 @@ export const artistAvatar = style({
   borderRadius: '9999px',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
 });
 
 export const artistName = style({
   flex: 1,
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
@@ -66,7 +68,7 @@ export const dayButton = style({
   borderRadius: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#4A5565',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   cursor: 'pointer',
@@ -100,7 +102,7 @@ export const unassignedBadge = style({
   gap: '0.4rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
 });
@@ -117,7 +119,7 @@ export const timetableBody = style({
 
 export const timetableArtistPanel = style({
   width: '25.6rem',
-  backgroundColor: '#F9FAFB',
+  backgroundColor: adminVars.gray50tw,
   borderRight: `1px solid ${themeVars.color.gray200}`,
   display: 'flex',
   flexDirection: 'column',
@@ -146,7 +148,7 @@ export const timetableArtistSearchInput = style({
   borderRadius: '1rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: 'normal',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -166,7 +168,7 @@ export const timetableArtistSearchInput = style({
 export const timetableSearchIcon = style({
   position: 'absolute',
   left: '1.2rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   pointerEvents: 'none',
 });
 
@@ -254,7 +256,7 @@ export const stageColumnHeader = style({
 export const stageColumnTitle = style({
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#1E2939',
+  color: adminVars.slate800,
   lineHeight: '2rem',
   letterSpacing: '0.2px',
   textTransform: 'uppercase',
@@ -266,11 +268,11 @@ export const stageColumnCount = style({
   justifyContent: 'center',
   height: '2rem',
   padding: '0 0.8rem',
-  backgroundColor: '#F3F4F6',
+  backgroundColor: adminVars.gray100tw,
   borderRadius: '9999px',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.6rem',
 });
 
@@ -316,14 +318,14 @@ export const timeslotTime = style({
 export const timeslotTimeText = style({
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.6rem',
 });
 
 export const timeslotArtistName = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
@@ -350,7 +352,7 @@ export const timeslotDropZone = style({
 export const timeslotDropZoneText = style({
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#99A1AF',
+  color: adminVars.slate400tw,
   lineHeight: '1.6rem',
 });
 
@@ -360,7 +362,7 @@ export const timeslotDropZoneAction = style({
   gap: '0.4rem',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#62748E',
+  color: adminVars.slate600tw,
   lineHeight: '1.6rem',
   backgroundColor: 'transparent',
   border: 'none',
@@ -405,10 +407,10 @@ export const deleteDropZone = style({
   justifyContent: 'center',
   gap: '1.2rem',
   padding: '2.4rem',
-  backgroundColor: '#FEE2E2',
-  border: `2px dashed #DC2626`,
+  backgroundColor: adminVars.red100,
+  border: `2px dashed ${themeVars.color.red600}`,
   borderRadius: '1rem',
-  color: '#DC2626',
+  color: themeVars.color.red600,
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.bold,
   textAlign: 'center',

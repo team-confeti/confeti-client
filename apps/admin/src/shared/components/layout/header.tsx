@@ -1,4 +1,4 @@
-import { Menu, Search } from 'lucide-react';
+import { Menu, Search, X } from 'lucide-react';
 
 import * as styles from './header.css';
 
@@ -10,6 +10,13 @@ interface Props {
 }
 
 const Header = ({ title, onMenuClick, searchQuery, onSearchChange }: Props) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      onSearchChange('');
+      e.currentTarget.blur();
+    }
+  };
+
   return (
     <header className={styles.container}>
       <div className={styles.leftSection}>
@@ -26,9 +33,19 @@ const Header = ({ title, onMenuClick, searchQuery, onSearchChange }: Props) => {
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="공연명, 장소 검색..."
             className={styles.searchInput}
           />
+          {searchQuery && (
+            <button
+              className={styles.clearButton}
+              onClick={() => onSearchChange('')}
+              type="button"
+            >
+              <X size={14} />
+            </button>
+          )}
         </div>
       </div>
     </header>

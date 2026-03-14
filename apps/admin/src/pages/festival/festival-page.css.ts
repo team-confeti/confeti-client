@@ -2,10 +2,55 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '4.8rem',
+});
+
+export const pageHeader = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-end',
+  marginBottom: '-2.4rem',
+});
+
+export const pageTitle = style({
+  fontSize: '2.4rem',
+  fontWeight: themeVars.fontWeight.bold,
+  color: themeVars.color.slate900,
+  margin: 0,
+  lineHeight: '3.2rem',
+  letterSpacing: '-0.025em',
+});
+
+export const pageSubtitle = style({
+  fontSize: '1.4rem',
+  color: adminVars.slate600tw,
+  margin: '0.4rem 0 0',
+});
+
+export const addButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  height: '3.6rem',
+  padding: '0 1.6rem',
+  backgroundColor: themeVars.color.slate900,
+  color: themeVars.color.white,
+  border: 'none',
+  borderRadius: '1rem',
+  fontSize: '1.4rem',
+  fontWeight: themeVars.fontWeight.medium,
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+
+  ':hover': {
+    backgroundColor: themeVars.color.gray800,
+  },
 });
 
 export const section = style({
@@ -26,14 +71,14 @@ export const sectionHeader = style({
 export const sectionTitle = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
 });
 
 export const countBadge = style({
-  backgroundColor: '#F1F5F9',
-  color: '#45556C',
+  backgroundColor: adminVars.slate50,
+  color: adminVars.slate600tw,
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
   lineHeight: '1.6rem',
@@ -49,7 +94,7 @@ export const sectionHeaderPast = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
-  borderLeft: `4px solid #D1D5DC`,
+  borderLeft: `4px solid ${themeVars.color.gray300}`,
   paddingLeft: '2rem',
   height: '2.8rem',
 });
@@ -57,14 +102,14 @@ export const sectionHeaderPast = style({
 export const sectionTitlePast = style({
   fontSize: '2rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
 });
 
 export const countBadgePast = style({
-  backgroundColor: '#F3F4F6',
-  color: '#6A7282',
+  backgroundColor: adminVars.gray100tw,
+  color: adminVars.slate600tw,
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
   lineHeight: '1.6rem',
@@ -78,14 +123,14 @@ export const countBadgePast = style({
 
 export const grid = style({
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '2.4rem',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(24rem, 1fr))',
+  gap: '2rem',
 });
 
 export const gridPast = style({
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '2.4rem',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(24rem, 1fr))',
+  gap: '2rem',
   opacity: 0.75,
 });
 
