@@ -19,7 +19,6 @@ const ArtistList = ({ artists }: Props) => {
     logClickEvent({
       name: 'click_like_artist',
       params: {
-        source_page: 'my_artist',
         action,
         target_type: 'artist',
         target_id: artistId,

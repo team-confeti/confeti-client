@@ -40,7 +40,6 @@ const PerformanceInfo = ({
     logClickEvent({
       name: 'click_like_performance',
       params: {
-        source_page: type,
         action,
         target_type: type,
         target_id: id,

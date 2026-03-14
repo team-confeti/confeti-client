@@ -27,7 +27,6 @@ const RelatedSongs = ({ relatedSongs }: Props) => {
     logClickEvent({
       name: 'click_music_play_toggle',
       params: {
-        source_page: 'search',
         target_id: musicId,
         section: 'related_songs',
       },

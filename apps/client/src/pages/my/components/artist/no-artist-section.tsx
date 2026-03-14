@@ -20,10 +20,7 @@ const NoArtistSection = () => {
       </p>
 
       <div className={styles.button}>
-        <LogClickEvent
-          name="click_my_profile_select_artist"
-          params={{ source_page: 'my_profile' }}
-        >
+        <LogClickEvent name="click_my_profile_select_artist">
           <Button text="아티스트 선택하기" onClick={handleNavigate} />
         </LogClickEvent>
       </div>

@@ -26,7 +26,6 @@ const FestivalArtistSection = ({ artists }: FestivalArtistSectionProps) => {
     logClickEvent({
       name: 'click_box_show_more',
       params: {
-        source_page: 'festival_detail',
         section: 'festival_artist',
       },
     });

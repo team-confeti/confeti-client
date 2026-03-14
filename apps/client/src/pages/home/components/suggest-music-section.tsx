@@ -57,7 +57,6 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
     logClickEvent({
       name: 'click_music_play_toggle',
       params: {
-        source_page: 'home',
         target_id: musicId,
         section: 'recommend_music',
       },

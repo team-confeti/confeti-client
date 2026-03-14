@@ -27,7 +27,6 @@ const ArtistInfo = ({
     logClickEvent({
       name: 'click_like_artist',
       params: {
-        source_page: 'search',
         action,
         target_type: 'artist',
         target_id: id,

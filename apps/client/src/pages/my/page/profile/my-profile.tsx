@@ -42,7 +42,6 @@ const MyProfile = () => {
     logClickEvent({
       name: 'click_box_show_more',
       params: {
-        source_page: 'my_profile',
         section: 'favorite_performance',
       },
     });
@@ -53,7 +52,6 @@ const MyProfile = () => {
     logClickEvent({
       name: 'click_box_show_more',
       params: {
-        source_page: 'my_profile',
         section: 'favorite_artist',
       },
     });

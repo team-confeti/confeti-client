@@ -150,7 +150,6 @@ const AddSongsPage = () => {
     logClickEvent({
       name: 'click_music_play_toggle',
       params: {
-        source_page: 'setlist_add_songs',
         target_id: musicId,
         section: 'search_result',
       },
@@ -162,7 +161,6 @@ const AddSongsPage = () => {
     logClickEvent({
       name: 'click_music_play_toggle',
       params: {
-        source_page: 'setlist_add_songs',
         target_id: musicId,
         section: 'artist_result',
       },
@@ -174,7 +172,6 @@ const AddSongsPage = () => {
     logClickEvent({
       name: 'click_song_add_to_queue',
       params: {
-        source_page: 'setlist_add_songs',
         target_id: musicId,
       },
     });

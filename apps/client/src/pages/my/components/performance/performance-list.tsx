@@ -24,7 +24,6 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
     logClickEvent({
       name: 'click_like_performance',
       params: {
-        source_page: 'my_confeti',
         action,
         target_type: type,
         target_id: typeId,

@@ -84,7 +84,6 @@ const ConfirmAddSection = ({
               <LogClickEvent
                 name="click_song_remove_from_queue"
                 params={{
-                  source_page: 'setlist_add_songs',
                   target_id: musicId,
                 }}
               >
@@ -101,7 +100,6 @@ const ConfirmAddSection = ({
     logClickEvent({
       name: 'click_song_remove_from_queue',
       params: {
-        source_page: 'setlist_add_songs',
         target_id: musicId,
       },
     });

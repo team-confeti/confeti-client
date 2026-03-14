@@ -126,7 +126,6 @@ const SetListTracks = ({
     logClickEvent({
       name: 'click_music_play_toggle',
       params: {
-        source_page: 'setlist_detail',
         target_id: musicId,
         section: 'setlist_track',
       },
