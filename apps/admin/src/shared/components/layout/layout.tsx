@@ -38,7 +38,13 @@ const Layout = () => {
     () => window.innerWidth >= COLLAPSE_BREAKPOINT,
   );
   const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearch(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
   const location = useLocation();
   const { data } = useQuery({
     ...DRAFT_QUERY_OPTIONS.LIST(),
@@ -119,7 +125,7 @@ const Layout = () => {
                 </Deferred>
               }
             >
-              <Outlet context={{ searchQuery }} />
+              <Outlet context={{ searchQuery: debouncedSearch }} />
             </Suspense>
           </ErrorBoundary>
         </main>
