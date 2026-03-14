@@ -1,6 +1,7 @@
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { DetailHeader } from '@shared/components';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
@@ -13,6 +14,7 @@ const NoUpcomingFestival = () => {
 
   return (
     <>
+      <LogShowEvent name="show_timetable_no_upcoming_festival" />
       <DetailHeader title="페스티벌 추가하기" />
       <div className={styles.wrapper}>
         <div className={styles.container}>
@@ -24,14 +26,16 @@ const NoUpcomingFestival = () => {
             </p>
           </div>
         </div>
-        <a
-          href={googleFormLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.buttonText}
-        >
-          원하는 페스티벌이 있나요?
-        </a>
+        <LogClickEvent name="click_timetable_festival_request_form">
+          <a
+            href={googleFormLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.buttonText}
+          >
+            원하는 페스티벌이 있나요?
+          </a>
+        </LogClickEvent>
       </div>
       <div className={styles.buttonSection}>
         <Button variant="add" text={'추가하기'} disabled={true} />

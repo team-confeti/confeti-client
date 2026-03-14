@@ -2,6 +2,7 @@ import { useReducer, useState } from 'react';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { Footer, Hero } from '@shared/components';
@@ -89,6 +90,7 @@ const SetListDetailPage = () => {
 
   return (
     <>
+      <LogShowEvent name="show_setlist_detail" />
       <Hero
         posterUrl={setlistDetail.posterUrl}
         title={setlistDetail.title}

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { useFunnel } from '@shared/hooks/use-funnel';
 import { routePath } from '@shared/router/path';
 
@@ -45,51 +46,54 @@ const TimetableOnboard = () => {
   useImagePreload(onboardImages);
 
   return (
-    <Funnel>
-      <Step name="1">
-        <IntroStep
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-          onboardImage={ImgOnboard1}
-        />
-      </Step>
-      <Step name="2">
-        <FestivalSelectStep
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-          totalIndex={TOTAL_INDEX}
-          currentIndex={0}
-          onboardImage={ImgOnboard2}
-        />
-      </Step>
-      <Step name="3">
-        <FestivalCustomStep
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-          totalIndex={TOTAL_INDEX}
-          currentIndex={1}
-          onboardImage={ImgOnboard3}
-        />
-      </Step>
-      <Step name="4">
-        <EditTimetableStep
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-          totalIndex={TOTAL_INDEX}
-          currentIndex={2}
-          onboardImage={ImgOnboard4}
-        />
-      </Step>
-      <Step name="5">
-        <ClickBlockStep
-          handleNextStep={handleNextStep(1)}
-          handleNavigate={handleNavigate}
-          totalIndex={TOTAL_INDEX}
-          currentIndex={3}
-          onboardImage={ImgOnboard5}
-        />
-      </Step>
-    </Funnel>
+    <>
+      <LogShowEvent name="show_timetable_onboarding" />
+      <Funnel>
+        <Step name="1">
+          <IntroStep
+            handleNextStep={handleNextStep(1)}
+            handleNavigate={handleNavigate}
+            onboardImage={ImgOnboard1}
+          />
+        </Step>
+        <Step name="2">
+          <FestivalSelectStep
+            handleNextStep={handleNextStep(1)}
+            handleNavigate={handleNavigate}
+            totalIndex={TOTAL_INDEX}
+            currentIndex={0}
+            onboardImage={ImgOnboard2}
+          />
+        </Step>
+        <Step name="3">
+          <FestivalCustomStep
+            handleNextStep={handleNextStep(1)}
+            handleNavigate={handleNavigate}
+            totalIndex={TOTAL_INDEX}
+            currentIndex={1}
+            onboardImage={ImgOnboard3}
+          />
+        </Step>
+        <Step name="4">
+          <EditTimetableStep
+            handleNextStep={handleNextStep(1)}
+            handleNavigate={handleNavigate}
+            totalIndex={TOTAL_INDEX}
+            currentIndex={2}
+            onboardImage={ImgOnboard4}
+          />
+        </Step>
+        <Step name="5">
+          <ClickBlockStep
+            handleNextStep={handleNextStep(1)}
+            handleNavigate={handleNavigate}
+            totalIndex={TOTAL_INDEX}
+            currentIndex={3}
+            onboardImage={ImgOnboard5}
+          />
+        </Step>
+      </Funnel>
+    </>
   );
 };
 

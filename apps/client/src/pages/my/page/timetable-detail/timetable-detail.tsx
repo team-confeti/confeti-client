@@ -2,6 +2,7 @@ import { Suspense, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 
 import Calender from '@pages/timetable/components/calender/calender';
@@ -32,6 +33,7 @@ const TimetableDetail = () => {
 
   return (
     <div className={styles.wrapper}>
+      <LogShowEvent name="show_my_timetable_detail" />
       <TimetableHeader title={datesData.title} />
 
       <Calender

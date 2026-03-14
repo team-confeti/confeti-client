@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
@@ -73,21 +74,29 @@ const AddFestival = () => {
 
   return (
     <div className={styles.wrapper}>
+      <LogShowEvent name="show_timetable_add_festival" />
       <DetailHeader title="페스티벌 추가하기" />
       <div className={styles.container}>
         {festivals.map((festival) => {
           const isSelected = selectedFestivals.includes(festival.festivalId);
           return (
             <div key={festival.festivalId}>
-              <FestivalCard
-                title={festival.title}
-                imageSrc={festival.posterUrl}
-                selectable={true}
-                isSelected={isSelected}
-                onClick={() => {
-                  handleFestivalClick(festival.festivalId, isSelected);
+              <LogClickEvent
+                name="click_timetable_add_festival_select"
+                params={{
+                  target_id: festival.festivalId,
                 }}
-              />
+              >
+                <FestivalCard
+                  title={festival.title}
+                  imageSrc={festival.posterUrl}
+                  selectable={true}
+                  isSelected={isSelected}
+                  onClick={() => {
+                    handleFestivalClick(festival.festivalId, isSelected);
+                  }}
+                />
+              </LogClickEvent>
             </div>
           );
         })}
@@ -95,12 +104,17 @@ const AddFestival = () => {
         {hasNextPage && <div ref={observerRef} style={{ height: '2rem' }} />}
       </div>
       <div className={styles.buttonSection}>
-        <Button
-          variant="add"
-          text={'추가하기'}
-          disabled={isButtonDisabled}
-          onClick={handleAddClick}
-        />
+        <LogClickEvent
+          name="click_timetable_add_festival"
+          params={{ count: selectedFestivals.length }}
+        >
+          <Button
+            variant="add"
+            text={'추가하기'}
+            disabled={isButtonDisabled}
+            onClick={handleAddClick}
+          />
+        </LogClickEvent>
       </div>
     </div>
   );

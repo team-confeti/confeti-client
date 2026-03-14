@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import { Button, Description } from '@confeti/design-system';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { SwitchCase } from '@shared/components';
 import Loading from '@shared/pages/loading/loading';
 
@@ -55,6 +56,7 @@ const CtaContent = ({ setStep }: OnBoardingCompleteProps) => (
     transition={{ duration: 0.5, delay: 0.1 }}
   >
     <section className={styles.completeContentSection({ phase: 'cta' })}>
+      <LogShowEvent name="show_onboarding_complete" />
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,12 +88,14 @@ const CtaContent = ({ setStep }: OnBoardingCompleteProps) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
-        <Button
-          text={'시작하기'}
-          variant={'add'}
-          onClick={() => setStep(2)}
-          className={styles.button}
-        />
+        <LogClickEvent name="click_onboarding_complete">
+          <Button
+            text={'시작하기'}
+            variant={'add'}
+            onClick={() => setStep(2)}
+            className={styles.button}
+          />
+        </LogClickEvent>
       </motion.div>
     </section>
   </motion.div>

@@ -1,6 +1,8 @@
 import { Avatar } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import * as styles from './user-edit-info.css.ts';
 
 interface Props {
@@ -21,12 +23,14 @@ const UserEditInfo = ({ name, profileUrl, onEditImage }: Props) => {
           size="xl"
           isHandleClick={false}
         />
-        <Icon
-          name="edit"
-          className={styles.editIcon}
-          onClick={onEditImage}
-          size="1.6rem"
-        />
+        <LogClickEvent name="click_profile_edit_image">
+          <Icon
+            name="edit"
+            className={styles.editIcon}
+            onClick={onEditImage}
+            size="1.6rem"
+          />
+        </LogClickEvent>
       </div>
       <div className={styles.userInfo}>
         <div className={styles.titleWrapper}>

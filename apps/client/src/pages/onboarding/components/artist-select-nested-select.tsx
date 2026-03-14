@@ -15,6 +15,7 @@ import {
 } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import {
   ONBOARD_MUTATION_OPTIONS,
   ONBOARD_QUERY_OPTIONS,
@@ -99,6 +100,7 @@ const ArtistSelectNestedSelect = ({
 
   return (
     <section className={styles.onboardingContentSection}>
+      <LogShowEvent name="show_onboarding_artist_select" />
       <Description.Text
         descriptionText={'선호하는 아티스트를\n모두 선택해주세요'}
         fontSize={20}
@@ -144,10 +146,12 @@ const ArtistSelectNestedSelect = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
               >
-                <OnboardingChip
-                  onClick={onEditClick}
-                  count={selectedArtistData.data.artists.length}
-                />
+                <LogClickEvent name="click_onboarding_edit_selected_artists">
+                  <OnboardingChip
+                    onClick={onEditClick}
+                    count={selectedArtistData.data.artists.length}
+                  />
+                </LogClickEvent>
               </motion.div>
             </LayoutGroup>
           </div>
@@ -167,24 +171,33 @@ const ArtistSelectNestedSelect = ({
             }}
           >
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Avatar
-                size="xl"
-                src={artist.profileUrl}
-                alt={`${artist.name} 이미지`}
-                onClick={() => handleArtistClick(artist.artistId)}
-              />
+              <LogClickEvent
+                name="click_onboarding_select_artist"
+                params={{
+                  target_id: artist.artistId,
+                }}
+              >
+                <Avatar
+                  size="xl"
+                  src={artist.profileUrl}
+                  alt={`${artist.name} 이미지`}
+                  onClick={() => handleArtistClick(artist.artistId)}
+                />
+              </LogClickEvent>
             </motion.div>
             <p className={styles.artistName}>{artist.name}</p>
           </motion.div>
         ))}
       </div>
-      <Button
-        text={'다음'}
-        variant={'add'}
-        onClick={handleNextClick}
-        disabled={selectedArtistData.data.artists.length < 1}
-        className={styles.button}
-      />
+      <LogClickEvent name="click_onboarding_complete">
+        <Button
+          text={'다음'}
+          variant={'add'}
+          onClick={handleNextClick}
+          disabled={selectedArtistData.data.artists.length < 1}
+          className={styles.button}
+        />
+      </LogClickEvent>
     </section>
   );
 };

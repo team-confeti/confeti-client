@@ -1,3 +1,5 @@
+import type { PerformanceType } from '@shared/types/performance-type';
+
 import { useCarouselBackground } from '../hooks/use-carousel-background';
 import PerformanceCarousel from './performance-carousel/components/performance-carousel';
 import { CAROUSEL_ANIMATION } from './performance-carousel/constants/animation';
@@ -8,7 +10,7 @@ import * as styles from './performance-carousel-section.css';
 interface PerformanceCarouselSectionProps {
   data: Performance[];
   isPersonalized: boolean;
-  onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
+  onPerformanceClick?: (type: PerformanceType, typeId: number) => void;
 }
 
 const PerformanceCarouselSection = ({
