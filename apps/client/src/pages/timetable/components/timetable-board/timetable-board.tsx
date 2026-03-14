@@ -56,7 +56,7 @@ const TimetableBoard = ({
       name: 'click_timetable_toggle_block',
       params: {
         target_id: timeBlockId,
-        action: nextSelected ? 'select' : 'deselect',
+        isSelected: nextSelected,
       },
     });
     handleTimetableItemClick(timeBlockId, nextSelected);

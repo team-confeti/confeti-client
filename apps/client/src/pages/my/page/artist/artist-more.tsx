@@ -39,10 +39,7 @@ const ArtistMore = () => {
         <LogClickEvent
           name="click_my_artist_sort"
           params={{
-            sort:
-              sortOption === SORT_OPTIONS.RECENT
-                ? SORT_OPTIONS.ALPHABETICAL
-                : SORT_OPTIONS.RECENT,
+            sort: sortOption,
           }}
         >
           <button className={styles.sort} onClick={toggleSort}>

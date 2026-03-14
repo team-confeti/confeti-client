@@ -92,10 +92,7 @@ const MyOverviewPage = () => {
           <LogClickEvent
             name="click_my_overview_sort"
             params={{
-              sort:
-                sortOption === SORT_OPTIONS.RECENT
-                  ? SORT_OPTIONS.OLDEST
-                  : SORT_OPTIONS.RECENT,
+              sort: sortOption,
             }}
           >
             <OrderByButton

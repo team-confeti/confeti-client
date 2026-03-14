@@ -39,7 +39,7 @@ export const TimetableListHeader = ({
         <p>전체 {totalCount}</p>
         <LogClickEvent
           name="click_my_timetable_sort"
-          params={{ sort: nextSortOption }}
+          params={{ sort: sortOption }}
         >
           <button className={styles.sort} onClick={toggleSort}>
             <p>{SORT_BASIC_LABELS[sortOption]}</p>

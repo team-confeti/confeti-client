@@ -143,7 +143,7 @@ const TimetableLandingContent = ({
                 name="click_timetable_select_festival"
                 params={{
                   target_id: festival.id,
-                  action: isEditMode ? 'select' : 'open',
+                  isEditMode,
                 }}
               >
                 <FestivalList.Item
