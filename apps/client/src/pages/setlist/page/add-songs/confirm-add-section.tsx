@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import {
+  LogClickEvent,
+  logClickEvent,
+  LogShowEvent,
+} from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { AddMusicToSetListRequest } from '@shared/types/my-history-response';
@@ -53,35 +58,59 @@ const ConfirmAddSection = ({
     trackName: string;
     musicId: string;
   }) => {
-    overlay.open(({ isOpen, close }) => (
-      <Dialog open={isOpen} handleClose={close}>
-        <Dialog.Content>
-          <Dialog.Title>
-            <div className={styles.dialogTitleContainer}>
-              <p className={styles.dialogHighlightText}>{trackName}</p>
-            </div>
-            <span>을(를) 삭제할까요?</span>
-          </Dialog.Title>
-          <Dialog.Description>
-            대기열에서 해당 곡이 삭제됩니다.
-          </Dialog.Description>
-        </Dialog.Content>
-        <Dialog.Action>
-          <Button text="돌아가기" onClick={close} variant="back" />
-          <Button
-            text="삭제하기"
-            onClick={() => {
-              handleRemoveSong(musicId);
-              close();
-            }}
-          />
-        </Dialog.Action>
-      </Dialog>
-    ));
+    overlay.open(({ isOpen, close }) => {
+      const handleConfirmRemoveSong = () => {
+        handleRemoveSong(musicId);
+        close();
+      };
+
+      return (
+        <>
+          <LogShowEvent name="show_setlist_add_song_delete_confirm_dialog" />
+          <Dialog open={isOpen} handleClose={close}>
+            <Dialog.Content>
+              <Dialog.Title>
+                <div className={styles.dialogTitleContainer}>
+                  <p className={styles.dialogHighlightText}>{trackName}</p>
+                </div>
+                <span>을(를) 삭제할까요?</span>
+              </Dialog.Title>
+              <Dialog.Description>
+                대기열에서 해당 곡이 삭제됩니다.
+              </Dialog.Description>
+            </Dialog.Content>
+            <Dialog.Action>
+              <Button text="돌아가기" onClick={close} variant="back" />
+              <LogClickEvent
+                name="click_song_remove_from_queue"
+                params={{
+                  source_page: 'setlist_add_songs',
+                  target_id: musicId,
+                }}
+              >
+                <Button text="삭제하기" onClick={handleConfirmRemoveSong} />
+              </LogClickEvent>
+            </Dialog.Action>
+          </Dialog>
+        </>
+      );
+    });
+  };
+
+  const handleOpenSongDeleteDialog = (trackName: string, musicId: string) => {
+    logClickEvent({
+      name: 'click_song_remove_from_queue',
+      params: {
+        source_page: 'setlist_add_songs',
+        target_id: musicId,
+      },
+    });
+    handleOpenDeleteDialog({ trackName, musicId });
   };
 
   return (
     <div>
+      <LogShowEvent name="show_setlist_add_songs_confirm" />
       <header className={styles.headerContainer}>
         <button aria-label="뒤로가기" onClick={handleConfirmAddSection}>
           <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
@@ -103,21 +132,23 @@ const ConfirmAddSection = ({
             artist={song.artistName}
             variant="confirmDelete"
             onClickDelete={() =>
-              handleOpenDeleteDialog({
-                trackName: song.trackName,
-                musicId: song.musicId,
-              })
+              handleOpenSongDeleteDialog(song.trackName, song.musicId)
             }
             appearance="default"
           />
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button
-          text="셋리스트에 추가하기"
-          disabled={selectedSongs.length === 0}
-          onClick={handleAddMusicToSetList}
-        />
+        <LogClickEvent
+          name="click_setlist_create"
+          params={{ count: selectedSongs.length }}
+        >
+          <Button
+            text="셋리스트에 추가하기"
+            disabled={selectedSongs.length === 0}
+            onClick={handleAddMusicToSetList}
+          />
+        </LogClickEvent>
       </div>
     </div>
   );

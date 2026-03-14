@@ -13,8 +13,9 @@ import {
   PERFORMANCE_QUERY_KEY,
   SEARCH_QUERY_KEY,
 } from '@shared/constants/query-key';
+import type { PerformanceType } from '@shared/types/performance-type';
 
-type LikeType = 'ARTIST' | 'FESTIVAL' | 'CONCERT';
+type LikeType = 'ARTIST' | PerformanceType;
 
 interface Props {
   id: string | number;

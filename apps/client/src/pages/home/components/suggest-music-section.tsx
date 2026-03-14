@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { Box } from '@confeti/design-system';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import { HOME_QUERY_OPTIONS } from '@shared/apis/home/home-queries';
 import { MusicList } from '@shared/components';
 import MusicInfo from '@shared/components/music-list/music-info';
@@ -48,9 +49,20 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
     setCurrentIndex(index);
   };
 
-  const handleClickDetail = () => {
-    if (!currentPerformance) return;
-    onClickDetail(currentPerformance.type, currentPerformance.typeId);
+  const handleClickPerformanceDetail = (type: string, typeId: number) => {
+    onClickDetail(type, typeId);
+  };
+
+  const handleClickPlayToggle = (musicId: string) => {
+    logClickEvent({
+      name: 'click_music_play_toggle',
+      params: {
+        source_page: 'home',
+        target_id: musicId,
+        entry_point: 'recommend_music',
+      },
+    });
+    onClickPlayToggle(musicId);
   };
 
   return (
@@ -65,13 +77,13 @@ const SuggestMusicSection = ({ onClickDetail }: SuggestMusicSectionProps) => {
           total={performances.length}
           current={currentIndex}
           onChangeIndex={handleDotClick}
-          onClickDetail={handleClickDetail}
+          onClickDetail={handleClickPerformanceDetail}
           isPending={isPending}
         />
         <MusicList
           appearance="home"
           musics={musicList}
-          onClickPlayToggle={onClickPlayToggle}
+          onClickPlayToggle={handleClickPlayToggle}
           isPending={isPending}
           skeletonCount={3}
         />

@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { FestivalCard } from '@confeti/design-system';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { MY_SETLIST_QUERY_OPTIONS } from '@shared/apis/my/my-setlist-queries';
 import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import { DetailHeader } from '@shared/components';
@@ -63,35 +64,84 @@ const MyOverviewPage = () => {
     navigate(`${routePath.TIME_TABLE_OUTLET}`);
   };
 
+  const setlistOverviewItems =
+    setListOverviewData?.setlists?.map((item) => ({
+      key: item.typeId,
+      imageSrc: item.posterUrl,
+      title: item.title,
+      eventParams: {
+        entry_point: 'setlist',
+        target_id: item.setlistId,
+      },
+      handleClick: () => handleNavigateToDetail(item.setlistId),
+    })) ?? [];
+
+  const timetableOverviewItems =
+    timetableOverviewData?.timetables?.map((item) => ({
+      key: item.typeId,
+      imageSrc: item.posterUrl,
+      title: item.title,
+      eventParams: {
+        entry_point: 'timetable',
+        target_id: item.timetableId,
+      },
+      handleClick: handleNavigateToTimeTable,
+    })) ?? [];
+
   return (
     <>
+      <LogShowEvent name="show_my_overview" />
       <DetailHeader title={isSetList ? 'My 셋리스트' : 'My 타임테이블'} />
       <section className={styles.overviewContainer}>
         <div className={styles.filterContainer}>
           <CountDisplay count={overviewData.count || 0} />
-          <OrderByButton
-            orderByText={SORT_LABELS[sortOption]}
-            onClick={toggleSort}
-          />
+          <LogClickEvent
+            name="click_my_overview_sort"
+            params={{
+              sort:
+                sortOption === SORT_OPTIONS.RECENT
+                  ? SORT_OPTIONS.OLDEST
+                  : SORT_OPTIONS.RECENT,
+            }}
+          >
+            <OrderByButton
+              orderByText={SORT_LABELS[sortOption]}
+              onClick={toggleSort}
+            />
+          </LogClickEvent>
         </div>
         <div className={styles.gridContainer}>
           {isSetList
-            ? setListOverviewData?.setlists?.map((item) => (
-                <FestivalCard
-                  key={item.typeId}
-                  imageSrc={item.posterUrl}
-                  title={item.title}
-                  onClick={() => handleNavigateToDetail(item.setlistId)}
-                />
-              ))
-            : timetableOverviewData?.timetables?.map((item) => (
-                <FestivalCard
-                  key={item.typeId}
-                  imageSrc={item.posterUrl}
-                  title={item.title}
-                  onClick={handleNavigateToTimeTable}
-                />
-              ))}
+            ? setlistOverviewItems.map(
+                ({ key, imageSrc, title, eventParams, handleClick }) => (
+                  <LogClickEvent
+                    key={key}
+                    name="click_my_overview_item"
+                    params={eventParams}
+                  >
+                    <FestivalCard
+                      imageSrc={imageSrc}
+                      title={title}
+                      onClick={handleClick}
+                    />
+                  </LogClickEvent>
+                ),
+              )
+            : timetableOverviewItems.map(
+                ({ key, imageSrc, title, eventParams, handleClick }) => (
+                  <LogClickEvent
+                    key={key}
+                    name="click_my_overview_item"
+                    params={eventParams}
+                  >
+                    <FestivalCard
+                      imageSrc={imageSrc}
+                      title={title}
+                      onClick={handleClick}
+                    />
+                  </LogClickEvent>
+                ),
+              )}
         </div>
       </section>
     </>

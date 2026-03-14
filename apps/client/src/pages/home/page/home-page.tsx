@@ -1,13 +1,14 @@
 import { Spacing } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
-import { LogShowEvent } from '@shared/analytics/logging';
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import {
   FloatingButtonContainer,
   Footer,
   NavigationTabs,
 } from '@shared/components';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
+import type { PerformanceType } from '@shared/types/performance-type';
 
 import PerformanceCarouselSection from '../components/performance-carousel-section';
 import SuggestMusicSection from '../components/suggest-music-section';
@@ -36,6 +37,19 @@ const HomePage = () => {
     }),
   );
 
+  const handleClickCarouselPerformance = (
+    type: PerformanceType,
+    typeId: number,
+  ) => {
+    logClickEvent({
+      name: 'click_home_carousel_performance',
+      params: {
+        target_id: typeId,
+      },
+    });
+    navigateToDetail(type, typeId);
+  };
+
   return (
     <div className={styles.container}>
       <LogShowEvent name="show_home" />
@@ -43,7 +57,7 @@ const HomePage = () => {
         <PerformanceCarouselSection
           data={formattedCarouselData}
           isPersonalized={latestPerformances.isPersonalized}
-          onPerformanceClick={navigateToDetail}
+          onPerformanceClick={handleClickCarouselPerformance}
         />
       )}
 

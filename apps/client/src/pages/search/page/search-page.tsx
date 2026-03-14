@@ -3,6 +3,7 @@ import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { SEARCH_PAGE_QUERY_OPTIONS } from '@shared/apis/search/search-page-queries';
 import { SEARCH_QUERY_OPTIONS } from '@shared/apis/search/search-queries';
 import { SwitchCase } from '@shared/components';
@@ -75,6 +76,32 @@ const SearchPage = () => {
   });
 
   const { addSearchKeyword } = useRecentSearch();
+  const handleSelectArtistSuggestion = (keyword: string, id: string) => {
+    logClickEvent({
+      name: 'click_search_suggestion_artist',
+      params: {
+        keyword,
+        target_type: 'artist',
+        target_id: id,
+      },
+    });
+    handleSelectKeyword(keyword, id, 'artist');
+    addSearchKeyword(keyword);
+  };
+
+  const handleSelectPerformanceSuggestion = (keyword: string, id: number) => {
+    logClickEvent({
+      name: 'click_search_suggestion_performance',
+      params: {
+        keyword,
+        target_type: 'performance',
+        target_id: id,
+      },
+    });
+    handleSelectKeyword(keyword, id, 'performance');
+    addSearchKeyword(keyword);
+  };
+
   const { keyboardProps } = useKeyboard({
     onKeyDown: (e) => {
       if (e.key === 'Escape') {
@@ -103,10 +130,7 @@ const SearchPage = () => {
             title: artist.name,
             profileUrl: artist.profileUrl,
           }))}
-          onSelectKeyword={(keyword, id) => {
-            handleSelectKeyword(keyword, id, 'artist');
-            addSearchKeyword(keyword);
-          }}
+          onSelectKeyword={handleSelectArtistSuggestion}
         />
         <SearchSuggestionList
           relatedKeyword={relatedPerformances?.performances?.map(
@@ -116,10 +140,7 @@ const SearchPage = () => {
               profileUrl: performance.posterUrl,
             }),
           )}
-          onSelectKeyword={(keyword, id) => {
-            handleSelectKeyword(keyword, id, 'performance');
-            addSearchKeyword(keyword);
-          }}
+          onSelectKeyword={handleSelectPerformanceSuggestion}
           listType="performance"
         />
       </>
@@ -145,6 +166,7 @@ const SearchPage = () => {
   const DefaultContent = useMemo(
     () => (
       <main className={styles.resultSection}>
+        <LogShowEvent name="show_search_home" />
         <RecentSearchSection />
         <PopularSearchSection popularSearchData={popularSearchData} />
         <RecentFestivalSection recentViewData={recentViewData ?? null} />

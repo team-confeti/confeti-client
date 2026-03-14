@@ -164,9 +164,7 @@ const TimetableLandingContent = ({
       )}
 
       <Dialog open={dialogStatus === 'confirm'} handleClose={handleCloseDialog}>
-        {dialogStatus === 'confirm' && (
-          <LogShowEvent name="show_timetable_delete_confirm_dialog" />
-        )}
+        <LogShowEvent name="show_timetable_delete_confirm_dialog" />
         <Dialog.Content>
           <Dialog.Title>
             <span className={styles.dialogHighlight}>{selectedCount}</span>개의
@@ -201,9 +199,7 @@ const TimetableLandingContent = ({
       </Dialog>
 
       <Dialog open={dialogStatus === 'success'}>
-        {dialogStatus === 'success' && (
-          <LogShowEvent name="show_timetable_delete_success_dialog" />
-        )}
+        <LogShowEvent name="show_timetable_delete_success_dialog" />
         <Dialog.Content>
           <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
         </Dialog.Content>

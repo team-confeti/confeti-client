@@ -58,7 +58,10 @@ const TimetableActions = ({
           </button>
         </LogClickEvent>
       )}
-      <LogClickEvent name="click_timetable_edit">
+      <LogClickEvent
+        name="click_timetable_edit_mode"
+        params={{ action: isEditMode ? 'complete' : 'start' }}
+      >
         <Button
           className={styles.editButton}
           onClick={onToggleEditMode}

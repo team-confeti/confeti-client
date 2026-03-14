@@ -3,6 +3,7 @@ import { LikeButton } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 import { formatDate } from '@confeti/utils';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/search-response';
@@ -21,11 +22,31 @@ const PerformanceInfo = ({
 }: Performance) => {
   const { mutate } = useLikeMutation();
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    logClickEvent({
+      name: 'click_like_performance',
+      params: {
+        source_page: 'search',
+        action,
+        target_type: type,
+        target_id: typeId,
+      },
+    });
     mutate({ id: typeId, action, type: type });
   };
 
   const navigateToDetail = useNavigateToDetail();
   const formattedDate = formatDate('', 'rangeStartEndYearBoth', startAt, endAt);
+
+  const handleClickPerformance = () => {
+    logClickEvent({
+      name: 'click_search_result_performance',
+      params: {
+        target_type: type,
+        target_id: typeId,
+      },
+    });
+    navigateToDetail(type, typeId);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -34,14 +55,11 @@ const PerformanceInfo = ({
           src={posterUrl}
           alt={title}
           className={styles.poster}
-          onClick={() => navigateToDetail(type, typeId)}
+          onClick={handleClickPerformance}
         />
 
         <div className={styles.textSection}>
-          <p
-            className={styles.title}
-            onClick={() => navigateToDetail(type, typeId)}
-          >
+          <p className={styles.title} onClick={handleClickPerformance}>
             {title}
           </p>
 

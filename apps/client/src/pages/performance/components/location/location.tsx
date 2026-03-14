@@ -3,6 +3,8 @@ import { Fragment } from 'react';
 import { toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import { PERFORMANCE_LABEL } from '@pages/performance/constant/performance';
 
 import { openKakaoRoute } from '../../utils/kakao-map';
@@ -51,16 +53,20 @@ const Location = ({ address }: LocationProps) => {
       <h2 className={styles.title}>{PERFORMANCE_LABEL.LOCATION}</h2>
       <p className={styles.address}>
         {formattedAddress}
-        <button
-          type="button"
-          className={styles.copyButton}
-          onClick={handleAddressCopy}
-          aria-label="주소 복사"
-        >
-          <Icon name="copy" size="2rem" color="gray400" />
-        </button>
+        <LogClickEvent name="click_copy_address">
+          <button
+            type="button"
+            className={styles.copyButton}
+            onClick={handleAddressCopy}
+            aria-label="주소 복사"
+          >
+            <Icon name="copy" size="2rem" color="gray400" />
+          </button>
+        </LogClickEvent>
       </p>
-      <MapView address={address} onClick={handleClick} />
+      <LogClickEvent name="click_open_map">
+        <MapView address={address} onClick={handleClick} />
+      </LogClickEvent>
     </section>
   );
 };

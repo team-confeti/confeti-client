@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, SearchBar, toast } from '@confeti/design-system';
 
+import {
+  LogClickEvent,
+  logClickEvent,
+  LogShowEvent,
+} from '@shared/analytics/logging';
 import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { MusicList, SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
@@ -19,6 +24,7 @@ import ConfirmAddSection from './confirm-add-section';
 import RelatedArtistList from './related-artist-list';
 
 import * as styles from './add-songs-page.css';
+import * as relatedArtistStyles from './related-artist-list.css';
 
 const AddSongsPage = () => {
   const [searchParams] = useSearchParams();
@@ -140,6 +146,41 @@ const AddSongsPage = () => {
     }
   };
 
+  const handleClickGeneralPlayToggle = (musicId: string) => {
+    logClickEvent({
+      name: 'click_music_play_toggle',
+      params: {
+        source_page: 'setlist_add_songs',
+        target_id: musicId,
+        entry_point: 'search_result',
+      },
+    });
+    onClickPlayToggle(musicId);
+  };
+
+  const handleClickRelatedPlayToggle = (musicId: string) => {
+    logClickEvent({
+      name: 'click_music_play_toggle',
+      params: {
+        source_page: 'setlist_add_songs',
+        target_id: musicId,
+        entry_point: 'artist_result',
+      },
+    });
+    onClickPlayToggle(musicId);
+  };
+
+  const handleAddSongToQueue = (musicId: string) => {
+    logClickEvent({
+      name: 'click_song_add_to_queue',
+      params: {
+        source_page: 'setlist_add_songs',
+        target_id: musicId,
+      },
+    });
+    handleClickMusic(musicId);
+  };
+
   useEffect(() => {
     if (!paramsKeyword.trim()) return;
 
@@ -172,18 +213,23 @@ const AddSongsPage = () => {
       <div className={styles.renderContentContainer}>
         <MusicList
           musics={musicList}
-          onClickPlayToggle={onClickPlayToggle}
-          onClickAdd={handleClickMusic}
+          onClickPlayToggle={handleClickGeneralPlayToggle}
+          onClickAdd={handleAddSongToQueue}
           variant="default"
         />
         <audio ref={audioRef} />
       </div>
       <div className={styles.buttonContainer}>
-        <Button
-          text="선택 완료"
-          disabled={selectedSongs.length === 0}
-          onClick={handleMoveToConfirmAddSection}
-        />
+        <LogClickEvent
+          name="click_setlist_confirm_add_songs"
+          params={{ count: selectedSongs.length }}
+        >
+          <Button
+            text="선택 완료"
+            disabled={selectedSongs.length === 0}
+            onClick={handleMoveToConfirmAddSection}
+          />
+        </LogClickEvent>
       </div>
     </>
   );
@@ -198,23 +244,40 @@ const AddSongsPage = () => {
           현재 선택된 아티스트의 곡이에요.
         </p>
         <div className={styles.listContainer}>
-          {artist && <RelatedArtistList artist={artist} />}
+          {artist && (
+            <div className={relatedArtistStyles.relatedArtistContainer}>
+              <img
+                className={relatedArtistStyles.relatedArtistImg}
+                src={artist.profileUrl}
+                alt={artist.name}
+              />
+              <p className={relatedArtistStyles.relatedArtistName}>
+                {artist.name}
+              </p>
+              <span className={relatedArtistStyles.artistText}>아티스트</span>
+            </div>
+          )}
         </div>
         <div className={styles.renderContentContainer}>
           <MusicList
             musics={musicList}
-            onClickPlayToggle={onClickPlayToggle}
-            onClickAdd={handleClickMusic}
+            onClickPlayToggle={handleClickRelatedPlayToggle}
+            onClickAdd={handleAddSongToQueue}
             variant="default"
           />
           <audio ref={audioRef} />
         </div>
         <div className={styles.buttonContainer}>
-          <Button
-            text="선택 완료"
-            disabled={selectedSongs.length === 0}
-            onClick={handleMoveToConfirmAddSection}
-          />
+          <LogClickEvent
+            name="click_setlist_confirm_add_songs"
+            params={{ count: selectedSongs.length }}
+          >
+            <Button
+              text="선택 완료"
+              disabled={selectedSongs.length === 0}
+              onClick={handleMoveToConfirmAddSection}
+            />
+          </LogClickEvent>
         </div>
       </>
     );
@@ -243,25 +306,28 @@ const AddSongsPage = () => {
           handleConfirmAddSection={handleConfirmAddSection}
         />
       ) : (
-        <div className={styles.container}>
-          <div className={styles.searchBarContainer}>
-            <SearchBar
-              placeholder="아티스트 또는 노래 제목을 검색해주세요."
-              value={keyword}
-              onChange={handleInputChange}
-              {...keyboardProps}
+        <>
+          <LogShowEvent name="show_setlist_add_songs" />
+          <div className={styles.container}>
+            <div className={styles.searchBarContainer}>
+              <SearchBar
+                placeholder="아티스트 또는 노래 제목을 검색해주세요."
+                value={keyword}
+                onChange={handleInputChange}
+                {...keyboardProps}
+              />
+            </div>
+            <SwitchCase
+              value={searchState}
+              caseBy={{
+                loading: () => <Loading />,
+                result: () => <ResultContent />,
+                suggestion: () => <SuggestionContent />,
+              }}
+              defaultComponent={() => null}
             />
           </div>
-          <SwitchCase
-            value={searchState}
-            caseBy={{
-              loading: () => <Loading />,
-              result: () => <ResultContent />,
-              suggestion: () => <SuggestionContent />,
-            }}
-            defaultComponent={() => null}
-          />
-        </div>
+        </>
       )}
     </>
   );

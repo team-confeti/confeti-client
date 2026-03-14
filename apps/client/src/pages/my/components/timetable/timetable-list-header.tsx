@@ -1,5 +1,6 @@
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { SORT_BASIC_LABELS, SORT_OPTIONS } from '@shared/constants/sort-label';
 
 import * as styles from './timetable-list-header.css';
@@ -23,22 +24,28 @@ export const TimetableListHeader = ({
   onDelete,
   onSortChange,
 }: Props) => {
+  const nextSortOption =
+    sortOption === SORT_OPTIONS.RECENT
+      ? SORT_OPTIONS.OLDEST
+      : SORT_OPTIONS.RECENT;
+
   const toggleSort = () => {
-    const newSortOption =
-      sortOption === SORT_OPTIONS.RECENT
-        ? SORT_OPTIONS.OLDEST
-        : SORT_OPTIONS.RECENT;
-    onSortChange(newSortOption);
+    onSortChange(nextSortOption);
   };
 
   return (
     <section className={styles.header}>
       <div className={styles.leftContent}>
         <p>전체 {totalCount}</p>
-        <button className={styles.sort} onClick={toggleSort}>
-          <p>{SORT_BASIC_LABELS[sortOption]}</p>
-          <Icon name="switch" size="1.6rem" />
-        </button>
+        <LogClickEvent
+          name="click_my_timetable_sort"
+          params={{ sort: nextSortOption }}
+        >
+          <button className={styles.sort} onClick={toggleSort}>
+            <p>{SORT_BASIC_LABELS[sortOption]}</p>
+            <Icon name="switch" size="1.6rem" />
+          </button>
+        </LogClickEvent>
       </div>
       <div className={styles.rightContent}>
         {isEditMode ? (
@@ -67,15 +74,22 @@ const EditModeButtons = ({
   onDelete,
 }: EditModeButtonsProps) => (
   <div className={styles.buttons}>
-    <button className={styles.cancelButton} onClick={onCancel}>
-      <p>취소</p>
-    </button>
-    <button
-      className={styles.deleteButton({ isActive: selectedCount > 0 })}
-      onClick={onDelete}
+    <LogClickEvent name="click_my_timetable_cancel_edit">
+      <button className={styles.cancelButton} onClick={onCancel}>
+        <p>취소</p>
+      </button>
+    </LogClickEvent>
+    <LogClickEvent
+      name="click_my_timetable_open_delete"
+      params={{ count: selectedCount }}
     >
-      <p>삭제</p>
-    </button>
+      <button
+        className={styles.deleteButton({ isActive: selectedCount > 0 })}
+        onClick={onDelete}
+      >
+        <p>삭제</p>
+      </button>
+    </LogClickEvent>
   </div>
 );
 
@@ -84,8 +98,10 @@ interface DefaultModeButtonProps {
 }
 
 const DefaultModeButton = ({ onEditModeToggle }: DefaultModeButtonProps) => (
-  <button className={styles.editButton} onClick={onEditModeToggle}>
-    <Icon name="edit" size="1.6rem" />
-    <p>편집하기</p>
-  </button>
+  <LogClickEvent name="click_my_timetable_edit">
+    <button className={styles.editButton} onClick={onEditModeToggle}>
+      <Icon name="edit" size="1.6rem" />
+      <p>편집하기</p>
+    </button>
+  </LogClickEvent>
 );

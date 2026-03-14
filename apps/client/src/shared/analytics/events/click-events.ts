@@ -83,44 +83,13 @@ export const clickEvents = [
     name: 'click_like_performance',
     params: {
       source_page: {
-        type: 'enum',
+        type: 'string',
         required: true,
-        oneOf: [
-          'home',
-          'search',
-          'concert_detail',
-          'festival_detail',
-          'login',
-          'redirect_kakao',
-          'onboarding',
-          'my_profile',
-          'my_require_login',
-          'my_artist',
-          'my_confeti',
-          'my_timetable',
-          'my_setting',
-          'my_delete_account',
-          'my_edit_profile',
-          'my_overview',
-          'my_timetable_detail',
-          'timetable',
-          'timetable_require_login',
-          'timetable_add_festival',
-          'timetable_delete_festival',
-          'timetable_no_upcoming_festival',
-          'timetable_detail',
-          'setlist_add',
-          'setlist_add_songs',
-          'setlist_detail',
-          'setlist_maintenance',
-          'error',
-          'unknown',
-        ],
       },
       action: {
         type: 'enum',
         required: true,
-        oneOf: ['like', 'unlike'],
+        oneOf: ['LIKE', 'UNLIKE'],
       },
       target_type: {
         type: 'string',
@@ -173,7 +142,7 @@ export const clickEvents = [
       action: {
         type: 'enum',
         required: true,
-        oneOf: ['like', 'unlike'],
+        oneOf: ['LIKE', 'UNLIKE'],
       },
       target_type: {
         type: 'string',
@@ -238,22 +207,6 @@ export const clickEvents = [
         type: 'string',
         required: true,
       },
-      action: {
-        type: 'enum',
-        required: true,
-        oneOf: [
-          'open',
-          'cancel',
-          'confirm',
-          'next',
-          'retry',
-          'skip',
-          'start',
-          'complete',
-          'select',
-          'deselect',
-        ],
-      },
     },
   },
   {
@@ -268,10 +221,6 @@ export const clickEvents = [
   {
     name: 'click_home_carousel_performance',
     params: {
-      target_type: {
-        type: 'string',
-        required: true,
-      },
       target_id: {
         type: 'number',
         required: true,
@@ -281,10 +230,6 @@ export const clickEvents = [
   {
     name: 'click_home_ticket_opening_performance',
     params: {
-      target_type: {
-        type: 'string',
-        required: true,
-      },
       target_id: {
         type: 'number',
         required: true,
@@ -294,10 +239,6 @@ export const clickEvents = [
   {
     name: 'click_home_suggest_performance',
     params: {
-      target_type: {
-        type: 'string',
-        required: true,
-      },
       target_id: {
         type: 'number',
         required: true,
@@ -370,10 +311,6 @@ export const clickEvents = [
     params: {
       keyword: {
         type: 'string',
-        required: true,
-      },
-      rank: {
-        type: 'number',
         required: true,
       },
     },
@@ -541,17 +478,16 @@ export const clickEvents = [
     name: 'click_my_confeti_category',
     params: {
       category: {
-        type: 'enum',
+        type: 'string',
         required: true,
-        oneOf: ['all', 'concert', 'festival'],
       },
     },
   },
   {
     name: 'click_my_confeti_hide_past_toggle',
     params: {
-      action: {
-        type: 'string',
+      checked: {
+        type: 'boolean',
         required: true,
       },
     },
@@ -718,21 +654,9 @@ export const clickEvents = [
         type: 'number',
         required: true,
       },
-      action: {
-        type: 'enum',
+      isSelected: {
+        type: 'boolean',
         required: true,
-        oneOf: [
-          'open',
-          'cancel',
-          'confirm',
-          'next',
-          'retry',
-          'skip',
-          'start',
-          'complete',
-          'select',
-          'deselect',
-        ],
       },
     },
   },
@@ -969,22 +893,6 @@ export const clickEvents = [
         type: 'number',
         required: true,
       },
-      action: {
-        type: 'enum',
-        required: true,
-        oneOf: [
-          'open',
-          'cancel',
-          'confirm',
-          'next',
-          'retry',
-          'skip',
-          'start',
-          'complete',
-          'select',
-          'deselect',
-        ],
-      },
     },
   },
   {
@@ -1003,15 +911,6 @@ export const clickEvents = [
         type: 'enum',
         required: true,
         oneOf: ['add'],
-      },
-    },
-  },
-  {
-    name: 'click_timetable_calendar',
-    params: {
-      target_id: {
-        type: 'number',
-        required: true,
       },
     },
   },
