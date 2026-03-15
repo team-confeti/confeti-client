@@ -1,4 +1,4 @@
-export { CACHE_TIME, END_POINT, HTTP_STATUS_CODE } from './api';
+export { CACHE_TIME, END_POINT, HTTP_STATUS_CODE, STORAGE_KEY } from './api';
 export { APP_CONFIG, ENV_CONFIG } from './config';
 export {
   CONCERT_MUTATION_KEY,
