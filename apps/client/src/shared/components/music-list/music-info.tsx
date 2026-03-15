@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { DotIndicator } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { RecommendPerformances } from '@shared/types/home-response';
 
 import SkeletonInfo from './skeleton-info';
@@ -14,7 +15,7 @@ interface MusicInfoProps {
   total: number;
   current: number;
   onChangeIndex?: (index: number) => void;
-  onClickDetail?: () => void;
+  onClickDetail?: (type: string, typeId: number) => void;
   isPending?: boolean;
 }
 
@@ -73,9 +74,22 @@ const MusicInfo = ({
             <div className={styles.textSection}>
               <p className={styles.title}>{performance.title ?? ''}</p>
               <div className={styles.buttonSection}>
-                <p className={styles.buttonText} onClick={onClickDetail}>
-                  공연 상세정보 확인하기
-                </p>
+                <LogClickEvent
+                  name="click_home_suggest_music_detail"
+                  params={{
+                    target_type: performance.type,
+                    target_id: performance.typeId,
+                  }}
+                >
+                  <p
+                    className={styles.buttonText}
+                    onClick={() =>
+                      onClickDetail?.(performance.type, performance.typeId)
+                    }
+                  >
+                    공연 상세정보 확인하기
+                  </p>
+                </LogClickEvent>
                 <Icon name="arrow-horizontal" size={12} color="white" />
               </div>
             </div>

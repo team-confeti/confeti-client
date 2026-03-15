@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { routePath } from '@shared/router/path.ts';
 
 import * as styles from './user-info.css.ts';
@@ -26,13 +27,15 @@ const UserInfo = ({ name, profileUrl }: Props) => {
         size="xl"
         isHandleClick={false}
       />
-      <div className={styles.titleWrapper} onClick={handleClick}>
-        <h2 className={styles.title}>{name}</h2>
-        <div className={styles.profileLink}>
-          <p>내 프로필</p>
-          <Icon name="arrow-horizontal" size="1.2rem" color="gray500" />
+      <LogClickEvent name="click_my_profile_edit">
+        <div className={styles.titleWrapper} onClick={handleClick}>
+          <h2 className={styles.title}>{name}</h2>
+          <div className={styles.profileLink}>
+            <p>내 프로필</p>
+            <Icon name="arrow-horizontal" size="1.2rem" color="gray500" />
+          </div>
         </div>
-      </div>
+      </LogClickEvent>
     </div>
   );
 };

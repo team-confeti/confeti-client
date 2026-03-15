@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Spacing } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import {
+  LogClickEvent,
+  logClickEvent,
+  LogShowEvent,
+} from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { DetailHeader, Footer } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
@@ -29,18 +34,45 @@ const MyProfile = () => {
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES_PREVIEW(),
   });
 
+  const handleNavigateSetting = () => {
+    navigate(routePath.MY_SETTING);
+  };
+
+  const handleNavigateFavoritePerformance = () => {
+    logClickEvent({
+      name: 'click_box_show_more',
+      params: {
+        section: 'favorite_performance',
+      },
+    });
+    navigate(routePath.MY_CONFETI);
+  };
+
+  const handleNavigateFavoriteArtist = () => {
+    logClickEvent({
+      name: 'click_box_show_more',
+      params: {
+        section: 'favorite_artist',
+      },
+    });
+    navigate(routePath.MY_ARTIST);
+  };
+
   if (!profileData) {
     return null;
   }
 
   return (
     <>
+      <LogShowEvent name="show_my_profile" />
       <DetailHeader
         title="마이페이지"
         rightIcon={
-          <button onClick={() => navigate(routePath.MY_SETTING)}>
-            <Icon name="setting" size="2.4rem" />
-          </button>
+          <LogClickEvent name="click_my_profile_setting">
+            <button onClick={handleNavigateSetting}>
+              <Icon name="setting" size="2.4rem" />
+            </button>
+          </LogClickEvent>
         }
       />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
@@ -50,7 +82,7 @@ const MyProfile = () => {
         title="선호하는 공연"
         onShowMore={
           performanceData.performances.length > 3
-            ? () => navigate(routePath.MY_CONFETI)
+            ? handleNavigateFavoritePerformance
             : undefined
         }
         showMoreText="더보기"
@@ -69,7 +101,7 @@ const MyProfile = () => {
         title="My Artist"
         onShowMore={
           artistData.artists.length > 3
-            ? () => navigate(routePath.MY_ARTIST)
+            ? handleNavigateFavoriteArtist
             : undefined
         }
         showMoreText="더보기"

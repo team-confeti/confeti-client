@@ -33,7 +33,7 @@ const DeleteAccount = () => {
     { value: 'frequent_errors', text: '잦은 오류, 장애가 발생해서' },
     { value: 'inconvenient', text: '이용하는데 편리하지 않아서' },
     { value: 'rejoin', text: '다른 계정으로 재가입하려고' },
-  ];
+  ] as const;
 
   const handleConfirmDeleteAccount = () => {
     mutate();
@@ -85,26 +85,33 @@ const DeleteAccount = () => {
         <div className={styles.radioWrapper}>
           {reasons.map((reason) => (
             <label key={reason.value} className={styles.label}>
-              <input
-                type="radio"
-                name="withdrawal_reason"
-                value={reason.value}
-                checked={selectedReason === reason.value}
-                onChange={() => setSelectedReason(reason.value)}
-                className={styles.radioStyle}
-              />
+              <LogClickEvent
+                name="click_withdraw_reason_select"
+                params={{ reason: reason.value }}
+              >
+                <input
+                  type="radio"
+                  name="withdrawal_reason"
+                  value={reason.value}
+                  checked={selectedReason === reason.value}
+                  onClick={() => setSelectedReason(reason.value)}
+                  className={styles.radioStyle}
+                />
+              </LogClickEvent>
               <span>{reason.text}</span>
             </label>
           ))}
         </div>
       </main>
       <div className={styles.buttonWrapper}>
-        <Button
-          variant="add"
-          text="탈퇴하기"
-          disabled={!selectedReason}
-          onClick={handleDialogOpen}
-        />
+        <LogClickEvent name="click_delete_account_open">
+          <Button
+            variant="add"
+            text="탈퇴하기"
+            disabled={!selectedReason}
+            onClick={handleDialogOpen}
+          />
+        </LogClickEvent>
       </div>
       <Footer />
     </>

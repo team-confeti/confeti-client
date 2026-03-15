@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Navigation } from '@confeti/design-system';
 import { themeVars } from '@confeti/design-system/styles';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { usePageScrollState } from '@shared/hooks/use-page-scroll-state';
 import { routePath } from '@shared/router/path';
 
@@ -51,26 +52,45 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
     >
       <Navigation.Root defaultActiveTab={defaultActiveTab} theme={theme}>
         <Navigation.List>
-          <Navigation.Item
-            index={TAB_MENU.HOME}
-            handleTabClick={() => handleNavigation(routePath.ROOT)}
+          <LogClickEvent
+            name="click_navigation_tab"
+            params={{
+              tab: 'home',
+            }}
           >
-            {'홈'}
-          </Navigation.Item>
-          <Navigation.Item
-            index={TAB_MENU.TIMETABLE}
-            handleTabClick={() => handleNavigation(routePath.TIME_TABLE_OUTLET)}
+            <Navigation.Item
+              index={TAB_MENU.HOME}
+              onClick={() => handleNavigation(routePath.ROOT)}
+            >
+              {'홈'}
+            </Navigation.Item>
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_navigation_tab"
+            params={{
+              tab: 'timetable',
+            }}
           >
-            {'타임테이블'}
-          </Navigation.Item>
-          <Navigation.Item
-            index={TAB_MENU.MY_HISTORY}
-            handleTabClick={() =>
-              handleNavigation(routePath.SETLIST_MAINTENANCE)
-            }
+            <Navigation.Item
+              index={TAB_MENU.TIMETABLE}
+              onClick={() => handleNavigation(routePath.TIME_TABLE_OUTLET)}
+            >
+              {'타임테이블'}
+            </Navigation.Item>
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_navigation_tab"
+            params={{
+              tab: 'setlist',
+            }}
           >
-            {'셋리스트'}
-          </Navigation.Item>
+            <Navigation.Item
+              index={TAB_MENU.MY_HISTORY}
+              onClick={() => handleNavigation(routePath.SETLIST_MAINTENANCE)}
+            >
+              {'셋리스트'}
+            </Navigation.Item>
+          </LogClickEvent>
         </Navigation.List>
       </Navigation.Root>
     </div>

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Spacing } from '@confeti/design-system';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import { FloatingButtonContainer, Footer, Hero } from '@shared/components';
 import { addRecentViewItem } from '@shared/utils/recent-view';
@@ -28,6 +29,7 @@ const FestivalDetailPage = () => {
 
   return (
     <>
+      <LogShowEvent name="show_festival_detail" />
       <Hero
         posterUrl={festival.posterUrl}
         title={festival.title}

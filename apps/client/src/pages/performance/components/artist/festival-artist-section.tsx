@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Avatar } from '@confeti/design-system';
 import { cn } from '@confeti/utils';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import { FestivalDate } from '@shared/types/festival-response';
 
 import MoreButton from '../button/more-button';
@@ -22,6 +23,12 @@ const FestivalArtistSection = ({ artists }: FestivalArtistSectionProps) => {
   );
 
   const toggleExpanded = (id: number) => {
+    logClickEvent({
+      name: 'click_box_show_more',
+      params: {
+        section: 'festival_artist',
+      },
+    });
     setExpandedDates((prev) => ({
       ...prev,
       [id]: !prev[id],

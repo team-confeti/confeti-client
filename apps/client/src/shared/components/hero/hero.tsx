@@ -1,6 +1,8 @@
 import { Icon } from '@confeti/design-system/icon';
 import { formatDate } from '@confeti/utils';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import * as styles from './hero.css';
 
 interface HeroProps {
@@ -17,9 +19,11 @@ const Hero = ({ posterUrl, title, startAt, onClickBack }: HeroProps) => {
     <div className={styles.wrapper}>
       <img src={posterUrl} className={styles.background} alt="배경 포스터" />
       <div className={styles.backgroundOverlay} />
-      <button className={styles.backButton} onClick={onClickBack}>
-        <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
-      </button>
+      <LogClickEvent name="click_navigation_back">
+        <button className={styles.backButton} onClick={onClickBack}>
+          <Icon name="arrow-horizontal" size="2.2rem" rotate={180} />
+        </button>
+      </LogClickEvent>
       <div className={styles.textWrapper}>
         <p className={styles.year}>{year}</p>
         <h1 className={styles.title}>{title}</h1>

@@ -12,8 +12,6 @@ const TimetableLayout = () => {
     location.pathname ===
       `${routePath.TIME_TABLE_OUTLET}/${routePath.ADD_FESTIVAL}` ||
     location.pathname ===
-      `${routePath.TIME_TABLE_OUTLET}/${routePath.DELETE_FESTIVAL}` ||
-    location.pathname ===
       `${routePath.TIME_TABLE_OUTLET}/${routePath.NO_UPCOMING_FESTIVAL}` ||
     location.pathname === routePath.TIME_TABLE_OUTLET;
 

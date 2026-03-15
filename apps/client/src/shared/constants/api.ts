@@ -1,3 +1,5 @@
+import type { PerformanceType } from '@shared/types/performance-type';
+
 import { SortOption } from './sort-label';
 
 export const END_POINT = {
@@ -32,7 +34,7 @@ export const END_POINT = {
   GET_MY_PERFORMANCES_PREVIEW: '/user/favorites/performances/preview',
   GET_MY_ARTISTS: (sortBy: SortOption) =>
     `/user/favorites/artists?sortBy=${sortBy}`,
-  GET_MY_PERFORMANCES: (performancesType: 'FESTIVAL' | 'CONCERT' | 'ALL') =>
+  GET_MY_PERFORMANCES: (performancesType: PerformanceType | 'ALL') =>
     `/user/favorites/performances?type=${performancesType}`,
 
   POST_LIKE_ARTIST: (artistId: string) => `/user/favorites/artists/${artistId}`,

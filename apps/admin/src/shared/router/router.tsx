@@ -4,6 +4,7 @@ import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import Layout from '@shared/components/layout/layout';
 import { PATH } from '@shared/constants/path';
 
+import AnalyticsEventsPage from '@pages/analytics-events/page/analytics-events-page';
 import ConcertPage from '@pages/concert/concert-page';
 import DashboardPage from '@pages/dashboard/page/dashboard-page';
 import FestivalPage from '@pages/festival/festival-page';
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: PATH.DASHBOARD,
         element: <DashboardPage />,
+      },
+      {
+        path: PATH.ANALYTICS_EVENTS,
+        element: <AnalyticsEventsPage />,
       },
       {
         path: PATH.PENDING,

@@ -1,5 +1,6 @@
 import { FestivalCard } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { Performance } from '@shared/types/user-response';
 
@@ -15,12 +16,22 @@ const PerformanceSection = ({ performances }: PerformanceSectionProps) => {
   return (
     <div className={styles.container}>
       {performances.map((performance) => (
-        <FestivalCard
+        <LogClickEvent
           key={performance.index}
-          title={performance.title}
-          imageSrc={performance.posterUrl}
-          onClick={() => navigateToDetail(performance.type, performance.typeId)}
-        />
+          name="click_my_profile_preview_performance"
+          params={{
+            target_type: performance.type,
+            target_id: performance.typeId,
+          }}
+        >
+          <FestivalCard
+            title={performance.title}
+            imageSrc={performance.posterUrl}
+            onClick={() =>
+              navigateToDetail(performance.type, performance.typeId)
+            }
+          />
+        </LogClickEvent>
       ))}
     </div>
   );

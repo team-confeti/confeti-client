@@ -5,6 +5,8 @@
     "preinstall": "npx only-allow pnpm",
     "build": "turbo build",
     "dev": "turbo dev",
+    "analytics:generate": "node packages/analytics-catalog/scripts/generate-analytics-catalog.mjs",
+    "analytics:sync-admin": "pnpm analytics:generate && pnpm --filter @confeti/admin build",
     "pr": "node scripts/create-draft-pr.mjs",
     "test": "turbo run test",
     "coverage": "turbo run coverage",

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import SwitchCase from '@shared/components/switch-case';
 
 import ArtistSelectNestedDelete from './artist-select-nested-delete';
@@ -16,6 +17,7 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
   const [viewState, setViewState] = useState<ViewState>('select');
 
   const handleSearchFocus = () => {
+    logClickEvent({ name: 'click_onboarding_search_focus' });
     setViewState('search');
   };
 
@@ -24,6 +26,7 @@ const ArtistSelect = ({ setStep }: ArtistSelectProps) => {
   };
 
   const handleBackToSelect = () => {
+    logClickEvent({ name: 'click_navigation_back' });
     setViewState('select');
   };
 

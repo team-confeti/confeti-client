@@ -3,8 +3,10 @@ import { LikeButton } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 import { formatDate } from '@confeti/utils';
 
+import { LogClickEvent, logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
+import type { PerformanceType } from '@shared/types/performance-type';
 import { MyPerformancesResponse } from '@shared/types/user-response';
 
 import * as styles from './performance-list.css';
@@ -16,16 +18,31 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
 
   const handleLike = (
     typeId: number,
-    type: 'FESTIVAL' | 'CONCERT',
+    type: PerformanceType,
     action: 'LIKE' | 'UNLIKE',
   ) => {
+    logClickEvent({
+      name: 'click_like_performance',
+      params: {
+        action,
+        target_type: type,
+        target_id: typeId,
+      },
+    });
     mutate({ id: typeId, action, type });
   };
 
+  const performanceItems = performances.map((performance) => ({
+    ...performance,
+    key: `${performance.type}-${performance.typeId}`,
+    handleClick: () => navigateToDetail(performance.type, performance.typeId),
+  }));
+
   return (
     <ul className={styles.wrapper}>
-      {performances.map(
+      {performanceItems.map(
         ({
+          key,
           title,
           posterUrl,
           startAt,
@@ -34,44 +51,52 @@ const PerformanceList = ({ performances }: MyPerformancesResponse) => {
           type,
           typeId,
           isFavorite,
+          handleClick,
         }) => (
-          <li
-            key={`${type}-${typeId}`}
-            className={styles.performanceItem}
-            onClick={() => navigateToDetail(type, typeId)}
+          <LogClickEvent
+            key={key}
+            name="click_my_overview_item"
+            params={{
+              section: 'favorite_performance',
+              target_id: typeId,
+            }}
           >
-            <img src={posterUrl} alt={title} className={styles.image} />
-            <div className={styles.info}>
-              <div className={styles.header}>
-                <h2 className={styles.title}>{title}</h2>
-                <div
-                  className={styles.likeButtonWrapper}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <LikeButton
-                    className={styles.likeButton}
-                    isFavorite={isFavorite}
-                    onLikeToggle={(action) => handleLike(typeId, type, action)}
-                    isLoggedIn={!!getAccessToken()}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className={styles.description}>
-                  <Icon name="time" width="1.4rem" height="1.4rem" />
-                  <p>
-                    {formatDate('', 'rangeStartEndYearBoth', startAt, endAt)}
-                  </p>
+            <li className={styles.performanceItem} onClick={handleClick}>
+              <img src={posterUrl} alt={title} className={styles.image} />
+              <div className={styles.info}>
+                <div className={styles.header}>
+                  <h2 className={styles.title}>{title}</h2>
+                  <div
+                    className={styles.likeButtonWrapper}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <LikeButton
+                      className={styles.likeButton}
+                      isFavorite={isFavorite}
+                      onLikeToggle={(action) =>
+                        handleLike(typeId, type, action)
+                      }
+                      isLoggedIn={!!getAccessToken()}
+                    />
+                  </div>
                 </div>
 
-                <div className={styles.description}>
-                  <Icon name="place" width="1.4rem" height="1.4rem" />
-                  <p>{area}</p>
+                <div>
+                  <div className={styles.description}>
+                    <Icon name="time" width="1.4rem" height="1.4rem" />
+                    <p>
+                      {formatDate('', 'rangeStartEndYearBoth', startAt, endAt)}
+                    </p>
+                  </div>
+
+                  <div className={styles.description}>
+                    <Icon name="place" width="1.4rem" height="1.4rem" />
+                    <p>{area}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </LogClickEvent>
         ),
       )}
     </ul>

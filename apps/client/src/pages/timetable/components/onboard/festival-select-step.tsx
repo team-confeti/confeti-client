@@ -1,5 +1,7 @@
 import { Button, Description } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import {
   WithIndex,
   WithNavigate,
@@ -24,6 +26,10 @@ const FestivalSelectStep = ({
   currentIndex,
   onboardImage,
 }: FestivalSelectProps) => {
+  const handleSkip = () => {
+    handleNavigate({ isReTry: false });
+  };
+
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -46,11 +52,24 @@ const FestivalSelectStep = ({
           <div className={styles.progressBarContainer}>
             <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
           </div>
-          <Button text="다음" variant="add" onClick={handleNextStep} />
-          <SkipButton
-            onClick={() => handleNavigate({ isReTry: false })}
-            text="SKIP"
-          />
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              step: 'festival_select',
+              action: 'next',
+            }}
+          >
+            <Button text="다음" variant="add" onClick={handleNextStep} />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              step: 'festival_select',
+              action: 'skip',
+            }}
+          >
+            <SkipButton onClick={handleSkip} text="SKIP" />
+          </LogClickEvent>
         </div>
       </div>
     </section>
