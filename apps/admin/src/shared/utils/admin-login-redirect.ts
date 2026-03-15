@@ -20,6 +20,10 @@ export const getPersistedRedirectPath = () => {
   );
 };
 
+export const clearPersistedRedirectPath = () => {
+  sessionStorage.removeItem(STORAGE_KEY.ADMIN_LOGIN_REDIRECT_PATH);
+};
+
 export const consumeRedirectPath = () => {
   const redirectPath = sessionStorage.getItem(
     STORAGE_KEY.ADMIN_LOGIN_REDIRECT_PATH,

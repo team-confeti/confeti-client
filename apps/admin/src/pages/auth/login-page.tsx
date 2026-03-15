@@ -10,13 +10,13 @@ import ConfetiLogo from '@shared/components/layout/confeti-logo';
 import { ENV_CONFIG } from '@shared/constants/config';
 import { PATH } from '@shared/constants/path';
 import { type AppleLogin } from '@shared/types/social-login';
-import { adminToast } from '@shared/utils/admin-toast';
-
-import { getAppleAuthData, initAppleAuth } from './apple-login';
 import {
   getRedirectPathFromSearchParams,
   persistRedirectPath,
-} from './login-redirect';
+} from '@shared/utils/admin-login-redirect';
+import { adminToast } from '@shared/utils/admin-toast';
+
+import { getAppleAuthData, initAppleAuth } from './apple-login';
 
 import * as styles from './login-page.css';
 

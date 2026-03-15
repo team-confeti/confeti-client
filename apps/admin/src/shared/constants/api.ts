@@ -1,5 +1,6 @@
 export const END_POINT = {
   POST_SOCIAL_LOGIN: '/auth/login',
+  POST_LOGOUT: '/auth/logout',
   POST_REISSUE_TOKEN: '/auth/reissue',
 
   GET_FESTIVALS: '/admin/performances/festivals',

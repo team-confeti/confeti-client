@@ -8,6 +8,8 @@ import {
   type SocialLoginResponse,
 } from '@shared/types/social-login';
 
+import { post as authorizedPost } from './config/instance';
+
 const { post } = createInstance(ENV_CONFIG.BASE_URL);
 
 export const postSocialLogin = async (
@@ -17,4 +19,8 @@ export const postSocialLogin = async (
     END_POINT.POST_SOCIAL_LOGIN,
     socialLoginData,
   );
+};
+
+export const postLogout = async () => {
+  return await authorizedPost<BaseResponse<void>>(END_POINT.POST_LOGOUT);
 };
