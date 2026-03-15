@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { USER_MUTATION_OPTIONS } from '@shared/apis/user/user-mutations';
 import { DetailHeader } from '@shared/components';
 import { USER_QUERY_KEY } from '@shared/constants/query-key';
@@ -70,6 +71,7 @@ const EditProfile = () => {
 
   return (
     <>
+      <LogShowEvent name="show_my_edit_profile" />
       <DetailHeader title="프로필 편집" />
       <div className={styles.editProfileContainer}>
         <div className={styles.userInfo}>
@@ -95,12 +97,14 @@ const EditProfile = () => {
           <LinkedAccount />
         </div>
         <div className={styles.buttonWrapper}>
-          <Button
-            variant="add"
-            text="저장하기"
-            disabled={isNameInvalid}
-            onClick={handleSave}
-          />
+          <LogClickEvent name="click_profile_save">
+            <Button
+              variant="add"
+              text="저장하기"
+              disabled={isNameInvalid}
+              onClick={handleSave}
+            />
+          </LogClickEvent>
         </div>
       </div>
     </>

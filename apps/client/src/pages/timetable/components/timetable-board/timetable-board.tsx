@@ -2,6 +2,8 @@ import { RefObject } from 'react';
 
 import { toast } from '@confeti/design-system';
 
+import { logClickEvent } from '@shared/analytics/logging';
+
 import BoothOpenBox from '@pages/timetable/components/timetable-board/booth-open-box';
 import TimeCell from '@pages/timetable/components/timetable-board/time-cell';
 import TimetableItem from '@pages/timetable/components/timetable-board/timetable-item';
@@ -49,6 +51,17 @@ const TimetableBoard = ({
     onToggleBlock(timeBlockId, isSelected);
   };
 
+  const handleClickTimeBlock = (timeBlockId: number, nextSelected: boolean) => {
+    logClickEvent({
+      name: 'click_timetable_toggle_block',
+      params: {
+        target_id: timeBlockId,
+        isSelected: nextSelected,
+      },
+    });
+    handleTimetableItemClick(timeBlockId, nextSelected);
+  };
+
   return (
     <section
       className={styles.container}
@@ -84,7 +97,9 @@ const TimetableBoard = ({
                   startTime={block.startAt}
                   endTime={block.endAt}
                   ticketOpenAt={timetableInfo.ticketOpenAt}
-                  onClick={handleTimetableItemClick}
+                  onClick={(_timeBlockId, nextSelected) =>
+                    handleClickTimeBlock(block.timeBlockId, nextSelected)
+                  }
                 />
               ))}
             </div>

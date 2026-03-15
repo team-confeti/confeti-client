@@ -1,5 +1,6 @@
 import { Box, FestivalCard } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { SuggestPerformance } from '@shared/types/home-response';
 import { convertToCdnUrl } from '@shared/utils/convert-to-cdn-url';
@@ -26,16 +27,23 @@ const SuggestPerformanceSection = ({
             key={`${performance.typeId}-${performance.title}`}
             className={styles.cardWrapper}
           >
-            <FestivalCard
-              title={performance.title}
-              imageSrc={convertToCdnUrl(performance.posterUrl, {
-                width: 232,
-                height: 330,
-              })}
-              onClick={() =>
-                navigateToDetail(performance.type, performance.typeId)
-              }
-            />
+            <LogClickEvent
+              name="click_home_suggest_performance"
+              params={{
+                target_id: performance.typeId,
+              }}
+            >
+              <FestivalCard
+                title={performance.title}
+                imageSrc={convertToCdnUrl(performance.posterUrl, {
+                  width: 232,
+                  height: 330,
+                })}
+                onClick={() =>
+                  navigateToDetail(performance.type, performance.typeId)
+                }
+              />
+            </LogClickEvent>
           </div>
         ))}
       </div>

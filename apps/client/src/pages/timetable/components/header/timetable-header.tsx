@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import * as styles from './timetable-header.css';
 
 interface TimetableHeaderProps {
@@ -19,14 +21,16 @@ export const TimetableHeader = ({ title }: TimetableHeaderProps) => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{title}</h1>
-      <button
-        type="button"
-        className={styles.closeButton}
-        onClick={handleClose}
-        aria-label="닫기"
-      >
-        <Icon name="close" size="2.4rem" />
-      </button>
+      <LogClickEvent name="click_navigation_back">
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={handleClose}
+          aria-label="닫기"
+        >
+          <Icon name="close" size="2.4rem" />
+        </button>
+      </LogClickEvent>
     </header>
   );
 };

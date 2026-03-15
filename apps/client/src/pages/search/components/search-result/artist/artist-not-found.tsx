@@ -1,5 +1,6 @@
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { Footer } from '@shared/components';
 
 import { SEARCH_NOT_FOUND_MESSAGE } from '../../../constants/notice-message';
@@ -9,6 +10,7 @@ import * as styles from './artist-not-found.css';
 const ArtistNotFound = () => {
   return (
     <div className={styles.pageWrapper}>
+      <LogShowEvent name="show_search_no_result" />
       <div className={styles.container}>
         <Icon name="warning" size="6rem" color="gray400" />
         <p className={styles.title}>

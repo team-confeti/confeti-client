@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
@@ -24,7 +25,12 @@ const TimetableDetailPage = () => {
     })),
   };
 
-  return <TimetableContent festivals={[festival]} />;
+  return (
+    <>
+      <LogShowEvent name="show_timetable_detail" />
+      <TimetableContent festivals={[festival]} />
+    </>
+  );
 };
 
 export default TimetableDetailPage;

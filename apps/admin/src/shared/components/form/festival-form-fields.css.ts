@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
 export const formContainer = style({
   maxWidth: '1200px',
   margin: '0 auto',
@@ -34,7 +35,7 @@ export const tab = style({
 export const activeTab = style([
   tab,
   {
-    color: '#4F46E5',
+    color: adminVars.indigo600,
     fontWeight: themeVars.fontWeight.semibold,
 
     '::after': {
@@ -44,10 +45,10 @@ export const activeTab = style([
       left: 0,
       right: 0,
       height: '2px',
-      backgroundColor: '#4F46E5',
+      backgroundColor: adminVars.indigo600,
     },
     ':hover': {
-      color: '#4F46E5',
+      color: adminVars.indigo600,
     },
   },
 ]);
@@ -72,7 +73,7 @@ export const fieldSection = style({
     left: 0,
     right: 0,
     height: '3px',
-    backgroundColor: '#4F46E5',
+    backgroundColor: adminVars.indigo600,
     borderRadius: '16px 16px 0 0',
   },
 });
@@ -115,7 +116,7 @@ export const title = style({
     content: '""',
     width: '8px',
     height: '8px',
-    backgroundColor: '#4F46E5',
+    backgroundColor: adminVars.indigo600,
     borderRadius: '50%',
     flexShrink: 0,
   },
@@ -196,7 +197,7 @@ export const submitButton = style({
   fontWeight: themeVars.fontWeight.medium,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-end',
@@ -209,7 +210,7 @@ export const submitButton = style({
     cursor: 'not-allowed',
   },
   ':hover': {
-    backgroundColor: '#6366F1',
+    backgroundColor: adminVars.indigo500,
   },
 });
 
@@ -219,7 +220,7 @@ export const addButton = style({
   fontWeight: themeVars.fontWeight.medium,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: 'white',
   cursor: 'pointer',
   alignSelf: 'flex-start',
@@ -228,7 +229,7 @@ export const addButton = style({
   transition: 'background-color 0.3s ease',
 
   ':hover': {
-    backgroundColor: '#6366F1',
+    backgroundColor: adminVars.indigo500,
   },
 });
 
@@ -244,7 +245,7 @@ export const deleteButton = style({
   alignSelf: 'flex-end',
 
   ':hover': {
-    backgroundColor: '#F56565',
+    backgroundColor: adminVars.red400,
     transition: 'background-color 0.3s ease',
   },
 });
@@ -260,7 +261,7 @@ export const deleteSmallButton = style({
   cursor: 'pointer',
 
   ':hover': {
-    backgroundColor: '#F56565',
+    backgroundColor: adminVars.red400,
     transition: 'background-color 0.3s ease',
   },
 });

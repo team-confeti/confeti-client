@@ -1,7 +1,9 @@
+import type { PerformanceType } from '@shared/types/performance-type';
+
 export interface Performance {
   id: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   title: string;
   place: string;
   date: string;
@@ -13,7 +15,7 @@ export interface PerformanceCarouselProps {
   data: Performance[];
   autoPlayInterval?: number;
   onSlideChange?: (index: number) => void;
-  onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
+  onPerformanceClick?: (type: PerformanceType, typeId: number) => void;
 }
 
 export interface SlideTransform {

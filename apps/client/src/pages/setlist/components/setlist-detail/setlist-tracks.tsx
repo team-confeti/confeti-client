@@ -16,6 +16,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { Button, Dialog } from '@confeti/design-system';
 
+import {
+  LogClickEvent,
+  logClickEvent,
+  LogShowEvent,
+} from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations.ts';
 import { MusicList } from '@shared/components';
 import { SETLIST_QUERY_KEY } from '@shared/constants/query-key';
@@ -117,6 +122,30 @@ const SetListTracks = ({
     setDialogOpen(true);
   };
 
+  const handleClickPlayToggle = (musicId: string) => {
+    logClickEvent({
+      name: 'click_music_play_toggle',
+      params: {
+        target_id: musicId,
+        section: 'setlist_track',
+      },
+    });
+    onClickPlayToggle(musicId);
+  };
+
+  const handleClickDeleteTrack = (musicId: string) => {
+    logClickEvent({
+      name: 'click_setlist_open_delete_track',
+      params: { target_id: musicId },
+    });
+    const target = localTracks.find(
+      (track) => String(track.musicId) === musicId,
+    );
+    if (target) {
+      handleOpenDialog(target);
+    }
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
     setIsDragging(false);
     const { active, over } = event;
@@ -149,17 +178,8 @@ const SetListTracks = ({
           <MusicList
             musics={musicList}
             variant={isEditMode ? 'editable' : 'default'}
-            onClickPlayToggle={!isEditMode ? onClickPlayToggle : undefined}
-            onClickDelete={
-              isEditMode
-                ? (musicId) => {
-                    const target = localTracks.find(
-                      (t) => String(t.musicId) === musicId,
-                    );
-                    if (target) handleOpenDialog(target);
-                  }
-                : undefined
-            }
+            onClickPlayToggle={!isEditMode ? handleClickPlayToggle : undefined}
+            onClickDelete={isEditMode ? handleClickDeleteTrack : undefined}
           />
         </SortableContext>
       </DndContext>
@@ -175,6 +195,7 @@ const SetListTracks = ({
       />
 
       <Dialog open={dialogOpen} handleClose={() => setDialogOpen(false)}>
+        <LogShowEvent name="show_setlist_delete_track_confirm_dialog" />
         <Dialog.Content>
           <Dialog.Title>
             <span className={styles.highlightText}>
@@ -194,7 +215,14 @@ const SetListTracks = ({
             onClick={() => setDialogOpen(false)}
             variant="back"
           />
-          <Button text="삭제하기" onClick={handleConfirmDelete} />
+          <LogClickEvent
+            name="click_setlist_confirm_delete_track"
+            params={{
+              target_id: selectedTrack?.musicId ?? '',
+            }}
+          >
+            <Button text="삭제하기" onClick={handleConfirmDelete} />
+          </LogClickEvent>
         </Dialog.Action>
       </Dialog>
     </div>

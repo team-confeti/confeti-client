@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
-import { LogShowEvent } from '@shared/analytics/logging';
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import {
   ONBOARD_MUTATION_OPTIONS,
   ONBOARD_QUERY_OPTIONS,
@@ -43,6 +43,12 @@ const ArtistSelectNestedSearch = ({
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
   const handleArtistSelect = (artistId: string) => {
+    logClickEvent({
+      name: 'click_onboarding_select_artist',
+      params: {
+        target_id: artistId,
+      },
+    });
     mutateSelectedArtist([artistId], {
       onSuccess: () => {
         queryClient.invalidateQueries({

@@ -32,3 +32,7 @@ export const LogShowEvent = (props: ShowEventPayload) => {
 
   return null;
 };
+
+export const logClickEvent = (eventPayload: ClickEventPayload) => {
+  trackClickEvent(eventPayload);
+};

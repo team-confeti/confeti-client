@@ -1,5 +1,6 @@
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 
 import * as styles from './footer.css';
@@ -31,11 +32,16 @@ const Footer = () => {
         </ul>
 
         <ul className={styles.right}>
-          {list.legalInfo.map((item, index) => (
-            <li key={index}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                {item.label}
-              </a>
+          {list.legalInfo.map((item) => (
+            <li key={item.label}>
+              <LogClickEvent
+                name="click_footer_external_link"
+                params={{ link_name: item.label }}
+              >
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </LogClickEvent>
             </li>
           ))}
         </ul>

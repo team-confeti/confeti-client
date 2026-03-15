@@ -1,8 +1,10 @@
+import type { PerformanceType } from './performance-type';
+
 export interface Performances {
   index: number;
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   title: string;
   subtitle: string;
   startAt: string;

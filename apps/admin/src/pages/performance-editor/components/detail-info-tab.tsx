@@ -32,69 +32,71 @@ export const DetailInfoTab = ({
 }: DetailInfoTabProps) => {
   return (
     <>
-      {/* 장소 정보 */}
-      <FormSection title="장소 정보">
-        <Input
-          label="장소명"
-          value={formData.venueName}
-          onChange={(e) => handleInputChange('venueName', e.target.value)}
-          placeholder="예: 삼락생태공원"
-          leftIcon={<MapPin size={14} />}
-        />
-        <Input
-          label="주소"
-          value={formData.venueAddress}
-          onChange={(e) => handleInputChange('venueAddress', e.target.value)}
-          placeholder="상세 주소를 입력하세요"
-        />
-      </FormSection>
+      <div className={styles.twoColumnRow}>
+        {/* 장소 정보 */}
+        <FormSection title="장소 정보">
+          <Input
+            label="장소명"
+            value={formData.venueName}
+            onChange={(e) => handleInputChange('venueName', e.target.value)}
+            placeholder="예: 삼락생태공원"
+            leftIcon={<MapPin size={14} />}
+          />
+          <Input
+            label="주소"
+            value={formData.venueAddress}
+            onChange={(e) => handleInputChange('venueAddress', e.target.value)}
+            placeholder="상세 주소를 입력하세요"
+          />
+        </FormSection>
 
-      {/* 티켓 가격 */}
-      <FormSection title="티켓 가격">
-        <div className={styles.priceHeader}>
-          <span className={styles.priceHeaderLabel}>좌석 등급 및 가격</span>
-        </div>
-        {formData.priceGrades.map((grade, index) => (
-          <div key={index} className={styles.priceCard}>
-            <input
-              type="text"
-              value={grade.grade}
-              onChange={(e) =>
-                handlePriceGradeChange(index, 'grade', e.target.value)
-              }
-              placeholder="일반석"
-              className={styles.priceGradeInput}
-            />
-            <div className={styles.priceInputWrapper}>
-              <CircleDollarSign size={14} className={styles.priceIcon} />
+        {/* 티켓 가격 */}
+        <FormSection title="티켓 가격">
+          <div className={styles.priceHeader}>
+            <span className={styles.priceHeaderLabel}>좌석 등급 및 가격</span>
+          </div>
+          {formData.priceGrades.map((grade, index) => (
+            <div key={index} className={styles.priceCard}>
               <input
                 type="text"
-                value={grade.price}
+                value={grade.grade}
                 onChange={(e) =>
-                  handlePriceGradeChange(index, 'price', e.target.value)
+                  handlePriceGradeChange(index, 'grade', e.target.value)
                 }
-                placeholder="가격"
-                className={styles.priceInput}
+                placeholder="일반석"
+                className={styles.priceGradeInput}
               />
+              <div className={styles.priceInputWrapper}>
+                <CircleDollarSign size={14} className={styles.priceIcon} />
+                <input
+                  type="text"
+                  value={grade.price}
+                  onChange={(e) =>
+                    handlePriceGradeChange(index, 'price', e.target.value)
+                  }
+                  placeholder="가격"
+                  className={styles.priceInput}
+                />
+              </div>
+              <button
+                onClick={() => handleRemovePriceGrade(index)}
+                className={styles.deleteIconButton}
+              >
+                <Trash2 size={16} />
+              </button>
             </div>
-            <button
-              onClick={() => handleRemovePriceGrade(index)}
-              className={styles.deleteIconButton}
-            >
-              <Trash2 size={16} />
-            </button>
-          </div>
-        ))}
-        <Button
-          onClick={handleAddPriceGrade}
-          variant="secondary"
-          size="medium"
-          leftIcon={<Plus size={14} />}
-          className={styles.addButton}
-        >
-          가격 등급 추가
-        </Button>
-      </FormSection>
+          ))}
+          <Button
+            onClick={handleAddPriceGrade}
+            variant="secondary"
+            size="medium"
+            leftIcon={<Plus size={14} />}
+            className={styles.addButton}
+          >
+            가격 등급 추가
+          </Button>
+        </FormSection>
+      </div>
 
       {/* 이미지 및 포스터 */}
       <FormSection title="이미지 및 포스터">

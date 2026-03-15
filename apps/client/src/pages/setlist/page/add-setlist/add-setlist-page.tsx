@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
 import { SwitchCase } from '@shared/components';
 import { useRelatedSearch } from '@shared/hooks/queries/use-related-search-queries';
@@ -60,6 +61,30 @@ const AddSetlistPage = () => {
     navigate(`/my/setlist/add-setlist?q=${keyword}`);
   };
 
+  const handleSelectArtistSuggestion = (keyword: string, id: string) => {
+    logClickEvent({
+      name: 'click_setlist_search_artist_suggestion',
+      params: {
+        keyword,
+        target_type: 'artist',
+        target_id: id,
+      },
+    });
+    handleSelectItem(keyword, 'artist', id);
+  };
+
+  const handleSelectPerformanceSuggestion = (keyword: string, id: number) => {
+    logClickEvent({
+      name: 'click_setlist_search_performance_suggestion',
+      params: {
+        keyword,
+        target_type: 'performance',
+        target_id: id,
+      },
+    });
+    handleSelectItem(keyword, 'performance', String(id));
+  };
+
   const { keyboardProps } = useKeyboard({
     onKeyDown: (e) => {
       if (e.key === 'Enter' && !e.nativeEvent.isComposing && keyword.trim()) {
@@ -83,9 +108,7 @@ const AddSetlistPage = () => {
           title: artist.name,
           profileUrl: artist.profileUrl,
         }))}
-        onSelectKeyword={(keyword, id) =>
-          handleSelectItem(keyword, 'artist', id.toString())
-        }
+        onSelectKeyword={handleSelectArtistSuggestion}
         listType="artist"
       />
       <SearchSuggestionList
@@ -96,9 +119,7 @@ const AddSetlistPage = () => {
             profileUrl: performance.posterUrl,
           }),
         )}
-        onSelectKeyword={(keyword, id) =>
-          handleSelectItem(keyword, 'performance', id.toString())
-        }
+        onSelectKeyword={handleSelectPerformanceSuggestion}
         listType="performance"
       />
     </>
@@ -126,6 +147,7 @@ const AddSetlistPage = () => {
 
   return (
     <div className={styles.container}>
+      <LogShowEvent name="show_setlist_add" />
       <div className={styles.searchBarContainer}>
         <SearchBar
           placeholder="공연명 또는 아티스트를 검색해주세요."

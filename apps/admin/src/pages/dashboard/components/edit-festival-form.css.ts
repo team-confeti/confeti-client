@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const tabWrapper = style({
   display: 'flex',
   gap: '2rem',
@@ -28,7 +30,7 @@ export const tab = style({
 export const activeTab = style([
   tab,
   {
-    color: '#4F46E5',
+    color: adminVars.indigo600,
     fontWeight: themeVars.fontWeight.semibold,
 
     '::after': {
@@ -38,10 +40,10 @@ export const activeTab = style([
       left: 0,
       right: 0,
       height: '2px',
-      backgroundColor: '#4F46E5',
+      backgroundColor: adminVars.indigo600,
     },
     ':hover': {
-      color: '#4F46E5',
+      color: adminVars.indigo600,
     },
   },
 ]);
@@ -90,7 +92,7 @@ export const submitButton = style({
   fontSize: themeVars.fontSize.body2,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-end',
@@ -99,7 +101,7 @@ export const submitButton = style({
     cursor: 'not-allowed',
   },
   ':hover': {
-    backgroundColor: '#6366F1',
+    backgroundColor: adminVars.indigo500,
     transition: 'background-color 0.3s ease',
   },
 });

@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeVars } from '@confeti/design-system/styles';
+
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const button = style({
   display: 'inline-flex',
   alignItems: 'center',
@@ -19,41 +23,41 @@ export const button = style({
 });
 
 export const primary = style({
-  backgroundColor: '#3B82F6',
-  color: '#FFFFFF',
+  backgroundColor: themeVars.color.blue500,
+  color: themeVars.color.white,
   selectors: {
     '&:hover:not(:disabled)': {
-      backgroundColor: '#2563EB',
+      backgroundColor: themeVars.color.blue600,
     },
   },
 });
 
 export const secondary = style({
-  backgroundColor: '#F3F4F6',
-  color: '#1F2937',
+  backgroundColor: adminVars.gray100tw,
+  color: adminVars.gray900tw,
   selectors: {
     '&:hover:not(:disabled)': {
-      backgroundColor: '#E5E7EB',
+      backgroundColor: adminVars.gray200tw,
     },
   },
 });
 
 export const danger = style({
-  backgroundColor: '#EF4444',
-  color: '#FFFFFF',
+  backgroundColor: themeVars.color.red500,
+  color: themeVars.color.white,
   selectors: {
     '&:hover:not(:disabled)': {
-      backgroundColor: '#DC2626',
+      backgroundColor: themeVars.color.red600,
     },
   },
 });
 
 export const ghost = style({
   backgroundColor: 'transparent',
-  color: '#6B7280',
+  color: adminVars.gray500tw,
   selectors: {
     '&:hover:not(:disabled)': {
-      backgroundColor: '#F3F4F6',
+      backgroundColor: adminVars.gray100tw,
     },
   },
 });

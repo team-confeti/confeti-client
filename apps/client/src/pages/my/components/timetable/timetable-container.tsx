@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Dialog, Skeleton } from '@confeti/design-system';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { MY_TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/my/my-timetable-queries';
 import Deferred from '@shared/components/deferred/deferred';
 import { MY_TIMETABLE_QUERY_KEY } from '@shared/constants/query-key';
@@ -115,6 +116,7 @@ export const TimetableContainer = () => {
       </Suspense>
 
       <Dialog open={deleteStatus === 'confirm'} handleClose={handleCloseDialog}>
+        <LogShowEvent name="show_my_timetable_delete_confirm_dialog" />
         <Dialog.Content>
           <Dialog.Title>
             <span className={styles.text}>{selectedIds.length}</span>개의
@@ -125,12 +127,27 @@ export const TimetableContainer = () => {
           </Dialog.Description>
         </Dialog.Content>
         <Dialog.Action>
-          <Button text="돌아가기" onClick={handleCloseDialog} variant="back" />
-          <Button text="삭제하기" onClick={handleConfirmDelete} />
+          <LogClickEvent
+            name="click_my_timetable_confirm_delete"
+            params={{ action: 'cancel' }}
+          >
+            <Button
+              text="돌아가기"
+              onClick={handleCloseDialog}
+              variant="back"
+            />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_my_timetable_confirm_delete"
+            params={{ action: 'confirm' }}
+          >
+            <Button text="삭제하기" onClick={handleConfirmDelete} />
+          </LogClickEvent>
         </Dialog.Action>
       </Dialog>
 
       <Dialog open={deleteStatus === 'success'}>
+        <LogShowEvent name="show_my_timetable_delete_success_dialog" />
         <Dialog.Content>
           <Dialog.Title>성공적으로 삭제되었어요.</Dialog.Title>
         </Dialog.Content>

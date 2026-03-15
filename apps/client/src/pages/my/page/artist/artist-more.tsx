@@ -3,6 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { DetailHeader } from '@shared/components';
 import {
@@ -31,13 +32,21 @@ const ArtistMore = () => {
 
   return (
     <>
+      <LogShowEvent name="show_my_artist" />
       <DetailHeader title="My Artist" />
       <div className={styles.header}>
         <p>전체 {data.artistCount}</p>
-        <button className={styles.sort} onClick={toggleSort}>
-          <p>{SORT_LABELS[sortOption]}</p>
-          <Icon name="switch" size="1.6rem" />
-        </button>
+        <LogClickEvent
+          name="click_my_artist_sort"
+          params={{
+            sort: sortOption,
+          }}
+        >
+          <button className={styles.sort} onClick={toggleSort}>
+            <p>{SORT_LABELS[sortOption]}</p>
+            <Icon name="switch" size="1.6rem" />
+          </button>
+        </LogClickEvent>
       </div>
 
       <ArtistList artists={data.artists} />

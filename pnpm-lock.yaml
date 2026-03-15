@@ -58,6 +58,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@confeti/analytics-catalog':
+        specifier: workspace:*
+        version: link:../../packages/analytics-catalog
       '@confeti/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -326,6 +329,18 @@ importers:
         version: 5.8.3
 
   config/typescript: {}
+
+  packages/analytics-catalog:
+    devDependencies:
+      '@confeti/eslint':
+        specifier: workspace:*
+        version: link:../../config/eslint
+      '@confeti/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
 
   packages/core:
     dependencies:
@@ -5145,6 +5160,7 @@ packages:
         integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==,
       }
     engines: { node: '>=16 || 14 >=14.17' }
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@10.4.5:

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
@@ -24,11 +25,13 @@ const SetListEmpty = () => {
       <p className={styles.subtitle}>
         나만의 셋리스트를 만들어 간직할 수 있어요.
       </p>
-      <Button
-        className={styles.button}
-        text="곡 추가하기"
-        onClick={handleClickAddMusic}
-      />
+      <LogClickEvent name="click_setlist_empty_add_music">
+        <Button
+          className={styles.button}
+          text="곡 추가하기"
+          onClick={handleClickAddMusic}
+        />
+      </LogClickEvent>
     </section>
   );
 };

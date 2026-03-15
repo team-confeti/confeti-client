@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 // Radio Group
 export const radioGroup = style({
   display: 'grid',
@@ -22,7 +24,7 @@ export const radioCard = style({
 
   ':hover': {
     borderColor: themeVars.color.slate700,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: adminVars.gray50tw,
   },
 });
 
@@ -57,7 +59,7 @@ export const radioContent = style({
 export const radioLabel = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
@@ -65,7 +67,7 @@ export const radioLabel = style({
 export const radioDescription = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });
@@ -116,7 +118,7 @@ export const bookingHeader = style({
 export const bookingHeaderLabel = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });
@@ -151,13 +153,13 @@ export const deleteIconButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   borderRadius: '0.8rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#FEE2E2',
-    color: '#DC2626',
+    backgroundColor: adminVars.red100,
+    color: themeVars.color.red600,
   },
 });
 
@@ -191,7 +193,7 @@ export const ticketingPlatformHeader = style({
 export const ticketingPlatformHeaderLabel = style({
   fontSize: '1.3rem',
   fontWeight: themeVars.fontWeight.medium,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   lineHeight: '1.8rem',
   letterSpacing: '-0.011em',
 });
@@ -210,7 +212,7 @@ export const ticketingPlatformPill = style({
   height: '4.4rem',
   padding: '0 2rem',
   backgroundColor: themeVars.color.white,
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   border: `1px solid ${themeVars.color.gray300}`,
   borderRadius: '9999px',
   fontSize: '1.4rem',
@@ -223,7 +225,7 @@ export const ticketingPlatformPill = style({
   transition: 'all 0.2s ease',
   ':hover': {
     borderColor: themeVars.color.slate700,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: adminVars.gray50tw,
   },
 });
 
@@ -273,7 +275,7 @@ export const ticketingPlatformLogo = style({
   width: '4rem',
   height: '4rem',
   objectFit: 'contain',
-  backgroundColor: '#F9FAFB',
+  backgroundColor: adminVars.gray50tw,
   borderRadius: '0.8rem',
   flexShrink: 0,
 });
@@ -281,7 +283,7 @@ export const ticketingPlatformLogo = style({
 export const ticketingPlatformName = style({
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
 });
@@ -319,7 +321,7 @@ export const ticketingPlatformDatetimeInputField = style({
   borderRadius: '0.8rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   outline: 'none',
@@ -337,13 +339,13 @@ export const ticketingPlatformInput = style({
   outline: 'none',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
-  color: '#101828',
+  color: adminVars.gray900tw,
   lineHeight: '2rem',
   letterSpacing: '-0.011em',
   backgroundColor: 'transparent',
 
   '::placeholder': {
-    color: '#98A2B3',
+    color: adminVars.slate400tw,
   },
 });
 
@@ -356,7 +358,7 @@ export const clockIcon = style({
 });
 
 export const calendarIcon = style({
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   flexShrink: 0,
 });
 
@@ -369,12 +371,12 @@ export const ticketingPlatformDeleteButton = style({
   backgroundColor: 'transparent',
   border: 'none',
   borderRadius: '0.8rem',
-  color: '#6A7282',
+  color: adminVars.slate600tw,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
   ':hover': {
-    backgroundColor: '#FEE2E2',
-    color: '#DC2626',
+    backgroundColor: adminVars.red100,
+    color: themeVars.color.red600,
   },
 });

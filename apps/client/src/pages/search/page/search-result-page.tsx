@@ -1,5 +1,6 @@
 import { Spacing } from '@confeti/design-system';
 
+import { LogShowEvent } from '@shared/analytics/logging';
 import { Footer } from '@shared/components';
 import { SearchAllResponse } from '@shared/types/search-response';
 
@@ -23,6 +24,7 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
 
   return (
     <div className={styles.pageWrapper}>
+      <LogShowEvent name="show_search_result" />
       <main className={styles.resultSection}>
         {artistData && (
           <>

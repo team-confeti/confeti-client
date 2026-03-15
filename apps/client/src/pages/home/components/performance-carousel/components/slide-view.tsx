@@ -1,5 +1,7 @@
 import { Chip, NumberIndicator } from '@confeti/design-system';
 
+import type { PerformanceType } from '@shared/types/performance-type';
+
 import { CAROUSEL_ANIMATION } from '../constants/animation';
 import { SlideData } from '../types/performance-carousel-types';
 
@@ -9,7 +11,7 @@ interface SlideViewProps {
   slide: SlideData;
   isAnimating: boolean;
   length: number;
-  onPerformanceClick?: (type: 'FESTIVAL' | 'CONCERT', typeId: number) => void;
+  onPerformanceClick?: (type: PerformanceType, typeId: number) => void;
 }
 
 export const SlideView = ({

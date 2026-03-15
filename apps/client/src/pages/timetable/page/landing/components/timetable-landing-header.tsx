@@ -1,6 +1,8 @@
 import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import * as styles from './timetable-landing-header.css';
 
 import TimetableLandingBg from '/images/img_timetable_landing_bg.svg';
@@ -30,13 +32,15 @@ const TimetableLandingHeader = ({
 
         {!isEditMode && (
           <div className={styles.ctaSection}>
-            <Button
-              variant="add"
-              text="새 타임테이블"
-              icon={<Icon name="add" size="2rem" color="gray900" />}
-              className={styles.newTimetableButton}
-              onClick={onCreateTimetable}
-            />
+            <LogClickEvent name="click_timetable_create">
+              <Button
+                variant="add"
+                text="새 타임테이블"
+                icon={<Icon name="add" size="2rem" color="gray900" />}
+                className={styles.newTimetableButton}
+                onClick={onCreateTimetable}
+              />
+            </LogClickEvent>
           </div>
         )}
       </div>

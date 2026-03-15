@@ -2,41 +2,75 @@ import { Icon } from '../../icons';
 
 import * as styles from './search-suggestion-list.css';
 
-interface KeywordProps {
-  id: string | number;
+interface ArtistKeywordProps {
+  id: string;
   title: string;
   profileUrl: string;
 }
 
-interface Props {
-  relatedKeyword: KeywordProps[] | undefined;
+interface PerformanceKeywordProps {
+  id: number;
+  title: string;
+  profileUrl: string;
+}
+
+interface ArtistSearchSuggestionListProps {
+  relatedKeyword: ArtistKeywordProps[] | undefined;
   onSelectArtistId?: (id: string) => void;
   onSelectArtist?: (artist: {
     artistId: string;
     profileUrl: string;
     name: string;
   }) => void;
-  onSelectKeyword?: (keyword: string, id: string | number) => void;
+  onSelectKeyword?: (keyword: string, id: string) => void;
   handleSearchParams?: () => void;
-  listType?: 'artist' | 'performance';
+  listType?: 'artist';
 }
 
-const SearchSuggestionList = ({
-  relatedKeyword,
-  onSelectArtistId,
-  onSelectArtist,
-  onSelectKeyword,
-  handleSearchParams,
-  listType,
-}: Props) => {
-  const handleClick = (
-    id: string | number,
-    title: string,
-    profileUrl: string,
-  ) => {
-    onSelectArtistId?.(id.toString());
-    onSelectArtist?.({ artistId: id.toString(), profileUrl, name: title });
-    onSelectKeyword?.(title, id);
+interface PerformanceSearchSuggestionListProps {
+  relatedKeyword: PerformanceKeywordProps[] | undefined;
+  onSelectKeyword?: (keyword: string, id: number) => void;
+  handleSearchParams?: () => void;
+  listType: 'performance';
+}
+
+type Props =
+  | ArtistSearchSuggestionListProps
+  | PerformanceSearchSuggestionListProps;
+
+const SearchSuggestionList = (props: Props) => {
+  const { relatedKeyword, handleSearchParams, listType } = props;
+
+  if (listType === 'performance') {
+    const handleClickPerformance = (id: number, title: string) => {
+      props.onSelectKeyword?.(title, id);
+      handleSearchParams?.();
+    };
+
+    return (
+      <ul className={styles.searchSuggestionListSection()}>
+        {relatedKeyword?.map((keyword) => (
+          <li
+            key={keyword.id}
+            className={styles.listContainer}
+            onPointerDown={() =>
+              handleClickPerformance(keyword.id, keyword.title)
+            }
+          >
+            <div className={styles.listImageContainer}>
+              <Icon name="search-thumbnail" className={styles.fallbackImage} />
+            </div>
+            <p className={styles.listText}>{keyword.title}</p>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  const handleClickArtist = (id: string, title: string, profileUrl: string) => {
+    props.onSelectArtistId?.(id);
+    props.onSelectArtist?.({ artistId: id, profileUrl, name: title });
+    props.onSelectKeyword?.(title, id);
     handleSearchParams?.();
   };
 
@@ -47,13 +81,11 @@ const SearchSuggestionList = ({
           key={keyword.id}
           className={styles.listContainer}
           onPointerDown={() =>
-            handleClick(keyword.id, keyword.title, keyword.profileUrl)
+            handleClickArtist(keyword.id, keyword.title, keyword.profileUrl)
           }
         >
           <div className={styles.listImageContainer}>
-            {listType === 'performance' ? (
-              <Icon name="search-thumbnail" className={styles.fallbackImage} />
-            ) : keyword.profileUrl ? (
+            {keyword.profileUrl ? (
               <img
                 className={styles.listImage}
                 src={keyword.profileUrl}
