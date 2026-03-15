@@ -9,13 +9,11 @@ import * as styles from './performance-carousel-section.css';
 
 interface PerformanceCarouselSectionProps {
   data: Performance[];
-  isPersonalized: boolean;
   onPerformanceClick?: (type: PerformanceType, typeId: number) => void;
 }
 
 const PerformanceCarouselSection = ({
   data,
-  isPersonalized,
   onPerformanceClick,
 }: PerformanceCarouselSectionProps) => {
   const { activeIndex, nextIndex, isTransitioning, handleSlideChange } =
@@ -57,7 +55,6 @@ const PerformanceCarouselSection = ({
       <div className={styles.carouselWrapper}>
         <PerformanceCarousel
           data={data}
-          isPersonalized={isPersonalized}
           autoPlayInterval={5000}
           onSlideChange={handleSlideChange}
           onPerformanceClick={onPerformanceClick}

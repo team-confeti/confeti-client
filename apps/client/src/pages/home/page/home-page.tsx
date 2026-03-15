@@ -34,6 +34,7 @@ const HomePage = () => {
       place: performance.area,
       date: formatDate(performance.startAt),
       posterUrl: performance.posterUrl,
+      isFavorite: performance.isFavorite,
     }),
   );
 
@@ -56,7 +57,6 @@ const HomePage = () => {
       {formattedCarouselData.length > 0 && (
         <PerformanceCarouselSection
           data={formattedCarouselData}
-          isPersonalized={latestPerformances.isPersonalized}
           onPerformanceClick={handleClickCarouselPerformance}
         />
       )}

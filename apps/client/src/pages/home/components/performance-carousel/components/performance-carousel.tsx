@@ -6,7 +6,6 @@ import * as styles from './performance-carousel.css';
 
 const PerformanceCarousel = ({
   data,
-  isPersonalized,
   autoPlayInterval = 5000,
   onSlideChange,
   onPerformanceClick,
@@ -32,7 +31,6 @@ const PerformanceCarousel = ({
             slide={slide}
             length={length}
             isAnimating={isAnimating}
-            isPersonalized={isPersonalized}
             onPerformanceClick={onPerformanceClick}
           />
         ))}
