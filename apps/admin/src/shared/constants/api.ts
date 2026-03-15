@@ -1,4 +1,6 @@
 export const END_POINT = {
+  POST_SOCIAL_LOGIN: '/auth/login',
+  POST_LOGOUT: '/auth/logout',
   POST_REISSUE_TOKEN: '/auth/reissue',
 
   GET_FESTIVALS: '/admin/performances/festivals',
@@ -26,6 +28,10 @@ export const END_POINT = {
     `/admin/ticket-vendors/${ticketVendorId}`,
 
   GET_ARTIST_SEARCH: '/admin/artists/search',
+} as const;
+
+export const STORAGE_KEY = {
+  ADMIN_LOGIN_REDIRECT_PATH: 'adminLoginRedirectPath',
 } as const;
 
 export const HTTP_STATUS_CODE = {

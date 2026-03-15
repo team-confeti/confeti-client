@@ -14,6 +14,7 @@ import {
 
 import { END_POINT, HTTP_STATUS_CODE } from '@shared/constants/api';
 import { ENV_CONFIG } from '@shared/constants/config';
+import { getLoginPath } from '@shared/constants/path';
 
 import { instance } from './instance';
 
@@ -96,14 +97,11 @@ export const handleTokenError = async (error: AxiosError<ErrorResponse>) => {
   return instance(originalConfig);
 };
 
-const LOGIN_URL =
-  window.location.hostname === 'localhost'
-    ? 'http://localhost:5173/login'
-    : 'https://www.confeti.co.kr/login';
-
 const redirectToLogin = () => {
   authTokenHandler('remove');
-  window.location.href = LOGIN_URL;
+  window.location.href = getLoginPath(
+    `${window.location.pathname}${window.location.search}${window.location.hash}`,
+  );
 };
 
 export const handleCheckAndSetToken = (config: InternalAxiosRequestConfig) => {
