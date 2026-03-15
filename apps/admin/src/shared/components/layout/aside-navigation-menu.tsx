@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   FileText,
   LayoutDashboard,
@@ -8,9 +10,14 @@ import {
   Ticket,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+import { authTokenHandler } from '@confeti/core/auth';
+
+import { postLogout } from '@shared/apis/auth';
+import { ConfirmDialog } from '@shared/components/common';
 import { PATH } from '@shared/constants/path';
+import { clearPersistedRedirectPath } from '@shared/utils/admin-login-redirect';
 
 import ConfetiLogo from './confeti-logo';
 
@@ -49,6 +56,19 @@ const TWEEN_TRANSITION = {
 
 const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [showLogoutConfirmDialog, setShowLogoutConfirmDialog] = useState(false);
+
+  const { mutate: logout, isPending: isLogoutPending } = useMutation({
+    mutationFn: postLogout,
+    onSettled: () => {
+      queryClient.clear();
+      authTokenHandler('remove');
+      clearPersistedRedirectPath();
+      navigate(PATH.LOGIN, { replace: true });
+    },
+  });
 
   const MENU_ITEMS: MenuItem[] = [
     {
@@ -134,111 +154,145 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
     );
   };
 
+  const handleLogoutClick = () => {
+    setShowLogoutConfirmDialog(true);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutConfirmDialog(false);
+  };
+
+  const handleLogoutConfirm = () => {
+    if (isLogoutPending) {
+      return;
+    }
+
+    setShowLogoutConfirmDialog(false);
+    logout();
+  };
+
   return (
-    <motion.aside
-      className={styles.container}
-      animate={{
-        width: isExpanded ? SIDEBAR_WIDTH.expanded : SIDEBAR_WIDTH.collapsed,
-      }}
-      transition={SPRING_TRANSITION}
-    >
-      <motion.div
-        className={styles.header}
-        animate={{ paddingLeft: isExpanded ? 20 : 24 }}
+    <>
+      <motion.aside
+        className={styles.container}
+        animate={{
+          width: isExpanded ? SIDEBAR_WIDTH.expanded : SIDEBAR_WIDTH.collapsed,
+        }}
         transition={SPRING_TRANSITION}
       >
         <motion.div
-          animate={{
-            width: isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed,
-            height: isExpanded
-              ? LOGO_SIZE.expanded * 0.75
-              : LOGO_SIZE.collapsed * 0.75,
-          }}
+          className={styles.header}
+          animate={{ paddingLeft: isExpanded ? 20 : 24 }}
           transition={SPRING_TRANSITION}
-          style={{ flexShrink: 0 }}
         >
-          <ConfetiLogo
-            size={isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed}
-          />
-        </motion.div>
-        <AnimatePresence initial={false}>
-          {isExpanded && (
-            <motion.div
-              key="logo-text"
-              style={{ overflow: 'hidden', flexShrink: 0 }}
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 'auto', opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
-              transition={TWEEN_TRANSITION}
-            >
-              <h1 className={styles.logoText}>CONFETI</h1>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      <nav className={styles.nav}>
-        <div className={styles.section}>
-          {MENU_ITEMS.slice(0, 2).map(renderMenuLink)}
-        </div>
-
-        <div className={styles.section}>
+          <motion.div
+            animate={{
+              width: isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed,
+              height: isExpanded
+                ? LOGO_SIZE.expanded * 0.75
+                : LOGO_SIZE.collapsed * 0.75,
+            }}
+            transition={SPRING_TRANSITION}
+            style={{ flexShrink: 0 }}
+          >
+            <ConfetiLogo
+              size={isExpanded ? LOGO_SIZE.expanded : LOGO_SIZE.collapsed}
+            />
+          </motion.div>
           <AnimatePresence initial={false}>
             {isExpanded && (
               <motion.div
-                key="section-title-performances"
-                className={styles.sectionTitle}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 40 }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={SPRING_TRANSITION}
-              >
-                공연 관리
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {MENU_ITEMS.slice(2, 5).map(renderMenuLink)}
-        </div>
-
-        <div className={styles.section}>
-          <AnimatePresence initial={false}>
-            {isExpanded && (
-              <motion.div
-                key="section-title-system"
-                className={styles.sectionTitle}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 40 }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={SPRING_TRANSITION}
-              >
-                시스템 관리
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {MENU_ITEMS.slice(5).map(renderMenuLink)}
-        </div>
-      </nav>
-
-      <div className={styles.footer}>
-        <button className={styles.logoutButton}>
-          <LogOut size={20} />
-          <AnimatePresence initial={false}>
-            {isExpanded && (
-              <motion.span
-                key="logout-text"
-                variants={TEXT_VARIANTS}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
+                key="logo-text"
+                style={{ overflow: 'hidden', flexShrink: 0 }}
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 'auto', opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
                 transition={TWEEN_TRANSITION}
               >
-                로그아웃
-              </motion.span>
+                <h1 className={styles.logoText}>CONFETI</h1>
+              </motion.div>
             )}
           </AnimatePresence>
-        </button>
-      </div>
-    </motion.aside>
+        </motion.div>
+
+        <nav className={styles.nav}>
+          <div className={styles.section}>
+            {MENU_ITEMS.slice(0, 2).map(renderMenuLink)}
+          </div>
+
+          <div className={styles.section}>
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  key="section-title-performances"
+                  className={styles.sectionTitle}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 40 }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={SPRING_TRANSITION}
+                >
+                  공연 관리
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {MENU_ITEMS.slice(2, 5).map(renderMenuLink)}
+          </div>
+
+          <div className={styles.section}>
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  key="section-title-system"
+                  className={styles.sectionTitle}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 40 }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={SPRING_TRANSITION}
+                >
+                  시스템 관리
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {MENU_ITEMS.slice(5).map(renderMenuLink)}
+          </div>
+        </nav>
+
+        <div className={styles.footer}>
+          <button
+            type="button"
+            className={styles.logoutButton}
+            onClick={handleLogoutClick}
+            title={!isExpanded ? '로그아웃' : ''}
+            aria-label="로그아웃"
+          >
+            <LogOut size={20} />
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.span
+                  key="logout-text"
+                  variants={TEXT_VARIANTS}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  transition={TWEEN_TRANSITION}
+                >
+                  로그아웃
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
+      </motion.aside>
+      <ConfirmDialog
+        isOpen={showLogoutConfirmDialog}
+        title="로그아웃하시겠어요?"
+        message="현재 계정에서 로그아웃하고 로그인 화면으로 이동해요."
+        confirmLabel="로그아웃"
+        cancelLabel="취소"
+        onConfirm={handleLogoutConfirm}
+        onCancel={handleLogoutCancel}
+      />
+    </>
   );
 };
 

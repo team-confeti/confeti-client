@@ -1,6 +1,8 @@
 export const ENV_CONFIG = {
   BASE_URL: import.meta.env.VITE_BASE_URL as string,
   ADMIN_API_URL: import.meta.env.VITE_ADMIN_API_URL as string,
+  KAKAO_URI: import.meta.env.VITE_KAKAO_URI as string,
+  APPLE_CLIENT_ID: import.meta.env.VITE_APPLE_CLIENT_ID as string,
 } as const;
 
 export const APP_CONFIG = {

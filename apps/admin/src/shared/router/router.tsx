@@ -5,6 +5,9 @@ import Layout from '@shared/components/layout/layout';
 import { PATH } from '@shared/constants/path';
 
 import AnalyticsEventsPage from '@pages/analytics-events/page/analytics-events-page';
+import AppleCallbackPage from '@pages/auth/apple-callback-page';
+import LoginPage from '@pages/auth/login-page';
+import RedirectKakaoPage from '@pages/auth/redirect-kakao-page';
 import ConcertPage from '@pages/concert/concert-page';
 import DashboardPage from '@pages/dashboard/page/dashboard-page';
 import FestivalPage from '@pages/festival/festival-page';
@@ -13,6 +16,18 @@ import PerformanceEditorPage from '@pages/performance-editor/performance-editor-
 import TicketingPlatformPage from '@pages/ticketing-platform/ticketing-platform-page';
 
 const router = createBrowserRouter([
+  {
+    path: PATH.LOGIN,
+    element: <LoginPage />,
+  },
+  {
+    path: PATH.REDIRECT_KAKAO,
+    element: <RedirectKakaoPage />,
+  },
+  {
+    path: PATH.APPLE_CALLBACK,
+    element: <AppleCallbackPage />,
+  },
   {
     element: <Layout />,
     errorElement: (
