@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 
 import { toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { onError, onSuccess } from '@confeti/utils';
 
 import { LogClickEvent } from '@shared/analytics/logging';
 
@@ -26,18 +27,21 @@ const Location = ({ address }: LocationProps) => {
   };
 
   const handleAddressCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(address);
-      toast({
-        text: '주소가 복사되었어요.',
-        position: 'bottomCenter',
-      });
-    } catch {
+    await onError(() => {
       toast({
         text: '복사에 실패했어요. 다시 시도해주세요!',
         position: 'bottomCenter',
       });
-    }
+    })(
+      onSuccess(() => {
+        toast({
+          text: '주소가 복사되었어요.',
+          position: 'bottomCenter',
+        });
+      })(async (nextAddress: string) =>
+        navigator.clipboard.writeText(nextAddress),
+      ),
+    )(address);
   };
 
   const formattedAddress = address.split(',').map((part, index, arr) => (

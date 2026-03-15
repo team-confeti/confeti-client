@@ -10,7 +10,7 @@ import * as styles from './timetable-actions.css';
 interface Props {
   isEditMode: boolean;
   onToggleEditMode: () => void;
-  onDownload: () => Promise<{ success: boolean; message: string }>;
+  onDownload: () => Promise<void>;
 }
 
 const TimetableActions = ({
@@ -25,14 +25,14 @@ const TimetableActions = ({
 
     setIsDownloading(true);
     try {
-      const result = await onDownload();
+      await onDownload();
       toast({
-        text: result.message,
+        text: '이미지가 성공적으로 저장되었어요.',
         position: 'middleCenter',
       });
     } catch {
       toast({
-        text: '이미지 저장 중 오류가 발생했습니다.',
+        text: '이미지 저장 중 오류가 발생했어요.',
         position: 'middleCenter',
       });
     } finally {
