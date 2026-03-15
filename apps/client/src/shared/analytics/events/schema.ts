@@ -1,28 +1,32 @@
-export type EventParamType = 'string' | 'number' | 'boolean';
+export type EventParamType = 'string' | 'number' | 'boolean' | 'enum';
 export type ShowEventType = 'page' | 'component';
 
 type StringEventParamDefinition = {
   readonly type: 'string';
   readonly required: boolean;
-  readonly enum?: readonly string[];
 };
 
 type NumberEventParamDefinition = {
   readonly type: 'number';
   readonly required: boolean;
-  readonly enum?: readonly number[];
 };
 
 type BooleanEventParamDefinition = {
   readonly type: 'boolean';
   readonly required: boolean;
-  readonly enum?: readonly boolean[];
+};
+
+type EnumEventParamDefinition = {
+  readonly type: 'enum';
+  readonly required: boolean;
+  readonly oneOf: readonly (string | number | boolean)[];
 };
 
 type EventParamDefinition =
   | StringEventParamDefinition
   | NumberEventParamDefinition
-  | BooleanEventParamDefinition;
+  | BooleanEventParamDefinition
+  | EnumEventParamDefinition;
 
 type EventParamDefinitions = Readonly<Record<string, EventParamDefinition>>;
 
@@ -43,14 +47,16 @@ export type ShowEventDefinitions = readonly (BaseEventDefinition & {
 })[];
 
 type EventParamValue<TParam extends EventParamDefinition> = TParam extends {
-  readonly enum: readonly (infer Value)[];
+  readonly oneOf: readonly (infer Value)[];
 }
   ? Value
   : TParam['type'] extends 'string'
     ? string
     : TParam['type'] extends 'number'
       ? number
-      : boolean;
+      : TParam['type'] extends 'boolean'
+        ? boolean
+        : never;
 
 type EmptyEventParams = Record<never, never>;
 type NormalizedEventParams<TParams extends EventParamDefinitions | undefined> =

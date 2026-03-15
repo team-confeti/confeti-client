@@ -1,6 +1,7 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { Avatar, LikeButton } from '@confeti/design-system';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 
 import * as styles from './artist-info.css';
@@ -23,6 +24,14 @@ const ArtistInfo = ({
   const { mutate } = useLikeMutation();
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    logClickEvent({
+      name: 'click_like_artist',
+      params: {
+        action,
+        target_type: 'artist',
+        target_id: id,
+      },
+    });
     mutate({ id, action, type: 'ARTIST' });
     refetchArtist?.();
   };

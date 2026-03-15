@@ -1,3 +1,5 @@
+import type { PerformanceType } from './performance-type';
+
 export interface UserProfile {
   userId: number;
   profileUrl: string;
@@ -25,12 +27,12 @@ export interface FavoriteArtistsResponses {
   artists: Artists[];
 }
 
-export type PerformancesFilterType = 'FESTIVAL' | 'CONCERT' | 'ALL';
+export type PerformancesFilterType = PerformanceType | 'ALL';
 
 export interface Performance {
   index: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   title: string;
   posterUrl: string;
 }

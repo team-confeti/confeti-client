@@ -1,4 +1,5 @@
 import {
+  FileText,
   LayoutDashboard,
   ListMusic,
   LogOut,
@@ -51,10 +52,16 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
 
   const MENU_ITEMS: MenuItem[] = [
     {
+      name: '이벤트 카탈로그',
+      path: PATH.ANALYTICS_EVENTS,
+      icon: <FileText size={20} />,
+    },
+    {
       name: '대시보드',
       path: PATH.DASHBOARD,
       icon: <LayoutDashboard size={20} />,
     },
+
     {
       name: '대기 목록',
       path: PATH.PENDING,
@@ -172,7 +179,7 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
 
       <nav className={styles.nav}>
         <div className={styles.section}>
-          {MENU_ITEMS.slice(0, 1).map(renderMenuLink)}
+          {MENU_ITEMS.slice(0, 2).map(renderMenuLink)}
         </div>
 
         <div className={styles.section}>
@@ -190,7 +197,7 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
               </motion.div>
             )}
           </AnimatePresence>
-          {MENU_ITEMS.slice(1, 4).map(renderMenuLink)}
+          {MENU_ITEMS.slice(2, 5).map(renderMenuLink)}
         </div>
 
         <div className={styles.section}>
@@ -208,7 +215,7 @@ const AsideNavigationMenu = ({ isExpanded, pendingCount = 0 }: Props) => {
               </motion.div>
             )}
           </AnimatePresence>
-          {MENU_ITEMS.slice(4).map(renderMenuLink)}
+          {MENU_ITEMS.slice(5).map(renderMenuLink)}
         </div>
       </nav>
 

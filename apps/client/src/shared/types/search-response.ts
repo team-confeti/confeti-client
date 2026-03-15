@@ -1,3 +1,5 @@
+import type { PerformanceType } from './performance-type';
+
 export interface ArtistSearch {
   artistId: string | null;
   name: string;
@@ -22,7 +24,7 @@ export interface ArtistSearchResponse {
 export interface Performance {
   id: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   title: string;
   startAt: string;
   endAt: string;
@@ -67,7 +69,7 @@ export interface PopularSearchResponse {
 export interface RecentPerformanceView {
   performanceId: number;
   typeId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   title: string;
   posterUrl: string;
 }

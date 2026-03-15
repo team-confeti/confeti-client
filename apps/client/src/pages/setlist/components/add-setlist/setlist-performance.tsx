@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
 
+import { LogClickEvent, logClickEvent } from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
+import type { PerformanceType } from '@shared/types/performance-type';
 
 import * as styles from './setlist-performance.css';
 
@@ -35,8 +37,17 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
   const handleFestivalSelect = (
     typeId: number,
     isSelected: boolean,
-    type: 'FESTIVAL' | 'CONCERT',
+    type: PerformanceType,
   ) => {
+    logClickEvent({
+      name: 'click_setlist_select_performance',
+      params: {
+        target_type: type,
+        target_id: typeId,
+        isSelected,
+      },
+    });
+
     setSelectedFestivals((prev) => {
       if (isSelected) {
         return [...prev, { type, typeId }];
@@ -75,12 +86,17 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
       </section>
 
       <section className={styles.buttonSection}>
-        <Button
-          variant="add"
-          text={'셋리스트 만들기'}
-          disabled={selectedFestivals.length === 0}
-          onClick={handleAddClick}
-        />
+        <LogClickEvent
+          name="click_setlist_create"
+          params={{ count: selectedFestivals.length }}
+        >
+          <Button
+            variant="add"
+            text={'셋리스트 만들기'}
+            disabled={selectedFestivals.length === 0}
+            onClick={handleAddClick}
+          />
+        </LogClickEvent>
       </section>
     </div>
   );

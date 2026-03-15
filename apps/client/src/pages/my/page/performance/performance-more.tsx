@@ -3,6 +3,11 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Chip, Spacing } from '@confeti/design-system';
 
+import {
+  LogClickEvent,
+  logClickEvent,
+  LogShowEvent,
+} from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
 import { DetailHeader, Footer } from '@shared/components';
 import {
@@ -57,22 +62,38 @@ const PerformanceMore = () => {
 
   const hasNoFavoritePerformances = (data.performances ?? []).length === 0;
 
+  const handleHidePastPerformancesChange = (checked: boolean) => {
+    logClickEvent({
+      name: 'click_my_confeti_hide_past_toggle',
+      params: { checked },
+    });
+    setHidePastPerformances(checked);
+  };
+
   return (
     <div className={styles.pageContainer}>
+      <LogShowEvent name="show_my_confeti" />
       <DetailHeader title="선호하는 공연" />
       <section className={styles.filterSection}>
         <nav>
           <ul className={styles.chipList}>
             {categories.map((category) => (
               <li key={category}>
-                <Chip
-                  variant="choice"
-                  selected={selectedCategory === category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={styles.chip}
+                <LogClickEvent
+                  name="click_my_confeti_category"
+                  params={{
+                    category,
+                  }}
                 >
-                  {category}
-                </Chip>
+                  <Chip
+                    variant="choice"
+                    selected={selectedCategory === category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={styles.chip}
+                  >
+                    {category}
+                  </Chip>
+                </LogClickEvent>
               </li>
             ))}
           </ul>
@@ -80,7 +101,7 @@ const PerformanceMore = () => {
         {!hasNoFavoritePerformances && (
           <PastPerformanceToggle
             checked={hidePastPerformances}
-            onChange={setHidePastPerformances}
+            onChange={handleHidePastPerformancesChange}
           />
         )}
       </section>

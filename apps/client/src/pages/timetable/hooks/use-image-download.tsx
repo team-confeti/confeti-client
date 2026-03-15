@@ -25,7 +25,7 @@ interface UseImageDownloadOptions {
 }
 
 interface UseImageDownloadReturn {
-  downloadImage: () => Promise<{ success: boolean; message: string }>;
+  downloadImage: () => Promise<void>;
   CaptureElement: ReactNode;
 }
 
@@ -48,49 +48,29 @@ export const useImageDownload = ({
     fetchImageAsDataUrl(posterUrl).then(setPosterDataUrl);
   }, [posterUrl]);
 
-  const downloadImage = useCallback(async (): Promise<{
-    success: boolean;
-    message: string;
-  }> => {
+  const downloadImage = useCallback(async (): Promise<void> => {
     if (!captureRef.current || !boardData) {
-      return {
-        success: false,
-        message: '이미지를 생성할 요소를 찾을 수 없습니다.',
-      };
+      throw new Error('이미지를 생성할 요소를 찾을 수 없어요.');
     }
 
-    try {
-      await waitForImages(captureRef.current);
+    await waitForImages(captureRef.current);
 
-      const toPngOptions = {
-        width: CAPTURE_WIDTH,
-        height: CAPTURE_HEIGHT,
-        pixelRatio: 4,
-        skipAutoScale: true,
-        skipFonts: true,
-        cacheBust: false,
-        backgroundColor: '#ffffff',
-        imagePlaceholder: '',
-        includeQueryParams: false,
-      };
+    const toPngOptions = {
+      width: CAPTURE_WIDTH,
+      height: CAPTURE_HEIGHT,
+      pixelRatio: 4,
+      skipAutoScale: true,
+      skipFonts: true,
+      cacheBust: false,
+      backgroundColor: '#ffffff',
+      imagePlaceholder: '',
+      includeQueryParams: false,
+    };
 
-      await toPng(captureRef.current, toPngOptions);
-      const dataUrl = await toPng(captureRef.current, toPngOptions);
+    await toPng(captureRef.current, toPngOptions);
+    const dataUrl = await toPng(captureRef.current, toPngOptions);
 
-      await triggerDownload(dataUrl, fileName);
-
-      return {
-        success: true,
-        message: '이미지가 성공적으로 저장되었습니다.',
-      };
-    } catch (error) {
-      console.error('이미지 생성 중 오류:', error);
-
-      return {
-        success: false,
-        message: '이미지 저장 중 오류가 발생했습니다.',
-      };
-    }
+    await triggerDownload(dataUrl, fileName);
   }, [boardData, fileName]);
 
   const CaptureElement: ReactNode = boardData ? (
