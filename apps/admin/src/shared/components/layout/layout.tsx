@@ -22,6 +22,7 @@ const COLLAPSE_BREAKPOINT = 1024;
 
 const PAGE_TITLES: Record<string, string> = {
   '/dashboard': '대시보드',
+  '/analytics-events': '이벤트 카탈로그',
   '/pending': '대기 목록',
   '/festival': '페스티벌 목록',
   '/concert': '콘서트 목록',
