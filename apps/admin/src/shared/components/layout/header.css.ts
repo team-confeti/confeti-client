@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const container = style({
   height: '6.4rem',
   backgroundColor: themeVars.color.white,
@@ -41,7 +43,7 @@ export const menuButton = style({
 export const title = style({
   fontSize: '1.8rem',
   fontWeight: themeVars.fontWeight.bold,
-  color: '#1E2939',
+  color: adminVars.slate800,
   lineHeight: '2.8rem',
   letterSpacing: '-0.025em',
 });
@@ -80,7 +82,7 @@ export const searchInput = style({
   paddingRight: '1.6rem',
   paddingTop: '0.8rem',
   paddingBottom: '0.8rem',
-  backgroundColor: '#F3F4F6',
+  backgroundColor: adminVars.gray100tw,
   border: 'none',
   borderRadius: '9999px',
   fontSize: '1.4rem',
@@ -98,5 +100,25 @@ export const searchInput = style({
   ':focus': {
     outline: `2px solid ${themeVars.color.gray900}`,
     outlineOffset: '2px',
+  },
+});
+
+export const clearButton = style({
+  position: 'absolute',
+  right: '1.2rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  backgroundColor: 'transparent',
+  border: 'none',
+  cursor: 'pointer',
+  color: adminVars.gray400tw,
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0.2rem',
+  borderRadius: '0.4rem',
+  transition: 'color 0.15s ease',
+
+  ':hover': {
+    color: themeVars.color.slate900,
   },
 });

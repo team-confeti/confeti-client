@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Chip } from '@confeti/design-system';
 
+import { LogClickEvent, logClickEvent } from '@shared/analytics/logging';
 import { routePath } from '@shared/router/path';
 import { limitTextLength } from '@shared/utils/limit-text-length';
 
@@ -20,14 +21,24 @@ const RecentSearchSection = () => {
     navigate(`${routePath.SEARCH}?q=${encodeURIComponent(keyword)}`);
   };
 
+  const handleDeleteSearchKeyword = (keyword: string) => {
+    logClickEvent({
+      name: 'click_search_recent_keyword_delete',
+      params: { keyword },
+    });
+    removeSearchKeyword(keyword);
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.header}>
         <h1 className={styles.title}>최근 검색어</h1>
         {hasRecentSearches && (
-          <button className={styles.clear} onClick={clearSearchKeywords}>
-            모두 지우기
-          </button>
+          <LogClickEvent name="click_search_recent_keyword_clear_all">
+            <button className={styles.clear} onClick={clearSearchKeywords}>
+              모두 지우기
+            </button>
+          </LogClickEvent>
         )}
       </div>
 
@@ -35,14 +46,19 @@ const RecentSearchSection = () => {
         <div className={styles.scrollContainer}>
           <div className={styles.chipList}>
             {recentSearches.map((keyword) => (
-              <Chip
+              <LogClickEvent
                 key={keyword}
-                variant="input"
-                onDelete={() => removeSearchKeyword(keyword)}
-                onClick={() => handleSearchKeywordClick(keyword)}
+                name="click_search_recent_keyword"
+                params={{ keyword }}
               >
-                {limitTextLength(keyword, 5)}
-              </Chip>
+                <Chip
+                  variant="input"
+                  onDelete={() => handleDeleteSearchKeyword(keyword)}
+                  onClick={() => handleSearchKeywordClick(keyword)}
+                >
+                  {limitTextLength(keyword, 5)}
+                </Chip>
+              </LogClickEvent>
             ))}
           </div>
         </div>

@@ -9,8 +9,8 @@ import {
 } from '@shared/types/api';
 
 type PutFestivalParams = {
-  request: PutAdminFestivalRequest;
-  poster: File;
+  festival: PutAdminFestivalRequest;
+  poster?: File;
   logo?: File;
 };
 
@@ -19,22 +19,24 @@ export const FESTIVAL_MUTATION_OPTIONS = {
     mutationOptions({
       mutationKey: FESTIVAL_MUTATION_KEY.PUT_FESTIVAL(),
       mutationFn: (params: PutFestivalParams) =>
-        putFestival(params.request, params.poster, params.logo),
+        putFestival(params.festival, params.poster, params.logo),
     }),
 };
 
 export const putFestival = async (
-  request: PutAdminFestivalRequest,
-  poster: File,
+  festival: PutAdminFestivalRequest,
+  poster?: File,
   logo?: File,
 ): Promise<PutAdminFestivalResponse> => {
   const formData = new FormData();
   formData.append(
-    'request',
-    new Blob([JSON.stringify(request)], { type: 'application/json' }),
+    'festival',
+    new Blob([JSON.stringify(festival)], { type: 'application/json' }),
   );
-  formData.append('posterFile', poster);
-  if (logo) formData.append('logoFile', logo);
+  if (poster) {
+    formData.append('poster', poster);
+  }
+  if (logo) formData.append('logo', logo);
 
   return put<PutAdminFestivalResponse>(END_POINT.PUT_FESTIVAL, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },

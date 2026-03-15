@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './require-login-section.css';
@@ -29,11 +30,13 @@ const RequireLoginSection = ({
           회원 로그인을 하면 각종 정보를 제공 받을 수 있어요
         </p>
       </div>
-      <Button
-        className={styles.button}
-        text="로그인하기"
-        onClick={handleLoginClick}
-      />
+      <LogClickEvent name="click_require_login">
+        <Button
+          className={styles.button}
+          text="로그인하기"
+          onClick={handleLoginClick}
+        />
+      </LogClickEvent>
     </section>
   );
 };

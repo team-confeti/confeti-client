@@ -2,7 +2,9 @@ import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
+import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
+import type { PerformanceType } from '@shared/types/performance-type';
 
 import { PERFORMANCE_LABEL } from '../../constant/performance';
 
@@ -15,7 +17,7 @@ interface Props {
   area: string;
   reserveAt: string;
   isFavorite: boolean;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
 }
 
 const PerformanceInfo = ({
@@ -35,6 +37,14 @@ const PerformanceInfo = ({
   );
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    logClickEvent({
+      name: 'click_like_performance',
+      params: {
+        action,
+        target_type: type,
+        target_id: id,
+      },
+    });
     mutate({ id, action, type });
   };
 

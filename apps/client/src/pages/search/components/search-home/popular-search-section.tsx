@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { PopularSearchResponse } from '@shared/types/search-response';
 
 import * as styles from './popular-search-section.css';
@@ -14,8 +15,8 @@ const PopularSearchSection = ({ popularSearchData }: Props) => {
   const left = popularSearchData.popularTerms.slice(0, 5);
   const right = popularSearchData.popularTerms.slice(5, 10);
 
-  const handleClick = (type: string) => {
-    navigate(`/search?q=${type}`);
+  const handleClick = (keyword: string) => {
+    navigate(`/search?q=${keyword}`);
   };
 
   return (
@@ -28,34 +29,48 @@ const PopularSearchSection = ({ popularSearchData }: Props) => {
         <ol className={styles.list}>
           {left.map((item, index) => (
             <li key={item.rank}>
-              <button
-                className={styles.item}
-                onClick={() => handleClick(item.popularTerm)}
+              <LogClickEvent
+                name="click_search_popular_keyword"
+                params={{
+                  keyword: item.popularTerm,
+                }}
               >
-                <span
-                  className={styles.rank({
-                    rank: index < 3 ? 'top' : 'default',
-                  })}
+                <button
+                  className={styles.item}
+                  onClick={() => handleClick(item.popularTerm)}
                 >
-                  {index + 1}
-                </span>
-                <span className={styles.keyword}>{item.popularTerm}</span>
-              </button>
+                  <span
+                    className={styles.rank({
+                      rank: index < 3 ? 'top' : 'default',
+                    })}
+                  >
+                    {index + 1}
+                  </span>
+                  <span className={styles.keyword}>{item.popularTerm}</span>
+                </button>
+              </LogClickEvent>
             </li>
           ))}
         </ol>
         <ol className={styles.list}>
           {right.map((item, index) => (
             <li key={item.rank}>
-              <button
-                className={styles.item}
-                onClick={() => handleClick(item.popularTerm)}
+              <LogClickEvent
+                name="click_search_popular_keyword"
+                params={{
+                  keyword: item.popularTerm,
+                }}
               >
-                <span className={styles.rank({ rank: 'default' })}>
-                  {index + 6}
-                </span>
-                <span className={styles.keyword}>{item.popularTerm}</span>
-              </button>
+                <button
+                  className={styles.item}
+                  onClick={() => handleClick(item.popularTerm)}
+                >
+                  <span className={styles.rank({ rank: 'default' })}>
+                    {index + 6}
+                  </span>
+                  <span className={styles.keyword}>{item.popularTerm}</span>
+                </button>
+              </LogClickEvent>
             </li>
           ))}
         </ol>

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchBar, SearchSuggestionList } from '@confeti/design-system';
 
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import {
   ONBOARD_MUTATION_OPTIONS,
   ONBOARD_QUERY_OPTIONS,
@@ -42,6 +43,12 @@ const ArtistSelectNestedSearch = ({
   const hasArtistResults = (relatedKeywordsData?.artists?.length ?? 0) > 0;
 
   const handleArtistSelect = (artistId: string) => {
+    logClickEvent({
+      name: 'click_onboarding_select_artist',
+      params: {
+        target_id: artistId,
+      },
+    });
     mutateSelectedArtist([artistId], {
       onSuccess: () => {
         queryClient.invalidateQueries({
@@ -53,35 +60,38 @@ const ArtistSelectNestedSearch = ({
   };
 
   return (
-    <section className={styles.onboardingContentSection}>
-      <div className={searchStyles.searchBarContainer}>
-        <div className={searchStyles.searchBarFrame}>
-          <SearchBar
-            placeholder="아티스트를 검색해보세요!"
-            value={keyword}
-            onChange={handleInputChange}
-            autoFocus={true}
-            onBack={onBack}
-          />
+    <>
+      <LogShowEvent name="show_onboarding_artist_search" />
+      <section className={styles.onboardingContentSection}>
+        <div className={searchStyles.searchBarContainer}>
+          <div className={searchStyles.searchBarFrame}>
+            <SearchBar
+              placeholder="아티스트를 검색해보세요!"
+              value={keyword}
+              onChange={handleInputChange}
+              autoFocus={true}
+              onBack={onBack}
+            />
+          </div>
         </div>
-      </div>
-      {hasArtistResults ? (
-        <SearchSuggestionList
-          relatedKeyword={relatedKeywordsData?.artists?.map((artist) => ({
-            id: artist.artistId,
-            title: artist.name,
-            profileUrl: artist.profileUrl,
-          }))}
-          onSelectArtistId={handleArtistSelect}
-        />
-      ) : (
-        <section className={searchStyles.artistSearchContainer}>
-          <p className={searchStyles.artistSearchDescription}>
-            선호하는 아티스트를 검색해보세요
-          </p>
-        </section>
-      )}
-    </section>
+        {hasArtistResults ? (
+          <SearchSuggestionList
+            relatedKeyword={relatedKeywordsData?.artists?.map((artist) => ({
+              id: artist.artistId,
+              title: artist.name,
+              profileUrl: artist.profileUrl,
+            }))}
+            onSelectArtistId={handleArtistSelect}
+          />
+        ) : (
+          <section className={searchStyles.artistSearchContainer}>
+            <p className={searchStyles.artistSearchDescription}>
+              선호하는 아티스트를 검색해보세요
+            </p>
+          </section>
+        )}
+      </section>
+    </>
   );
 };
 

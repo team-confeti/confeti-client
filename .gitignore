@@ -30,6 +30,7 @@ coverage
 out/
 build
 dist
+apps/client/ANALYTICS_EVENT_MAP.csv
 
 
 # Debug

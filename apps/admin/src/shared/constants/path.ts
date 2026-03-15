@@ -1,5 +1,6 @@
 export const PATH = {
   DASHBOARD: '/dashboard',
+  ANALYTICS_EVENTS: '/analytics-events',
   PENDING: '/pending',
   CONCERT: '/concert',
   FESTIVAL: '/festival',

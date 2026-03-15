@@ -1,5 +1,7 @@
 import { Button, Description } from '@confeti/design-system';
 
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import {
   WithIndex,
   WithNavigate,
@@ -23,6 +25,14 @@ const ClickBlockStep = ({
   currentIndex,
   onboardImage,
 }: ClickBlockProps) => {
+  const handleStartTimetable = () => {
+    handleNavigate({ isReTry: false });
+  };
+
+  const handleRetry = () => {
+    handleNavigate({ isReTry: true });
+  };
+
   return (
     <section className={styles.timeTableOnboardContainer}>
       <div className={styles.timeTableOnboardContent}>
@@ -48,15 +58,28 @@ const ClickBlockStep = ({
           <div className={styles.progressBarContainer}>
             <ProgressBar totalIndex={totalIndex} currentIndex={currentIndex} />
           </div>
-          <Button
-            text="타임테이블 시작하기"
-            variant="add"
-            onClick={() => handleNavigate({ isReTry: false })}
-          />
-          <SkipButton
-            text="다시보기"
-            onClick={() => handleNavigate({ isReTry: true })}
-          />
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              step: 'click_block',
+              action: 'start',
+            }}
+          >
+            <Button
+              text="타임테이블 시작하기"
+              variant="add"
+              onClick={handleStartTimetable}
+            />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_timetable_onboarding_action"
+            params={{
+              step: 'click_block',
+              action: 'retry',
+            }}
+          >
+            <SkipButton text="다시보기" onClick={handleRetry} />
+          </LogClickEvent>
         </div>
       </div>
     </section>

@@ -1,0 +1,15 @@
+{
+  "name": "@confeti/analytics-catalog",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "generate": "node scripts/generate-analytics-catalog.mjs"
+  },
+  "devDependencies": {
+    "@confeti/eslint": "workspace:*",
+    "@confeti/typescript": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

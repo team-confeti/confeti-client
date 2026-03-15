@@ -3,14 +3,14 @@ import { queryOptions } from '@tanstack/react-query';
 import { get } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
-import { DraftDetailResponse, DraftListResponse } from '@shared/types/api';
+import { DraftDetailResponse, DraftListQueryResponse } from '@shared/types/api';
 
 export const DRAFT_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: DRAFT_QUERY_KEY.ALL }),
-  LIST: () =>
+  LIST: (search?: string) =>
     queryOptions({
-      queryKey: DRAFT_QUERY_KEY.LIST(),
-      queryFn: getDraftList,
+      queryKey: DRAFT_QUERY_KEY.LIST(search),
+      queryFn: () => getDraftList(search),
     }),
   DETAIL: (draftId: number) =>
     queryOptions({
@@ -19,8 +19,11 @@ export const DRAFT_QUERY_OPTIONS = {
     }),
 };
 
-export const getDraftList = async (): Promise<DraftListResponse> => {
-  return get<DraftListResponse>(END_POINT.GET_DRAFTS);
+export const getDraftList = async (
+  search?: string,
+): Promise<DraftListQueryResponse> => {
+  const params = search ? `?search=${encodeURIComponent(search)}` : '';
+  return get<DraftListQueryResponse>(`${END_POINT.GET_DRAFTS}${params}`);
 };
 
 export const getDraftDetail = async (

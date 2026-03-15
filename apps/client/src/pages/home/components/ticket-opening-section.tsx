@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { DotIndicator, TicketingCard, Tooltip } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
+import { LogClickEvent } from '@shared/analytics/logging';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import { TicketingPerformances } from '@shared/types/home-response';
 
@@ -104,14 +105,21 @@ const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
                     </>
                   }
                   performanceInfoContent={
-                    <TicketingCard.PerformanceInfo
-                      title={'티켓 정보 확인하기'}
-                      typeId={performance.typeId}
-                      performanceType={performance.type}
-                      onClick={() =>
-                        navigateToDetail(performance.type, performance.typeId)
-                      }
-                    />
+                    <LogClickEvent
+                      name="click_home_ticket_opening_performance"
+                      params={{
+                        target_id: performance.typeId,
+                      }}
+                    >
+                      <TicketingCard.PerformanceInfo
+                        title={'티켓 정보 확인하기'}
+                        typeId={performance.typeId}
+                        performanceType={performance.type}
+                        onClick={() =>
+                          navigateToDetail(performance.type, performance.typeId)
+                        }
+                      />
+                    </LogClickEvent>
                   }
                 />
               </div>

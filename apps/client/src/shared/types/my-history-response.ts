@@ -1,3 +1,5 @@
+import type { PerformanceType } from './performance-type';
+
 export interface MyTimeTable {
   timetableId: number;
   typeId: number;
@@ -13,7 +15,7 @@ export interface MyHistoryTimetableResponse {
 
 export interface MyHistorySetList {
   setlistId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   typeId: number;
   title: string;
   posterUrl: string;
@@ -35,7 +37,7 @@ export interface SetListPerformance {
   performanceId: number;
   title: string;
   posterUrl: string;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   typeId: number;
 }
 
@@ -95,7 +97,7 @@ export interface SetListMusic {
 
 export interface SetListDetail {
   setlistId: number;
-  type: 'FESTIVAL' | 'CONCERT';
+  type: PerformanceType;
   typeId: number;
   posterUrl: string;
   title: string;

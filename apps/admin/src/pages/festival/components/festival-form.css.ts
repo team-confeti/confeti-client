@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
+import { adminVars } from '@shared/styles/admin-tokens.css';
+
 export const tabWrapper = style({
   display: 'flex',
   gap: '2rem',
@@ -28,7 +30,7 @@ export const tab = style({
 export const activeTab = style([
   tab,
   {
-    color: '#4F46E5',
+    color: adminVars.indigo600,
     fontWeight: themeVars.fontWeight.semibold,
 
     '::after': {
@@ -38,10 +40,10 @@ export const activeTab = style([
       left: 0,
       right: 0,
       height: '2px',
-      backgroundColor: '#4F46E5',
+      backgroundColor: adminVars.indigo600,
     },
     ':hover': {
-      color: '#4F46E5',
+      color: adminVars.indigo600,
     },
   },
 ]);
@@ -121,7 +123,7 @@ export const submitButton = style({
   fontSize: themeVars.fontSize.body2,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-end',
@@ -130,7 +132,7 @@ export const submitButton = style({
     cursor: 'not-allowed',
   },
   ':hover': {
-    backgroundColor: '#6366F1',
+    backgroundColor: adminVars.indigo500,
     transition: 'background-color 0.3s ease',
   },
 });
@@ -140,12 +142,12 @@ export const addButton = style({
   fontSize: themeVars.fontSize.body2,
   borderRadius: '8px',
   border: 'none',
-  backgroundColor: '#4F46E5',
+  backgroundColor: adminVars.indigo600,
   color: themeVars.color.white,
   cursor: 'pointer',
   alignSelf: 'flex-start',
   ':hover': {
-    backgroundColor: '#6366F1',
+    backgroundColor: adminVars.indigo500,
     transition: 'background-color 0.3s ease',
   },
 });
@@ -159,7 +161,7 @@ export const deleteButton = style({
   color: themeVars.color.white,
   alignSelf: 'flex-end',
   ':hover': {
-    backgroundColor: '#F56565',
+    backgroundColor: adminVars.red400,
     transition: 'background-color 0.3s ease',
   },
 });
@@ -173,7 +175,7 @@ export const deleteSmallButton = style({
   color: themeVars.color.white,
   alignSelf: 'flex-end',
   ':hover': {
-    backgroundColor: '#F56565',
+    backgroundColor: adminVars.red400,
     transition: 'background-color 0.3s ease',
   },
 });
@@ -181,7 +183,7 @@ export const deleteSmallButton = style({
 export const dateSection = style({
   marginBottom: '2rem',
   padding: '1rem',
-  border: '1px solid #e2e8f0',
+  border: `1px solid ${themeVars.color.gray200}`,
   borderRadius: '6px',
 });
 

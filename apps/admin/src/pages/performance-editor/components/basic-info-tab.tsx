@@ -16,6 +16,7 @@ import * as styles from './basic-info-tab.css';
 interface BasicInfoTabProps {
   formData: PerformanceFormData;
   ticketVendors: TicketVendorResponse[];
+  showScheduleSyncButton: boolean;
   handleInputChange: (field: string, value: string | number) => void;
   handleAddBookingSchedule: () => void;
   handleRemoveBookingSchedule: (index: number) => void;
@@ -41,6 +42,7 @@ interface BasicInfoTabProps {
 export const BasicInfoTab = ({
   formData,
   ticketVendors,
+  showScheduleSyncButton,
   handleInputChange,
   handleAddBookingSchedule,
   handleRemoveBookingSchedule,
@@ -159,17 +161,19 @@ export const BasicInfoTab = ({
             placeholder="120"
           />
         </div>
-        <Button
-          onClick={handleSyncSchedule}
-          variant="primary"
-          size="medium"
-          leftIcon={
-            scheduleSynced ? <Check size={16} /> : <Calendar size={16} />
-          }
-          className={styles.syncScheduleButton}
-        >
-          {scheduleSynced ? '반영 완료!' : '타임테이블에 일정 반영'}
-        </Button>
+        {showScheduleSyncButton && (
+          <Button
+            onClick={handleSyncSchedule}
+            variant="primary"
+            size="medium"
+            leftIcon={
+              scheduleSynced ? <Check size={16} /> : <Calendar size={16} />
+            }
+            className={styles.syncScheduleButton}
+          >
+            {scheduleSynced ? '반영 완료!' : '타임테이블에 일정 반영'}
+          </Button>
+        )}
       </FormSection>
 
       {/* 공연 예매 일정 */}

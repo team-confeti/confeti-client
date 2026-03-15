@@ -1,20 +1,25 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
 import { EmptyState } from '@shared/components/common';
 import PerformanceCard from '@shared/components/performance/performance-card';
 import { PATH } from '@shared/constants';
+import { getConcertGroups } from '@shared/models/concert';
 import { mapConcertToCardData } from '@shared/models/performance-card';
 
 import * as styles from './concert-page.css';
 
 const ConcertPage = () => {
   const navigate = useNavigate();
+  const { searchQuery } = useOutletContext<{ searchQuery: string }>();
+  const search = searchQuery.trim() || undefined;
 
-  const { data } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST());
-  const upcomingConcerts = data.upcomingConcerts.concerts;
-  const pastConcerts = data.finishedConcerts.concerts;
+  const { data } = useSuspenseQuery(CONCERT_QUERY_OPTIONS.LIST(search));
+  const concertGroups = getConcertGroups(data);
+  const upcomingConcerts = concertGroups.upcomingConcerts.concerts;
+  const pastConcerts = concertGroups.finishedConcerts.concerts;
 
   const handleSelectPerformance = (id: number) => {
     navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=concert`);
@@ -22,11 +27,28 @@ const ConcertPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.pageHeader}>
+        <div>
+          <h1 className={styles.pageTitle}>콘서트</h1>
+          <p className={styles.pageSubtitle}>등록된 콘서트를 관리하세요.</p>
+        </div>
+        <button
+          className={styles.addButton}
+          onClick={() =>
+            navigate(
+              `${PATH.PERFORMANCE_EDITOR.replace(':id', 'new')}?type=concert`,
+            )
+          }
+        >
+          <Plus size={16} />새 콘서트 등록
+        </button>
+      </div>
+
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h3 className={styles.sectionTitle}>진행 예정 / 진행 중</h3>
           <span className={styles.countBadge}>
-            {data.upcomingConcerts.count}
+            {concertGroups.upcomingConcerts.count}
           </span>
         </div>
         {upcomingConcerts.length === 0 ? (
@@ -48,7 +70,7 @@ const ConcertPage = () => {
         <div className={styles.sectionHeaderPast}>
           <h3 className={styles.sectionTitlePast}>종료된 공연</h3>
           <span className={styles.countBadgePast}>
-            {data.finishedConcerts.count}
+            {concertGroups.finishedConcerts.count}
           </span>
         </div>
         {pastConcerts.length === 0 ? (

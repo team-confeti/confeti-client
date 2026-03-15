@@ -1,17 +1,20 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { getAccessToken } from '@confeti/core/auth';
 
 import { DRAFT_QUERY_OPTIONS } from '@shared/apis/draft-queries';
+import CommandPalette from '@shared/components/command-palette/command-palette';
 import Deferred from '@shared/components/deferred/deferred';
 import ErrorFallback from '@shared/components/error-fallback/error-fallback';
 import AsideNavigationMenu from '@shared/components/layout/aside-navigation-menu';
 import Header from '@shared/components/layout/header';
 import LoginRequired from '@shared/components/layout/login-required';
 import Loading from '@shared/components/loading/loading';
+import { PATH } from '@shared/constants/path';
+import { getDraftItems } from '@shared/models/draft';
 
 import * as styles from './layout.css';
 
@@ -19,6 +22,7 @@ const COLLAPSE_BREAKPOINT = 1024;
 
 const PAGE_TITLES: Record<string, string> = {
   '/dashboard': '대시보드',
+  '/analytics-events': '이벤트 카탈로그',
   '/pending': '대기 목록',
   '/festival': '페스티벌 목록',
   '/concert': '콘서트 목록',
@@ -29,16 +33,25 @@ const PAGE_TITLES: Record<string, string> = {
 
 const Layout = () => {
   const accessToken = getAccessToken();
+  const navigate = useNavigate();
 
   const [sidebarExpanded, setSidebarExpanded] = useState(
     () => window.innerWidth >= COLLAPSE_BREAKPOINT,
   );
   const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearch(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
   const location = useLocation();
   const { data } = useQuery({
     ...DRAFT_QUERY_OPTIONS.LIST(),
     throwOnError: false,
     enabled: !!accessToken,
+    staleTime: 30_000,
   });
 
   useEffect(() => {
@@ -47,6 +60,32 @@ const Layout = () => {
     mql.addEventListener('change', handler);
     return () => mql.removeEventListener('change', handler);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsCommandPaletteOpen((prev) => !prev);
+        return;
+      }
+      const target = e.target as HTMLElement;
+      const isInInput =
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable;
+      if (
+        !isInInput &&
+        e.key === 'n' &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        !e.altKey
+      ) {
+        navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
 
   if (!accessToken) {
     return <LoginRequired />;
@@ -60,12 +99,13 @@ const Layout = () => {
       ) || ''
     ] ||
     '관리자';
+  const pendingCount = getDraftItems(data).length;
 
   return (
     <div className={styles.wrapper}>
       <AsideNavigationMenu
         isExpanded={sidebarExpanded}
-        pendingCount={data?.drafts?.length ?? 0}
+        pendingCount={pendingCount}
       />
       <div className={styles.mainContainer}>
         <Header
@@ -86,11 +126,15 @@ const Layout = () => {
                 </Deferred>
               }
             >
-              <Outlet context={{ searchQuery }} />
+              <Outlet context={{ searchQuery: debouncedSearch }} />
             </Suspense>
           </ErrorBoundary>
         </main>
       </div>
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={() => setIsCommandPaletteOpen(false)}
+      />
     </div>
   );
 };

@@ -5,15 +5,15 @@ import { END_POINT } from '@shared/constants/api';
 import { CONCERT_QUERY_KEY } from '@shared/constants/query-key';
 import {
   AdminConcertDetailResponse,
-  AdminConcertListResponse,
+  AdminConcertListQueryResponse,
 } from '@shared/types/api';
 
 export const CONCERT_QUERY_OPTIONS = {
   ALL: () => queryOptions({ queryKey: CONCERT_QUERY_KEY.ALL }),
-  LIST: () =>
+  LIST: (search?: string) =>
     queryOptions({
-      queryKey: CONCERT_QUERY_KEY.LIST(),
-      queryFn: getConcertList,
+      queryKey: CONCERT_QUERY_KEY.LIST(search),
+      queryFn: () => getConcertList(search),
     }),
   DETAIL: (concertId: number) =>
     queryOptions({
@@ -22,8 +22,13 @@ export const CONCERT_QUERY_OPTIONS = {
     }),
 };
 
-export const getConcertList = async (): Promise<AdminConcertListResponse> => {
-  return get<AdminConcertListResponse>(END_POINT.GET_CONCERTS);
+export const getConcertList = async (
+  search?: string,
+): Promise<AdminConcertListQueryResponse> => {
+  const params = search ? `?search=${encodeURIComponent(search)}` : '';
+  return get<AdminConcertListQueryResponse>(
+    `${END_POINT.GET_CONCERTS}${params}`,
+  );
 };
 
 export const getConcertDetail = async (

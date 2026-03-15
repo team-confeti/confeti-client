@@ -7,6 +7,7 @@ import { Button, DotIndicator, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 import { onError } from '@confeti/utils';
 
+import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import loginLogoAnimation from '@shared/assets/lotties/login-logo-animtaion.json';
 import SwitchCase from '@shared/components/switch-case';
 import { ENV_CONFIG } from '@shared/constants/config';
@@ -82,17 +83,20 @@ const LoginPage = () => {
 
   return (
     <section className={styles.container}>
+      <LogShowEvent name="show_login" />
       <div className={styles.content}>
         <header className={styles.header}>
           <div className={styles.closeButtonSection}>
-            <button
-              type="button"
-              className={styles.closeButton}
-              onClick={handleClose}
-              aria-label="닫기"
-            >
-              <Icon name="close" size="2rem" />
-            </button>
+            <LogClickEvent name="click_login_close">
+              <button
+                type="button"
+                className={styles.closeButton}
+                onClick={handleClose}
+                aria-label="닫기"
+              >
+                <Icon name="close" size="2rem" />
+              </button>
+            </LogClickEvent>
           </div>
 
           <h1 className={styles.title}>
@@ -144,42 +148,62 @@ const LoginPage = () => {
 
       <div className={styles.bottomSection}>
         <div className={styles.loginButton}>
-          <Button
-            text="카카오로 계속하기"
-            variant="kakao"
-            icon={<Icon name="kakao" size="3rem" />}
-            onClick={handleKakaoLogin}
-            className={styles.button}
-          />
-          <Button
-            text="Apple로 계속하기"
-            variant="apple"
-            icon={<Icon name="apple" size="3rem" />}
-            onClick={handleAppleLogin}
-            className={styles.button}
-          />
+          <LogClickEvent
+            name="click_login_provider"
+            params={{ provider: 'kakao' }}
+          >
+            <Button
+              text="카카오로 계속하기"
+              variant="kakao"
+              icon={<Icon name="kakao" size="3rem" />}
+              onClick={handleKakaoLogin}
+              className={styles.button}
+            />
+          </LogClickEvent>
+          <LogClickEvent
+            name="click_login_provider"
+            params={{ provider: 'apple' }}
+          >
+            <Button
+              text="Apple로 계속하기"
+              variant="apple"
+              icon={<Icon name="apple" size="3rem" />}
+              onClick={handleAppleLogin}
+              className={styles.button}
+            />
+          </LogClickEvent>
         </div>
 
         <div className={styles.description}>
           <p>가입 시, confeti의</p>
           <p className={styles.policyLine}>
-            <a
-              href="https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9"
-              className={styles.atagText}
-              target="_blank"
-              rel="noopener noreferrer"
+            <LogClickEvent
+              name="click_login_policy_link"
+              params={{ link_name: 'terms' }}
             >
-              이용약관
-            </a>
+              <a
+                href="https://wonderful-celestite-e3c.notion.site/confeti-1b3210e281b08080b766f48bf18d0be9"
+                className={styles.atagText}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                이용약관
+              </a>
+            </LogClickEvent>
             <span>및</span>
-            <a
-              href="https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a"
-              className={styles.atagText}
-              target="_blank"
-              rel="noopener noreferrer"
+            <LogClickEvent
+              name="click_login_policy_link"
+              params={{ link_name: 'privacy' }}
             >
-              개인정보처리방침
-            </a>
+              <a
+                href="https://wonderful-celestite-e3c.notion.site/confeti-1b4210e281b080e5ad4ad28c651a651a"
+                className={styles.atagText}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                개인정보처리방침
+              </a>
+            </LogClickEvent>
             <span>에 동의하게돼요.</span>
           </p>
         </div>

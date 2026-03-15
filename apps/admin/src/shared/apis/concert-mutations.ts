@@ -9,7 +9,7 @@ import {
 } from '@shared/types/api';
 
 type PutConcertParams = {
-  request: PutAdminConcertRequest;
+  concert: PutAdminConcertRequest;
   poster: File;
 };
 
@@ -18,20 +18,20 @@ export const CONCERT_MUTATION_OPTIONS = {
     mutationOptions({
       mutationKey: CONCERT_MUTATION_KEY.PUT_CONCERT(),
       mutationFn: (params: PutConcertParams) =>
-        putConcert(params.request, params.poster),
+        putConcert(params.concert, params.poster),
     }),
 };
 
 export const putConcert = async (
-  request: PutAdminConcertRequest,
+  concert: PutAdminConcertRequest,
   poster: File,
 ): Promise<PutAdminConcertResponse> => {
   const formData = new FormData();
   formData.append(
-    'request',
-    new Blob([JSON.stringify(request)], { type: 'application/json' }),
+    'concert',
+    new Blob([JSON.stringify(concert)], { type: 'application/json' }),
   );
-  formData.append('posterFile', poster);
+  formData.append('poster', poster);
 
   return put<PutAdminConcertResponse>(END_POINT.PUT_CONCERT, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },

@@ -1,3 +1,5 @@
+import { LogClickEvent } from '@shared/analytics/logging';
+
 import * as styles from './setlist-detail-header.css';
 
 interface SetListHeaderProps {
@@ -17,12 +19,17 @@ const SetListHeader = ({
     <header className={styles.header}>
       <h2 className={styles.title}>셋리스트</h2>
       {showEditButton && (
-        <button
-          className={`${styles.editButton} ${isEditMode ? styles.editButtonDone : ''}`}
-          onClick={isEditMode ? onClickCompleteEdit : onClickStartEdit}
+        <LogClickEvent
+          name="click_setlist_detail_edit"
+          params={{ action: isEditMode ? 'complete' : 'start' }}
         >
-          {isEditMode ? '완료' : '편집'}
-        </button>
+          <button
+            className={`${styles.editButton} ${isEditMode ? styles.editButtonDone : ''}`}
+            onClick={isEditMode ? onClickCompleteEdit : onClickStartEdit}
+          >
+            {isEditMode ? '완료' : '편집'}
+          </button>
+        </LogClickEvent>
       )}
     </header>
   );

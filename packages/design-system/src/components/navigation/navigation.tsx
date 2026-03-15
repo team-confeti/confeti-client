@@ -54,10 +54,10 @@ const NavList = ({ children }: { children: ReactNode }) => {
 interface ItemProps {
   index: number;
   children: ReactNode;
-  handleTabClick: () => void;
+  onClick: () => void;
 }
 
-const NavItem = ({ index, children, handleTabClick }: ItemProps) => {
+const NavItem = ({ index, children, onClick }: ItemProps) => {
   const { activeTab, setActiveTab, theme } = useTabContext();
 
   return (
@@ -66,7 +66,7 @@ const NavItem = ({ index, children, handleTabClick }: ItemProps) => {
       className={styles.list({ active: activeTab === index, theme })}
       onClick={() => {
         setActiveTab(index);
-        handleTabClick();
+        onClick();
       }}
     >
       {children}

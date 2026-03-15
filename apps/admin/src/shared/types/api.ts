@@ -51,6 +51,12 @@ export type FestivalResponse = {
   area: string;
 };
 
+export type AdminPerformanceStatus = 'Scheduled' | 'Completed' | string;
+
+export type AdminFestivalListItemResponse = FestivalResponse & {
+  status?: AdminPerformanceStatus;
+};
+
 export type FestivalGroupResponse = {
   festivals: FestivalResponse[];
   count: number;
@@ -60,6 +66,8 @@ export type AdminFestivalListResponse = {
   upcomingFestivals: FestivalGroupResponse;
   finishedFestivals: FestivalGroupResponse;
 };
+
+export type AdminFestivalListQueryResponse = AdminFestivalListResponse;
 
 // Detail
 export type TimeResponse = {
@@ -128,7 +136,7 @@ export type DateRequest = {
 };
 
 export type PutAdminFestivalRequest = {
-  festivalId?: number;
+  festivalId: number | null;
   title: string;
   subtitle: string;
   startAt: string;
@@ -160,6 +168,10 @@ export type ConcertResponse = {
   area: string;
 };
 
+export type AdminConcertListItemResponse = ConcertResponse & {
+  status?: AdminPerformanceStatus;
+};
+
 export type ConcertGroupResponse = {
   concerts: ConcertResponse[];
   count: number;
@@ -169,6 +181,8 @@ export type AdminConcertListResponse = {
   upcomingConcerts: ConcertGroupResponse;
   finishedConcerts: ConcertGroupResponse;
 };
+
+export type AdminConcertListQueryResponse = AdminConcertListResponse;
 
 // Detail
 export type AdminConcertDetailResponse = {
@@ -192,7 +206,7 @@ export type AdminConcertDetailResponse = {
 
 // Request
 export type PutAdminConcertRequest = {
-  concertId?: number;
+  concertId: number | null;
   title: string;
   subtitle: string;
   startAt: string;
@@ -228,6 +242,8 @@ export type DraftListItem = {
 export type DraftListResponse = {
   drafts: DraftListItem[];
 };
+
+export type DraftListQueryResponse = DraftListResponse;
 
 export type DraftDetailResponse = {
   id: number;
@@ -275,6 +291,8 @@ export type TicketVendorResponse = {
 export type TicketVendorListResponse = {
   ticketVendors: TicketVendorResponse[];
 };
+
+export type TicketVendorListQueryResponse = TicketVendorListResponse;
 
 export type CreateTicketVendorRequest = {
   name: string;
