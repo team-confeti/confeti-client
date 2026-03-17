@@ -10,7 +10,12 @@ import {
   Users,
   X,
 } from 'lucide-react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 import { CONCERT_MUTATION_OPTIONS } from '@shared/apis/concert-mutations';
 import { CONCERT_QUERY_OPTIONS } from '@shared/apis/concert-queries';
@@ -64,7 +69,11 @@ type TabKey = 'basic' | 'detail' | 'lineup' | 'timetable';
 const PerformanceEditorContent = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const { state } = useLocation() as {
+    state?: { draftTitle?: string };
+  };
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const isNew = id === 'new';
   const performanceType = searchParams.get('type');
   const { data: draftData } = useQuery({
@@ -83,7 +92,6 @@ const PerformanceEditorContent = () => {
     TICKET_VENDOR_QUERY_OPTIONS.LIST(),
   );
 
-  const queryClient = useQueryClient();
   const ticketVendors = getTicketVendors(ticketVendorData);
   const { mutateAsync: postDraftMutate, isPending: isPostPending } =
     useMutation(DRAFT_MUTATION_OPTIONS.POST_DRAFT());
@@ -103,9 +111,23 @@ const PerformanceEditorContent = () => {
     isConcertPending ||
     isFestivalPending;
   const isSubmittingRef = useRef(false);
+  const fallbackDraftTitle =
+    state?.draftTitle ??
+    queryClient
+      .getQueriesData<{ drafts?: Array<{ id: number; title: string }> }>({
+        queryKey: DRAFT_QUERY_KEY.ALL,
+      })
+      .flatMap(([, cachedDraftData]) => cachedDraftData?.drafts ?? [])
+      .find((draftItem) => String(draftItem.id) === id)?.title;
   const existingPerformance: ExistingPerformance | null = (() => {
     if (isNew) return null;
-    if (draftData) return mapDraftDetailToExistingPerformance(draftData);
+    if (draftData) {
+      const draftPerformance = mapDraftDetailToExistingPerformance(draftData);
+
+      return draftPerformance.title?.trim()
+        ? draftPerformance
+        : { ...draftPerformance, title: fallbackDraftTitle };
+    }
     if (concertData)
       return mapConcertDetailToExistingPerformance(concertData, ticketVendors);
     if (festivalData)
@@ -127,6 +149,7 @@ const PerformanceEditorContent = () => {
   const { formData, setFormData, handleInputChange } = usePerformanceForm({
     existingPerformance,
     initialType,
+    initialTitle: fallbackDraftTitle,
   });
 
   const {

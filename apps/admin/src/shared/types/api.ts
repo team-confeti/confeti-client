@@ -249,6 +249,7 @@ export type DraftDetailResponse = {
   id: number;
   performanceType: PerformanceDraftType;
   status: DraftStatus;
+  title?: string;
   performanceData: string;
   posterUrl: string;
   logoUrl: string;
