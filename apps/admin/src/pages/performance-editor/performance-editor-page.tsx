@@ -49,6 +49,8 @@ import {
   buildConcertRequest,
   buildDraftPerformanceData,
   buildFestivalRequest,
+  getConcertRequestValidationMessage,
+  getFestivalRequestValidationMessage,
   getPublishedPerformanceId,
   getPublishValidationMessage,
   getSubmitButtonText,
@@ -210,6 +212,11 @@ const PerformanceEditorContent = () => {
     isNew,
   );
 
+  const handleTabChange = (tabKey: TabKey) => {
+    setShowArtistDropdown(false);
+    setActiveTab(tabKey);
+  };
+
   const handleFileChange = async (
     field: 'mainPoster' | 'logo',
     file: File | null,
@@ -260,8 +267,20 @@ const PerformanceEditorContent = () => {
           return;
         }
 
+        const concertRequest = buildConcertRequest(
+          formData,
+          publishedPerformanceId,
+        );
+        const concertValidationMessage =
+          getConcertRequestValidationMessage(concertRequest);
+
+        if (concertValidationMessage) {
+          adminToast.error({ text: concertValidationMessage });
+          return;
+        }
+
         await putConcertMutate({
-          concert: buildConcertRequest(formData, publishedPerformanceId),
+          concert: concertRequest,
           poster: formData.mainPoster,
         });
         await queryClient.invalidateQueries({
@@ -273,8 +292,20 @@ const PerformanceEditorContent = () => {
       }
 
       if (performanceType === 'festival') {
+        const festivalRequest = buildFestivalRequest(
+          formData,
+          publishedPerformanceId,
+        );
+        const festivalValidationMessage =
+          getFestivalRequestValidationMessage(festivalRequest);
+
+        if (festivalValidationMessage) {
+          adminToast.error({ text: festivalValidationMessage });
+          return;
+        }
+
         await putFestivalMutate({
-          festival: buildFestivalRequest(formData, publishedPerformanceId),
+          festival: festivalRequest,
           poster: formData.mainPoster ?? undefined,
           logo: formData.logo ?? undefined,
         });
@@ -295,8 +326,20 @@ const PerformanceEditorContent = () => {
             return;
           }
 
+          const concertRequest = buildConcertRequest(
+            formData,
+            publishedPerformanceId,
+          );
+          const concertValidationMessage =
+            getConcertRequestValidationMessage(concertRequest);
+
+          if (concertValidationMessage) {
+            adminToast.error({ text: concertValidationMessage });
+            return;
+          }
+
           await putConcertMutate({
-            concert: buildConcertRequest(formData, publishedPerformanceId),
+            concert: concertRequest,
             poster: formData.mainPoster,
           });
           if (!isNew && id && Number.isFinite(Number(id))) {
@@ -317,8 +360,20 @@ const PerformanceEditorContent = () => {
           return;
         }
 
+        const festivalRequest = buildFestivalRequest(
+          formData,
+          publishedPerformanceId,
+        );
+        const festivalValidationMessage =
+          getFestivalRequestValidationMessage(festivalRequest);
+
+        if (festivalValidationMessage) {
+          adminToast.error({ text: festivalValidationMessage });
+          return;
+        }
+
         await putFestivalMutate({
-          festival: buildFestivalRequest(formData, publishedPerformanceId),
+          festival: festivalRequest,
           poster: formData.mainPoster ?? undefined,
           logo: formData.logo ?? undefined,
         });
@@ -476,7 +531,7 @@ const PerformanceEditorContent = () => {
             return (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
+                onClick={() => handleTabChange(tab.key)}
                 className={
                   currentActiveTab === tab.key ? styles.tabActive : styles.tab
                 }
@@ -528,7 +583,7 @@ const PerformanceEditorContent = () => {
               handleAddCustomArtist={handleAddCustomArtist}
               handleRemoveArtist={handleRemoveArtist}
               handleArtistSearchChange={handleArtistSearchChange}
-              setActiveTab={setActiveTab}
+              setActiveTab={handleTabChange}
               isConcert={isConcert}
             />
           )}

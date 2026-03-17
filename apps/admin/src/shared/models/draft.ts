@@ -25,7 +25,7 @@ type PerformanceDataJson = {
   price?: string;
   bookingSchedules?: Array<{ round: string; startDate: string }>;
   priceGrades?: Array<{ grade: string; price: string }>;
-  artists?: Array<{ id: number; name: string }>;
+  artists?: Array<{ id: number; name: string; artworkUrl?: string }>;
   selectedTicketingPlatforms?: Array<{
     id: number;
     name: string;
@@ -105,6 +105,27 @@ export const mapDraftDetailToExistingPerformance = (
   } catch {
     // performanceData might be empty or malformed
   }
+
+  const draftArtworkUrlByArtistId = new Map(
+    (draft.artists ?? []).map((artist) => [
+      Number(artist.artistId),
+      artist.artworkUrl || undefined,
+    ]),
+  );
+  const artists =
+    (
+      parsed.artists ??
+      draft.artists?.map((artist) => ({
+        id: Number(artist.artistId),
+        name: artist.name,
+        artworkUrl: artist.artworkUrl || undefined,
+      }))
+    )?.map((artist) => ({
+      ...artist,
+      artworkUrl:
+        artist.artworkUrl ?? draftArtworkUrlByArtistId.get(Number(artist.id)),
+    })) ?? [];
+
   return {
     type:
       parsed.type ??
@@ -122,12 +143,7 @@ export const mapDraftDetailToExistingPerformance = (
     priceGrades: parsed.priceGrades,
     mainPosterPreview: draft.posterUrl || undefined,
     logoPreview: draft.logoUrl || undefined,
-    artists:
-      parsed.artists ??
-      draft.artists?.map((a) => ({
-        id: Number(a.artistId),
-        name: a.name,
-      })),
+    artists,
     selectedTicketingPlatforms: parsed.selectedTicketingPlatforms,
     stages: parsed.stages,
     timetableSlots: parsed.timetableSlots,

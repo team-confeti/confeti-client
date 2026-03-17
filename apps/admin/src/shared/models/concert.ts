@@ -196,5 +196,6 @@ export const mapConcertDetailToExistingPerformance = (
     concert.artists?.map((a) => ({
       id: Number(a.artistId),
       name: a.name,
+      artworkUrl: a.artworkUrl || undefined,
     })) ?? [],
 });

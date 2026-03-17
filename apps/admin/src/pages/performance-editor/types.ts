@@ -20,6 +20,12 @@ export interface FestivalDateMeta {
   festivalDateId?: number;
 }
 
+export interface PerformanceArtist {
+  id: number;
+  name: string;
+  artworkUrl?: string;
+}
+
 export interface PerformanceFormData {
   type: string;
   title: string;
@@ -43,7 +49,7 @@ export interface PerformanceFormData {
   mainPosterPreview: string | null;
   logoPreview: string | null;
   stages: FestivalStageFormData[];
-  artists: Array<{ id: number; name: string }>;
+  artists: PerformanceArtist[];
   artistSearch: string;
   timetableSlots: TimetableSlot[];
   festivalDateMetas: FestivalDateMeta[];
@@ -70,7 +76,7 @@ export interface ExistingPerformance {
   priceGrades?: Array<{ grade: string; price: string }>;
   mainPosterPreview?: string;
   logoPreview?: string;
-  artists?: Array<{ id: number; name: string }>;
+  artists?: PerformanceArtist[];
   stages?: FestivalStageFormData[];
   timetableSlots?: TimetableSlot[];
   festivalDateMetas?: FestivalDateMeta[];

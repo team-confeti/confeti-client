@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowRight, Plus, Search, Trash2, X } from 'lucide-react';
 
 import { ARTIST_QUERY_OPTIONS } from '@shared/apis/artist-queries';
 import { Button, EmptyState, FormSection } from '@shared/components/common';
 import { mapArtistSearchToFormArtist } from '@shared/models/artist';
+import { getArtistArtworkUrl } from '@shared/utils/artist-artwork';
 
-import type { PerformanceFormData } from '../types';
+import type { PerformanceArtist, PerformanceFormData } from '../types';
 
 import * as styles from './lineup-tab.css';
 
@@ -17,13 +18,38 @@ interface LineupTabProps {
   handleStageChange: (index: number, value: string) => void;
   showArtistDropdown: boolean;
   setShowArtistDropdown: (show: boolean) => void;
-  handleAddArtist: (artist: { id: number; name: string }) => void;
+  handleAddArtist: (artist: PerformanceArtist) => void;
   handleAddCustomArtist: () => void;
   handleRemoveArtist: (index: number) => void;
   handleArtistSearchChange: (value: string) => void;
   setActiveTab: (tab: 'basic' | 'detail' | 'lineup' | 'timetable') => void;
   isConcert: boolean;
 }
+
+interface ArtistAvatarProps {
+  artist: PerformanceArtist;
+  className: string;
+}
+
+const ArtistAvatar = ({ artist, className }: ArtistAvatarProps) => {
+  const artworkUrl = getArtistArtworkUrl(artist.artworkUrl);
+
+  if (!artworkUrl) {
+    return (
+      <div className={className}>{artist.name.charAt(0).toUpperCase()}</div>
+    );
+  }
+
+  return (
+    <div className={className}>
+      <img
+        src={artworkUrl}
+        alt={artist.name}
+        className={styles.artistAvatarImage}
+      />
+    </div>
+  );
+};
 
 export const LineupTab = ({
   formData,
@@ -40,6 +66,8 @@ export const LineupTab = ({
   isConcert,
 }: LineupTabProps) => {
   const [debouncedSearch, setDebouncedSearch] = useState(formData.artistSearch);
+  const artistSearchContainerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const timer = setTimeout(
       () => setDebouncedSearch(formData.artistSearch),
@@ -47,6 +75,24 @@ export const LineupTab = ({
     );
     return () => clearTimeout(timer);
   }, [formData.artistSearch]);
+
+  useEffect(() => {
+    const handlePointerDown = (event: MouseEvent) => {
+      if (
+        artistSearchContainerRef.current &&
+        !artistSearchContainerRef.current.contains(event.target as Node)
+      ) {
+        setShowArtistDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+    };
+  }, [setShowArtistDropdown]);
+
   const { data: artistSearchData } = useQuery(
     ARTIST_QUERY_OPTIONS.SEARCH(debouncedSearch),
   );
@@ -99,7 +145,10 @@ export const LineupTab = ({
 
       {/* 아티스트 라인업 */}
       <FormSection title="아티스트 라인업">
-        <div className={styles.artistSearchContainer}>
+        <div
+          ref={artistSearchContainerRef}
+          className={styles.artistSearchContainer}
+        >
           <div className={styles.artistSearchWrapper}>
             <Search size={16} className={styles.searchIcon} />
             <input
@@ -122,9 +171,10 @@ export const LineupTab = ({
                     onClick={() => handleAddArtist(artist)}
                     className={styles.artistDropdownItem}
                   >
-                    <div className={styles.artistDropdownAvatar}>
-                      {artist.name.charAt(0).toUpperCase()}
-                    </div>
+                    <ArtistAvatar
+                      artist={artist}
+                      className={styles.artistDropdownAvatar}
+                    />
                     <span className={styles.artistDropdownName}>
                       {artist.name}
                     </span>
@@ -132,29 +182,25 @@ export const LineupTab = ({
                   </button>
                 ))
               ) : (
-                <>
-                  <div className={styles.artistDropdownEmpty}>
-                    검색 결과가 없습니다.
-                  </div>
-                  <button
-                    onClick={handleAddCustomArtist}
-                    className={styles.artistDropdownCustom}
-                  >
-                    <span className={styles.artistDropdownCustomText}>
-                      &apos;{formData.artistSearch}&apos; 직접 등록하기
-                    </span>
-                  </button>
-                </>
+                <div className={styles.artistDropdownEmpty}>
+                  검색 결과가 없습니다.
+                </div>
               )}
+              <button
+                onClick={handleAddCustomArtist}
+                className={styles.artistDropdownCustom}
+              >
+                <span className={styles.artistDropdownCustomText}>
+                  &apos;{formData.artistSearch}&apos; 직접 등록하기
+                </span>
+              </button>
             </div>
           )}
         </div>
         <div className={styles.artistList}>
           {formData.artists.map((artist, index) => (
             <div key={index} className={styles.artistCard}>
-              <div className={styles.artistAvatar}>
-                {artist.name.charAt(0).toUpperCase()}
-              </div>
+              <ArtistAvatar artist={artist} className={styles.artistAvatar} />
               <span className={styles.artistName}>{artist.name}</span>
               <button
                 onClick={() => handleRemoveArtist(index)}

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import type { PerformanceFormData } from '../types';
+import type { PerformanceArtist, PerformanceFormData } from '../types';
 
 interface UseArtistManagementProps {
   formData: PerformanceFormData;
@@ -13,7 +13,7 @@ export const useArtistManagement = ({
 }: UseArtistManagementProps) => {
   const [showArtistDropdown, setShowArtistDropdown] = useState(false);
 
-  const handleAddArtist = (artist: { id: number; name: string }) => {
+  const handleAddArtist = (artist: PerformanceArtist) => {
     if (!formData.artists.find((a) => a.id === artist.id)) {
       setFormData((prev) => ({
         ...prev,
@@ -25,7 +25,7 @@ export const useArtistManagement = ({
   };
 
   const handleAddCustomArtist = () => {
-    const customArtist = {
+    const customArtist: PerformanceArtist = {
       id: Date.now(),
       name: formData.artistSearch.trim(),
     };
