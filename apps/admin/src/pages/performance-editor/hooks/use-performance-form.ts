@@ -5,14 +5,16 @@ import type { ExistingPerformance, PerformanceFormData } from '../types';
 interface UsePerformanceFormProps {
   existingPerformance: ExistingPerformance | null;
   initialType?: 'Festival' | 'Concert';
+  initialTitle?: string;
 }
 
 const createInitialFormData = (
   existing: ExistingPerformance | null,
   initialType?: 'Festival' | 'Concert',
+  initialTitle?: string,
 ): PerformanceFormData => ({
   type: existing?.type || initialType || 'Festival',
-  title: existing?.title || '',
+  title: existing?.title || initialTitle || '',
   subtitle: existing?.subtitle || '',
   startDate: existing?.startDate || '',
   endDate: existing?.endDate || '',
@@ -51,9 +53,10 @@ const fetchImageAsFile = async (
 export const usePerformanceForm = ({
   existingPerformance,
   initialType,
+  initialTitle,
 }: UsePerformanceFormProps) => {
   const [formData, setFormData] = useState<PerformanceFormData>(() =>
-    createInitialFormData(existingPerformance, initialType),
+    createInitialFormData(existingPerformance, initialType, initialTitle),
   );
 
   const isInitializedRef = useRef(false);
@@ -61,7 +64,9 @@ export const usePerformanceForm = ({
   useEffect(() => {
     if (isInitializedRef.current || !existingPerformance) return;
     isInitializedRef.current = true;
-    setFormData(createInitialFormData(existingPerformance));
+    setFormData(
+      createInitialFormData(existingPerformance, undefined, initialTitle),
+    );
 
     const fetchExistingImages = async () => {
       const updates: Partial<PerformanceFormData> = {};
@@ -94,7 +99,7 @@ export const usePerformanceForm = ({
     };
 
     fetchExistingImages();
-  }, [existingPerformance]);
+  }, [existingPerformance, initialTitle]);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

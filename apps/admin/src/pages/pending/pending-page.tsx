@@ -85,8 +85,10 @@ const PendingPage = () => {
     navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
   };
 
-  const handleSelectItem = (id: number) => {
-    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(id)));
+  const handleSelectItem = (id: number, title: string) => {
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(id)), {
+      state: { draftTitle: title },
+    });
   };
 
   const handleDeleteClick = (e: React.MouseEvent, id: number) => {
@@ -180,7 +182,7 @@ const PendingPage = () => {
                 return (
                   <div
                     key={item.id}
-                    onClick={() => handleSelectItem(item.id)}
+                    onClick={() => handleSelectItem(item.id, item.title)}
                     className={styles.listItem}
                   >
                     <div className={styles.itemContent}>

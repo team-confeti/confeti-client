@@ -10,6 +10,11 @@ import type { ExistingPerformance } from '@pages/performance-editor/types';
 type PerformanceDataJson = {
   type?: string;
   title?: string;
+  name?: string;
+  performanceName?: string;
+  performanceTitle?: string;
+  concertName?: string;
+  festivalName?: string;
   subtitle?: string;
   startDate?: string;
   startAt?: string;
@@ -125,12 +130,20 @@ export const mapDraftDetailToExistingPerformance = (
       artworkUrl:
         artist.artworkUrl ?? draftArtworkUrlByArtistId.get(Number(artist.id)),
     })) ?? [];
+  const title =
+    parsed.title ??
+    parsed.name ??
+    parsed.performanceName ??
+    parsed.performanceTitle ??
+    parsed.concertName ??
+    parsed.festivalName ??
+    draft.title;
 
   return {
     type:
       parsed.type ??
       (draft.performanceType === 'FESTIVAL' ? 'Festival' : 'Concert'),
-    title: parsed.title,
+    title,
     subtitle: parsed.subtitle,
     startDate: parsed.startDate ?? parsed.startAt,
     endDate: parsed.endDate ?? parsed.endAt,
