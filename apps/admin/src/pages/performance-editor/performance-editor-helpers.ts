@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 import type {
   PutAdminConcertRequest,
   PutAdminFestivalRequest,
@@ -97,6 +99,135 @@ const getFestivalDates = (
           : undefined,
     };
   });
+};
+
+const performanceDateSchema = z
+  .string()
+  .trim()
+  .min(1, '공연 일정을 입력해주세요.')
+  .regex(/^\d{4}-\d{2}-\d{2}$/, '공연 일정 형식이 올바르지 않아요.');
+
+const reservationDateTimeSchema = z
+  .string()
+  .trim()
+  .min(1, '예매 일정을 입력해주세요.')
+  .regex(
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/,
+    '예매 일정 형식이 올바르지 않아요.',
+  );
+
+const festivalOpenAtSchema = z
+  .string()
+  .trim()
+  .min(1, '티켓 오픈 시간을 입력해주세요.')
+  .regex(
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/,
+    '티켓 오픈 시간 형식이 올바르지 않아요.',
+  );
+
+const concertRequestSchema = z.object({
+  concertId: z.number().nullable(),
+  title: z.string().trim().min(1, '공연명을 입력해주세요.'),
+  subtitle: z.string().trim().min(1, '부제목을 입력해주세요.'),
+  startAt: performanceDateSchema,
+  endAt: performanceDateSchema,
+  area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
+  address: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
+  reserveAt: reservationDateTimeSchema,
+  ageRating: z.string().trim().min(1, '관람 등급을 입력해주세요.'),
+  time: z.string().trim().min(1, '공연 시간을 입력해주세요.'),
+  price: z.string().trim().min(1, '가격 등급과 가격을 하나 이상 입력해주세요.'),
+  artistIds: z
+    .array(z.string().trim().min(1))
+    .min(1, '아티스트를 한 명 이상 추가해주세요.'),
+  reservationUrls: z.array(
+    z.object({
+      ticketVendorId: z.number(),
+      reservationUrl: z.string().url('올바른 예매 URL을 입력해주세요.'),
+    }),
+  ),
+});
+
+const festivalTimeSchema = z.object({
+  festivalTimeId: z.number().optional(),
+  startAt: reservationDateTimeSchema,
+  endAt: reservationDateTimeSchema,
+  artistIds: z
+    .array(z.string().trim().min(1))
+    .min(1, '타임테이블에 아티스트를 추가해주세요.'),
+});
+
+const festivalStageSchema = z.object({
+  festivalStageId: z.number().optional(),
+  name: z.string().trim().min(1, '스테이지 이름을 입력해주세요.'),
+  order: z.number(),
+  times: z.array(festivalTimeSchema),
+});
+
+const festivalDateSchema = z.object({
+  festivalDateId: z.number().optional(),
+  festivalAt: performanceDateSchema,
+  openAt: festivalOpenAtSchema,
+  stages: z.array(festivalStageSchema).optional(),
+});
+
+const festivalRequestSchema = z.object({
+  festivalId: z.number().nullable(),
+  title: z.string().trim().min(1, '공연명을 입력해주세요.'),
+  subtitle: z.string().trim().min(1, '부제목을 입력해주세요.'),
+  startAt: performanceDateSchema,
+  endAt: performanceDateSchema,
+  area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
+  address: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
+  reserveAt: reservationDateTimeSchema,
+  ageRating: z.string().trim().min(1, '관람 등급을 입력해주세요.'),
+  time: z.string().trim().min(1, '공연 시간을 입력해주세요.'),
+  price: z.string().trim().min(1, '가격 등급과 가격을 하나 이상 입력해주세요.'),
+  artistIds: z
+    .array(z.string().trim().min(1))
+    .min(1, '아티스트를 한 명 이상 추가해주세요.'),
+  reservationUrls: z.array(
+    z.object({
+      ticketVendorId: z.number(),
+      reservationUrl: z.string().url('올바른 예매 URL을 입력해주세요.'),
+    }),
+  ),
+  dates: z.array(festivalDateSchema).min(1, '공연 일정을 입력해주세요.'),
+});
+
+const getFirstZodIssueMessage = (error: z.ZodError) =>
+  error.issues[0]?.message ?? '입력값을 다시 확인해주세요.';
+
+export const getConcertRequestValidationMessage = (
+  request: PutAdminConcertRequest,
+) => {
+  const result = concertRequestSchema.safeParse(request);
+
+  if (!result.success) {
+    return getFirstZodIssueMessage(result.error);
+  }
+
+  if (request.endAt < request.startAt) {
+    return '종료일은 시작일보다 빠를 수 없어요.';
+  }
+
+  return null;
+};
+
+export const getFestivalRequestValidationMessage = (
+  request: PutAdminFestivalRequest,
+) => {
+  const result = festivalRequestSchema.safeParse(request);
+
+  if (!result.success) {
+    return getFirstZodIssueMessage(result.error);
+  }
+
+  if (request.endAt < request.startAt) {
+    return '종료일은 시작일보다 빠를 수 없어요.';
+  }
+
+  return null;
 };
 
 export const getPublishValidationMessage = (

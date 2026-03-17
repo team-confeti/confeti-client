@@ -17,19 +17,59 @@ import {
 } from '@shared/components/common';
 import { PATH } from '@shared/constants';
 import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
-import { getDraftItems } from '@shared/models/draft';
+import {
+  getDraftItems,
+  getDraftPerformanceTypeMeta,
+} from '@shared/models/draft';
+import type { PerformanceDraftType } from '@shared/types/api';
 
 import * as styles from './pending-page.css';
+
+type PendingPerformanceTypeFilter = 'ALL' | PerformanceDraftType;
+
+const PENDING_PERFORMANCE_TYPE_FILTERS = [
+  { label: '전체', value: 'ALL' },
+  { label: '페스티벌', value: 'FESTIVAL' },
+  { label: '콘서트', value: 'CONCERT' },
+] as const;
 
 const PendingPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { searchQuery } = useOutletContext<{ searchQuery: string }>();
   const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
+  const [selectedPerformanceTypeFilter, setSelectedPerformanceTypeFilter] =
+    useState<PendingPerformanceTypeFilter>('ALL');
 
   const search = searchQuery.trim() || undefined;
   const { data } = useSuspenseQuery(DRAFT_QUERY_OPTIONS.LIST(search));
   const draftItems = getDraftItems(data);
+  const festivalDraftCount = draftItems.filter(
+    ({ performanceType }) => performanceType === 'FESTIVAL',
+  ).length;
+  const concertDraftCount = draftItems.filter(
+    ({ performanceType }) => performanceType === 'CONCERT',
+  ).length;
+  const performanceTypeFilters = PENDING_PERFORMANCE_TYPE_FILTERS.map(
+    (filter) => ({
+      ...filter,
+      count:
+        filter.value === 'ALL'
+          ? draftItems.length
+          : filter.value === 'FESTIVAL'
+            ? festivalDraftCount
+            : concertDraftCount,
+    }),
+  );
+  const filteredDraftItems = draftItems.filter(
+    ({ performanceType }) =>
+      selectedPerformanceTypeFilter === 'ALL' ||
+      performanceType === selectedPerformanceTypeFilter,
+  );
+  const filteredEmptyStateTitle =
+    selectedPerformanceTypeFilter === 'ALL'
+      ? '대기 중인 공연이 없습니다.'
+      : `${getDraftPerformanceTypeMeta(selectedPerformanceTypeFilter).label} 대기 공연이 없어요.`;
 
   const { mutate: deleteDraft } = useMutation({
     ...DRAFT_MUTATION_OPTIONS.DELETE_DRAFT(),
@@ -86,48 +126,103 @@ const PendingPage = () => {
           />
         </div>
       ) : (
-        <div className={styles.listContainer}>
-          {draftItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => handleSelectItem(item.id)}
-              className={styles.listItem}
-            >
-              <div className={styles.itemContent}>
-                <div
-                  className={styles.itemIcon}
-                  style={{
-                    backgroundColor:
-                      item.performanceType === 'FESTIVAL'
-                        ? '#AD46FF'
-                        : '#00BC7D',
-                  }}
-                >
-                  <span className={styles.typeIcon}>
-                    {item.performanceType === 'FESTIVAL' ? 'F' : 'C'}
-                  </span>
-                </div>
-                <div className={styles.itemInfo}>
-                  <h3 className={styles.itemTitle}>{item.title}</h3>
-                  <div className={styles.itemMeta}>
-                    <span>{item.startAt}</span>
-                    <span className={styles.dot}>•</span>
-                    <span>{item.area || '장소 미정'}</span>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.itemActions}>
-                <Badge variant="warning">{item.status}</Badge>
-                <button
-                  className={styles.moreButton}
-                  onClick={(e) => handleDeleteClick(e, item.id)}
-                  title="삭제"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </div>
+        <div className={styles.content}>
+          <div className={styles.filterSection}>
+            <div className={styles.filterList}>
+              {performanceTypeFilters.map((filter) => {
+                const isSelected =
+                  selectedPerformanceTypeFilter === filter.value;
+                const selectedFilterClassName =
+                  filter.value === 'ALL'
+                    ? styles.filterButtonActive.ALL
+                    : filter.value === 'FESTIVAL'
+                      ? styles.filterButtonActive.FESTIVAL
+                      : styles.filterButtonActive.CONCERT;
+
+                return (
+                  <button
+                    key={filter.value}
+                    type="button"
+                    aria-pressed={isSelected}
+                    className={
+                      isSelected ? selectedFilterClassName : styles.filterButton
+                    }
+                    onClick={() =>
+                      setSelectedPerformanceTypeFilter(filter.value)
+                    }
+                  >
+                    {filter.label} {filter.count}
+                  </button>
+                );
+              })}
             </div>
-          ))}
+          </div>
+
+          <div className={styles.listContainer}>
+            {filteredDraftItems.length === 0 ? (
+              <div className={styles.emptyState}>
+                <EmptyState
+                  icon={<Clock size={48} />}
+                  title={filteredEmptyStateTitle}
+                  description="다른 타입을 선택하면 다른 공연을 볼 수 있어요."
+                />
+              </div>
+            ) : (
+              filteredDraftItems.map((item) => {
+                const performanceTypeMeta = getDraftPerformanceTypeMeta(
+                  item.performanceType,
+                );
+                const typeBadgeClassName =
+                  item.performanceType === 'FESTIVAL'
+                    ? styles.typeBadgeFestival
+                    : styles.typeBadgeConcert;
+
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleSelectItem(item.id)}
+                    className={styles.listItem}
+                  >
+                    <div className={styles.itemContent}>
+                      <div
+                        className={styles.itemIcon}
+                        style={{ backgroundColor: performanceTypeMeta.color }}
+                      >
+                        <span className={styles.typeIcon}>
+                          {performanceTypeMeta.symbol}
+                        </span>
+                      </div>
+                      <div className={styles.itemInfo}>
+                        <div className={styles.itemTitleRow}>
+                          <h3 className={styles.itemTitle}>{item.title}</h3>
+                          <span
+                            className={`${styles.typeBadge} ${typeBadgeClassName}`}
+                          >
+                            {performanceTypeMeta.label}
+                          </span>
+                        </div>
+                        <div className={styles.itemMeta}>
+                          <span>{item.startAt}</span>
+                          <span className={styles.dot}>•</span>
+                          <span>{item.area || '장소 미정'}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.itemActions}>
+                      <Badge variant="warning">{item.status}</Badge>
+                      <button
+                        className={styles.moreButton}
+                        onClick={(e) => handleDeleteClick(e, item.id)}
+                        title="삭제"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
       )}
 

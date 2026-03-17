@@ -2,6 +2,7 @@ import type {
   DraftDetailResponse,
   DraftListItem,
   DraftListQueryResponse,
+  PerformanceDraftType,
 } from '@shared/types/api';
 
 import type { ExistingPerformance } from '@pages/performance-editor/types';
@@ -24,7 +25,7 @@ type PerformanceDataJson = {
   price?: string;
   bookingSchedules?: Array<{ round: string; startDate: string }>;
   priceGrades?: Array<{ grade: string; price: string }>;
-  artists?: Array<{ id: number; name: string }>;
+  artists?: Array<{ id: number; name: string; artworkUrl?: string }>;
   selectedTicketingPlatforms?: Array<{
     id: number;
     name: string;
@@ -53,6 +54,28 @@ type PerformanceDataJson = {
   publishedPerformanceId?: number | null;
 };
 
+type DraftPerformanceTypeMeta = {
+  color: string;
+  label: string;
+  symbol: string;
+};
+
+const DRAFT_PERFORMANCE_TYPE_META: Record<
+  PerformanceDraftType,
+  DraftPerformanceTypeMeta
+> = {
+  FESTIVAL: {
+    color: '#AD46FF',
+    label: '페스티벌',
+    symbol: 'F',
+  },
+  CONCERT: {
+    color: '#00BC7D',
+    label: '콘서트',
+    symbol: 'C',
+  },
+};
+
 const parseDurationMinutes = (time?: string): number | undefined => {
   if (!time) return undefined;
   const match = time.match(/(\d+)/);
@@ -66,6 +89,10 @@ export const getDraftItems = (
     ? draftListResponse
     : (draftListResponse?.drafts ?? []);
 
+export const getDraftPerformanceTypeMeta = (
+  performanceType: PerformanceDraftType,
+): DraftPerformanceTypeMeta => DRAFT_PERFORMANCE_TYPE_META[performanceType];
+
 export const mapDraftDetailToExistingPerformance = (
   draft: DraftDetailResponse,
 ): ExistingPerformance => {
@@ -78,6 +105,27 @@ export const mapDraftDetailToExistingPerformance = (
   } catch {
     // performanceData might be empty or malformed
   }
+
+  const draftArtworkUrlByArtistId = new Map(
+    (draft.artists ?? []).map((artist) => [
+      Number(artist.artistId),
+      artist.artworkUrl || undefined,
+    ]),
+  );
+  const artists =
+    (
+      parsed.artists ??
+      draft.artists?.map((artist) => ({
+        id: Number(artist.artistId),
+        name: artist.name,
+        artworkUrl: artist.artworkUrl || undefined,
+      }))
+    )?.map((artist) => ({
+      ...artist,
+      artworkUrl:
+        artist.artworkUrl ?? draftArtworkUrlByArtistId.get(Number(artist.id)),
+    })) ?? [];
+
   return {
     type:
       parsed.type ??
@@ -95,12 +143,7 @@ export const mapDraftDetailToExistingPerformance = (
     priceGrades: parsed.priceGrades,
     mainPosterPreview: draft.posterUrl || undefined,
     logoPreview: draft.logoUrl || undefined,
-    artists:
-      parsed.artists ??
-      draft.artists?.map((a) => ({
-        id: Number(a.artistId),
-        name: a.name,
-      })),
+    artists,
     selectedTicketingPlatforms: parsed.selectedTicketingPlatforms,
     stages: parsed.stages,
     timetableSlots: parsed.timetableSlots,

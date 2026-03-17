@@ -15,7 +15,10 @@ import { FESTIVAL_QUERY_OPTIONS } from '@shared/apis/festival-queries';
 import DashboardCard from '@shared/components/dashboard/dashboard-card';
 import { PATH } from '@shared/constants/path';
 import { getConcertGroups } from '@shared/models/concert';
-import { getDraftItems } from '@shared/models/draft';
+import {
+  getDraftItems,
+  getDraftPerformanceTypeMeta,
+} from '@shared/models/draft';
 import { getFestivalGroups } from '@shared/models/festival';
 
 import * as styles from './dashboard-page.css';
@@ -81,41 +84,53 @@ const DashboardPage = () => {
             <span className={styles.sectionBadge}>{pendingCount}</span>
           </div>
           <div className={styles.attentionList}>
-            {recentDrafts.map((item) => (
-              <div
-                key={item.id}
-                className={styles.attentionItem}
-                onClick={() =>
-                  navigate(
-                    PATH.PERFORMANCE_EDITOR.replace(':id', String(item.id)),
-                  )
-                }
-              >
+            {recentDrafts.map((item) => {
+              const performanceTypeMeta = getDraftPerformanceTypeMeta(
+                item.performanceType,
+              );
+              const typeBadgeClassName =
+                item.performanceType === 'FESTIVAL'
+                  ? styles.attentionTypeBadgeFestival
+                  : styles.attentionTypeBadgeConcert;
+
+              return (
                 <div
-                  className={styles.attentionItemIcon}
-                  style={{
-                    backgroundColor:
-                      item.performanceType === 'FESTIVAL'
-                        ? '#AD46FF'
-                        : '#00BC7D',
-                  }}
+                  key={item.id}
+                  className={styles.attentionItem}
+                  onClick={() =>
+                    navigate(
+                      PATH.PERFORMANCE_EDITOR.replace(':id', String(item.id)),
+                    )
+                  }
                 >
-                  <span>{item.performanceType === 'FESTIVAL' ? 'F' : 'C'}</span>
+                  <div
+                    className={styles.attentionItemIcon}
+                    style={{ backgroundColor: performanceTypeMeta.color }}
+                  >
+                    <span>{performanceTypeMeta.symbol}</span>
+                  </div>
+                  <div className={styles.attentionItemInfo}>
+                    <div className={styles.attentionItemTitleRow}>
+                      <span className={styles.attentionItemTitle}>
+                        {item.title}
+                      </span>
+                      <span
+                        className={`${styles.attentionTypeBadge} ${typeBadgeClassName}`}
+                      >
+                        {performanceTypeMeta.label}
+                      </span>
+                    </div>
+                    <span className={styles.attentionItemMeta}>
+                      {item.startAt} · {item.area || '장소 미정'}
+                    </span>
+                  </div>
+                  <ChevronRight
+                    size={16}
+                    className={styles.attentionItemChevron}
+                  />
                 </div>
-                <div className={styles.attentionItemInfo}>
-                  <span className={styles.attentionItemTitle}>
-                    {item.title}
-                  </span>
-                  <span className={styles.attentionItemMeta}>
-                    {item.startAt} · {item.area || '장소 미정'}
-                  </span>
-                </div>
-                <ChevronRight
-                  size={16}
-                  className={styles.attentionItemChevron}
-                />
-              </div>
-            ))}
+              );
+            })}
           </div>
           {pendingCount > 5 && (
             <button
