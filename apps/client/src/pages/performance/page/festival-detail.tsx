@@ -51,7 +51,7 @@ const FestivalDetailPage = () => {
       <Spacing />
 
       <DetailInfo
-        title={festival.subtitle}
+        title={festival.title}
         time={festival.time}
         ageRating={festival.ageRating}
         price={festival.price}
