@@ -190,8 +190,11 @@ const formatReleaseItemSlackLine = (item) => {
       ),
     item.title,
   );
+  const mentionSuffix = item.mentions.length
+    ? ` ${item.mentions.map(formatSlackUserGroupMention).join(' ')}`
+    : '';
 
-  return `• ${formatSlackLink(item.url, titleWithSlackMentions)}`;
+  return `• ${formatSlackLink(item.url, titleWithSlackMentions)}${mentionSuffix}`;
 };
 
 const collectReleaseItems = async ({ owner, pr, repo, requestJson }) => {
