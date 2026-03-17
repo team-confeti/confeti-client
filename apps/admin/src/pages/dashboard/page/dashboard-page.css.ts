@@ -116,12 +116,43 @@ export const attentionItemInfo = style({
 });
 
 export const attentionItemTitle = style({
+  flex: 1,
   fontSize: '1.5rem',
   fontWeight: themeVars.fontWeight.medium,
   color: themeVars.color.slate900,
+  minWidth: 0,
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+});
+
+export const attentionItemTitleRow = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  minWidth: 0,
+});
+
+export const attentionTypeBadge = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: '2.2rem',
+  padding: '0 0.8rem',
+  borderRadius: '9999px',
+  fontSize: '1.1rem',
+  fontWeight: themeVars.fontWeight.bold,
+  lineHeight: '1.4rem',
+  flexShrink: 0,
+});
+
+export const attentionTypeBadgeFestival = style({
+  backgroundColor: '#F3E8FF',
+  color: '#7C3AED',
+});
+
+export const attentionTypeBadgeConcert = style({
+  backgroundColor: '#D1FAE5',
+  color: '#047857',
 });
 
 export const attentionItemMeta = style({

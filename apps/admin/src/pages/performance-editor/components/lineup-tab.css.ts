@@ -180,6 +180,7 @@ export const artistDropdownAvatar = style({
   height: '32px',
   backgroundColor: themeVars.color.gray200,
   borderRadius: '9999px',
+  overflow: 'hidden',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
   color: adminVars.slate600tw,
@@ -265,9 +266,17 @@ export const artistAvatar = style({
   height: '32px',
   backgroundColor: themeVars.color.gray200,
   borderRadius: '9999px',
+  overflow: 'hidden',
   fontSize: '1.2rem',
   fontWeight: themeVars.fontWeight.bold,
   color: adminVars.slate600tw,
+});
+
+export const artistAvatarImage = style({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  display: 'block',
 });
 
 export const artistName = style({

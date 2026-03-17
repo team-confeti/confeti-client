@@ -174,7 +174,10 @@ export const getFestivalGroups = (
 export const mapFestivalDetailToExistingPerformance = (
   festival: AdminFestivalDetailResponse,
 ): ExistingPerformance => {
-  const artistMap = new Map<string, { id: number; name: string }>();
+  const artistMap = new Map<
+    string,
+    { id: number; name: string; artworkUrl?: string }
+  >();
   const stagesById = new Map<
     string,
     { name: string; order?: number; festivalStageId?: number }
@@ -186,6 +189,7 @@ export const mapFestivalDetailToExistingPerformance = (
         artistMap.set(artist.artistId, {
           id: Number(artist.artistId),
           name: artist.name,
+          artworkUrl: artist.artworkUrl || undefined,
         });
       }
     });
