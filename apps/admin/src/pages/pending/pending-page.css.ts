@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -81,6 +81,77 @@ export const emptyIcon = style({
   opacity: 0.2,
 });
 
+export const content = style({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: 0,
+});
+
+export const filterSection = style({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '1.6rem 2.4rem',
+  borderBottom: `1px solid ${adminVars.gray100tw}`,
+  flexShrink: 0,
+});
+
+export const filterList = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  flexWrap: 'wrap',
+});
+
+export const filterButton = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '3.2rem',
+  padding: '0 1.2rem',
+  borderRadius: '9999px',
+  border: `1px solid ${themeVars.color.gray200}`,
+  backgroundColor: themeVars.color.white,
+  color: adminVars.slate600tw,
+  fontSize: '1.3rem',
+  fontWeight: themeVars.fontWeight.medium,
+  lineHeight: '1.8rem',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+
+  ':hover': {
+    borderColor: themeVars.color.gray300,
+    color: adminVars.gray900tw,
+  },
+});
+
+export const filterButtonActive = styleVariants({
+  ALL: [
+    filterButton,
+    {
+      borderColor: themeVars.color.slate900,
+      backgroundColor: themeVars.color.slate900,
+      color: themeVars.color.white,
+    },
+  ],
+  FESTIVAL: [
+    filterButton,
+    {
+      borderColor: '#D8B4FE',
+      backgroundColor: '#F3E8FF',
+      color: '#7C3AED',
+    },
+  ],
+  CONCERT: [
+    filterButton,
+    {
+      borderColor: '#A7F3D0',
+      backgroundColor: '#D1FAE5',
+      color: '#047857',
+    },
+  ],
+});
+
 export const listContainer = style({
   flex: 1,
   overflowY: 'auto',
@@ -133,15 +204,28 @@ export const typeIcon = style({
 
 export const itemInfo = style({
   flex: 1,
+  minWidth: 0,
+});
+
+export const itemTitleRow = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  minWidth: 0,
 });
 
 export const itemTitle = style({
+  flex: 1,
   fontSize: '1.6rem',
   fontWeight: themeVars.fontWeight.bold,
   color: adminVars.gray900tw,
   lineHeight: '2.4rem',
   letterSpacing: '-0.02em',
-  marginBottom: '0.4rem',
+  margin: 0,
+  minWidth: 0,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
   transition: 'color 0.2s ease',
 
   selectors: {
@@ -151,10 +235,33 @@ export const itemTitle = style({
   },
 });
 
+export const typeBadge = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: '2.4rem',
+  padding: '0 0.8rem',
+  borderRadius: '9999px',
+  fontSize: '1.2rem',
+  fontWeight: themeVars.fontWeight.bold,
+  lineHeight: '1.6rem',
+  flexShrink: 0,
+});
+
+export const typeBadgeFestival = style({
+  backgroundColor: '#F3E8FF',
+  color: '#7C3AED',
+});
+
+export const typeBadgeConcert = style({
+  backgroundColor: '#D1FAE5',
+  color: '#047857',
+});
+
 export const itemMeta = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
+  marginTop: '0.4rem',
   fontSize: '1.4rem',
   fontWeight: themeVars.fontWeight.regular,
   color: adminVars.slate600tw,

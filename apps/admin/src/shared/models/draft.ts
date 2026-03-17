@@ -2,6 +2,7 @@ import type {
   DraftDetailResponse,
   DraftListItem,
   DraftListQueryResponse,
+  PerformanceDraftType,
 } from '@shared/types/api';
 
 import type { ExistingPerformance } from '@pages/performance-editor/types';
@@ -53,6 +54,28 @@ type PerformanceDataJson = {
   publishedPerformanceId?: number | null;
 };
 
+type DraftPerformanceTypeMeta = {
+  color: string;
+  label: string;
+  symbol: string;
+};
+
+const DRAFT_PERFORMANCE_TYPE_META: Record<
+  PerformanceDraftType,
+  DraftPerformanceTypeMeta
+> = {
+  FESTIVAL: {
+    color: '#AD46FF',
+    label: '페스티벌',
+    symbol: 'F',
+  },
+  CONCERT: {
+    color: '#00BC7D',
+    label: '콘서트',
+    symbol: 'C',
+  },
+};
+
 const parseDurationMinutes = (time?: string): number | undefined => {
   if (!time) return undefined;
   const match = time.match(/(\d+)/);
@@ -65,6 +88,10 @@ export const getDraftItems = (
   Array.isArray(draftListResponse)
     ? draftListResponse
     : (draftListResponse?.drafts ?? []);
+
+export const getDraftPerformanceTypeMeta = (
+  performanceType: PerformanceDraftType,
+): DraftPerformanceTypeMeta => DRAFT_PERFORMANCE_TYPE_META[performanceType];
 
 export const mapDraftDetailToExistingPerformance = (
   draft: DraftDetailResponse,
