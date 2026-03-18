@@ -20,8 +20,9 @@ import { DRAFT_QUERY_KEY } from '@shared/constants/query-key';
 import {
   getDraftItems,
   getDraftPerformanceTypeMeta,
+  mapDraftListItemToExistingPerformance,
 } from '@shared/models/draft';
-import type { PerformanceDraftType } from '@shared/types/api';
+import type { DraftListItem, PerformanceDraftType } from '@shared/types/api';
 
 import * as styles from './pending-page.css';
 
@@ -85,9 +86,11 @@ const PendingPage = () => {
     navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
   };
 
-  const handleSelectItem = (id: number, title: string) => {
-    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(id)), {
-      state: { draftTitle: title },
+  const handleSelectItem = (draftItem: DraftListItem) => {
+    navigate(PATH.PERFORMANCE_EDITOR.replace(':id', String(draftItem.id)), {
+      state: {
+        initialPerformance: mapDraftListItemToExistingPerformance(draftItem),
+      },
     });
   };
 
@@ -182,7 +185,7 @@ const PendingPage = () => {
                 return (
                   <div
                     key={item.id}
-                    onClick={() => handleSelectItem(item.id, item.title)}
+                    onClick={() => handleSelectItem(item)}
                     className={styles.listItem}
                   >
                     <div className={styles.itemContent}>

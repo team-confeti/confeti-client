@@ -32,9 +32,14 @@ import {
   FESTIVAL_QUERY_KEY,
 } from '@shared/constants/query-key';
 import { mapConcertDetailToExistingPerformance } from '@shared/models/concert';
-import { mapDraftDetailToExistingPerformance } from '@shared/models/draft';
+import {
+  getDraftItems,
+  mapDraftDetailToExistingPerformance,
+  mapDraftListItemToExistingPerformance,
+} from '@shared/models/draft';
 import { mapFestivalDetailToExistingPerformance } from '@shared/models/festival';
 import { getTicketVendors } from '@shared/models/ticket-vendor';
+import type { DraftListQueryResponse } from '@shared/types/api';
 import { fileToBase64, generateDateRange } from '@shared/utils';
 import { adminToast } from '@shared/utils/admin-toast';
 
@@ -70,7 +75,7 @@ const PerformanceEditorContent = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { state } = useLocation() as {
-    state?: { draftTitle?: string };
+    state?: { initialPerformance?: ExistingPerformance };
   };
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -101,33 +106,40 @@ const PerformanceEditorContent = () => {
     useMutation(DRAFT_MUTATION_OPTIONS.DELETE_DRAFT());
   const { mutateAsync: putConcertMutate, isPending: isConcertPending } =
     useMutation(CONCERT_MUTATION_OPTIONS.PUT_CONCERT());
+  const {
+    mutateAsync: deleteConcertMutate,
+    isPending: isDeleteConcertPending,
+  } = useMutation(CONCERT_MUTATION_OPTIONS.DELETE_CONCERT());
   const { mutateAsync: putFestivalMutate, isPending: isFestivalPending } =
     useMutation(FESTIVAL_MUTATION_OPTIONS.PUT_FESTIVAL());
+  const {
+    mutateAsync: deleteFestivalMutate,
+    isPending: isDeleteFestivalPending,
+  } = useMutation(FESTIVAL_MUTATION_OPTIONS.DELETE_FESTIVAL());
 
   const isSaving =
     isPostPending ||
     isPatchPending ||
     isDeletePending ||
     isConcertPending ||
-    isFestivalPending;
+    isDeleteConcertPending ||
+    isFestivalPending ||
+    isDeleteFestivalPending;
   const isSubmittingRef = useRef(false);
-  const fallbackDraftTitle =
-    state?.draftTitle ??
-    queryClient
-      .getQueriesData<{ drafts?: Array<{ id: number; title: string }> }>({
-        queryKey: DRAFT_QUERY_KEY.ALL,
-      })
-      .flatMap(([, cachedDraftData]) => cachedDraftData?.drafts ?? [])
-      .find((draftItem) => String(draftItem.id) === id)?.title;
+  const cachedDraftItem = queryClient
+    .getQueriesData<DraftListQueryResponse>({
+      queryKey: DRAFT_QUERY_KEY.ALL,
+    })
+    .flatMap(([, cachedDraftData]) => getDraftItems(cachedDraftData))
+    .find((draftItem) => String(draftItem.id) === id);
+  const initialPerformance =
+    state?.initialPerformance ??
+    (cachedDraftItem
+      ? mapDraftListItemToExistingPerformance(cachedDraftItem)
+      : null);
   const existingPerformance: ExistingPerformance | null = (() => {
     if (isNew) return null;
-    if (draftData) {
-      const draftPerformance = mapDraftDetailToExistingPerformance(draftData);
-
-      return draftPerformance.title?.trim()
-        ? draftPerformance
-        : { ...draftPerformance, title: fallbackDraftTitle };
-    }
+    if (draftData) return mapDraftDetailToExistingPerformance(draftData);
     if (concertData)
       return mapConcertDetailToExistingPerformance(concertData, ticketVendors);
     if (festivalData)
@@ -148,8 +160,8 @@ const PerformanceEditorContent = () => {
 
   const { formData, setFormData, handleInputChange } = usePerformanceForm({
     existingPerformance,
+    initialPerformance,
     initialType,
-    initialTitle: fallbackDraftTitle,
   });
 
   const {
@@ -228,7 +240,7 @@ const PerformanceEditorContent = () => {
   const isConcert = formData.type === 'Concert';
   const currentActiveTab =
     isConcert && activeTab === 'timetable' ? 'basic' : activeTab;
-  const showDeleteAction = !isNew && !performanceType;
+  const showDeleteAction = !isNew;
   const submitButtonText = getSubmitButtonText(
     formData,
     performanceType,
@@ -462,8 +474,29 @@ const PerformanceEditorContent = () => {
     }
 
     try {
+      if (performanceType === 'concert') {
+        await deleteConcertMutate(Number(id));
+        await queryClient.invalidateQueries({
+          queryKey: CONCERT_QUERY_KEY.ALL,
+        });
+        adminToast.success({ text: '콘서트가 삭제되었습니다.' });
+        navigate(PATH.CONCERT);
+        return;
+      }
+
+      if (performanceType === 'festival') {
+        await deleteFestivalMutate(Number(id));
+        await queryClient.invalidateQueries({
+          queryKey: FESTIVAL_QUERY_KEY.ALL,
+        });
+        adminToast.success({ text: '페스티벌이 삭제되었습니다.' });
+        navigate(PATH.FESTIVAL);
+        return;
+      }
+
       await deleteDraftMutate(Number(id));
       await queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      adminToast.success({ text: '공연이 삭제되었습니다.' });
       navigate(PATH.PENDING);
     } catch (error) {
       adminToast.error({

@@ -1,9 +1,11 @@
 export const FESTIVAL_MUTATION_KEY = {
   PUT_FESTIVAL: () => ['put-festival'],
+  DELETE_FESTIVAL: () => ['delete-festival'],
 } as const;
 
 export const CONCERT_MUTATION_KEY = {
   PUT_CONCERT: () => ['put-concert'],
+  DELETE_CONCERT: () => ['delete-concert'],
 } as const;
 
 export const DRAFT_MUTATION_KEY = {
