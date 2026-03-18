@@ -10,11 +10,6 @@ import type { ExistingPerformance } from '@pages/performance-editor/types';
 type PerformanceDataJson = {
   type?: string;
   title?: string;
-  name?: string;
-  performanceName?: string;
-  performanceTitle?: string;
-  concertName?: string;
-  festivalName?: string;
   subtitle?: string;
   startDate?: string;
   startAt?: string;
@@ -87,6 +82,45 @@ const parseDurationMinutes = (time?: string): number | undefined => {
   return match ? Number(match[1]) : undefined;
 };
 
+const extractDate = (value?: string) => {
+  if (!value) return undefined;
+
+  const normalizedValue = value.trim().replace(/\./g, '-').replace(/\//g, '-');
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(normalizedValue)) {
+    return normalizedValue;
+  }
+
+  if (normalizedValue.includes('T')) {
+    return normalizedValue.split('T')[0];
+  }
+
+  if (normalizedValue.includes(' ')) {
+    return normalizedValue.split(' ')[0];
+  }
+
+  return normalizedValue;
+};
+
+const normalizePerformanceType = (
+  value: string | undefined,
+  draftPerformanceType: PerformanceDraftType,
+) => {
+  if (value === 'Festival' || value === 'Concert') {
+    return value;
+  }
+
+  if (value === 'FESTIVAL') {
+    return 'Festival';
+  }
+
+  if (value === 'CONCERT') {
+    return 'Concert';
+  }
+
+  return draftPerformanceType === 'FESTIVAL' ? 'Festival' : 'Concert';
+};
+
 export const getDraftItems = (
   draftListResponse: DraftListQueryResponse | null | undefined,
 ): DraftListItem[] =>
@@ -97,6 +131,16 @@ export const getDraftItems = (
 export const getDraftPerformanceTypeMeta = (
   performanceType: PerformanceDraftType,
 ): DraftPerformanceTypeMeta => DRAFT_PERFORMANCE_TYPE_META[performanceType];
+
+export const mapDraftListItemToExistingPerformance = (
+  draftItem: DraftListItem,
+): ExistingPerformance => ({
+  type: draftItem.performanceType === 'FESTIVAL' ? 'Festival' : 'Concert',
+  title: draftItem.title,
+  startDate: extractDate(draftItem.startAt),
+  venueName: draftItem.area,
+  mainPosterPreview: draftItem.posterUrl,
+});
 
 export const mapDraftDetailToExistingPerformance = (
   draft: DraftDetailResponse,
@@ -130,23 +174,14 @@ export const mapDraftDetailToExistingPerformance = (
       artworkUrl:
         artist.artworkUrl ?? draftArtworkUrlByArtistId.get(Number(artist.id)),
     })) ?? [];
-  const title =
-    parsed.title ??
-    parsed.name ??
-    parsed.performanceName ??
-    parsed.performanceTitle ??
-    parsed.concertName ??
-    parsed.festivalName ??
-    draft.title;
+  const title = parsed.title ?? draft.title;
 
   return {
-    type:
-      parsed.type ??
-      (draft.performanceType === 'FESTIVAL' ? 'Festival' : 'Concert'),
+    type: normalizePerformanceType(parsed.type, draft.performanceType),
     title,
     subtitle: parsed.subtitle,
-    startDate: parsed.startDate ?? parsed.startAt,
-    endDate: parsed.endDate ?? parsed.endAt,
+    startDate: extractDate(parsed.startDate ?? parsed.startAt),
+    endDate: extractDate(parsed.endDate ?? parsed.endAt),
     venueName: parsed.venueName ?? parsed.area,
     venueAddress: parsed.venueAddress ?? parsed.address,
     ageRating: parsed.ageRating,

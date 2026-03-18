@@ -237,6 +237,7 @@ export type DraftListItem = {
   title: string;
   area: string;
   startAt: string;
+  posterUrl?: string;
 };
 
 export type DraftListResponse = {

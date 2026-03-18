@@ -1,6 +1,6 @@
 import { mutationOptions } from '@tanstack/react-query';
 
-import { put } from '@shared/apis/config/instance';
+import { del, put } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { CONCERT_MUTATION_KEY } from '@shared/constants/mutation-key';
 import {
@@ -20,6 +20,11 @@ export const CONCERT_MUTATION_OPTIONS = {
       mutationFn: (params: PutConcertParams) =>
         putConcert(params.concert, params.poster),
     }),
+  DELETE_CONCERT: () =>
+    mutationOptions({
+      mutationKey: CONCERT_MUTATION_KEY.DELETE_CONCERT(),
+      mutationFn: (concertId: number) => deleteConcert(concertId),
+    }),
 };
 
 export const putConcert = async (
@@ -36,4 +41,8 @@ export const putConcert = async (
   return put<PutAdminConcertResponse>(END_POINT.PUT_CONCERT, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+};
+
+export const deleteConcert = async (concertId: number): Promise<void> => {
+  await del(END_POINT.DELETE_CONCERT(concertId));
 };
