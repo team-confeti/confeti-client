@@ -4,37 +4,52 @@ import type { ExistingPerformance, PerformanceFormData } from '../types';
 
 interface UsePerformanceFormProps {
   existingPerformance: ExistingPerformance | null;
+  initialPerformance?: ExistingPerformance | null;
   initialType?: 'Festival' | 'Concert';
-  initialTitle?: string;
 }
 
 const createInitialFormData = (
   existing: ExistingPerformance | null,
+  initialPerformance?: ExistingPerformance | null,
   initialType?: 'Festival' | 'Concert',
-  initialTitle?: string,
 ): PerformanceFormData => ({
-  type: existing?.type || initialType || 'Festival',
-  title: existing?.title || initialTitle || '',
-  subtitle: existing?.subtitle || '',
-  startDate: existing?.startDate || '',
-  endDate: existing?.endDate || '',
-  ageRating: existing?.ageRating || '전체 관람가',
-  durationMinutes: existing?.durationMinutes ?? 120,
-  bookingSchedules: existing?.bookingSchedules ?? [],
-  selectedTicketingPlatforms: existing?.selectedTicketingPlatforms ?? [],
-  venueName: existing?.venueName || '',
-  venueAddress: existing?.venueAddress || '',
-  priceGrades: existing?.priceGrades ?? [],
+  type: existing?.type || initialPerformance?.type || initialType || 'Festival',
+  title: existing?.title || initialPerformance?.title || '',
+  subtitle: existing?.subtitle || initialPerformance?.subtitle || '',
+  startDate: existing?.startDate || initialPerformance?.startDate || '',
+  endDate: existing?.endDate || initialPerformance?.endDate || '',
+  ageRating:
+    existing?.ageRating || initialPerformance?.ageRating || '전체 관람가',
+  durationMinutes:
+    existing?.durationMinutes ?? initialPerformance?.durationMinutes ?? 120,
+  bookingSchedules:
+    existing?.bookingSchedules ?? initialPerformance?.bookingSchedules ?? [],
+  selectedTicketingPlatforms:
+    existing?.selectedTicketingPlatforms ??
+    initialPerformance?.selectedTicketingPlatforms ??
+    [],
+  venueName: existing?.venueName || initialPerformance?.venueName || '',
+  venueAddress:
+    existing?.venueAddress || initialPerformance?.venueAddress || '',
+  priceGrades: existing?.priceGrades ?? initialPerformance?.priceGrades ?? [],
   mainPoster: null,
   logo: null,
-  mainPosterPreview: existing?.mainPosterPreview ?? null,
-  logoPreview: existing?.logoPreview ?? null,
-  stages: existing?.stages ?? [],
-  artists: existing?.artists ?? [],
+  mainPosterPreview:
+    existing?.mainPosterPreview ??
+    initialPerformance?.mainPosterPreview ??
+    null,
+  logoPreview: existing?.logoPreview ?? initialPerformance?.logoPreview ?? null,
+  stages: existing?.stages ?? initialPerformance?.stages ?? [],
+  artists: existing?.artists ?? initialPerformance?.artists ?? [],
   artistSearch: '',
-  timetableSlots: existing?.timetableSlots ?? [],
-  festivalDateMetas: existing?.festivalDateMetas ?? [],
-  publishedPerformanceId: existing?.publishedPerformanceId ?? null,
+  timetableSlots:
+    existing?.timetableSlots ?? initialPerformance?.timetableSlots ?? [],
+  festivalDateMetas:
+    existing?.festivalDateMetas ?? initialPerformance?.festivalDateMetas ?? [],
+  publishedPerformanceId:
+    existing?.publishedPerformanceId ??
+    initialPerformance?.publishedPerformanceId ??
+    null,
 });
 
 const S3_BASE_URL = 'https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com';
@@ -52,11 +67,11 @@ const fetchImageAsFile = async (
 
 export const usePerformanceForm = ({
   existingPerformance,
+  initialPerformance,
   initialType,
-  initialTitle,
 }: UsePerformanceFormProps) => {
   const [formData, setFormData] = useState<PerformanceFormData>(() =>
-    createInitialFormData(existingPerformance, initialType, initialTitle),
+    createInitialFormData(existingPerformance, initialPerformance, initialType),
   );
 
   const isInitializedRef = useRef(false);
@@ -64,9 +79,7 @@ export const usePerformanceForm = ({
   useEffect(() => {
     if (isInitializedRef.current || !existingPerformance) return;
     isInitializedRef.current = true;
-    setFormData(
-      createInitialFormData(existingPerformance, undefined, initialTitle),
-    );
+    setFormData(createInitialFormData(existingPerformance, initialPerformance));
 
     const fetchExistingImages = async () => {
       const updates: Partial<PerformanceFormData> = {};
@@ -99,7 +112,7 @@ export const usePerformanceForm = ({
     };
 
     fetchExistingImages();
-  }, [existingPerformance, initialTitle]);
+  }, [existingPerformance, initialPerformance]);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
