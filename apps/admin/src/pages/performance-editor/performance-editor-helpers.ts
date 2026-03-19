@@ -63,8 +63,8 @@ const getFestivalDates = (
 ): PutAdminFestivalRequest['dates'] => {
   const days = generateDateRange(formData.startDate, formData.endDate);
 
-  if (days.length === 0) {
-    return undefined;
+  if (days.length === 0 || formData.timetableSlots.length === 0) {
+    return [];
   }
 
   return days.map((date) => {
@@ -192,7 +192,7 @@ const festivalRequestSchema = z.object({
       reservationUrl: z.string().url('올바른 예매 URL을 입력해주세요.'),
     }),
   ),
-  dates: z.array(festivalDateSchema).min(1, '공연 일정을 입력해주세요.'),
+  dates: z.array(festivalDateSchema).optional(),
 });
 
 const getFirstZodIssueMessage = (error: z.ZodError) =>
