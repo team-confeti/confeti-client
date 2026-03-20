@@ -6,8 +6,6 @@ import { onError, onSuccess } from '@confeti/utils';
 
 import { LogClickEvent } from '@shared/analytics/logging';
 
-import { PERFORMANCE_LABEL } from '@pages/performance/constant/performance';
-
 import { openKakaoRoute } from '../../utils/kakao-map';
 import MapView from '../map-view/map-view';
 
@@ -54,7 +52,7 @@ const Location = ({ address }: LocationProps) => {
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{PERFORMANCE_LABEL.LOCATION}</h2>
+      <h2 className={styles.title}>오시는 길</h2>
       <p className={styles.address}>
         {formattedAddress}
         <LogClickEvent name="click_copy_address">

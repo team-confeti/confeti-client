@@ -6,8 +6,6 @@ import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
 import type { PerformanceType } from '@shared/types/performance-type';
 
-import { PERFORMANCE_LABEL } from '../../constant/performance';
-
 import * as styles from './performance-info.css';
 
 interface Props {
@@ -53,9 +51,7 @@ const PerformanceInfo = ({
       <div className={styles.wrapper}>
         <section className={styles.contentContainer}>
           <div className={styles.header}>
-            <h2 className={styles.sectionTitle}>
-              {PERFORMANCE_LABEL.PERFORMANCE_INFO}
-            </h2>
+            <h2 className={styles.sectionTitle}>공연 정보</h2>
             <LikeButton
               className={styles.likeButton}
               isFavorite={isFavorite}
@@ -66,21 +62,15 @@ const PerformanceInfo = ({
 
           <div className={styles.detail}>
             <div className={styles.detailItem}>
-              <div className={styles.detailTitle}>
-                {PERFORMANCE_LABEL.PERIOD}
-              </div>
+              <div className={styles.detailTitle}>기간</div>
               <div className={styles.detailContent}>{formattedDate}</div>
             </div>
             <div className={styles.detailItem}>
-              <div className={styles.detailTitle}>
-                {PERFORMANCE_LABEL.PLACE}
-              </div>
+              <div className={styles.detailTitle}>장소</div>
               <div className={styles.detailContent}>{area}</div>
             </div>
             <div className={styles.detailItem}>
-              <div className={styles.detailTitle}>
-                {PERFORMANCE_LABEL.TICKETING_DATE}
-              </div>
+              <div className={styles.detailTitle}>예매일</div>
               <div className={styles.detailContent}>{formattedReserveDate}</div>
             </div>
           </div>

@@ -1,7 +1,5 @@
 import { LogClickEvent } from '@shared/analytics/logging';
 
-import { PERFORMANCE_LABEL } from '../../constant/performance';
-
 import * as styles from './reservation.css';
 
 interface ReservationItem {
@@ -29,7 +27,7 @@ const Reservation = ({ reservations }: Props) => {
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{PERFORMANCE_LABEL.RESERVATION_OFFICE}</h2>
+      <h2 className={styles.title}>예매처 바로가기</h2>
       <ul className={styles.list}>
         {reservationItems.map(({ key, name, logoUrl, handleClick }) => (
           <li key={key} className={styles.item}>
