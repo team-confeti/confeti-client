@@ -33,9 +33,9 @@ export const confetiLogo = style({
   ...themeVars.display.flexJustifyAlignCenter,
 });
 
-export const logoImage = style({
-  width: '18rem',
-  height: '18rem',
+export const logoLottie = style({
+  width: '32rem',
+  height: '32rem',
 });
 
 export const button = style({

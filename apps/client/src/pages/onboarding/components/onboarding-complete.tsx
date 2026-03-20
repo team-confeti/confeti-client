@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import Lottie from 'react-lottie-player';
 
 import { Button, Description } from '@confeti/design-system';
 
 import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
+import loginLogoAnimation from '@shared/assets/lotties/login-logo-animtaion.json';
 import { SwitchCase } from '@shared/components';
 import Loading from '@shared/pages/loading/loading';
+import { clearLottieAssetBasePath } from '@shared/utils/images';
 
 import * as styles from './onboarding-complete.css';
 
@@ -76,10 +79,11 @@ const CtaContent = ({ setStep }: OnBoardingCompleteProps) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <img
-          src="/images/confeti_3d_logo21.svg"
-          className={styles.logoImage}
-          alt="confeti logo"
+        <Lottie
+          loop
+          play
+          animationData={clearLottieAssetBasePath(loginLogoAnimation)}
+          className={styles.logoLottie}
         />
       </motion.div>
 
