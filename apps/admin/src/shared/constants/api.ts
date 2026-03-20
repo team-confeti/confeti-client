@@ -7,10 +7,14 @@ export const END_POINT = {
   PUT_FESTIVAL: '/admin/performances/festivals',
   GET_FESTIVAL_DETAIL: (festivalId: number) =>
     `/admin/performances/festivals/${festivalId}`,
+  DELETE_FESTIVAL: (festivalId: number) =>
+    `/admin/performances/festivals/${festivalId}`,
 
   GET_CONCERTS: '/admin/performances/concerts',
   PUT_CONCERT: '/admin/performances/concerts',
   GET_CONCERT_DETAIL: (concertId: number) =>
+    `/admin/performances/concerts/${concertId}`,
+  DELETE_CONCERT: (concertId: number) =>
     `/admin/performances/concerts/${concertId}`,
 
   GET_DRAFTS: '/admin/performances/drafts',
