@@ -51,34 +51,40 @@ const PerformanceInfo = ({
   return (
     <section className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <h2 className={styles.sectionTitle}>
-            {PERFORMANCE_LABEL.PERFORMANCE_INFO}
-          </h2>
-          <LikeButton
-            className={styles.likeButton}
-            isFavorite={isFavorite}
-            onLikeToggle={handleLike}
-            isLoggedIn={!!getAccessToken()}
-          />
-        </div>
+        <section className={styles.contentContainer}>
+          <div className={styles.header}>
+            <h2 className={styles.sectionTitle}>
+              {PERFORMANCE_LABEL.PERFORMANCE_INFO}
+            </h2>
+            <LikeButton
+              className={styles.likeButton}
+              isFavorite={isFavorite}
+              onLikeToggle={handleLike}
+              isLoggedIn={!!getAccessToken()}
+            />
+          </div>
 
-        <div className={styles.detail}>
-          <div className={styles.detailItem}>
-            <div className={styles.detailTitle}>{PERFORMANCE_LABEL.PERIOD}</div>
-            <div className={styles.detailContent}>{formattedDate}</div>
-          </div>
-          <div className={styles.detailItem}>
-            <div className={styles.detailTitle}>{PERFORMANCE_LABEL.PLACE}</div>
-            <div className={styles.detailContent}>{area}</div>
-          </div>
-          <div className={styles.detailItem}>
-            <div className={styles.detailTitle}>
-              {PERFORMANCE_LABEL.TICKETING_DATE}
+          <div className={styles.detail}>
+            <div className={styles.detailItem}>
+              <div className={styles.detailTitle}>
+                {PERFORMANCE_LABEL.PERIOD}
+              </div>
+              <div className={styles.detailContent}>{formattedDate}</div>
             </div>
-            <div className={styles.detailContent}>{formattedReserveDate}</div>
+            <div className={styles.detailItem}>
+              <div className={styles.detailTitle}>
+                {PERFORMANCE_LABEL.PLACE}
+              </div>
+              <div className={styles.detailContent}>{area}</div>
+            </div>
+            <div className={styles.detailItem}>
+              <div className={styles.detailTitle}>
+                {PERFORMANCE_LABEL.TICKETING_DATE}
+              </div>
+              <div className={styles.detailContent}>{formattedReserveDate}</div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );
