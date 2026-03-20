@@ -4,29 +4,26 @@ import { formatDate } from '@confeti/utils';
 
 import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
-import type { PerformanceType } from '@shared/types/performance-type';
 
 import * as styles from './performance-info.css';
 
-interface Props {
+interface ConcertPerformanceInfoProps {
   id: number;
   startAt: string;
   endAt: string;
   area: string;
   reserveAt: string;
   isFavorite: boolean;
-  type: PerformanceType;
 }
 
-const PerformanceInfo = ({
+const ConcertPerformanceInfo = ({
   id,
   startAt,
   endAt,
   area,
   reserveAt,
   isFavorite,
-  type,
-}: Props) => {
+}: ConcertPerformanceInfoProps) => {
   const { mutate } = useLikeMutation();
   const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
   const formattedReserveDate = formatDate(
@@ -39,11 +36,11 @@ const PerformanceInfo = ({
       name: 'click_like_performance',
       params: {
         action,
-        target_type: type,
+        target_type: 'CONCERT',
         target_id: id,
       },
     });
-    mutate({ id, action, type });
+    mutate({ id, action, type: 'CONCERT' });
   };
 
   return (
@@ -80,4 +77,4 @@ const PerformanceInfo = ({
   );
 };
 
-export default PerformanceInfo;
+export default ConcertPerformanceInfo;

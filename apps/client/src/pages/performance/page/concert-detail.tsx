@@ -11,7 +11,7 @@ import { addRecentViewItem } from '@shared/utils/recent-view';
 import ConcertArtistSection from '@pages/performance/components/artist/concert-artist-section';
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
 import Location from '@pages/performance/components/location/location';
-import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
+import ConcertPerformanceInfo from '@pages/performance/components/performance-info/concert-performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
 
 const ConcertDetailPage = () => {
@@ -35,14 +35,13 @@ const ConcertDetailPage = () => {
         startAt={concert.startAt}
         onClickBack={() => window.history.back()}
       />
-      <PerformanceInfo
+      <ConcertPerformanceInfo
         id={concert.concertId}
         startAt={concert.startAt}
         endAt={concert.endAt}
         area={concert.area}
         reserveAt={concert.reserveAt}
         isFavorite={concert.isFavorite}
-        type="CONCERT"
       />
       <Spacing />
 

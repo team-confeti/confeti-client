@@ -10,7 +10,7 @@ import { addRecentViewItem } from '@shared/utils/recent-view';
 
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
 import Location from '@pages/performance/components/location/location';
-import PerformanceInfo from '@pages/performance/components/performance-info/performance-info';
+import FestivalPerformanceInfo from '@pages/performance/components/performance-info/festival-performance-info';
 import Reservation from '@pages/performance/components/reservation/reservation';
 
 import FestivalArtistSection from '../components/artist/festival-artist-section';
@@ -36,14 +36,13 @@ const FestivalDetailPage = () => {
         startAt={festival.startAt}
         onClickBack={() => window.history.back()}
       />
-      <PerformanceInfo
+      <FestivalPerformanceInfo
         id={festival.festivalId}
         startAt={festival.startAt}
         endAt={festival.endAt}
         area={festival.area}
         reserveAt={festival.reserveAt}
         isFavorite={festival.isFavorite}
-        type="FESTIVAL"
       />
       <Spacing />
 
