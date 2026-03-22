@@ -132,6 +132,7 @@ export type DateRequest = {
   festivalDateId?: number;
   festivalAt: string;
   openAt: string;
+  artistIds?: string[];
   stages?: StageRequest[];
 };
 
@@ -148,7 +149,6 @@ export type PutAdminFestivalRequest = {
   price: string;
   address: string;
   reservationUrls: ReservationUrlRequest[];
-  artistIds?: string[];
   dates?: DateRequest[];
 };
 

@@ -54,9 +54,14 @@ export const TimetableTab = ({
 
   // 타임테이블에 배정되지 않은 아티스트 목록
   const assignedArtistIds = new Set(
-    formData.timetableSlots.map((slot) => slot.artistId),
+    formData.timetableSlots
+      .filter((slot) => slot.date === selectedDay)
+      .map((slot) => slot.artistId),
   );
-  const unassignedArtists = formData.artists.filter(
+  const lineupArtistsForSelectedDay = formData.artists.filter(
+    (artist) => artist.festivalDates?.includes(selectedDay) ?? true,
+  );
+  const unassignedArtists = lineupArtistsForSelectedDay.filter(
     (artist) => !assignedArtistIds.has(artist.id),
   );
 

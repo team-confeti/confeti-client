@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { generateDateRange } from '@shared/utils';
+
 import type { ExistingPerformance, PerformanceFormData } from '../types';
 
 interface UsePerformanceFormProps {
@@ -12,44 +14,75 @@ const createInitialFormData = (
   existing: ExistingPerformance | null,
   initialPerformance?: ExistingPerformance | null,
   initialType?: 'Festival' | 'Concert',
-): PerformanceFormData => ({
-  type: existing?.type || initialPerformance?.type || initialType || 'Festival',
-  title: existing?.title || initialPerformance?.title || '',
-  startDate: existing?.startDate || initialPerformance?.startDate || '',
-  endDate: existing?.endDate || initialPerformance?.endDate || '',
-  ageRating:
-    existing?.ageRating || initialPerformance?.ageRating || '전체 관람가',
-  durationMinutes:
-    existing?.durationMinutes ?? initialPerformance?.durationMinutes ?? 120,
-  bookingSchedules:
-    existing?.bookingSchedules ?? initialPerformance?.bookingSchedules ?? [],
-  selectedTicketingPlatforms:
-    existing?.selectedTicketingPlatforms ??
-    initialPerformance?.selectedTicketingPlatforms ??
-    [],
-  venueName: existing?.venueName || initialPerformance?.venueName || '',
-  venueAddress:
-    existing?.venueAddress || initialPerformance?.venueAddress || '',
-  priceGrades: existing?.priceGrades ?? initialPerformance?.priceGrades ?? [],
-  mainPoster: null,
-  logo: null,
-  mainPosterPreview:
-    existing?.mainPosterPreview ??
-    initialPerformance?.mainPosterPreview ??
-    null,
-  logoPreview: existing?.logoPreview ?? initialPerformance?.logoPreview ?? null,
-  stages: existing?.stages ?? initialPerformance?.stages ?? [],
-  artists: existing?.artists ?? initialPerformance?.artists ?? [],
-  artistSearch: '',
-  timetableSlots:
-    existing?.timetableSlots ?? initialPerformance?.timetableSlots ?? [],
-  festivalDateMetas:
-    existing?.festivalDateMetas ?? initialPerformance?.festivalDateMetas ?? [],
-  publishedPerformanceId:
-    existing?.publishedPerformanceId ??
-    initialPerformance?.publishedPerformanceId ??
-    null,
-});
+): PerformanceFormData => {
+  const type =
+    existing?.type || initialPerformance?.type || initialType || 'Festival';
+  const startDate = existing?.startDate || initialPerformance?.startDate || '';
+  const endDate = existing?.endDate || initialPerformance?.endDate || '';
+  const festivalDates =
+    type === 'Festival' ? generateDateRange(startDate, endDate) : [];
+  const artists = (existing?.artists ?? initialPerformance?.artists ?? []).map(
+    (artist) => {
+      if (type !== 'Festival') {
+        return artist;
+      }
+
+      const selectedFestivalDates =
+        artist.festivalDates?.filter((date) => festivalDates.includes(date)) ??
+        [];
+
+      return {
+        ...artist,
+        festivalDates:
+          selectedFestivalDates.length > 0
+            ? selectedFestivalDates
+            : festivalDates,
+      };
+    },
+  );
+
+  return {
+    type,
+    title: existing?.title || initialPerformance?.title || '',
+    startDate,
+    endDate,
+    ageRating:
+      existing?.ageRating || initialPerformance?.ageRating || '전체 관람가',
+    durationMinutes:
+      existing?.durationMinutes ?? initialPerformance?.durationMinutes ?? 120,
+    bookingSchedules:
+      existing?.bookingSchedules ?? initialPerformance?.bookingSchedules ?? [],
+    selectedTicketingPlatforms:
+      existing?.selectedTicketingPlatforms ??
+      initialPerformance?.selectedTicketingPlatforms ??
+      [],
+    venueName: existing?.venueName || initialPerformance?.venueName || '',
+    venueAddress:
+      existing?.venueAddress || initialPerformance?.venueAddress || '',
+    priceGrades: existing?.priceGrades ?? initialPerformance?.priceGrades ?? [],
+    mainPoster: null,
+    logo: null,
+    mainPosterPreview:
+      existing?.mainPosterPreview ??
+      initialPerformance?.mainPosterPreview ??
+      null,
+    logoPreview:
+      existing?.logoPreview ?? initialPerformance?.logoPreview ?? null,
+    stages: existing?.stages ?? initialPerformance?.stages ?? [],
+    artists,
+    artistSearch: '',
+    timetableSlots:
+      existing?.timetableSlots ?? initialPerformance?.timetableSlots ?? [],
+    festivalDateMetas:
+      existing?.festivalDateMetas ??
+      initialPerformance?.festivalDateMetas ??
+      [],
+    publishedPerformanceId:
+      existing?.publishedPerformanceId ??
+      initialPerformance?.publishedPerformanceId ??
+      null,
+  };
+};
 
 const S3_BASE_URL = 'https://confeti-s3-prod.s3.ap-northeast-2.amazonaws.com';
 const fetchImageAsFile = async (
@@ -112,6 +145,55 @@ export const usePerformanceForm = ({
 
     fetchExistingImages();
   }, [existingPerformance, initialPerformance]);
+
+  useEffect(() => {
+    if (formData.type !== 'Festival' || formData.artists.length === 0) {
+      return;
+    }
+
+    const festivalDates = generateDateRange(
+      formData.startDate,
+      formData.endDate,
+    );
+
+    if (festivalDates.length === 0) {
+      return;
+    }
+
+    setFormData((prev) => {
+      const normalizedArtists = prev.artists.map((artist) => {
+        const selectedFestivalDates =
+          artist.festivalDates?.filter((date) =>
+            festivalDates.includes(date),
+          ) ?? [];
+
+        if (selectedFestivalDates.length > 0) {
+          return artist.festivalDates?.length === selectedFestivalDates.length
+            ? artist
+            : {
+                ...artist,
+                festivalDates: selectedFestivalDates,
+              };
+        }
+
+        return {
+          ...artist,
+          festivalDates,
+        };
+      });
+
+      const hasUpdatedArtists = normalizedArtists.some(
+        (artist, index) => artist !== prev.artists[index],
+      );
+
+      return hasUpdatedArtists ? { ...prev, artists: normalizedArtists } : prev;
+    });
+  }, [
+    formData.endDate,
+    formData.startDate,
+    formData.type,
+    formData.artists.length,
+  ]);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

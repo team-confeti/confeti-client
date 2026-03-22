@@ -5,6 +5,7 @@ import { ArrowRight, Plus, Search, Trash2, X } from 'lucide-react';
 import { ARTIST_QUERY_OPTIONS } from '@shared/apis/artist-queries';
 import { Button, EmptyState, FormSection } from '@shared/components/common';
 import { mapArtistSearchToFormArtist } from '@shared/models/artist';
+import { formatDateShort } from '@shared/utils';
 import { getArtistArtworkUrl } from '@shared/utils/artist-artwork';
 
 import type { PerformanceArtist, PerformanceFormData } from '../types';
@@ -22,8 +23,10 @@ interface LineupTabProps {
   handleAddCustomArtist: () => void;
   handleRemoveArtist: (index: number) => void;
   handleArtistSearchChange: (value: string) => void;
+  handleToggleArtistFestivalDate: (artistId: number, date: string) => void;
   setActiveTab: (tab: 'basic' | 'detail' | 'lineup' | 'timetable') => void;
   isConcert: boolean;
+  daysArray: string[];
 }
 
 interface ArtistAvatarProps {
@@ -62,8 +65,10 @@ export const LineupTab = ({
   handleAddCustomArtist,
   handleRemoveArtist,
   handleArtistSearchChange,
+  handleToggleArtistFestivalDate,
   setActiveTab,
   isConcert,
+  daysArray,
 }: LineupTabProps) => {
   const [debouncedSearch, setDebouncedSearch] = useState(formData.artistSearch);
   const artistSearchContainerRef = useRef<HTMLDivElement | null>(null);
@@ -197,17 +202,67 @@ export const LineupTab = ({
             </div>
           )}
         </div>
+        {!isConcert && daysArray.length === 0 && (
+          <p className={styles.lineupGuideText}>
+            기본 정보에서 공연 시작일과 종료일을 먼저 입력하면 아티스트별 출연
+            일차를 선택할 수 있어요.
+          </p>
+        )}
+        {!isConcert &&
+          daysArray.length > 0 &&
+          formData.artists.length === 0 && (
+            <p className={styles.lineupGuideText}>
+              아티스트를 추가한 뒤 카드에서 출연 일차를 선택해주세요.
+            </p>
+          )}
         <div className={styles.artistList}>
           {formData.artists.map((artist, index) => (
-            <div key={index} className={styles.artistCard}>
-              <ArtistAvatar artist={artist} className={styles.artistAvatar} />
-              <span className={styles.artistName}>{artist.name}</span>
-              <button
-                onClick={() => handleRemoveArtist(index)}
-                className={styles.artistDeleteButton}
-              >
-                <X size={16} />
-              </button>
+            <div key={artist.id} className={styles.artistCard}>
+              <div className={styles.artistCardHeader}>
+                <ArtistAvatar artist={artist} className={styles.artistAvatar} />
+                <span className={styles.artistName}>{artist.name}</span>
+                <button
+                  onClick={() => handleRemoveArtist(index)}
+                  className={styles.artistDeleteButton}
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              {!isConcert && daysArray.length > 0 && (
+                <div className={styles.artistFestivalDateSection}>
+                  <span className={styles.artistFestivalDateSectionLabel}>
+                    출연 일차
+                  </span>
+                  <div className={styles.artistFestivalDateList}>
+                    {daysArray.map((date, dateIndex) => {
+                      const showSelectedFestivalDate =
+                        artist.festivalDates?.includes(date) ?? false;
+
+                      return (
+                        <button
+                          key={date}
+                          type="button"
+                          onClick={() =>
+                            handleToggleArtistFestivalDate(artist.id, date)
+                          }
+                          className={
+                            showSelectedFestivalDate
+                              ? styles.artistFestivalDateButtonActive
+                              : styles.artistFestivalDateButton
+                          }
+                        >
+                          <span className={styles.artistFestivalDateLabel}>
+                            DAY {dateIndex + 1}
+                          </span>
+                          <span className={styles.artistFestivalDateValue}>
+                            {formatDateShort(date)}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
           {formData.artists.length === 0 && (
