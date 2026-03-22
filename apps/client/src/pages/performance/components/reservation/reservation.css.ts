@@ -16,12 +16,20 @@ export const title = style({
 export const list = style({
   display: 'flex',
   gap: '2rem',
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
+  '::-webkit-scrollbar': {
+    display: 'none',
+  },
 });
 
 export const item = style({
   ...themeVars.display.flexColumn,
   alignItems: 'center',
   gap: '0.8rem',
+  flexShrink: 0,
 });
 
 export const logoButton = style({
