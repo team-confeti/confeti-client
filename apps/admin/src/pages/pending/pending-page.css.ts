@@ -11,7 +11,7 @@ export const container = style({
   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1)',
   display: 'flex',
   flexDirection: 'column',
-  height: '60rem',
+  height: '75rem',
 });
 
 export const header = style({

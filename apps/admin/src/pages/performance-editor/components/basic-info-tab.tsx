@@ -144,11 +144,7 @@ export const BasicInfoTab = ({
             type="tel"
             inputMode="numeric"
             pattern="[0-9]*"
-            value={
-              formData.durationMinutes > 0
-                ? String(formData.durationMinutes)
-                : ''
-            }
+            value={String(formData.durationMinutes)}
             onChange={(e) =>
               handleInputChange(
                 'durationMinutes',
