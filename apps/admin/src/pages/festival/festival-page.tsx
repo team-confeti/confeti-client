@@ -25,6 +25,10 @@ const FestivalPage = () => {
     navigate(`${PATH.PERFORMANCES.replace(':id', String(id))}?type=festival`);
   };
 
+  const handleAddFestival = () => {
+    navigate(`${PATH.PERFORMANCE_EDITOR.replace(':id', 'new')}?type=festival`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
@@ -32,14 +36,7 @@ const FestivalPage = () => {
           <h1 className={styles.pageTitle}>페스티벌</h1>
           <p className={styles.pageSubtitle}>등록된 페스티벌을 관리하세요.</p>
         </div>
-        <button
-          className={styles.addButton}
-          onClick={() =>
-            navigate(
-              `${PATH.PERFORMANCE_EDITOR.replace(':id', 'new')}?type=festival`,
-            )
-          }
-        >
+        <button className={styles.addButton} onClick={handleAddFestival}>
           <Plus size={16} />새 페스티벌 등록
         </button>
       </div>

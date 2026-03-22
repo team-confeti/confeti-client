@@ -65,6 +65,8 @@ export const END_POINT = {
   GET_FESTIVAL_TO_ADD: (cursor?: number) =>
     `/user/timetables/festivals${cursor ? `?cursor=${cursor}` : ''}`,
   FETCH_TIMETABLE_CREATION_HISTORY: '/user/timetables/history',
+  GET_TIMETABLE_EXISTS: (festivalId: number) =>
+    `/user/timetables/exists?festivalId=${festivalId}`,
   GET_TIMETABLE_ARCHIVE: (timetableId: number) =>
     `/user/timetables/${timetableId}/archive`,
   GET_TIMETABLE_DATE_ARCHIVE: (timetableId: number, festivalDateId: number) =>

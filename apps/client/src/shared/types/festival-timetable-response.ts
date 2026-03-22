@@ -26,11 +26,9 @@ export interface TimetableListResponse {
   timetables: TimetableItem[];
 }
 
-export interface FestivalIds {
-  festivals: festivalId[];
+export interface CreatedTimetableIdsResponse {
+  timetableIds: number[];
 }
-
-type festivalId = number;
 //타임 테이블 등록된 시간표
 export interface Artist {
   artistId: string;
@@ -66,6 +64,10 @@ export interface FestivalTimetableResponseExtended {
 
 export interface TimeTableCreationHistory {
   hasTimetableHistory: boolean;
+}
+
+export interface TimetableExistsResponse {
+  timetableId: number | null;
 }
 
 export interface TimetableDate {

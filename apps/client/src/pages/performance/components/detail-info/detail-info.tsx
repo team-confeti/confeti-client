@@ -1,5 +1,3 @@
-import { PERFORMANCE_LABEL } from '../../constant/performance';
-
 import * as styles from './detail-info.css';
 interface DetailInfoProps {
   title: string;
@@ -15,18 +13,18 @@ const DetailInfo = ({ title, time, ageRating, price }: DetailInfoProps) => {
     <section className={styles.container}>
       {/* 상세 정보 */}
       <section className={styles.section}>
-        <h2 className={styles.title}> {PERFORMANCE_LABEL.DETAIL_INFO}</h2>
+        <h2 className={styles.title}>상세 정보</h2>
         <div className={styles.content}>
           <div className={styles.detail}>
-            <div className={styles.label}>{PERFORMANCE_LABEL.NAME}</div>
+            <div className={styles.label}>공연 이름</div>
             <div className={styles.text}>{title}</div>
           </div>
           <div className={styles.detail}>
-            <div className={styles.label}> {PERFORMANCE_LABEL.TIME}</div>
+            <div className={styles.label}>공연 시간</div>
             <div className={styles.text}>{time}</div>
           </div>
           <div className={styles.detail}>
-            <div className={styles.label}> {PERFORMANCE_LABEL.AGERATING}</div>
+            <div className={styles.label}>관람 등급</div>
             <div className={styles.text}>{ageRating}</div>
           </div>
         </div>
@@ -34,7 +32,7 @@ const DetailInfo = ({ title, time, ageRating, price }: DetailInfoProps) => {
 
       {/* 티켓 정보 */}
       <section className={styles.section}>
-        <h2 className={styles.title}> {PERFORMANCE_LABEL.TICKET_INFO}</h2>
+        <h2 className={styles.title}>티켓 정보</h2>
         <div className={styles.priceContent}>
           {priceLines.map((line, index) => (
             <div key={index} className={styles.priceDetail}>

@@ -745,4 +745,14 @@ export const clickEvents = [
   {
     name: 'click_open_map',
   },
+  {
+    name: 'click_timetable_cta',
+    params: {
+      action: {
+        type: 'enum',
+        required: true,
+        oneOf: ['VIEW', 'CREATE'],
+      },
+    },
+  },
 ] as const satisfies ClickEventDefinitions;

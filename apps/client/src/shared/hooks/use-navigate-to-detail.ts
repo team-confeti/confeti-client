@@ -10,13 +10,19 @@ export const useNavigateToDetail = () => {
     const upperType = type.toUpperCase();
 
     switch (upperType) {
-      case 'CONCERT':
-        navigate(buildPath(routePath.CONCERT_DETAIL, { typeId }));
-        break;
+      case 'CONCERT': {
+        const concertId = typeId;
 
-      case 'FESTIVAL':
-        navigate(buildPath(routePath.FESTIVAL_DETAIL, { typeId }));
+        navigate(buildPath(routePath.CONCERT_DETAIL, { concertId }));
         break;
+      }
+
+      case 'FESTIVAL': {
+        const festivalId = typeId;
+
+        navigate(buildPath(routePath.FESTIVAL_DETAIL, { festivalId }));
+        break;
+      }
 
       default:
         console.warn(`Unknown detail type: ${type}`);

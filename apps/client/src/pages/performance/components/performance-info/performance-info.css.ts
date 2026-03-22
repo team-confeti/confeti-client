@@ -11,9 +11,18 @@ export const wrapper = style({
   ...themeVars.display.flexColumn,
 });
 
+export const contentContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  gap: '1.6rem',
+});
+
 export const header = style({
-  ...themeVars.display.flexBetweenAlignCenter,
-  marginBottom: '1.9rem',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
 });
 
 export const sectionTitle = style({
