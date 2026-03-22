@@ -5,6 +5,7 @@ interface Artist {
 
 interface FestivalTimes {
   timeBlockId: number;
+  name: string;
   startAt: string;
   endAt: string;
   isSelected: boolean;
