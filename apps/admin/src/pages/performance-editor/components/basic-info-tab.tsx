@@ -5,7 +5,6 @@ import {
   EmptyState,
   FormSection,
   Input,
-  Select,
 } from '@shared/components/common';
 import type { TicketVendorResponse } from '@shared/types/api';
 
@@ -134,23 +133,27 @@ export const BasicInfoTab = ({
           />
         </div>
         <div className={styles.formRow}>
-          <Select
+          <Input
             label="관람등급"
             value={formData.ageRating}
             onChange={(e) => handleInputChange('ageRating', e.target.value)}
-          >
-            <option value="전체 관람가">전체 관람가</option>
-            <option value="7세 이상">7세 이상</option>
-            <option value="12세 이상">12세 이상</option>
-            <option value="15세 이상">15세 이상</option>
-            <option value="19세 이상">19세 이상</option>
-          </Select>
+            placeholder="예. 전체 관람가, 15세 이상"
+          />
           <Input
             label="러닝 타임"
-            type="number"
-            value={formData.durationMinutes}
+            type="tel"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={
+              formData.durationMinutes > 0
+                ? String(formData.durationMinutes)
+                : ''
+            }
             onChange={(e) =>
-              handleInputChange('durationMinutes', Number(e.target.value))
+              handleInputChange(
+                'durationMinutes',
+                Number(e.target.value.replace(/\D/g, '') || 0),
+              )
             }
             placeholder="120"
           />

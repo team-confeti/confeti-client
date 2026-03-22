@@ -30,6 +30,16 @@ export const DetailInfoTab = ({
   handlePriceGradeChange,
   handleFileChange,
 }: DetailInfoTabProps) => {
+  const formatPrice = (price: string) => {
+    const numericPrice = price.replace(/\D/g, '');
+
+    if (!numericPrice) {
+      return '';
+    }
+
+    return `${Number(numericPrice).toLocaleString('ko-KR')}원`;
+  };
+
   return (
     <>
       <div className={styles.twoColumnRow}>
@@ -69,14 +79,21 @@ export const DetailInfoTab = ({
               <div className={styles.priceInputWrapper}>
                 <CircleDollarSign size={14} className={styles.priceIcon} />
                 <input
-                  type="text"
-                  value={grade.price}
+                  type="tel"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={formatPrice(grade.price).replace(/원$/, '')}
                   onChange={(e) =>
-                    handlePriceGradeChange(index, 'price', e.target.value)
+                    handlePriceGradeChange(
+                      index,
+                      'price',
+                      e.target.value.replace(/\D/g, ''),
+                    )
                   }
-                  placeholder="가격"
+                  placeholder="18,000"
                   className={styles.priceInput}
                 />
+                <span className={styles.priceSuffix}>원</span>
               </div>
               <button
                 onClick={() => handleRemovePriceGrade(index)}
