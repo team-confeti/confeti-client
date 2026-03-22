@@ -230,7 +230,7 @@ const PerformanceEditorContent = () => {
     handleAddCollabArtist,
     scheduleSynced,
     handleSyncSchedule,
-  } = useModals({ formData, setFormData });
+  } = useModals({ setFormData });
 
   // 날짜 배열 생성 (startDate ~ endDate)
   const daysArray = generateDateRange(formData.startDate, formData.endDate);
