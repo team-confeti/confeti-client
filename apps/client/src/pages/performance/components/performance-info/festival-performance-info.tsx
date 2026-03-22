@@ -1,9 +1,20 @@
+import { captureException } from '@sentry/react';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
 import { getAccessToken } from '@confeti/core/auth';
-import { Button, LikeButton } from '@confeti/design-system';
+import { HTTP_STATUS_CODE } from '@confeti/core/http';
+import { Button, LikeButton, toast } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
 import { logClickEvent } from '@shared/analytics/logging';
+import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
+import { routePath } from '@shared/router/path';
+import { buildPath } from '@shared/utils/build-path';
+import { isHTTPErrorStatus } from '@shared/utils/error';
+
+import { MAX_SELECTIONS } from '@pages/timetable/constants';
 
 import * as styles from './performance-info.css';
 
@@ -14,6 +25,7 @@ interface FestivalPerformanceInfoProps {
   area: string;
   reserveAt: string;
   isFavorite: boolean;
+  timetableId: number | null;
 }
 
 const FestivalPerformanceInfo = ({
@@ -23,8 +35,13 @@ const FestivalPerformanceInfo = ({
   area,
   reserveAt,
   isFavorite,
+  timetableId,
 }: FestivalPerformanceInfoProps) => {
   const { mutate } = useLikeMutation();
+  const { mutate: addTimeTableMutate } = useMutation({
+    ...TIMETABLE_MUTATION_OPTIONS.POST_TIMETABLE(),
+  });
+  const navigate = useNavigate();
   const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
   const formattedReserveDate = formatDate(
     reserveAt,
@@ -43,6 +60,46 @@ const FestivalPerformanceInfo = ({
     mutate({ id, action, type: 'FESTIVAL' });
   };
 
+  const handleTimeTableCtaClick = () => {
+    logClickEvent({
+      name: 'click_timetable_cta',
+      params: {
+        action: timetableId ? 'VIEW' : 'CREATE',
+      },
+    });
+
+    if (timetableId) {
+      navigate(buildPath(routePath.TIMETABLE_DETAIL, { id: timetableId }));
+    } else {
+      addTimeTableMutate([{ festivalId: id }], {
+        onSuccess: ({ timetableIds }) => {
+          navigate(
+            buildPath(routePath.TIMETABLE_DETAIL, {
+              id: timetableIds[0],
+            }),
+          );
+        },
+        onError: (error) => {
+          if (isHTTPErrorStatus(error, HTTP_STATUS_CODE.CONFLICT)) {
+            toast({
+              text: `페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`,
+              icon: 'warning',
+            });
+          }
+          captureException('페스티벌 타임테이블 생성 실패', {
+            extra: {
+              error,
+            },
+          });
+          toast({
+            text: `타임테이블 생성에 실패했어요. 잠시 후 다시 시도해주세요.`,
+            icon: 'warning',
+          });
+        },
+      });
+    }
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.wrapper}>
@@ -53,7 +110,7 @@ const FestivalPerformanceInfo = ({
               className={styles.likeButton}
               isFavorite={isFavorite}
               onLikeToggle={handleLike}
-              isLoggedIn={!!getAccessToken()}
+              isLoggedIn={Boolean(getAccessToken())}
             />
           </div>
 
@@ -71,8 +128,11 @@ const FestivalPerformanceInfo = ({
               <div className={styles.detailContent}>{formattedReserveDate}</div>
             </div>
           </div>
-
-          <Button text="내 타임테이블 만들기" variant="add" />
+          <Button
+            text={timetableId ? '내 타임테이블 보기' : '내 타임테이블 만들기'}
+            variant="add"
+            onClick={handleTimeTableCtaClick}
+          />
         </section>
       </div>
     </section>

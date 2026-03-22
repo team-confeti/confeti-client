@@ -9,6 +9,7 @@ import {
   FestivalTimetableResponseExtended,
   TimeTableCreationHistory,
   TimetableDatesResponse,
+  TimetableExistsResponse,
 } from '@shared/types/festival-timetable-response';
 import { GetFestivalToAddResponse } from '@shared/types/get-festival-to-add-response';
 
@@ -44,6 +45,11 @@ export const FESTIVAL_TIMETABLE_QUERY_OPTIONS = {
       queryFn: () => getTimetableDates(timetableId),
       enabled: timetableId !== undefined,
     }),
+  TIMETABLE_EXISTS: (festivalId: number) =>
+    queryOptions({
+      queryKey: FESTIVAL_TIMETABLE_QUERY_KEY.TIMETABLE_EXISTS(festivalId),
+      queryFn: () => getTimetableExists(festivalId),
+    }),
 };
 
 export const getFestivalTimetable = async (
@@ -77,6 +83,15 @@ export const getTimetableDates = async (
 ): Promise<TimetableDatesResponse> => {
   const response = await get<BaseResponse<TimetableDatesResponse>>(
     END_POINT.GET_TIMETABLE_DATES(timetableId),
+  );
+  return response.data;
+};
+
+export const getTimetableExists = async (
+  festivalId: number,
+): Promise<TimetableExistsResponse> => {
+  const response = await get<BaseResponse<TimetableExistsResponse>>(
+    END_POINT.GET_TIMETABLE_EXISTS(festivalId),
   );
   return response.data;
 };

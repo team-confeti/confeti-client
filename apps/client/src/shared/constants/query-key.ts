@@ -56,6 +56,11 @@ export const FESTIVAL_TIMETABLE_QUERY_KEY = {
     'dates',
     timetableId,
   ],
+  TIMETABLE_EXISTS: (festivalId: number) => [
+    ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
+    'exists',
+    festivalId,
+  ],
   TIMETABLE_ARCHIVE: (timetableId: number) => [
     ...FESTIVAL_TIMETABLE_QUERY_KEY.ALL,
     'archive',

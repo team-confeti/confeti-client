@@ -15,10 +15,9 @@ import ConcertPerformanceInfo from '@pages/performance/components/performance-in
 import Reservation from '@pages/performance/components/reservation/reservation';
 
 const ConcertDetailPage = () => {
-  const { typeId } = useParams<{ typeId: string }>();
-  const parsedConcertId = typeId ? Number(typeId) : 0;
+  const { concertId } = useParams<{ concertId: string }>();
   const { data: concertDetail } = useSuspenseQuery(
-    PERFORMANCE_QUERY_OPTIONS.CONCERT(parsedConcertId),
+    PERFORMANCE_QUERY_OPTIONS.CONCERT(Number(concertId)),
   );
   const { concert } = concertDetail;
 

@@ -6,7 +6,7 @@ import { patch, post } from '@shared/apis/config/instance';
 import { END_POINT } from '@shared/constants/api';
 import { TIMETABLE_MUTATION_KEY } from '@shared/constants/mutation-key';
 import {
-  FestivalIds,
+  CreatedTimetableIdsResponse,
   FestivalTimetableResponse,
 } from '@shared/types/festival-timetable-response';
 import { TimeBlock, TimeBlockResponse } from '@shared/types/timetable-response';
@@ -40,8 +40,13 @@ export const patchTimetableTimeBlocks = async (
 
 export const postAddTimetable = async (
   festivals: { festivalId: number }[],
-): Promise<void> => {
-  await post<BaseResponse<FestivalIds>>(END_POINT.POST_TIMETABLE, {
-    festivals,
-  });
+): Promise<CreatedTimetableIdsResponse> => {
+  const response = await post<BaseResponse<CreatedTimetableIdsResponse>>(
+    END_POINT.POST_TIMETABLE,
+    {
+      festivals,
+    },
+  );
+
+  return response.data;
 };

@@ -1,11 +1,12 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 import { Spacing } from '@confeti/design-system';
 
 import { LogShowEvent } from '@shared/analytics/logging';
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
 import { FloatingButtonContainer, Footer, Hero } from '@shared/components';
+import { TimetableExistsResponse } from '@shared/types/festival-timetable-response';
 import { addRecentViewItem } from '@shared/utils/recent-view';
 
 import DetailInfo from '@pages/performance/components/detail-info/detail-info';
@@ -16,48 +17,51 @@ import Reservation from '@pages/performance/components/reservation/reservation';
 import FestivalArtistSection from '../components/artist/festival-artist-section';
 
 const FestivalDetailPage = () => {
-  const { typeId } = useParams<{ typeId: string }>();
-  const parsedFestivalId = typeId ? Number(typeId) : 0;
+  const { festivalId } = useParams<{ festivalId: string }>();
+  const timetableExistsData = useLoaderData<TimetableExistsResponse>();
   const { data: festivalDetail } = useSuspenseQuery(
-    PERFORMANCE_QUERY_OPTIONS.FESTIVAL(parsedFestivalId),
+    PERFORMANCE_QUERY_OPTIONS.FESTIVAL(Number(festivalId)),
   );
-  const { festival } = festivalDetail;
 
-  if (festival.festivalId) {
-    addRecentViewItem({ type: 'festival', typeId: festival.festivalId });
+  if (festivalDetail.festival.festivalId) {
+    addRecentViewItem({
+      type: 'festival',
+      typeId: festivalDetail.festival.festivalId,
+    });
   }
 
   return (
     <>
       <LogShowEvent name="show_festival_detail" />
       <Hero
-        posterUrl={festival.posterUrl}
-        title={festival.title}
-        startAt={festival.startAt}
+        posterUrl={festivalDetail.festival.posterUrl}
+        title={festivalDetail.festival.title}
+        startAt={festivalDetail.festival.startAt}
         onClickBack={() => window.history.back()}
       />
       <FestivalPerformanceInfo
-        id={festival.festivalId}
-        startAt={festival.startAt}
-        endAt={festival.endAt}
-        area={festival.area}
-        reserveAt={festival.reserveAt}
-        isFavorite={festival.isFavorite}
+        id={festivalDetail.festival.festivalId}
+        startAt={festivalDetail.festival.startAt}
+        endAt={festivalDetail.festival.endAt}
+        area={festivalDetail.festival.area}
+        reserveAt={festivalDetail.festival.reserveAt}
+        isFavorite={festivalDetail.festival.isFavorite}
+        timetableId={timetableExistsData?.timetableId ?? null}
       />
       <Spacing />
 
-      <Reservation reservations={festival.reservations} />
+      <Reservation reservations={festivalDetail.festival.reservations} />
       <Spacing />
 
       <DetailInfo
-        title={festival.title}
-        time={festival.time}
-        ageRating={festival.ageRating}
-        price={festival.price}
+        title={festivalDetail.festival.title}
+        time={festivalDetail.festival.time}
+        ageRating={festivalDetail.festival.ageRating}
+        price={festivalDetail.festival.price}
       />
 
       {/* 지도 섹션 */}
-      <Location address={festival.address} />
+      <Location address={festivalDetail.festival.address} />
 
       <Spacing />
       <FestivalArtistSection artists={festivalDetail.festivalDates} />
