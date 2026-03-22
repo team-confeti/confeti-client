@@ -15,7 +15,6 @@ const createInitialFormData = (
 ): PerformanceFormData => ({
   type: existing?.type || initialPerformance?.type || initialType || 'Festival',
   title: existing?.title || initialPerformance?.title || '',
-  subtitle: existing?.subtitle || initialPerformance?.subtitle || '',
   startDate: existing?.startDate || initialPerformance?.startDate || '',
   endDate: existing?.endDate || initialPerformance?.endDate || '',
   ageRating:

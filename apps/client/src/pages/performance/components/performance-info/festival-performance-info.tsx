@@ -83,7 +83,6 @@ const FestivalPerformanceInfo = ({
           if (isHTTPErrorStatus(error, HTTP_STATUS_CODE.CONFLICT)) {
             toast({
               text: `페스티벌은 ${MAX_SELECTIONS}개까지만 추가할 수 있어요.`,
-              icon: 'warning',
             });
           }
           captureException('페스티벌 타임테이블 생성 실패', {
@@ -92,8 +91,7 @@ const FestivalPerformanceInfo = ({
             },
           });
           toast({
-            text: `타임테이블 생성에 실패했어요. 잠시 후 다시 시도해주세요.`,
-            icon: 'warning',
+            text: `타임테이블 생성에 실패했어요.\n 잠시 후 다시 시도해주세요.`,
           });
         },
       });

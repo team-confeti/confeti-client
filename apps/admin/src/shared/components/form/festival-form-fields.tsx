@@ -45,13 +45,6 @@ export const FestivalBasicFormField = ({
           placeholder="페스티벌 제목을 입력해주세요"
           error={errors.title?.message}
         />
-        <FormInput
-          {...register('subTitle')}
-          type="text"
-          label="페스티벌 부제목"
-          placeholder="페스티벌 부제목을 입력해주세요"
-          error={errors.subTitle?.message}
-        />
       </div>
       <div className={styles.inputContainer}>
         <FormInput
