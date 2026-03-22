@@ -110,6 +110,7 @@ export type AdminFestivalDetailResponse = {
   createdAt: string;
   updatedAt: string;
   dates: DateResponse[];
+  reservationUrls: ReservationUrlResponse[];
 };
 
 // Request
