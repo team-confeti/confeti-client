@@ -243,9 +243,18 @@ export const artistList = style({
   marginTop: '1.6rem',
 });
 
+export const lineupGuideText = style({
+  marginTop: '1.2rem',
+  fontSize: '1.4rem',
+  fontWeight: themeVars.fontWeight.regular,
+  color: adminVars.slate600tw,
+  lineHeight: '2rem',
+  letterSpacing: '-0.011em',
+});
+
 export const artistCard = style({
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
   gap: '1.2rem',
   padding: '1.6rem',
   backgroundColor: themeVars.color.white,
@@ -256,6 +265,13 @@ export const artistCard = style({
   ':hover': {
     backgroundColor: themeVars.color.gray50,
   },
+});
+
+export const artistCardHeader = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1.2rem',
+  width: '100%',
 });
 
 export const artistAvatar = style({
@@ -305,6 +321,67 @@ export const artistDeleteButton = style({
     backgroundColor: adminVars.red100,
     color: themeVars.color.red600,
   },
+});
+
+export const artistFestivalDateList = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '0.8rem',
+});
+
+export const artistFestivalDateSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  width: '100%',
+});
+
+export const artistFestivalDateSectionLabel = style({
+  fontSize: '1.3rem',
+  fontWeight: themeVars.fontWeight.medium,
+  color: adminVars.slate600tw,
+  letterSpacing: '-0.01em',
+});
+
+const artistFestivalDateButtonBase = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  padding: '0.8rem 1.2rem',
+  borderRadius: '9999px',
+  backgroundColor: themeVars.color.white,
+  border: `1px solid ${themeVars.color.gray300}`,
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+} as const;
+
+export const artistFestivalDateButton = style({
+  ...artistFestivalDateButtonBase,
+  color: adminVars.slate600tw,
+
+  ':hover': {
+    borderColor: themeVars.color.slate700,
+    backgroundColor: themeVars.color.gray50,
+  },
+});
+
+export const artistFestivalDateButtonActive = style({
+  ...artistFestivalDateButtonBase,
+  backgroundColor: themeVars.color.slate900,
+  borderColor: themeVars.color.slate900,
+  color: themeVars.color.white,
+});
+
+export const artistFestivalDateLabel = style({
+  fontSize: '1.2rem',
+  fontWeight: themeVars.fontWeight.bold,
+  letterSpacing: '-0.01em',
+});
+
+export const artistFestivalDateValue = style({
+  fontSize: '1.3rem',
+  fontWeight: themeVars.fontWeight.medium,
+  letterSpacing: '-0.01em',
 });
 
 // Timetable Navigation

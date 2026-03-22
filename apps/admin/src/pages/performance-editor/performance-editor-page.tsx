@@ -192,6 +192,7 @@ const PerformanceEditorContent = () => {
     handleAddCustomArtist,
     handleRemoveArtist,
     handleArtistSearchChange,
+    handleToggleArtistFestivalDate,
   } = useArtistManagement({ formData, setFormData });
 
   const {
@@ -639,8 +640,10 @@ const PerformanceEditorContent = () => {
               handleAddCustomArtist={handleAddCustomArtist}
               handleRemoveArtist={handleRemoveArtist}
               handleArtistSearchChange={handleArtistSearchChange}
+              handleToggleArtistFestivalDate={handleToggleArtistFestivalDate}
               setActiveTab={handleTabChange}
               isConcert={isConcert}
+              daysArray={daysArray}
             />
           )}
           {currentActiveTab === 'timetable' && (

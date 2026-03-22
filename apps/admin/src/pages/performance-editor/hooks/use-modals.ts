@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
+import { generateDateRange } from '@shared/utils';
+
 import type { PerformanceFormData, TimetableSlot } from '../types';
 
 interface UseModalsProps {
@@ -7,7 +9,7 @@ interface UseModalsProps {
   setFormData: Dispatch<SetStateAction<PerformanceFormData>>;
 }
 
-export const useModals = ({ setFormData }: UseModalsProps) => {
+export const useModals = ({ formData, setFormData }: UseModalsProps) => {
   // Timeslot modal state
   const [showTimeslotModal, setShowTimeslotModal] = useState(false);
   const [editingSlot, setEditingSlot] = useState<TimetableSlot | null>(null);
@@ -72,6 +74,7 @@ export const useModals = ({ setFormData }: UseModalsProps) => {
     const newArtist = {
       id: Date.now(),
       name: collabArtistName.trim(),
+      festivalDates: generateDateRange(formData.startDate, formData.endDate),
     };
 
     setFormData((prev) => ({
