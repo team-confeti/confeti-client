@@ -5,6 +5,7 @@ import { themeVars } from '@confeti/design-system/styles';
 export const wrapper = style({
   display: 'flex',
   justifyContent: 'space-between',
+  padding: '1rem 0',
 });
 
 export const content = style({

@@ -100,7 +100,7 @@ const MyProfile = () => {
       <Box
         title="My Artist"
         onShowMore={
-          artistData.artists.length > 3
+          artistData.artists.length >= 1
             ? handleNavigateFavoriteArtist
             : undefined
         }
