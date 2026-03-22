@@ -1,15 +1,12 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import { generateDateRange } from '@shared/utils';
-
 import type { PerformanceFormData, TimetableSlot } from '../types';
 
 interface UseModalsProps {
-  formData: PerformanceFormData;
   setFormData: Dispatch<SetStateAction<PerformanceFormData>>;
 }
 
-export const useModals = ({ formData, setFormData }: UseModalsProps) => {
+export const useModals = ({ setFormData }: UseModalsProps) => {
   // Timeslot modal state
   const [showTimeslotModal, setShowTimeslotModal] = useState(false);
   const [editingSlot, setEditingSlot] = useState<TimetableSlot | null>(null);
@@ -74,12 +71,12 @@ export const useModals = ({ formData, setFormData }: UseModalsProps) => {
     const newArtist = {
       id: Date.now(),
       name: collabArtistName.trim(),
-      festivalDates: generateDateRange(formData.startDate, formData.endDate),
+      festivalDates: [],
     };
 
     setFormData((prev) => ({
       ...prev,
-      artists: [...prev.artists, newArtist],
+      artists: [newArtist, ...prev.artists],
     }));
 
     handleCloseCollabModal();

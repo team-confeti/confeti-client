@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import { generateDateRange } from '@shared/utils';
-
 import type { PerformanceArtist, PerformanceFormData } from '../types';
 
 interface UseArtistManagementProps {
@@ -14,21 +12,19 @@ export const useArtistManagement = ({
   setFormData,
 }: UseArtistManagementProps) => {
   const [showArtistDropdown, setShowArtistDropdown] = useState(false);
-  const festivalDates = generateDateRange(formData.startDate, formData.endDate);
-
   const getDefaultFestivalDates = () =>
-    formData.type === 'Festival' ? festivalDates : undefined;
+    formData.type === 'Festival' ? [] : undefined;
 
   const handleAddArtist = (artist: PerformanceArtist) => {
     if (!formData.artists.find((a) => a.id === artist.id)) {
       setFormData((prev) => ({
         ...prev,
         artists: [
-          ...prev.artists,
           {
             ...artist,
             festivalDates: getDefaultFestivalDates(),
           },
+          ...prev.artists,
         ],
         artistSearch: '',
       }));
@@ -48,7 +44,7 @@ export const useArtistManagement = ({
     ) {
       setFormData((prev) => ({
         ...prev,
-        artists: [...prev.artists, customArtist],
+        artists: [customArtist, ...prev.artists],
         artistSearch: '',
       }));
       setShowArtistDropdown(false);
