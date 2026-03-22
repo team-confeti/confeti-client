@@ -10,6 +10,17 @@ interface UsePerformanceFormProps {
   initialType?: 'Festival' | 'Concert';
 }
 
+const normalizeFestivalDateMetas = (
+  festivalDateMetas: PerformanceFormData['festivalDateMetas'],
+  festivalDates: string[],
+) =>
+  festivalDates.map(
+    (date) =>
+      festivalDateMetas.find(
+        (festivalDateMeta) => festivalDateMeta.date === date,
+      ) ?? { date, openAt: '' },
+  );
+
 const createInitialFormData = (
   existing: ExistingPerformance | null,
   initialPerformance?: ExistingPerformance | null,
@@ -21,6 +32,8 @@ const createInitialFormData = (
   const endDate = existing?.endDate || initialPerformance?.endDate || '';
   const festivalDates =
     type === 'Festival' ? generateDateRange(startDate, endDate) : [];
+  const initialFestivalDateMetas =
+    existing?.festivalDateMetas ?? initialPerformance?.festivalDateMetas ?? [];
   const artists = (existing?.artists ?? initialPerformance?.artists ?? []).map(
     (artist) => {
       if (type !== 'Festival') {
@@ -71,9 +84,9 @@ const createInitialFormData = (
     timetableSlots:
       existing?.timetableSlots ?? initialPerformance?.timetableSlots ?? [],
     festivalDateMetas:
-      existing?.festivalDateMetas ??
-      initialPerformance?.festivalDateMetas ??
-      [],
+      type === 'Festival'
+        ? normalizeFestivalDateMetas(initialFestivalDateMetas, festivalDates)
+        : [],
     publishedPerformanceId:
       existing?.publishedPerformanceId ??
       initialPerformance?.publishedPerformanceId ??
@@ -144,6 +157,50 @@ export const usePerformanceForm = ({
   }, [existingPerformance, initialPerformance]);
 
   useEffect(() => {
+    if (formData.type !== 'Festival') {
+      if (formData.festivalDateMetas.length === 0) {
+        return;
+      }
+
+      setFormData((prev) =>
+        prev.festivalDateMetas.length === 0
+          ? prev
+          : { ...prev, festivalDateMetas: [] },
+      );
+      return;
+    }
+
+    const festivalDates = generateDateRange(
+      formData.startDate,
+      formData.endDate,
+    );
+
+    setFormData((prev) => {
+      const normalizedFestivalDateMetas = normalizeFestivalDateMetas(
+        prev.festivalDateMetas,
+        festivalDates,
+      );
+
+      const isFestivalDateMetasUnchanged =
+        normalizedFestivalDateMetas.length === prev.festivalDateMetas.length &&
+        normalizedFestivalDateMetas.every((festivalDateMeta, index) => {
+          const prevFestivalDateMeta = prev.festivalDateMetas[index];
+
+          return (
+            prevFestivalDateMeta?.date === festivalDateMeta.date &&
+            prevFestivalDateMeta?.openAt === festivalDateMeta.openAt &&
+            prevFestivalDateMeta?.festivalDateId ===
+              festivalDateMeta.festivalDateId
+          );
+        });
+
+      return isFestivalDateMetasUnchanged
+        ? prev
+        : { ...prev, festivalDateMetas: normalizedFestivalDateMetas };
+    });
+  }, [formData.endDate, formData.startDate, formData.type]);
+
+  useEffect(() => {
     if (formData.type !== 'Festival' || formData.artists.length === 0) {
       return;
     }
@@ -189,9 +246,39 @@ export const usePerformanceForm = ({
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleFestivalDateOpenAtChange = (date: string, openAt: string) => {
+    setFormData((prev) => {
+      const festivalDates = generateDateRange(prev.startDate, prev.endDate);
+      const normalizedFestivalDateMetas = normalizeFestivalDateMetas(
+        prev.festivalDateMetas,
+        festivalDates,
+      );
+      const nextFestivalDateMetas = normalizedFestivalDateMetas.map(
+        (festivalDateMeta) =>
+          festivalDateMeta.date === date
+            ? { ...festivalDateMeta, openAt }
+            : festivalDateMeta,
+      );
+
+      const isUnchanged = nextFestivalDateMetas.every(
+        (festivalDateMeta, index) =>
+          festivalDateMeta.date === normalizedFestivalDateMetas[index]?.date &&
+          festivalDateMeta.openAt ===
+            normalizedFestivalDateMetas[index]?.openAt &&
+          festivalDateMeta.festivalDateId ===
+            normalizedFestivalDateMetas[index]?.festivalDateId,
+      );
+
+      return isUnchanged
+        ? prev
+        : { ...prev, festivalDateMetas: nextFestivalDateMetas };
+    });
+  };
+
   return {
     formData,
     setFormData,
     handleInputChange,
+    handleFestivalDateOpenAtChange,
   };
 };

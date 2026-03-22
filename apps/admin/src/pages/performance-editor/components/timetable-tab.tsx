@@ -14,7 +14,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { Clock, Plus, Search, Trash2 } from 'lucide-react';
 
-import { EmptyState } from '@shared/components/common';
+import { EmptyState, Input } from '@shared/components/common';
 import { formatDateShort } from '@shared/utils';
 
 import type { PerformanceFormData, TimetableSlot } from '../types';
@@ -34,6 +34,7 @@ interface TimetableTabProps {
   handleDragEnd: (event: import('@dnd-kit/core').DragEndEvent) => void;
   handleOpenTimeslotModal: (slot: TimetableSlot) => void;
   handleOpenCollabModal: () => void;
+  handleFestivalDateOpenAtChange: (date: string, openAt: string) => void;
 }
 
 export const TimetableTab = ({
@@ -49,8 +50,12 @@ export const TimetableTab = ({
   handleDragEnd,
   handleOpenTimeslotModal,
   handleOpenCollabModal,
+  handleFestivalDateOpenAtChange,
 }: TimetableTabProps) => {
   const [timetableArtistSearch, setTimetableArtistSearch] = useState('');
+  const selectedFestivalDateMeta = formData.festivalDateMetas.find(
+    (festivalDateMeta) => festivalDateMeta.date === selectedDay,
+  );
 
   // 타임테이블에 배정되지 않은 아티스트 목록
   const assignedArtistIds = new Set(
@@ -298,6 +303,28 @@ export const TimetableTab = ({
             </div>
           )}
         </div>
+        {selectedDay && (
+          <div className={styles.ticketOpenAtPanel}>
+            <div className={styles.ticketOpenAtMeta}>
+              <span className={styles.ticketOpenAtTitle}>티켓 오픈 시간</span>
+              <span className={styles.ticketOpenAtDate}>
+                {formatDateShort(selectedDay)} 기준
+              </span>
+            </div>
+            <div className={styles.ticketOpenAtField}>
+              <Input
+                type="time"
+                value={selectedFestivalDateMeta?.openAt ?? ''}
+                onChange={(e) =>
+                  handleFestivalDateOpenAtChange(selectedDay, e.target.value)
+                }
+              />
+              <p className={styles.ticketOpenAtHint}>
+                비워두면 첫 공연 시작 시간으로 자동 저장돼요.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Body: Artist Panel + Stage Grid */}
