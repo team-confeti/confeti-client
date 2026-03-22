@@ -176,22 +176,48 @@ export const mapFestivalDetailToExistingPerformance = (
 ): ExistingPerformance => {
   const artistMap = new Map<
     string,
-    { id: number; name: string; artworkUrl?: string }
+    { id: number; name: string; artworkUrl?: string; festivalDates: string[] }
   >();
   const stagesById = new Map<
     string,
     { name: string; order?: number; festivalStageId?: number }
   >();
+  const addArtistToMap = (
+    artistId: string,
+    name: string,
+    festivalAt: string,
+    artworkUrl?: string,
+  ) => {
+    const existingArtist = artistMap.get(artistId);
+    const festivalDate = extractDate(festivalAt);
+
+    if (!existingArtist) {
+      artistMap.set(artistId, {
+        id: Number(artistId),
+        name,
+        artworkUrl,
+        festivalDates: [festivalDate],
+      });
+      return;
+    }
+
+    if (!existingArtist.festivalDates.includes(festivalDate)) {
+      existingArtist.festivalDates.push(festivalDate);
+    }
+
+    if (!existingArtist.artworkUrl && artworkUrl) {
+      existingArtist.artworkUrl = artworkUrl;
+    }
+  };
 
   festival.dates?.forEach((date) => {
     date.artists?.forEach((artist) => {
-      if (!artistMap.has(artist.artistId)) {
-        artistMap.set(artist.artistId, {
-          id: Number(artist.artistId),
-          name: artist.name,
-          artworkUrl: artist.artworkUrl || undefined,
-        });
-      }
+      addArtistToMap(
+        artist.artistId,
+        artist.name,
+        date.festivalAt,
+        artist.artworkUrl || undefined,
+      );
     });
 
     date.stages?.forEach((stage) => {
@@ -204,6 +230,17 @@ export const mapFestivalDetailToExistingPerformance = (
           festivalStageId: stage.festivalStageId,
         });
       }
+
+      stage.times.forEach((time) => {
+        time.artists.forEach((artist) => {
+          addArtistToMap(
+            artist.artistId,
+            artist.name,
+            date.festivalAt,
+            artist.artworkUrl || undefined,
+          );
+        });
+      });
     });
   });
 

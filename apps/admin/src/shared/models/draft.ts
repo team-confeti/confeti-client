@@ -24,7 +24,12 @@ type PerformanceDataJson = {
   price?: string;
   bookingSchedules?: Array<{ round: string; startDate: string }>;
   priceGrades?: Array<{ grade: string; price: string }>;
-  artists?: Array<{ id: number; name: string; artworkUrl?: string }>;
+  artists?: Array<{
+    id: number;
+    name: string;
+    artworkUrl?: string;
+    festivalDates?: string[];
+  }>;
   selectedTicketingPlatforms?: Array<{
     id: number;
     name: string;

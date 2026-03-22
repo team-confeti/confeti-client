@@ -63,7 +63,7 @@ const getFestivalDates = (
 ): PutAdminFestivalRequest['dates'] => {
   const days = generateDateRange(formData.startDate, formData.endDate);
 
-  if (days.length === 0 || formData.timetableSlots.length === 0) {
+  if (days.length === 0) {
     return [];
   }
 
@@ -74,6 +74,21 @@ const getFestivalDates = (
     const slotsForDate = formData.timetableSlots.filter(
       (slot) => slot.date === date,
     );
+    const stages = formData.stages
+      .map((stage, stageIndex) => ({
+        festivalStageId: stage.festivalStageId,
+        name: stage.name,
+        order: stage.order ?? stageIndex,
+        times: slotsForDate
+          .filter((slot) => slot.stageIndex === stageIndex)
+          .map((slot) => ({
+            festivalTimeId: slot.festivalTimeId,
+            startAt: formatDateTime(date, slot.startTime),
+            endAt: formatDateTime(date, slot.endTime),
+            artistIds: [String(slot.artistId)],
+          })),
+      }))
+      .filter((stage) => stage.times.length > 0);
 
     return {
       festivalDateId: festivalDateMeta?.festivalDateId,
@@ -81,22 +96,10 @@ const getFestivalDates = (
       openAt: festivalDateMeta?.openAt
         ? formatDateTime(date, festivalDateMeta.openAt)
         : getFestivalOpenAt(date, slotsForDate),
-      stages:
-        formData.stages.length > 0
-          ? formData.stages.map((stage, stageIndex) => ({
-              festivalStageId: stage.festivalStageId,
-              name: stage.name,
-              order: stage.order ?? stageIndex,
-              times: slotsForDate
-                .filter((slot) => slot.stageIndex === stageIndex)
-                .map((slot) => ({
-                  festivalTimeId: slot.festivalTimeId,
-                  startAt: formatDateTime(date, slot.startTime),
-                  endAt: formatDateTime(date, slot.endTime),
-                  artistIds: [String(slot.artistId)],
-                })),
-            }))
-          : undefined,
+      artistIds: formData.artists
+        .filter((artist) => artist.festivalDates?.includes(date) ?? false)
+        .map((artist) => String(artist.id)),
+      stages: stages.length > 0 ? stages : undefined,
     };
   });
 };
@@ -167,6 +170,7 @@ const festivalDateSchema = z.object({
   festivalDateId: z.number().optional(),
   festivalAt: performanceDateSchema,
   openAt: festivalOpenAtSchema,
+  artistIds: z.array(z.string().trim().min(1)).optional(),
   stages: z.array(festivalStageSchema).optional(),
 });
 
@@ -181,9 +185,6 @@ const festivalRequestSchema = z.object({
   ageRating: z.string().trim().min(1, '관람 등급을 입력해주세요.'),
   time: z.string().trim().min(1, '공연 시간을 입력해주세요.'),
   price: z.string().trim().min(1, '가격 등급과 가격을 하나 이상 입력해주세요.'),
-  artistIds: z
-    .array(z.string().trim().min(1))
-    .min(1, '아티스트를 한 명 이상 추가해주세요.'),
   reservationUrls: z.array(
     z.object({
       ticketVendorId: z.number(),
@@ -223,6 +224,13 @@ export const getFestivalRequestValidationMessage = (
 
   if (request.endAt < request.startAt) {
     return '종료일은 시작일보다 빠를 수 없어요.';
+  }
+
+  const hasFestivalLineup =
+    request.dates?.some((date) => (date.artistIds?.length ?? 0) > 0) ?? false;
+
+  if (!hasFestivalLineup) {
+    return '아티스트를 한 명 이상 추가해주세요.';
   }
 
   return null;
@@ -349,7 +357,6 @@ export const buildFestivalRequest = (
       ticketVendorId: ticketVendor.id,
       reservationUrl: ticketVendor.url,
     })),
-  artistIds: formData.artists.map((artist) => String(artist.id)),
   dates: getFestivalDates(formData),
 });
 

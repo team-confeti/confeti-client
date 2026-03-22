@@ -24,6 +24,7 @@ export interface PerformanceArtist {
   id: number;
   name: string;
   artworkUrl?: string;
+  festivalDates?: string[];
 }
 
 export interface PerformanceFormData {
