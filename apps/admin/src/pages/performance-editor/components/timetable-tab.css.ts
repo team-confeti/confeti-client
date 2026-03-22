@@ -40,6 +40,8 @@ export const timetableHeader = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: '2.4rem',
+  flexWrap: 'wrap',
   padding: '1.6rem 2.4rem',
   backgroundColor: 'rgba(249, 250, 251, 0.5)',
   borderBottom: `1px solid ${themeVars.color.gray200}`,
@@ -110,6 +112,50 @@ export const unassignedBadge = style({
 export const unassignedCount = style({
   fontWeight: themeVars.fontWeight.bold,
   color: themeVars.color.slate900,
+});
+
+export const ticketOpenAtPanel = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+  minWidth: '22rem',
+});
+
+export const ticketOpenAtMeta = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '1.2rem',
+});
+
+export const ticketOpenAtTitle = style({
+  fontSize: '1.4rem',
+  fontWeight: themeVars.fontWeight.medium,
+  color: adminVars.gray900tw,
+  lineHeight: '2rem',
+  letterSpacing: '-0.011em',
+});
+
+export const ticketOpenAtDate = style({
+  fontSize: '1.3rem',
+  fontWeight: themeVars.fontWeight.regular,
+  color: adminVars.slate600tw,
+  lineHeight: '1.8rem',
+  letterSpacing: '-0.011em',
+});
+
+export const ticketOpenAtField = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const ticketOpenAtHint = style({
+  fontSize: '1.2rem',
+  fontWeight: themeVars.fontWeight.regular,
+  color: adminVars.slate600tw,
+  lineHeight: '1.6rem',
+  letterSpacing: '-0.011em',
 });
 
 export const timetableBody = style({

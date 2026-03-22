@@ -158,7 +158,12 @@ const PerformanceEditorContent = () => {
         ? ('Festival' as const)
         : undefined;
 
-  const { formData, setFormData, handleInputChange } = usePerformanceForm({
+  const {
+    formData,
+    setFormData,
+    handleInputChange,
+    handleFestivalDateOpenAtChange,
+  } = usePerformanceForm({
     existingPerformance,
     initialPerformance,
     initialType,
@@ -660,6 +665,7 @@ const PerformanceEditorContent = () => {
               handleDragEnd={handleDragEnd}
               handleOpenTimeslotModal={handleOpenTimeslotModal}
               handleOpenCollabModal={handleOpenCollabModal}
+              handleFestivalDateOpenAtChange={handleFestivalDateOpenAtChange}
             />
           )}
         </div>
