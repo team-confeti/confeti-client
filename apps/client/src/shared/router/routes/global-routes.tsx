@@ -1,6 +1,7 @@
 import HomePage from '@pages/home/page/home-page';
 
 import { ConcertDetailPage, FestivalDetailPage, SearchPage } from '../lazy';
+import { festivalTimetableExistsLoader } from '../loader/loader';
 import { routePath } from '../path';
 
 export const globalRoutes = [
@@ -19,5 +20,6 @@ export const globalRoutes = [
   {
     path: routePath.FESTIVAL_DETAIL,
     element: <FestivalDetailPage />,
+    loader: festivalTimetableExistsLoader,
   },
 ];

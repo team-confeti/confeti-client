@@ -9,3 +9,4 @@ export { debounce, once, throttle } from 'es-toolkit';
 
 // Predicate
 export { isBoolean, isEqual, isNil } from 'es-toolkit';
+export { default as isEmpty } from 'es-toolkit/compat/isEmpty';

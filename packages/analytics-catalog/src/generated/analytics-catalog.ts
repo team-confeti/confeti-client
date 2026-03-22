@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-03-15T10:53:02.180Z',
+  generatedAt: '2026-03-20T13:56:28.930Z',
   rows: [
     {
       page: '*',
@@ -72,7 +72,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/home/page/home-page.tsx',
       sourceComponent: 'HomePage',
-      sourceLine: 55,
+      sourceLine: 56,
     },
     {
       page: '/',
@@ -93,7 +93,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/page/home-page.tsx',
       sourceComponent: 'handleClickCarouselPerformance',
-      sourceLine: 44,
+      sourceLine: 45,
     },
     {
       page: '/',
@@ -191,39 +191,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 56,
-    },
-    {
-      page: '/concert-detail/:typeId',
-      path: '/concert-detail/:typeId',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'handleLike',
-      element: 'handler:handleLike',
-      eventType: 'click',
-      eventName: 'click_like_performance',
-      showType: '',
-      params: [
-        {
-          name: 'action',
-          type: 'enum: LIKE, UNLIKE',
-          required: true,
-        },
-        {
-          name: 'target_type',
-          type: 'string',
-          required: true,
-        },
-        {
-          name: 'target_id',
-          type: 'number',
-          required: true,
-        },
-      ],
-      sourceFile:
-        'pages/performance/components/performance-info/performance-info.tsx',
-      sourceComponent: 'handleLike',
-      sourceLine: 40,
+      sourceLine: 58,
     },
     {
       page: '/concert-detail/:typeId',
@@ -238,7 +206,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 67,
+      sourceLine: 69,
     },
     {
       page: '/concert-detail/:typeId',
@@ -259,7 +227,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/performance/components/reservation/reservation.tsx',
       sourceComponent: 'Reservation',
-      sourceLine: 36,
+      sourceLine: 34,
     },
     {
       page: '/concert-detail/:typeId',
@@ -277,26 +245,11 @@ export const analyticsCatalog = {
       sourceLine: 31,
     },
     {
-      page: '/festival-detail/:typeId',
-      path: '/festival-detail/:typeId',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'Location',
-      element: 'button',
-      eventType: 'click',
-      eventName: 'click_copy_address',
-      showType: '',
-      params: [],
-      sourceFile: 'pages/performance/components/location/location.tsx',
-      sourceComponent: 'Location',
-      sourceLine: 56,
-    },
-    {
-      page: '/festival-detail/:typeId',
-      path: '/festival-detail/:typeId',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'handleLike',
+      page: '/concert-detail/:typeId',
+      path: '/concert-detail/:typeId',
+      state: 'show_concert_detail',
+      attribute: '',
+      commonComponent: '',
       element: 'handler:handleLike',
       eventType: 'click',
       eventName: 'click_like_performance',
@@ -319,9 +272,24 @@ export const analyticsCatalog = {
         },
       ],
       sourceFile:
-        'pages/performance/components/performance-info/performance-info.tsx',
+        'pages/performance/components/performance-info/concert-performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 40,
+      sourceLine: 35,
+    },
+    {
+      page: '/festival-detail/:typeId',
+      path: '/festival-detail/:typeId',
+      state: '',
+      attribute: '공통',
+      commonComponent: 'Location',
+      element: 'button',
+      eventType: 'click',
+      eventName: 'click_copy_address',
+      showType: '',
+      params: [],
+      sourceFile: 'pages/performance/components/location/location.tsx',
+      sourceComponent: 'Location',
+      sourceLine: 58,
     },
     {
       page: '/festival-detail/:typeId',
@@ -336,7 +304,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 67,
+      sourceLine: 69,
     },
     {
       page: '/festival-detail/:typeId',
@@ -357,7 +325,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/performance/components/reservation/reservation.tsx',
       sourceComponent: 'Reservation',
-      sourceLine: 36,
+      sourceLine: 34,
     },
     {
       page: '/festival-detail/:typeId',
@@ -372,7 +340,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/page/festival-detail.tsx',
       sourceComponent: 'FestivalDetailPage',
-      sourceLine: 32,
+      sourceLine: 41,
     },
     {
       page: '/festival-detail/:typeId',
@@ -397,6 +365,60 @@ export const analyticsCatalog = {
       sourceLine: 26,
     },
     {
+      page: '/festival-detail/:typeId',
+      path: '/festival-detail/:typeId',
+      state: 'show_festival_detail',
+      attribute: '',
+      commonComponent: '',
+      element: 'handler:handleLike',
+      eventType: 'click',
+      eventName: 'click_like_performance',
+      showType: '',
+      params: [
+        {
+          name: 'action',
+          type: 'enum: LIKE, UNLIKE',
+          required: true,
+        },
+        {
+          name: 'target_type',
+          type: 'string',
+          required: true,
+        },
+        {
+          name: 'target_id',
+          type: 'number',
+          required: true,
+        },
+      ],
+      sourceFile:
+        'pages/performance/components/performance-info/festival-performance-info.tsx',
+      sourceComponent: 'handleLike',
+      sourceLine: 46,
+    },
+    {
+      page: '/festival-detail/:typeId',
+      path: '/festival-detail/:typeId',
+      state: 'show_festival_detail',
+      attribute: '',
+      commonComponent: '',
+      element: 'handler:handleTimeTableCtaClick',
+      eventType: 'click',
+      eventName: 'click_timetable_cta',
+      showType: '',
+      params: [
+        {
+          name: 'action',
+          type: 'enum: VIEW, CREATE',
+          required: true,
+        },
+      ],
+      sourceFile:
+        'pages/performance/components/performance-info/festival-performance-info.tsx',
+      sourceComponent: 'handleTimeTableCtaClick',
+      sourceLine: 58,
+    },
+    {
       page: '/login',
       path: '/login',
       state: 'show_login',
@@ -409,7 +431,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 84,
+      sourceLine: 86,
     },
     {
       page: '/login',
@@ -424,7 +446,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 88,
+      sourceLine: 90,
     },
     {
       page: '/login',
@@ -445,7 +467,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 178,
+      sourceLine: 180,
     },
     {
       page: '/login',
@@ -466,7 +488,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 192,
+      sourceLine: 194,
     },
     {
       page: '/login',
@@ -487,7 +509,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 149,
+      sourceLine: 151,
     },
     {
       page: '/login',
@@ -508,7 +530,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 161,
+      sourceLine: 163,
     },
     {
       page: '/my',
@@ -1651,7 +1673,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/onboarding-complete.tsx',
       sourceComponent: 'CtaContent',
-      sourceLine: 59,
+      sourceLine: 62,
     },
     {
       page: '/onboarding',
@@ -1666,7 +1688,7 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/onboarding-complete.tsx',
       sourceComponent: 'CtaContent',
-      sourceLine: 91,
+      sourceLine: 95,
     },
     {
       page: '/search',

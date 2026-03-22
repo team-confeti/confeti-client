@@ -32,8 +32,8 @@ export const routePath = {
   SEARCH: '/search',
 
   // Detail
-  CONCERT_DETAIL: '/concert-detail/:typeId',
-  FESTIVAL_DETAIL: '/festival-detail/:typeId',
+  CONCERT_DETAIL: '/concert-detail/:concertId',
+  FESTIVAL_DETAIL: '/festival-detail/:festivalId',
 
   // TimeTable
   TIME_TABLE_OUTLET: '/timetable',
