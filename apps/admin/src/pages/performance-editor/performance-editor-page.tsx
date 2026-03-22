@@ -160,16 +160,19 @@ const PerformanceEditorContent = () => {
       : isNew && performanceType === 'festival'
         ? ('Festival' as const)
         : undefined;
+  const autoSaveKey = `${id ?? 'unknown'}:${performanceType ?? 'draft'}`;
 
   const {
     formData,
     setFormData,
     handleInputChange,
     handleFestivalDateOpenAtChange,
+    clearAutoSavedFormData,
   } = usePerformanceForm({
     existingPerformance,
     initialPerformance,
     initialType,
+    autoSaveKey,
   });
 
   const {
@@ -330,6 +333,7 @@ const PerformanceEditorContent = () => {
         await queryClient.invalidateQueries({
           queryKey: CONCERT_QUERY_KEY.ALL,
         });
+        clearAutoSavedFormData();
         adminToast.success({ text: '콘서트가 저장되었습니다.' });
         navigate(PATH.CONCERT);
         return;
@@ -356,6 +360,7 @@ const PerformanceEditorContent = () => {
         await queryClient.invalidateQueries({
           queryKey: FESTIVAL_QUERY_KEY.ALL,
         });
+        clearAutoSavedFormData();
         adminToast.success({ text: '페스티벌이 저장되었습니다.' });
         navigate(PATH.FESTIVAL);
         return;
@@ -399,6 +404,7 @@ const PerformanceEditorContent = () => {
             queryClient.invalidateQueries({ queryKey: CONCERT_QUERY_KEY.ALL }),
             queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL }),
           ]);
+          clearAutoSavedFormData();
           adminToast.success({ text: '콘서트가 게시되었습니다.' });
           navigate(PATH.CONCERT);
           return;
@@ -434,6 +440,7 @@ const PerformanceEditorContent = () => {
           queryClient.invalidateQueries({ queryKey: FESTIVAL_QUERY_KEY.ALL }),
           queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL }),
         ]);
+        clearAutoSavedFormData();
         adminToast.success({ text: '페스티벌이 게시되었습니다.' });
         navigate(PATH.FESTIVAL);
         return;
@@ -466,6 +473,7 @@ const PerformanceEditorContent = () => {
       }
 
       await queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      clearAutoSavedFormData();
       adminToast.success({ text: '공연이 저장되었습니다.' });
       navigate(PATH.PENDING);
     } catch (error) {
@@ -488,6 +496,7 @@ const PerformanceEditorContent = () => {
         await queryClient.invalidateQueries({
           queryKey: CONCERT_QUERY_KEY.ALL,
         });
+        clearAutoSavedFormData();
         adminToast.success({ text: '콘서트가 삭제되었습니다.' });
         navigate(PATH.CONCERT);
         return;
@@ -498,6 +507,7 @@ const PerformanceEditorContent = () => {
         await queryClient.invalidateQueries({
           queryKey: FESTIVAL_QUERY_KEY.ALL,
         });
+        clearAutoSavedFormData();
         adminToast.success({ text: '페스티벌이 삭제되었습니다.' });
         navigate(PATH.FESTIVAL);
         return;
@@ -505,6 +515,7 @@ const PerformanceEditorContent = () => {
 
       await deleteDraftMutate(Number(id));
       await queryClient.invalidateQueries({ queryKey: DRAFT_QUERY_KEY.ALL });
+      clearAutoSavedFormData();
       adminToast.success({ text: '공연이 삭제되었습니다.' });
       navigate(PATH.PENDING);
     } catch (error) {

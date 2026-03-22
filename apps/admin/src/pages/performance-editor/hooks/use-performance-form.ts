@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { STORAGE_KEY } from '@shared/constants/api';
 import { generateDateRange } from '@shared/utils';
 
 import type { ExistingPerformance, PerformanceFormData } from '../types';
@@ -8,7 +9,13 @@ interface UsePerformanceFormProps {
   existingPerformance: ExistingPerformance | null;
   initialPerformance?: ExistingPerformance | null;
   initialType?: 'Festival' | 'Concert';
+  autoSaveKey?: string;
 }
+
+type PersistedPerformanceFormData = Omit<
+  PerformanceFormData,
+  'mainPoster' | 'logo'
+>;
 
 const normalizeFestivalDateMetas = (
   festivalDateMetas: PerformanceFormData['festivalDateMetas'],
@@ -20,6 +27,59 @@ const normalizeFestivalDateMetas = (
         (festivalDateMeta) => festivalDateMeta.date === date,
       ) ?? { date, openAt: '' },
   );
+
+const createPerformanceEditorAutoSaveStorageKey = (autoSaveKey: string) =>
+  `${STORAGE_KEY.ADMIN_PERFORMANCE_EDITOR_AUTOSAVE_PREFIX}:${autoSaveKey}`;
+
+const getPersistedPreview = (preview: string | null) => {
+  if (!preview || preview.startsWith('data:')) {
+    return null;
+  }
+
+  return preview;
+};
+
+const getPersistedFormData = (
+  autoSaveKey: string | undefined,
+): Partial<PersistedPerformanceFormData> | null => {
+  if (!autoSaveKey || typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    const persistedValue = window.localStorage.getItem(
+      createPerformanceEditorAutoSaveStorageKey(autoSaveKey),
+    );
+
+    if (!persistedValue) {
+      return null;
+    }
+
+    const parsedValue = JSON.parse(persistedValue);
+
+    return parsedValue && typeof parsedValue === 'object'
+      ? (parsedValue as Partial<PersistedPerformanceFormData>)
+      : null;
+  } catch {
+    return null;
+  }
+};
+
+const mergeFormData = (
+  baseFormData: PerformanceFormData,
+  persistedFormData: Partial<PersistedPerformanceFormData> | null,
+): PerformanceFormData => {
+  if (!persistedFormData) {
+    return baseFormData;
+  }
+
+  return {
+    ...baseFormData,
+    ...persistedFormData,
+    mainPoster: null,
+    logo: null,
+  };
+};
 
 const createInitialFormData = (
   existing: ExistingPerformance | null,
@@ -111,9 +171,18 @@ export const usePerformanceForm = ({
   existingPerformance,
   initialPerformance,
   initialType,
+  autoSaveKey,
 }: UsePerformanceFormProps) => {
+  const persistedFormDataRef = useRef(getPersistedFormData(autoSaveKey));
   const [formData, setFormData] = useState<PerformanceFormData>(() =>
-    createInitialFormData(existingPerformance, initialPerformance, initialType),
+    mergeFormData(
+      createInitialFormData(
+        existingPerformance,
+        initialPerformance,
+        initialType,
+      ),
+      persistedFormDataRef.current,
+    ),
   );
 
   const isInitializedRef = useRef(false);
@@ -121,7 +190,12 @@ export const usePerformanceForm = ({
   useEffect(() => {
     if (isInitializedRef.current || !existingPerformance) return;
     isInitializedRef.current = true;
-    setFormData(createInitialFormData(existingPerformance, initialPerformance));
+    setFormData(
+      mergeFormData(
+        createInitialFormData(existingPerformance, initialPerformance),
+        persistedFormDataRef.current,
+      ),
+    );
 
     const fetchExistingImages = async () => {
       const updates: Partial<PerformanceFormData> = {};
@@ -155,6 +229,31 @@ export const usePerformanceForm = ({
 
     fetchExistingImages();
   }, [existingPerformance, initialPerformance]);
+
+  useEffect(() => {
+    if (!autoSaveKey || typeof window === 'undefined') {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      try {
+        const persistedFormData: PersistedPerformanceFormData = {
+          ...formData,
+          mainPosterPreview: getPersistedPreview(formData.mainPosterPreview),
+          logoPreview: getPersistedPreview(formData.logoPreview),
+        };
+
+        window.localStorage.setItem(
+          createPerformanceEditorAutoSaveStorageKey(autoSaveKey),
+          JSON.stringify(persistedFormData),
+        );
+      } catch {
+        // localStorage may be unavailable or exceed quota
+      }
+    }, 300);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [autoSaveKey, formData]);
 
   useEffect(() => {
     if (formData.type !== 'Festival') {
@@ -275,10 +374,21 @@ export const usePerformanceForm = ({
     });
   };
 
+  const clearAutoSavedFormData = () => {
+    if (!autoSaveKey || typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.removeItem(
+      createPerformanceEditorAutoSaveStorageKey(autoSaveKey),
+    );
+  };
+
   return {
     formData,
     setFormData,
     handleInputChange,
     handleFestivalDateOpenAtChange,
+    clearAutoSavedFormData,
   };
 };
