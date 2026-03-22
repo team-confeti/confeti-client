@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import { toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 import { onError, onSuccess } from '@confeti/utils';
@@ -42,19 +40,11 @@ const Location = ({ address }: LocationProps) => {
     )(address);
   };
 
-  const formattedAddress = address.split(',').map((part, index, arr) => (
-    <Fragment key={index}>
-      {part.trim()}
-      {index < arr.length - 1 && ','}
-      {index < arr.length - 1 && <br />}
-    </Fragment>
-  ));
-
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>오시는 길</h2>
-      <p className={styles.address}>
-        {formattedAddress}
+      <div className={styles.address}>
+        {address}
         <LogClickEvent name="click_copy_address">
           <button
             type="button"
@@ -65,7 +55,7 @@ const Location = ({ address }: LocationProps) => {
             <Icon name="copy" size="2rem" color="gray400" />
           </button>
         </LogClickEvent>
-      </p>
+      </div>
       <LogClickEvent name="click_open_map">
         <MapView address={address} onClick={handleClick} />
       </LogClickEvent>
