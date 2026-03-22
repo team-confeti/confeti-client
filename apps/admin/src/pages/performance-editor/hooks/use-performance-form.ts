@@ -33,10 +33,7 @@ const createInitialFormData = (
 
       return {
         ...artist,
-        festivalDates:
-          selectedFestivalDates.length > 0
-            ? selectedFestivalDates
-            : festivalDates,
+        festivalDates: selectedFestivalDates,
       };
     },
   );
@@ -167,19 +164,12 @@ export const usePerformanceForm = ({
             festivalDates.includes(date),
           ) ?? [];
 
-        if (selectedFestivalDates.length > 0) {
-          return artist.festivalDates?.length === selectedFestivalDates.length
-            ? artist
-            : {
-                ...artist,
-                festivalDates: selectedFestivalDates,
-              };
-        }
-
-        return {
-          ...artist,
-          festivalDates,
-        };
+        return artist.festivalDates?.length === selectedFestivalDates.length
+          ? artist
+          : {
+              ...artist,
+              festivalDates: selectedFestivalDates,
+            };
       });
 
       const hasUpdatedArtists = normalizedArtists.some(
