@@ -37,6 +37,7 @@ export interface Artist {
 
 export interface FestivalTime {
   timeBlockId: number;
+  name: string;
   startAt: string;
   endAt: string;
   isSelected: boolean;

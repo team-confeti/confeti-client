@@ -12,27 +12,22 @@ import {
 import * as styles from './timetable-item.css';
 
 interface ItemProps {
-  artists: Artist[];
   startTime: string;
   endTime: string;
   isSelected: boolean;
   ticketOpenAt: string;
   timeBlockId: number;
+  name: string;
   onClick: (timeBlockId: number, isSelected: boolean) => void;
 }
 
-interface Artist {
-  artistId: string;
-  artistName: string;
-}
-
 const TimetableItem = ({
-  artists,
   startTime,
   endTime,
   ticketOpenAt,
   isSelected,
   timeBlockId,
+  name,
   onClick,
 }: ItemProps) => {
   const [startHour, startMin] = parseTimeString(startTime);
@@ -72,7 +67,7 @@ const TimetableItem = ({
       onClick={() => onClick(timeBlockId, !isSelected)}
     >
       <div className={cn(styles.artistName({ isSelected, isShort }))}>
-        {artists.map((artist) => artist.artistName).join(', ')}
+        {name}
       </div>
       <div className={styles.durationP({ isSelected, isShort })}>
         {`${startHour}:${startMin}-${endHour}:${endMin}`}
