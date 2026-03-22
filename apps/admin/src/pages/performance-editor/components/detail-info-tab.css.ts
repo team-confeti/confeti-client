@@ -78,7 +78,7 @@ export const priceIcon = style({
 export const priceInput = style({
   height: '4.8rem',
   paddingLeft: '3.6rem',
-  paddingRight: '1.6rem',
+  paddingRight: '3.8rem',
   backgroundColor: themeVars.color.white,
   border: `1px solid ${themeVars.color.gray300}`,
   borderRadius: '0.8rem',
@@ -99,6 +99,17 @@ export const priceInput = style({
   '::placeholder': {
     color: adminVars.slate400tw,
   },
+});
+
+export const priceSuffix = style({
+  position: 'absolute',
+  right: '1.2rem',
+  fontSize: '1.4rem',
+  fontWeight: themeVars.fontWeight.medium,
+  color: adminVars.slate600tw,
+  lineHeight: '2rem',
+  letterSpacing: '-0.011em',
+  pointerEvents: 'none',
 });
 
 export const deleteIconButton = style({

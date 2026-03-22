@@ -30,7 +30,7 @@ const parsePriceGrades = (
       if (lastSpace === -1) return { grade: trimmed, price: '' };
       return {
         grade: trimmed.slice(0, lastSpace),
-        price: trimmed.slice(lastSpace + 1),
+        price: trimmed.slice(lastSpace + 1).replace(/\D/g, ''),
       };
     })
     .filter((g) => g.grade);

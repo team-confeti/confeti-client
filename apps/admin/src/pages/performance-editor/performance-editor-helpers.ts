@@ -26,6 +26,16 @@ const hasFilledPriceGrade = (
       priceGrade.grade.trim().length > 0 && priceGrade.price.trim().length > 0,
   );
 
+const formatPrice = (price: string) => {
+  const numericPrice = price.replace(/\D/g, '');
+
+  if (!numericPrice) {
+    return '';
+  }
+
+  return `${Number(numericPrice).toLocaleString('ko-KR')}원`;
+};
+
 const withSeconds = (value: string) => {
   if (!value) {
     return value;
@@ -319,7 +329,7 @@ export const buildConcertRequest = (
         priceGrade.grade.trim().length > 0 &&
         priceGrade.price.trim().length > 0,
     )
-    .map((priceGrade) => `${priceGrade.grade} ${priceGrade.price}`)
+    .map((priceGrade) => `${priceGrade.grade} ${formatPrice(priceGrade.price)}`)
     .join(' / '),
   artistIds: formData.artists.map((artist) => String(artist.id)),
   reservationUrls: formData.selectedTicketingPlatforms
@@ -349,7 +359,7 @@ export const buildFestivalRequest = (
         priceGrade.grade.trim().length > 0 &&
         priceGrade.price.trim().length > 0,
     )
-    .map((priceGrade) => `${priceGrade.grade} ${priceGrade.price}`)
+    .map((priceGrade) => `${priceGrade.grade} ${formatPrice(priceGrade.price)}`)
     .join(' / '),
   reservationUrls: formData.selectedTicketingPlatforms
     .filter((ticketVendor) => ticketVendor.url.trim().length > 0)
