@@ -113,12 +113,6 @@ export const BasicInfoTab = ({
           onChange={(e) => handleInputChange('title', e.target.value)}
           placeholder="예. 2025 부산국제락페스티벌"
         />
-        <Input
-          label="부제 / 캐치프레이즈"
-          value={formData.subtitle}
-          onChange={(e) => handleInputChange('subtitle', e.target.value)}
-          placeholder="예. 관람은 만 18세 이상만"
-        />
       </FormSection>
 
       {/* 일정 및 관람 제한 */}

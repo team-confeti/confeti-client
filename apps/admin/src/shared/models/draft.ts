@@ -10,7 +10,6 @@ import type { ExistingPerformance } from '@pages/performance-editor/types';
 type PerformanceDataJson = {
   type?: string;
   title?: string;
-  subtitle?: string;
   startDate?: string;
   startAt?: string;
   endDate?: string;
@@ -179,7 +178,6 @@ export const mapDraftDetailToExistingPerformance = (
   return {
     type: normalizePerformanceType(parsed.type, draft.performanceType),
     title,
-    subtitle: parsed.subtitle,
     startDate: extractDate(parsed.startDate ?? parsed.startAt),
     endDate: extractDate(parsed.endDate ?? parsed.endAt),
     venueName: parsed.venueName ?? parsed.area,

@@ -6,10 +6,6 @@ export const festivalSchema = z.object({
     .string()
     .min(1, '제목을 입력해주세요')
     .max(50, '제목은 50자 이하로 입력해주세요'),
-  subTitle: z
-    .string()
-    .min(1, '부제목을 입력해주세요')
-    .max(80, '부제목은 80자 이하로 입력해주세요'),
   startAt: z.string().date().min(1, '시작일을 선택해주세요'),
   endAt: z.string().date().min(1, '종료일을 선택해주세요'),
   area: z
@@ -109,7 +105,6 @@ export const festivalDefaultValues: DefaultValues<
   z.infer<typeof festivalSchema>
 > = {
   title: '',
-  subTitle: '',
   startAt: '',
   endAt: '',
   area: '',

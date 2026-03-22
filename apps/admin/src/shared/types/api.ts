@@ -138,7 +138,7 @@ export type DateRequest = {
 export type PutAdminFestivalRequest = {
   festivalId: number | null;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   startAt: string;
   endAt: string;
   area: string;
@@ -208,7 +208,7 @@ export type AdminConcertDetailResponse = {
 export type PutAdminConcertRequest = {
   concertId: number | null;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   startAt: string;
   endAt: string;
   area: string;
