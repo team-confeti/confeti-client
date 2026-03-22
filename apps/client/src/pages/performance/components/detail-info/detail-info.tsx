@@ -7,7 +7,7 @@ interface DetailInfoProps {
 }
 
 const DetailInfo = ({ title, time, ageRating, price }: DetailInfoProps) => {
-  const priceLines = price.split('\n');
+  const priceLines = price.split('/');
 
   return (
     <section className={styles.container}>
