@@ -143,7 +143,10 @@ const PerformanceEditorContent = () => {
     if (concertData)
       return mapConcertDetailToExistingPerformance(concertData, ticketVendors);
     if (festivalData)
-      return mapFestivalDetailToExistingPerformance(festivalData);
+      return mapFestivalDetailToExistingPerformance(
+        festivalData,
+        ticketVendors,
+      );
     return null;
   })();
 

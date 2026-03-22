@@ -1,4 +1,7 @@
-import type { AdminFestivalDetailResponse } from '@shared/types/api';
+import type {
+  AdminFestivalDetailResponse,
+  TicketVendorResponse,
+} from '@shared/types/api';
 import type {
   AdminFestivalListItemResponse,
   AdminFestivalListQueryResponse,
@@ -173,6 +176,7 @@ export const getFestivalGroups = (
 
 export const mapFestivalDetailToExistingPerformance = (
   festival: AdminFestivalDetailResponse,
+  ticketVendors?: TicketVendorResponse[],
 ): ExistingPerformance => {
   const artistMap = new Map<
     string,
@@ -270,7 +274,19 @@ export const mapFestivalDetailToExistingPerformance = (
     mainPosterPreview: festival.posterUrl || undefined,
     logoPreview: festival.logoUrl || undefined,
     publishedPerformanceId: festival.festivalId,
-    selectedTicketingPlatforms: [],
+    selectedTicketingPlatforms:
+      festival.reservationUrls?.map((reservationUrl) => {
+        const vendor = ticketVendors?.find(
+          (ticketVendor) => ticketVendor.id === reservationUrl.ticketVendorId,
+        );
+
+        return {
+          id: reservationUrl.ticketVendorId,
+          name: vendor?.name ?? '',
+          url: reservationUrl.reservationUrl,
+          datetime: '',
+        };
+      }) ?? [],
     artists: Array.from(artistMap.values()),
     stages,
     festivalDateMetas:
