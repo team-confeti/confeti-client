@@ -12,7 +12,6 @@ import {
 import * as styles from './timetable-item.css';
 
 interface ItemProps {
-  artists: Artist[];
   startTime: string;
   endTime: string;
   isSelected: boolean;
@@ -22,13 +21,7 @@ interface ItemProps {
   onClick: (timeBlockId: number, isSelected: boolean) => void;
 }
 
-interface Artist {
-  artistId: string;
-  artistName: string;
-}
-
 const TimetableItem = ({
-  artists,
   startTime,
   endTime,
   ticketOpenAt,
