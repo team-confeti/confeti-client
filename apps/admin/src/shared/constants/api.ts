@@ -36,6 +36,7 @@ export const END_POINT = {
 
 export const STORAGE_KEY = {
   ADMIN_LOGIN_REDIRECT_PATH: 'adminLoginRedirectPath',
+  ADMIN_PERFORMANCE_EDITOR_AUTOSAVE_PREFIX: 'adminPerformanceEditorAutoSave',
 } as const;
 
 export const HTTP_STATUS_CODE = {
