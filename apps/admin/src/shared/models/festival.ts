@@ -220,7 +220,6 @@ export const mapFestivalDetailToExistingPerformance = (
   return {
     type: 'Festival',
     title: festival.title,
-    subtitle: festival.subtitle,
     startDate: festival.startAt,
     endDate: festival.endAt,
     venueName: festival.area,

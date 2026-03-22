@@ -169,7 +169,6 @@ export const mapConcertDetailToExistingPerformance = (
 ): ExistingPerformance => ({
   type: 'Concert',
   title: concert.title,
-  subtitle: concert.subtitle,
   startDate: concert.startAt,
   endDate: concert.endAt,
   venueName: concert.area,

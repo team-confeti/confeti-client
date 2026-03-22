@@ -128,7 +128,6 @@ const festivalOpenAtSchema = z
 const concertRequestSchema = z.object({
   concertId: z.number().nullable(),
   title: z.string().trim().min(1, '공연명을 입력해주세요.'),
-  subtitle: z.string().trim().min(1, '부제목을 입력해주세요.'),
   startAt: performanceDateSchema,
   endAt: performanceDateSchema,
   area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
@@ -174,7 +173,6 @@ const festivalDateSchema = z.object({
 const festivalRequestSchema = z.object({
   festivalId: z.number().nullable(),
   title: z.string().trim().min(1, '공연명을 입력해주세요.'),
-  subtitle: z.string().trim().min(1, '부제목을 입력해주세요.'),
   startAt: performanceDateSchema,
   endAt: performanceDateSchema,
   area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
@@ -278,7 +276,6 @@ export const buildDraftPerformanceData = (formData: PerformanceFormData) =>
   JSON.stringify({
     type: formData.type,
     title: formData.title,
-    subtitle: formData.subtitle,
     startDate: formData.startDate,
     endDate: formData.endDate,
     venueName: formData.venueName,
@@ -301,7 +298,6 @@ export const buildConcertRequest = (
 ): PutAdminConcertRequest => ({
   concertId: concertId ?? null,
   title: formData.title,
-  subtitle: formData.subtitle,
   startAt: formData.startDate,
   endAt: formData.endDate,
   area: formData.venueName,
@@ -332,7 +328,6 @@ export const buildFestivalRequest = (
 ): PutAdminFestivalRequest => ({
   festivalId: festivalId ?? null,
   title: formData.title,
-  subtitle: formData.subtitle,
   startAt: formData.startDate,
   endAt: formData.endDate,
   area: formData.venueName,

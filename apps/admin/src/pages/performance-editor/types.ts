@@ -29,7 +29,6 @@ export interface PerformanceArtist {
 export interface PerformanceFormData {
   type: string;
   title: string;
-  subtitle: string;
   startDate: string;
   endDate: string;
   ageRating: string;
@@ -59,7 +58,6 @@ export interface PerformanceFormData {
 export interface ExistingPerformance {
   type?: string;
   title?: string;
-  subtitle?: string;
   startDate?: string;
   endDate?: string;
   venueName?: string;

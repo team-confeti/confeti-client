@@ -35,13 +35,6 @@ export const ConcertBasicFormField = ({ register, errors, control }: Props) => {
           placeholder="콘서트 제목을 입력해주세요"
           error={errors.title?.message}
         />
-        <FormInput
-          {...register('subTitle')}
-          type="text"
-          label="콘서트 부제목"
-          placeholder="콘서트 부제목을 입력해주세요"
-          error={errors.subTitle?.message}
-        />
       </div>
 
       <div className={styles.inputContainer}>
