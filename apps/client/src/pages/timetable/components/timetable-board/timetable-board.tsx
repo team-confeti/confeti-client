@@ -89,6 +89,7 @@ const TimetableBoard = ({
                 <TimetableItem
                   key={block.timeBlockId}
                   timeBlockId={block.timeBlockId}
+                  name={block.name}
                   artists={block.artists}
                   isSelected={getIsSelected(
                     block.timeBlockId,

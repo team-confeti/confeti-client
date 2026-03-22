@@ -18,6 +18,7 @@ interface ItemProps {
   isSelected: boolean;
   ticketOpenAt: string;
   timeBlockId: number;
+  name: string;
   onClick: (timeBlockId: number, isSelected: boolean) => void;
 }
 
@@ -33,6 +34,7 @@ const TimetableItem = ({
   ticketOpenAt,
   isSelected,
   timeBlockId,
+  name,
   onClick,
 }: ItemProps) => {
   const [startHour, startMin] = parseTimeString(startTime);
@@ -72,7 +74,7 @@ const TimetableItem = ({
       onClick={() => onClick(timeBlockId, !isSelected)}
     >
       <div className={cn(styles.artistName({ isSelected, isShort }))}>
-        {artists.map((artist) => artist.artistName).join(', ')}
+        {name}
       </div>
       <div className={styles.durationP({ isSelected, isShort })}>
         {`${startHour}:${startMin}-${endHour}:${endMin}`}
