@@ -69,12 +69,12 @@ function buildAnalyticsCatalogRows(allClientFiles) {
   return sortRows(deduplicateRows(rows));
 }
 
-function syncAnalyticsCatalogOutputs(rows) {
+async function syncAnalyticsCatalogOutputs(rows) {
   const nextGeneratedAt = new Date().toISOString();
   const currentAnalyticsCatalogContent = readFileIfExists(
     filePaths.analyticsCatalogOutput,
   );
-  const draftAnalyticsCatalogContent = createAnalyticsCatalogFileContent({
+  const draftAnalyticsCatalogContent = await createAnalyticsCatalogFileContent({
     generatedAt: nextGeneratedAt,
     rows,
   });
@@ -87,7 +87,7 @@ function syncAnalyticsCatalogOutputs(rows) {
     ? (getExistingGeneratedAt(currentAnalyticsCatalogContent) ??
       nextGeneratedAt)
     : nextGeneratedAt;
-  const nextAnalyticsCatalogContent = createAnalyticsCatalogFileContent({
+  const nextAnalyticsCatalogContent = await createAnalyticsCatalogFileContent({
     generatedAt,
     rows,
   });
@@ -110,15 +110,15 @@ function syncAnalyticsCatalogOutputs(rows) {
   );
 }
 
-function main() {
+async function main() {
   const allClientFiles = walkFiles(clientRoot);
   const rows = buildAnalyticsCatalogRows(allClientFiles);
 
-  syncAnalyticsCatalogOutputs(rows);
+  await syncAnalyticsCatalogOutputs(rows);
 }
 
 try {
-  main();
+  await main();
 } catch (error) {
   console.error('Failed to generate analytics catalog from code.');
   throw error;

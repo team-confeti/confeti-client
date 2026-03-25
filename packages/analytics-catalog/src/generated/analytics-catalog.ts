@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-03-25T08:40:53.684Z',
+  generatedAt: '2026-03-25T08:59:29.963Z',
   rows: [
     {
       page: '*',

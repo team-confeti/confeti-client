@@ -2,11 +2,26 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { inspect } from 'node:util';
 
+import prettier from 'prettier';
+
 import {
   csvHeaders,
   eventTypeOrder,
+  filePaths,
   generatedAtPlaceholder,
 } from './config.mjs';
+
+let prettierConfigPromise = null;
+
+async function getPrettierConfig() {
+  if (!prettierConfigPromise) {
+    prettierConfigPromise = prettier.resolveConfig(
+      filePaths.analyticsCatalogOutput,
+    );
+  }
+
+  return prettierConfigPromise;
+}
 
 export function deduplicateRows(rows) {
   const seenKeys = new Set();
@@ -42,7 +57,7 @@ export function sortRows(rows) {
   });
 }
 
-export function createAnalyticsCatalogFileContent({ generatedAt, rows }) {
+export async function createAnalyticsCatalogFileContent({ generatedAt, rows }) {
   const analyticsCatalogContent = inspect(
     {
       generatedAt,
@@ -56,10 +71,18 @@ export function createAnalyticsCatalogFileContent({ generatedAt, rows }) {
     },
   );
 
-  return `import type { AnalyticsCatalogData } from '../types';
+  const prettierConfig = await getPrettierConfig();
+
+  return prettier.format(
+    `import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = ${analyticsCatalogContent} satisfies AnalyticsCatalogData;
-`;
+`,
+    {
+      ...(prettierConfig ?? {}),
+      filepath: filePaths.analyticsCatalogOutput,
+    },
+  );
 }
 
 function escapeCsv(value) {
