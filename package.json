@@ -6,6 +6,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "analytics:generate": "node packages/analytics-catalog/scripts/generate-analytics-catalog.mjs",
+    "analytics:check": "pnpm analytics:generate && git diff --exit-code -- packages/analytics-catalog/src/generated/analytics-catalog.ts apps/client/ANALYTICS_EVENT_MAP.csv",
     "analytics:sync-admin": "pnpm analytics:generate && pnpm --filter @confeti/admin build",
     "pr": "node scripts/create-draft-pr.mjs",
     "test": "turbo run test",
