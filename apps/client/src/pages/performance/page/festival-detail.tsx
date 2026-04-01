@@ -44,7 +44,7 @@ const FestivalDetailPage = () => {
         startAt={festivalDetail.festival.startAt}
         endAt={festivalDetail.festival.endAt}
         area={festivalDetail.festival.area}
-        reserveAt={festivalDetail.festival.reserveAt}
+        reservationSchedules={festivalDetail.festival.reservationSchedules}
         isFavorite={festivalDetail.festival.isFavorite}
         timetableId={timetableExistsData?.timetableId ?? null}
       />

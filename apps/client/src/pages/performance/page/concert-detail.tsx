@@ -39,7 +39,7 @@ const ConcertDetailPage = () => {
         startAt={concert.startAt}
         endAt={concert.endAt}
         area={concert.area}
-        reserveAt={concert.reserveAt}
+        reservationSchedules={concert.reservationSchedules}
         isFavorite={concert.isFavorite}
       />
       <Spacing />

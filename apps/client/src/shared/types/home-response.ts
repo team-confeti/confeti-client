@@ -1,4 +1,5 @@
 import type { PerformanceType } from './performance-type';
+import type { ReservationSchedule } from './performance-common';
 
 export interface Performances {
   index: number;
@@ -15,10 +16,14 @@ export interface Performances {
   isFavorite: boolean;
 }
 
-export type TicketingPerformances = Pick<
-  Performances,
-  'index' | 'typeId' | 'type' | 'title' | 'reserveAt'
->;
+export interface TicketingPerformances {
+  index: number;
+  typeId: number;
+  type: PerformanceType | 'concert' | 'festival' | 'performance';
+  title: string;
+  roundName: ReservationSchedule['roundName'];
+  reserveAt: ReservationSchedule['reserveAt'];
+}
 
 export type CarouselPerformances = Pick<
   Performances,
