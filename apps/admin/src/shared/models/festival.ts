@@ -267,9 +267,11 @@ export const mapFestivalDetailToExistingPerformance = (
     venueAddress: festival.address,
     ageRating: festival.ageRating,
     durationMinutes: parseDurationMinutes(festival.time),
-    bookingSchedules: festival.reserveAt
-      ? [{ round: '1차', startDate: festival.reserveAt }]
-      : [],
+    bookingSchedules:
+      festival.reservationSchedules?.map((schedule) => ({
+        round: schedule.roundName,
+        startDate: schedule.reserveAt,
+      })) ?? [],
     priceGrades: parsePriceGrades(festival.price),
     mainPosterPreview: festival.posterUrl || undefined,
     logoPreview: festival.logoUrl || undefined,

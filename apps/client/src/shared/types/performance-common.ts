@@ -1,16 +1,18 @@
+export interface ReservationSchedule {
+  reservationScheduleId?: number;
+  roundName: string;
+  reserveAt: string;
+}
+
 export interface PerformanceBase {
   posterUrl: string;
   title: string;
-  subtitle: string;
   startAt: string;
   endAt: string;
   area: string;
-  reserveAt: string;
-  reservationUrl: string;
+  reservationSchedules: ReservationSchedule[];
   time: string;
   ageRating: string;
-  reservationOffice: string;
   price: string;
-  infoImgUrl: string;
   isFavorite: boolean;
 }

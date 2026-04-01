@@ -39,6 +39,15 @@ export type ReservationUrlResponse = {
   ticketVendorId: number;
 };
 
+export type ReservationSchedule = {
+  roundName: string;
+  reserveAt: string;
+};
+
+export type ReservationScheduleResponse = ReservationSchedule & {
+  reservationScheduleId: number;
+};
+
 // ===== Festival =====
 // List
 export type FestivalResponse = {
@@ -101,7 +110,6 @@ export type AdminFestivalDetailResponse = {
   area: string;
   posterUrl: string;
   logoUrl: string;
-  reserveAt: string;
   ageRating: string;
   time: string;
   price: string;
@@ -111,6 +119,7 @@ export type AdminFestivalDetailResponse = {
   updatedAt: string;
   dates: DateResponse[];
   reservationUrls: ReservationUrlResponse[];
+  reservationSchedules: ReservationScheduleResponse[];
 };
 
 // Request
@@ -144,12 +153,12 @@ export type PutAdminFestivalRequest = {
   startAt: string;
   endAt: string;
   area: string;
-  reserveAt: string;
   ageRating: string;
   time: string;
   price: string;
   address: string;
   reservationUrls: ReservationUrlRequest[];
+  reservationSchedules: ReservationSchedule[];
   dates?: DateRequest[];
 };
 
@@ -194,7 +203,6 @@ export type AdminConcertDetailResponse = {
   endAt: string;
   area: string;
   posterUrl: string;
-  reserveAt: string;
   ageRating: string;
   time: string;
   price: string;
@@ -202,6 +210,7 @@ export type AdminConcertDetailResponse = {
   createdAt: string;
   updatedAt: string;
   reservationUrls: ReservationUrlResponse[];
+  reservationSchedules: ReservationScheduleResponse[];
   artists: ArtistResponse[];
 };
 
@@ -213,13 +222,13 @@ export type PutAdminConcertRequest = {
   startAt: string;
   endAt: string;
   area: string;
-  reserveAt: string;
   ageRating: string;
   time: string;
   price: string;
   address: string;
   artistIds: string[];
   reservationUrls: ReservationUrlRequest[];
+  reservationSchedules: ReservationSchedule[];
 };
 
 export type PutAdminConcertResponse = {

@@ -51,6 +51,11 @@ export const detailContent = style({
   color: themeVars.color.black,
 });
 
+export const detailContentList = style({
+  ...themeVars.display.flexColumn,
+  gap: '0.4rem',
+});
+
 export const likeButton = style({
   width: '7.4%',
   height: '7.4%',
