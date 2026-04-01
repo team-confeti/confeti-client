@@ -4,6 +4,7 @@ import { formatDate } from '@confeti/utils';
 
 import { logClickEvent } from '@shared/analytics/logging';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
+import type { ReservationSchedule } from '@shared/types/performance-common';
 
 import * as styles from './performance-info.css';
 
@@ -12,7 +13,7 @@ interface ConcertPerformanceInfoProps {
   startAt: string;
   endAt: string;
   area: string;
-  reserveAt: string;
+  reservationSchedules: ReservationSchedule[];
   isFavorite: boolean;
 }
 
@@ -21,15 +22,11 @@ const ConcertPerformanceInfo = ({
   startAt,
   endAt,
   area,
-  reserveAt,
+  reservationSchedules,
   isFavorite,
 }: ConcertPerformanceInfoProps) => {
   const { mutate } = useLikeMutation();
   const formattedDate = formatDate('', 'rangeStartYearOnly', startAt, endAt);
-  const formattedReserveDate = formatDate(
-    reserveAt,
-    'koFullDateTimeWithWeekday',
-  );
 
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
     logClickEvent({
@@ -67,8 +64,29 @@ const ConcertPerformanceInfo = ({
               <div className={styles.detailContent}>{area}</div>
             </div>
             <div className={styles.detailItem}>
-              <div className={styles.detailTitle}>예매일</div>
-              <div className={styles.detailContent}>{formattedReserveDate}</div>
+              <div className={styles.detailTitle}>예매 일정</div>
+              <div className={styles.detailContentList}>
+                {reservationSchedules.length > 0 ? (
+                  reservationSchedules.map((schedule) => (
+                    <div
+                      key={`${schedule.roundName}-${schedule.reserveAt}`}
+                      className={styles.detailContent}
+                    >
+                      {schedule.roundName
+                        ? `${schedule.roundName} · ${formatDate(
+                            schedule.reserveAt,
+                            'koFullDateTimeWithWeekday',
+                          )}`
+                        : formatDate(
+                            schedule.reserveAt,
+                            'koFullDateTimeWithWeekday',
+                          )}
+                    </div>
+                  ))
+                ) : (
+                  <div className={styles.detailContent}>-</div>
+                )}
+              </div>
             </div>
           </div>
         </section>

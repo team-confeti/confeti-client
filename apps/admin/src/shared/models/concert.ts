@@ -175,9 +175,11 @@ export const mapConcertDetailToExistingPerformance = (
   venueAddress: concert.address,
   ageRating: concert.ageRating,
   durationMinutes: parseDurationMinutes(concert.time),
-  bookingSchedules: concert.reserveAt
-    ? [{ round: '1차', startDate: concert.reserveAt }]
-    : [],
+  bookingSchedules:
+    concert.reservationSchedules?.map((schedule) => ({
+      round: schedule.roundName,
+      startDate: schedule.reserveAt,
+    })) ?? [],
   priceGrades: parsePriceGrades(concert.price),
   mainPosterPreview: concert.posterUrl || undefined,
   publishedPerformanceId: concert.concertId,

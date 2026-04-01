@@ -138,6 +138,11 @@ const festivalOpenAtSchema = z
     '티켓 오픈 시간 형식이 올바르지 않아요.',
   );
 
+const reservationScheduleSchema = z.object({
+  roundName: z.string().trim().max(30, '예매 차수는 30자 이하여야 해요.'),
+  reserveAt: reservationDateTimeSchema,
+});
+
 const concertRequestSchema = z.object({
   concertId: z.number().nullable(),
   title: z.string().trim().min(1, '공연명을 입력해주세요.'),
@@ -145,13 +150,15 @@ const concertRequestSchema = z.object({
   endAt: performanceDateSchema,
   area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
   address: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
-  reserveAt: reservationDateTimeSchema,
   ageRating: z.string().trim().min(1, '관람 등급을 입력해주세요.'),
   time: z.string().trim().min(1, '공연 시간을 입력해주세요.'),
   price: z.string().trim().min(1, '가격 등급과 가격을 하나 이상 입력해주세요.'),
   artistIds: z
     .array(z.string().trim().min(1))
     .min(1, '아티스트를 한 명 이상 추가해주세요.'),
+  reservationSchedules: z
+    .array(reservationScheduleSchema)
+    .min(1, '예매 일정을 입력해주세요.'),
   reservationUrls: z.array(
     z.object({
       ticketVendorId: z.number(),
@@ -191,10 +198,12 @@ const festivalRequestSchema = z.object({
   endAt: performanceDateSchema,
   area: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
   address: z.string().trim().min(1, '장소 정보를 입력해주세요.'),
-  reserveAt: reservationDateTimeSchema,
   ageRating: z.string().trim().min(1, '관람 등급을 입력해주세요.'),
   time: z.string().trim().min(1, '공연 시간을 입력해주세요.'),
   price: z.string().trim().min(1, '가격 등급과 가격을 하나 이상 입력해주세요.'),
+  reservationSchedules: z
+    .array(reservationScheduleSchema)
+    .min(1, '예매 일정을 입력해주세요.'),
   reservationUrls: z.array(
     z.object({
       ticketVendorId: z.number(),
@@ -271,6 +280,14 @@ export const getPublishValidationMessage = (
     return '장소 정보를 입력해주세요.';
   }
 
+  if (
+    !formData.bookingSchedules.some(
+      (bookingSchedule) => bookingSchedule.startDate.trim().length > 0,
+    )
+  ) {
+    return '예매 일정을 입력해주세요.';
+  }
+
   if (!hasFilledPriceGrade(formData.priceGrades)) {
     return '가격 등급과 가격을 하나 이상 입력해주세요.';
   }
@@ -310,6 +327,16 @@ export const buildDraftPerformanceData = (formData: PerformanceFormData) =>
     publishedPerformanceId: formData.publishedPerformanceId,
   });
 
+const getReservationSchedules = (
+  bookingSchedules: PerformanceFormData['bookingSchedules'],
+) =>
+  bookingSchedules
+    .filter((schedule) => schedule.startDate.trim().length > 0)
+    .map((schedule) => ({
+      roundName: schedule.round.trim(),
+      reserveAt: withSeconds(schedule.startDate),
+    }));
+
 export const buildConcertRequest = (
   formData: PerformanceFormData,
   concertId?: number,
@@ -320,7 +347,6 @@ export const buildConcertRequest = (
   endAt: formData.endDate,
   area: formData.venueName,
   address: formData.venueAddress,
-  reserveAt: withSeconds(formData.bookingSchedules[0]?.startDate ?? ''),
   ageRating: formData.ageRating,
   time: `${formData.durationMinutes}분`,
   price: formData.priceGrades
@@ -338,6 +364,7 @@ export const buildConcertRequest = (
       ticketVendorId: ticketVendor.id,
       reservationUrl: ticketVendor.url,
     })),
+  reservationSchedules: getReservationSchedules(formData.bookingSchedules),
 });
 
 export const buildFestivalRequest = (
@@ -350,7 +377,6 @@ export const buildFestivalRequest = (
   endAt: formData.endDate,
   area: formData.venueName,
   address: formData.venueAddress,
-  reserveAt: withSeconds(formData.bookingSchedules[0]?.startDate ?? ''),
   ageRating: formData.ageRating,
   time: `${formData.durationMinutes}분`,
   price: formData.priceGrades
@@ -367,6 +393,7 @@ export const buildFestivalRequest = (
       ticketVendorId: ticketVendor.id,
       reservationUrl: ticketVendor.url,
     })),
+  reservationSchedules: getReservationSchedules(formData.bookingSchedules),
   dates: getFestivalDates(formData),
 });
 

@@ -49,7 +49,7 @@ const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
 
   const DdayList = data.map((performance) => ({
     ...performance,
-    reserveAt: formatDate(performance.reserveAt, 'Dday'),
+    dday: formatDate(performance.reserveAt, 'Dday'),
   }));
 
   const scrollToSection = (index: number) => {
@@ -96,10 +96,9 @@ const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
                   imageUrl={imageUrls[index]}
                   textContent={
                     <>
-                      {/* TODO: startTime 서버 응답에 맞춰서 변경 */}
                       <TicketingCard.Dday
-                        reserveAt={DdayList[index]?.reserveAt}
-                        startTime="12:00"
+                        reserveAt={DdayList[index]?.dday}
+                        startTime={performance.roundName}
                       />
                       <TicketingCard.SubTitle subtitle={performance.title} />
                     </>
