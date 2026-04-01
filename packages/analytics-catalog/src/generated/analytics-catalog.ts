@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-03-25T08:59:29.963Z',
+  generatedAt: '2026-04-01T15:41:55.967Z',
   rows: [
     {
       page: '*',
@@ -135,7 +135,7 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/components/ticket-opening-section.tsx',
       sourceComponent: 'TicketOpeningSection',
-      sourceLine: 108,
+      sourceLine: 107,
     },
     {
       page: '/',
@@ -274,7 +274,7 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/concert-performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 35,
+      sourceLine: 32,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -394,7 +394,7 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/festival-performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 52,
+      sourceLine: 49,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -416,7 +416,7 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/festival-performance-info.tsx',
       sourceComponent: 'handleTimeTableCtaClick',
-      sourceLine: 64,
+      sourceLine: 61,
     },
     {
       page: '/login',
