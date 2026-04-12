@@ -1,5 +1,14 @@
 // Array
-export { chunk, compact, groupBy, sortBy, uniq, uniqBy } from 'es-toolkit';
+export {
+  chunk,
+  compact,
+  drop,
+  groupBy,
+  sortBy,
+  take,
+  uniq,
+  uniqBy,
+} from 'es-toolkit';
 
 // Object
 export { cloneDeep, merge, omit, pick } from 'es-toolkit';

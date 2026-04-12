@@ -14,12 +14,14 @@ const MORE_BUTTON = {
 } as const;
 
 interface MoreButtonProps {
+  controlsId?: string;
   hasShadow?: boolean;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
 const MoreButton = ({
+  controlsId,
   hasShadow = false,
   isExpanded,
   onToggle,
@@ -35,6 +37,8 @@ const MoreButton = ({
     <button
       className={styles.button({ hasShadow })}
       onClick={onToggle}
+      aria-controls={controlsId}
+      aria-expanded={isExpanded}
       aria-label={ariaLabel}
     >
       <span className={styles.text}>{buttonText}</span>

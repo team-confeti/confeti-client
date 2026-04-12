@@ -1,3 +1,4 @@
+export { default as Collapse } from './collapse/collapse';
 export { default as FloatingButtonContainer } from './containers/floating-button-container';
 export { FestivalList } from './festival-list/festival-list';
 export { default as Hero } from './hero/hero';
