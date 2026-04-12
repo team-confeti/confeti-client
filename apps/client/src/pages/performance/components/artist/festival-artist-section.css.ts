@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars } from '@confeti/design-system/styles';
 
@@ -33,25 +32,22 @@ export const festivalDayBadge = style({
   marginTop: '2rem',
 });
 
-export const artistGridVariants = recipe({
-  base: {
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '1.6rem',
-    overflow: 'hidden',
-    transition: 'max-height 0.4s ease',
-  },
-  variants: {
-    expanded: {
-      true: {
-        maxHeight: '100rem',
-      },
-      false: {
-        maxHeight: '10.5rem',
-      },
-    },
-  },
+export const artistGrid = style({
+  width: '100%',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gap: '1.6rem',
+});
+
+export const artistList = style({
+  ...themeVars.display.flexColumn,
+  width: '100%',
+  gap: '1.6rem',
+});
+
+export const expandedArtistGrid = style({
+  width: '100%',
+  overflow: 'hidden',
 });
 
 export const festivalArtistContainer = style({

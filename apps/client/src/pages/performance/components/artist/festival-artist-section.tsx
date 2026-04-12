@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 
 import { Avatar } from '@confeti/design-system';
-import { cn } from '@confeti/utils';
 
 import { logClickEvent } from '@shared/analytics/logging';
+import { drop, isEmpty, take } from '@shared/lib/es-toolkit/es';
 import { FestivalDate } from '@shared/types/festival-response';
 
 import MoreButton from '../button/more-button';
@@ -12,85 +13,105 @@ import ArtistSectionTitle from './artist-section-title';
 import * as styles from './festival-artist-section.css';
 
 const MAX_ARTIST_LENGTH = 4;
+const ARTIST_EXPAND_TRANSITION = {
+  duration: 0.35,
+  ease: 'easeOut',
+} as const;
 
-interface FestivalArtistSectionProps {
-  artists: FestivalDate[];
-}
+const FestivalArtistDateSection = ({
+  festivalDate,
+}: {
+  festivalDate: FestivalDate;
+}) => {
+  const [showExpandedArtists, setShowExpandedArtists] = useState(false);
+  const hiddenArtists = drop(festivalDate.artists, MAX_ARTIST_LENGTH);
 
-const FestivalArtistSection = ({ artists }: FestivalArtistSectionProps) => {
-  const [expandedDates, setExpandedDates] = useState<Record<number, boolean>>(
-    {},
-  );
-
-  const toggleExpanded = (id: number) => {
+  const handleToggleExpandedArtists = () => {
     logClickEvent({
       name: 'click_box_show_more',
       params: {
         section: 'festival_artist',
       },
     });
-    setExpandedDates((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    setShowExpandedArtists((prev) => !prev);
   };
 
-  const processedArtists = artists.map((festivalDate) => {
-    const isExpanded = Boolean(expandedDates[festivalDate.festivalDateId]);
-    const isMorebuttonVisible = festivalDate.artists.length > MAX_ARTIST_LENGTH;
-    return {
-      ...festivalDate,
-      isExpanded,
-      isMorebuttonVisible,
-    };
-  });
-
   return (
-    <>
-      <div className={styles.festivalArtistTitle}>
-        <ArtistSectionTitle />
-      </div>
-      <section className={styles.festivalContentContainer}>
-        {processedArtists.map((festivalDate) => (
-          <div
-            key={festivalDate.festivalDateId}
-            className={styles.festivalContentItems}
-          >
-            <p className={styles.festivalDayBadge}>{festivalDate.festivalAt}</p>
-            <div
-              className={cn(
-                styles.artistGridVariants({
-                  expanded: festivalDate.isExpanded,
-                }),
-              )}
+    <div className={styles.festivalContentItems}>
+      <p className={styles.festivalDayBadge}>{festivalDate.festivalAt}</p>
+      <div className={styles.artistList}>
+        <div className={styles.artistGrid}>
+          {take(festivalDate.artists, MAX_ARTIST_LENGTH).map((artist) => (
+            <figure
+              key={artist.artistId}
+              className={styles.festivalArtistContainer}
             >
-              {festivalDate.artists.map((artist) => (
-                <figure
-                  key={artist.artistId}
-                  className={styles.festivalArtistContainer}
-                >
-                  <Avatar
-                    size="lg"
-                    src={artist.profileUrl}
-                    isHandleClick={false}
-                  />
-                  <p className={styles.festivalArtistName}>{artist.name}</p>
-                </figure>
-              ))}
-            </div>
-            {festivalDate.isMorebuttonVisible && (
-              <div className={styles.festivalMorebutton}>
-                <MoreButton
-                  isExpanded={festivalDate.isExpanded}
-                  onToggle={() => toggleExpanded(festivalDate.festivalDateId)}
-                />
+              <Avatar size="lg" src={artist.profileUrl} isHandleClick={false} />
+              <p className={styles.festivalArtistName}>{artist.name}</p>
+            </figure>
+          ))}
+        </div>
+        <AnimatePresence initial={false}>
+          {showExpandedArtists && (
+            <motion.div
+              className={styles.expandedArtistGrid}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{
+                height: ARTIST_EXPAND_TRANSITION,
+                opacity: { duration: 0.2, ease: 'easeOut' },
+              }}
+            >
+              <div className={styles.artistGrid}>
+                {hiddenArtists.map((artist) => (
+                  <figure
+                    key={artist.artistId}
+                    className={styles.festivalArtistContainer}
+                  >
+                    <Avatar
+                      size="lg"
+                      src={artist.profileUrl}
+                      isHandleClick={false}
+                    />
+                    <p className={styles.festivalArtistName}>{artist.name}</p>
+                  </figure>
+                ))}
               </div>
-            )}
-          </div>
-        ))}
-      </section>
-    </>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      {!isEmpty(hiddenArtists) && (
+        <div className={styles.festivalMorebutton}>
+          <MoreButton
+            showExpanded={showExpandedArtists}
+            onToggle={handleToggleExpandedArtists}
+          />
+        </div>
+      )}
+    </div>
   );
 };
+
+interface FestivalArtistSectionProps {
+  artists: FestivalDate[];
+}
+
+const FestivalArtistSection = ({ artists }: FestivalArtistSectionProps) => (
+  <>
+    <div className={styles.festivalArtistTitle}>
+      <ArtistSectionTitle />
+    </div>
+    <section className={styles.festivalContentContainer}>
+      {artists.map((festivalDate) => (
+        <FestivalArtistDateSection
+          key={festivalDate.festivalDateId}
+          festivalDate={festivalDate}
+        />
+      ))}
+    </section>
+  </>
+);
 
 export default FestivalArtistSection;
