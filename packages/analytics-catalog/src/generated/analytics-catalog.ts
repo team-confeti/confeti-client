@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-04-01T15:41:55.967Z',
+  generatedAt: '2026-04-12T17:58:24.588Z',
   rows: [
     {
       page: '*',
@@ -348,7 +348,7 @@ export const analyticsCatalog = {
       state: 'show_festival_detail',
       attribute: '',
       commonComponent: '',
-      element: 'handler:toggleExpanded',
+      element: 'handler:handleToggleExpandedArtists',
       eventType: 'click',
       eventName: 'click_box_show_more',
       showType: '',
@@ -361,8 +361,8 @@ export const analyticsCatalog = {
       ],
       sourceFile:
         'pages/performance/components/artist/festival-artist-section.tsx',
-      sourceComponent: 'toggleExpanded',
-      sourceLine: 26,
+      sourceComponent: 'handleToggleExpandedArtists',
+      sourceLine: 28,
     },
     {
       page: '/festival-detail/:festivalId',
