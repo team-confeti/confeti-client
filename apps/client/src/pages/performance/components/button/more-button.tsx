@@ -14,20 +14,22 @@ const MORE_BUTTON = {
 } as const;
 
 interface MoreButtonProps {
+  controlsId?: string;
   hasShadow?: boolean;
-  showExpanded: boolean;
+  isExpanded: boolean;
   onToggle: () => void;
 }
 
 const MoreButton = ({
+  controlsId,
   hasShadow = false,
-  showExpanded,
+  isExpanded,
   onToggle,
 }: MoreButtonProps) => {
-  const buttonText = showExpanded
+  const buttonText = isExpanded
     ? MORE_BUTTON.EXPANDED.TEXT
     : MORE_BUTTON.COLLAPSED.TEXT;
-  const ariaLabel = showExpanded
+  const ariaLabel = isExpanded
     ? MORE_BUTTON.EXPANDED.ARIA_LABEL
     : MORE_BUTTON.COLLAPSED.ARIA_LABEL;
 
@@ -35,10 +37,12 @@ const MoreButton = ({
     <button
       className={styles.button({ hasShadow })}
       onClick={onToggle}
+      aria-controls={controlsId}
+      aria-expanded={isExpanded}
       aria-label={ariaLabel}
     >
       <span className={styles.text}>{buttonText}</span>
-      {showExpanded ? (
+      {isExpanded ? (
         <Icon name="arrow-vertical" size="1.6rem" />
       ) : (
         <Icon name="arrow-vertical" size="1.6rem" rotate={180} />

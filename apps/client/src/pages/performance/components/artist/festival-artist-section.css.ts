@@ -42,12 +42,15 @@ export const artistGrid = style({
 export const artistList = style({
   ...themeVars.display.flexColumn,
   width: '100%',
-  gap: '1.6rem',
 });
 
-export const expandedArtistGrid = style({
+export const artistCollapseRegion = style({
   width: '100%',
   overflow: 'hidden',
+});
+
+export const artistCollapseRegionInner = style({
+  paddingTop: '1.6rem',
 });
 
 export const festivalArtistContainer = style({

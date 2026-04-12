@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { useId, useState } from 'react';
 
 import { Avatar } from '@confeti/design-system';
 
 import { logClickEvent } from '@shared/analytics/logging';
+import Collapse from '@shared/components/collapse/collapse';
 import { drop, isEmpty, take } from '@shared/lib/es-toolkit/es';
 import { FestivalDate } from '@shared/types/festival-response';
 
@@ -13,10 +13,6 @@ import ArtistSectionTitle from './artist-section-title';
 import * as styles from './festival-artist-section.css';
 
 const MAX_ARTIST_LENGTH = 4;
-const ARTIST_EXPAND_TRANSITION = {
-  duration: 0.35,
-  ease: 'easeOut',
-} as const;
 
 const FestivalArtistDateSection = ({
   festivalDate,
@@ -24,7 +20,9 @@ const FestivalArtistDateSection = ({
   festivalDate: FestivalDate;
 }) => {
   const [showExpandedArtists, setShowExpandedArtists] = useState(false);
+  const artistRegionId = useId();
   const hiddenArtists = drop(festivalDate.artists, MAX_ARTIST_LENGTH);
+  const showMoreButton = !isEmpty(hiddenArtists);
 
   const handleToggleExpandedArtists = () => {
     logClickEvent({
@@ -37,7 +35,7 @@ const FestivalArtistDateSection = ({
   };
 
   return (
-    <div className={styles.festivalContentItems}>
+    <section className={styles.festivalContentItems}>
       <p className={styles.festivalDayBadge}>{festivalDate.festivalAt}</p>
       <div className={styles.artistList}>
         <div className={styles.artistGrid}>
@@ -51,18 +49,15 @@ const FestivalArtistDateSection = ({
             </figure>
           ))}
         </div>
-        <AnimatePresence initial={false}>
-          {showExpandedArtists && (
-            <motion.div
-              className={styles.expandedArtistGrid}
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{
-                height: ARTIST_EXPAND_TRANSITION,
-                opacity: { duration: 0.2, ease: 'easeOut' },
-              }}
-            >
+        {showMoreButton && (
+          <Collapse
+            id={artistRegionId}
+            className={styles.artistCollapseRegion}
+            role="region"
+            aria-hidden={!showExpandedArtists}
+            isExpanded={showExpandedArtists}
+          >
+            <div className={styles.artistCollapseRegionInner}>
               <div className={styles.artistGrid}>
                 {hiddenArtists.map((artist) => (
                   <figure
@@ -78,19 +73,20 @@ const FestivalArtistDateSection = ({
                   </figure>
                 ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </Collapse>
+        )}
       </div>
-      {!isEmpty(hiddenArtists) && (
+      {showMoreButton && (
         <div className={styles.festivalMorebutton}>
           <MoreButton
-            showExpanded={showExpandedArtists}
+            controlsId={artistRegionId}
+            isExpanded={showExpandedArtists}
             onToggle={handleToggleExpandedArtists}
           />
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
