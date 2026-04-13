@@ -20,12 +20,15 @@ export const useFestivalSelect = (festivals: FestivalTimetable[]) => {
   );
 
   // festivals가 변경되면 자동으로 첫 번째 항목 선택
-  useEffect(() => {
-    if (festivals && festivals.length > 0) {
-      setSelectedFestivalId(festivals[0].festivalId);
-      setSelectedDateId(festivals[0].festivalDates[0].festivalDateId);
-    }
-  }, [festivals]);
+  useEffect(
+    function selectFirstFestivalOnFestivalsChange() {
+      if (festivals && festivals.length > 0) {
+        setSelectedFestivalId(festivals[0].festivalId);
+        setSelectedDateId(festivals[0].festivalDates[0].festivalDateId);
+      }
+    },
+    [festivals],
+  );
 
   // 현재 선택된 festival 정보
   const selectedFestivalInfo: FestivalTimetable =

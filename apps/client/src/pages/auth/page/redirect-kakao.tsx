@@ -10,7 +10,7 @@ const RedirectKakao = () => {
   const location = useLocation();
   const { mutate: kakaoLoginMutate } = useSocialLoginMutation();
 
-  useEffect(() => {
+  useEffect(function loginWithKakaoAuthorizationCode() {
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('code');
     const REDIRECT_URI = window.location.origin + '/auth';

@@ -67,12 +67,15 @@ export const TimetableContainer = () => {
     setDeleteStatus('none');
   };
 
-  useEffect(() => {
-    if (deleteStatus !== 'success') return;
+  useEffect(
+    function hideDeleteSuccessDialog() {
+      if (deleteStatus !== 'success') return;
 
-    const timer = setTimeout(() => setDeleteStatus('none'), 2000);
-    return () => clearTimeout(timer);
-  }, [deleteStatus]);
+      const timer = setTimeout(() => setDeleteStatus('none'), 2000);
+      return () => clearTimeout(timer);
+    },
+    [deleteStatus],
+  );
 
   const toggleSelection = (id: number) => {
     setSelectedIds((prev) =>

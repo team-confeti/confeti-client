@@ -62,10 +62,13 @@ const CarouselWrap = ({ performances, indexData }: CarouselWrapProps) => {
   const controlTime = useControlTime(carouselTransition);
 
   // 자동 슬라이드 전환
-  useEffect(() => {
-    const interval = setInterval(nextSlide, controlTime);
-    return () => clearInterval(interval);
-  }, [nextSlide, controlTime]);
+  useEffect(
+    function startAutoSlide() {
+      const interval = setInterval(nextSlide, controlTime);
+      return () => clearInterval(interval);
+    },
+    [nextSlide, controlTime],
+  );
   const { dDay } = useDateFormat(
     performanceData.reserveDates[currentIndex] || '',
   );

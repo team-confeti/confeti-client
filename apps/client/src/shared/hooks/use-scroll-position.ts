@@ -4,7 +4,7 @@ export const useScrollPosition = () => {
   const [isDirectionDown, setIsDirectionDown] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
 
-  useEffect(() => {
+  useEffect(function trackScrollPosition() {
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {

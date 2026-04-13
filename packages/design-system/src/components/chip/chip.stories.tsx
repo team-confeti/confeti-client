@@ -69,9 +69,12 @@ export const ChoiceSelected: Story = {
 const WithDeleteTemplate = (args: React.ComponentProps<typeof Chip>) => {
   const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    setVisible(true);
-  }, [args.children]);
+  useEffect(
+    function restoreChipVisibilityOnChildrenChange() {
+      setVisible(true);
+    },
+    [args.children],
+  );
 
   return visible ? (
     <Chip {...args} onDelete={() => setVisible(false)} />

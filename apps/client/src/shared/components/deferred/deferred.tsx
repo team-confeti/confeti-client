@@ -7,7 +7,7 @@ interface DeferredProps {
 const Deferred = ({ children }: DeferredProps) => {
   const [isDeferred, setIsDeferred] = useState(false);
 
-  useEffect(() => {
+  useEffect(function showDeferredContent() {
     const timer = setTimeout(() => {
       setIsDeferred(true);
     }, 250);

@@ -13,17 +13,20 @@ export const useImagePreview = (
   const [file, setFile] = useState<File | null>(initialFile ?? null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!file) {
-      setPreview(null);
-      return;
-    }
+  useEffect(
+    function createImagePreview() {
+      if (!file) {
+        setPreview(null);
+        return;
+      }
 
-    const url = URL.createObjectURL(file);
-    setPreview(url);
+      const url = URL.createObjectURL(file);
+      setPreview(url);
 
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+      return () => URL.revokeObjectURL(url);
+    },
+    [file],
+  );
 
   const handleFileChange = (newFile: File | null) => {
     setFile(newFile);

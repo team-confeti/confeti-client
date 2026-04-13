@@ -29,7 +29,7 @@ export function useCarouselBackground() {
     [activeIndex],
   );
 
-  useEffect(() => {
+  useEffect(function clearBackgroundTransitionTimerOnUnmount() {
     return () => {
       if (transitionTimerRef.current) {
         window.clearTimeout(transitionTimerRef.current);

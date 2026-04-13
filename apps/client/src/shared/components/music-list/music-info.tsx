@@ -30,25 +30,28 @@ const MusicInfo = ({
   const showDots = total > 1;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+  useEffect(
+    function synchronizeCurrentIndexWithScrollPosition() {
+      const container = scrollContainerRef.current;
+      if (!container) return;
 
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const containerWidth = container.clientWidth;
-      if (!containerWidth) return;
+      const handleScroll = () => {
+        const scrollLeft = container.scrollLeft;
+        const containerWidth = container.clientWidth;
+        if (!containerWidth) return;
 
-      const newIndex = Math.round(scrollLeft / containerWidth);
-      if (newIndex === current) return;
-      if (newIndex < 0 || newIndex >= total) return;
+        const newIndex = Math.round(scrollLeft / containerWidth);
+        if (newIndex === current) return;
+        if (newIndex < 0 || newIndex >= total) return;
 
-      onChangeIndex?.(newIndex);
-    };
+        onChangeIndex?.(newIndex);
+      };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [total, current, onChangeIndex]);
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    },
+    [total, current, onChangeIndex],
+  );
 
   const handleDotClick = (index: number) => {
     const container = scrollContainerRef.current;

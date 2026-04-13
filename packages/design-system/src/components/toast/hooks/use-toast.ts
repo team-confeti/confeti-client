@@ -10,12 +10,15 @@ export const useToast = (
 ) => {
   const [isExiting, setIsExiting] = useState(false);
 
-  useEffect(() => {
-    if (autoClose) {
-      const timer = setTimeout(() => setIsExiting(true), autoClose);
-      return () => clearTimeout(timer);
-    }
-  }, [autoClose]);
+  useEffect(
+    function startToastAutoClose() {
+      if (autoClose) {
+        const timer = setTimeout(() => setIsExiting(true), autoClose);
+        return () => clearTimeout(timer);
+      }
+    },
+    [autoClose],
+  );
 
   const handleAnimationEnd = () => {
     if (isExiting) {

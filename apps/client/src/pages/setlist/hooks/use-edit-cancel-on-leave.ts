@@ -8,24 +8,30 @@ export const useEditCancelOnLeave = (
   const location = useLocation();
   const prevPathnameRef = useRef(location.pathname);
 
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (isEditMode) {
-        cancelEdit();
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [isEditMode, cancelEdit]);
+  useEffect(
+    function registerEditCancellationOnUnload() {
+      const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+        if (isEditMode) {
+          cancelEdit();
+          e.preventDefault();
+          e.returnValue = '';
+        }
+      };
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    },
+    [isEditMode, cancelEdit],
+  );
 
-  useEffect(() => {
-    if (isEditMode && location.pathname !== prevPathnameRef.current) {
-      cancelEdit();
-    }
-    prevPathnameRef.current = location.pathname;
-  }, [location.pathname, isEditMode, cancelEdit]);
+  useEffect(
+    function cancelEditOnRouteChange() {
+      if (isEditMode && location.pathname !== prevPathnameRef.current) {
+        cancelEdit();
+      }
+      prevPathnameRef.current = location.pathname;
+    },
+    [location.pathname, isEditMode, cancelEdit],
+  );
 };

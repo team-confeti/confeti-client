@@ -46,9 +46,12 @@ type Story = StoryObj<typeof Toggle>;
 const ToggleTemplate = (args: React.ComponentProps<typeof Toggle>) => {
   const [checked, setChecked] = useState(args.checked);
 
-  useEffect(() => {
-    setChecked(args.checked);
-  }, [args.checked]);
+  useEffect(
+    function synchronizeCheckedWithArgs() {
+      setChecked(args.checked);
+    },
+    [args.checked],
+  );
 
   return <Toggle {...args} checked={checked} onChange={setChecked} />;
 };

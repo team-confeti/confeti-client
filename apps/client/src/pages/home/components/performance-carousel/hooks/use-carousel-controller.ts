@@ -30,7 +30,7 @@ export function useCarouselController({
   const autoplayRef = useRef<number | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useEffect(function notifyInitialSlideChange() {
     onSlideChange?.(0);
   }, []);
 
@@ -73,10 +73,13 @@ export function useCarouselController({
     }
   };
 
-  useEffect(() => {
-    startAutoplay();
-    return clearAutoplay;
-  }, [index, length, autoPlayInterval]);
+  useEffect(
+    function synchronizeCarouselAutoplay() {
+      startAutoplay();
+      return clearAutoplay;
+    },
+    [index, length, autoPlayInterval],
+  );
 
   usePointerDrag({
     rootRef,

@@ -26,19 +26,25 @@ const ConfirmDialog = ({
 }: Props) => {
   const cancelRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => cancelRef.current?.focus(), 50);
-    }
-  }, [isOpen]);
+  useEffect(
+    function focusCancelButtonOnOpen() {
+      if (isOpen) {
+        setTimeout(() => cancelRef.current?.focus(), 50);
+      }
+    },
+    [isOpen],
+  );
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) onCancel();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onCancel]);
+  useEffect(
+    function registerEscapeKeyHandler() {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && isOpen) onCancel();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    },
+    [isOpen, onCancel],
+  );
 
   if (!isOpen) return null;
 
