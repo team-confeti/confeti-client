@@ -10,6 +10,7 @@ import { formatDate } from '@confeti/utils';
 import { logClickEvent } from '@shared/analytics/logging';
 import { TIMETABLE_MUTATION_OPTIONS } from '@shared/apis/timetable/festival-timetable-mutations';
 import { useLikeMutation } from '@shared/hooks/queries/use-like-mutation';
+import { isEmpty } from '@shared/lib/es-toolkit/es';
 import { routePath } from '@shared/router/path';
 import type { ReservationSchedule } from '@shared/types/performance-common';
 import { buildPath } from '@shared/utils/build-path';
@@ -18,6 +19,9 @@ import { isHTTPErrorStatus } from '@shared/utils/error';
 import { MAX_SELECTIONS } from '@pages/timetable/constants';
 
 import * as styles from './performance-info.css';
+
+const WHEELCHAIR_ROUND_NAME = '휠체어석';
+const WHEELCHAIR_NOTICE = '* 자세한 사항은 예매처를 참조해주세요.';
 
 interface FestivalPerformanceInfoProps {
   id: number;
@@ -119,28 +123,36 @@ const FestivalPerformanceInfo = ({
               <div className={styles.detailContent}>{area}</div>
             </div>
             <div className={styles.detailItem}>
-              <div className={styles.detailTitle}>예매 일정</div>
+              <div className={styles.detailTitle}>예매일</div>
               <div className={styles.detailContentList}>
-                {reservationSchedules.length > 0 ? (
-                  reservationSchedules.map((schedule) => (
-                    <div
-                      key={`${schedule.roundName}-${schedule.reserveAt}`}
-                      className={styles.detailContent}
-                    >
-                      {schedule.roundName
-                        ? `${schedule.roundName} · ${formatDate(
-                            schedule.reserveAt,
-                            'koFullDateTimeWithWeekday',
-                          )}`
-                        : formatDate(
-                            schedule.reserveAt,
-                            'koFullDateTimeWithWeekday',
-                          )}
-                    </div>
-                  ))
-                ) : (
+                {isEmpty(reservationSchedules) && (
                   <div className={styles.detailContent}>-</div>
                 )}
+                {reservationSchedules.map((schedule) => (
+                  <div
+                    key={`${schedule.roundName}-${schedule.reserveAt}`}
+                    className={styles.reservationScheduleItem}
+                  >
+                    <div
+                      className={`${styles.detailContent} ${styles.reservationSchedule}`}
+                    >
+                      <span className={styles.reservationRoundName}>
+                        {schedule.roundName}
+                      </span>
+                      <span>
+                        {formatDate(
+                          schedule.reserveAt,
+                          'koFullDateTimeWithWeekday',
+                        )}
+                      </span>
+                    </div>
+                    {schedule.roundName === WHEELCHAIR_ROUND_NAME && (
+                      <div className={styles.reservationScheduleNotice}>
+                        {WHEELCHAIR_NOTICE}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-04-12T17:58:24.588Z',
+  generatedAt: '2026-04-13T08:02:02.157Z',
   rows: [
     {
       page: '*',
@@ -16,7 +16,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'shared/pages/error/error.tsx',
       sourceComponent: 'Error',
-      sourceLine: 27,
     },
     {
       page: '*',
@@ -31,7 +30,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'shared/pages/error/error.tsx',
       sourceComponent: 'Error',
-      sourceLine: 39,
     },
     {
       page: '/',
@@ -57,7 +55,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'shared/components/music-list/music-info.tsx',
       sourceComponent: 'MusicInfo',
-      sourceLine: 77,
     },
     {
       page: '/',
@@ -72,7 +69,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/home/page/home-page.tsx',
       sourceComponent: 'HomePage',
-      sourceLine: 56,
     },
     {
       page: '/',
@@ -93,7 +89,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/page/home-page.tsx',
       sourceComponent: 'handleClickCarouselPerformance',
-      sourceLine: 45,
     },
     {
       page: '/',
@@ -114,7 +109,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/components/suggest-performance-section.tsx',
       sourceComponent: 'SuggestPerformanceSection',
-      sourceLine: 30,
     },
     {
       page: '/',
@@ -135,7 +129,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/components/ticket-opening-section.tsx',
       sourceComponent: 'TicketOpeningSection',
-      sourceLine: 107,
     },
     {
       page: '/',
@@ -161,7 +154,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/home/components/suggest-music-section.tsx',
       sourceComponent: 'handleClickPlayToggle',
-      sourceLine: 57,
     },
     {
       page: '/auth',
@@ -176,7 +168,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/redirect-kakao.tsx',
       sourceComponent: 'RedirectKakao',
-      sourceLine: 28,
     },
     {
       page: '/concert-detail/:concertId',
@@ -191,7 +182,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 48,
     },
     {
       page: '/concert-detail/:concertId',
@@ -206,7 +196,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 59,
     },
     {
       page: '/concert-detail/:concertId',
@@ -227,7 +216,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/performance/components/reservation/reservation.tsx',
       sourceComponent: 'Reservation',
-      sourceLine: 34,
     },
     {
       page: '/concert-detail/:concertId',
@@ -242,7 +230,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/page/concert-detail.tsx',
       sourceComponent: 'ConcertDetailPage',
-      sourceLine: 30,
     },
     {
       page: '/concert-detail/:concertId',
@@ -274,7 +261,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/concert-performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 32,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -289,7 +275,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 48,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -304,7 +289,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/components/location/location.tsx',
       sourceComponent: 'Location',
-      sourceLine: 59,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -325,7 +309,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/performance/components/reservation/reservation.tsx',
       sourceComponent: 'Reservation',
-      sourceLine: 34,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -340,7 +323,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/performance/page/festival-detail.tsx',
       sourceComponent: 'FestivalDetailPage',
-      sourceLine: 35,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -362,7 +344,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/artist/festival-artist-section.tsx',
       sourceComponent: 'handleToggleExpandedArtists',
-      sourceLine: 28,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -394,7 +375,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/festival-performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 49,
     },
     {
       page: '/festival-detail/:festivalId',
@@ -416,7 +396,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/performance/components/performance-info/festival-performance-info.tsx',
       sourceComponent: 'handleTimeTableCtaClick',
-      sourceLine: 61,
     },
     {
       page: '/login',
@@ -431,7 +410,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 86,
     },
     {
       page: '/login',
@@ -446,7 +424,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 90,
     },
     {
       page: '/login',
@@ -467,28 +444,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 180,
-    },
-    {
-      page: '/login',
-      path: '/login',
-      state: 'show_login',
-      attribute: '',
-      commonComponent: '',
-      element: 'a',
-      eventType: 'click',
-      eventName: 'click_login_policy_link',
-      showType: '',
-      params: [
-        {
-          name: 'link_name',
-          type: 'string',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/auth/page/login-page.tsx',
-      sourceComponent: 'LoginPage',
-      sourceLine: 194,
     },
     {
       page: '/login',
@@ -509,28 +464,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/auth/page/login-page.tsx',
       sourceComponent: 'LoginPage',
-      sourceLine: 151,
-    },
-    {
-      page: '/login',
-      path: '/login',
-      state: 'show_login',
-      attribute: '',
-      commonComponent: '',
-      element: 'Button',
-      eventType: 'click',
-      eventName: 'click_login_provider',
-      showType: '',
-      params: [
-        {
-          name: 'provider',
-          type: 'enum: kakao, apple',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/auth/page/login-page.tsx',
-      sourceComponent: 'LoginPage',
-      sourceLine: 163,
     },
     {
       page: '/my',
@@ -545,7 +478,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/profile/logout-section.tsx',
       sourceComponent: 'LogoutDialog',
-      sourceLine: 24,
     },
     {
       page: '/my',
@@ -560,28 +492,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/profile/my-profile.tsx',
       sourceComponent: 'MyProfile',
-      sourceLine: 67,
-    },
-    {
-      page: '/my',
-      path: '/my',
-      state: 'show_my_profile',
-      attribute: '',
-      commonComponent: '',
-      element: 'handler:handleNavigateFavoritePerformance',
-      eventType: 'click',
-      eventName: 'click_box_show_more',
-      showType: '',
-      params: [
-        {
-          name: 'section',
-          type: 'enum: festival_artist, favorite_performance, favorite_artist',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/my/page/profile/my-profile.tsx',
-      sourceComponent: 'handleNavigateFavoritePerformance',
-      sourceLine: 42,
     },
     {
       page: '/my',
@@ -602,7 +512,26 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/profile/my-profile.tsx',
       sourceComponent: 'handleNavigateFavoriteArtist',
-      sourceLine: 52,
+    },
+    {
+      page: '/my',
+      path: '/my',
+      state: 'show_my_profile',
+      attribute: '',
+      commonComponent: '',
+      element: 'handler:handleNavigateFavoritePerformance',
+      eventType: 'click',
+      eventName: 'click_box_show_more',
+      showType: '',
+      params: [
+        {
+          name: 'section',
+          type: 'enum: festival_artist, favorite_performance, favorite_artist',
+          required: true,
+        },
+      ],
+      sourceFile: 'pages/my/page/profile/my-profile.tsx',
+      sourceComponent: 'handleNavigateFavoritePerformance',
     },
     {
       page: '/my',
@@ -617,7 +546,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/profile/logout-section.tsx',
       sourceComponent: 'LogoutDialog',
-      sourceLine: 32,
     },
     {
       page: '/my',
@@ -632,7 +560,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/profile/logout-section.tsx',
       sourceComponent: 'LogoutSection',
-      sourceLine: 68,
     },
     {
       page: '/my',
@@ -653,28 +580,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/profile/user-activity-summary.tsx',
       sourceComponent: 'UserActivitySummary',
-      sourceLine: 44,
-    },
-    {
-      page: '/my',
-      path: '/my',
-      state: 'show_my_profile',
-      attribute: '',
-      commonComponent: '',
-      element: 'div',
-      eventType: 'click',
-      eventName: 'click_my_activity_summary',
-      showType: '',
-      params: [
-        {
-          name: 'summary_type',
-          type: 'enum: timetable, setlist',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/my/components/profile/user-activity-summary.tsx',
-      sourceComponent: 'UserActivitySummary',
-      sourceLine: 59,
     },
     {
       page: '/my',
@@ -689,7 +594,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/profile/user-info.tsx',
       sourceComponent: 'UserInfo',
-      sourceLine: 30,
     },
     {
       page: '/my',
@@ -715,7 +619,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/performance/performance-section.tsx',
       sourceComponent: 'PerformanceSection',
-      sourceLine: 19,
     },
     {
       page: '/my',
@@ -730,7 +633,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/artist/no-artist-section.tsx',
       sourceComponent: 'NoArtistSection',
-      sourceLine: 23,
     },
     {
       page: '/my',
@@ -745,7 +647,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/profile/my-profile.tsx',
       sourceComponent: 'MyProfile',
-      sourceLine: 71,
     },
     {
       page: '/my/artist',
@@ -760,7 +661,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/artist/artist-more.tsx',
       sourceComponent: 'ArtistMore',
-      sourceLine: 35,
     },
     {
       page: '/my/artist',
@@ -791,7 +691,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/artist/artist-list.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 19,
     },
     {
       page: '/my/artist',
@@ -812,7 +711,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/artist/artist-more.tsx',
       sourceComponent: 'ArtistMore',
-      sourceLine: 39,
     },
     {
       page: '/my/confeti',
@@ -827,7 +725,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/performance/performance-more.tsx',
       sourceComponent: 'PerformanceMore',
-      sourceLine: 75,
     },
     {
       page: '/my/confeti',
@@ -858,7 +755,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/performance/performance-list.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 24,
     },
     {
       page: '/my/confeti',
@@ -879,7 +775,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/performance/performance-more.tsx',
       sourceComponent: 'PerformanceMore',
-      sourceLine: 82,
     },
     {
       page: '/my/confeti',
@@ -900,7 +795,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/performance/performance-more.tsx',
       sourceComponent: 'handleHidePastPerformancesChange',
-      sourceLine: 66,
     },
     {
       page: '/my/confeti',
@@ -926,7 +820,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/performance/performance-list.tsx',
       sourceComponent: 'PerformanceList',
-      sourceLine: 56,
     },
     {
       page: '/my/delete-account',
@@ -941,7 +834,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/setting/delete-account.tsx',
       sourceComponent: 'DeleteAccount',
-      sourceLine: 79,
     },
     {
       page: '/my/delete-account',
@@ -956,7 +848,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/setting/delete-account.tsx',
       sourceComponent: 'handleDialogOpen',
-      sourceLine: 45,
     },
     {
       page: '/my/delete-account',
@@ -971,7 +862,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/setting/delete-account.tsx',
       sourceComponent: 'DeleteAccount',
-      sourceLine: 107,
     },
     {
       page: '/my/delete-account',
@@ -997,7 +887,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/setting/delete-account.tsx',
       sourceComponent: 'handleDialogOpen',
-      sourceLine: 57,
     },
     {
       page: '/my/delete-account',
@@ -1018,7 +907,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/setting/delete-account.tsx',
       sourceComponent: 'DeleteAccount',
-      sourceLine: 88,
     },
     {
       page: '/my/edit-profile',
@@ -1033,7 +921,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/edit/edit-profile.tsx',
       sourceComponent: 'EditProfile',
-      sourceLine: 74,
     },
     {
       page: '/my/edit-profile',
@@ -1048,7 +935,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/edit/user-edit-info.tsx',
       sourceComponent: 'UserEditInfo',
-      sourceLine: 26,
     },
     {
       page: '/my/edit-profile',
@@ -1063,7 +949,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/edit/edit-profile.tsx',
       sourceComponent: 'EditProfile',
-      sourceLine: 100,
     },
     {
       page: '/my/overview',
@@ -1078,7 +963,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/overview/my-overview-page.tsx',
       sourceComponent: 'MyOverviewPage',
-      sourceLine: 87,
     },
     {
       page: '/my/overview',
@@ -1104,33 +988,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/overview/my-overview-page.tsx',
       sourceComponent: 'MyOverviewPage',
-      sourceLine: 108,
-    },
-    {
-      page: '/my/overview',
-      path: '/my/overview',
-      state: 'show_my_overview',
-      attribute: '',
-      commonComponent: '',
-      element: 'FestivalCard',
-      eventType: 'click',
-      eventName: 'click_my_overview_item',
-      showType: '',
-      params: [
-        {
-          name: 'section',
-          type: 'enum: favorite_performance, setlist, timetable',
-          required: true,
-        },
-        {
-          name: 'target_id',
-          type: 'number',
-          required: false,
-        },
-      ],
-      sourceFile: 'pages/my/page/overview/my-overview-page.tsx',
-      sourceComponent: 'MyOverviewPage',
-      sourceLine: 126,
     },
     {
       page: '/my/overview',
@@ -1151,7 +1008,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/overview/my-overview-page.tsx',
       sourceComponent: 'MyOverviewPage',
-      sourceLine: 92,
     },
     {
       page: '/my/require-login',
@@ -1166,7 +1022,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'shared/pages/auth/require-login-section.tsx',
       sourceComponent: 'RequireLoginSection',
-      sourceLine: 33,
     },
     {
       page: '/my/require-login',
@@ -1181,7 +1036,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/auth/require-login.tsx',
       sourceComponent: 'RequireLogin',
-      sourceLine: 8,
     },
     {
       page: '/my/setting',
@@ -1196,7 +1050,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/setting/setting.tsx',
       sourceComponent: 'Setting',
-      sourceLine: 15,
     },
     {
       page: '/my/setting',
@@ -1211,7 +1064,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/setting/setting.tsx',
       sourceComponent: 'Setting',
-      sourceLine: 35,
     },
     {
       page: '/my/setting',
@@ -1232,7 +1084,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/page/setting/setting.tsx',
       sourceComponent: 'Setting',
-      sourceLine: 19,
     },
     {
       page: '/my/timetable',
@@ -1247,7 +1098,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/timetable/my-timetable.tsx',
       sourceComponent: 'MyTimetable',
-      sourceLine: 13,
     },
     {
       page: '/my/timetable',
@@ -1262,7 +1112,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/timetable/timetable-container.tsx',
       sourceComponent: 'TimetableContainer',
-      sourceLine: 119,
     },
     {
       page: '/my/timetable',
@@ -1277,7 +1126,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/timetable/timetable-container.tsx',
       sourceComponent: 'TimetableContainer',
-      sourceLine: 150,
     },
     {
       page: '/my/timetable',
@@ -1292,7 +1140,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/timetable/timetable-list-header.tsx',
       sourceComponent: 'EditModeButtons',
-      sourceLine: 77,
     },
     {
       page: '/my/timetable',
@@ -1313,28 +1160,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/timetable/timetable-container.tsx',
       sourceComponent: 'TimetableContainer',
-      sourceLine: 130,
-    },
-    {
-      page: '/my/timetable',
-      path: '/my/timetable',
-      state: 'show_my_timetable',
-      attribute: '',
-      commonComponent: '',
-      element: 'Button',
-      eventType: 'click',
-      eventName: 'click_my_timetable_confirm_delete',
-      showType: '',
-      params: [
-        {
-          name: 'action',
-          type: 'enum: cancel, confirm',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/my/components/timetable/timetable-container.tsx',
-      sourceComponent: 'TimetableContainer',
-      sourceLine: 140,
     },
     {
       page: '/my/timetable',
@@ -1349,7 +1174,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/timetable/timetable-list-header.tsx',
       sourceComponent: 'DefaultModeButton',
-      sourceLine: 101,
     },
     {
       page: '/my/timetable',
@@ -1370,7 +1194,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/timetable/timetable-content.tsx',
       sourceComponent: 'TimetableContent',
-      sourceLine: 38,
     },
     {
       page: '/my/timetable',
@@ -1391,7 +1214,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/timetable/timetable-list-header.tsx',
       sourceComponent: 'EditModeButtons',
-      sourceLine: 82,
     },
     {
       page: '/my/timetable',
@@ -1412,7 +1234,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/my/components/timetable/timetable-list-header.tsx',
       sourceComponent: 'TimetableListHeader',
-      sourceLine: 40,
     },
     {
       page: '/my/timetable/:id',
@@ -1427,7 +1248,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/components/header/timetable-header.tsx',
       sourceComponent: 'TimetableHeader',
-      sourceLine: 24,
     },
     {
       page: '/my/timetable/:id',
@@ -1454,7 +1274,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/components/timetable-board/timetable-board.tsx',
       sourceComponent: 'handleClickTimeBlock',
-      sourceLine: 55,
     },
     {
       page: '/my/timetable/:id',
@@ -1469,7 +1288,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/page/timetable-detail/timetable-detail.tsx',
       sourceComponent: 'TimetableDetail',
-      sourceLine: 36,
     },
     {
       page: '/onboarding',
@@ -1484,7 +1302,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select.tsx',
       sourceComponent: 'handleBackToSelect',
-      sourceLine: 29,
     },
     {
       page: '/onboarding',
@@ -1499,7 +1316,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select.tsx',
       sourceComponent: 'handleSearchFocus',
-      sourceLine: 20,
     },
     {
       page: '/onboarding',
@@ -1514,7 +1330,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select-nested-delete.tsx',
       sourceComponent: 'ArtistSelectNestedDelete',
-      sourceLine: 62,
     },
     {
       page: '/onboarding',
@@ -1535,7 +1350,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/onboarding/components/artist-select-nested-delete.tsx',
       sourceComponent: 'ArtistSelectNestedDelete',
-      sourceLine: 66,
     },
     {
       page: '/onboarding',
@@ -1556,7 +1370,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/onboarding/components/artist-select-nested-delete.tsx',
       sourceComponent: 'ArtistSelectNestedDelete',
-      sourceLine: 103,
     },
     {
       page: '/onboarding',
@@ -1571,7 +1384,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select-nested-search.tsx',
       sourceComponent: 'ArtistSelectNestedSearch',
-      sourceLine: 64,
     },
     {
       page: '/onboarding',
@@ -1592,7 +1404,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/onboarding/components/artist-select-nested-search.tsx',
       sourceComponent: 'handleArtistSelect',
-      sourceLine: 46,
     },
     {
       page: '/onboarding',
@@ -1607,7 +1418,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select-nested-select.tsx',
       sourceComponent: 'ArtistSelectNestedSelect',
-      sourceLine: 103,
     },
     {
       page: '/onboarding',
@@ -1622,7 +1432,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select-nested-select.tsx',
       sourceComponent: 'ArtistSelectNestedSelect',
-      sourceLine: 192,
     },
     {
       page: '/onboarding',
@@ -1637,7 +1446,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/artist-select-nested-select.tsx',
       sourceComponent: 'ArtistSelectNestedSelect',
-      sourceLine: 149,
     },
     {
       page: '/onboarding',
@@ -1658,7 +1466,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/onboarding/components/artist-select-nested-select.tsx',
       sourceComponent: 'ArtistSelectNestedSelect',
-      sourceLine: 174,
     },
     {
       page: '/onboarding',
@@ -1673,7 +1480,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/onboarding-complete.tsx',
       sourceComponent: 'CtaContent',
-      sourceLine: 62,
     },
     {
       page: '/onboarding',
@@ -1688,7 +1494,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/onboarding/components/onboarding-complete.tsx',
       sourceComponent: 'CtaContent',
-      sourceLine: 95,
     },
     {
       page: '/search',
@@ -1703,7 +1508,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/search/page/search-page.tsx',
       sourceComponent: 'SearchPage',
-      sourceLine: 169,
     },
     {
       page: '/search',
@@ -1725,29 +1529,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-home/popular-search-section.tsx',
       sourceComponent: 'PopularSearchSection',
-      sourceLine: 32,
-    },
-    {
-      page: '/search',
-      path: '/search',
-      state: 'show_search_home',
-      attribute: '',
-      commonComponent: '',
-      element: 'button',
-      eventType: 'click',
-      eventName: 'click_search_popular_keyword',
-      showType: '',
-      params: [
-        {
-          name: 'keyword',
-          type: 'string',
-          required: true,
-        },
-      ],
-      sourceFile:
-        'pages/search/components/search-home/popular-search-section.tsx',
-      sourceComponent: 'PopularSearchSection',
-      sourceLine: 58,
     },
     {
       page: '/search',
@@ -1769,7 +1550,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-home/recent-search-section.tsx',
       sourceComponent: 'RecentSearchSection',
-      sourceLine: 49,
     },
     {
       page: '/search',
@@ -1785,7 +1565,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-home/recent-search-section.tsx',
       sourceComponent: 'RecentSearchSection',
-      sourceLine: 37,
     },
     {
       page: '/search',
@@ -1807,7 +1586,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-home/recent-search-section.tsx',
       sourceComponent: 'handleDeleteSearchKeyword',
-      sourceLine: 25,
     },
     {
       page: '/search',
@@ -1834,7 +1612,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-home/recent-festivals-section.tsx',
       sourceComponent: 'handleClickRecentPerformance',
-      sourceLine: 23,
     },
     {
       page: '/search',
@@ -1865,7 +1642,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/search/page/search-page.tsx',
       sourceComponent: 'handleSelectArtistSuggestion',
-      sourceLine: 80,
     },
     {
       page: '/search',
@@ -1896,7 +1672,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/search/page/search-page.tsx',
       sourceComponent: 'handleSelectPerformanceSuggestion',
-      sourceLine: 93,
     },
     {
       page: '/search',
@@ -1912,7 +1687,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-result/artist/artist-not-found.tsx',
       sourceComponent: 'ArtistNotFound',
-      sourceLine: 13,
     },
     {
       page: '/search',
@@ -1927,7 +1701,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/search/page/search-result-page.tsx',
       sourceComponent: 'SearchResult',
-      sourceLine: 27,
     },
     {
       page: '/search',
@@ -1959,7 +1732,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-result/artist/artist-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 27,
     },
     {
       page: '/search',
@@ -1991,7 +1763,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-result/performance/performance-info.tsx',
       sourceComponent: 'handleLike',
-      sourceLine: 25,
     },
     {
       page: '/search',
@@ -2018,7 +1789,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-result/songs/related-songs.tsx',
       sourceComponent: 'handleClickPlayToggle',
-      sourceLine: 27,
     },
     {
       page: '/search',
@@ -2045,7 +1815,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/search/components/search-result/performance/performance-info.tsx',
       sourceComponent: 'handleClickPerformance',
-      sourceLine: 40,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2060,7 +1829,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/components/setlist-detail/setlist-tracks.tsx',
       sourceComponent: 'SetListTracks',
-      sourceLine: 198,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2075,7 +1843,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/setlist-detail/setlist-detail.tsx',
       sourceComponent: 'SetListDetailPage',
-      sourceLine: 93,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2101,7 +1868,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/components/setlist-detail/setlist-tracks.tsx',
       sourceComponent: 'handleClickPlayToggle',
-      sourceLine: 126,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2122,7 +1888,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/components/setlist-detail/setlist-tracks.tsx',
       sourceComponent: 'SetListTracks',
-      sourceLine: 218,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2138,7 +1903,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/setlist/components/setlist-detail/add-music-button.tsx',
       sourceComponent: 'AddMusicButton',
-      sourceLine: 9,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2160,7 +1924,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/setlist/components/setlist-detail/setlist-detail-header.tsx',
       sourceComponent: 'SetListHeader',
-      sourceLine: 22,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2175,7 +1938,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/components/setlist-detail/setlist-empty.tsx',
       sourceComponent: 'SetListEmpty',
-      sourceLine: 28,
     },
     {
       page: '/setlist-detail/:setlistId',
@@ -2196,7 +1958,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/components/setlist-detail/setlist-tracks.tsx',
       sourceComponent: 'handleClickDeleteTrack',
-      sourceLine: 137,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2211,7 +1972,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'AddSongsPage',
-      sourceLine: 307,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2237,7 +1997,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'handleClickGeneralPlayToggle',
-      sourceLine: 150,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2263,7 +2022,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'handleClickRelatedPlayToggle',
-      sourceLine: 161,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2289,7 +2047,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/related-artist-list.tsx',
       sourceComponent: 'RelatedArtistList',
-      sourceLine: 16,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2310,7 +2067,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'GeneralResult',
-      sourceLine: 220,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2331,7 +2087,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'RelatedResult',
-      sourceLine: 268,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2352,7 +2107,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/add-songs-page.tsx',
       sourceComponent: 'handleAddSongToQueue',
-      sourceLine: 172,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2367,7 +2121,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/add-songs/confirm-add-section.tsx',
       sourceComponent: 'handleOpenDeleteDialog',
-      sourceLine: 69,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2382,7 +2135,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/add-songs/confirm-add-section.tsx',
       sourceComponent: 'ConfirmAddSection',
-      sourceLine: 111,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2403,7 +2155,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/confirm-add-section.tsx',
       sourceComponent: 'ConfirmAddSection',
-      sourceLine: 140,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2424,7 +2175,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/confirm-add-section.tsx',
       sourceComponent: 'handleOpenDeleteDialog',
-      sourceLine: 84,
     },
     {
       page: '/setlist/:setlistId/add-songs',
@@ -2445,7 +2195,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-songs/confirm-add-section.tsx',
       sourceComponent: 'handleOpenSongDeleteDialog',
-      sourceLine: 100,
     },
     {
       page: '/setlist/add-setlist',
@@ -2460,7 +2209,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/add-setlist/add-setlist-page.tsx',
       sourceComponent: 'AddSetlistPage',
-      sourceLine: 150,
     },
     {
       page: '/setlist/add-setlist',
@@ -2482,7 +2230,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/setlist/components/add-setlist/setlist-performance.tsx',
       sourceComponent: 'SetlistPerformance',
-      sourceLine: 89,
     },
     {
       page: '/setlist/add-setlist',
@@ -2513,7 +2260,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-setlist/add-setlist-page.tsx',
       sourceComponent: 'handleSelectArtistSuggestion',
-      sourceLine: 65,
     },
     {
       page: '/setlist/add-setlist',
@@ -2544,7 +2290,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/setlist/page/add-setlist/add-setlist-page.tsx',
       sourceComponent: 'handleSelectPerformanceSuggestion',
-      sourceLine: 77,
     },
     {
       page: '/setlist/add-setlist',
@@ -2576,7 +2321,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/setlist/components/add-setlist/setlist-performance.tsx',
       sourceComponent: 'handleFestivalSelect',
-      sourceLine: 42,
     },
     {
       page: '/setlist/maintenance',
@@ -2597,49 +2341,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'shared/components/navigation-tabs.tsx',
       sourceComponent: 'NavigationTabs',
-      sourceLine: 55,
-    },
-    {
-      page: '/setlist/maintenance',
-      path: '/setlist/maintenance',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'NavigationTabs',
-      element: 'Navigation.Item',
-      eventType: 'click',
-      eventName: 'click_navigation_tab',
-      showType: '',
-      params: [
-        {
-          name: 'tab',
-          type: 'enum: home, timetable, setlist',
-          required: true,
-        },
-      ],
-      sourceFile: 'shared/components/navigation-tabs.tsx',
-      sourceComponent: 'NavigationTabs',
-      sourceLine: 68,
-    },
-    {
-      page: '/setlist/maintenance',
-      path: '/setlist/maintenance',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'NavigationTabs',
-      element: 'Navigation.Item',
-      eventType: 'click',
-      eventName: 'click_navigation_tab',
-      showType: '',
-      params: [
-        {
-          name: 'tab',
-          type: 'enum: home, timetable, setlist',
-          required: true,
-        },
-      ],
-      sourceFile: 'shared/components/navigation-tabs.tsx',
-      sourceComponent: 'NavigationTabs',
-      sourceLine: 81,
     },
     {
       page: '/setlist/maintenance',
@@ -2654,7 +2355,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/setlist/page/maintenance/maintenance-page.tsx',
       sourceComponent: 'MaintenancePage',
-      sourceLine: 13,
     },
     {
       page: '/timetable',
@@ -2670,7 +2370,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'TimetableLandingContent',
-      sourceLine: 167,
     },
     {
       page: '/timetable',
@@ -2686,7 +2385,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'TimetableLandingContent',
-      sourceLine: 202,
     },
     {
       page: '/timetable',
@@ -2701,7 +2399,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/page/landing/timetable-landing-page.tsx',
       sourceComponent: 'TimetableLandingPage',
-      sourceLine: 38,
     },
     {
       page: '/timetable',
@@ -2723,29 +2420,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'TimetableLandingContent',
-      sourceLine: 178,
-    },
-    {
-      page: '/timetable',
-      path: '/timetable',
-      state: 'show_timetable_landing',
-      attribute: '',
-      commonComponent: '',
-      element: 'Button',
-      eventType: 'click',
-      eventName: 'click_my_timetable_confirm_delete',
-      showType: '',
-      params: [
-        {
-          name: 'action',
-          type: 'enum: cancel, confirm',
-          required: true,
-        },
-      ],
-      sourceFile:
-        'pages/timetable/page/landing/components/timetable-landing-content.tsx',
-      sourceComponent: 'TimetableLandingContent',
-      sourceLine: 190,
     },
     {
       page: '/timetable',
@@ -2761,7 +2435,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-header.tsx',
       sourceComponent: 'TimetableLandingHeader',
-      sourceLine: 35,
     },
     {
       page: '/timetable',
@@ -2788,34 +2461,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'EditModeButtons',
-      sourceLine: 229,
-    },
-    {
-      page: '/timetable',
-      path: '/timetable',
-      state: 'show_timetable_landing',
-      attribute: '',
-      commonComponent: '',
-      element: 'button',
-      eventType: 'click',
-      eventName: 'click_timetable_delete_selection',
-      showType: '',
-      params: [
-        {
-          name: 'action',
-          type: 'enum: cancel, open_delete',
-          required: true,
-        },
-        {
-          name: 'count',
-          type: 'number',
-          required: false,
-        },
-      ],
-      sourceFile:
-        'pages/timetable/page/landing/components/timetable-landing-content.tsx',
-      sourceComponent: 'EditModeButtons',
-      sourceLine: 237,
     },
     {
       page: '/timetable',
@@ -2837,7 +2482,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'DefaultModeButton',
-      sourceLine: 264,
     },
     {
       page: '/timetable',
@@ -2864,7 +2508,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/landing/components/timetable-landing-content.tsx',
       sourceComponent: 'TimetableLandingContent',
-      sourceLine: 141,
     },
     {
       page: '/timetable',
@@ -2879,7 +2522,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/page/onboading/timetable-onboard-page.tsx',
       sourceComponent: 'TimetableOnboard',
-      sourceLine: 50,
     },
     {
       page: '/timetable',
@@ -2905,7 +2547,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/click-block-step.tsx',
       sourceComponent: 'ClickBlockStep',
-      sourceLine: 61,
     },
     {
       page: '/timetable',
@@ -2931,7 +2572,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/click-block-step.tsx',
       sourceComponent: 'ClickBlockStep',
-      sourceLine: 74,
     },
     {
       page: '/timetable',
@@ -2957,7 +2597,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/edit-timetable-step.tsx',
       sourceComponent: 'EditTimetableStep',
-      sourceLine: 54,
     },
     {
       page: '/timetable',
@@ -2983,7 +2622,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/edit-timetable-step.tsx',
       sourceComponent: 'EditTimetableStep',
-      sourceLine: 63,
     },
     {
       page: '/timetable',
@@ -3009,7 +2647,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/festival-custom-step.tsx',
       sourceComponent: 'FestivalCustomStep',
-      sourceLine: 56,
     },
     {
       page: '/timetable',
@@ -3035,7 +2672,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/festival-custom-step.tsx',
       sourceComponent: 'FestivalCustomStep',
-      sourceLine: 65,
     },
     {
       page: '/timetable',
@@ -3061,7 +2697,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/festival-select-step.tsx',
       sourceComponent: 'FestivalSelectStep',
-      sourceLine: 55,
     },
     {
       page: '/timetable',
@@ -3087,7 +2722,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/festival-select-step.tsx',
       sourceComponent: 'FestivalSelectStep',
-      sourceLine: 64,
     },
     {
       page: '/timetable',
@@ -3113,33 +2747,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/components/onboard/intro-step.tsx',
       sourceComponent: 'ItroStep',
-      sourceLine: 41,
-    },
-    {
-      page: '/timetable',
-      path: '/timetable',
-      state: 'show_timetable_onboarding',
-      attribute: '',
-      commonComponent: '',
-      element: 'Button',
-      eventType: 'click',
-      eventName: 'click_timetable_onboarding_action',
-      showType: '',
-      params: [
-        {
-          name: 'step',
-          type: 'string',
-          required: true,
-        },
-        {
-          name: 'action',
-          type: 'enum: open, cancel, confirm, next, retry, skip, start, complete, select, deselect',
-          required: true,
-        },
-      ],
-      sourceFile: 'pages/timetable/components/onboard/intro-step.tsx',
-      sourceComponent: 'ItroStep',
-      sourceLine: 54,
     },
     {
       page: '/timetable/:id',
@@ -3154,7 +2761,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/components/header/timetable-header.tsx',
       sourceComponent: 'TimetableHeader',
-      sourceLine: 24,
     },
     {
       page: '/timetable/:id',
@@ -3181,7 +2787,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/components/timetable-board/timetable-board.tsx',
       sourceComponent: 'handleClickTimeBlock',
-      sourceLine: 55,
     },
     {
       page: '/timetable/:id',
@@ -3196,7 +2801,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/page/detail/timetable-detail-page.tsx',
       sourceComponent: 'TimetableDetailPage',
-      sourceLine: 30,
     },
     {
       page: '/timetable/:id',
@@ -3212,7 +2816,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/components/timetable-actions/timetable-actions.tsx',
       sourceComponent: 'TimetableActions',
-      sourceLine: 46,
     },
     {
       page: '/timetable/:id',
@@ -3234,7 +2837,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/components/timetable-actions/timetable-actions.tsx',
       sourceComponent: 'TimetableActions',
-      sourceLine: 61,
     },
     {
       page: '/timetable/add-festival',
@@ -3249,7 +2851,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/timetable/page/add-festival/add-festival.tsx',
       sourceComponent: 'AddFestival',
-      sourceLine: 77,
     },
     {
       page: '/timetable/add-festival',
@@ -3270,7 +2871,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/page/add-festival/add-festival.tsx',
       sourceComponent: 'AddFestival',
-      sourceLine: 107,
     },
     {
       page: '/timetable/add-festival',
@@ -3291,7 +2891,6 @@ export const analyticsCatalog = {
       ],
       sourceFile: 'pages/timetable/page/add-festival/add-festival.tsx',
       sourceComponent: 'AddFestival',
-      sourceLine: 84,
     },
     {
       page: '/timetable/no-upcoming-festival',
@@ -3307,7 +2906,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/no-upcoming-festival/no-upcoming-festival.tsx',
       sourceComponent: 'NoUpcomingFestival',
-      sourceLine: 17,
     },
     {
       page: '/timetable/no-upcoming-festival',
@@ -3323,7 +2921,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/timetable/page/no-upcoming-festival/no-upcoming-festival.tsx',
       sourceComponent: 'NoUpcomingFestival',
-      sourceLine: 29,
     },
     {
       page: '/timetable/require-login',
@@ -3338,7 +2935,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'shared/pages/auth/require-login-section.tsx',
       sourceComponent: 'RequireLoginSection',
-      sourceLine: 33,
     },
     {
       page: '/timetable/require-login',
@@ -3353,7 +2949,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/auth/page/require-login.tsx',
       sourceComponent: 'RequireLogin',
-      sourceLine: 7,
     },
   ],
 } satisfies AnalyticsCatalogData;
