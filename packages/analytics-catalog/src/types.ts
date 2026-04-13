@@ -17,7 +17,6 @@ export interface AnalyticsCatalogRow {
   params: AnalyticsCatalogParam[];
   sourceFile: string;
   sourceComponent: string;
-  sourceLine: number;
 }
 
 export interface AnalyticsCatalogData {
