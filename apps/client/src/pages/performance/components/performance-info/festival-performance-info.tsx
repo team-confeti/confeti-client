@@ -19,6 +19,9 @@ import { MAX_SELECTIONS } from '@pages/timetable/constants';
 
 import * as styles from './performance-info.css';
 
+const WHEELCHAIR_ROUND_NAME = '휠체어석';
+const WHEELCHAIR_NOTICE = '* 자세한 사항은 예매처를 참조해주세요.';
+
 interface FestivalPerformanceInfoProps {
   id: number;
   startAt: string;
@@ -125,17 +128,26 @@ const FestivalPerformanceInfo = ({
                   reservationSchedules.map((schedule) => (
                     <div
                       key={`${schedule.roundName}-${schedule.reserveAt}`}
-                      className={styles.detailContent}
+                      className={styles.reservationScheduleItem}
                     >
-                      {schedule.roundName
-                        ? `${schedule.roundName} · ${formatDate(
-                            schedule.reserveAt,
-                            'koFullDateTimeWithWeekday',
-                          )}`
-                        : formatDate(
+                      <div
+                        className={`${styles.detailContent} ${styles.reservationSchedule}`}
+                      >
+                        <span className={styles.reservationRoundName}>
+                          {schedule.roundName}
+                        </span>
+                        <span>
+                          {formatDate(
                             schedule.reserveAt,
                             'koFullDateTimeWithWeekday',
                           )}
+                        </span>
+                      </div>
+                      {schedule.roundName === WHEELCHAIR_ROUND_NAME && (
+                        <div className={styles.reservationScheduleNotice}>
+                          {WHEELCHAIR_NOTICE}
+                        </div>
+                      )}
                     </div>
                   ))
                 ) : (

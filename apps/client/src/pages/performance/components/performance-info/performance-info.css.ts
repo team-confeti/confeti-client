@@ -51,6 +51,34 @@ export const detailContent = style({
   color: themeVars.color.black,
 });
 
+export const reservationSchedule = style({
+  ...themeVars.display.flexAlignCenter,
+  flexWrap: 'wrap',
+  gap: '0.8rem',
+});
+
+export const reservationScheduleItem = style({
+  ...themeVars.display.flexColumn,
+  alignItems: 'flex-start',
+  gap: '0.4rem',
+  alignSelf: 'stretch',
+});
+
+export const reservationRoundName = style({
+  ...themeVars.display.flexJustifyAlignCenter,
+  ...themeVars.fontStyles.body5_m_12,
+  color: themeVars.color.gray600,
+  height: '2rem',
+  padding: '0 0.8rem',
+  borderRadius: '0.4rem',
+  backgroundColor: themeVars.color.gray200,
+});
+
+export const reservationScheduleNotice = style({
+  ...themeVars.fontStyles.body5_r_12,
+  color: themeVars.color.gray500,
+});
+
 export const detailContentList = style({
   ...themeVars.display.flexColumn,
   gap: '0.4rem',
