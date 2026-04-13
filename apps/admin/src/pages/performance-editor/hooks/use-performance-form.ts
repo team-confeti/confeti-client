@@ -262,7 +262,7 @@ export const usePerformanceForm = ({
   );
 
   useEffect(
-    function normalizeFestivalDateMetas() {
+    function synchronizeFestivalDateMetas() {
       if (formData.type !== 'Festival') {
         if (formData.festivalDateMetas.length === 0) {
           return;
@@ -306,11 +306,12 @@ export const usePerformanceForm = ({
           : { ...prev, festivalDateMetas: normalizedFestivalDateMetas };
       });
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [formData.endDate, formData.startDate, formData.type],
   );
 
   useEffect(
-    function normalizeArtistFestivalDates() {
+    function synchronizeArtistFestivalDates() {
       if (formData.type !== 'Festival' || formData.artists.length === 0) {
         return;
       }
