@@ -112,7 +112,7 @@ const AnalyticsEventsPage = () => {
                   left.attribute.localeCompare(right.attribute) ||
                   left.eventName.localeCompare(right.eventName) ||
                   left.sourceFile.localeCompare(right.sourceFile) ||
-                  left.sourceLine - right.sourceLine
+                  left.sourceComponent.localeCompare(right.sourceComponent)
                 );
               }),
             }))
@@ -278,7 +278,7 @@ const AnalyticsEventsPage = () => {
                         <tbody>
                           {eventTypeGroup.rows.map((row, index) => (
                             <tr
-                              key={`${row.eventName}-${row.sourceFile}-${row.sourceLine}-${index}`}
+                              key={`${row.eventName}-${row.sourceFile}-${row.sourceComponent}-${index}`}
                               className={styles.tableRow}
                             >
                               <td className={styles.tableCell}>
@@ -353,7 +353,7 @@ const AnalyticsEventsPage = () => {
                               <td className={styles.tableCell}>
                                 <div className={styles.sourceCell}>
                                   <code className={styles.sourceFile}>
-                                    {row.sourceFile}:{row.sourceLine}
+                                    {row.sourceFile}
                                   </code>
                                   <span className={styles.subText}>
                                     {row.sourceComponent}
