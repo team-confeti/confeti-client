@@ -191,7 +191,6 @@ export function buildCatalogRows({
           params: eventDefinition.params,
           sourceFile: toRelativeClientPath(filePath),
           sourceComponent: usage.sourceComponent,
-          sourceLine: usage.sourceLine,
         });
       });
     });

@@ -52,7 +52,7 @@ export function sortRows(rows) {
       left.attribute.localeCompare(right.attribute) ||
       left.eventName.localeCompare(right.eventName) ||
       left.sourceFile.localeCompare(right.sourceFile) ||
-      left.sourceLine - right.sourceLine
+      left.sourceComponent.localeCompare(right.sourceComponent)
     );
   });
 }
@@ -116,7 +116,6 @@ export function createCsvContent(rows) {
           .join('; '),
         row.sourceFile,
         row.sourceComponent,
-        row.sourceLine,
       ]
         .map(escapeCsv)
         .join(','),

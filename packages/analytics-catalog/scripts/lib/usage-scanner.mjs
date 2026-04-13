@@ -208,8 +208,6 @@ export function parseUsageByFile(allFiles) {
         eventName,
         element,
         sourceComponent: getEnclosingName(node),
-        sourceLine:
-          sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1,
       });
     };
 

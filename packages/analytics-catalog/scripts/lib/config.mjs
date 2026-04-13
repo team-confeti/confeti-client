@@ -119,6 +119,5 @@ export const csvHeaders = [
   '필수_파라미터',
   '소스_파일',
   '소스_컴포넌트',
-  '소스_라인',
 ];
 export const generatedAtPlaceholder = '__GENERATED_AT__';
