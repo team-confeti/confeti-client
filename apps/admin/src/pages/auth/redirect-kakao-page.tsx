@@ -34,24 +34,27 @@ const RedirectKakaoPage = () => {
     },
   });
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
+  useEffect(
+    function loginWithKakaoAuthorizationCode() {
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get('code');
 
-    if (!code) {
-      adminToast.error({
-        text: '카카오 로그인 응답을 확인할 수 없어요. 다시 시도해 주세요.',
+      if (!code) {
+        adminToast.error({
+          text: '카카오 로그인 응답을 확인할 수 없어요. 다시 시도해 주세요.',
+        });
+        navigate(getLoginPath(getPersistedRedirectPath()), { replace: true });
+        return;
+      }
+
+      mutate({
+        provider: 'KAKAO',
+        code,
+        redirectUrl: `${window.location.origin}${PATH.REDIRECT_KAKAO}`,
       });
-      navigate(getLoginPath(getPersistedRedirectPath()), { replace: true });
-      return;
-    }
-
-    mutate({
-      provider: 'KAKAO',
-      code,
-      redirectUrl: `${window.location.origin}${PATH.REDIRECT_KAKAO}`,
-    });
-  }, [mutate, navigate]);
+    },
+    [mutate, navigate],
+  );
 
   return <Loading />;
 };

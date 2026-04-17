@@ -36,21 +36,24 @@ export const useToastContainer = () => {
     });
   };
 
-  useEffect(() => {
-    eventManager.on(ToastEvent.Add, addToast);
-    eventManager.on(ToastEvent.Delete, deleteToast);
-    eventManager.on(ToastEvent.Update, updateToast);
+  useEffect(
+    function subscribeToastEvents() {
+      eventManager.on(ToastEvent.Add, addToast);
+      eventManager.on(ToastEvent.Delete, deleteToast);
+      eventManager.on(ToastEvent.Update, updateToast);
 
-    return () => {
-      eventManager.off(ToastEvent.Add, addToast);
-      eventManager.off(ToastEvent.Delete, deleteToast);
-      eventManager.off(ToastEvent.Update, updateToast);
+      return () => {
+        eventManager.off(ToastEvent.Add, addToast);
+        eventManager.off(ToastEvent.Delete, deleteToast);
+        eventManager.off(ToastEvent.Update, updateToast);
 
-      eventManager.cancelEmit(ToastEvent.Add);
-      eventManager.cancelEmit(ToastEvent.Delete);
-      eventManager.cancelEmit(ToastEvent.Update);
-    };
-  }, [addToast, deleteToast, updateToast]);
+        eventManager.cancelEmit(ToastEvent.Add);
+        eventManager.cancelEmit(ToastEvent.Delete);
+        eventManager.cancelEmit(ToastEvent.Update);
+      };
+    },
+    [addToast, deleteToast, updateToast],
+  );
 
   const getToastPositionGroupToRender = () => {
     const positionGroup = new Map<ToastPosition, ToastProps[]>();

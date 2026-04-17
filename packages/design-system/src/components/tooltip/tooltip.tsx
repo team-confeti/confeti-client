@@ -124,7 +124,7 @@ const TooltipTrigger = ({ asChild = true, children }: TooltipTriggerProps) => {
     }
   };
 
-  useEffect(() => {
+  useEffect(function clearTooltipCloseTimerOnUnmount() {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);

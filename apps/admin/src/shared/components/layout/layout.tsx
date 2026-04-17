@@ -42,10 +42,16 @@ const Layout = () => {
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedSearch(searchQuery), 300);
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
+  useEffect(
+    function debounceSearchQuery() {
+      const timer = setTimeout(() => setDebouncedSearch(searchQuery), 300);
+
+      return function cancelDebouncedSearchQuery() {
+        clearTimeout(timer);
+      };
+    },
+    [searchQuery],
+  );
   const location = useLocation();
   const { data } = useQuery({
     ...DRAFT_QUERY_OPTIONS.LIST(),
@@ -54,38 +60,49 @@ const Layout = () => {
     staleTime: 30_000,
   });
 
-  useEffect(() => {
+  useEffect(function synchronizeSidebarExpansionWithViewport() {
     const mql = window.matchMedia(`(min-width: ${COLLAPSE_BREAKPOINT}px)`);
     const handler = (e: MediaQueryListEvent) => setSidebarExpanded(e.matches);
+
     mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
+
+    return function stopSynchronizingSidebarExpansionWithViewport() {
+      mql.removeEventListener('change', handler);
+    };
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsCommandPaletteOpen((prev) => !prev);
-        return;
-      }
-      const target = e.target as HTMLElement;
-      const isInInput =
-        target.tagName === 'INPUT' ||
-        target.tagName === 'TEXTAREA' ||
-        target.isContentEditable;
-      if (
-        !isInInput &&
-        e.key === 'n' &&
-        !e.metaKey &&
-        !e.ctrlKey &&
-        !e.altKey
-      ) {
-        navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate]);
+  useEffect(
+    function registerLayoutKeyboardShortcuts() {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          setIsCommandPaletteOpen((prev) => !prev);
+          return;
+        }
+        const target = e.target as HTMLElement;
+        const isInInput =
+          target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable;
+        if (
+          !isInInput &&
+          e.key === 'n' &&
+          !e.metaKey &&
+          !e.ctrlKey &&
+          !e.altKey
+        ) {
+          navigate(PATH.PERFORMANCE_EDITOR.replace(':id', 'new'));
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+
+      return function unregisterLayoutKeyboardShortcuts() {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    },
+    [navigate],
+  );
 
   if (!accessToken) {
     return <LoginRequired />;

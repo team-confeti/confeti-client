@@ -5,7 +5,7 @@ const RECENT_SEARCHES_KEY = 'recentSearches';
 export const useRecentSearch = () => {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
-  useEffect(() => {
+  useEffect(function restoreRecentSearches() {
     const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
     if (stored) {
       setRecentSearches(JSON.parse(stored));

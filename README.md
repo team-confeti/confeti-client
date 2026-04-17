@@ -4,9 +4,10 @@
   <img src="https://github.com/user-attachments/assets/3a7004f8-f6ed-46f9-9e58-f1f43a0b87c1" alt="로고" width="17%" />
 </p>
 
-**공연의 설렘부터 감동까지, 공연의 유기적인 흐름을 설계하다.**  
+**공연의 설렘부터 감동까지, 공연의 유기적인 흐름을 설계하다.**
+
 > 콘페티는 페스티벌과 공연 정보를 한눈에 보고, 예매 일정과 아티스트 소식을 효율적으로 관리할 수 있는 플랫폼이에요. <br>
-공연을 준비·관람·공유까지 이어지는 전 과정을 담아낼 수 있는 플랫폼으로 자리매김하고, 공연 경험의 감동과 여운을 확장할 수 있는 방향을 고려했어요.
+> 공연을 준비·관람·공유까지 이어지는 전 과정을 담아낼 수 있는 플랫폼으로 자리매김하고, 공연 경험의 감동과 여운을 확장할 수 있는 방향을 고려했어요.
 
 <br>
 
@@ -17,6 +18,7 @@
 <br />
 
 ## Service Overview
+
 <img width="100%" alt="서비스설명1" src="https://github.com/user-attachments/assets/06828f33-cd73-48bf-95f6-6360b380a9a2" />
 <img idth="100%" alt="서비스설명2" src="https://github.com/user-attachments/assets/798a2ef3-d5af-4257-81f8-d2ad752a2dda" />
 <img width="100%" alt="서비스설명3" src="https://github.com/user-attachments/assets/cc9a2004-8ac7-42a3-aca6-7cab86b396c4" />
@@ -43,7 +45,14 @@ CONFETI (Turborepo Monorepo)
 
 <br />
 
+## Frontend Conventions
+
+- [useEffect Naming](docs/use-effect-naming.md)
+
+<br />
+
 ## Tech Stack
+
 <table width="100%" style="table-layout: fixed;">
   <thead>
     <tr>
@@ -114,10 +123,10 @@ CONFETI (Turborepo Monorepo)
   </tbody>
 </table>
 
-
 <br />
 
 ## Confeti FE Developers
+
 <div align="center">
   <table>
     <thead>
@@ -132,37 +141,37 @@ CONFETI (Turborepo Monorepo)
     <tbody>
       <tr>
         <td>
-          <img 
-            src="https://github.com/user-attachments/assets/8a6297f6-eb21-4b42-b5fd-9f204a4eed1b" 
-            alt="강민하" 
+          <img
+            src="https://github.com/user-attachments/assets/8a6297f6-eb21-4b42-b5fd-9f204a4eed1b"
+            alt="강민하"
             style="width: 140px; height: 224px"
           />
         </td>
         <td>
-          <img 
-            src="https://github.com/user-attachments/assets/526939ca-f0fd-4172-a916-cfa8e491b6a8" 
-            alt="곽지욱" 
+          <img
+            src="https://github.com/user-attachments/assets/526939ca-f0fd-4172-a916-cfa8e491b6a8"
+            alt="곽지욱"
             style="width: 140px; height: 224px"
           />
         </td>
         <td>
-          <img 
-            src="https://github.com/user-attachments/assets/682d7270-59bf-470c-b835-cece8b071105" 
-            alt="김다현" 
+          <img
+            src="https://github.com/user-attachments/assets/682d7270-59bf-470c-b835-cece8b071105"
+            alt="김다현"
             style="width: 140px; height: 224px"
           />
         </td>
         <td>
-          <img 
-            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873" 
-            alt="김채은" 
+          <img
+            src="https://github.com/user-attachments/assets/28198f3e-4344-4eee-a2b3-550be4805873"
+            alt="김채은"
             style="width: 140px; height: 224px"
           />
         </td>
         <td>
-          <img 
-            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08" 
-            alt="김한서" 
+          <img
+            src="https://github.com/user-attachments/assets/5eb7767c-29c4-483c-b8ff-117993756f08"
+            alt="김한서"
             style="width: 140px; height: 224px"
           />
         </td>
@@ -188,4 +197,3 @@ CONFETI (Turborepo Monorepo)
   </table>
 </div>
 <br />
-

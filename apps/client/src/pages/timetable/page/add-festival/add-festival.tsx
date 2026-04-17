@@ -61,11 +61,14 @@ const AddFestival = () => {
   const isButtonDisabled =
     selectedFestivals.length === 0 || TOTAL_SELECTIONS > MAX_SELECTIONS;
 
-  useEffect(() => {
-    if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
-      showToast();
-    }
-  }, [selectedFestivals, TOTAL_SELECTIONS, showToast]);
+  useEffect(
+    function showSelectionLimitToast() {
+      if (TOTAL_SELECTIONS > MAX_SELECTIONS) {
+        showToast();
+      }
+    },
+    [selectedFestivals, TOTAL_SELECTIONS, showToast],
+  );
 
   const handleAddClick = () => {
     const festivals = selectedFestivals.map((festivalId) => ({ festivalId }));

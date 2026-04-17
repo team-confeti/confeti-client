@@ -73,30 +73,36 @@ export const LineupTab = ({
   const [debouncedSearch, setDebouncedSearch] = useState(formData.artistSearch);
   const artistSearchContainerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(
-      () => setDebouncedSearch(formData.artistSearch),
-      300,
-    );
-    return () => clearTimeout(timer);
-  }, [formData.artistSearch]);
+  useEffect(
+    function debounceArtistSearch() {
+      const timer = setTimeout(
+        () => setDebouncedSearch(formData.artistSearch),
+        300,
+      );
+      return () => clearTimeout(timer);
+    },
+    [formData.artistSearch],
+  );
 
-  useEffect(() => {
-    const handlePointerDown = (event: MouseEvent) => {
-      if (
-        artistSearchContainerRef.current &&
-        !artistSearchContainerRef.current.contains(event.target as Node)
-      ) {
-        setShowArtistDropdown(false);
-      }
-    };
+  useEffect(
+    function closeArtistDropdownOnOutsideClick() {
+      const handlePointerDown = (event: MouseEvent) => {
+        if (
+          artistSearchContainerRef.current &&
+          !artistSearchContainerRef.current.contains(event.target as Node)
+        ) {
+          setShowArtistDropdown(false);
+        }
+      };
 
-    document.addEventListener('mousedown', handlePointerDown);
+      document.addEventListener('mousedown', handlePointerDown);
 
-    return () => {
-      document.removeEventListener('mousedown', handlePointerDown);
-    };
-  }, [setShowArtistDropdown]);
+      return () => {
+        document.removeEventListener('mousedown', handlePointerDown);
+      };
+    },
+    [setShowArtistDropdown],
+  );
 
   const { data: artistSearchData } = useQuery(
     ARTIST_QUERY_OPTIONS.SEARCH(debouncedSearch),

@@ -29,67 +29,70 @@ export function usePointerDrag({
 }: UsePointerDragParams) {
   const startXRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
+  useEffect(
+    function registerPointerDrag() {
+      const el = rootRef.current;
+      if (!el) return;
 
-    const onPointerDown = (e: PointerEvent) => {
-      if (isAnimating) {
-        return;
-      }
+      const onPointerDown = (e: PointerEvent) => {
+        if (isAnimating) {
+          return;
+        }
 
-      clearAutoplay();
-      setIsAnimating(false);
-      startXRef.current = e.clientX;
-      const target = e.target as Element;
-      if (target.setPointerCapture) {
-        target.setPointerCapture(e.pointerId);
-      }
-      e.preventDefault();
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (startXRef.current !== null) {
+        clearAutoplay();
+        setIsAnimating(false);
+        startXRef.current = e.clientX;
+        const target = e.target as Element;
+        if (target.setPointerCapture) {
+          target.setPointerCapture(e.pointerId);
+        }
         e.preventDefault();
-        const delta = e.clientX - startXRef.current;
-        const capped = Math.max(-OFFSET, Math.min(OFFSET, delta));
-        setDragOffset(capped);
-      }
-    };
+      };
 
-    const endDrag = () => {
-      if (startXRef.current === null) return;
-      const delta = dragOffset;
-      startXRef.current = null;
+      const onPointerMove = (e: PointerEvent) => {
+        if (startXRef.current !== null) {
+          e.preventDefault();
+          const delta = e.clientX - startXRef.current;
+          const capped = Math.max(-OFFSET, Math.min(OFFSET, delta));
+          setDragOffset(capped);
+        }
+      };
 
-      if (Math.abs(delta) > DRAG_THRESHOLD) {
-        if (delta < 0) onNext();
-        else onPrev();
-      } else {
-        setIsAnimating(true);
-        setDragOffset(0);
-        window.setTimeout(() => {
-          setIsAnimating(false);
-          startAutoplay();
-        }, CAROUSEL_ANIMATION.DURATION);
-      }
-    };
+      const endDrag = () => {
+        if (startXRef.current === null) return;
+        const delta = dragOffset;
+        startXRef.current = null;
 
-    const onPointerUp = () => endDrag();
-    const onPointerCancel = () => endDrag();
+        if (Math.abs(delta) > DRAG_THRESHOLD) {
+          if (delta < 0) onNext();
+          else onPrev();
+        } else {
+          setIsAnimating(true);
+          setDragOffset(0);
+          window.setTimeout(() => {
+            setIsAnimating(false);
+            startAutoplay();
+          }, CAROUSEL_ANIMATION.DURATION);
+        }
+      };
 
-    el.addEventListener('pointerdown', onPointerDown);
-    el.addEventListener('pointermove', onPointerMove);
-    el.addEventListener('pointerup', onPointerUp);
-    el.addEventListener('pointercancel', onPointerCancel);
+      const onPointerUp = () => endDrag();
+      const onPointerCancel = () => endDrag();
 
-    return () => {
-      el.removeEventListener('pointerdown', onPointerDown);
-      el.removeEventListener('pointermove', onPointerMove);
-      el.removeEventListener('pointerup', onPointerUp);
-      el.removeEventListener('pointercancel', onPointerCancel);
-    };
-  }, [dragOffset, isAnimating, rootRef, onNext, onPrev]);
+      el.addEventListener('pointerdown', onPointerDown);
+      el.addEventListener('pointermove', onPointerMove);
+      el.addEventListener('pointerup', onPointerUp);
+      el.addEventListener('pointercancel', onPointerCancel);
+
+      return () => {
+        el.removeEventListener('pointerdown', onPointerDown);
+        el.removeEventListener('pointermove', onPointerMove);
+        el.removeEventListener('pointerup', onPointerUp);
+        el.removeEventListener('pointercancel', onPointerCancel);
+      };
+    },
+    [dragOffset, isAnimating, rootRef, onNext, onPrev],
+  );
 
   return undefined; // ESLint no-unused-expressions 방지
 }

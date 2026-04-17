@@ -25,7 +25,7 @@ export const LogClickEvent = ({
 };
 
 export const LogShowEvent = (props: ShowEventPayload) => {
-  useEffect(() => {
+  useEffect(function trackShowEventOnMount() {
     trackShowEvent(props);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

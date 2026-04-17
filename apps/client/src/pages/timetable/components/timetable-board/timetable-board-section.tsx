@@ -52,9 +52,12 @@ const TimetableBoardSection = ({
     ),
   );
 
-  useEffect(() => {
-    if (boardData && onDataLoaded) onDataLoaded(boardData);
-  }, [boardData, onDataLoaded]);
+  useEffect(
+    function notifyBoardDataLoaded() {
+      if (boardData && onDataLoaded) onDataLoaded(boardData);
+    },
+    [boardData, onDataLoaded],
+  );
 
   if (!boardData) return null;
 

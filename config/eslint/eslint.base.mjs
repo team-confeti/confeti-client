@@ -8,6 +8,8 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 
+import namedUseEffectRule from './rules/named-use-effect.mjs';
+
 export default [
   // Base ESLint recommended rules
   js.configs.recommended,
@@ -40,6 +42,11 @@ export default [
       'react-refresh': reactRefreshPlugin,
       'simple-import-sort': simpleImportSortPlugin,
       prettier: prettierPlugin,
+      confeti: {
+        rules: {
+          'named-use-effect': namedUseEffectRule,
+        },
+      },
     },
 
     settings: {
@@ -63,6 +70,7 @@ export default [
 
       // React Hooks rules
       ...reactHooksPlugin.configs.recommended.rules,
+      'confeti/named-use-effect': 'error',
 
       // TypeScript custom rules
       '@typescript-eslint/explicit-module-boundary-types': 'off',

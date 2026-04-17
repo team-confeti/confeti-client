@@ -29,7 +29,7 @@ export const useDebouncedKeyword = (initialKeyword = '', delay = 500) => {
     }
   }, [initialKeyword]);
 
-  useEffect(() => {
+  useEffect(function clearKeywordDebounceTimerOnUnmount() {
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -37,10 +37,13 @@ export const useDebouncedKeyword = (initialKeyword = '', delay = 500) => {
     };
   }, []);
 
-  useEffect(() => {
-    setKeyword(initialKeyword);
-    setDebouncedKeyword(initialKeyword);
-  }, [initialKeyword]);
+  useEffect(
+    function synchronizeKeywordWithInitialKeyword() {
+      setKeyword(initialKeyword);
+      setDebouncedKeyword(initialKeyword);
+    },
+    [initialKeyword],
+  );
 
   return {
     keyword,
