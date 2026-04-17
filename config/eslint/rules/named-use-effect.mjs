@@ -1,6 +1,8 @@
-const isUseEffect = (callee) => {
+const EFFECT_HOOK_NAMES = new Set(['useEffect', 'useLayoutEffect']);
+
+const isReactEffectHook = (callee) => {
   if (callee.type === 'Identifier') {
-    return callee.name === 'useEffect';
+    return EFFECT_HOOK_NAMES.has(callee.name);
   }
 
   if (
@@ -10,7 +12,7 @@ const isUseEffect = (callee) => {
     callee.object.name === 'React' &&
     callee.property.type === 'Identifier'
   ) {
-    return callee.property.name === 'useEffect';
+    return EFFECT_HOOK_NAMES.has(callee.property.name);
   }
 
   return false;
@@ -36,14 +38,14 @@ const namedUseEffectRule = {
     },
     schema: [],
     messages: {
-      requireNamedUseEffect:
-        '익명 useEffect는 사용하지 않아요. `useEffect(function synchronizeSomething() { ... }, [deps])`처럼 의도를 드러내는 이름 있는 함수를 전달해요.',
+      requireNamedEffectHook:
+        '익명 effect hook은 사용하지 않아요. `useEffect(function synchronizeSomething() { ... }, [deps])`처럼 의도를 드러내는 이름 있는 함수를 전달해요.',
     },
   },
   create(context) {
     return {
       CallExpression(node) {
-        if (!isUseEffect(node.callee)) {
+        if (!isReactEffectHook(node.callee)) {
           return;
         }
 
@@ -55,7 +57,7 @@ const namedUseEffectRule = {
 
         context.report({
           node: callback,
-          messageId: 'requireNamedUseEffect',
+          messageId: 'requireNamedEffectHook',
         });
       },
     };

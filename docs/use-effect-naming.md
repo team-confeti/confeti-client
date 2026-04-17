@@ -1,10 +1,11 @@
 # useEffect Naming
 
-`useEffect`는 꼭 필요한 동기화 지점에서만 사용해요. 그리고 `useEffect(() => { ... })`처럼 익명 callback을 넘기지 않고, call site에서 의도가 바로 드러나는 이름 있는 함수를 전달해요.
+`useEffect`와 `useLayoutEffect`는 꼭 필요한 동기화 지점에서만 사용해요. 그리고 `useEffect(() => { ... })`처럼 익명 callback을 넘기지 않고, call site에서 의도가 바로 드러나는 이름 있는 함수를 전달해요.
 
 ## 기본 원칙
 
 - `useEffect(function synchronizeSidebarExpansionWithViewport() { ... }, [deps])`처럼 inline named function expression을 기본으로 사용해요.
+- `useLayoutEffect`도 같은 규칙을 적용해요.
 - 이름은 lifecycle이나 구현 디테일보다 "왜 존재하는지"를 설명하는 동사구로 작성해요.
 - 이름만 읽어도 effect의 책임이 보여야 해요.
 
@@ -40,7 +41,7 @@ cleanup이 non-trivial하다면 setup과 대칭되는 이름을 붙여요.
 
 ## ESLint
 
-ESLint에서 익명 `useEffect` callback을 금지해요. 아래처럼 작성하면 lint error가 발생해요.
+ESLint에서 익명 effect hook callback을 금지해요. 아래처럼 작성하면 lint error가 발생해요.
 
 ```tsx
 useEffect(() => {
