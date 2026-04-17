@@ -117,7 +117,7 @@ const CtaContent = ({ setStep }: OnBoardingCompleteProps) => (
 const OnBoardingComplete = ({ setStep }: OnBoardingCompleteProps) => {
   const [phase, setPhase] = useState<Phase>('loading');
 
-  useEffect(() => {
+  useEffect(function advanceOnboardingCompletePhase() {
     const timers = [
       setTimeout(() => setPhase('description'), 4700),
       setTimeout(() => setPhase('cta'), 5500),

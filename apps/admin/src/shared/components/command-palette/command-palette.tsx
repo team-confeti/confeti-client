@@ -84,17 +84,23 @@ const CommandPalette = ({ isOpen, onClose }: Props) => {
       )
     : COMMANDS;
 
-  useEffect(() => {
-    if (isOpen) {
-      setQuery('');
-      setSelectedIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
-  }, [isOpen]);
+  useEffect(
+    function initializeCommandPaletteOnOpen() {
+      if (isOpen) {
+        setQuery('');
+        setSelectedIndex(0);
+        setTimeout(() => inputRef.current?.focus(), 50);
+      }
+    },
+    [isOpen],
+  );
 
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
+  useEffect(
+    function resetSelectedIndexOnQueryChange() {
+      setSelectedIndex(0);
+    },
+    [query],
+  );
 
   const handleSelect = (command: Command) => {
     navigate(command.path);

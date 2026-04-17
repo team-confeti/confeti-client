@@ -89,16 +89,19 @@ const AddSongsPage = () => {
     },
   });
 
-  useEffect(() => {
-    if (!debouncedKeyword.trim()) {
-      setSelectedArtistId(null);
-      setIsArtistSearch(false);
-      setShouldShowResult(false);
-    } else {
-      // 새로운 검색어 입력 시 결과 화면 숨기고 suggestion 표시
-      setShouldShowResult(false);
-    }
-  }, [debouncedKeyword]);
+  useEffect(
+    function resetArtistSearchStateOnKeywordChange() {
+      if (!debouncedKeyword.trim()) {
+        setSelectedArtistId(null);
+        setIsArtistSearch(false);
+        setShouldShowResult(false);
+      } else {
+        // 새로운 검색어 입력 시 결과 화면 숨기고 suggestion 표시
+        setShouldShowResult(false);
+      }
+    },
+    [debouncedKeyword],
+  );
 
   const handleMoveToConfirmAddSection = () => setIsConfirmAddSection(true);
 
@@ -178,18 +181,21 @@ const AddSongsPage = () => {
     handleClickMusic(musicId);
   };
 
-  useEffect(() => {
-    if (!paramsKeyword.trim()) return;
+  useEffect(
+    function selectArtistFromQueryParam() {
+      if (!paramsKeyword.trim()) return;
 
-    const selected = relatedArtists?.artists.find(
-      (artist: RelatedArtist) => artist.name === paramsKeyword,
-    );
-    if (selected) {
-      setSelectedArtistId(selected.artistId);
-      setIsArtistSearch(true);
-      setShouldShowResult(true);
-    }
-  }, [paramsKeyword, relatedArtists]);
+      const selected = relatedArtists?.artists.find(
+        (artist: RelatedArtist) => artist.name === paramsKeyword,
+      );
+      if (selected) {
+        setSelectedArtistId(selected.artistId);
+        setIsArtistSearch(true);
+        setShouldShowResult(true);
+      }
+    },
+    [paramsKeyword, relatedArtists],
+  );
 
   const SuggestionContent = () => {
     return (

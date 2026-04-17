@@ -40,13 +40,16 @@ export const useImageDownload = ({
   const captureRef = useRef<HTMLDivElement>(null);
   const [posterDataUrl, setPosterDataUrl] = useState<string>('');
 
-  useEffect(() => {
-    if (!posterUrl) {
-      setPosterDataUrl('');
-      return;
-    }
-    fetchImageAsDataUrl(posterUrl).then(setPosterDataUrl);
-  }, [posterUrl]);
+  useEffect(
+    function loadPosterDataUrl() {
+      if (!posterUrl) {
+        setPosterDataUrl('');
+        return;
+      }
+      fetchImageAsDataUrl(posterUrl).then(setPosterDataUrl);
+    },
+    [posterUrl],
+  );
 
   const downloadImage = useCallback(async (): Promise<void> => {
     if (!captureRef.current || !boardData) {

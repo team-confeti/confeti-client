@@ -8,9 +8,12 @@ interface ScrollToTopProps {
 export default function ScrollToTop({ children }: ScrollToTopProps) {
   const { pathname } = useLocation();
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useLayoutEffect(
+    function scrollToTopOnPathnameChange() {
+      window.scrollTo(0, 0);
+    },
+    [pathname],
+  );
 
   return <>{children}</>;
 }

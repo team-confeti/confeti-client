@@ -187,159 +187,175 @@ export const usePerformanceForm = ({
 
   const isInitializedRef = useRef(false);
 
-  useEffect(() => {
-    if (isInitializedRef.current || !existingPerformance) return;
-    isInitializedRef.current = true;
-    setFormData(
-      mergeFormData(
-        createInitialFormData(existingPerformance, initialPerformance),
-        persistedFormDataRef.current,
-      ),
-    );
+  useEffect(
+    function initializeFormFromExistingPerformance() {
+      if (isInitializedRef.current || !existingPerformance) return;
+      isInitializedRef.current = true;
+      setFormData(
+        mergeFormData(
+          createInitialFormData(existingPerformance, initialPerformance),
+          persistedFormDataRef.current,
+        ),
+      );
 
-    const fetchExistingImages = async () => {
-      const updates: Partial<PerformanceFormData> = {};
+      const fetchExistingImages = async () => {
+        const updates: Partial<PerformanceFormData> = {};
 
-      if (existingPerformance.mainPosterPreview) {
-        try {
-          updates.mainPoster = await fetchImageAsFile(
-            existingPerformance.mainPosterPreview,
-            'poster.jpg',
-          );
-        } catch {
-          // fetch failed — user will need to re-upload
+        if (existingPerformance.mainPosterPreview) {
+          try {
+            updates.mainPoster = await fetchImageAsFile(
+              existingPerformance.mainPosterPreview,
+              'poster.jpg',
+            );
+          } catch {
+            // fetch failed — user will need to re-upload
+          }
         }
-      }
 
-      if (existingPerformance.logoPreview) {
-        try {
-          updates.logo = await fetchImageAsFile(
-            existingPerformance.logoPreview,
-            'logo.png',
-          );
-        } catch {
-          // fetch failed — user will need to re-upload
+        if (existingPerformance.logoPreview) {
+          try {
+            updates.logo = await fetchImageAsFile(
+              existingPerformance.logoPreview,
+              'logo.png',
+            );
+          } catch {
+            // fetch failed — user will need to re-upload
+          }
         }
-      }
 
-      if (Object.keys(updates).length > 0) {
-        setFormData((prev) => ({ ...prev, ...updates }));
-      }
-    };
+        if (Object.keys(updates).length > 0) {
+          setFormData((prev) => ({ ...prev, ...updates }));
+        }
+      };
 
-    fetchExistingImages();
-  }, [existingPerformance, initialPerformance]);
+      fetchExistingImages();
+    },
+    [existingPerformance, initialPerformance],
+  );
 
-  useEffect(() => {
-    if (!autoSaveKey || typeof window === 'undefined') {
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      try {
-        const persistedFormData: PersistedPerformanceFormData = {
-          ...formData,
-          mainPosterPreview: getPersistedPreview(formData.mainPosterPreview),
-          logoPreview: getPersistedPreview(formData.logoPreview),
-        };
-
-        window.localStorage.setItem(
-          createPerformanceEditorAutoSaveStorageKey(autoSaveKey),
-          JSON.stringify(persistedFormData),
-        );
-      } catch {
-        // localStorage may be unavailable or exceed quota
-      }
-    }, 300);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [autoSaveKey, formData]);
-
-  useEffect(() => {
-    if (formData.type !== 'Festival') {
-      if (formData.festivalDateMetas.length === 0) {
+  useEffect(
+    function autoSavePerformanceForm() {
+      if (!autoSaveKey || typeof window === 'undefined') {
         return;
       }
 
-      setFormData((prev) =>
-        prev.festivalDateMetas.length === 0
-          ? prev
-          : { ...prev, festivalDateMetas: [] },
-      );
-      return;
-    }
+      const timeoutId = window.setTimeout(() => {
+        try {
+          const persistedFormData: PersistedPerformanceFormData = {
+            ...formData,
+            mainPosterPreview: getPersistedPreview(formData.mainPosterPreview),
+            logoPreview: getPersistedPreview(formData.logoPreview),
+          };
 
-    const festivalDates = generateDateRange(
-      formData.startDate,
-      formData.endDate,
-    );
-
-    setFormData((prev) => {
-      const normalizedFestivalDateMetas = normalizeFestivalDateMetas(
-        prev.festivalDateMetas,
-        festivalDates,
-      );
-
-      const isFestivalDateMetasUnchanged =
-        normalizedFestivalDateMetas.length === prev.festivalDateMetas.length &&
-        normalizedFestivalDateMetas.every((festivalDateMeta, index) => {
-          const prevFestivalDateMeta = prev.festivalDateMetas[index];
-
-          return (
-            prevFestivalDateMeta?.date === festivalDateMeta.date &&
-            prevFestivalDateMeta?.openAt === festivalDateMeta.openAt &&
-            prevFestivalDateMeta?.festivalDateId ===
-              festivalDateMeta.festivalDateId
+          window.localStorage.setItem(
+            createPerformanceEditorAutoSaveStorageKey(autoSaveKey),
+            JSON.stringify(persistedFormData),
           );
+        } catch {
+          // localStorage may be unavailable or exceed quota
+        }
+      }, 300);
+
+      return () => window.clearTimeout(timeoutId);
+    },
+    [autoSaveKey, formData],
+  );
+
+  useEffect(
+    function synchronizeFestivalDateMetas() {
+      if (formData.type !== 'Festival') {
+        if (formData.festivalDateMetas.length === 0) {
+          return;
+        }
+
+        setFormData((prev) =>
+          prev.festivalDateMetas.length === 0
+            ? prev
+            : { ...prev, festivalDateMetas: [] },
+        );
+        return;
+      }
+
+      const festivalDates = generateDateRange(
+        formData.startDate,
+        formData.endDate,
+      );
+
+      setFormData((prev) => {
+        const normalizedFestivalDateMetas = normalizeFestivalDateMetas(
+          prev.festivalDateMetas,
+          festivalDates,
+        );
+
+        const isFestivalDateMetasUnchanged =
+          normalizedFestivalDateMetas.length ===
+            prev.festivalDateMetas.length &&
+          normalizedFestivalDateMetas.every((festivalDateMeta, index) => {
+            const prevFestivalDateMeta = prev.festivalDateMetas[index];
+
+            return (
+              prevFestivalDateMeta?.date === festivalDateMeta.date &&
+              prevFestivalDateMeta?.openAt === festivalDateMeta.openAt &&
+              prevFestivalDateMeta?.festivalDateId ===
+                festivalDateMeta.festivalDateId
+            );
+          });
+
+        return isFestivalDateMetasUnchanged
+          ? prev
+          : { ...prev, festivalDateMetas: normalizedFestivalDateMetas };
+      });
+    },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+    [formData.endDate, formData.startDate, formData.type],
+  );
+
+  useEffect(
+    function synchronizeArtistFestivalDates() {
+      if (formData.type !== 'Festival' || formData.artists.length === 0) {
+        return;
+      }
+
+      const festivalDates = generateDateRange(
+        formData.startDate,
+        formData.endDate,
+      );
+
+      if (festivalDates.length === 0) {
+        return;
+      }
+
+      setFormData((prev) => {
+        const normalizedArtists = prev.artists.map((artist) => {
+          const selectedFestivalDates =
+            artist.festivalDates?.filter((date) =>
+              festivalDates.includes(date),
+            ) ?? [];
+
+          return artist.festivalDates?.length === selectedFestivalDates.length
+            ? artist
+            : {
+                ...artist,
+                festivalDates: selectedFestivalDates,
+              };
         });
 
-      return isFestivalDateMetasUnchanged
-        ? prev
-        : { ...prev, festivalDateMetas: normalizedFestivalDateMetas };
-    });
-  }, [formData.endDate, formData.startDate, formData.type]);
+        const hasUpdatedArtists = normalizedArtists.some(
+          (artist, index) => artist !== prev.artists[index],
+        );
 
-  useEffect(() => {
-    if (formData.type !== 'Festival' || formData.artists.length === 0) {
-      return;
-    }
-
-    const festivalDates = generateDateRange(
-      formData.startDate,
-      formData.endDate,
-    );
-
-    if (festivalDates.length === 0) {
-      return;
-    }
-
-    setFormData((prev) => {
-      const normalizedArtists = prev.artists.map((artist) => {
-        const selectedFestivalDates =
-          artist.festivalDates?.filter((date) =>
-            festivalDates.includes(date),
-          ) ?? [];
-
-        return artist.festivalDates?.length === selectedFestivalDates.length
-          ? artist
-          : {
-              ...artist,
-              festivalDates: selectedFestivalDates,
-            };
+        return hasUpdatedArtists
+          ? { ...prev, artists: normalizedArtists }
+          : prev;
       });
-
-      const hasUpdatedArtists = normalizedArtists.some(
-        (artist, index) => artist !== prev.artists[index],
-      );
-
-      return hasUpdatedArtists ? { ...prev, artists: normalizedArtists } : prev;
-    });
-  }, [
-    formData.endDate,
-    formData.startDate,
-    formData.type,
-    formData.artists.length,
-  ]);
+    },
+    [
+      formData.endDate,
+      formData.startDate,
+      formData.type,
+      formData.artists.length,
+    ],
+  );
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

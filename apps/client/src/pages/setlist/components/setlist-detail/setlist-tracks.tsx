@@ -83,13 +83,19 @@ const SetListTracks = ({
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
   );
 
-  useEffect(() => {
-    setLocalTracks(tracks);
-  }, [tracks]);
+  useEffect(
+    function synchronizeLocalTracks() {
+      setLocalTracks(tracks);
+    },
+    [tracks],
+  );
 
-  useEffect(() => {
-    onTracksChange(localTracks);
-  }, [localTracks, onTracksChange]);
+  useEffect(
+    function notifyTracksChange() {
+      onTracksChange(localTracks);
+    },
+    [localTracks, onTracksChange],
+  );
 
   useEditCancelOnLeave(isEditMode, () => cancelEditSetlist(setlistId));
 

@@ -61,15 +61,18 @@ const PerformanceCarousel = ({
   const sliderRef = useRef<Slider | null>(null);
   const [activeIndex, setActiveIndex] = useState(initialSlideIndex);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (sliderRef.current) {
-        sliderRef.current?.slickNext();
-      }
-    }, 5000);
+  useEffect(
+    function startPerformanceCarouselAutoSlide() {
+      const interval = setInterval(() => {
+        if (sliderRef.current) {
+          sliderRef.current?.slickNext();
+        }
+      }, 5000);
 
-    return () => clearInterval(interval);
-  }, [activeIndex]);
+      return () => clearInterval(interval);
+    },
+    [activeIndex],
+  );
 
   // 슬라이더 설정
   const settings = {

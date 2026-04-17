@@ -30,7 +30,7 @@ const TicketOpeningSection = ({ userName, data, isPersonalized }: Props) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
+  useEffect(function trackTicketOpeningIndexOnScroll() {
     const container = scrollContainerRef.current;
     if (!container) return;
 
