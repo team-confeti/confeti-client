@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { LogShowEvent } from '@shared/analytics/logging';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
 import { Footer, NavigationTabs } from '@shared/components';
+import { isEmpty } from '@shared/lib/es-toolkit/es';
 import { routePath } from '@shared/router/path';
 
 import { TAB_MENU } from '@pages/home/constants/tab';
@@ -23,14 +24,12 @@ const TimetableLandingPage = () => {
     FESTIVAL_TIMETABLE_QUERY_OPTIONS.ADDABLE_FESTIVALS(),
   );
 
-  const hasAddableFestivals = (data.pages[0]?.festivals.length ?? 0) > 0;
-
   const handleCreateTimetable = () => {
-    navigate(
-      hasAddableFestivals
-        ? routePath.ADD_FESTIVAL
-        : routePath.NO_UPCOMING_FESTIVAL,
-    );
+    if (isEmpty(data.pages.flatMap((page) => page.festivals))) {
+      navigate(routePath.NO_UPCOMING_FESTIVAL);
+      return;
+    }
+    navigate(routePath.ADD_FESTIVAL);
   };
 
   return (
