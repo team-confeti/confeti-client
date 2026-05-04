@@ -6,6 +6,7 @@ import { Button, FestivalCard } from '@confeti/design-system';
 
 import { LogClickEvent, logClickEvent } from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
+import { AppSafeArea } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { SetListPerformance } from '@shared/types/my-history-response';
 import type { PerformanceType } from '@shared/types/performance-type';
@@ -58,7 +59,7 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <AppSafeArea subtract="5rem" className={styles.container}>
       <section className={styles.title}>
         <p>{performanceCount}개의 검색결과</p>
       </section>
@@ -98,7 +99,7 @@ const SetlistPerformance = ({ performanceCount, performances }: Props) => {
           />
         </LogClickEvent>
       </section>
-    </div>
+    </AppSafeArea>
   );
 };
 

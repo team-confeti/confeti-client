@@ -4,6 +4,9 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const searchBarContainer = style({
   ...themeVars.display.flexJustifyAlignCenter,
+  position: 'sticky',
+  top: `calc(${themeVars.size.height.header} + var(--safe-area-top))`,
+  zIndex: themeVars.zIndex.header.content,
   padding: '0.8rem 2rem',
   width: '100%',
   gap: '0.8rem',

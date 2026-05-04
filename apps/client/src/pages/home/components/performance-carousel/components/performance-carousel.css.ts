@@ -7,6 +7,11 @@ export const root = style({
   userSelect: 'none',
   touchAction: 'none',
   marginTop: '8rem',
+  selectors: {
+    '.cap-native &': {
+      marginTop: 'calc(8rem + var(--safe-area-top))',
+    },
+  },
 });
 
 export const carouselTrack = style({

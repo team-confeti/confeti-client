@@ -1,5 +1,7 @@
 import { LogShowEvent } from '@shared/analytics/logging';
+import { AppSafeArea } from '@shared/components';
 import NavigationTabs from '@shared/components/navigation-tabs';
+import { LAYOUT_HEIGHT } from '@shared/constants/layout';
 
 import { TAB_MENU } from '@pages/home/constants/tab';
 
@@ -12,7 +14,11 @@ const MaintenancePage = () => {
     <>
       <LogShowEvent name="show_setlist_maintenance" />
       <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />
-      <div className={styles.container}>
+      <AppSafeArea
+        flexible
+        subtract={LAYOUT_HEIGHT.HEADERS_STACKED}
+        className={styles.container}
+      >
         <img
           className={styles.image}
           src={ImgSetlistMaintenance}
@@ -24,7 +30,7 @@ const MaintenancePage = () => {
           <br />
           홈으로 돌아가서 다른 서비스를 이용해 보세요.
         </p>
-      </div>
+      </AppSafeArea>
     </>
   );
 };

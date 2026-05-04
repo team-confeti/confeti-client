@@ -53,3 +53,27 @@ claude.local.md
 
 # Codex
 AGENTS.md
+
+# OMC (oh-my-claudecode)
+.omc/
+
+# Capacitor — iOS
+apps/client/ios/.idea
+apps/client/ios/App/Pods
+apps/client/ios/App/build
+apps/client/ios/App/output
+apps/client/ios/App/App.xcworkspace/xcuserdata
+apps/client/ios/App/App.xcodeproj/xcuserdata
+apps/client/ios/App/App.xcodeproj/project.xcworkspace/xcuserdata
+apps/client/ios/DerivedData
+apps/client/ios/capacitor-cordova-ios-plugins
+
+# Capacitor — Android
+apps/client/android/.gradle
+apps/client/android/.idea
+apps/client/android/build
+apps/client/android/app/build
+apps/client/android/app/release
+apps/client/android/captures
+apps/client/android/local.properties
+apps/client/android/capacitor-cordova-android-plugins

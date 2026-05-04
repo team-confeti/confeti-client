@@ -9,6 +9,9 @@ export const container = style({
   minHeight: '100dvh',
   alignItems: 'center',
   backgroundColor: themeVars.color.white,
+  paddingTop: 'var(--safe-area-top)',
+  paddingBottom: 'var(--safe-area-bottom)',
+  boxSizing: 'border-box',
 });
 
 export const content = style({

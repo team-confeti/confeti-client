@@ -42,7 +42,7 @@ const NavigationTabs = ({ defaultActiveTab, hidden = false }: Props) => {
     <div
       style={{
         position: 'fixed',
-        top: '5.4rem',
+        top: 'calc(5.4rem + var(--safe-area-top))',
         left: 0,
         right: 0,
         maxWidth: 'var(--max-width)',

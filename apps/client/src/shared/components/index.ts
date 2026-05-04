@@ -2,6 +2,7 @@ export { default as Collapse } from './collapse/collapse';
 export { default as FloatingButtonContainer } from './containers/floating-button-container';
 export { FestivalList } from './festival-list/festival-list';
 export { default as Hero } from './hero/hero';
+export { AppSafeArea } from './layout/app-safe-area';
 export { default as DetailHeader } from './layout/detail-header';
 export { default as Footer } from './layout/footer';
 export { default as Header } from './layout/header';

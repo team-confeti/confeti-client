@@ -1,46 +1,41 @@
-import { style } from '@vanilla-extract/css';
+import { style, type StyleRule } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-export const container = style({
+const SAFE_TOP = 'var(--safe-area-top)';
+const HEADER_HEIGHT = themeVars.size.height.header;
+const FADE_TRANSITION = 'background-color 0.3s ease';
+
+const headerBase: StyleRule = {
   ...themeVars.display.flexAlignCenter,
-  position: 'fixed',
-  backgroundColor: 'transparent',
-  height: themeVars.size.height.header,
+  height: `calc(${HEADER_HEIGHT} + ${SAFE_TOP})`,
   top: 0,
   width: '100%',
   maxWidth: 'var(--max-width)',
-  padding: '0 2rem',
+  padding: `${SAFE_TOP} 2rem 0`,
   justifyContent: 'space-between',
   zIndex: themeVars.zIndex.header.content,
-  transition: 'background-color 0.3s ease',
+  boxSizing: 'border-box',
+};
+
+export const container = style({
+  ...headerBase,
+  position: 'fixed',
+  backgroundColor: 'transparent',
+  transition: FADE_TRANSITION,
 });
 
 export const containerWhite = style({
-  ...themeVars.display.flexAlignCenter,
+  ...headerBase,
   position: 'fixed',
   backgroundColor: themeVars.color.white,
-  height: themeVars.size.height.header,
-  top: 0,
-  width: '100%',
-  maxWidth: 'var(--max-width)',
-  padding: '0 2rem',
-  justifyContent: 'space-between',
-  zIndex: themeVars.zIndex.header.content,
-  transition: 'background-color 0.3s ease',
+  transition: FADE_TRANSITION,
 });
 
 export const containerSticky = style({
-  ...themeVars.display.flexAlignCenter,
+  ...headerBase,
   position: 'sticky',
   backgroundColor: themeVars.color.white,
-  height: themeVars.size.height.header,
-  top: 0,
-  width: '100%',
-  maxWidth: 'var(--max-width)',
-  padding: '0 2rem',
-  justifyContent: 'space-between',
-  zIndex: themeVars.zIndex.header.content,
 });
 
 export const logo = style({

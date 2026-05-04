@@ -1,3 +1,5 @@
+import { isNative, shareImage } from '@confeti/platform';
+
 import type { TimetableInfo } from '@pages/timetable/types/timetable-info-type';
 
 import { calcTotalMinutes, parseTimeString } from '.';
@@ -102,6 +104,16 @@ export const triggerDownload = async (
   const fullName = `${fileName}.png`;
 
   const blob = await (await fetch(dataUrl)).blob();
+
+  if (isNative()) {
+    try {
+      await shareImage({ filename: fullName, blob });
+    } catch {
+      // 사용자 공유 취소
+    }
+    return;
+  }
+
   const file = new File([blob], fullName, { type: 'image/png' });
 
   if (isMobile() && navigator.canShare?.({ files: [file] })) {
