@@ -52,9 +52,6 @@ const withSeconds = (value: string) => {
   return value;
 };
 
-const formatDateTime = (date: string, time: string) =>
-  withSeconds(`${date}T${time}`);
-
 const extractDate = (value: string) => value.split('T')[0] ?? value;
 
 const extractTime = (value: string) =>
