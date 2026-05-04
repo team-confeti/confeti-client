@@ -6,15 +6,27 @@ PODS:
   - CapacitorBrowser (7.0.5):
     - Capacitor
   - CapacitorCordova (7.6.2)
+  - CapacitorFilesystem (7.1.8):
+    - Capacitor
+    - IONFilesystemLib (~> 1.1.1)
+  - CapacitorShare (7.0.4):
+    - Capacitor
   - CapacitorSplashScreen (7.0.5):
     - Capacitor
+  - IONFilesystemLib (1.1.2)
 
 DEPENDENCIES:
   - "Capacitor (from `../../../../node_modules/.pnpm/@capacitor+ios@7.6.2_@capacitor+core@7.6.2/node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../../../node_modules/.pnpm/@capacitor+app@7.1.2_@capacitor+core@7.6.2/node_modules/@capacitor/app`)"
   - "CapacitorBrowser (from `../../../../node_modules/.pnpm/@capacitor+browser@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/browser`)"
   - "CapacitorCordova (from `../../../../node_modules/.pnpm/@capacitor+ios@7.6.2_@capacitor+core@7.6.2/node_modules/@capacitor/ios`)"
+  - "CapacitorFilesystem (from `../../../../node_modules/.pnpm/@capacitor+filesystem@7.1.8_@capacitor+core@7.6.2/node_modules/@capacitor/filesystem`)"
+  - "CapacitorShare (from `../../../../node_modules/.pnpm/@capacitor+share@7.0.4_@capacitor+core@7.6.2/node_modules/@capacitor/share`)"
   - "CapacitorSplashScreen (from `../../../../node_modules/.pnpm/@capacitor+splash-screen@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/splash-screen`)"
+
+SPEC REPOS:
+  trunk:
+    - IONFilesystemLib
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -25,6 +37,10 @@ EXTERNAL SOURCES:
     :path: "../../../../node_modules/.pnpm/@capacitor+browser@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/browser"
   CapacitorCordova:
     :path: "../../../../node_modules/.pnpm/@capacitor+ios@7.6.2_@capacitor+core@7.6.2/node_modules/@capacitor/ios"
+  CapacitorFilesystem:
+    :path: "../../../../node_modules/.pnpm/@capacitor+filesystem@7.1.8_@capacitor+core@7.6.2/node_modules/@capacitor/filesystem"
+  CapacitorShare:
+    :path: "../../../../node_modules/.pnpm/@capacitor+share@7.0.4_@capacitor+core@7.6.2/node_modules/@capacitor/share"
   CapacitorSplashScreen:
     :path: "../../../../node_modules/.pnpm/@capacitor+splash-screen@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/splash-screen"
 
@@ -33,8 +49,11 @@ SPEC CHECKSUMS:
   CapacitorApp: f01a913211780e0718dae9750442c3e23f96e106
   CapacitorBrowser: 6d09f59655e89aede71654ef08b98de55cf032b6
   CapacitorCordova: 8214697bed435f6e7c5e3ed86d1632a8c42f7d77
+  CapacitorFilesystem: c63fc54df41e5a6761785a7f3c49dc696c22e296
+  CapacitorShare: 25f7fc5dd0e4edbde5d6801c6de5d14a8b450a41
   CapacitorSplashScreen: 409eeaaeac603d264f209c0fcb718aa22fe1f7bb
+  IONFilesystemLib: 21a63377696b2d8fab5632ecfb7d2ac67bddb68a
 
-PODFILE CHECKSUM: d0222759c741d9021926dcdec060394e66107d6f
+PODFILE CHECKSUM: 8823dddfd1c12ece851691d57c5e0a28a9779338
 
 COCOAPODS: 1.16.2

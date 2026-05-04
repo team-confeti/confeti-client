@@ -82,7 +82,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   if (!selectedDateId) return null;
 
   return (
-    <AppSafeArea subtract="5rem" className={styles.wrapper}>
+    <AppSafeArea subtract="5rem" insets="none" className={styles.wrapper}>
       <TimetableHeader title={selectedFestivalInfo.title} />
       <Calender
         festivalDates={selectedFestivalInfo.festivalDates}
