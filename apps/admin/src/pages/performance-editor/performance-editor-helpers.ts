@@ -130,10 +130,7 @@ const festivalOpenAtSchema = z
   .string()
   .trim()
   .min(1, '티켓 오픈 시간을 입력해주세요.')
-  .regex(
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/,
-    '티켓 오픈 시간 형식이 올바르지 않아요.',
-  );
+  .regex(/^\d{2}:\d{2}(:\d{2})?$/, '티켓 오픈 시간 형식이 올바르지 않아요.');
 
 const reservationScheduleSchema = z.object({
   roundName: z.string().trim().max(30, '예매 차수는 30자 이하여야 해요.'),
@@ -164,10 +161,16 @@ const concertRequestSchema = z.object({
   ),
 });
 
+const timetableTimeSchema = z
+  .string()
+  .trim()
+  .min(1, '타임테이블 시간을 입력해주세요.')
+  .regex(/^\d{2}:\d{2}(:\d{2})?$/, '타임테이블 시간 형식이 올바르지 않아요.');
+
 const festivalTimeSchema = z.object({
   festivalTimeId: z.number().optional(),
-  startAt: reservationDateTimeSchema,
-  endAt: reservationDateTimeSchema,
+  startAt: timetableTimeSchema,
+  endAt: timetableTimeSchema,
   artistIds: z
     .array(z.string().trim().min(1))
     .min(1, '타임테이블에 아티스트를 추가해주세요.'),
