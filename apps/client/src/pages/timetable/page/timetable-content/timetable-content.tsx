@@ -2,6 +2,7 @@ import { Suspense, useMemo, useState } from 'react';
 
 import { toast } from '@confeti/design-system';
 
+import { AppSafeArea } from '@shared/components';
 import { FestivalTimetable } from '@shared/types/festival-timetable-response';
 
 import Calender from '@pages/timetable/components/calender/calender';
@@ -81,7 +82,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
   if (!selectedDateId) return null;
 
   return (
-    <div className={styles.wrapper}>
+    <AppSafeArea subtract="5rem" className={styles.wrapper}>
       <TimetableHeader title={selectedFestivalInfo.title} />
       <Calender
         festivalDates={selectedFestivalInfo.festivalDates}
@@ -111,7 +112,7 @@ const TimetableContent = ({ festivals }: TimetableContentProps) => {
       />
 
       {CaptureElement}
-    </div>
+    </AppSafeArea>
   );
 };
 

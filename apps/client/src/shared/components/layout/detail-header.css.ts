@@ -4,7 +4,9 @@ import { themeVars } from '@confeti/design-system/styles';
 
 export const container = style({
   ...themeVars.display.flexAlignCenter,
-  position: 'relative',
+  position: 'sticky',
+  top: `calc(${themeVars.size.height.header} + var(--safe-area-top))`,
+  zIndex: themeVars.zIndex.header.content,
   backgroundColor: themeVars.color.white,
   height: '4.4rem',
   padding: '0 1.4rem',

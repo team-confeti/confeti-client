@@ -5,8 +5,8 @@ import { themeVars } from '@confeti/design-system/styles';
 export const container = style({
   display: 'grid',
   gridTemplateRows: '1fr 1fr',
-  height: '13.5rem',
-  padding: '2rem',
+  padding: '2rem 2rem calc(2rem + var(--safe-area-bottom)) 2rem',
+  minHeight: '13.5rem',
 
   backgroundColor: themeVars.color.gray200,
 });

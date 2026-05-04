@@ -1,0 +1,33 @@
+{
+  "name": "@confeti/platform",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./runtime": "./src/runtime.ts",
+    "./storage": "./src/storage.ts",
+    "./share": "./src/share.ts",
+    "./browser": "./src/browser.ts",
+    "./auth/token-store": "./src/auth/token-store.ts",
+    "./auth/kakao": "./src/auth/kakao.ts",
+    "./auth/apple": "./src/auth/apple.ts"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@capacitor/app": "^7.1.0",
+    "@capacitor/browser": "^7.0.2",
+    "@capacitor/core": "catalog:",
+    "@capacitor/filesystem": "^7.1.4",
+    "@capacitor/preferences": "^7.0.2",
+    "@capacitor/share": "^7.0.2"
+  },
+  "devDependencies": {
+    "@confeti/eslint": "workspace:*",
+    "@confeti/typescript": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "^3.2.4"
+  }
+}

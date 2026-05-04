@@ -10,3 +10,5 @@ catalog:
   '@types/react': ^19
   '@types/react-dom': ^19
   eslint: ^9.32.0
+  '@capacitor/core': ^7.4.4
+  '@capacitor/cli': ^7.4.4

@@ -20,6 +20,8 @@ import { router } from '@shared/router/router';
 
 import { queryClient } from './shared/utils/query-client';
 
+import '@shared/styles/safe-area.css';
+
 amplitudeInit(ENV_CONFIG.AMPLITUDE_API_KEY, {
   defaultTracking: false,
 });
