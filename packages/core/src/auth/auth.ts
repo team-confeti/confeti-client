@@ -11,6 +11,8 @@ const COOKIE_DOMAIN = (() => {
   return undefined;
 })();
 
+const COOKIE_EXPIRES_DAYS = 30;
+
 function getCookieOptions(): Cookies.CookieAttributes {
   const isHttps =
     typeof window !== 'undefined' && window.location.protocol === 'https:';
@@ -18,6 +20,7 @@ function getCookieOptions(): Cookies.CookieAttributes {
     secure: isHttps,
     sameSite: 'Lax',
     path: '/',
+    expires: COOKIE_EXPIRES_DAYS,
     ...(COOKIE_DOMAIN && { domain: COOKIE_DOMAIN }),
   };
 }
