@@ -60,12 +60,12 @@ const extractDate = (value: string) => value.split('T')[0] ?? value;
 const extractTime = (value: string) =>
   value.split('T')[1]?.slice(0, 5) ?? value;
 
-const getFestivalOpenAt = (date: string, slots: TimetableSlot[]) => {
+const getFestivalOpenAt = (slots: TimetableSlot[]) => {
   const earliestSlot = [...slots].sort((left, right) =>
     left.startTime.localeCompare(right.startTime),
   )[0];
 
-  return formatDateTime(date, earliestSlot?.startTime ?? '00:00');
+  return withSeconds(earliestSlot?.startTime ?? '00:00');
 };
 
 const getFestivalDates = (
@@ -93,8 +93,8 @@ const getFestivalDates = (
           .filter((slot) => slot.stageIndex === stageIndex)
           .map((slot) => ({
             festivalTimeId: slot.festivalTimeId,
-            startAt: formatDateTime(date, slot.startTime),
-            endAt: formatDateTime(date, slot.endTime),
+            startAt: withSeconds(slot.startTime),
+            endAt: withSeconds(slot.endTime),
             artistIds: [String(slot.artistId)],
           })),
       }))
@@ -104,8 +104,8 @@ const getFestivalDates = (
       festivalDateId: festivalDateMeta?.festivalDateId,
       festivalAt: date,
       openAt: festivalDateMeta?.openAt
-        ? formatDateTime(date, festivalDateMeta.openAt)
-        : getFestivalOpenAt(date, slotsForDate),
+        ? withSeconds(festivalDateMeta.openAt)
+        : getFestivalOpenAt(slotsForDate),
       artistIds: formData.artists
         .filter((artist) => artist.festivalDates?.includes(date) ?? false)
         .map((artist) => String(artist.id)),
