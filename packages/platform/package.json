@@ -14,7 +14,7 @@
     "./auth/apple": "./src/auth/apple.ts"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest --passWithNoTests"
   },
   "dependencies": {
     "@capacitor/app": "^7.1.0",
