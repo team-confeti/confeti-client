@@ -36,36 +36,25 @@ const formatPrice = (price: string) => {
   return `${Number(numericPrice).toLocaleString('ko-KR')}원`;
 };
 
-const withSeconds = (value: string) => {
-  if (!value) {
-    return value;
-  }
+const TIME_FORMAT_REGEX = /^\d{2}:\d{2}(:\d{2})?$/;
 
-  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value)) {
-    return value;
-  }
+const toTimeString = (value: string): string =>
+  /^\d{2}:\d{2}$/.test(value) ? `${value}:00` : value;
 
-  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value)) {
-    return `${value}:00`;
-  }
-
-  return value;
-};
-
-const formatDateTime = (date: string, time: string) =>
-  withSeconds(`${date}T${time}`);
+const toDateTimeString = (value: string): string =>
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value) ? `${value}:00` : value;
 
 const extractDate = (value: string) => value.split('T')[0] ?? value;
 
 const extractTime = (value: string) =>
   value.split('T')[1]?.slice(0, 5) ?? value;
 
-const getFestivalOpenAt = (date: string, slots: TimetableSlot[]) => {
+const getFestivalOpenAt = (slots: TimetableSlot[]) => {
   const earliestSlot = [...slots].sort((left, right) =>
     left.startTime.localeCompare(right.startTime),
   )[0];
 
-  return formatDateTime(date, earliestSlot?.startTime ?? '00:00');
+  return toTimeString(earliestSlot?.startTime ?? '00:00');
 };
 
 const getFestivalDates = (
@@ -93,8 +82,8 @@ const getFestivalDates = (
           .filter((slot) => slot.stageIndex === stageIndex)
           .map((slot) => ({
             festivalTimeId: slot.festivalTimeId,
-            startAt: formatDateTime(date, slot.startTime),
-            endAt: formatDateTime(date, slot.endTime),
+            startAt: toTimeString(slot.startTime),
+            endAt: toTimeString(slot.endTime),
             artistIds: [String(slot.artistId)],
           })),
       }))
@@ -104,8 +93,8 @@ const getFestivalDates = (
       festivalDateId: festivalDateMeta?.festivalDateId,
       festivalAt: date,
       openAt: festivalDateMeta?.openAt
-        ? formatDateTime(date, festivalDateMeta.openAt)
-        : getFestivalOpenAt(date, slotsForDate),
+        ? toTimeString(festivalDateMeta.openAt)
+        : getFestivalOpenAt(slotsForDate),
       artistIds: formData.artists
         .filter((artist) => artist.festivalDates?.includes(date) ?? false)
         .map((artist) => String(artist.id)),
@@ -133,10 +122,7 @@ const festivalOpenAtSchema = z
   .string()
   .trim()
   .min(1, '티켓 오픈 시간을 입력해주세요.')
-  .regex(
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/,
-    '티켓 오픈 시간 형식이 올바르지 않아요.',
-  );
+  .regex(TIME_FORMAT_REGEX, '티켓 오픈 시간 형식이 올바르지 않아요.');
 
 const reservationScheduleSchema = z.object({
   roundName: z.string().trim().max(30, '예매 차수는 30자 이하여야 해요.'),
@@ -167,10 +153,16 @@ const concertRequestSchema = z.object({
   ),
 });
 
+const timetableTimeSchema = z
+  .string()
+  .trim()
+  .min(1, '타임테이블 시간을 입력해주세요.')
+  .regex(TIME_FORMAT_REGEX, '타임테이블 시간 형식이 올바르지 않아요.');
+
 const festivalTimeSchema = z.object({
   festivalTimeId: z.number().optional(),
-  startAt: reservationDateTimeSchema,
-  endAt: reservationDateTimeSchema,
+  startAt: timetableTimeSchema,
+  endAt: timetableTimeSchema,
   artistIds: z
     .array(z.string().trim().min(1))
     .min(1, '타임테이블에 아티스트를 추가해주세요.'),
@@ -334,7 +326,7 @@ const getReservationSchedules = (
     .filter((schedule) => schedule.startDate.trim().length > 0)
     .map((schedule) => ({
       roundName: schedule.round.trim(),
-      reserveAt: withSeconds(schedule.startDate),
+      reserveAt: toDateTimeString(schedule.startDate),
     }));
 
 export const buildConcertRequest = (
