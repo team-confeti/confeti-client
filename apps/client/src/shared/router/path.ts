@@ -4,6 +4,7 @@ export const routePath = {
   ROOT: '/',
   LOGIN: '/login',
   REDIRECT_KAKAO: '/auth',
+  REDIRECT_APPLE: '/callback/apple',
   // Shared
   LOADING: '/loading',
 

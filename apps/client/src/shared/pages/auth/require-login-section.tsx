@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@confeti/design-system';
 
 import { LogClickEvent } from '@shared/analytics/logging';
+import { AppSafeArea } from '@shared/components';
+import { LAYOUT_HEIGHT } from '@shared/constants/layout';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './require-login-section.css';
@@ -23,7 +25,11 @@ const RequireLoginSection = ({
   };
 
   return (
-    <section className={styles.container}>
+    <AppSafeArea
+      as="section"
+      subtract={LAYOUT_HEIGHT.HEADERS_STACKED}
+      className={styles.container}
+    >
       <div className={styles.content}>
         <h2 className={styles.title}>로그인이 필요한 서비스예요!</h2>
         <p className={styles.description}>
@@ -37,7 +43,7 @@ const RequireLoginSection = ({
           onClick={handleLoginClick}
         />
       </LogClickEvent>
-    </section>
+    </AppSafeArea>
   );
 };
 

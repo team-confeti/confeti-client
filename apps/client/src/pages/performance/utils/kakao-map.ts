@@ -1,3 +1,5 @@
+import { isNative, openAppUrl, openExternalLink } from '@confeti/platform';
+
 import { ENV_CONFIG } from '@shared/constants/config';
 
 type Transport = 'car' | 'publictransit' | 'foot' | 'bicycle';
@@ -121,6 +123,18 @@ export async function openKakaoRoute({
   const query = params.toString();
 
   const mobileWebUrl = `https://m.map.kakao.com/scheme/route?${query}`;
+
+  // 카카오맵 앱 deeplink 시도. 앱 미설치 시 시스템 브라우저로 폴백.
+  if (isNative()) {
+    const start = Date.now();
+    openAppUrl(`kakaomap://route?${query}`);
+    setTimeout(() => {
+      if (Date.now() - start < 1200) {
+        void openExternalLink(mobileWebUrl);
+      }
+    }, 900);
+    return;
+  }
 
   if (!isMobile) {
     openKakaoWebTo(destination, destination.label);

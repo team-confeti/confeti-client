@@ -12,6 +12,7 @@
   "include": [
     "src",
     "vite.config.ts",
+    "capacitor.config.ts",
     "../../packages/utils/src/format-date.ts",
     "api"
   ],

@@ -10,6 +10,11 @@ export const heroSection = style({
   flexDirection: 'column',
   justifyContent: 'space-between',
   overflow: 'hidden',
+  selectors: {
+    '.cap-native &': {
+      height: 'calc(31.6rem + var(--safe-area-top))',
+    },
+  },
 });
 
 export const backgroundLayer = style({
@@ -49,6 +54,11 @@ export const titleSection = style({
   ...themeVars.display.flexColumn,
   gap: '0.8rem',
   marginTop: '12rem',
+  selectors: {
+    '.cap-native &': {
+      marginTop: 'calc(12rem + var(--safe-area-top))',
+    },
+  },
 });
 
 export const mainTitle = style({

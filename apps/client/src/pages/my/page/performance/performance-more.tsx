@@ -9,7 +9,8 @@ import {
   LogShowEvent,
 } from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { DetailHeader, Footer } from '@shared/components';
+import { AppSafeArea, DetailHeader, Footer } from '@shared/components';
+import { LAYOUT_HEIGHT } from '@shared/constants/layout';
 import {
   MyPerformances,
   PerformancesFilterType,
@@ -71,7 +72,11 @@ const PerformanceMore = () => {
   };
 
   return (
-    <div className={styles.pageContainer}>
+    <AppSafeArea
+      flexible
+      subtract={LAYOUT_HEIGHT.GLOBAL_HEADER}
+      className={styles.pageContainer}
+    >
       <LogShowEvent name="show_my_confeti" />
       <DetailHeader title="선호하는 공연" />
       <section className={styles.filterSection}>
@@ -112,7 +117,7 @@ const PerformanceMore = () => {
         <PerformanceList performances={displayedPerformances} />
       )}
       <Footer />
-    </div>
+    </AppSafeArea>
   );
 };
 

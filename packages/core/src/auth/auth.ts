@@ -12,8 +12,10 @@ const COOKIE_DOMAIN = (() => {
 })();
 
 function getCookieOptions(): Cookies.CookieAttributes {
+  const isHttps =
+    typeof window !== 'undefined' && window.location.protocol === 'https:';
   return {
-    secure: true,
+    secure: isHttps,
     sameSite: 'Lax',
     path: '/',
     ...(COOKIE_DOMAIN && { domain: COOKIE_DOMAIN }),

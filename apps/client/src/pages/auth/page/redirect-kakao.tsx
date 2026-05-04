@@ -6,19 +6,22 @@ import Loading from '@shared/pages/loading/loading';
 
 import { useSocialLoginMutation } from '@pages/auth/hooks/use-social-login-mutation';
 
+import { tryHandoffToNativeApp } from '../utils/native-redirect-bridge';
+
+const KAKAO_NATIVE_SCHEME = 'com.confeti.app://auth';
+
 const RedirectKakao = () => {
   const location = useLocation();
   const { mutate: kakaoLoginMutate } = useSocialLoginMutation();
 
   useEffect(function loginWithKakaoAuthorizationCode() {
-    const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get('code');
-    const REDIRECT_URI = window.location.origin + '/auth';
+    if (tryHandoffToNativeApp(location.search, KAKAO_NATIVE_SCHEME)) return;
 
+    const code = new URLSearchParams(location.search).get('code');
     kakaoLoginMutate({
       provider: 'KAKAO',
       code: code ?? '',
-      redirectUrl: REDIRECT_URI,
+      redirectUrl: `${window.location.origin}/auth`,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

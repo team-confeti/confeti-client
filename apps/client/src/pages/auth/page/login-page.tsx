@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, DotIndicator, toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import {
+  isIOS,
+  isNative,
+  loginWithAppleNative,
+  loginWithKakaoNative,
+} from '@confeti/platform';
 import { onError } from '@confeti/utils';
 
 import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
@@ -18,6 +24,15 @@ import { LOGIN_SLIDES } from '../types/types';
 import { getAppleAuthData, initAppleAuth } from '../utils/apple-login';
 
 import * as styles from './login-page.css';
+
+const resolveKakaoRedirectUri = () => {
+  const isLocal =
+    import.meta.env.DEV ||
+    (typeof window !== 'undefined' && window.location.hostname === 'localhost');
+  return isLocal
+    ? ENV_CONFIG.KAKAO_LOCAL_REDIRECT_URI
+    : ENV_CONFIG.KAKAO_REDIRECT_URI;
+};
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -63,18 +78,37 @@ const LoginPage = () => {
       position: 'middleCenter',
     });
   })(async () => {
+    if (isIOS()) {
+      const { code, name } = await loginWithAppleNative({
+        clientId: ENV_CONFIG.APPLE_CLIENT_ID,
+        webRedirectUri: ENV_CONFIG.APPLE_REDIRECT_URI,
+      });
+      await postSocialLogin({ provider: 'APPLE', code, name });
+      return;
+    }
     initAppleAuth();
     const loginData = await getAppleAuthData();
     await postSocialLogin(loginData);
   });
 
-  const handleKakaoLogin = () => {
-    const REDIRECT_URI =
-      window.location.hostname === 'localhost'
-        ? ENV_CONFIG.KAKAO_LOCAL_REDIRECT_URI
-        : ENV_CONFIG.KAKAO_REDIRECT_URI;
-
-    window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${REDIRECT_URI}`;
+  const handleKakaoLogin = async () => {
+    const redirectUri = resolveKakaoRedirectUri();
+    try {
+      if (isNative()) {
+        const { code, redirectUrl } = await loginWithKakaoNative({
+          authorizeUrl: ENV_CONFIG.KAKAO_URI,
+          webRedirectUri: redirectUri,
+        });
+        await postSocialLogin({ provider: 'KAKAO', code, redirectUrl });
+        return;
+      }
+      window.location.href = `${ENV_CONFIG.KAKAO_URI}&redirect_uri=${redirectUri}`;
+    } catch {
+      toast({
+        text: '카카오 로그인에 실패했어요.',
+        position: 'middleCenter',
+      });
+    }
   };
 
   const handleClose = () => {

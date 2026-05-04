@@ -7,7 +7,7 @@ import { TIMETABLE_HEADER_HEIGHT } from '@pages/timetable/constants';
 export const header = style({
   ...themeVars.display.flexBetweenAlignCenter,
   position: 'sticky',
-  top: 0,
+  top: 'var(--safe-area-top)',
   left: 0,
   right: 0,
   padding: '0 2rem',

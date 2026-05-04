@@ -8,6 +8,11 @@ export const sectionContainer = style({
   height: '56.4rem',
   overflow: 'hidden',
   marginTop: 0,
+  selectors: {
+    '.cap-native &': {
+      height: 'calc(56.4rem + var(--safe-area-top))',
+    },
+  },
 });
 
 export const backgroundWrapper = style({
