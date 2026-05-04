@@ -5,6 +5,7 @@ import { Button } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
 
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
+import { isEmpty } from '@shared/lib/es-toolkit/es';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './empty-festival-section.css';
@@ -16,10 +17,12 @@ const EmptyFestivalSection = () => {
     FESTIVAL_TIMETABLE_QUERY_OPTIONS.ADDABLE_FESTIVALS(),
   );
 
-  const isEmpty = data.pages[0]?.festivals.length === 0;
-
   const handleAddFestivalClick = () => {
-    navigate(isEmpty ? routePath.NO_UPCOMING_FESTIVAL : routePath.ADD_FESTIVAL);
+    if (isEmpty(data.pages.flatMap((page) => page.festivals))) {
+      navigate(routePath.NO_UPCOMING_FESTIVAL);
+      return;
+    }
+    navigate(routePath.ADD_FESTIVAL);
   };
 
   return (
