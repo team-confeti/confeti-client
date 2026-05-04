@@ -13,6 +13,8 @@ def capacitor_pods
   pod 'CapacitorCordova', :path => '../../../../node_modules/.pnpm/@capacitor+ios@7.6.2_@capacitor+core@7.6.2/node_modules/@capacitor/ios'
   pod 'CapacitorApp', :path => '../../../../node_modules/.pnpm/@capacitor+app@7.1.2_@capacitor+core@7.6.2/node_modules/@capacitor/app'
   pod 'CapacitorBrowser', :path => '../../../../node_modules/.pnpm/@capacitor+browser@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/browser'
+  pod 'CapacitorFilesystem', :path => '../../../../node_modules/.pnpm/@capacitor+filesystem@7.1.8_@capacitor+core@7.6.2/node_modules/@capacitor/filesystem'
+  pod 'CapacitorShare', :path => '../../../../node_modules/.pnpm/@capacitor+share@7.0.4_@capacitor+core@7.6.2/node_modules/@capacitor/share'
   pod 'CapacitorSplashScreen', :path => '../../../../node_modules/.pnpm/@capacitor+splash-screen@7.0.5_@capacitor+core@7.6.2/node_modules/@capacitor/splash-screen'
 end
 

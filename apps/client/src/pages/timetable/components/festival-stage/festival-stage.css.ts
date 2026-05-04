@@ -38,7 +38,7 @@ export const stageWrapper = style({
   display: 'flex',
   gap: '0.2rem',
   position: 'sticky',
-  top: TIMETABLE_HEADER_HEIGHT,
+  top: `calc(${TIMETABLE_HEADER_HEIGHT} + var(--safe-area-top))`,
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   backdropFilter: 'blur(2px)',
   backgroundColor: themeVars.color.white,
