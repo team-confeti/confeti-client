@@ -4,8 +4,10 @@ import * as styles from './reservation.css';
 
 interface ReservationItem {
   url: string;
-  name: string;
-  logoUrl: string;
+  ticketVendor: {
+    name: string;
+    logoUrl: string;
+  };
 }
 
 interface Props {
@@ -29,21 +31,21 @@ const Reservation = ({ reservations }: Props) => {
     <section className={styles.container}>
       <h2 className={styles.title}>예매처 바로가기</h2>
       <ul className={styles.list}>
-        {reservationItems.map(({ key, name, logoUrl, handleClick }) => (
+        {reservationItems.map(({ key, ticketVendor, handleClick }) => (
           <li key={key} className={styles.item}>
             <LogClickEvent
               name="click_reservation_link"
-              params={{ vendor: name }}
+              params={{ vendor: ticketVendor.name }}
             >
               <button className={styles.logoButton} onClick={handleClick}>
                 <img
-                  src={logoUrl}
-                  alt={`${name} 로고`}
+                  src={ticketVendor.logoUrl}
+                  alt={`${ticketVendor.name} 로고`}
                   className={styles.logo}
                 />
               </button>
             </LogClickEvent>
-            <span className={styles.name}>{name}</span>
+            <span className={styles.name}>{ticketVendor.name}</span>
           </li>
         ))}
       </ul>
