@@ -4,9 +4,13 @@ export interface Concert extends PerformanceBase {
   concertId: number;
   address: string;
   reservations: {
+    reservationId: number;
     url: string;
-    name: string;
-    logoUrl: string;
+    ticketVendor: {
+      ticketVendorId: number;
+      name: string;
+      logoUrl: string;
+    };
   }[];
 }
 
