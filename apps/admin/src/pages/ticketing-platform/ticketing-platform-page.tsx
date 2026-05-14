@@ -50,7 +50,7 @@ const TicketingPlatformPage = () => {
     setFormMode('edit');
     setEditingTicketingPlatform(ticketVendor);
     setTicketingPlatformName(ticketVendor.name);
-    setLogoPreview(ticketVendor.logoPath || null);
+    setLogoPreview(ticketVendor.logoUrl || null);
     setLogoFile(null);
   };
 
@@ -248,9 +248,9 @@ const TicketingPlatformPage = () => {
               className={styles.card}
             >
               <div className={styles.cardLogo}>
-                {ticketVendor.logoPath ? (
+                {ticketVendor.logoUrl ? (
                   <img
-                    src={ticketVendor.logoPath}
+                    src={ticketVendor.logoUrl}
                     alt={ticketVendor.name}
                     className={styles.cardLogoImage}
                   />
