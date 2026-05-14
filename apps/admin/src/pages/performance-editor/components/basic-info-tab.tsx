@@ -248,7 +248,7 @@ export const BasicInfoTab = ({
               }
             >
               <img
-                src={platform.logoPath}
+                src={platform.logoUrl}
                 alt={platform.name}
                 className={styles.ticketingPlatformIcon}
               />
@@ -261,7 +261,7 @@ export const BasicInfoTab = ({
           <div key={platform.id} className={styles.ticketingPlatformCard}>
             <div className={styles.ticketingPlatformCardHeader}>
               <img
-                src={ticketVendors.find((v) => v.id === platform.id)?.logoPath}
+                src={ticketVendors.find((v) => v.id === platform.id)?.logoUrl}
                 alt={platform.name}
                 className={styles.ticketingPlatformLogo}
               />

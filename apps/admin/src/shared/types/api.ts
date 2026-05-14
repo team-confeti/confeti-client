@@ -297,7 +297,7 @@ export type UpdateDraftRequest = {
 export type TicketVendorResponse = {
   id: number;
   name: string;
-  logoPath: string;
+  logoUrl: string;
 };
 
 export type TicketVendorListResponse = {
