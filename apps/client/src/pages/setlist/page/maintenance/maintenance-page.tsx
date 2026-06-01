@@ -1,9 +1,6 @@
 import { LogShowEvent } from '@shared/analytics/logging';
 import { AppSafeArea } from '@shared/components';
-import NavigationTabs from '@shared/components/navigation-tabs';
 import { LAYOUT_HEIGHT } from '@shared/constants/layout';
-
-import { TAB_MENU } from '@pages/home/constants/tab';
 
 import * as styles from './maintenance-page.css';
 
@@ -13,10 +10,9 @@ const MaintenancePage = () => {
   return (
     <>
       <LogShowEvent name="show_setlist_maintenance" />
-      <NavigationTabs defaultActiveTab={TAB_MENU.MY_HISTORY} />
       <AppSafeArea
         flexible
-        subtract={LAYOUT_HEIGHT.HEADERS_STACKED}
+        subtract={LAYOUT_HEIGHT.GLOBAL_HEADER}
         className={styles.container}
       >
         <img

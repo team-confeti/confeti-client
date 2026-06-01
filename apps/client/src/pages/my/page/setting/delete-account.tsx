@@ -7,7 +7,7 @@ import { Button, Dialog, useOverlay } from '@confeti/design-system';
 
 import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { AUTH_MUTATION_OPTIONS } from '@shared/apis/auth/auth-mutations';
-import { DetailHeader, Footer } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import { routePath } from '@shared/router/path';
 
 import * as styles from './delete-account.css';
@@ -113,7 +113,6 @@ const DeleteAccount = () => {
           />
         </LogClickEvent>
       </div>
-      <Footer />
     </>
   );
 };

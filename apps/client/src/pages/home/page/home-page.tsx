@@ -2,11 +2,7 @@ import { Spacing } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
 import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
-import {
-  FloatingButtonContainer,
-  Footer,
-  NavigationTabs,
-} from '@shared/components';
+import { FloatingButtonContainer } from '@shared/components';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import type { PerformanceType } from '@shared/types/performance-type';
 
@@ -14,7 +10,6 @@ import PerformanceCarouselSection from '../components/performance-carousel-secti
 import SuggestMusicSection from '../components/suggest-music-section';
 import SuggestPerformanceSection from '../components/suggest-performance-section';
 import TicketOpeningSection from '../components/ticket-opening-section';
-import { TAB_MENU } from '../constants/tab';
 import { useHomeQueries } from '../hooks/use-home-queries';
 
 import * as styles from './home-page.css';
@@ -61,8 +56,6 @@ const HomePage = () => {
         />
       )}
 
-      <NavigationTabs defaultActiveTab={TAB_MENU.HOME} />
-
       <TicketOpeningSection
         userName={userName}
         data={ticketing.performances}
@@ -78,7 +71,6 @@ const HomePage = () => {
       <Spacing size="xl" color="white" />
 
       <FloatingButtonContainer />
-      <Footer />
     </div>
   );
 };

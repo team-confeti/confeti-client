@@ -1,7 +1,7 @@
 import { Spacing } from '@confeti/design-system';
 
 import { LogShowEvent } from '@shared/analytics/logging';
-import { DetailHeader, Footer } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 
 import { TimetableContainer } from '@pages/my/components/timetable/timetable-container';
 
@@ -14,7 +14,6 @@ const MyTimetable = () => {
       <DetailHeader title="타임테이블 목록" />
       <TimetableContainer />
       <Spacing color="white" className={styles.spacing} />
-      <Footer />
     </>
   );
 };
