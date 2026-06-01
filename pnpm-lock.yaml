@@ -185,6 +185,9 @@ importers:
       '@capacitor/filesystem':
         specifier: ^7.1.4
         version: 7.1.8(@capacitor/core@7.6.2)
+      '@capacitor/haptics':
+        specifier: ^7.0.5
+        version: 7.0.5(@capacitor/core@7.6.2)
       '@capacitor/ios':
         specifier: ^7.4.4
         version: 7.6.2(@capacitor/core@7.6.2)
