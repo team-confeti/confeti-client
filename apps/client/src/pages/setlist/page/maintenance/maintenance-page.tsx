@@ -12,7 +12,8 @@ const MaintenancePage = () => {
       <LogShowEvent name="show_setlist_maintenance" />
       <AppSafeArea
         flexible
-        subtract={LAYOUT_HEIGHT.GLOBAL_HEADER}
+        insets="top"
+        subtract={`calc(${LAYOUT_HEIGHT.GLOBAL_HEADER} + ${LAYOUT_HEIGHT.BOTTOM_NAVIGATION})`}
         className={styles.container}
       >
         <img

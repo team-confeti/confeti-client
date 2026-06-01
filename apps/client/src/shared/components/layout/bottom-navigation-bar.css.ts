@@ -2,8 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { themeVars } from '@confeti/design-system/styles';
 
-// fixed 탭바 높이(Figma 78px = 버튼 5.8rem + paddingBottom). spacer로 콘텐츠 가림 방지.
-const BAR_HEIGHT = 'calc(5.8rem + max(2rem, env(safe-area-inset-bottom)))';
+import { LAYOUT_HEIGHT } from '@shared/constants/layout';
 
 export const fixedWrapper = style({
   position: 'fixed',
@@ -18,6 +17,6 @@ export const fixedWrapper = style({
 
 export const spacer = style({
   width: '100%',
-  height: BAR_HEIGHT,
+  height: LAYOUT_HEIGHT.BOTTOM_NAVIGATION,
   flexShrink: 0,
 });
