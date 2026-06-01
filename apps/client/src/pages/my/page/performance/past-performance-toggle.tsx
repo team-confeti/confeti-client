@@ -1,4 +1,5 @@
 import { Toggle } from '@confeti/design-system';
+import { hapticSelection } from '@confeti/platform';
 
 import * as styles from './past-performance-toggle.css';
 
@@ -14,7 +15,13 @@ export const PastPerformanceToggle = ({
   return (
     <div className={styles.container}>
       <p className={styles.title}>지난 공연 숨기기</p>
-      <Toggle checked={checked} onChange={onChange} />
+      <Toggle
+        checked={checked}
+        onChange={(next) => {
+          hapticSelection();
+          onChange(next);
+        }}
+      />
     </div>
   );
 };

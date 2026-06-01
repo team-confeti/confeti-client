@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { BottomNavigation } from '@confeti/design-system';
 import { Icon, type IconName } from '@confeti/design-system/icon';
+import { hapticImpact } from '@confeti/platform';
 
 import type { ClickEventPayload } from '@shared/analytics/events/types';
 import { logClickEvent } from '@shared/analytics/logging';
@@ -50,6 +51,13 @@ const BAR_ROUTES = new Set<string>([
   ...AUXILIARY_ROUTES,
 ]);
 
+const handleTabSelect = (tab: NavTab, isActive: boolean) => {
+  logClickEvent(tab.event);
+  if (!isActive) {
+    hapticImpact('light');
+  }
+};
+
 const BottomNavigationBar = () => {
   const { pathname } = useLocation();
 
@@ -70,7 +78,10 @@ const BottomNavigationBar = () => {
               asChild
             >
               {({ isActive }) => (
-                <Link to={tab.to} onClick={() => logClickEvent(tab.event)}>
+                <Link
+                  to={tab.to}
+                  onClick={() => handleTabSelect(tab, isActive)}
+                >
                   <Icon
                     name={tab.icon}
                     weight={isActive ? 'fill' : 'regular'}

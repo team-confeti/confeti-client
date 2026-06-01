@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import { Button, FestivalCard } from '@confeti/design-system';
+import { hapticNotify } from '@confeti/platform';
 
 import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { MY_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/my/my-timetable-queries';
@@ -49,6 +50,7 @@ const AddFestival = () => {
   const { mutate } = useMutation({
     ...TIMETABLE_MUTATION_OPTIONS.POST_TIMETABLE(),
     onSuccess: () => {
+      hapticNotify('success');
       queryClient.invalidateQueries({
         queryKey: [...FESTIVAL_TIMETABLE_QUERY_KEY.ALL],
       });

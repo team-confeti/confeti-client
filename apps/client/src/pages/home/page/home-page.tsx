@@ -2,7 +2,6 @@ import { Spacing } from '@confeti/design-system';
 import { formatDate } from '@confeti/utils';
 
 import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
-import { FloatingButtonContainer } from '@shared/components';
 import { useNavigateToDetail } from '@shared/hooks/use-navigate-to-detail';
 import type { PerformanceType } from '@shared/types/performance-type';
 
@@ -69,8 +68,6 @@ const HomePage = () => {
 
       <SuggestMusicSection onClickDetail={navigateToDetail} />
       <Spacing size="xl" color="white" />
-
-      <FloatingButtonContainer />
     </div>
   );
 };

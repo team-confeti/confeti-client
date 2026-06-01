@@ -1,5 +1,6 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { Avatar, LikeButton } from '@confeti/design-system';
+import { hapticImpact } from '@confeti/platform';
 import { getAddedDate } from '@confeti/utils/src/format-date';
 
 import { logClickEvent } from '@shared/analytics/logging';
@@ -16,6 +17,9 @@ const ArtistList = ({ artists }: Props) => {
   const { mutate } = useLikeMutation();
 
   const handleLike = (artistId: string, action: 'LIKE' | 'UNLIKE') => {
+    if (action === 'LIKE') {
+      hapticImpact('medium');
+    }
     logClickEvent({
       name: 'click_like_artist',
       params: {

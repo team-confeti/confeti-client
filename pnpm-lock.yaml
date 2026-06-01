@@ -185,6 +185,9 @@ importers:
       '@capacitor/filesystem':
         specifier: ^7.1.4
         version: 7.1.8(@capacitor/core@7.6.2)
+      '@capacitor/haptics':
+        specifier: ^7.0.5
+        version: 7.0.5(@capacitor/core@7.6.2)
       '@capacitor/ios':
         specifier: ^7.4.4
         version: 7.6.2(@capacitor/core@7.6.2)
@@ -544,6 +547,9 @@ importers:
       '@capacitor/filesystem':
         specifier: ^7.1.4
         version: 7.1.8(@capacitor/core@7.6.2)
+      '@capacitor/haptics':
+        specifier: ^7.0.5
+        version: 7.0.5(@capacitor/core@7.6.2)
       '@capacitor/preferences':
         specifier: ^7.0.2
         version: 7.0.4(@capacitor/core@7.6.2)
@@ -894,6 +900,14 @@ packages:
     resolution:
       {
         integrity: sha512-Qpw/2SE4/CzqAUvGgSM9hw/uXQ5qoOaF4wxbToXwpAaKPS+tzletS1h5ti3jjLmGcqizTs2sEXMtcsARW/Ceew==,
+      }
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/haptics@7.0.5':
+    resolution:
+      {
+        integrity: sha512-ujXuUkL8UG1YLhuJo/q+jiHr0K5JmclGZHmV1RttmiUBRG1XpC4Fc4gXUJyEX+6IoyfwWhgtPvJFRUB31HYnRQ==,
       }
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
@@ -10972,6 +10986,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.6.2
       '@capacitor/synapse': 1.0.4
+
+  '@capacitor/haptics@7.0.5(@capacitor/core@7.6.2)':
+    dependencies:
+      '@capacitor/core': 7.6.2
 
   '@capacitor/ios@7.6.2(@capacitor/core@7.6.2)':
     dependencies:
