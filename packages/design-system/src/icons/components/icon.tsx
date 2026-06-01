@@ -8,15 +8,31 @@ import { sprIcon } from './icon.css';
 
 type IconColor = keyof typeof themeVars.color;
 
+export type IconWeight = 'regular' | 'fill';
+
+const ICON_WEIGHTS = [
+  'regular',
+  'fill',
+] as const satisfies readonly IconWeight[];
+
 type IconProps = {
   name: IconName;
   size?: number | string;
   width?: number | string;
   height?: number | string;
   color?: IconColor;
+  weight?: IconWeight;
   className?: string;
   rotate?: 90 | 180 | 270;
 } & React.SVGProps<SVGSVGElement>;
+
+const buildWeightVars = (weight: IconWeight): React.CSSProperties => {
+  const vars: Record<string, string> = {};
+  for (const w of ICON_WEIGHTS) {
+    vars[`--icon-w-${w}`] = w === weight ? 'inline' : 'none';
+  }
+  return vars as React.CSSProperties;
+};
 
 export const Icon = ({
   name,
@@ -24,6 +40,7 @@ export const Icon = ({
   width,
   height,
   color,
+  weight = 'regular',
   className,
   rotate,
   ...rest
@@ -44,6 +61,12 @@ export const Icon = ({
     .filter(Boolean)
     .join(' ');
 
+  const mergedStyle: React.CSSProperties = {
+    ...(color ? { color: themeVars.color[color] } : undefined),
+    ...buildWeightVars(weight),
+    ...rest.style,
+  };
+
   return (
     <svg
       width={
@@ -55,9 +78,9 @@ export const Icon = ({
           : computedHeight
       }
       className={combinedClass}
-      style={color ? { color: themeVars.color[color] } : undefined}
       aria-hidden="true"
       {...rest}
+      style={mergedStyle}
     >
       <use href={`#icon-${name}`} />
     </svg>

@@ -25,6 +25,9 @@ export const zIndex = {
   navigation: {
     content: '50',
   },
+  bottomNavigation: {
+    content: '50',
+  },
   dropdown: {
     content: '30',
     tooltip: '30',

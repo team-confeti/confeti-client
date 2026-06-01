@@ -9,7 +9,7 @@ import {
   LogShowEvent,
 } from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { AppSafeArea, DetailHeader, Footer } from '@shared/components';
+import { AppSafeArea, DetailHeader } from '@shared/components';
 import { LAYOUT_HEIGHT } from '@shared/constants/layout';
 import {
   MyPerformances,
@@ -116,7 +116,6 @@ const PerformanceMore = () => {
       ) : (
         <PerformanceList performances={displayedPerformances} />
       )}
-      <Footer />
     </AppSafeArea>
   );
 };

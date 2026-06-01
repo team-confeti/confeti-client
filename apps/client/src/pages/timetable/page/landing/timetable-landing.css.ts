@@ -8,10 +8,6 @@ export const landingWrapper = style({
   ...themeVars.display.flexColumn,
 });
 
-export const navTabsWrapper = style({
-  width: '100%',
-});
-
 export const contentArea = style({
   position: 'relative',
   backgroundColor: themeVars.color.white,

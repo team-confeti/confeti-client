@@ -4,11 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { LogShowEvent } from '@shared/analytics/logging';
 import { FESTIVAL_TIMETABLE_QUERY_OPTIONS } from '@shared/apis/timetable/festival-timetable-queries';
-import { Footer, NavigationTabs } from '@shared/components';
 import { isEmpty } from '@shared/lib/es-toolkit/es';
 import { routePath } from '@shared/router/path';
-
-import { TAB_MENU } from '@pages/home/constants/tab';
 
 import TimetableLandingContent from './components/timetable-landing-content';
 import TimetableLandingHeader from './components/timetable-landing-header';
@@ -40,18 +37,12 @@ const TimetableLandingPage = () => {
         isEditMode={isEditMode}
       />
 
-      <div className={styles.navTabsWrapper}>
-        <NavigationTabs defaultActiveTab={TAB_MENU.TIMETABLE} />
-      </div>
-
       <div className={styles.contentArea}>
         <TimetableLandingContent
           isEditMode={isEditMode}
           setIsEditMode={setIsEditMode}
         />
       </div>
-
-      <Footer />
     </div>
   );
 };
