@@ -1,7 +1,7 @@
 import type { AnalyticsCatalogData } from '../types';
 
 export const analyticsCatalog = {
-  generatedAt: '2026-04-13T08:02:02.157Z',
+  generatedAt: '2026-06-01T13:56:26.024Z',
   rows: [
     {
       page: '*',
@@ -633,20 +633,6 @@ export const analyticsCatalog = {
       params: [],
       sourceFile: 'pages/my/components/artist/no-artist-section.tsx',
       sourceComponent: 'NoArtistSection',
-    },
-    {
-      page: '/my',
-      path: '/my',
-      state: 'show_my_profile',
-      attribute: '',
-      commonComponent: '',
-      element: 'button',
-      eventType: 'click',
-      eventName: 'click_my_profile_setting',
-      showType: '',
-      params: [],
-      sourceFile: 'pages/my/page/profile/my-profile.tsx',
-      sourceComponent: 'MyProfile',
     },
     {
       page: '/my/artist',
@@ -2321,26 +2307,6 @@ export const analyticsCatalog = {
       sourceFile:
         'pages/setlist/components/add-setlist/setlist-performance.tsx',
       sourceComponent: 'handleFestivalSelect',
-    },
-    {
-      page: '/setlist/maintenance',
-      path: '/setlist/maintenance',
-      state: '',
-      attribute: '공통',
-      commonComponent: 'NavigationTabs',
-      element: 'Navigation.Item',
-      eventType: 'click',
-      eventName: 'click_navigation_tab',
-      showType: '',
-      params: [
-        {
-          name: 'tab',
-          type: 'enum: home, timetable, setlist',
-          required: true,
-        },
-      ],
-      sourceFile: 'shared/components/navigation-tabs.tsx',
-      sourceComponent: 'NavigationTabs',
     },
     {
       page: '/setlist/maintenance',
