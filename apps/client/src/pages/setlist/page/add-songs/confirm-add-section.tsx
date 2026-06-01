@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Dialog, MusicItem, useOverlay } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { hapticNotify } from '@confeti/platform';
 
 import {
   LogClickEvent,
@@ -36,6 +37,7 @@ const ConfirmAddSection = ({
   const { mutate } = useMutation({
     ...SETLIST_MUTATION_OPTIONS.POST_ADD_MUSIC_TO_SETLIST(),
     onSuccess: async () => {
+      hapticNotify('success');
       navigate(
         buildPath(routePath.MY_SETLIST_DETAIL_ABSOLUTE, {
           setlistId: setlistId ?? '',

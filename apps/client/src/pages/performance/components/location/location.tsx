@@ -1,5 +1,6 @@
 import { toast } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { hapticImpact } from '@confeti/platform';
 import { onError, onSuccess } from '@confeti/utils';
 
 import { LogClickEvent } from '@shared/analytics/logging';
@@ -30,6 +31,7 @@ const Location = ({ address }: LocationProps) => {
       });
     })(
       onSuccess(() => {
+        hapticImpact('light');
         toast({
           text: '주소가 복사되었어요.',
           position: 'bottomCenter',

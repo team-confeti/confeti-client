@@ -20,6 +20,7 @@ export {
   openExternalLink,
   type OpenLinkOptions,
 } from './browser';
+export { hapticImpact, hapticNotify, hapticSelection } from './haptics';
 export {
   getPlatform,
   isAndroid,
