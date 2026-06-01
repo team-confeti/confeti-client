@@ -5,12 +5,12 @@ import { themeVars } from '@confeti/design-system/styles';
 export const sectionContainer = style({
   position: 'relative',
   width: '100%',
-  height: '56.4rem',
+  height: '52rem',
   overflow: 'hidden',
   marginTop: 0,
   selectors: {
     '.cap-native &': {
-      height: 'calc(56.4rem + var(--safe-area-top))',
+      height: 'calc(52rem + var(--safe-area-top))',
     },
   },
 });

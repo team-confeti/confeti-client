@@ -6,10 +6,10 @@ export const root = style({
   overflow: 'visible',
   userSelect: 'none',
   touchAction: 'none',
-  marginTop: '8rem',
+  marginTop: '3.6rem',
   selectors: {
     '.cap-native &': {
-      marginTop: 'calc(8rem + var(--safe-area-top))',
+      marginTop: 'calc(3.6rem + var(--safe-area-top))',
     },
   },
 });
