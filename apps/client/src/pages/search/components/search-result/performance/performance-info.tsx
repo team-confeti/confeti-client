@@ -1,6 +1,7 @@
 import { getAccessToken } from '@confeti/core/auth';
 import { LikeButton } from '@confeti/design-system';
 import { Icon } from '@confeti/design-system/icon';
+import { hapticImpact } from '@confeti/platform';
 import { formatDate } from '@confeti/utils';
 
 import { logClickEvent } from '@shared/analytics/logging';
@@ -22,6 +23,7 @@ const PerformanceInfo = ({
 }: Performance) => {
   const { mutate } = useLikeMutation();
   const handleLike = (action: 'LIKE' | 'UNLIKE') => {
+    if (action === 'LIKE') hapticImpact('medium');
     logClickEvent({
       name: 'click_like_performance',
       params: {
