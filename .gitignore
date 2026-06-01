@@ -68,6 +68,15 @@ apps/client/ios/App/App.xcodeproj/project.xcworkspace/xcuserdata
 apps/client/ios/DerivedData
 apps/client/ios/capacitor-cordova-ios-plugins
 
+# Capacitor — iOS (추가)
+apps/client/ios/build
+apps/client/ios/App/build/Build
+apps/client/ios/App/build/Logs
+apps/client/ios/App/build/Index.noindex
+apps/client/ios/App/build/ModuleCache.noindex
+apps/client/ios/App/build/SDKStatCaches.noindex
+apps/client/ios/App/build/CompilationCache.noindex
+
 # Capacitor — Android
 apps/client/android/.gradle
 apps/client/android/.idea
@@ -77,3 +86,8 @@ apps/client/android/app/release
 apps/client/android/captures
 apps/client/android/local.properties
 apps/client/android/capacitor-cordova-android-plugins
+
+# Android signing — 절대 커밋 금지 (비밀번호 포함)
+apps/client/android/keystore.properties
+apps/client/android/**/*.keystore
+apps/client/android/**/*.jks
