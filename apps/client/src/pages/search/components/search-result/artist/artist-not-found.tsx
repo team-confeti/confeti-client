@@ -1,7 +1,6 @@
 import { Icon } from '@confeti/design-system/icon';
 
 import { LogShowEvent } from '@shared/analytics/logging';
-import { Footer } from '@shared/components';
 
 import { SEARCH_NOT_FOUND_MESSAGE } from '../../../constants/notice-message';
 
@@ -20,7 +19,6 @@ const ArtistNotFound = () => {
           {SEARCH_NOT_FOUND_MESSAGE.ARTIST_NOT_FOUND_SUBTITLE}
         </p>
       </div>
-      <Footer />
     </div>
   );
 };

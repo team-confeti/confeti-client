@@ -2,6 +2,7 @@ export { useOverlay } from '../context/overlay-context';
 export { OverlayProvider } from '../context/overlay-context';
 export { default as ArtistCard } from './artist-card/artist-card';
 export { default as Avatar } from './avatar/avatar';
+export { default as BottomNavigation } from './bottom-navigation/bottom-navigation';
 export { default as Box } from './box/box';
 export { default as Button } from './button/button';
 export { default as Chip } from './chip/chip';

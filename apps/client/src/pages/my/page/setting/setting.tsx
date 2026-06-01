@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from '@confeti/design-system/icon';
 
 import { LogClickEvent, LogShowEvent } from '@shared/analytics/logging';
-import { DetailHeader, Footer } from '@shared/components';
+import { DetailHeader } from '@shared/components';
 import { EXTERNAL_LINKS } from '@shared/constants/links';
 import { routePath } from '@shared/router/path';
 
@@ -42,7 +42,6 @@ const Setting = () => {
           </Link>
         </LogClickEvent>
       </section>
-      <Footer />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { LogShowEvent } from '@shared/analytics/logging';
 import { SETLIST_MUTATION_OPTIONS } from '@shared/apis/setlist/setlist-mutations';
 import { SETLIST_QUERY_OPTIONS } from '@shared/apis/setlist/setlist-queries';
-import { Footer, Hero } from '@shared/components';
+import { Hero } from '@shared/components';
 import { routePath } from '@shared/router/path';
 import { buildPath } from '@shared/utils/build-path';
 
@@ -116,8 +116,6 @@ const SetListDetailPage = () => {
           onTracksChange={(tracks) => setReorderedTracks(tracks)}
         />
       )}
-
-      <Footer />
     </>
   );
 };

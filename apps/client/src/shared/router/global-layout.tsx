@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import { Header } from '@shared/components';
+import { BottomNavigationBar, Header } from '@shared/components';
 import Deferred from '@shared/components/deferred/deferred';
 import ErrorFallback from '@shared/pages/error/error';
 import Loading from '@shared/pages/loading/loading';
@@ -29,6 +29,7 @@ export default function GlobalLayout() {
           <Outlet />
         </Suspense>
       </ErrorBoundary>
+      <BottomNavigationBar />
     </ScrollToTop>
   );
 }

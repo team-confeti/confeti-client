@@ -5,7 +5,7 @@ import { Spacing } from '@confeti/design-system';
 
 import { LogShowEvent } from '@shared/analytics/logging';
 import { PERFORMANCE_QUERY_OPTIONS } from '@shared/apis/performance/performance-queries';
-import { FloatingButtonContainer, Footer, Hero } from '@shared/components';
+import { FloatingButtonContainer, Hero } from '@shared/components';
 import { TimetableExistsResponse } from '@shared/types/festival-timetable-response';
 import { addRecentViewItem } from '@shared/utils/recent-view';
 
@@ -66,7 +66,6 @@ const FestivalDetailPage = () => {
       <Spacing />
       <FestivalArtistSection artists={festivalDetail.festivalDates} />
       <FloatingButtonContainer />
-      <Footer />
     </>
   );
 };

@@ -2,15 +2,9 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Spacing } from '@confeti/design-system';
-import { Icon } from '@confeti/design-system/icon';
 
-import {
-  LogClickEvent,
-  logClickEvent,
-  LogShowEvent,
-} from '@shared/analytics/logging';
+import { logClickEvent, LogShowEvent } from '@shared/analytics/logging';
 import { USER_QUERY_OPTIONS } from '@shared/apis/user/user-queries';
-import { DetailHeader, Footer } from '@shared/components';
 import { useUserProfile } from '@shared/hooks/queries/use-user-profile-query';
 import { routePath } from '@shared/router/path';
 
@@ -33,10 +27,6 @@ const MyProfile = () => {
   const { data: performanceData } = useSuspenseQuery({
     ...USER_QUERY_OPTIONS.MY_PERFORMANCES_PREVIEW(),
   });
-
-  const handleNavigateSetting = () => {
-    navigate(routePath.MY_SETTING);
-  };
 
   const handleNavigateFavoritePerformance = () => {
     logClickEvent({
@@ -65,16 +55,6 @@ const MyProfile = () => {
   return (
     <>
       <LogShowEvent name="show_my_profile" />
-      <DetailHeader
-        title="마이페이지"
-        rightIcon={
-          <LogClickEvent name="click_my_profile_setting">
-            <button onClick={handleNavigateSetting}>
-              <Icon name="setting" size="2.4rem" />
-            </button>
-          </LogClickEvent>
-        }
-      />
       <UserInfo name={profileData.name} profileUrl={profileData.profileUrl} />
       <UserActivitySummary />
       <Spacing size="md" color="gray" />
@@ -113,7 +93,6 @@ const MyProfile = () => {
         )}
       </Box>
       <LogoutSection />
-      <Footer />
     </>
   );
 };

@@ -1,18 +1,29 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Icon } from '@confeti/design-system/icon';
+import { Icon, type IconName } from '@confeti/design-system/icon';
 
-import { LogClickEvent } from '@shared/analytics/logging';
+import type { ClickEventPayload } from '@shared/analytics/events/types';
+import { LogClickEvent, logClickEvent } from '@shared/analytics/logging';
+import { routePath } from '@shared/router/path';
 
 import { usePageScrollState } from '../../hooks/use-page-scroll-state';
 
 import * as styles from './header.css';
 
+type HeaderAction = {
+  event: ClickEventPayload;
+  label: string;
+  icon: IconName;
+  to: string;
+};
+
 const Header = () => {
   const navigate = useNavigate();
 
-  const { isHomePage, isTimetableLandingPage, isMyPage, isScrolled } =
+  const { pathname, isHomePage, isTimetableLandingPage, isMyPage, isScrolled } =
     usePageScrollState();
+
+  const isMyPageRoot = pathname === routePath.MY;
 
   const shouldUseTransparentHeader =
     (isHomePage || isTimetableLandingPage) && !isScrolled;
@@ -27,6 +38,22 @@ const Header = () => {
 
   const handleNavigation = (path: string) => navigate(path);
 
+  const rightAction: HeaderAction | null = isMyPageRoot
+    ? {
+        event: { name: 'click_my_profile_setting' },
+        label: '설정',
+        icon: 'setting',
+        to: `${routePath.MY}/${routePath.MY_SETTING}`,
+      }
+    : !isMyPage
+      ? {
+          event: { name: 'click_navigation_search' },
+          label: '검색',
+          icon: 'header-search',
+          to: routePath.SEARCH,
+        }
+      : null;
+
   return (
     <header className={headerClassName}>
       <LogClickEvent name="click_navigation_logo">
@@ -35,31 +62,22 @@ const Header = () => {
           width="3.4rem"
           height="2.8rem"
           className={styles.logo}
-          onClick={() => handleNavigation('/')}
+          onClick={() => handleNavigation(routePath.ROOT)}
         />
       </LogClickEvent>
 
-      {!isMyPage && (
+      {rightAction && (
         <div className={styles.iconSection}>
-          <LogClickEvent name="click_navigation_search">
-            <button
-              className={styles.button}
-              aria-label="검색"
-              onClick={() => handleNavigation('/search')}
-            >
-              <Icon name="header-search" size="2.8rem" color={iconColor} />
-            </button>
-          </LogClickEvent>
-
-          <LogClickEvent name="click_navigation_my">
-            <button
-              className={styles.button}
-              aria-label="프로필"
-              onClick={() => handleNavigation('/my')}
-            >
-              <Icon name="profile" size="2.8rem" color={iconColor} />
-            </button>
-          </LogClickEvent>
+          <button
+            className={styles.button}
+            aria-label={rightAction.label}
+            onClick={() => {
+              logClickEvent(rightAction.event);
+              handleNavigation(rightAction.to);
+            }}
+          >
+            <Icon name={rightAction.icon} size="2.8rem" color={iconColor} />
+          </button>
         </div>
       )}
     </header>

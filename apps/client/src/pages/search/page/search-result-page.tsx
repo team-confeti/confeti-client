@@ -1,7 +1,6 @@
 import { Spacing } from '@confeti/design-system';
 
 import { LogShowEvent } from '@shared/analytics/logging';
-import { Footer } from '@shared/components';
 import { SearchAllResponse } from '@shared/types/search-response';
 
 import ArtistSection from '../components/search-result/artist/artist-section';
@@ -44,7 +43,6 @@ const SearchResult = ({ searchData, refetchArtist }: Props) => {
           </>
         )}
       </main>
-      <Footer />
     </div>
   );
 };
