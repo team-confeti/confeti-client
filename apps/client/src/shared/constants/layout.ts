@@ -11,4 +11,6 @@ export const LAYOUT_HEIGHT = {
   DETAIL_HEADER: '4.4rem',
   /** 글로벌 + 페이지 헤더 스택. */
   HEADERS_STACKED: '9.8rem',
+  /** 하단 탭바(BottomNavigation) 전체 높이 (버튼 콘텐츠 + safe-area 하단 패딩). */
+  BOTTOM_NAVIGATION: 'calc(5.8rem + max(2rem, env(safe-area-inset-bottom)))',
 } as const;
